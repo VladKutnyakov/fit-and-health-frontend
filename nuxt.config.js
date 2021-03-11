@@ -1,6 +1,17 @@
 export default {
+  // Настройки для локального доступа к проекту с мобильного (cmd ---> ipconfig)
+  // server: {
+  //   port: 3000, // default: 3000
+  //   host: '192.168.1.222' // default: localhost
+  // },
+
+  telemetry: false,
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
+    htmlAttrs: {
+      lang: 'ru'
+    },
     title: 'fit-and-health',
     meta: [
       { charset: 'utf-8' },
@@ -12,8 +23,14 @@ export default {
     ]
   },
 
+  // Customize the progress-bar color
+  loading: { color: '#6EB63B' },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/styles/reset.scss',
+    // '@/static/fonts/css/themify-icons.css',
+    '~/assets/styles/main.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -21,7 +38,7 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -33,6 +50,10 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+    // https://github.com/nuxt-community/svg-sprite-module
+    '@nuxtjs/svg-sprite',
+    // https://github.com/nuxt-community/sitemap-module
+    '@nuxtjs/sitemap',
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -43,6 +64,31 @@ export default {
     manifest: {
       lang: 'en'
     }
+  },
+
+  sitemap: {
+    // options
+    // hostname: 'https://fit-and-health.ru',
+    gzip: true,
+    exclude: [
+      '/_icons',
+      // '/secret',
+      // '/admin/**'
+    ],
+    // routes: async () => {
+    //   const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
+    //   return data.map((user) => `/users/${user.username}`)
+    // }
+  },
+
+  svgSprite: {
+    // manipulate module options
+    input: '~/assets/sprite/svg', // Directory of original svg files
+    output: '~/assets/sprite/gen' // Directory to store generated sprites
+  },
+
+  axios: {
+    // See https://github.com/nuxt-community/axios-module#options
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
