@@ -1,9 +1,9 @@
 export default {
   // Настройки для локального доступа к проекту с мобильного (cmd ---> ipconfig)
-  // server: {
-  //   port: 3000, // default: 3000
-  //   host: '192.168.1.222' // default: localhost
-  // },
+  server: {
+    port: 3030, // default: 3000
+    host: 'localhost' // default: localhost, custom : 192.168.1.222 -> current ip
+  },
 
   telemetry: false,
 
