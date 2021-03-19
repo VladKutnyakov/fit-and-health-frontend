@@ -1,34 +1,33 @@
 <template>
   <div class="auth-page">
-    <p>auth page</p>
-    <hr>
-    <p>{{ token }}</p>
-    <hr>
-    
-    <form action="" @submit.prevent="login({userLogin, userPassword})">
-      <input type="text" v-model="userLogin">
-      <input type="text" v-model="userPassword">
-      <button type="submit">Отправить</button>
-    </form>
+    <div class="auth-page__content">
+      <app-login-form
+        v-if="loginForm"
+        @changeForm="loginForm = false"
+      />
+      <app-register-form
+        v-if="!loginForm"
+        @changeForm="loginForm = true"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import AppLoginForm from '@/components/auth/AppLoginForm'
+import AppRegisterForm from '@/components/auth/AppRegisterForm'
 
 export default {
-  layout: 'default',
-  middleware: ['userAuth'],
+  name: 'AuthPage',
+  layout: 'empty',
+  components: {
+    AppLoginForm,
+    AppRegisterForm
+  },
   data () {
     return {
-      userLogin: 'john',
-      userPassword: 'changeme',
+      loginForm: true
     }
-  },
-  computed: {
-    ...mapState({
-      token: state => state.auth.token
-    }),
   },
   methods: {
     async login () {
@@ -52,5 +51,23 @@ export default {
 
 <style lang="scss">
 @import '@/assets/styles/vars.scss';
+
+.auth-page {
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .auth-page__content {
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    width: 100%;
+    height: 100vh;
+    max-width: 1400px;
+  }
+}
 
 </style>

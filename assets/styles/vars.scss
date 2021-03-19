@@ -1,11 +1,11 @@
 @import "@/assets/styles/mixins.scss";
 
 // FONTS
-// $fontMontserrat: 'Montserrat', Arial, Helvetica, sans-serif;
-// $fontThemify: 'themify';
+$fontMontserrat: 'Montserrat', Arial, Helvetica, sans-serif;
+$fontThemify: 'themify';
 
 // COLORS
-// $app-background: #FCFCFC;
+$app-background: #FCFCFC;
 
 $white: rgba(255,255,255,1);
 $white10: rgba(255,255,255,.1);
@@ -29,22 +29,22 @@ $black70: rgba(86,88,89,.7);
 $black80: rgba(86,88,89,.8);
 $black90: rgba(86,88,89,.9);
 
-// $gray-dark: #909497;
-// $gray: #B6BFC6;
-// $gray-light: rgba(0,0,0,.06);
-// $green: #6EB63B;
-// $green-light: #6BCA27;
-// $red: #E22355;
-// $blue: #1296F9;
-// $blue-light: #37CCDB;
-// $violet: #795BF4;
-// $yellow: #FFD700;
-// $yellow-light: #FFE85D;
+$gray-dark: #909497;
+$gray: #B6BFC6;
+$gray-light: rgba(0,0,0,.06);
+$green: #1bb835;
+$green-light: #1bba27;
+$red: #E22355;
+$blue: #1296F9;
+$blue-light: #37CCDB;
+$violet: #795BF4;
+$yellow: #FFD700;
+$yellow-light: #FFE85D;
 
-// $hiddenBlockBG: rgba(0,0,0,.08);
-// $insetBlockBG: rgba(0, 0, 0, 0.025);
-// $blockBorder: rgba(0,0,0,.2);
-// $inputBorder: rgba(0,0,0,.1);
+$hiddenBlockBG: rgba(0,0,0,.08);
+$insetBlockBG: rgba(0, 0, 0, 0.025);
+$blockBorder: rgba(0,0,0,.2);
+$inputBorder: rgba(0,0,0,.1);
 
 // TRANSITIONS
 $tr-01: all .1s ease-in-out;
@@ -58,12 +58,12 @@ $tr-09: all .9s ease-in-out;
 $tr-1: all 1s ease-in-out;
 
 // SHADOWS
-// $btnShadow: 0 1px 6px 1px rgba(52,40,104,.4);
-// $btnHoverShadow: 0 1px 4px 0px rgba(52,40,104,.4);
-// $btnActiveShadow: 0 1px 4px 1px rgba(52,40,104,.4);
+$btnShadow: 0 1px 6px 1px rgba(52,40,104,.4);
+$btnHoverShadow: 0 1px 4px 0px rgba(52,40,104,.4);
+$btnActiveShadow: 0 1px 4px 1px rgba(52,40,104,.4);
 
-// $boxShadow: 0px 1px 6px 1px $blockBorder;
-// $insetBoxShadow: inset 0 0 5px 0px rgba(0,0,0,0.25);
+$boxShadow: 0px 1px 6px 1px $blockBorder;
+$insetBoxShadow: inset 0 0 5px 0px rgba(0,0,0,0.25);
 
 
 

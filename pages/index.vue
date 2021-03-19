@@ -1,17 +1,69 @@
 <template>
   <div class="index-page">
-    index page
+    <div class="index-page__content">
+      <app-block-title>Авторизация</app-block-title>
+      <nuxt-link to="/auth">Войти / Зарегистрировать</nuxt-link>
+      <br>
+    </div>
   </div>
 </template>
 
 <script>
+import AppBlockTitle from '@/components/basic/AppBlockTitle'
+
 export default {
-  middleware: ['userAuth'],
+  layout: 'empty',
+  name: 'IndexPage',
+  head () {
+    return {
+      title: 'Fit and Health - Профиль',
+      __dangerouslyDisableSanitizers: ['script'],
+      script: [
+        { // МИКРОРАЗМЕТКА
+          innerHTML: `{
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "https://website.com",
+            "name": "Website",
+            "description": "This website is awesome.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Website",
+              "alternateName": "SiteWeb",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://someimage.com/image"
+              }
+            }
+          }`,
+          type: 'application/ld+json'
+        }
+      ]
+    }
+  },
+  components: {
+    AppBlockTitle
+  }
 }
 </script>
 
 <style lang="scss">
 @import '@/assets/styles/vars.scss';
 
-.index-page {}
+.index-page {
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // margin-left: 80px;
+  padding: 40px;
+  .index-page__content {
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1700px;
+  }
+}
+
 </style>

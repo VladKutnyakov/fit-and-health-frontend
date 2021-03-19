@@ -29,7 +29,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~/assets/styles/reset.scss',
-    // '@/static/fonts/css/themify-icons.css',
+    '@/static/fonts/css/themify-icons.css',
     '~/assets/styles/main.scss'
   ],
 

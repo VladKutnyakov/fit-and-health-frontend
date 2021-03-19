@@ -1,8 +1,19 @@
 <template>
   <div class="layout-default">
-    <p>Header</p>
-    <p>navigation sidebar</p>
+    <app-navbar />
     <Nuxt />
-    <p>Footer</p>
+    <app-notifications />
   </div>
 </template>
+
+<script>
+import AppNavbar from '@/components/navigation/AppNavbar'
+import AppNotifications from '@/components/basic/AppNotifications'
+
+export default {
+  components: {
+    AppNavbar,
+    AppNotifications
+  }
+}
+</script>
