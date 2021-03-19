@@ -186,8 +186,8 @@ export default {
 
   .user-card__action-btns {
     margin-top: 20px;
-    padding: 20px 10px;
-    background: $black10;
+    // padding: 20px 10px;
+    // background: $black10;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -198,8 +198,10 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
-    margin: 0 10px;
+    margin: 20px 10px 0 10px;
     padding: 10px 0;
+    border-top: 1px solid $blockBorder;
+    border-bottom: 1px solid $blockBorder;
     .main-info__item {
       text-align: center;
       width: 100%;
@@ -224,7 +226,7 @@ export default {
     margin-top: 5px;
     padding: 10px 20px;
     // background: $white;
-    border-top: 1px solid $blockBorder;
+    // border-top: 1px solid $blockBorder;
     // border-radius: 6px;
     .contacts__item {
       display: flex;

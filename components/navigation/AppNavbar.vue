@@ -209,7 +209,7 @@ export default {
       const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
 
       for (let i = 0; i < LinksGroups.length; i++) {
-        LinksGroups[i].style.height = LinkHeight + 'px'
+        LinksGroups[i].style.height = LinkHeight + 10 + 'px'
       }
 
       const TargetLinksGroup = $event.target.closest('.navbar__page-links-group')
@@ -235,7 +235,7 @@ export default {
       const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
       
       for (let i = 0; i < LinksGroups.length; i++) {
-        LinksGroups[i].style.height = LinkHeight + 'px'
+        LinksGroups[i].style.height = LinkHeight + 10 + 'px'
       }
 
       const TargetLinksGroup = document.querySelector('.navbar__page-links-group--active')
