@@ -3,6 +3,10 @@
 
     <div class="user-card__avatar-wrapper">
       <img class="avatar" src="https://pic.sport.ua/media/images/Foto%202.jpg" alt="user-avatar">
+
+      <div class="avatar__edit-btn">
+        <i class="ti-marker-alt"></i>
+      </div>
     </div>
 
     <div class="user-card__user">
@@ -71,14 +75,18 @@
     <div class="user-card__media-and-subscriptions">
       <nuxt-link to="/profile/media" no-prefetch>
         <app-button size14px>
-          <i class="ti-gallery element__icon"></i>
-          <p class="element__text">Фото и видео</p>
+          <div class="button-content">
+            <i class="ti-gallery button-content__icon"></i>
+            <p class="element__text">Фото<br>и видео</p>
+          </div>
         </app-button>
       </nuxt-link>
       <nuxt-link to="/profile/subscriptions" no-prefetch>
         <app-button size14px class="ml-10">
-          <i class="ti-crown element__icon"></i>
-          <p class="element__text">Интересные страницы</p>
+          <div class="button-content">
+            <i class="ti-crown button-content__icon"></i>
+            <p class="element__text">Интересные<br>страницы</p>
+          </div>
         </app-button>
       </nuxt-link>
     </div>
@@ -117,12 +125,41 @@ export default {
   border-radius: 6px;
 
   .user-card__avatar-wrapper {
+    position: relative;
     padding: 10px;
     width: 100%;
     .avatar {
       width: 100%;
       height: auto;
       border-radius: 6px;
+      cursor: pointer;
+    }
+    .avatar__edit-btn {
+      // border: 1px solid red;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: $white60;
+      border-radius: 50%;
+      transition: $tr-02;
+      opacity: 0;
+      cursor: pointer;
+      i {
+        color: $black;
+      }
+    }
+    .avatar__edit-btn:hover {
+      background: $white;
+    }
+  }
+  .user-card__avatar-wrapper:hover {
+    .avatar__edit-btn {
+      opacity: 1;
     }
   }
 
@@ -216,6 +253,14 @@ export default {
     justify-content: center;
     padding: 20px;
     background: $black10;
+    .button-content {
+      display: flex;
+      align-items: center;
+      .button-content__icon {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+    }
   }
 }
 
