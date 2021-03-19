@@ -216,36 +216,6 @@ export default {
     justify-content: center;
     padding: 20px;
     background: $black10;
-    // .media-and-subscriptions__element {
-    //   display: flex;
-    //   flex-direction: column;
-    //   align-items: center;
-    //   flex: 1 1 auto;
-    //   margin-top: 5px;
-    //   margin-right: 5px;
-    //   text-decoration: none;
-    //   color: $black;
-    //   padding: 20px 10px;
-    //   background: $white;
-    //   border: 1px solid $blockBorder;
-    //   border-radius: 6px;
-    //   transition: $tr-02;
-    //   cursor: pointer;
-    //   .element__icon {
-    //     font-size: 26px;
-    //   }
-    //   .element__text {
-    //     margin-top: 15px;
-    //     font-size: 16px;
-    //     font-weight: 500;
-    //   }
-    // }
-    // .media-and-subscriptions__element:last-child {
-    //   margin-right: 0;
-    // }
-    // .media-and-subscriptions__element:hover {
-    //   color: $green;
-    // }
   }
 }
 
