@@ -191,6 +191,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    // border-bottom: 1px solid $blockBorder;
   }
 
   .user-card__main-info {
@@ -202,7 +203,7 @@ export default {
     .main-info__item {
       text-align: center;
       width: 100%;
-      border-right: 1px solid $blockBorder;
+      border-right: 1px dashed $blockBorder;
       .main-info__item-text {
         font-size: 14px;
         font-weight: 500;
