@@ -58,7 +58,17 @@
       </div>
     </div>
 
-    <div class="nutrition-info">
+    <div class="favorite-sports">
+      <app-block-title>Спортивные направления</app-block-title>
+      <div class="favorite-sports__elements">
+        <p class="element">Плавание</p>
+        <p class="element">Легкая  отлетика</p>
+        <p class="element">CrossFit</p>
+        <p class="element">тяжелая атлетика</p>
+      </div>
+    </div>
+
+    <!-- <div class="nutrition-info">
       <app-block-title>Содержание БЖУ в рационе</app-block-title>
       <div class="nutrition-info__bottom-block">
         <div class="nutrition-info__percent">
@@ -87,7 +97,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -109,81 +119,6 @@ export default {
   flex-direction: column;
   min-width: 400px;
   max-width: 400px;
-
-  .trainings-intencity {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    .trainings-intencity__chart {
-      padding: 10px 10px 0 10px;
-      background: $white;
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
-      .chart__settings {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-        padding: 0 10px 10px 10px;
-        border-bottom: 1px dashed $blockBorder;
-        .settings__title {
-          font-size: 12px;
-        }
-        .settings__icon {
-          font-size: 12px;
-          cursor: pointer;
-        }
-      }
-      .chart {
-        // border: 1px solid red;
-        flex: 1 1 auto;
-        display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
-        margin-top: 20px;
-        padding: 10px 10px 0 10px;
-        height: 150px;
-        .chart__element {
-          width: 30px;
-          height: 100%;
-          background: $black10;
-          border-top-left-radius: 4px;
-          border-top-right-radius: 4px;
-          opacity: 1;
-          transition: $tr-02;
-          cursor: pointer;
-        }
-        .chart__element:hover {
-          background: $green;
-          opacity: 0.4;
-        }
-        .chart__element:nth-child(1) {
-          height: 60%;
-        }
-        .chart__element:nth-child(2) {
-          height: 80%;
-        }
-        .chart__element:nth-child(3) {
-          height: 40%;
-        }
-        .chart__element:nth-child(4) {
-          height: 100%;
-        }
-        .chart__element:nth-child(5) {
-          height: 60%;
-        }
-        .chart__element:nth-child(6) {
-          height: 75%;
-        }
-        .chart__element:nth-child(8) {
-          height: 26%;
-        }
-        .chart__element:nth-child(10) {
-          height: 40%;
-        }
-      }
-    }
-  }
 
   .trainings-stats {
     // border: 1px solid red;
@@ -283,6 +218,81 @@ export default {
     }
   }
 
+  .trainings-intencity {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    .trainings-intencity__chart {
+      padding: 10px 10px 0 10px;
+      background: $white;
+      border: 1px solid $blockBorder;
+      border-radius: 6px;
+      .chart__settings {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding: 0 10px 10px 10px;
+        border-bottom: 1px dashed $blockBorder;
+        .settings__title {
+          font-size: 12px;
+        }
+        .settings__icon {
+          font-size: 12px;
+          cursor: pointer;
+        }
+      }
+      .chart {
+        // border: 1px solid red;
+        flex: 1 1 auto;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-top: 20px;
+        padding: 10px 10px 0 10px;
+        height: 100px;
+        .chart__element {
+          width: 30px;
+          height: 100%;
+          background: $black10;
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+          opacity: 1;
+          transition: $tr-02;
+          cursor: pointer;
+        }
+        .chart__element:hover {
+          background: $green;
+          opacity: 0.4;
+        }
+        .chart__element:nth-child(1) {
+          height: 60%;
+        }
+        .chart__element:nth-child(2) {
+          height: 80%;
+        }
+        .chart__element:nth-child(3) {
+          height: 40%;
+        }
+        .chart__element:nth-child(4) {
+          height: 100%;
+        }
+        .chart__element:nth-child(5) {
+          height: 60%;
+        }
+        .chart__element:nth-child(6) {
+          height: 75%;
+        }
+        .chart__element:nth-child(8) {
+          height: 26%;
+        }
+        .chart__element:nth-child(10) {
+          height: 40%;
+        }
+      }
+    }
+  }
+
   .challenges-stats {
     display: flex;
     flex-direction: column;
@@ -335,6 +345,26 @@ export default {
         .element__value {
           color: $red;
         }
+      }
+    }
+  }
+
+  .favorite-sports {
+    margin:  0 10px;
+    .favorite-sports__elements {
+      display: flex;
+      flex-wrap: wrap;
+      // padding: 20px 10px 10px 10px;
+      // background: $white;
+      // border: 1px solid $blockBorder;
+      // border-radius: 6px;
+      .element {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        background: $black10;
+        border-radius: 20px;
+        font-size: 14px;
       }
     }
   }

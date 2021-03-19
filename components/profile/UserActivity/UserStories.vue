@@ -24,12 +24,9 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .user-stories {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   .user-stories__story-block {
     display: flex;
-    // padding: 10px;
-    // background: $hiddenBlockBG;
-    // border-radius: 6px;
     .story-block__element {
       position: relative;
       padding: 5px;

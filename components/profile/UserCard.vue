@@ -4,13 +4,14 @@
     <div class="user-card__avatar-wrapper">
       <img class="avatar" src="https://pic.sport.ua/media/images/Foto%202.jpg" alt="user-avatar">
 
+      <div class="user-status"></div>
+
       <div class="avatar__edit-btn">
         <i class="ti-marker-alt"></i>
       </div>
     </div>
 
     <div class="user-card__user">
-      <p class="user__status">Online</p>
       <p class="user__name">Дмитрий Коробов</p>
       <p class="user__followers">40 517 подписчиков</p>
     </div>
@@ -134,6 +135,15 @@ export default {
       border-radius: 6px;
       cursor: pointer;
     }
+    .user-status {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 10px;
+      height: 10px;
+      background: $green;
+      border-radius: 50%;
+    }
     .avatar__edit-btn {
       // border: 1px solid red;
       position: absolute;
@@ -165,11 +175,6 @@ export default {
 
   .user-card__user {
     padding: 0 10px;
-    .user__status {
-      margin-top: 10px;
-      text-align: center;
-      font-size: 12px;
-    }
     .user__name {
       margin-top: 10px;
       text-align: center;
@@ -225,9 +230,6 @@ export default {
   .user-card__contacts {
     margin-top: 5px;
     padding: 10px 20px;
-    // background: $white;
-    // border-top: 1px solid $blockBorder;
-    // border-radius: 6px;
     .contacts__item {
       display: flex;
       align-items: center;

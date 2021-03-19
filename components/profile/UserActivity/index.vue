@@ -1,7 +1,7 @@
 <template>
   <div class="user-activity">
     <div class="user-activity__news-visibility">
-      <p class="news-visibility__block-title">Лента новостей</p>
+      <app-block-title>Лента новостей</app-block-title>
       <filter-radio-text-group
         :valueList="['Все записи', 'Только мои записи']"
         :defaultValue="feed"
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
 import UserNewPost from '@/components/profile/UserActivity/UserNewPost'
 import UserStories from '@/components/profile/UserActivity/UserStories'
@@ -25,6 +26,7 @@ import UserPostImageSlider from '@/components/profile/UserActivity/UserPostImage
 
 export default {
   components: {
+    AppBlockTitle,
     FilterRadioTextGroup,
     UserNewPost,
     UserStories,

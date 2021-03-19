@@ -26,7 +26,7 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .new-post {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   background: $white;
   border: 1px solid $blockBorder;
   border-radius: 6px;
