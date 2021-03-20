@@ -8,7 +8,7 @@
       <i class="ti-rocket new-post__attach-btn"></i>
       <i class="ti-gallery new-post__attach-btn"></i>
       <i class="ti-video-camera new-post__attach-btn"></i>
-      <app-button size14px uppercase>Отправить</app-button>
+      <app-button size14px>Отправить</app-button>
     </div>
   </div>
 </template>

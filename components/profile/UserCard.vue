@@ -124,7 +124,8 @@ export default {
   background: $white;
   border: 1px solid $blockBorder;
   border-radius: 6px;
-
+  position: sticky;
+  top: 0;
   .user-card__avatar-wrapper {
     position: relative;
     padding: 10px;

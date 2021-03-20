@@ -119,7 +119,8 @@ export default {
   flex-direction: column;
   min-width: 400px;
   max-width: 400px;
-
+  position: sticky;
+  top: 0;
   .trainings-stats {
     // border: 1px solid red;
     margin-bottom: 20px;
@@ -252,18 +253,22 @@ export default {
         padding: 10px 10px 0 10px;
         height: 100px;
         .chart__element {
+          margin-right: 5px;
           width: 30px;
           height: 100%;
-          background: $black10;
+          background: $green;
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
-          opacity: 1;
+          opacity: .2;
           transition: $tr-02;
           cursor: pointer;
         }
+        .chart__element:last-child {
+          margin-right: 0;
+        }
         .chart__element:hover {
           background: $green;
-          opacity: 0.4;
+          opacity: 0.6;
         }
         .chart__element:nth-child(1) {
           height: 60%;
