@@ -2,52 +2,87 @@
   <div class="user-post">
 
     <div class="user-post__info">
-      <div class="info__user-avatar-wrapper">
-        <img class="user-avatar" src="https://pic.sport.ua/media/images/Foto%202.jpg" alt="user-avatar">
-      </div>
+      <img class="user-avatar" src="https://pic.sport.ua/media/images/Foto%202.jpg" alt="user-avatar">
+
       <div class="info__data">
         <p class="info__user-name">Дмитрий Коробов</p>
-        <p class="info__creating-date">21.04.2019</p>
+        <p class="info__creating-date">21.04.2019 - 12:54</p>
       </div>
-      <div class="info__edit-btn">
+      <app-button-with-actions
+        class="info__actions-btn"
+        :actions="['Редактировать', 'Удалить']"
+        :params="{postId: 1}"
+      >
         <i class="ti-more"></i>
-      </div>
+      </app-button-with-actions>
     </div>
 
     <div class="user-post__content">
-      <div class="img-and-social">
-        <div class="image-wrapper">
-          <img class="image" src="https://cross.world/wp-content/uploads/2016/11/krossfit-uprazhneniya-na-vynoslivost-1.jpg">
-        </div>
-        <social-btns class="mt-5" :btnsInfo="{like: 1, dislike: 2, share: 0}" />
+      <div class="user-post__image-wrapper">
+        <img class="image" src="https://cross.world/wp-content/uploads/2016/11/krossfit-uprazhneniya-na-vynoslivost-1.jpg">
       </div>
+      <div class="message">
+        <app-scroll-block>
+          <p class="post__message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, unde? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores quam rerum, nemo similique cumque quia quas voluptates minima. Cumque aspernatur tempora assumenda libero voluptatibus esse, excepturi ea maiores magnam cupiditate sequi nostrum? Aliquam dicta iure temporibus repellat numquam tempora, unde velit reprehenderit minima voluptates amet vel repudiandae quos illum pariatur!</p>
+        </app-scroll-block>
+      </div>
+    </div>
 
-      <div class="message-and-comments">
-        <div class="message">
-          <app-scroll-block>
-            <p class="post__message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, unde? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores quam rerum, nemo similique cumque quia quas voluptates minima. Cumque aspernatur tempora assumenda libero voluptatibus esse, excepturi ea maiores magnam cupiditate sequi nostrum? Aliquam dicta iure temporibus repellat numquam tempora, unde velit reprehenderit minima voluptates amet vel repudiandae quos illum pariatur!</p>
-          </app-scroll-block>
-        </div>
+    <div class="user-post__social-bts">
+      <social-btns
+        class="main-social"
+        :btnsInfo="{
+          like: 1,
+          dislike: 2,
+          share: 0,
+          comments: 43
+        }"
+      />
+      <social-btns
+        class="additional-social"
+        :btnsInfo="{
+          views: 1234,
+        }"
+      />
+    </div>
 
-        <div class="comments">
-          <div class="comments__action-btn">
-            <p class="action-btn__text">Комментарии:</p>
-            <p class="action-btn__amount">2</p>
+    <div class="user-post__comments">
+      <div class="comment" v-for="(item, index) in 5" :key="index">
+        <div class="comment__author">
+          <img src="https://pic.sport.ua/media/images/Foto%202.jpg" class="autor__image">
+          <div class="autor__post">
+            <p class="post__author-name">Дмитрий Коробов</p>
+            <p class="post__creating-date">21.04.2019 - 12:54</p>
+            <p class="post__text">Далеко-далеко за словесными горами в стране гласных, и согласных живут рыбные тексты. По всей рукописи до своих гор, домах деревни взобравшись дорогу собрал не которой безорфографичный? Однажды текста, взобравшись одна, власти безопасную сбить рукописи подпоясал сих ему до буквоград буквенных!</p>
+            <p class="post__add-subcomment">Комментировать</p>
           </div>
         </div>
+      </div>
+      <div class="add-comment">
+        <app-textarea placeholder="Комментировать" />
+        <app-button class="mt-5" size12px right>
+          <!-- <i class="ti-email"></i> -->
+          Отправить
+        </app-button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import AppButtonWithActions from '@/components/basic/AppButtonWithActions'
 import SocialBtns from '@/components/basic/SocialBtns'
 import AppScrollBlock from '@/components/basic/AppScrollBlock'
+import AppTextarea from '@/components/basic/AppTextarea'
+import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
+    AppButtonWithActions,
     SocialBtns,
-    AppScrollBlock
+    AppScrollBlock,
+    AppTextarea,
+    AppButton
   }
 }
 </script>
@@ -58,32 +93,29 @@ export default {
 .user-post {
   margin-bottom: 40px;
   width: 100%;
+  background: $white;
+  border: 1px solid $blockBorder;
+  border-radius: 6px;
   .user-post__info {
     // border: 1px solid red;
-    padding: 10px;
+    margin: 0 10px 10px 10px;
+    padding: 10px 0;
     display: flex;
     align-items: center;
-    background: $white;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
-    .info__user-avatar-wrapper {
+    border-bottom: 1px dashed $blockBorder;
+    .user-avatar {
       min-width: 50px;
       max-width: 50px;
       height: 50px;
       border: 1px solid $blockBorder;
       border-radius: 6px;
-      overflow-x: hidden;
-      .user-avatar {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+      object-fit: cover;
+      object-position: center;
     }
     .info__data {
       margin-left: 10px;
       .info__user-name {
-        // font-size: 18px;
-        font-weight: 600;
+        font-weight: 500;
       }
       .info__creating-date {
         margin-top: 5px;
@@ -92,71 +124,100 @@ export default {
         font-weight: 500;
       }
     }
-    .info__edit-btn {
-      // border: 1px solid red;
+    .info__actions-btn {
       align-self: flex-start;
-      display: flex;
-      flex-direction: column;
       margin-left: auto;
       margin-right: 5px;
-      cursor: pointer;
-      transition: $tr-02;
-    }
-    .info__edit-btn:hover {
-      color: $green
     }
   }
+
   .user-post__content {
     // border: 1px solid red;
     display: flex;
-    margin-top: 5px;
-    .img-and-social {
+    .user-post__image-wrapper {
+      padding: 0 10px 10px 10px;
       width: 100%;
       max-width: 500px;
-      .image-wrapper {
-        padding: 10px;
-        background: $white;
+      .image {
         border:1px solid $blockBorder;
         border-radius: 6px;
-        .image {
-          border:1px solid $blockBorder;
+      }
+    }
+    .message {
+      flex: 1 1 auto;
+      display: flex;
+      padding: 0 10px 10px 10px;
+    }
+  }
+
+  .user-post__social-bts {
+    display: flex;
+    margin: 0 10px;
+    border-top: 1px dashed $blockBorder;
+    border-bottom: 1px dashed $blockBorder;
+    .main-social {
+      margin: 0 10px;
+      width: 100%;
+      max-width: 460px
+    }
+    .additional-social {
+      margin-left: auto;
+    }
+  }
+
+  .user-post__comments {
+    padding: 10px;
+    .comment {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      padding: 0 10px;
+      .comment__author {
+        display: flex;
+        // align-items: center;
+        .autor__image {
+          min-width: 40px;
+          max-width: 40px;
+          height: 40px;
+          border: 1px solid $blockBorder;
           border-radius: 6px;
+          object-fit: cover;
+          object-position: center;
+        }
+        .autor__post {
+          margin-left: 10px;
+          .post__author-name {
+            font-size: 14px;
+            font-weight: 500;
+          }
+          .post__creating-date {
+            // margin-top: 5px;
+            color: $gray-dark;
+            font-size: 12px;
+            font-weight: 500;
+          }
+          .post__text {
+            margin-top: 10px;
+            font-size: 14px;
+          }
+          .post__add-subcomment {
+            margin-top: 5px;
+            color: $black60;
+            font-size: 12px;
+            transition: $tr-02;
+            cursor: pointer;
+          }
+          .post__add-subcomment:hover {
+            color: $green;
+          }
         }
       }
     }
-    .message-and-comments {
-      margin-left: 5px;
-      flex: 1 1 auto;
+    .add-comment {
       display: flex;
       flex-direction: column;
-      .message {
-        flex: 1 1 auto;
-        display: flex;
-        padding: 10px;
-        background: $white;
-        border:1px solid $blockBorder;
-        border-radius: 6px;
-      }
-      .comments {
-        width: 100%;
-        margin-top: 5px;
-        padding: 10px;
-        background: $white;
-        border: 1px solid $blockBorder;
-        border-radius: 6px;
-        cursor: pointer;
-        .comments__action-btn {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          .action-btn__text {
-            margin-right: 10px;
-          }
-          .action-btn__amount {
-            font-weight: 600;
-          }
-        }
-      }
+      padding-top: 10px;
+      border-top: 1px dashed $blockBorder;
     }
   }
 }

@@ -36,11 +36,11 @@ export default {
       transition: $tr-02;
       cursor: pointer;
       .element__user-avatar {
-        width: 80px;
-        height: 80px;
-        // border: 1px solid $white;
+        width: 60px;
+        height: 60px;
         border-radius: 6px;
         object-fit: cover;
+        object-position: center;
       }
       .element__add-icon {
         position: absolute;
@@ -48,10 +48,11 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%);
         background: $white;
-        padding: 10px;
+        padding: 5px;
         border-radius: 50%;
         opacity: 0;
         transition: $tr-02;
+        font-size: 14px;
       }
     }
     .story-block__element:hover {
