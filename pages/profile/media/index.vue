@@ -1,7 +1,20 @@
 <template>
   <div class="media-page">
-    <app-page-title>Медиа</app-page-title>
+    <app-page-title>Фото и видео</app-page-title>
     <div class="media-page__content">
+      <app-page-info
+        :infoElements="[
+          {
+            title: 'Всего альбомов',
+            value: 10
+          },
+          {
+            title: 'Избранные альбомы',
+            value: 0
+          }
+        ]"
+        btnTitle="Создать альбом"
+      />
       <app-search-block class="search-media-album" small placeholder="Поиск по названи альбома"/>
 
       <div class="fiters">
@@ -23,6 +36,7 @@
 
 <script>
 import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPageInfo from '@/components/basic/AppPageInfo'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 
 export default {
@@ -58,6 +72,7 @@ export default {
   // middleware: ['userAuth'],
   components: {
     AppPageTitle,
+    AppPageInfo,
     AppSearchBlock
   }
 }
