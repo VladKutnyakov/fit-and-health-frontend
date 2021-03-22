@@ -31,7 +31,7 @@
       </div>
 
       <div class="albums">
-        <div class="album" v-for="(item, index) in 10" :key="index">
+        <nuxt-link to="media/1" class="album" v-for="(item, index) in 10" :key="index">
           <div class="album__preview-image">
             <img class="preview-image" src="https://hardcrossfit.com/wp-content/uploads/2019/06/ffff.png">
 
@@ -47,20 +47,21 @@
           <p class="album__title">Название альбома</p>
           <p class="album__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit aliquam corrupti quibusdam nihil optio praesentium, eum culpa veritatis, ipsa sit ducimus.</p>
           <div class="album__stats">
+            
             <div class="stats__element">
-              <p class="element__title">Дата создания</p>
-              <p class="element__value">12.03.2021</p>
-            </div>
-            <div class="stats__element">
-              <p class="element__title">Фото</p>
+              <p class="element__title">Фотографии</p>
               <p class="element__value">54</p>
             </div>
             <div class="stats__element">
               <p class="element__title">Видео</p>
               <p class="element__value">12</p>
             </div>
+            <div class="stats__element">
+              <p class="element__title">Дата создания</p>
+              <p class="element__value">12.03.2021</p>
+            </div>
           </div>
-        </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -176,6 +177,7 @@ export default {
         border: 1px solid $blockBorder;
         border-radius: 6px;
         width: calc(100% / 4 - 15px);
+        transition: $tr-02;
         .album__preview-image {
           position: relative;
           width: 100%;
@@ -237,12 +239,14 @@ export default {
         }
         .album__title {
           padding: 0 20px;
+          text-align: center;
           font-size: 18px;
           font-weight: 500;
         }
         .album__description {
-          margin-top: 10px;
+          margin-top: 5px;
           padding: 0 20px;
+          font-size: 14px;
         }
         .album__stats {
           display: flex;
@@ -256,12 +260,12 @@ export default {
             align-items: center;
             border-right: 1px solid $blockBorder;
             .element__title {
-              font-size: 14px;
+              font-size: 12px;
             }
             .element__value {
               margin-top: 5px;
               color: $green;
-              // font-size: 14px;
+              font-size: 14px;
               font-weight: 500;
             }
           }
@@ -272,6 +276,9 @@ export default {
       }
       .album:nth-child(4n) {
         margin-right: 0;
+      }
+      .album:hover {
+        box-shadow: $boxShadow;
       }
     }
 
