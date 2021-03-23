@@ -251,8 +251,9 @@ export default {
         .album__stats {
           display: flex;
           margin: 10px;
-          padding: 10px 10px 0 10px;
-          border-top: 1px dashed $blockBorder;
+          padding: 10px;
+          // border-top: 1px dashed $blockBorder;
+          background: $hiddenBlockBG;
           .stats__element {
             flex: 1 1 auto;
             display: flex;
@@ -264,7 +265,7 @@ export default {
             }
             .element__value {
               margin-top: 5px;
-              color: $green;
+              // color: $green;
               font-size: 14px;
               font-weight: 500;
             }

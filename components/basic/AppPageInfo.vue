@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <app-button sizeXL uppercase right @click.native="btnHandler()">{{ btnTitle }}</app-button>
+    <app-button right @click.native="btnHandler()">{{ btnTitle }}</app-button>
 
   </div>
 </template>
