@@ -48,22 +48,17 @@
 
     <div class="user-post__comments">
       <div class="comment" v-for="(item, index) in 5" :key="index">
-        <div class="comment__author">
-          <img src="https://pic.sport.ua/media/images/Foto%202.jpg" class="autor__image">
-          <div class="autor__post">
-            <p class="post__author-name">Дмитрий Коробов</p>
-            <p class="post__creating-date">21.04.2019 - 12:54</p>
-            <p class="post__text">Далеко-далеко за словесными горами в стране гласных, и согласных живут рыбные тексты. По всей рукописи до своих гор, домах деревни взобравшись дорогу собрал не которой безорфографичный? Однажды текста, взобравшись одна, власти безопасную сбить рукописи подпоясал сих ему до буквоград буквенных!</p>
-            <p class="post__add-subcomment">Комментировать</p>
-          </div>
+        <img src="https://pic.sport.ua/media/images/Foto%202.jpg" class="comment__autor-image">
+        <div class="comment__autor-post">
+          <p class="autor-post__author-name">Дмитрий Коробов</p>
+          <p class="autor-post__creating-date">21.04.2019 - 12:54</p>
+          <p class="autor-post__text">Далеко-далеко за словесными горами в стране гласных, и согласных живут рыбные тексты. По всей рукописи до своих гор, домах деревни взобравшись дорогу собрал не которой безорфографичный? Однажды текста, взобравшись одна, власти безопасную сбить рукописи подпоясал сих ему до буквоград буквенных!</p>
+          <p class="autor-post__add-subcomment">Комментировать</p>
         </div>
       </div>
       <div class="add-comment">
         <app-textarea placeholder="Комментировать" />
-        <app-button class="mt-5" size12px right>
-          <!-- <i class="ti-email"></i> -->
-          Отправить
-        </app-button>
+        <app-button class="mt-5" size14px right>Отправить</app-button>
       </div>
     </div>
   </div>
@@ -166,50 +161,50 @@ export default {
   }
 
   .user-post__comments {
+    display: flex;
+    flex-direction: column;
     padding: 10px;
     .comment {
       display: flex;
-      flex-direction: column;
       margin-bottom: 20px;
       padding: 0 10px;
-      .comment__author {
+      .comment__autor-image {
+        min-width: 40px;
+        max-width: 40px;
+        height: 40px;
+        border: 1px solid $blockBorder;
+        border-radius: 6px;
+        object-fit: cover;
+        object-position: center;
+      }
+      .comment__autor-post {
         display: flex;
-        // align-items: center;
-        .autor__image {
-          min-width: 40px;
-          max-width: 40px;
-          height: 40px;
-          border: 1px solid $blockBorder;
-          border-radius: 6px;
-          object-fit: cover;
-          object-position: center;
+        flex-direction: column;
+        margin-left: 10px;
+        .autor-post__author-name {
+          font-size: 14px;
+          font-weight: 500;
         }
-        .autor__post {
-          margin-left: 10px;
-          .post__author-name {
-            font-size: 14px;
-            font-weight: 500;
-          }
-          .post__creating-date {
-            // margin-top: 5px;
-            color: $gray-dark;
-            font-size: 12px;
-            font-weight: 500;
-          }
-          .post__text {
-            margin-top: 10px;
-            font-size: 14px;
-          }
-          .post__add-subcomment {
-            margin-top: 5px;
-            color: $black60;
-            font-size: 12px;
-            transition: $tr-02;
-            cursor: pointer;
-          }
-          .post__add-subcomment:hover {
-            color: $green;
-          }
+        .autor-post__creating-date {
+          // margin-top: 5px;
+          color: $gray-dark;
+          font-size: 12px;
+          font-weight: 500;
+        }
+        .autor-post__text {
+          margin-top: 10px;
+          font-size: 14px;
+        }
+        .autor-post__add-subcomment {
+          align-self: flex-start;
+          margin-top: 5px;
+          color: $black60;
+          font-size: 12px;
+          transition: $tr-02;
+          cursor: pointer;
+        }
+        .autor-post__add-subcomment:hover {
+          color: $green;
         }
       }
     }
