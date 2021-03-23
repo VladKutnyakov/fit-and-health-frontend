@@ -50,15 +50,15 @@
             
             <div class="stats__element">
               <p class="element__title">Фотографии</p>
-              <p class="element__value">54</p>
+              <p class="element__value">63</p>
             </div>
             <div class="stats__element">
               <p class="element__title">Видео</p>
               <p class="element__value">12</p>
             </div>
             <div class="stats__element">
-              <p class="element__title">Дата создания</p>
-              <p class="element__value">12.03.2021</p>
+              <p class="element__title">Документы</p>
+              <p class="element__value">5</p>
             </div>
           </div>
         </nuxt-link>
