@@ -260,7 +260,7 @@ export default {
                 border-radius: 6px;
               }
               .folder__title {
-                padding: 0 5px;
+                padding: 5px;
                 text-align: center;
                 font-weight: 500;
               }
@@ -268,7 +268,7 @@ export default {
                 display: flex;
                 align-items: center;
                 margin-top: 5px;
-                padding: 5px 0;
+                padding: 10px 0;
                 background: $hiddenBlockBG;
                 .stats__element {
                   flex: 1 1 auto;
@@ -278,10 +278,9 @@ export default {
                   border-right: 1px dashed $blockBorder;
                   .element__icon {
                     margin-right: 10px;
-                    font-size: 14px;
                   }
                   .element__value {
-                    font-size: 12px;
+                    font-size: 14px;
                     font-weight: 600;
                   }
                 }
