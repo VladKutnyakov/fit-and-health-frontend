@@ -48,7 +48,7 @@
             </div>
 
             <ul class="folders__list">
-              <li class="folder">
+              <li class="folder" v-for="(item, index) in 3" :key="index">
                 <img class="folder__preview-image" src="https://hardcrossfit.com/wp-content/uploads/2019/06/ffff.png">
                 <p class="folder__title">Название папки</p>
                 <div class="folder__stats">
@@ -57,11 +57,11 @@
                     <p class="element__value">15</p>
                   </div>
                   <div class="stats__element">
-                    <i class="ti-video element__icon"></i>
+                    <i class="ti-video-clapper element__icon"></i>
                     <p class="element__value">2</p>
                   </div>
                   <div class="stats__element">
-                    <i class="ti-more element__icon"></i>
+                    <i class="ti-files element__icon"></i>
                     <p class="element__value">0</p>
                   </div>
                 </div>
@@ -69,13 +69,19 @@
             </ul>
           </div>
 
-          <i class="ti-gallery"></i>
           <div class="files">
-            <div class="file" v-for="(item, index) in 5" :key="index">
-              <img class="file__preview-image" src="https://hardcrossfit.com/wp-content/uploads/2019/06/ffff.png">
-              <p class="file__create-date">21.03.2021</p>
-              <p class="file__title">Название файла</p>
+            <div class="files__block-title">
+              <i class="ti-gallery block-title__icon"></i>
+              <p class="block-title__text">Файлы</p>
             </div>
+
+            <ul class="files__list">
+              <li class="file" v-for="(item, index) in 5" :key="index">
+                <img class="file__preview-image" src="https://hardcrossfit.com/wp-content/uploads/2019/06/ffff.png">
+                <p class="file__create-date">21.03.2021</p>
+                <p class="file__title">Название файла</p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -149,16 +155,15 @@ export default {
 
     .filling {
       margin-left: 20px;
-      padding: 10px;
       width: 40%;
       background: $white;
       border: 1px solid $blockBorder;
       border-radius: 6px;
       .filling__actions {
-        // border: 1px solid red;
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        padding: 10px;
         .action-btn {
           margin-right: 5px;
           padding: 5px;
@@ -173,7 +178,7 @@ export default {
       .filling__album-info {
         display: flex;
         flex-direction: column;
-        margin-top: 10px;
+        padding: 0 10px;
         .album-info__preview-image {
           border-radius: 6px;
           border: 1px solid $blockBorder;
@@ -193,6 +198,7 @@ export default {
 
       .filling__stats {
         display: flex;
+        margin: 0 10px;
         padding: 10px 0;
         border-top: 1px solid $blockBorder;
         border-bottom: 1px solid $blockBorder;
@@ -221,56 +227,122 @@ export default {
       }
 
       .filling__album-folders-and-files {
-        padding: 10px 10px 0 10px;
+        margin-top: 10px;
         .folders {
-          .folders__block-title {}
-          .folders__list {
-            .folder {
-              padding: 10px;
-              border: 1px solid $blockBorder;
-              border-radius: 6px;
-              .folder__preview-image {}
-              .folder__title {}
-              .folder__stats {
-                .stats__element {
-                  .element__icon {}
-                  .element__value {
-                    
-                  }
-                }
-              }
-            }
-          }
-        }
-        .files {
           display: flex;
-          flex-wrap: wrap;
-          margin-top: 20px;
-          .file {
-            margin-right: 10px;
-            margin-bottom: 10px;
-            width: calc(100% / 3 - 7px);
-            border: 1px solid $blockBorder;
-            border-radius: 6px;
-            overflow: hidden;
-            .file__preview-image {
-              width: 100%;
-              height: 120px;
-              object-fit: cover;
-              object-position: center;
+          flex-direction: column;
+          .folders__block-title {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: $hiddenBlockBG;
+            .block-title__icon {
+              margin-right: 10px;
             }
-            .file__create-date {
-              padding: 5px;
-              font-size: 10px;
-            }
-            .file__title {
-              padding: 0 5px 5px 5px;
+            .block-title__text {
               font-size: 14px;
               font-weight: 500;
             }
           }
-          .file:nth-child(3n) {
-            margin-right: 0;
+          .folders__list {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px;
+            .folder {
+              margin-right: 10px;
+              margin-bottom: 10px;
+              width: calc(100% / 2 - 5px);
+              border: 1px solid $blockBorder;
+              border-radius: 6px;
+              .folder__preview-image {
+                margin: 5px;
+                width: calc(100% - 10px);
+                border-radius: 6px;
+              }
+              .folder__title {
+                padding: 0 5px;
+                text-align: center;
+                font-weight: 500;
+              }
+              .folder__stats {
+                display: flex;
+                align-items: center;
+                margin-top: 5px;
+                padding: 5px 0;
+                background: $hiddenBlockBG;
+                .stats__element {
+                  flex: 1 1 auto;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-right: 1px dashed $blockBorder;
+                  .element__icon {
+                    margin-right: 10px;
+                    font-size: 14px;
+                  }
+                  .element__value {
+                    font-size: 12px;
+                    font-weight: 600;
+                  }
+                }
+                .stats__element:last-child {
+                  border-right: none;
+                }
+              }
+            }
+            .folder:nth-child(2n) {
+              margin-right: 0;
+            }
+          }
+        }
+
+        .files {
+          display: flex;
+          flex-direction: column;
+          // margin-top: 20px;
+          .files__block-title {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: $hiddenBlockBG;
+            .block-title__icon {
+              margin-right: 10px;
+            }
+            .block-title__text {
+              font-size: 14px;
+              font-weight: 500;
+            }
+          }
+          .files__list {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px 10px 0 10px;
+            .file {
+              margin-right: 10px;
+              margin-bottom: 10px;
+              width: calc(100% / 3 - 7px);
+              border: 1px solid $blockBorder;
+              border-radius: 6px;
+              overflow: hidden;
+              .file__preview-image {
+                width: 100%;
+                height: 120px;
+                object-fit: cover;
+                object-position: center;
+              }
+              .file__create-date {
+                padding: 5px 5px 0 5px;
+                font-size: 10px;
+              }
+              .file__title {
+                padding: 0 5px 5px 5px;
+                font-size: 14px;
+                font-weight: 500;
+              }
+            }
+            .file:nth-child(3n) {
+              margin-right: 0;
+            }
           }
         }
       }
