@@ -24,7 +24,9 @@ export const actions = {
     try {
       commit('clearToken')
 
-      const fetchedToken = await this.$axios.$post('http://localhost:3000/api/v1/auth/login', formData)
+      console.log(formData)
+
+      const fetchedToken = await this.$axios.$post('http://localhost:3030/api/login', formData)
 
       // добавляем токен к запросам axios
       this.$axios.setToken(fetchedToken.token, 'Bearer ')
