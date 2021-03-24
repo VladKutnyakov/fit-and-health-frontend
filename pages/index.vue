@@ -43,7 +43,11 @@ export default {
   },
   components: {
     AppBlockTitle
-  }
+  },
+  // async asyncData ({ $axios }) {
+  //   const data = await $axios.$get('/api/test')
+  //   console.log(data)
+  // },
 }
 </script>
 

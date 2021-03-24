@@ -91,6 +91,13 @@ export default {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
+  /*
+  ** Server Middleware
+  */
+  serverMiddleware: {
+    '/api': '~/api'
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }
