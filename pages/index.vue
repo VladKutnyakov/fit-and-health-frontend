@@ -16,7 +16,7 @@ export default {
   name: 'IndexPage',
   head () {
     return {
-      title: 'Fit and Health - Профиль',
+      title: 'Fit and Health - О проекте',
       __dangerouslyDisableSanitizers: ['script'],
       script: [
         { // МИКРОРАЗМЕТКА

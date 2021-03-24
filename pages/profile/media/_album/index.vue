@@ -179,7 +179,7 @@ export default {
   layout: "default",
   head() {
     return {
-      title: "Fit and Health - Медиа",
+      title: "Fit and Health - Альбом",
       __dangerouslyDisableSanitizers: ["script"],
       script: [
         {

@@ -20,6 +20,33 @@ import AppRegisterForm from '@/components/auth/AppRegisterForm'
 export default {
   name: 'AuthPage',
   layout: 'empty',
+  head () {
+    return {
+      title: 'Fit and Health - Авторизация или регистрация',
+      __dangerouslyDisableSanitizers: ['script'],
+      script: [
+        { // МИКРОРАЗМЕТКА
+          innerHTML: `{
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "https://website.com",
+            "name": "Website",
+            "description": "This website is awesome.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Website",
+              "alternateName": "SiteWeb",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://someimage.com/image"
+              }
+            }
+          }`,
+          type: 'application/ld+json'
+        }
+      ]
+    }
+  },
   components: {
     AppLoginForm,
     AppRegisterForm
