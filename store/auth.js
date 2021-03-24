@@ -24,17 +24,14 @@ export const actions = {
     try {
       commit('clearToken')
 
-      console.log(formData)
-
       const fetchedToken = await this.$axios.$post('http://localhost:3030/api/login', formData)
 
       // добавляем токен к запросам axios
-      this.$axios.setToken(fetchedToken.token, 'Bearer ')
+      this.$axios.setToken(fetchedToken, 'Bearer ')
       // сохроняем в state токен полученный из action login
-      commit('setToken', fetchedToken.token)
+      commit('setToken', fetchedToken)
       // сохраняем cookie на 361 день
-      Cookies.set('Authorization', fetchedToken.token, { expires: 365 })
-
+      Cookies.set('Authorization', fetchedToken, { expires: 365 })
     } catch (err) {
       // получаем сообщение об ошибке которую возвращае axios
       console.log(err.response)
@@ -48,16 +45,22 @@ export const actions = {
     // удаляем куки
     Cookies.remove('Authorization')
   },
-  // async createUser ({ dispatch }, formData) {
-  //   try {
-  //     // console.log('создать юзера', formData)
-  //     const newUser = await this.$axios.$post('http://localhost:3000/api/auth/register', formData)
+  async createUser ({ commit }, formData) {
+    try {
+      // console.log('создать юзера', formData)
+      const newUser = await this.$axios.$post('http://localhost:3030/api/register', formData)
 
-  //     await dispatch('setToken', newUser)
-  //     // console.log(newUser)
-  //   } catch (err) {
-  //     // получаем сообщение об ошибке которую возвращае axios
-  //     console.log(err.response)
-  //   }
-  // },
+      console.log(newUser);
+
+      // добавляем токен к запросам axios
+      // this.$axios.setToken(newUserToken, 'Bearer ')
+      // сохроняем в state токен полученный из action login
+      // commit('setToken', newUserToken)
+      // сохраняем cookie на 361 день
+      // Cookies.set('Authorization', newUserToken, { expires: 365 })
+    } catch (err) {
+      // получаем сообщение об ошибке которую возвращае axios
+      console.log(err.response)
+    }
+  },
 }

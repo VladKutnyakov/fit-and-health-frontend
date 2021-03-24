@@ -47,6 +47,7 @@ export default {
       ]
     }
   },
+  middleware: ['userAuth'],
   components: {
     AppLoginForm,
     AppRegisterForm
@@ -55,23 +56,6 @@ export default {
     return {
       loginForm: true
     }
-  },
-  methods: {
-    async login () {
-      // добавить валидацию перед диспатчем
-      try {
-        const formData = {
-          userLogin: this.userLogin,
-          userPassword: this.userPassword,
-        }
-        await this.$store.dispatch('auth/login', formData)
-        if (this.token) {
-          this.$router.push('/profile')
-        }
-      } catch (err) {
-        console.log(err)
-      }
-    },
   }
 }
 </script>

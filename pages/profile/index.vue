@@ -45,7 +45,7 @@ export default {
       ]
     }
   },
-  // middleware: ['userAuth'],
+  middleware: ['userAuth'],
   components: {
     AppPageTitle,
     UserCard,

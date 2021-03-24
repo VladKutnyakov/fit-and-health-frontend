@@ -8,8 +8,6 @@ const { Router } = require('express')
 const router = Router()
 
 router.post('/login', async (req, res, next) => {
-  // res.end('login')
-
   const candidate = await Users.findOne({
     where: {
       email: req.body.email
@@ -41,7 +39,6 @@ router.post('/login', async (req, res, next) => {
       message: 'пользователь с таким email не найден'
     })
   }
-
 })
 
 module.exports = router
