@@ -4,10 +4,12 @@ const express = require('express')
 const app = express()
 
 // Require API routes
-const test = require('./routes/test')
+const login = require('./routes/auth/loginUser')
+const register = require('./routes/auth/registerUser')
 
 // Import API Routes
-app.use(test)
+app.use(login)
+app.use(register)
 
 // Export express app
 module.exports = app
