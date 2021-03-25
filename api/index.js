@@ -1,6 +1,7 @@
 const express = require('express')
 const sequelize = require('./utils/dbConnect')
-// const cors = require('cors')
+const cors = require('cors')
+const helmet = require("helmet");
 // const multer  = require('multer')
 
 // Create express instance
@@ -10,6 +11,15 @@ const app = express()
 // Параметр {force: true} перезапишет данные таблицы, если такая таблица цже есть
 sequelize.sync()
   .then(() => console.log('MySQL has been connected :)'))
+
+const corsOptions = {
+  "origin": "*",
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+  "optionsSuccessStatus": 200
+}
+app.use(cors(corsOptions))
+app.use(helmet())
 
 // подключение bodyParser
 app.use(express.urlencoded({ extended: true }))
