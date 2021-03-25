@@ -68,7 +68,19 @@ export default {
           email: this.email,
           password: this.password
         }
-        await this.$store.dispatch('auth/createUser', newUser)
+        if (newUser.email.length > 0 && newUser.password.length > 0) {
+          await this.$store.dispatch('auth/createUser', newUser)
+        } else {
+          // выводим сообщение об ошибке для пользователя
+          const notice = {
+            id: Date.now(),
+            type: 'alert',
+            message: 'Заполните все поля.',
+            timeToShow: 5000,
+            active: true
+          }
+          this.$store.commit('notifications/addNewNotice', notice)
+        }
 
         if (this.token) {
           this.$router.push('/profile')

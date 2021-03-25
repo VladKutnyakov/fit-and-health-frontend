@@ -17,7 +17,7 @@ router.post('/register', async function (req, res) {
   if (candidate) {
     // если пользователь существеует то возвращаем ошибку
     res.status(409).json({
-      message: 'Такой email уже занят. Введите другой.'
+      message: 'Введенный E-mail уже занят. Используйте другой E-mail или выполните авторизацию.'
     })
   } else {
     // создать пользователя в БД

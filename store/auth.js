@@ -33,7 +33,17 @@ export const actions = {
       // сохраняем cookie на 361 день
       Cookies.set('Authorization', fetchedToken, { expires: 365 })
     } catch (err) {
-      // получаем сообщение об ошибке которую возвращае axios
+      // выводим сообщение об ошибке для пользователя
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: err.response.data.message,
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+
+      // Вывод полного варианта ошибки
       console.log(err.response)
     }
   },
@@ -47,9 +57,7 @@ export const actions = {
   },
   async createUser ({ commit }, formData) {
     try {
-      // console.log('создать юзера', formData)
       const newUserToken = await this.$axios.$post('http://localhost:3030/api/register', formData)
-
       // добавляем токен к запросам axios
       this.$axios.setToken(newUserToken, 'Bearer ')
       // сохроняем в state токен полученный из action login
@@ -57,7 +65,17 @@ export const actions = {
       // сохраняем cookie на 361 день
       Cookies.set('Authorization', newUserToken, { expires: 365 })
     } catch (err) {
-      // получаем сообщение об ошибке которую возвращает axios
+      // выводим сообщение об ошибке для пользователя
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: err.response.data.message,
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+
+      // Вывод полного варианта ошибки
       console.log(err.response)
     }
   },

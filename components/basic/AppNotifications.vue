@@ -1,5 +1,5 @@
 <template>
-  <div class="notifications">
+  <div v-show="isVisible" class="notifications">
     <ul class="notifications-list">
       <app-notice
         v-for="(item, index) in notifications"
@@ -21,7 +21,13 @@ export default {
   computed: {
     ...mapState({
       notifications: state => state.notifications.notices,
-    })
+    }),
+    isVisible () {
+      if (this.notifications.length > 0) {
+        return true
+      }
+      return false
+    }
   },
 }
 </script>
