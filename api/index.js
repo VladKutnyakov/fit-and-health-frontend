@@ -1,8 +1,6 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const sequelize = require('./utils/dbConnect')
 // const cors = require('cors')
-// const morgan = require('morgan')
 // const multer  = require('multer')
 
 // Create express instance
@@ -14,8 +12,8 @@ sequelize.sync()
   .then(() => console.log('MySQL has been connected :)'))
 
 // подключение bodyParser
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 // Использовать пакет CORS в проекте
 // app.use(cors())
