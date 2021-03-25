@@ -11,13 +11,14 @@ const app = express()
 sequelize.sync()
   .then(() => console.log('MySQL has been connected :)'))
 
-const corsOptions = {
-  "origin": "*",
-  "methods": "GET,POST,PUT,PATCH,DELETE,HEAD",
-  "preflightContinue": false,
-  "optionsSuccessStatus": 200
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//   "origin": "*",
+//   "methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD",
+//   'Access-Control-Allow-Headers': 'Authorization',
+//   "preflightContinue": false,
+//   "optionsSuccessStatus": 200,
+// }
+// app.use(cors(corsOptions))
 app.use(helmet())
 
 // подключение bodyParser
@@ -31,10 +32,12 @@ app.use('/uploads', express.static('uploads'))
 // Require API routes
 const login = require('./routes/auth/loginUser')
 const register = require('./routes/auth/registerUser')
+const foodCalorieTable = require('./routes/foodCalorieTable/index')
 
 // Import API Routes
 app.use(login)
 app.use(register)
+app.use(foodCalorieTable)
 
 // Export express app
 module.exports = app
