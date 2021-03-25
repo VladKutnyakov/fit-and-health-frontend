@@ -14,7 +14,7 @@
         v-for="(item, index) in linkGroup.links"
         :key="index"
         :to="item.link"
-        exact
+        :exact="item.exact"
         no-prefetch
         class="navbar__page-link"
         active-class="navbar__page-link--active"
@@ -45,22 +45,26 @@ export default {
             {
               title: 'Профиль',
               link: '/profile',
-              icon: 'ti-home'
+              icon: 'ti-home',
+              exact: true
             },
             {
               title: 'Сообщения',
               link: '/profile/messages',
-              icon: 'ti-comments'
+              icon: 'ti-comments',
+              exact: true
             },
             {
               title: 'Интересные страницы',
               link: '/profile/subscriptions',
-              icon: 'ti-crown'
+              icon: 'ti-crown',
+              exact: true
             },
             {
               title: 'Фото и видео',
               link: '/profile/media',
-              icon: 'ti-gallery'
+              icon: 'ti-gallery',
+              exact: false
             }
           ]
         },
@@ -71,27 +75,32 @@ export default {
             {
               title: 'Дневник тренировок',
               link: '/training-diary',
-              icon: 'ti-timer'
+              icon: 'ti-timer',
+              exact: true
             },
             {
               title: 'Редактор тренировочных программ',
               link: '/training-diary/training-program-editor',
-              icon: 'ti-pencil-alt'
+              icon: 'ti-pencil-alt',
+              exact: true
             },
             {
               title: 'Программы тренировок',
               link: '/training-diary/training-programs',
-              icon: 'ti-clipboard'
+              icon: 'ti-clipboard',
+              exact: true
             },
             {
               title: 'Справочник по упражнениям',
               link: '/training-diary/exercise-guide',
-              icon: 'ti-headphone-alt'
+              icon: 'ti-headphone-alt',
+              exact: true
             },
             {
               title: 'Новая тренировка',
               link: '/training-diary/training-in-progress',
-              icon: 'ti-bolt'
+              icon: 'ti-bolt',
+              exact: true
             }
           ]
         },
@@ -102,27 +111,32 @@ export default {
             {
               title: 'Дневник питания',
               link: '/meal-planer',
-              icon: 'ti-agenda'
+              icon: 'ti-agenda',
+              exact: true
             },
             {
               title: 'Редактор рационов',
               link: '/meal-planer/meal-planer-editor',
-              icon: 'ti-pencil-alt'
+              icon: 'ti-pencil-alt',
+              exact: true
             },
             {
               title: 'Сохраненные рационы',
               link: '/meal-planer/meal-plans',
-              icon: 'ti-write'
+              icon: 'ti-write',
+              exact: true
             },
             {
               title: 'Книга рецептов',
               link: '/meal-planer/recipes-book',
-              icon: 'ti-book'
+              icon: 'ti-book',
+              exact: true
             },
             {
               title: 'Таблица калорийности продуктов',
               link: '/meal-planer/food-calorie-table',
-              icon: 'ti-view-list-alt'
+              icon: 'ti-view-list-alt',
+              exact: true
             }
           ]
         },
@@ -133,27 +147,32 @@ export default {
             {
               title: 'Вызовы',
               link: '/challenges',
-              icon: 'ti-cup'
+              icon: 'ti-cup',
+              exact: true
             },
             {
               title: 'Поиск вызывов',
               link: '/challenges/challenges-book',
-              icon: 'ti-book'
+              icon: 'ti-book',
+              exact: true
             },
             {
               title: 'Конструктор вызывов',
               link: '/challenges/challenges-constructor',
-              icon: 'ti-layout'
+              icon: 'ti-layout',
+              exact: true
             },
             {
               title: 'Принятые вызовы',
               link: '/challenges/accepted-challenges',
-              icon: 'ti-pencil-alt'
+              icon: 'ti-pencil-alt',
+              exact: true
             },
             {
               title: 'Статистика по вызовам',
               link: '/challenges/challenge-in-progress',
-              icon: 'ti-bolt'
+              icon: 'ti-bolt',
+              exact: true
             },
           ]
         },
@@ -164,7 +183,8 @@ export default {
             {
               title: 'Статистика и замеры',
               link: '/measurements',
-              icon: 'ti-bar-chart'
+              icon: 'ti-bar-chart',
+              exact: true
             }
           ]
         },
@@ -175,7 +195,8 @@ export default {
             {
               title: 'Справочник',
               link: '/handbook',
-              icon: 'ti-bookmark-alt'
+              icon: 'ti-bookmark-alt',
+              exact: true
             }
           ]
         },
@@ -186,7 +207,8 @@ export default {
             {
               title: 'Настройки',
               link: '/settings',
-              icon: 'ti-settings'
+              icon: 'ti-settings',
+              exact: true
             }
           ]
         },
