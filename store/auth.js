@@ -48,18 +48,16 @@ export const actions = {
   async createUser ({ commit }, formData) {
     try {
       // console.log('создать юзера', formData)
-      const newUser = await this.$axios.$post('http://localhost:3030/api/register', formData)
-
-      console.log(newUser);
+      const newUserToken = await this.$axios.$post('http://localhost:3030/api/register', formData)
 
       // добавляем токен к запросам axios
-      // this.$axios.setToken(newUserToken, 'Bearer ')
+      this.$axios.setToken(newUserToken, 'Bearer ')
       // сохроняем в state токен полученный из action login
-      // commit('setToken', newUserToken)
+      commit('setToken', newUserToken)
       // сохраняем cookie на 361 день
-      // Cookies.set('Authorization', newUserToken, { expires: 365 })
+      Cookies.set('Authorization', newUserToken, { expires: 365 })
     } catch (err) {
-      // получаем сообщение об ошибке которую возвращае axios
+      // получаем сообщение об ошибке которую возвращает axios
       console.log(err.response)
     }
   },

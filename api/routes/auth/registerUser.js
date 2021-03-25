@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
-// const jwt = require('jsonwebtoken')
-// const keys = require('../../keys/index')
+const jwt = require('jsonwebtoken')
+const keys = require('../../keys/index')
 const Users = require('../../models/Users')
 
 const { Router } = require('express')
@@ -24,11 +24,19 @@ router.post('/register', async function (req, res) {
     try {
       const salt = bcrypt.genSaltSync(10)
       const password = req.body.password
-      Users.create({
+      const newUser = Users.create({
         email: req.body.email,
         password: bcrypt.hashSync(password, salt),
       })
-        .then(user => res.status(201).json(user))
+
+      // Когда пользователь создан генерируем token
+      const token = jwt.sign({
+        email: newUser.email,
+        userId: newUser.id
+      }, keys.jwt, {expiresIn: 3600 * 24 * 365})
+      // console.log(token);
+
+      res.status(200).json(token)
     } catch (error) {
       res.status(404).json({
         message: 'невозможно зарегистрировать пользователя'
