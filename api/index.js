@@ -2,7 +2,6 @@ const express = require('express')
 const sequelize = require('./utils/dbConnect')
 const cors = require('cors')
 const helmet = require("helmet");
-// const multer  = require('multer')
 
 // Create express instance
 const app = express()
@@ -14,7 +13,7 @@ sequelize.sync()
 
 const corsOptions = {
   "origin": "*",
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "methods": "GET,POST,PUT,PATCH,DELETE,HEAD",
   "preflightContinue": false,
   "optionsSuccessStatus": 200
 }
@@ -24,9 +23,6 @@ app.use(helmet())
 // подключение bodyParser
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
-// Использовать пакет CORS в проекте
-// app.use(cors())
 
 // Для получения доступа к папке напрямую
 // localhost:3000/uploads/названиеКартинки.png
