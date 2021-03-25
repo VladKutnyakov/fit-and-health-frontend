@@ -11,14 +11,14 @@ const app = express()
 sequelize.sync()
   .then(() => console.log('MySQL has been connected :)'))
 
-// const corsOptions = {
-//   "origin": "*",
-//   "methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD",
-//   'Access-Control-Allow-Headers': 'Authorization',
-//   "preflightContinue": false,
-//   "optionsSuccessStatus": 200,
-// }
-// app.use(cors(corsOptions))
+const corsOptions = {
+  "origin": "*",
+  "methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS,HEAD",
+  'Access-Control-Allow-Headers': 'Authorization',
+  "preflightContinue": false,
+  "optionsSuccessStatus": 200,
+}
+app.use(cors(corsOptions))
 app.use(helmet())
 
 // подключение bodyParser
