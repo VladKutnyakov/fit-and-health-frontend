@@ -2,7 +2,7 @@
   <div class="food-calorie-table">
     <app-page-title>Таблица калорийности продуктов</app-page-title>
     <div class="food-calorie-table__content">
-      <!-- <page-info /> -->
+      <page-info />
       <div class="food-calorie-table__filters-and-table">
         <sorting-filters />
         <product-table />

@@ -67,37 +67,6 @@
         <p class="element">тяжелая атлетика</p>
       </div>
     </div>
-
-    <!-- <div class="nutrition-info">
-      <app-block-title>Содержание БЖУ в рационе</app-block-title>
-      <div class="nutrition-info__bottom-block">
-        <div class="nutrition-info__percent">
-          <div class="percent__chart">
-            <div class="percent__kkal">
-              <p class="percent__kkal-value">1873</p>
-              <p class="percent__kkal-scale">ккал</p>
-            </div>
-          </div>
-          <div class="percent__nutriets">
-            <div class="percent__nutriets-item">
-              <p class="nutriets-item__indicator nutriets-item__indicator-protein"></p>
-              <p class="nutriets-item__text">Белки:</p>
-              <p class="nutriets-item__value">28%</p>
-            </div>
-            <div class="percent__nutriets-item">
-              <p class="nutriets-item__indicator nutriets-item__indicator-fats"></p>
-              <p class="nutriets-item__text">Жиры:</p>
-              <p class="nutriets-item__value">32%</p>
-            </div>
-            <div class="percent__nutriets-item">
-              <p class="nutriets-item__indicator nutriets-item__indicator-carb"></p>
-              <p class="nutriets-item__text">Углеводы:</p>
-              <p class="nutriets-item__value">40%</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -156,61 +125,6 @@ export default {
             font-weight: 600;
           }
         }
-
-        .chart__title {
-          margin-bottom: 10px;
-          padding-bottom: 10px;
-          font-size: 14px;
-          font-weight: 500;
-          border-bottom: 1px dashed $blockBorder;
-        }
-        .chart {
-          // border: 1px solid red;
-          flex: 1 1 auto;
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          margin-top: 20px;
-          height: 150px;
-          .chart__element {
-            width: 30px;
-            height: 100%;
-            background: $black10;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            opacity: 1;
-            transition: $tr-02;
-            cursor: pointer;
-          }
-          .chart__element:hover {
-            background: $green;
-            opacity: 0.4;
-          }
-          .chart__element:nth-child(1) {
-            height: 60%;
-          }
-          .chart__element:nth-child(2) {
-            height: 80%;
-          }
-          .chart__element:nth-child(3) {
-            height: 40%;
-          }
-          .chart__element:nth-child(4) {
-            height: 100%;
-          }
-          .chart__element:nth-child(5) {
-            height: 60%;
-          }
-          .chart__element:nth-child(6) {
-            height: 75%;
-          }
-          .chart__element:nth-child(8) {
-            height: 26%;
-          }
-          .chart__element:nth-child(10) {
-            height: 40%;
-          }
-        }
       }
       .trainings-stats__element:last-child {
         margin-right: 0;
@@ -256,10 +170,9 @@ export default {
           margin-right: 5px;
           width: 30px;
           height: 100%;
-          background: $green;
+          background: $black10;
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
-          opacity: .2;
           transition: $tr-02;
           cursor: pointer;
         }
@@ -268,7 +181,6 @@ export default {
         }
         .chart__element:hover {
           background: $green;
-          opacity: 0.6;
         }
         .chart__element:nth-child(1) {
           height: 60%;
@@ -359,14 +271,11 @@ export default {
     .favorite-sports__elements {
       display: flex;
       flex-wrap: wrap;
-      // padding: 20px 10px 10px 10px;
-      // background: $white;
-      // border: 1px solid $blockBorder;
-      // border-radius: 6px;
+      margin-top: 10px;
       .element {
         margin-right: 10px;
         margin-bottom: 10px;
-        padding: 5px 10px;
+        padding: 10px 15px;
         background: $black10;
         border-radius: 20px;
         font-size: 14px;
