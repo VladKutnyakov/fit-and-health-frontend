@@ -10,6 +10,8 @@ export default function ({ route, store, redirect }) {
     }
   } else {
     // console.log('пользователь НЕ авторизован')
-    return redirect('/auth')
+    if (route.path !== '/auth') {
+      return redirect('/auth')
+    }
   }
 }
