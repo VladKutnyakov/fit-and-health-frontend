@@ -28,7 +28,7 @@ router.post('/login', async (req, res, next) => {
         // Генерация токена со сроком жизни 15 мин.
         const token = jwt.sign({
           email: candidate.email,
-          userId: candidate.id,
+          id: candidate.id,
           refreshToken: refreshToken
         }, keys.jwt, { expiresIn: 60 * 15 })
 

@@ -1,14 +1,20 @@
+const jwt = require('jsonwebtoken')
+const keys = require('../../keys/index')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op;
 const Products = require('../../models/Products')
-const jwt = require('jsonwebtoken')
-const keys = require('../../keys/index');
+import JwtGuard from '../../utils/Guards/JwtGuard'
 
 const { Router } = require('express')
 
 const router = Router()
 
-router.get('/food-calorie-table', async function (req, res) {
+router.post('/test', JwtGuard, (req, res) => {
+  console.log(req.body.updatedToken)
+  res.status(200).json({mess: 'test'})
+})
+
+router.get('/food-calorie-table', JwtGuard, async function (req, res) {
   try {
     if (req.headers.authorization) {
       const token = req.headers.authorization.split(' ')[1]
@@ -28,7 +34,7 @@ router.get('/food-calorie-table', async function (req, res) {
 })
 
 
-router.post('/food-calorie-table/save-product', async function (req, res) {
+router.post('/food-calorie-table/save-product', JwtGuard, async function (req, res) {
   try {
     if (req.headers.authorization) {
       const token = req.headers.authorization.split(' ')[1]
@@ -77,7 +83,7 @@ router.post('/food-calorie-table/save-product', async function (req, res) {
   }
 })
 
-router.post('/food-calorie-table/remove-product', async function (req, res) {
+router.post('/food-calorie-table/remove-product', JwtGuard, async function (req, res) {
   try {
     if (req.headers.authorization) {
       const token = req.headers.authorization.split(' ')[1]
@@ -98,7 +104,7 @@ router.post('/food-calorie-table/remove-product', async function (req, res) {
   }
 })
 
-router.post('/food-calorie-table/change-favorite-param', async function (req, res) {
+router.post('/food-calorie-table/change-favorite-param', JwtGuard, async function (req, res) {
   try {
     if (req.headers.authorization) {
       // const token = req.headers.authorization.split(' ')[1]
