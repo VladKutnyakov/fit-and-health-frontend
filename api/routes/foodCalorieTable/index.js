@@ -9,10 +9,10 @@ const { Router } = require('express')
 
 const router = Router()
 
-router.post('/test', JwtGuard, (req, res) => {
-  console.log(req.body.updatedToken)
-  res.status(200).json({mess: 'test'})
-})
+// router.post('/test', JwtGuard, (req, res) => {
+//   console.log(req.body.updatedToken)
+//   res.status(200).json({mess: 'test'})
+// })
 
 router.get('/food-calorie-table', JwtGuard, async function (req, res) {
   try {
