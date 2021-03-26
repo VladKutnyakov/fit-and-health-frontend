@@ -33,11 +33,11 @@ router.post('/register', async function (req, res) {
           token: '1',
           refreshToken: '1'
         })
-  
+
         // Генерируем рефреш токен для нового пользователя
         const refreshToken = jwt.sign({
           id: newUser.id,
-        }, keys.jwtRefresh, {expiresIn: 60 * 15})
+        }, keys.jwtRefresh)
   
         // Генерируем token для нового пользователя
         const token = jwt.sign({
@@ -46,7 +46,7 @@ router.post('/register', async function (req, res) {
           refreshToken: refreshToken
         }, keys.jwt, {expiresIn: 60 * 15})
 
-        const UpdatedNewUser = await Users.update(
+        await Users.update(
           { token, refreshToken },
           { where: { id: newUser.id } }
         )
@@ -65,6 +65,8 @@ router.post('/register', async function (req, res) {
       })
     }
   } catch (err) {
+    console.log(err)
+
     res.status(400).json({
       message: 'Неверный запрос.'
     })
