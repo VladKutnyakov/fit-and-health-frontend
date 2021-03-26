@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const keys = require('../../keys/index')
-// const { Op } = require("sequelize");
+const { Op } = require("sequelize");
 const Users = require('../../models/Users')
 
 const { Router } = require('express')
@@ -9,7 +9,6 @@ const { Router } = require('express')
 const router = Router()
 
 router.post('/register', async function (req, res) {
-  // console.log(req.body)
   try {
     const candidate = await Users.findOne({
       where: {
@@ -21,8 +20,6 @@ router.post('/register', async function (req, res) {
       }
     })
 
-    console.log(candidate)
-
     if (!candidate) {
       // создать пользователя в БД
       try {
@@ -33,42 +30,38 @@ router.post('/register', async function (req, res) {
           email: req.body.email,
           phone: req.body.phone,
           password: bcrypt.hashSync(password, salt),
-          token: 'null',
-          refreshToken: 'null'
+          token: '1',
+          refreshToken: '1'
         })
-
-        console.log(newUser)
   
         // Генерируем рефреш токен для нового пользователя
-        // const refreshToken = jwt.sign({
-        //   id: newUser.id,
-        //   email: newUser.email,
-        // }, keys.jwtRefresh, {expiresIn: 60 * 15})
+        const refreshToken = jwt.sign({
+          id: newUser.id,
+        }, keys.jwtRefresh, {expiresIn: 60 * 15})
   
         // Генерируем token для нового пользователя
-        // const token = jwt.sign({
-        //   id: newUser.id,
-        //   email: newUser.email,
-        //   refreshToken: refreshToken
-        // }, keys.jwt, {expiresIn: 60 * 15})
-  
-        // Добавить данные о token и refreshToken для нового пользователя
-        // await User.update({ token: token, refreshToken: refreshToken }, {
-        //   where: {
-        //     id: newUser.id
-        //   }
-        // })
-  
-        res.status(200).json(newUser)
+        const token = jwt.sign({
+          id: newUser.id,
+          email: newUser.email,
+          refreshToken: refreshToken
+        }, keys.jwt, {expiresIn: 60 * 15})
+
+        const UpdatedNewUser = await Users.update(
+          { token, refreshToken },
+          { where: { id: newUser.id } }
+        )
+
+        res.status(200).json(token)
       } catch (error) {
         res.status(404).json({
+          error,
           message: 'Внутренняя ошибка сервера. Попробуйте еще раз.'
         })
       }
     } else {
       // если пользователь существеует то возвращаем ошибку
       res.status(409).json({
-        message: 'Введенный E-mail уже занят. Используйте другой E-mail или выполните авторизацию.'
+        message: 'Введенный E-mail уже занят. Попробуйте авторизироваться или используйте другой E-mail.'
       })
     }
   } catch (err) {
