@@ -4,11 +4,17 @@
     <i class="login__form-icon ti-unlock"></i>
 
     <form class="login__form">
-      <p class="form__input-title">Телефон или E-mail:</p>
+      <p class="form__input-title">E-mail</p>
       <app-input-text
         :value="email"
         @valueChanged="email = $event"
       />
+
+      <!-- <p class="form__input-title">Телефон</p>
+      <app-input-text
+        :value="phone"
+        @valueChanged="email = $event"
+      /> -->
 
       <p class="form__input-title">Пароль</p>
       <app-input-text
@@ -47,6 +53,7 @@ export default {
   data () {
     return {
       email: 'test',
+      phone: '71234567890',
       password: 'test'
     }
   },
@@ -64,9 +71,10 @@ export default {
       try {
         const formData = {
           email: this.email,
+          phone: this.phone,
           password: this.password
         }
-        if (formData.email.length > 0 && formData.password.length > 0) {
+        if (formData.email.length > 0 && formData.password.length > 0 && formData.phone.length > 0) {
           await this.$store.dispatch('auth/login', formData)
         } else {
           // выводим сообщение об ошибке для пользователя

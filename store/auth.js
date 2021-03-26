@@ -30,8 +30,33 @@ export const actions = {
       this.$axios.setToken(fetchedToken, 'Bearer ')
       // сохроняем в state токен полученный из action login
       commit('setToken', fetchedToken)
+      // сохраняем cookie на 30 дней (пользователь сможет обновить протухший токен в течении 30 дней)
+      Cookies.set('Authorization', fetchedToken, { expires: 30 })
+    } catch (err) {
+      // выводим сообщение об ошибке для пользователя
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: err.response.data.message,
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+
+      // Вывод полного варианта ошибки
+      console.log(err.response)
+    }
+  },
+  async createUser ({ commit }, formData) {
+    try {
+      const newUserToken = await this.$axios.$post('/api/register', formData)
+      // добавляем токен к запросам axios
+      this.$axios.setToken(newUserToken, 'Bearer ')
+      // сохроняем в state токен полученный из action login
+      commit('setToken', newUserToken)
       // сохраняем cookie на 361 день
-      Cookies.set('Authorization', fetchedToken, { expires: 365 })
+      Cookies.set('Authorization', newUserToken, { expires: 365 })
+      console.log(newUserToken);
     } catch (err) {
       // выводим сообщение об ошибке для пользователя
       const notice = {
@@ -54,29 +79,5 @@ export const actions = {
     commit('clearToken')
     // удаляем куки
     Cookies.remove('Authorization')
-  },
-  async createUser ({ commit }, formData) {
-    try {
-      const newUserToken = await this.$axios.$post('/api/register', formData)
-      // добавляем токен к запросам axios
-      this.$axios.setToken(newUserToken, 'Bearer ')
-      // сохроняем в state токен полученный из action login
-      commit('setToken', newUserToken)
-      // сохраняем cookie на 361 день
-      Cookies.set('Authorization', newUserToken, { expires: 365 })
-    } catch (err) {
-      // выводим сообщение об ошибке для пользователя
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: err.response.data.message,
-        timeToShow: 5000,
-        active: true
-      }
-      this.commit('notifications/addNewNotice', notice)
-
-      // Вывод полного варианта ошибки
-      console.log(err.response)
-    }
-  },
+  }
 }

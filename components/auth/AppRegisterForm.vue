@@ -10,6 +10,12 @@
         @valueChanged="email = $event"
       />
 
+      <p class="form__input-title">E-mail</p>
+      <app-input-text
+        :value="phone"
+        @valueChanged="phone = $event"
+      />
+
       <p class="form__input-title">Password</p>
       <app-input-text
         :value="password"
@@ -50,6 +56,7 @@ export default {
   data () {
     return {
       email: '',
+      phone: '',
       password: ''
     }
   },
@@ -66,9 +73,10 @@ export default {
       try {
         const newUser = {
           email: this.email,
+          phone: this.phone,
           password: this.password
         }
-        if (newUser.email.length > 0 && newUser.password.length > 0) {
+        if (newUser.email.length > 0 && newUser.password.length > 0 && newUser.phone.length > 0) {
           await this.$store.dispatch('auth/createUser', newUser)
         } else {
           // выводим сообщение об ошибке для пользователя
