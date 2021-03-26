@@ -30,8 +30,8 @@ export const actions = {
       this.$axios.setToken(fetchedToken, 'Bearer ')
       // сохроняем в state токен полученный из action login
       commit('setToken', fetchedToken)
-      // сохраняем cookie на 361 день
-      Cookies.set('Authorization', fetchedToken, { expires: 365 })
+      // сохраняем cookie на 30 дней (пользователь сможет обновить протухший токен в течении 30 дней)
+      Cookies.set('Authorization', fetchedToken, { expires: 30 })
     } catch (err) {
       // выводим сообщение об ошибке для пользователя
       const notice = {
@@ -46,14 +46,6 @@ export const actions = {
       // Вывод полного варианта ошибки
       console.log(err.response)
     }
-  },
-  logout ({ commit }) {
-    // убираем токен из запросов axios
-    this.$axios.setToken(false)
-    // удаляем из state значение токена
-    commit('clearToken')
-    // удаляем куки
-    Cookies.remove('Authorization')
   },
   async createUser ({ commit }, formData) {
     try {
@@ -79,4 +71,12 @@ export const actions = {
       console.log(err.response)
     }
   },
+  logout ({ commit }) {
+    // убираем токен из запросов axios
+    this.$axios.setToken(false)
+    // удаляем из state значение токена
+    commit('clearToken')
+    // удаляем куки
+    Cookies.remove('Authorization')
+  }
 }

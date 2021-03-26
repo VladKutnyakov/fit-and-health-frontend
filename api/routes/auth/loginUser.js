@@ -19,11 +19,22 @@ router.post('/login', async (req, res, next) => {
     const passwordResult = bcrypt.compareSync(req.body.password, candidate.dataValues.password)
 
     if (passwordResult) {
-      // Генерация токена
+      // Генерация рефреш токена
+      // refreshToken = jwt.sign({
+      //   email: candidate.email,
+      //   userId: candidate.id,
+      //   // refresh: refreshToken
+      // }, keys.jwt, { expiresIn: 3600 * 24 * 365 })
+
+      // Сохранение рефреш токена в БД
+      // await Users.create()
+
+      // Генерация токена со сроком жизни 15 мин.
       const token = jwt.sign({
         email: candidate.email,
-        userId: candidate.id
-      }, keys.jwt, {expiresIn: 3600 * 24 * 365})
+        userId: candidate.id,
+        // refresh: refreshToken
+      }, keys.jwt, { expiresIn: 60 * 15 })
       // console.log(token)
 
       res.status(200).json(token)

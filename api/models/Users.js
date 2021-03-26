@@ -3,17 +3,29 @@ const sequelize = require('../utils/dbConnect')
 
 // Описание модели таблицы в БД MySQL
 const Users = sequelize.define('users', {
-  // id: {
-  //   primaryKey: true,
-  //   autoIncrement: true,
-  //   allowNull: false,
-  //   type: Sequelize.INTEGER
-  // },
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
   email: {
     type: Sequelize.STRING,
-    allowNull: true
+    allowNull: false
+  },
+  phone: {
+    type: Sequelize.STRING,
+    allowNull: false
   },
   password: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  token: {
+    type: Sequelize.STRING,
+    allowNull: true,
+  },
+  refreshToken: {
     type: Sequelize.STRING,
     allowNull: true
   }
