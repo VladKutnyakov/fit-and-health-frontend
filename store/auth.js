@@ -56,7 +56,7 @@ export const actions = {
       commit('setToken', newUserToken)
       // сохраняем cookie на 361 день
       Cookies.set('Authorization', newUserToken, { expires: 365 })
-      console.log(newUserToken);
+      // console.log(newUserToken);
     } catch (err) {
       // выводим сообщение об ошибке для пользователя
       const notice = {
