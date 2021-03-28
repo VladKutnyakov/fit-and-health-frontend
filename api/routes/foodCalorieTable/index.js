@@ -3,42 +3,38 @@ const keys = require('../../keys/index')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op;
 const Products = require('../../models/Products')
-import JwtGuard from '../../utils/Guards/JwtGuard'
+// import JwtGuard from '../../utils/Guards/JwtGuard'
 
-const { Router } = require('express')
+const { Router } = require('express');
 
 const router = Router()
 
-// router.post('/test', JwtGuard, (req, res) => {
-//   console.log(req.body.updatedToken)
-//   res.status(200).json({mess: 'test'})
-// })
-
-router.get('/food-calorie-table', JwtGuard, async function (req, res) {
+router.get('/food-calorie-table', async function (req, res) {
   try {
-    if (req.headers.authorization) {
-      const token = req.headers.authorization.split(' ')[1]
-      const decodedToken = jwt.verify(token, keys.jwt)
-      const AllProducts = await Products.findAll({
-        where: {
-          [Op.or]: [{userProduct: 0}, {userId: decodedToken.userId}]
-        }
-      })
-      res.status(200).json(AllProducts)
-    } else {
-      res.status(401).json({message: 'Необходима авторизация'})
-    }
+    const token = req.headers.authorization.split(' ')[1]
+    const decodedToken = jwt.decode(token, keys.jwt)
+
+    const AllProducts = await Products.findAll({
+      where: {
+        [Op.or]: [{userProduct: 0}, {userId: decodedToken.id}]
+      }
+    })
+    res.status(200).json(AllProducts)
   } catch (error) {
     console.log(error)
+
+    res.status(500).json({
+      message: 'Внутренняя ошибка сервера.'
+    })
   }
 })
 
 
-router.post('/food-calorie-table/save-product', JwtGuard, async function (req, res) {
+router.post('/food-calorie-table/save-product', async function (req, res) {
   try {
     if (req.headers.authorization) {
       const token = req.headers.authorization.split(' ')[1]
-      const decodedToken = jwt.verify(token, keys.jwt)
+      const decodedToken = jwt.decode(token, keys.jwt)
 
       if (req.body.id && req.body.userId === decodedToken.userId) {
         const UpdatedProduct = await Products.update(
@@ -55,7 +51,7 @@ router.post('/food-calorie-table/save-product', JwtGuard, async function (req, r
           },
           {
             where: {
-              [Op.and]: [{id: req.body.id}, {userId: decodedToken.userId}]
+              [Op.and]: [{id: req.body.id}, {userId: decodedToken.id}]
             }
           }
         )
@@ -80,18 +76,22 @@ router.post('/food-calorie-table/save-product', JwtGuard, async function (req, r
     }
   } catch (error) {
     console.log(error)
+
+    res.status(500).json({
+      message: 'Внутренняя ошибка сервера.'
+    })
   }
 })
 
-router.post('/food-calorie-table/remove-product', JwtGuard, async function (req, res) {
+router.post('/food-calorie-table/remove-product', async function (req, res) {
   try {
     if (req.headers.authorization) {
       const token = req.headers.authorization.split(' ')[1]
-      const decodedToken = jwt.verify(token, keys.jwt)
+      const decodedToken = jwt.decode(token, keys.jwt)
 
       const RemoveProduct = await Products.destroy({
         where: {
-          [Op.and]: [{id: req.body.product}, {userId: decodedToken.userId}]
+          [Op.and]: [{id: req.body.product}, {userId: decodedToken.id}]
         }
       })
 
@@ -101,14 +101,18 @@ router.post('/food-calorie-table/remove-product', JwtGuard, async function (req,
     }
   } catch (error) {
     console.log(error)
+
+    res.status(500).json({
+      message: 'Внутренняя ошибка сервера.'
+    })
   }
 })
 
-router.post('/food-calorie-table/change-favorite-param', JwtGuard, async function (req, res) {
+router.post('/food-calorie-table/change-favorite-param', async function (req, res) {
   try {
     if (req.headers.authorization) {
-      // const token = req.headers.authorization.split(' ')[1]
-      // const decodedToken = jwt.verify(token, keys.jwt)
+      const token = req.headers.authorization.split(' ')[1]
+      const decodedToken = jwt.decode(token, keys.jwt)
 
       const UpdatedProduct = await Products.update(
         req.body.newParam, // должно быть в виде { title: 'foooo', fats: 'baaaaaar'}
