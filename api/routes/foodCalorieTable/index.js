@@ -16,7 +16,7 @@ router.get('/food-calorie-table', async function (req, res) {
 
     const AllProducts = await Products.findAll({
       where: {
-        [Op.or]: [{userProduct: 0}, {userId: decodedToken.id}]
+        [Op.or]: [{userProduct: 0}, {id: decodedToken.id}]
       }
     })
     res.status(200).json(AllProducts)
@@ -32,32 +32,12 @@ router.get('/food-calorie-table', async function (req, res) {
 
 router.post('/food-calorie-table/save-product', async function (req, res) {
   try {
-    if (req.headers.authorization) {
-      const token = req.headers.authorization.split(' ')[1]
-      const decodedToken = jwt.decode(token, keys.jwt)
+    const token = req.headers.authorization.split(' ')[1]
+    const decodedToken = jwt.decode(token, keys.jwt)
 
-      if (req.body.id && req.body.userId === decodedToken.userId) {
-        const UpdatedProduct = await Products.update(
-          {
-            title: req.body.title,
-            weight: req.body.weight,
-            protein: req.body.protein,
-            fats: req.body.fats,
-            carb: req.body.carb,
-            kkal: req.body.kkal,
-            category: req.body.category,
-            favorite: req.body.favorite,
-            userProduct: req.body.userProduct,
-          },
-          {
-            where: {
-              [Op.and]: [{id: req.body.id}, {userId: decodedToken.id}]
-            }
-          }
-        )
-        res.status(200).json(UpdatedProduct[0])
-      } else {
-        const CreatedProduct = await Products.create({
+    if (req.body.id && req.body.id === decodedToken.id) {
+      const UpdatedProduct = await Products.update(
+        {
           title: req.body.title,
           weight: req.body.weight,
           protein: req.body.protein,
@@ -67,12 +47,28 @@ router.post('/food-calorie-table/save-product', async function (req, res) {
           category: req.body.category,
           favorite: req.body.favorite,
           userProduct: req.body.userProduct,
-          userId: decodedToken.userId
-        })
-        res.status(200).json(CreatedProduct)
-      }
+        },
+        {
+          where: {
+            [Op.and]: [{id: req.body.id}, {userId: decodedToken.id}]
+          }
+        }
+      )
+      res.status(200).json(UpdatedProduct[0])
     } else {
-      res.status(401).json({message: 'Необходима авторизация'})
+      const CreatedProduct = await Products.create({
+        title: req.body.title,
+        weight: req.body.weight,
+        protein: req.body.protein,
+        fats: req.body.fats,
+        carb: req.body.carb,
+        kkal: req.body.kkal,
+        category: req.body.category,
+        favorite: req.body.favorite,
+        userProduct: req.body.userProduct,
+        userId: decodedToken.userId
+      })
+      res.status(200).json(CreatedProduct)
     }
   } catch (error) {
     console.log(error)
