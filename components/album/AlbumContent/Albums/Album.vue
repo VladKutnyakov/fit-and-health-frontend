@@ -13,12 +13,12 @@
     </div>
 
     <p class="album__title">Название альбома</p>
-    <p class="album__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, earum.</p>
+    <p class="album__description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate et, iure officiis quisquam voluptatibus temporibus debitis explicabo optio voluptatum, ut dicta labore nesciunt veniam. Dicta nobis repellat expedita hic vitae?</p>
 
     <div class="album__stats">
       <div class="stats__element">
         <i class="ti-gallery element__icon"></i>
-        <p class="element__value">15</p>
+        <p class="element__value">24</p>
       </div>
       <div class="stats__element">
         <i class="ti-video-clapper element__icon"></i>
@@ -26,7 +26,7 @@
       </div>
       <div class="stats__element">
         <i class="ti-files element__icon"></i>
-        <p class="element__value">0</p>
+        <p class="element__value">45</p>
       </div>
     </div>
   </nuxt-link>

@@ -14,7 +14,7 @@
 <script>
 import AppPageTitle from "@/components/basic/AppPageTitle";
 import PageInfo from "@/components/album/PageInfo";
-import AlbumContent from '@/components/album/AlbumContent'
+import AlbumContent from '@/components/album/AlbumContent/index'
 import AlbumInfo from '@/components/album/AlbumInfo'
 
 export default {
