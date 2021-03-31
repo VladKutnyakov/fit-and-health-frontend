@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <app-button right @click.native="btnHandler()">{{ btnTitle }}</app-button>
+    <app-button v-if="btnTitle" right @click.native="btnHandler()">{{ btnTitle }}</app-button>
 
   </div>
 </template>
