@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import AppPageTitle from '@/components/basic/AppPageTitle'
 import PageInfo from '@/components/foodCalorieTable/PageInfo'
 import SortingFilters from '@/components/foodCalorieTable/SortingFilters'
 import ProductTable from '@/components/foodCalorieTable/ProductTable'
 
 export default {
+  layout: 'default',
   middleware: ['userAuth'],
   async asyncData ({ store }) {
     await store.dispatch('foodCalorieTable/getAllProducts')
