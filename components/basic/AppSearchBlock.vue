@@ -1,5 +1,5 @@
 <template>
-  <div ref="search" class="search">
+  <div ref="search" class="app-search-block">
     <input
       ref="searchInput"
       class="search__input"
@@ -53,7 +53,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.search {
+.app-search-block {
   // border: 1px solid red;
   display: flex;
   .search__input {
