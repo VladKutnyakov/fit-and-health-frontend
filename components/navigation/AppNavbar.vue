@@ -55,16 +55,16 @@ export default {
               exact: true
             },
             {
-              title: 'Интересные страницы',
-              link: '/profile/subscriptions',
-              icon: 'ti-crown',
-              exact: true
-            },
-            {
               title: 'Фото и видео',
               link: '/profile/media',
               icon: 'ti-gallery',
               exact: false
+            },
+            {
+              title: 'Интересные страницы',
+              link: '/profile/subscriptions',
+              icon: 'ti-crown',
+              exact: true
             }
           ]
         },
