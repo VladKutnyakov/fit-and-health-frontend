@@ -1,6 +1,6 @@
 <template>
   <div class="founding-users">
-    <user />
+    <user v-for="(item, index) in 7" :key="index"/>
   </div>
 </template>
 
@@ -18,7 +18,8 @@ export default {
 @import '@/assets/styles/vars.scss';
 
 .founding-users {
-  // margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 </style>
