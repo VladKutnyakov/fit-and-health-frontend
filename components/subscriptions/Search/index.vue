@@ -9,23 +9,16 @@
 
     <div class="filter-by">
       <filter-radio-text-group
-        :valueList="['Все', 'Фото', 'Видео']"
-        :defaultValue="filters.media"
+        :valueList="['Все', 'Онлайн', 'Оффлайн']"
+        :defaultValue="filters.status"
         uppercase
         size14px
         @inputGroupValueChanged="filters.media = $event"
       />
+
       <p class="filter-by__divider">|</p>
       <filter-radio-text-group
-        :valueList="['Все', 'Домашние', 'Спортзал']"
-        :defaultValue="filters.foodOrDrink"
-        uppercase
-        size14px
-        @inputGroupValueChanged="filters.foodOrDrink = $event"
-      />
-      <p class="filter-by__divider">|</p>
-      <filter-radio-text-group
-        :valueList="['Все', 'Мои программы']"
+        :valueList="['Все', 'Подписки', 'Подписчики']"
         :defaultValue="filters.type"
         uppercase
         size14px
@@ -53,9 +46,8 @@ export default {
   data () {
     return {
       filters: {
-        media: 'Все',
-        foodOrDrink: 'Все',
-        type: 'Все'
+        status: 'Все',
+        type: 'Подписки'
       }
     }
   }
