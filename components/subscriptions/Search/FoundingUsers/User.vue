@@ -3,20 +3,9 @@
     <img src="https://pic.sport.ua/media/images/Foto%202.jpg" class="user__image">
 
     <p class="user__name">Дмитрий Коробов</p>
-
-    <div class="user__stats">
-      <div class="stats__element">
-        <p class="element__title">Возраст</p>
-        <p class="element__value">32</p>
-      </div>
-      <div class="stats__element">
-        <p class="element__title">Подписчики</p>
-        <p class="element__value">345</p>
-      </div>
-      <div class="stats__element">
-        <p class="element__title">Принято вызывов</p>
-        <p class="element__value">45</p>
-      </div>
+    <div class="user__subcriptions">
+      <p class="subcriptions__value">3 256</p>
+      <p class="subcriptions__title">подписчиков</p>
     </div>
 
     <div class="user__actions">
@@ -59,37 +48,23 @@ export default {}
     text-align: center;
     font-weight: 500;
   }
-  .user__stats {
+  .user__subcriptions {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 1px dashed $blockBorder;
-    .stats__element {
-      // flex: 1 1 auto;
-      width: 50%;
-      border-right: 1px solid $blockBorder;
-      .element__title {
-        text-transform: uppercase;
-        text-align: center;
-        font-size: 10px;
-      }
-      .element__value {
-        margin-top: 5px;
-        text-align: center;
-        font-style: 12px;
-        font-weight: 500;
-      }
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+    .subcriptions__value {
+      padding: 0 3px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
     }
-    .stats__element:nth-child(2) {
-      border-right: none;
-    }
-    .stats__element:last-child {
-      border-right: none;
-      width: 100%;
-      margin: 10px 10px 0 10px;
-      padding-top: 10px;
-      border-top: 1px solid $blockBorder;
+    .subcriptions__title {
+      padding: 0 3px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 500;
     }
   }
   .user__actions {
