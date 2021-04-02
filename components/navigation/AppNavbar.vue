@@ -158,7 +158,7 @@ export default {
             },
             {
               title: 'Конструктор вызывов',
-              link: '/challenges/challenges-constructor',
+              link: '/challenges/challenges-book/challenge-editor',
               icon: 'ti-layout',
               exact: true
             },
