@@ -33,11 +33,13 @@ app.use('/uploads', express.static('uploads'))
 const login = require('./routes/auth/loginUser')
 const register = require('./routes/auth/registerUser')
 const foodCalorieTable = require('./routes/foodCalorieTable/index')
+const recipesBook = require('./routes/recipesBook/index')
 
 // Import API Routes
 app.use(login)
 app.use(register)
 app.use(foodCalorieTable)
+app.use(recipesBook)
 
 // Export express app
 module.exports = app

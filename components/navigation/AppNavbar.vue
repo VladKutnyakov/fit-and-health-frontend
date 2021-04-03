@@ -80,7 +80,7 @@ export default {
             },
             {
               title: 'Редактор тренировочных программ',
-              link: '/training-diary/training-program-editor',
+              link: '/training-diary/training-programs/training-program-editor',
               icon: 'ti-pencil-alt',
               exact: true
             },
