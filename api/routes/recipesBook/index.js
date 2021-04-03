@@ -48,3 +48,5 @@ router.get('/recipes-book', async function (req, res) {
   }
 
 })
+
+module.exports = router
