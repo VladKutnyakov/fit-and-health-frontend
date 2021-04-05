@@ -4,6 +4,7 @@
     <div class="messages-page__content">
       <user-chats />
       <chat-history />
+      <additional-info />
     </div>
   </div>
 </template>
@@ -12,6 +13,7 @@
 import AppPageTitle from '@/components/basic/AppPageTitle'
 import UserChats from '@/components/messages/UserChats'
 import ChatHistory from '@/components/messages/ChatHistory'
+import AdditionalInfo from '@/components/messages/AdditionalInfo'
 
 export default {
   layout: 'default',
@@ -22,7 +24,8 @@ export default {
   components: {
     AppPageTitle,
     UserChats,
-    ChatHistory
+    ChatHistory,
+    AdditionalInfo
   }
 }
 </script>
