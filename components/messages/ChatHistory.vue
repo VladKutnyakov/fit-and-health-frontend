@@ -3,8 +3,21 @@
     <app-block-title>История сообщений</app-block-title>
     <div class="chat-history__content">
       <div class="messages">
-        <p>сообщение пользователя</p>
-        <p>ответ на сообщение пользователя</p>
+        <div class="incomming-message">
+          <img class="incomming-message__user-image" src="https://pic.sport.ua/media/images/Foto%202.jpg">
+          <div class="incomming-message__text-and-info">
+            <p class="text">ответ на сообщение пользователя в несколько строк</p>
+            <div class="info">12.03.2021 - 10:31</div>
+          </div>
+        </div>
+
+        <div class="user-message">
+          <div class="user-message__text-and-info">
+            <p class="text">ответ на сообщение пользователя в несколько строк</p>
+            <div class="info">12.03.2021 - 10:31</div>
+          </div>
+          <img class="user-message__user-image" src="https://pic.sport.ua/media/images/Foto%202.jpg">
+        </div>
       </div>
 
       <div class="new-message">
@@ -46,7 +59,81 @@ export default {
     border: 1px solid $blockBorder;
     border-radius: 6px;
     .messages {
+      // border: 1px solid red;
+      display: flex;
+      flex-direction: column;
       height: 200px;
+      .incomming-message {
+        // border: 1px solid red;
+        align-self: flex-start;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+        width: calc(100% - 100px);
+        .incomming-message__user-image {
+          width: 50px;
+          min-width: 50px;
+          height: 50px;
+          object-fit: cover;
+          object-position: center;
+          border: 1px solid $blockBorder;
+          border-radius: 6px;
+        }
+        .incomming-message__text-and-info {
+          display: flex;
+          flex-direction: column;
+          margin-left: 10px;
+          padding: 10px;
+          background: $hiddenBlockBG;
+          border-radius: 6px;
+          border-top-left-radius: 0;
+          .text {
+            text-align: left;
+          }
+          .info {
+            margin-top: 5px;
+            text-align: left;
+            font-size: 10px;
+          }
+        }
+      }
+      .user-message {
+        // border: 1px solid red;
+        align-self: flex-end;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+        width: calc(100% - 100px);
+        .user-message__user-image {
+          width: 50px;
+          min-width: 50px;
+          height: 50px;
+          object-fit: cover;
+          object-position: center;
+          border: 1px solid $blockBorder;
+          border-radius: 6px;
+        }
+        .user-message__text-and-info {
+          display: flex;
+          flex-direction: column;
+          margin-right: 10px;
+          padding: 10px;
+          color: $white;
+          background: $green;
+          border-radius: 6px;
+          border-top-right-radius: 0;
+          .text {
+            text-align: right;
+          }
+          .info {
+            margin-top: 5px;
+            text-align: right;
+            font-size: 10px;
+          }
+        }
+      }
     }
     .new-message {
       display: flex;
