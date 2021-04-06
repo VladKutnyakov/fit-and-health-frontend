@@ -1,30 +1,31 @@
 <template>
   <div class="main-training-program">
     <app-block-title>Основная тренировочная программа</app-block-title>
+    <div class="main-training-program__content">
+      <!-- <image-and-social /> -->
+      <!-- <description /> -->
 
-    <div class="main-training-program__overview">
-        <image-and-social />
+      <program-overview />
 
-        <description />
     </div>
-
-    <action-btns />
-
+    <!-- <action-btns /> -->
   </div>
 </template>
 
 <script>
 import AppBlockTitle from "@/components/basic/AppBlockTitle"
-import ImageAndSocial from "@/components/trainingDiary/MainTrainingProgram/TrainingOverview/ImageAndSocial"
-import Description from '@/components/trainingDiary/MainTrainingProgram/TrainingOverview/Description/index'
-import ActionBtns from "@/components/trainingDiary/MainTrainingProgram/TrainingOverview/ActionBtns"
+import ProgramOverview from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/index'
+// import ImageAndSocial from "@/components/trainingDiary/MainTrainingProgram/TrainingOverview/ImageAndSocial"
+// import Description from '@/components/trainingDiary/MainTrainingProgram/TrainingOverview/Description/index'
+// import ActionBtns from "@/components/trainingDiary/MainTrainingProgram/TrainingOverview/ActionBtns"
 
 export default {
   components: {
     AppBlockTitle,
-    ImageAndSocial,
-    Description,
-    ActionBtns
+    ProgramOverview
+    // ImageAndSocial,
+    // Description,
+    // ActionBtns
   }
 }
 </script>
@@ -34,13 +35,13 @@ export default {
 
 .main-training-program {
   // border: 1px solid red;
-  .main-training-program__overview {
+  .main-training-program__content {
     // border: 1px solid red;
     display: flex;
-    padding: 10px;
-    background: $hiddenBlockBG;
+    // padding: 10px;
+    background: $white;
+    border: 1px solid $blockBorder;
     border-radius: 6px;
-    box-shadow: $btnHoverShadow;
   }
 }
 </style>
