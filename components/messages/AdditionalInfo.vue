@@ -4,7 +4,7 @@
 
     <div class="additional-info__content">
       <div class="members">
-        <div class="members__block-title">Участники: 2</div>
+        <p class="members__block-title">Участники: 2</p>
 
         <ul class="members__users-list">
           <li class="users-list__item" v-for="(item, index) in 2" :key="index">
@@ -20,12 +20,17 @@
         </ul>
       </div>
 
-      <div class="user-info">
-        Данные о пользователе
-      </div>
-
       <div class="files-and-links">
-        Файлы и ссылки
+        <p class="files-and-links__block-title">Файлы и ссылки</p>
+
+        <ul class="files-and-links__list">
+          <li class="list__item" v-for="(item, index) in 7" :key="index">
+            <i class="ti-image item__icon"></i>
+            <p class="item__title">Название файла</p>
+            <p class="item__date">21.02.2019</p>
+          </li>
+        </ul>
+
       </div>
     </div>
   </div>
@@ -103,13 +108,38 @@ export default {
         }
       }
     }
-    .user-info {
-      padding: 10px;
-      background: $hiddenBlockBG;
-    }
+
     .files-and-links {
-      padding: 10px;
-      background: $hiddenBlockBG;
+      .files-and-links__block-title {
+        padding: 10px;
+        background: $hiddenBlockBG;
+        font-size: 14px;
+      }
+      .files-and-links__list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px 0;
+        .list__item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 10px;
+          width: calc(100% / 3);
+          .item__icon {
+            font-size: 26px;
+          }
+          .item__title {
+            margin-top: 5px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+          }
+          .item__date {
+            margin-top: 5px;
+            font-size: 10px;
+          }
+        }
+      }
     }
   }
 }
