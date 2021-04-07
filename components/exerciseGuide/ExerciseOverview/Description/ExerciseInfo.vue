@@ -42,7 +42,7 @@ export default {}
 
 .exercise-info {
   flex: 1 1 auto;
-  padding: 10px 20px;
+  padding: 10px;
   .exercise-info__item {
     display: flex;
     margin-bottom: 10px;

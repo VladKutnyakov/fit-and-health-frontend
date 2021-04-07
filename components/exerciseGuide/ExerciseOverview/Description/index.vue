@@ -6,6 +6,7 @@
       <exercise-info />
       <exercise-focus />
     </div>
+    <user-best-result />
   </div>
 </template>
 
@@ -14,13 +15,15 @@ import ExerciseTitle from '@/components/exerciseGuide/ExerciseOverview/Descripti
 import ExerciseTechnique from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseTechnique'
 import ExerciseInfo from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseInfo'
 import ExerciseFocus from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseFocus'
+import UserBestResult from '@/components/exerciseGuide/ExerciseOverview/ActionsAndExample/UserBestResult'
 
 export default {
   components: {
     ExerciseTitle,
     ExerciseTechnique,
     ExerciseInfo,
-    ExerciseFocus
+    ExerciseFocus,
+    UserBestResult
   }
 }
 </script>
@@ -34,6 +37,9 @@ export default {
   flex-direction: column;
   .info-and-focus {
     display: flex;
+    margin: 0 10px;
+    padding: 10px 0;
+    border-top: 1px solid $blockBorder;
   }
 }
 

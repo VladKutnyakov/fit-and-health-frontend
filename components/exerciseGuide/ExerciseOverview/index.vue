@@ -3,7 +3,7 @@
     <app-block-title>Описание упражения</app-block-title>
     <div class="exercise-overview__content">
       <description />
-      <actions-example-result />
+      <actions-and-example />
     </div>
   </div>
 </template>
@@ -11,13 +11,13 @@
 <script>
 import AppBlockTitle from "@/components/basic/AppBlockTitle"
 import Description from '@/components/exerciseGuide/ExerciseOverview/Description/index'
-import ActionsExampleResult from '@/components/exerciseGuide/ExerciseOverview/ActionsExampleResult/index'
+import ActionsAndExample from '@/components/exerciseGuide/ExerciseOverview/ActionsAndExample/index'
 
 export default {
   components: {
     AppBlockTitle,
     Description,
-    ActionsExampleResult
+    ActionsAndExample
   },
 }
 </script>
