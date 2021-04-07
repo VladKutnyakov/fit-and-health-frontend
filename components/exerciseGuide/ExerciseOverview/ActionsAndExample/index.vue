@@ -22,6 +22,8 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .actions-and-result {
+  display: flex;
+  flex-direction: column;
   border-left: 1px solid $blockBorder;
 }
 
