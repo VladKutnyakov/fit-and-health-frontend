@@ -6,9 +6,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  props: {
-    techniqueDescription: String
+  computed: {
+    ...mapState({
+      techniqueDescription: state => state.exercises.exerciseInfo.techniqueDescription
+    })
   }
 }
 </script>
@@ -18,13 +22,9 @@ export default {
 
 .exercise-technique {
   flex: 1 1 auto;
-  margin-top: 5px;
   padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
   .exercise-technique__block-title {
-    padding: 10px;
+    padding: 0 10px;
     text-align: center;
     font-weight: 500;
   }

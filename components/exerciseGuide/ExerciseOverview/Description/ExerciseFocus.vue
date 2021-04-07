@@ -14,11 +14,7 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .exercise-focus {
-  margin-left: 5px;
   padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
   width: 200px;
   min-width: 200px;
   max-width: 200px;

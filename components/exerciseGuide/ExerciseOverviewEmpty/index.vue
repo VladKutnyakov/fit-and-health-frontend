@@ -2,7 +2,10 @@
   <div class="exercise-overview-empty">
     <app-block-title>Описание упражения</app-block-title>
     <div class="exercise-overview-empty__content">
-      <p>Выберите упражнение из списка, что бы получить подробную информацию</p>
+      <div class="message">
+        <i class="ti-search message__icon"></i>
+        <p class="message__text">Выберите упражнение из списка, что бы получить подробную информацию о нем.</p>
+      </div>
     </div>
   </div>
 </template>
@@ -27,10 +30,30 @@ export default {
   margin-left: 40px;
   .exercise-overview-empty__content {
     flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
-    background: $hiddenBlockBG;
-    box-shadow: $boxShadow;
+    background: $white;
+    border: 1px solid $blockBorder;
     border-radius: 6px;
+    .message {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 500px;
+      .message__icon {
+        font-size: 40px;
+      }
+      .message__text {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
   }
 }
 

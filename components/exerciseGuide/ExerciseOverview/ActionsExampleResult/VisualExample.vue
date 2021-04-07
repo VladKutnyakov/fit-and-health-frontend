@@ -14,12 +14,12 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .visual-example {
-  margin-top: 5px;
-  margin-left: 5px;
+  // margin-top: 5px;
+  // margin-left: 5px;
   padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  // background: $white;
+  // border-left: 1px solid $blockBorder;
+  // border-radius: 6px;
   iframe {
     border-radius: 6px;
   }

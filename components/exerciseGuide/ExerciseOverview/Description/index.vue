@@ -1,0 +1,40 @@
+<template>
+  <div class="description">
+    <exercise-title />
+    <exercise-technique />
+    <div class="info-and-focus">
+      <exercise-info />
+      <exercise-focus />
+    </div>
+  </div>
+</template>
+
+<script>
+import ExerciseTitle from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseTitle'
+import ExerciseTechnique from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseTechnique'
+import ExerciseInfo from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseInfo'
+import ExerciseFocus from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseFocus'
+
+export default {
+  components: {
+    ExerciseTitle,
+    ExerciseTechnique,
+    ExerciseInfo,
+    ExerciseFocus
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/vars.scss";
+
+.description {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  .info-and-focus {
+    display: flex;
+  }
+}
+
+</style>

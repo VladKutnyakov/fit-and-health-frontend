@@ -1,8 +1,57 @@
 const BASE_URL = process.env.baseUrl
 
 export const state = () => ({
-  exercises: [],
-  exerciseInfo: {}
+  exercises: [
+    {
+      category: 'test',
+      exercises: [
+        {
+          title: '1'
+        }
+      ]
+    },
+    {
+      category: 'test 2',
+      exercises: [
+        {
+          title: '1'
+        },
+        {
+          title: '2'
+        },
+        {
+          title: '3'
+        }
+      ]
+    },
+    {
+      category: 'test 3',
+      exercises: [
+        {
+          title: '1'
+        }
+      ]
+    },{
+      category: 'test 4',
+      exercises: [
+        {
+          title: '1'
+        }
+      ]
+    },{
+      category: 'test 5',
+      exercises: [
+        {
+          title: '1'
+        }
+      ]
+    },
+  ],
+  exerciseInfo: {
+    id: 1,
+    title: 'Название упражнения',
+    techniqueDescription: 'techniqueDescription'
+  }
 })
 
 export const getters = {
@@ -51,20 +100,20 @@ export const mutations = {
 export const actions = {
   async fetchExercisesList ({ commit }) {
     try {
-      const ExercisesList = await this.$axios.$get(`${BASE_URL}/api/exercises/`)
+      // const ExercisesList = await this.$axios.$get(`${BASE_URL}/api/exercises/`)
 
       // console.log(ExercisesList)
-      commit('setExercises', ExercisesList)
+      // commit('setExercises', ExercisesList)
     } catch (err) {
       console.log(err)
     }
   },
   async fetchExerciseInfo ({ commit }, exercisesId) {
     try {
-      const ExerciseInfo = await this.$axios.$post(`${BASE_URL}/api/exercises/fetch-exercise-info`, {id: exercisesId})
+      // const ExerciseInfo = await this.$axios.$post(`${BASE_URL}/api/exercises/fetch-exercise-info`, {id: exercisesId})
 
       // console.log(ExerciseInfo)
-      commit('setExerciseInfo', ExerciseInfo)
+      // commit('setExerciseInfo', ExerciseInfo)
     } catch (err) {
       console.log(err)
     }
@@ -72,10 +121,10 @@ export const actions = {
   async saveNewExercises ({ commit }, newExercise) {
     try {
       // console.log('seve ', newExercises)
-      const savedExercise = await this.$axios.$post(`${BASE_URL}/api/exercises/save-new-exercise`, newExercise)
+      // const savedExercise = await this.$axios.$post(`${BASE_URL}/api/exercises/save-new-exercise`, newExercise)
 
       // console.log(savedExercise)
-      commit('addNewExercises', savedExercise)
+      // commit('addNewExercises', savedExercise)
     } catch (err) {
       console.log(err)
     }
