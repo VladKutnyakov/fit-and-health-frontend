@@ -41,7 +41,7 @@ export default {
   align-items: center;
   margin-left: 80px;
   padding: 40px;
-  .recipe__content {
+  .recipe-page__content {
     // border: 1px solid red;
     display: flex;
     width: 100%;
