@@ -1,5 +1,5 @@
 <template>
-  <div class="page-info">
+  <div class="current-page-info">
     <app-page-info
       :infoElements="pageInfo"
       @btnAction="openModal()"
@@ -66,3 +66,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/vars.scss";
+
+.current-page-info {
+  flex: 1 1 auto;
+}
+
+</style>

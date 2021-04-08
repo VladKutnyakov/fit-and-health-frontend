@@ -1,5 +1,5 @@
 <template>
-  <div class="page-info">
+  <div class="current-page-info">
     <app-page-info
       :infoElements="pageInfoElements"
       btnTitle="Добавить продукт"
@@ -172,68 +172,8 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.page-info {
-  .header__title {
-    font-size: 20px;
-    font-weight: 500;
-  }
-  .header__description {
-    margin-top: 5px;
-    .description__text {
-      font-size: 14px;
-    }
-  }
-
-  .content__add-product-form {
-    // border: 1px solid red;
-    display: flex;
-    .form-group {
-      // border: 1px solid red;
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-      margin: 0 10px;
-      .form-field {
-        // border: 1px solid red;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 10px;
-        .field__title {
-          padding: 0 10px 5px 10px;
-          font-size: 14px;
-        }
-        .field__input {
-          margin-top: 5px;
-          padding: 5px 10px;
-          width: 100%;
-          border: 1px solid $blockBorder;
-          border-radius: 6px;
-          transition: $tr-02;
-        }
-        .field__input::placeholder {
-          font-size: 14px;
-        }
-        .field__input:focus {
-          border: 1px solid $green;
-        }
-        .checkbox-group {
-          // border: 1px solid red;
-          align-self: flex-start;
-          margin-top: 10px;
-          margin-left: 10px;
-        }
-      }
-    }
-    .form-group:first-child {
-      margin-left: 0;
-    }
-    .form-group:last-child {
-      margin-right: 0;
-    }
-  }
-
-  .modal-action-btn {
-    margin-left: auto;
-  }
+.current-page-info {
+  flex: 1 1 auto;
 }
+
 </style>

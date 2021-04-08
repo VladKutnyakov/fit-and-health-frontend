@@ -1,12 +1,12 @@
 <template>
-  <div class="page-info__wrapper">
+  <div class="page-info">
 
-    <div class="page-info">
-      <div v-for="(element, index) in infoElements" :key="index" class="page-info__element">
+    <ul class="page-info__elements">
+      <li v-for="(element, index) in infoElements" :key="index" class="element">
         <p class="element__text">{{ element.title }}</p>
         <p class="element__value">{{ element.value.toLocaleString() }}</p>
-      </div>
-    </div>
+      </li>
+    </ul>
 
     <app-button v-if="btnTitle" right @click.native="btnHandler()">{{ btnTitle }}</app-button>
 
@@ -35,16 +35,16 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.page-info__wrapper {
+.page-info {
   // border: 1px solid red;
   display: flex;
   flex: 1 1 auto;
   margin-bottom: 40px;
-  .page-info {
+  .page-info__elements {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    .page-info__element {
+    .element {
       // border: 1px solid red;
       padding: 0 40px;
       border-right: 1px solid rgba(0,0,0,.1);
@@ -57,10 +57,10 @@ export default {
         font-weight: 600;
       }
     }
-    .page-info__element:first-child {
+    .element:first-child {
       padding-left: 0px;
     }
-    .page-info__element:last-child {
+    .element:last-child {
       margin-right: auto;
       border-right: none;
     }
