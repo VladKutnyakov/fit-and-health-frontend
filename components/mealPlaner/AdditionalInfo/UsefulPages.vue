@@ -3,24 +3,15 @@
     <app-block-title>Полезные страницы</app-block-title>
 
     <div class="useful-pages__elements">
-      <nuxt-link
-        to="meal-planer/meal-plans"
-        class="element"
-      >
+      <nuxt-link to="/meal-planer/meal-plans" class="element">
         <i class="ti-write element__icon"></i>
         <p class="element__text">Сохраненные<br>рационы</p>
       </nuxt-link>
-      <nuxt-link
-        to="meal-planer/recipes-book"
-        class="element"
-      >
+      <nuxt-link to="/meal-planer/recipes-book" class="element">
         <i class="ti-book element__icon"></i>
         <p class="element__text">Книга<br>рецептов</p>
       </nuxt-link>
-      <nuxt-link
-        to="meal-planer/food-calorie-table"
-        class="element"
-      >
+      <nuxt-link to="/meal-planer/food-calorie-table" class="element">
         <i class="ti-view-list-alt element__icon"></i>
         <p class="element__text">Таблица<br>калорийности<br>продуктов</p>
       </nuxt-link>
