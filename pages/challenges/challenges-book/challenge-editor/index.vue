@@ -1,7 +1,7 @@
 <template>
   <div class="challenge-editor-page">
     <app-page-title>Конструктор вызывов</app-page-title>
-    <div class="callenges-editor__content">
+    <div class="challenge-editor-page__content">
       <editor />
       <div class="additional-info-and-exercises">
         <additional-info />
@@ -42,7 +42,7 @@ export default {
   align-items: center;
   margin-left: 80px;
   padding: 40px;
-  .callenge-editor__content {
+  .challenge-editor-page__content {
     // border: 1px solid red;
     display: flex;
     width: 100%;
