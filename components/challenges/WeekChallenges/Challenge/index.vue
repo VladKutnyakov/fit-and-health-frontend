@@ -1,6 +1,6 @@
 <template>
   <div class="challenge">
-    <app-block-title>Эпический / классический вызов</app-block-title>
+    <!-- <app-block-title>Эпический / классический / базовый</app-block-title> -->
 
     <div class="challenge__card">
       <div class="card__content">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
+// import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import ChallengeTitle from '@/components/challenges/WeekChallenges/Challenge/ChallengeTitle'
 import PreviewImage from '@/components/challenges/WeekChallenges/Challenge/PreviewImage'
 import Description from '@/components/challenges/WeekChallenges/Challenge/Description'
@@ -27,7 +27,7 @@ import Actions from '@/components/challenges/WeekChallenges/Challenge/Actions'
 
 export default {
   components: {
-    AppBlockTitle,
+    // AppBlockTitle,
     ChallengeTitle,
     PreviewImage,
     Description,

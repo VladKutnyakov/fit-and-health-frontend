@@ -1,7 +1,10 @@
 <template>
   <div class="week-challenges">
+    <app-block-title>Вызовы</app-block-title>
+
     <main-challenge />
     <div class="second-and-third-challenges">
+      <challenge />
       <challenge />
       <challenge />
     </div>
@@ -9,11 +12,13 @@
 </template>
 
 <script>
-import MainChallenge from '@/components/challenges/WeekChallenges/MainChallenge'
+import AppBlockTitle from '@/components/basic/AppBlockTitle'
+import MainChallenge from '@/components/challenges/WeekChallenges/MainChallenge/index'
 import Challenge from '@/components/challenges/WeekChallenges/Challenge/index'
 
 export default {
   components: {
+    AppBlockTitle,
     MainChallenge,
     Challenge
   }

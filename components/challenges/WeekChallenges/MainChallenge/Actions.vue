@@ -33,19 +33,16 @@ export default {}
   .action-btn {
     margin-bottom: 10px;
     padding: 5px;
-    i {
-      font-size: 20px;
-      transition: $tr-02;
-    }
+    font-size: 20px;
+    transition: $tr-02;
+    cursor: pointer;
   }
   .action-btn:last-child {
     margin-top: auto;
     margin-bottom: 0;
   }
   .action-btn:hover {
-    i {
-      color: $green;
-    }
+    color: $green;
   }
 }
 

@@ -20,7 +20,7 @@ export default {}
 
 .stats {
   display: flex;
-  margin: 10px 10px 0 10px;
+  margin: auto 10px 0 10px;
   padding: 10px 0;
   border-top: 1px solid $blockBorder;
   .stats__element {
