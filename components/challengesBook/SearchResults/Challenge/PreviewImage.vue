@@ -13,16 +13,12 @@ export default {}
 
 .preview-image {
   display: flex;
-  padding: 10px 0 10px 10px;
-  // padding: 10px;
-  // border-right: 1px solid $blockBorder;
+  padding: 10px 10px 0 10px;
   .image {
     width: 100%;
-    min-width: 450px;
-    max-width: 450px;
+    height: auto;
     object-fit: cover;
     object-position: center;
-    border: 1px solid $blockBorder;
     border-radius: 6px;
   }
 }

@@ -10,11 +10,11 @@ export default {}
 @import '@/assets/styles/vars.scss';
 
 .challenge-title {
-  margin: 0 10px;
+  // margin: 0 10px;
   padding: 10px;
   text-align: center;
   font-weight: 500;
-  border-bottom: 1px solid $blockBorder;
+  // border-bottom: 1px solid $blockBorder;
 }
 
 </style>
