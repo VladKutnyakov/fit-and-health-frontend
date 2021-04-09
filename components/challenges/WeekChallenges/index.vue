@@ -10,7 +10,7 @@
 
 <script>
 import MainChallenge from '@/components/challenges/WeekChallenges/MainChallenge'
-import Challenge from '@/components/challenges/WeekChallenges/Challenge'
+import Challenge from '@/components/challenges/WeekChallenges/Challenge/index'
 
 export default {
   components: {

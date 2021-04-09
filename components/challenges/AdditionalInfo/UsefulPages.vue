@@ -35,14 +35,10 @@ export default {
 
 .useful-pages {
   // border: 1px solid red;
-  margin-bottom: 20px;
   .useful-pages__links {
+    // border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
-    padding: 10px;
-    background: $hiddenBlockBG;
-    border-radius: 6px;
-    box-shadow: $boxShadow;
     .page-link {
       flex: 1 1 auto;
       display: flex;
@@ -73,12 +69,8 @@ export default {
       margin-right: 0;
     }
     .page-link:nth-child(3) {
-      margin-left: 0;
-      margin-right: 0;
+      margin: 0;
       width: 100%;
-    }
-    .page-link:nth-child(4) {
-      margin-bottom: 0;
     }
     .page-link:hover {
       .page-link__icon {

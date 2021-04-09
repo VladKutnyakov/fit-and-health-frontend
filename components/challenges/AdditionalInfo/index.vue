@@ -1,7 +1,7 @@
 <template>
   <div class="additional-info">
-    <useful-pages />
     <users-raiting />
+    <useful-pages />
   </div>
 </template>
 
