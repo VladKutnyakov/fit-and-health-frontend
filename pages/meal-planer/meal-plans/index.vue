@@ -4,8 +4,8 @@
     <div class="meal-plans-page__content">
       <page-info />
       <div class="filters-and-table">
-        <!-- <sorting-filters />
-        <product-table /> -->
+        <sorting-filters />
+        <search-results />
       </div>
     </div>
   </div>
@@ -14,12 +14,16 @@
 <script>
 import AppPageTitle from '@/components/basic/AppPageTitle'
 import PageInfo from '@/components/mealPlans/PageInfo'
+import SortingFilters from '@/components/mealPlans/SortingFilters'
+import SearchResults from '@/components/mealPlans/SearchResults/index'
 
 export default {
   layout: 'default',
   components: {
     AppPageTitle,
-    PageInfo
+    PageInfo,
+    SortingFilters,
+    SearchResults
   }
 }
 </script>
@@ -38,6 +42,7 @@ export default {
     // border: 1px solid red;
     flex: 1 1 auto;
     display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 1700px;
     .filters-and-table {
