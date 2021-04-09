@@ -28,7 +28,7 @@ export default {}
 .actions {
   display: flex;
   flex-direction: column;
-  padding: 20px 10px;
+  padding: 10px;
   background: $hiddenBlockBG;
   .action-btn {
     margin-bottom: 10px;

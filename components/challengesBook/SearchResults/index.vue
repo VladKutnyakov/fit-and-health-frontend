@@ -30,8 +30,8 @@
     </div>
 
     <div class="found-challenges">
-      <p>Поиск по вызовам с сортировкой по ровню сложности, популятронсти, на кардио, силу, выносливость, гибкость</p><br>
-      <challenge v-for="(item, index) in 8" :key="index"/>
+      <p>Поиск по вызовам с сортировкой по ровню сложности, популятронсти, на кардио, силу, выносливость, гибкость</p><br><br>
+      <found-challenge v-for="(item, index) in 8" :key="index"/>
     </div>
 
     <app-button sizeSM uppercase center>Загрузить еще</app-button>
@@ -43,14 +43,14 @@ import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
-import Challenge from '@/components/challengesBook/Challenge'
+import FoundChallenge from '@/components/challengesBook/SearchResults/FoundChallenge/index'
 
 export default {
   components: {
     AppBlockTitle,
     AppSearchBlock,
     FilterRadioTextGroup,
-    Challenge,
+    FoundChallenge,
     AppButton
   },
   data () {

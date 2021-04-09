@@ -28,7 +28,6 @@ export default {}
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px;
     border-right: 1px dashed $blockBorder;
     .element__title {
       text-transform: uppercase;

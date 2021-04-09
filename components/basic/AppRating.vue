@@ -2,9 +2,9 @@
   <div ref="rating" class="rating">
     <i class="ti-crown rating__star" :class="[{'green': activeStars[0]}]"></i>
     <i class="ti-crown rating__star" :class="[{'green': activeStars[1]}]"></i>
-    <i class="ti-crown rating__star" :class="[{'yellow': activeStars[2]}]"></i>
-    <i class="ti-crown rating__star" :class="[{'yellow': activeStars[3]}]"></i>
-    <i class="ti-crown rating__star" :class="[{'red': activeStars[4]}]"></i>
+    <i class="ti-crown rating__star" :class="[{'green': activeStars[2]}]"></i>
+    <i class="ti-crown rating__star" :class="[{'green': activeStars[3]}]"></i>
+    <i class="ti-crown rating__star" :class="[{'green': activeStars[4]}]"></i>
   </div>
 </template>
 
@@ -43,12 +43,6 @@ export default {
   }
   .green {
     color: $green;
-  }
-  .yellow {
-    color: $yellow;
-  }
-  .red {
-    color: $red;
   }
 }
 

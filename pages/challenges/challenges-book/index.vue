@@ -19,7 +19,7 @@
 import AppPageTitle from '@/components/basic/AppPageTitle'
 import AppPageInfo from '@/components/basic/AppPageInfo'
 import SearchFilters from '@/components/challengesBook/SearchFilters'
-import SearchResults from '@/components/challengesBook/SearchResults'
+import SearchResults from '@/components/challengesBook/SearchResults/index'
 
 export default {
   layout: 'default',
