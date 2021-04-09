@@ -13,7 +13,7 @@ export default {}
 
 .preview-image {
   display: flex;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   .image {
     width: 100%;
     height: auto;

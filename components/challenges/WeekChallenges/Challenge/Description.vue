@@ -15,6 +15,7 @@ export default {}
 .description {
   flex: 1 1 auto;
   margin: 0 10px;
+  // border-top: 1px solid $blockBorder;
   .description__text {
     padding: 0 10px;
   }

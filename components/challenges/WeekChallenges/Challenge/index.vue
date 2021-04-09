@@ -5,13 +5,14 @@
     <div class="challenge__card">
       <div class="card__content">
         <div class="card__info">
-          <challenge-title />
           <preview-image />
+          <challenge-title />
           <description />
           <stats />
+          <actions />
         </div>
 
-        <actions />
+        
       </div>
     </div>
   </div>
