@@ -20,11 +20,11 @@ export default {
 
 .training-description {
   flex: 1 1 auto;
-  margin-top: 5px;
-  padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  // margin-top: 5px;
+  padding: 0 10px;
+  // background: $white;
+  // border: 1px solid $blockBorder;
+  // border-radius: 6px;
   .training-description__text {
     margin-bottom: 5px;
     padding: 0 20px;

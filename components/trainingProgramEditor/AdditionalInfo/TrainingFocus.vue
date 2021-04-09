@@ -42,9 +42,9 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  // background: $white;
+  // border: 1px solid $blockBorder;
+  // border-radius: 6px;
 
   .chart {
     // border: 1px solid red;
@@ -60,13 +60,13 @@ export default {
       justify-content: space-between;
       margin-bottom: 5px;
       .element__title {
-        font-size: 18px;
+        // font-size: 18px;
         // font-weight: 500;
       }
       .element__value {
         color: $green;
-        font-size: 18px;
-        font-weight: 600;
+        // font-size: 18px;
+        font-weight: 500;
       }
     }
     .percents__element:last-child {

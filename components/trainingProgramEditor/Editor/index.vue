@@ -34,9 +34,8 @@ export default {
   .overview-and-training-days {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    background: $hiddenBlockBG;
-    box-shadow: $boxShadow;
+    background: $white;
+    border: 1px solid $blockBorder;
     border-radius: 6px;
   }
 }

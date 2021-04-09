@@ -4,19 +4,23 @@
     <div class="additional-info__content">
       <training-focus />
 
-      <div class="action-btns">
-        <app-button class="mt-10" uppercase >
-          <i class="ti-trash"></i>
-        </app-button>
+      <div class="actions">
+        <div class="actions__top">
+          <app-button >
+            <i class="ti-trash"></i>
+          </app-button>
 
-        <app-button class="ml-5 mt-10" uppercase >
-          <i class="ti-save"></i>
-        </app-button>
+          <app-button class="ml-5" >
+            <i class="ti-save"></i>
+          </app-button>
 
-        <app-button class="ml-5 mt-10" uppercase fillArea >Сделать основной</app-button>
+          <app-button class="ml-5" fillArea >Сделать основной</app-button>
+        </div>
+        
+        <div class="actions__bottom">
+          <app-button class="mt-10" fillArea >Начать тренировку</app-button>
+        </div>
       </div>
-
-      <app-button class="mt-10" uppercase fillArea >Начать тренировку</app-button>
 
     </div>
   </div>
@@ -47,14 +51,18 @@ export default {
   min-width: 400px;
   max-width: 400px;
   .additional-info__content {
-    padding: 10px;
-    background: $hiddenBlockBG;
-    box-shadow: $boxShadow;
+    background: $white;
+    border: 1px solid $blockBorder;
     border-radius: 6px;
   }
-  .action-btns {
+  .actions {
     display: flex;
-    // flex-direction: column;
+    flex-direction: column;
+    padding: 10px;
+    background: $hiddenBlockBG;
+    .actions__top {
+      display: flex;
+    }
   }
 }
 

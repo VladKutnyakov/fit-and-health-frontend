@@ -21,10 +21,10 @@ export default {
 .program-title {
   display: flex;
   align-items: center;
-  padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  padding: 10px 10px 0 10px;
+  // background: $white;
+  // border: 1px solid $blockBorder;
+  // border-radius: 6px;
   .program-title__text {
     margin: 0 10px;
     font-weight: 500;

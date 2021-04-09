@@ -45,14 +45,14 @@ export default {
 .add-marks-form {
   display: flex;
   flex-direction: column;
-  margin-left: 5px;
+  // margin-left: 5px;
   padding: 10px;
   width: 100%;
-  min-width: 260px;
-  max-width: 260px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  min-width: 250px;
+  max-width: 250px;
+  // background: $white;
+  // border: 1px solid $blockBorder;
+  // border-radius: 6px;
   .add-marks-form__block-title {
     text-align: center;
     font-weight: 500;

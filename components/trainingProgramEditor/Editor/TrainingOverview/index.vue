@@ -1,6 +1,6 @@
 <template>
   <div class="training-overview">
-    <program-title />
+    
 
     <div class="main-info">
       <div class="img-and-social">
@@ -11,10 +11,10 @@
             alt="training-program-img"
           />
         </div>
-        <social-btns class :btnsInfo="{like: 0, dislike: 0, share: 0}" />
       </div>
 
       <div class="overview">
+        <program-title />
         <div class="stats-description-marks">
           <div class="stats-and-description">
             <training-stats />
@@ -40,7 +40,6 @@
 
 <script>
 import AppBlockTitle from "@/components/basic/AppBlockTitle"
-import SocialBtns from "@/components/basic/SocialBtns"
 import ProgramTitle from '@/components/trainingProgramEditor/Editor/TrainingOverview/ProgramTitle'
 import TrainingSkill from '@/components/trainingProgramEditor/Editor/TrainingOverview/TrainingSkill'
 import AppAddMarksForm from "@/components/basic/AppAddMarksForm"
@@ -53,7 +52,6 @@ export default {
     ProgramTitle,
     TrainingSkill,
     AppAddMarksForm,
-    SocialBtns,
     TrainingDescription,
     TrainingStats
   },
@@ -76,7 +74,7 @@ export default {
 
   .main-info {
     display: flex;
-    margin-top: 5px;
+    // margin-top: 5px;
     .img-and-social {
       width: 300px;
       min-width: 300px;
@@ -84,10 +82,10 @@ export default {
       .img__wrapper {
         margin-bottom: 5px;
         padding: 10px;
-        background: $white;
-        border: 1px solid $blockBorder;
-        border-radius: 6px;
-        overflow: hidden;
+        // background: $white;
+        // border: 1px solid $blockBorder;
+        // border-radius: 6px;
+        // overflow: hidden;
         .img {
           min-width: 280px;
           // object-fit: cover;
