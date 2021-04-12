@@ -1,7 +1,12 @@
 <template>
   <div class="training-description">
     <p class="training-description__text">Описание программы:</p>
-    <app-textarea placeholder="Описание программы тренировок" @valueChanged="test = $event" />
+
+    <app-textarea
+      class="fill-area"
+      placeholder="Описание программы тренировок"
+      @valueChanged="test = $event"
+    />
   </div>
 </template>
 
@@ -20,11 +25,9 @@ export default {
 
 .training-description {
   flex: 1 1 auto;
-  // margin-top: 5px;
+  display: flex;
+  flex-direction: column;
   padding: 0 10px;
-  // background: $white;
-  // border: 1px solid $blockBorder;
-  // border-radius: 6px;
   .training-description__text {
     margin-bottom: 5px;
     padding: 0 20px;

@@ -23,11 +23,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   margin-top: 5px;
-  margin-left: 5px;
-  padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  padding: 10px 20px;
   .training-skill__block-title {
     margin-right: 10px;
     font-weight: 500;
