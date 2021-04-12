@@ -1,6 +1,6 @@
 <template>
   <div class="exercise-technique">
-    <p class="exercise-technique__block-title">Техника выполнения упражнения:</p>
+    <!-- <p class="exercise-technique__block-title">Техника выполнения упражнения:</p> -->
     <p class="exercise-technique__text">{{ techniqueDescription }}</p>
   </div>
 </template>
@@ -22,12 +22,12 @@ export default {
 
 .exercise-technique {
   flex: 1 1 auto;
-  padding: 10px;
-  .exercise-technique__block-title {
-    padding: 0 10px;
-    text-align: center;
-    font-weight: 500;
-  }
+  padding: 0 10px;
+  // .exercise-technique__block-title {
+  //   padding: 0 10px;
+  //   text-align: center;
+  //   font-weight: 500;
+  // }
   .exercise-technique__text {
     padding: 0 10px 10px 10px;
   }

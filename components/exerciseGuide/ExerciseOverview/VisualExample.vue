@@ -1,6 +1,6 @@
 <template>
   <div class="visual-example">
-    <iframe width="400px" height="500px" src="https://www.youtube.com/embed/FntGgrPurFA"></iframe>
+    <iframe width="400px" height="600px" src="https://www.youtube.com/embed/FntGgrPurFA"></iframe>
   </div>
 </template>
 
@@ -14,12 +14,11 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .visual-example {
-  // margin-top: 5px;
-  // margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 10px;
-  // background: $white;
-  // border-left: 1px solid $blockBorder;
-  // border-radius: 6px;
+  border-left: 1px solid $blockBorder;
   iframe {
     border-radius: 6px;
   }

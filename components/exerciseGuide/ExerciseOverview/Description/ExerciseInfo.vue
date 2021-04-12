@@ -42,14 +42,17 @@ export default {}
 
 .exercise-info {
   flex: 1 1 auto;
-  padding: 10px;
+  padding: 0 10px;
   .exercise-info__item {
     display: flex;
+    align-items: center;
     margin-bottom: 10px;
     .item__title {
+      font-size: 14px;
       font-weight: 500;
     }
     .item__value {
+      font-size: 14px;
       margin-left: 10px;
     }
   }

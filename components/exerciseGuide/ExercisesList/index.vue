@@ -13,6 +13,9 @@
             <app-accordion :isOpened="false">
               <template v-slot:accordionHeader>
                 <div class="item__header">
+                  <div class="preview-image">
+                    <img src="" alt="img" class="image">
+                  </div>
                   <div class="header__title">
                     <p class="title__text">{{ element.category }}</p>
                     <p class="title__exercises-count">Кол-во упражнений {{ element.exercises.length }}</p>
@@ -28,9 +31,6 @@
                     class="exercises-list__item"
                     @click="fetchExerciseInfo(exercise.id)"
                   >
-                    <div class="item__exercises-image">
-                      <img src="" alt="img" class="exercise-image">
-                    </div>
                     <div class="item__exercise-title-and-type">
                       <p class="exercises-title">{{ exercise.title }}</p>
                       <p class="exercise__target-muscles">Широчайшие, предплечья</p>
@@ -92,7 +92,6 @@ export default {
     background: $white;
     border: 1px solid $blockBorder;
     border-radius: 6px;
-    // overflow: hidden;
     height: calc(100vh - 300px);
 
     .search {
@@ -108,17 +107,24 @@ export default {
       padding: 10px;
       .category__item {
         // border: 1px solid red;
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         background: $white;
         border: 1px solid $blockBorder;
         border-radius: 6px;
+        overflow: hidden;
         .item__header {
           display: flex;
           align-items: center;
-          padding: 10px 20px;
-          box-shadow: $boxShadow;
+          padding: 10px;
+          .preview-image {
+            border: 1px solid $blockBorder;
+            border-radius: 6px;
+            width: 60px;
+            height: 60px;
+          }
           .header__title {
             flex: 1 1 auto;
+            margin-left: 10px;
             .title__text {
               font-size: 18px;
               font-weight: 500;
@@ -138,19 +144,13 @@ export default {
           .exercises-list__item {
             display: flex;
             align-items: center;
-            margin-bottom: 5px;
-            padding: 10px 20px;
+            margin-bottom: 10px;
+            padding: 10px;
             background: $white;
-            border: 1px solid $blockBorder;
             border-radius: 6px;
             user-select: none;
             cursor: pointer;
-            .item__exercises-image {
-              border: 1px solid $blockBorder;
-              border-radius: 6px;
-              width: 60px;
-              height: 60px;
-            }
+            transition: $tr-02;
             .item__exercise-title-and-type {
               margin-left: 10px;
               .exercises-title {
@@ -174,6 +174,7 @@ export default {
             border-bottom: none;
           }
           .exercises-list__item:hover {
+            box-shadow: $boxShadow;
             .exercises-title {
               color: $green;
             }

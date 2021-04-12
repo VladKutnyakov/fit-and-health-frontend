@@ -6,7 +6,6 @@
       <exercise-info />
       <exercise-focus />
     </div>
-    <user-best-result />
   </div>
 </template>
 
@@ -15,15 +14,13 @@ import ExerciseTitle from '@/components/exerciseGuide/ExerciseOverview/Descripti
 import ExerciseTechnique from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseTechnique'
 import ExerciseInfo from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseInfo'
 import ExerciseFocus from '@/components/exerciseGuide/ExerciseOverview/Description/ExerciseFocus'
-import UserBestResult from '@/components/exerciseGuide/ExerciseOverview/ActionsAndExample/UserBestResult'
 
 export default {
   components: {
     ExerciseTitle,
     ExerciseTechnique,
     ExerciseInfo,
-    ExerciseFocus,
-    UserBestResult
+    ExerciseFocus
   }
 }
 </script>
