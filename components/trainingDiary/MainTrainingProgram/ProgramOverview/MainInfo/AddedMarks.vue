@@ -31,8 +31,8 @@ export default {}
   flex-wrap: wrap;
   margin-top: 10px;
   // margin-bottom: 5px;
-  padding-top: 10px;
-  border-top: 1px solid $blockBorder;
+  // padding-top: 10px;
+  // border-top: 1px solid $blockBorder;
   .mark {
     display: flex;
     align-items: center;

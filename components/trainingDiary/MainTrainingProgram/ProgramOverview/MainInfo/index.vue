@@ -4,6 +4,7 @@
       <additional-info />
       <description />
       <added-marks />
+      <training-skill />
     </div>
 </template>
 
@@ -11,12 +12,14 @@
 import AdditionalInfo from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/AdditionalInfo'
 import Description from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/Description'
 import AddedMarks from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/AddedMarks'
+import TrainingSkill from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/TrainingSkill'
 
 export default {
   components: {
     AdditionalInfo,
     Description,
-    AddedMarks
+    AddedMarks,
+    TrainingSkill
   }
 }
 </script>
