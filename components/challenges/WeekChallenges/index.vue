@@ -1,26 +1,24 @@
 <template>
   <div class="week-challenges">
-    <app-block-title>Вызовы</app-block-title>
-
+    <app-block-title>Эпический вызов</app-block-title>
     <main-challenge />
-    <div class="second-and-third-challenges">
-      <challenge />
-      <challenge />
-      <challenge />
-    </div>
+
+    <app-block-title>Легендарный вызов</app-block-title>
+    <main-challenge />
+
+    <app-block-title>Классический вызов</app-block-title>
+    <main-challenge />
   </div>
 </template>
 
 <script>
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import MainChallenge from '@/components/challenges/WeekChallenges/MainChallenge/index'
-import Challenge from '@/components/challenges/WeekChallenges/Challenge/index'
 
 export default {
   components: {
     AppBlockTitle,
-    MainChallenge,
-    Challenge
+    MainChallenge
   }
 }
 </script>
@@ -31,8 +29,5 @@ export default {
 .week-challenges {
   // border: 1px solid red;
   flex: 1 1 auto;
-  .second-and-third-challenges {
-    display: flex;
-  }
 }
 </style>
