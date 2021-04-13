@@ -194,18 +194,14 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
-  padding: 0 10px 10px 10px;
+  padding: 10px;
   width: 100%;
   min-width: 300px;
   max-width: 300px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  border-right: 1px solid $blockBorder;
   .chart {
     position: relative;
     flex: 1 1 auto;
-    // height: 200px;
     .chart__calculated-calories {
       position: absolute;
       top: 50%;
