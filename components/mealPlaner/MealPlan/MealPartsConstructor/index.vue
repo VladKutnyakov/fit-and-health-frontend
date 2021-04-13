@@ -1,7 +1,6 @@
 <template>
   <div class="meal-parts-constructor">
-
-    <p class="block-title">Редактор рациона</p>
+    <app-block-title>Редактор рациона</app-block-title>
 
     <div class="meal-parts">
       <div
@@ -68,7 +67,7 @@
 
 <script>
 import { mapState } from 'vuex'
-
+import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppInputText from '@/components/basic/AppInputText'
 import AppInputRadio from '@/components/basic/AppInputRadio'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
@@ -79,6 +78,7 @@ import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/A
 
 export default {
   components: {
+    AppBlockTitle,
     AppInputText,
     AppInputRadio,
     AppInputCheckbox,
@@ -113,19 +113,12 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .meal-parts-constructor {
-  margin-top: 5px;
-  padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
-  overflow: hidden;
-  .block-title {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-    font-weight: 500;
-    border-bottom: 1px dashed $blockBorder;
-  }
+  // margin-top: 5px;
+  // padding: 10px;
+  // background: $white;
+  // border: 1px solid $blockBorder;
+  // border-radius: 6px;
+  // overflow: hidden;
 
   .meal-parts {
     // border: 1px solid red;
