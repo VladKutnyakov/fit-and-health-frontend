@@ -51,9 +51,10 @@ export default {
 
 .found-product {
   display: flex;
-  // padding: 0 10px;
-  border-bottom: 1px dashed $blockBorder;
-  transition: $tr-02;
+  margin-bottom: 5px;
+  background: $white;
+  border: 1px solid $blockBorder;
+  border-radius: 6px;
   .found-product__element {
     // border: 1px solid red;
     display: flex;
@@ -126,17 +127,6 @@ export default {
       margin-right: 0;
     }
   }
-}
-.found-product:last-child {
-  border-right: none;
-  border-bottom: none;
-}
-.found-product:last-child:hover {
-  border-bottom: none;
-}
-.found-product:hover {
-  background: $black10;
-  border-bottom: 1px dashed transparent;
 }
 
 </style>

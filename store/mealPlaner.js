@@ -84,7 +84,7 @@ export const mutations = {
 export const actions = {
   async fetchMealPlanerInfo ({ commit }, query ) {
     try {
-      const MealPlanerInfo = await this.$axios.$get(`http://localhost:3000/api/meal-planer?date=${query.date}`)
+      // const MealPlanerInfo = await this.$axios.$get(`http://localhost:3000/api/meal-planer?date=${query.date}`)
 
       // console.log(MealPlanerInfo)
 
