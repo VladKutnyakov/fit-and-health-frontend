@@ -1,7 +1,7 @@
 <template>
-  <div class="overview__description">
-    <p class="block-title">Описание</p>
-    <app-textarea class="mt-10 fill-area" :value="description" />
+  <div class="overview-description">
+    <p class="overview-description__text">Описание:</p>
+    <app-textarea class="fill-area" :value="description" />
   </div>
 </template>
 
@@ -25,18 +25,13 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.overview__description {
+.overview-description {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
-  padding: 10px;
-  min-height: 300px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
-  .block-title {
-    text-align: center;
+  padding: 0 10px;
+  .overview-description__text {
+    padding: 0 10px 5px 10px;
     font-weight: 500;
   }
 }

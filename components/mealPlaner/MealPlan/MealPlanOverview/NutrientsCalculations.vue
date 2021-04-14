@@ -66,17 +66,15 @@ export default {
 .nutrients-calculations {
   display: flex;
   justify-content: space-around;
-  margin-top: 5px;
+  margin: 10px 10px 0 10px;
   padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  border-top: 1px solid $blockBorder;
   .nutrients-calculations__item {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: 1px solid $blockBorder;
+    border-right: 1px dashed $blockBorder;
     .item__title {
       text-transform: uppercase;
       font-size: 12px;

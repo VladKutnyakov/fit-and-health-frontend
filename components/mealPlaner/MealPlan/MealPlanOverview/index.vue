@@ -4,23 +4,23 @@
 
     <div class="meal-plan-overview__content">
       <nutrients-settings />
-      <div class="info">
-        <overview-title />
-        <div class="stats-description-marks">
-          <div class="stats-and-description">
-            <overview-stats />
+      <div class="overview">
+        <div class="title-description-marks">
+          <div class="title-and-description">
+            <overview-title />
             <overview-description />
           </div>
 
           <add-marks
-            class="mt-5"
             :marks="marks"
             @addMark="addMark($event)"
             @removeMark="removeMark($event)"
           />
         </div>
+
         <nutrients-calculations />
       </div>
+
       <actions />
     </div>
   </div>
@@ -31,7 +31,6 @@ import { mapState } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import OverviewTitle from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewTitle'
 import NutrientsSettings from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsSettings'
-import OverviewStats from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewStats'
 import OverviewDescription from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewDescription'
 import AddMarks from '@/components/mealPlaner/MealPlan/MealPlanOverview/AddMarks'
 import NutrientsCalculations from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsCalculations'
@@ -42,7 +41,6 @@ export default {
     AppBlockTitle,
     OverviewTitle,
     NutrientsSettings,
-    OverviewStats,
     OverviewDescription,
     AddMarks,
     NutrientsCalculations,
@@ -77,22 +75,20 @@ export default {
     background: $white;
     border: 1px solid $blockBorder;
     border-radius: 6px;
-    .info {
+    .overview {
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
-      margin-left: 5px;
-      .stats-description-marks {
+      .title-description-marks {
         flex: 1 1 auto;
         display: flex;
-        .stats-and-description {
+        .title-and-description {
           flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
         }
       }
-    }
-    .stats-and-description {
-      display: flex;
-      flex-direction: column;
+      
     }
   }
 }
