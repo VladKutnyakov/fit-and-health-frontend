@@ -63,7 +63,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
+      lang: 'ru'
     }
   },
 
@@ -95,9 +95,9 @@ export default {
   /*
   ** Server Middleware
   */
-  serverMiddleware: {
-    '/api': '~/api'
-  },
+  // serverMiddleware: {
+  //   '/api': '~/api'
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
