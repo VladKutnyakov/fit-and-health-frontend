@@ -7,6 +7,10 @@ export default {
 
   telemetry: false,
 
+  env: {
+    BASE_URL: process.env.BASE_URL || 'http://localhost:3031'
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     htmlAttrs: {
