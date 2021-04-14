@@ -163,12 +163,6 @@ export default {
               exact: true
             },
             {
-              title: 'Принятые вызовы',
-              link: '/challenges/accepted-challenges',
-              icon: 'ti-pencil-alt',
-              exact: true
-            },
-            {
               title: 'Статистика по вызовам',
               link: '/challenges/challenge-in-progress',
               icon: 'ti-bolt',
@@ -176,30 +170,30 @@ export default {
             },
           ]
         },
-        {
-          active: false,
-          group: 'measurements',
-          links: [
-            {
-              title: 'Статистика и замеры',
-              link: '/measurements',
-              icon: 'ti-bar-chart',
-              exact: true
-            }
-          ]
-        },
-        {
-          active: false,
-          group: 'handbook',
-          links: [
-            {
-              title: 'Справочник',
-              link: '/handbook',
-              icon: 'ti-bookmark-alt',
-              exact: true
-            }
-          ]
-        },
+        // {
+        //   active: false,
+        //   group: 'measurements',
+        //   links: [
+        //     {
+        //       title: 'Статистика и замеры',
+        //       link: '/measurements',
+        //       icon: 'ti-bar-chart',
+        //       exact: true
+        //     }
+        //   ]
+        // },
+        // {
+        //   active: false,
+        //   group: 'handbook',
+        //   links: [
+        //     {
+        //       title: 'Справочник',
+        //       link: '/handbook',
+        //       icon: 'ti-bookmark-alt',
+        //       exact: true
+        //     }
+        //   ]
+        // },
         {
           active: false,
           group: 'settings',

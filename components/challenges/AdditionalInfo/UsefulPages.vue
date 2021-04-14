@@ -11,11 +11,6 @@
           <i class="ti-layout page-link__icon"></i>
           <p class="page-link__title">Конструктор<br />вызовов</p>
         </nuxt-link>
-
-        <nuxt-link to="/challenges/accepted-challenges" class="page-link">
-          <i class="ti-pencil-alt page-link__icon"></i>
-          <p class="page-link__title">Принятые вызовы</p>
-        </nuxt-link>
       </div>
     </div>
 </template>
@@ -67,10 +62,6 @@ export default {
     .page-link:nth-child(2) {
       margin-left: 2.5px;
       margin-right: 0;
-    }
-    .page-link:nth-child(3) {
-      margin: 0;
-      width: 100%;
     }
     .page-link:hover {
       .page-link__icon {
