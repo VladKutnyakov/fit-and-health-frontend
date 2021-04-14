@@ -24,7 +24,7 @@ export const actions = {
     try {
       commit('clearToken')
 
-      const fetchedToken = await this.$axios.$post('/api/login', formData)
+      const fetchedToken = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/login/`, formData)
 
       // добавляем токен к запросам axios
       this.$axios.setToken(fetchedToken, 'Bearer ')
@@ -49,7 +49,7 @@ export const actions = {
   },
   async createUser ({ commit }, formData) {
     try {
-      const newUserToken = await this.$axios.$post('/api/register', formData)
+      const newUserToken = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/register/`, formData)
       // добавляем токен к запросам axios
       this.$axios.setToken(newUserToken, 'Bearer ')
       // сохроняем в state токен полученный из action login
