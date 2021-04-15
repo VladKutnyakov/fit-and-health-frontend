@@ -67,23 +67,24 @@ export default {
   background: rgba(0,0,0,.4);
   z-index: 9999;
   .modal__content-wrapper {
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
     margin: 40px;
     padding: 20px;
     width: 50%;
+    max-height: calc(100vh - 80px);
     background: $white;
     border-radius: 6px;
     overflow: hidden;
     .modal__header {
       // border: 1px solid red;
       padding: 0 10px 20px 10px;
-      border-bottom: 1px dashed $blockBorder;
+      border-bottom: 1px solid $blockBorder;
     }
     .modal__content {
       // border: 1px solid red;
       padding: 20px 10px 20px 10px;
-      // рассчитывать максимальную высоту javascript'ом
-      // min-height: calc(100% - 138px);
-      // max-height: calc(100% - 140px);
       overflow: auto;
     }
     .modal__button {
@@ -91,7 +92,7 @@ export default {
       display: flex;
       justify-content: center;
       padding: 20px 10px 0 10px;
-      border-top: 1px dashed $blockBorder;
+      border-top: 1px solid $blockBorder;
     }
   }
 }

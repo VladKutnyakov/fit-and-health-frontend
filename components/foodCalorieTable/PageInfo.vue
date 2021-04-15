@@ -90,7 +90,7 @@
         <app-button
           uppercase
           size14px
-          class="modal-action-btn"
+          class="modal-action-btn ml-auto"
           @click.native="saveUserProduct()"
         >Сохранить продукт</app-button>
       </template>
@@ -174,6 +174,38 @@ export default {
 
 .current-page-info {
   flex: 1 1 auto;
+}
+
+.header__title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.header__description {
+  margin-top: 10px;
+  .description__text {
+    font-size: 14px;
+  }
+}
+
+.content__add-product-form {
+  display: flex;
+  .form-group {
+    flex: 1 1 auto;
+    .form-field {
+      .field__title {
+        padding: 10px 10px 5px 10px;
+      }
+    }
+    .checkbox-group {
+      margin-top: 20px;
+    }
+  }
+  .form-group:first-child {
+    margin-right: 10px;
+  }
+  .form-group:last-child {
+    margin-left: 10px;
+  }
 }
 
 </style>
