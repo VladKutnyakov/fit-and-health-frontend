@@ -1,36 +1,32 @@
 <template>
-  <div class="select">
-    <p
-      v-if="labelText !== '' ? labelText : false"
-      class="select__label-text"
-    >{{ labelText }}</p>
-    <div class="select__default-value-wrapper">
+  <div class="app-select">
+    <div class="app-select__default-value-wrapper">
       <p
         ref="defaultValue"
-        class="select__default-value"
+        class="app-select__default-value"
         :class="[
-          {'select__default-value-left': alignSelectedValueLeft},
-          {'select__default-value-right': alignSelectedValueRight},
-          {'select__default-value-center': alignSelectedValueCenter},
+          {'app-select__default-value-left': alignSelectedValueLeft},
+          {'app-select__default-value-right': alignSelectedValueRight},
+          {'app-select__default-value-center': alignSelectedValueCenter},
         ]"
         @click="toggleVisibility($event)"
       >{{ selectValue }}</p>
-      <i class="select__icon ti-angle-double-down" @click="toggleVisibility($event)"></i>
+      <i class="app-select__icon ti-angle-double-down" @click="toggleVisibility($event)"></i>
 
       <ul
         ref="listOptions"
-        class="select__list"
+        class="app-select__list"
         :class="[
-          {'select__list-opened': listOpened},
-          {'select__list-left': alignListLeft},
-          {'select__list-right': alignListRight},
-          {'select__list-center': alignListCenter}
+          {'app-select__list-opened': listOpened},
+          {'app-select__list-left': alignListLeft},
+          {'app-select__list-right': alignListRight},
+          {'app-select__list-center': alignListCenter}
         ]"
       >
         <li
           v-for="(item, index) in selectOptionsList"
           :key="index"
-          class="select__list-item"
+          class="app-select__list-item"
           @click="toggleVisibility($event)"
         >{{ item }}</li>
       </ul>
@@ -43,7 +39,6 @@
 export default {
   props: {
     minWidth: String,
-    labelText: String,
     defaultValue: String,
     selectOptionsList: Array,
     alignListLeft: Boolean,
@@ -69,7 +64,7 @@ export default {
       if (!this.listOpened) {
         this.openSelect()
       } else {
-        if ($event.target.classList.contains('select__list-item')) {
+        if ($event.target.classList.contains('app-select__list-item')) {
           this.selectValue = $event.target.innerHTML
           this.changeSelectValue()
         }
@@ -107,27 +102,26 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/vars.scss";
 
-.select {
+.app-select {
   // border: 1px solid red;
   position: relative;
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
+  width: 100%;
   text-align: right;
   align-self: flex-start;
-  .select__label-text {
-    margin-right: 20px;
-    font-size: 18px;
-    white-space: nowrap;
-  }
-  .select__default-value-wrapper {
+  z-index: 1000;
+  .app-select__default-value-wrapper {
     // border: 1px solid red;
     position: relative;
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
-    .select__default-value {
+    .app-select__default-value {
       position: relative;
-      padding: 5px 10px;
-      font-size: 14px;
+      flex: 1 1 auto;
+      padding: 10px;
       background: $white;
       border: 1px solid rgba(52,40,104,.2);
       border-top-left-radius: 6px;
@@ -135,15 +129,14 @@ export default {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
       user-select: none;
-      z-index: 1;
+      z-index: 2;
       cursor: pointer;
     }
-    .select__icon {
+    .app-select__icon {
       // border: 1px solid red;
-      padding: 8px 10px;
+      padding: 11.5px 10px;
       background: $white;
       font-family: $fontThemify;
-      font-size: 12px;
       font-style: normal;
       border: 1px solid rgba(52,40,104,.2);
       border-left: none;
@@ -153,40 +146,39 @@ export default {
       border-bottom-right-radius: 6px;
       cursor: pointer;
     }
-    .select__list {
+    .app-select__list {
       // border: 1px solid red;
       position: absolute;
       top: 0px;
-      // left: 0px;
-      right: 35px;
+      right: 37px;
+      width: calc(100% - 37px);
       background: $white;
-      font-size: 14px;
       border: 1px solid rgba(52,40,104,.2);
       border-radius: 6px;
-      box-shadow: 0 2px 6px 1px rgba(123, 115, 158, 0.2);
+      box-shadow: $boxShadow;
       opacity: 0;
       visibility: hidden;
-      z-index: 2;
+      z-index: 1;
       transition: $tr-02;
-      .select__list-item {
+      .app-select__list-item {
         // border: 1px solid red;
-        padding: 8px 10px;
+        padding: 10px;
         white-space: nowrap;
         user-select: none;
         cursor: pointer;
       }
-      .select__list-item:hover {
+      .app-select__list-item:hover {
         background: rgba(52,40,104,.04);
       }
-      .select__list-item:first-child {
+      .app-select__list-item:first-child {
         margin-top: 4px;
       }
-      .select__list-item:last-child {
+      .app-select__list-item:last-child {
         margin-bottom: 4px;
       }
     }
-    .select__list-opened {
-      top: 38px;
+    .app-select__list-opened {
+      top: 45px;
       opacity: 1;
       visibility: visible;
       transition: $tr-02;
@@ -194,23 +186,24 @@ export default {
   }
 }
 
-.select__default-value-left {
+.app-select__default-value-left {
   text-align: left;
 }
-.select__default-value-right {
+.app-select__default-value-right {
   text-align: right;
 }
-.select__default-value-center {
+.app-select__default-value-center {
   text-align: center;
 }
 
-.select__list-left {
+.app-select__list-left {
   text-align: left;
 }
-.select__list-right {
+.app-select__list-right {
   text-align: right;
 }
-.select__list-center {
+.app-select__list-center {
   text-align: center;
 }
+
 </style>
