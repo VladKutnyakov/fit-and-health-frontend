@@ -1,4 +1,4 @@
-const BASE_URL = process.env.baseUrl
+const BASE_URL = process.env.BASE_URL
 
 export const state = () => ({
   productCategories: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
@@ -156,7 +156,7 @@ export const mutations = {
     }
     state.sortedProducts = [...sortedBySearchString]
 
-    // Фильтрация по категориям
+    // // Фильтрация по категориям
     let sortedByCategory = []
     for (let i = 0; i < state.sortedProducts.length; i++) {
       // проверка на совпадение выбранных категорий у продукта в массиве state.sortedProducts
@@ -240,7 +240,7 @@ export const mutations = {
 export const actions = {
   async getAllProducts ({ commit }) {
     try {
-      const products = await this.$axios.$get('/api/food-calorie-table')
+      const products = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
       commit('setProducts', products)
     } catch (err) {
       console.log(err)
