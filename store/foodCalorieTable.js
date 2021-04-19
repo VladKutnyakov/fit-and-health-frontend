@@ -240,8 +240,13 @@ export const mutations = {
 export const actions = {
   async getAllProducts ({ commit }) {
     try {
-      const products = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
-      commit('setProducts', products)
+      const response = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
+
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.data)
+      }
+
+      commit('setProducts', response.data)
     } catch (err) {
       console.log(err)
     }
