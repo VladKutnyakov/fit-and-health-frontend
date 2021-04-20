@@ -26,7 +26,7 @@
             <i
               class="ti-heart element__favorite-product"
               :class="[{'element__favorite-product--active': item.favorite}]"
-              @click="changeFavoriteParam({productId: item.id, newParam: {favorite: !item.favorite}})"
+              @click="changeFavoriteParam(item.id)"
             ></i>
           </div>
           <div class="item__element">

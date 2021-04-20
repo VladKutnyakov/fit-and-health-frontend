@@ -104,10 +104,10 @@ export const mutations = {
     }
     this.commit('notifications/addNewNotice', notice)
   },
-  updateFavoriteProduct (state, product) {
+  updateFavoriteProduct (state, updatedProduct) {
     for (let i = 0; i < state.products.length; i++) {
-      if (state.products[i].id === product.productId) {
-        state.products[i].favorite = product.newParam.favorite
+      if (state.products[i].id === updatedProduct.productId) {
+        state.products[i].favorite = updatedProduct.favorite
         break
       }
     }
@@ -115,7 +115,7 @@ export const mutations = {
     const notice = {
       id: Date.now(),
       type: 'info',
-      message: product.newParam.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
+      message: updatedProduct.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
       timeToShow: 3000,
       active: true
     }
@@ -285,12 +285,18 @@ export const actions = {
       console.log(err)
     }
   },
-  async changeFavoriteParam ({ commit }, productParam) {
+  async changeFavoriteParam ({ commit }, productId) {
     try {
-      const updatedProduct = await this.$axios.$post('/api/food-calorie-table/change-favorite-param', productParam)
-      if (updatedProduct) {
-        commit('updateFavoriteProduct', productParam)
+      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/change-favorite-param`, {productId: productId})
+
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.data)
       }
+
+      // console.log(response.data.favorite)
+
+      commit('updateFavoriteProduct', response.data)
+
     } catch (err) {
       console.log(err)
     }
