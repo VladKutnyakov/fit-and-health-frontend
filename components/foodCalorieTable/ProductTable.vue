@@ -133,7 +133,7 @@ export default {
           this.openModal($event.params.id)
           break
         case 'Удалить':
-          this.removeProduct({product: $event.params.id})
+          this.removeProduct({productId: $event.params.id})
           break
         default:
           break

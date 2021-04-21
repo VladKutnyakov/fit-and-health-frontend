@@ -18,9 +18,7 @@ export const state = () => ({
     carb: null,
     kkal: null,
     category: "Мясо",
-    favoriteProduct: false,
-    userProduct: true,
-    // userId: null
+    favorite: false,
   },
   modalActive: false
 })
@@ -51,15 +49,17 @@ export const mutations = {
     state.products = products
     this.commit('foodCalorieTable/sortProducts')
   },
-  addNewProduct (state, newProduct) {
-    state.products.push(newProduct)
+  addNewProduct (state, payload) {
+    payload.product.favorite = payload.favorite
+
+    state.products.push(payload.product)
     this.commit('foodCalorieTable/sortProducts')
 
     const notice = {
       id: Date.now(),
       type: 'success',
       message: 'Продукт успешно добавлен.',
-      timeToShow: 3000,
+      timeToShow: 5000,
       active: true
     }
     this.commit('notifications/addNewNotice', notice)
@@ -79,15 +79,15 @@ export const mutations = {
       id: Date.now(),
       type: 'success',
       message: 'Информация о продукте успешно обновлена.',
-      timeToShow: 3000,
+      timeToShow: 5000,
       active: true
     }
     this.commit('notifications/addNewNotice', notice)
   },
-  deleteProduct (state, product) {
+  deleteProduct (state, productId) {
     let targetProduct = null
     for (let i = 0; i < state.products.length; i++) {
-      if (state.products[i].id === product.product) {
+      if (state.products[i].id === productId) {
         targetProduct = i
         break
       }
@@ -99,7 +99,7 @@ export const mutations = {
       id: Date.now(),
       type: 'info',
       message: 'Продукт удален из базы данных.',
-      timeToShow: 3000,
+      timeToShow: 5000,
       active: true
     }
     this.commit('notifications/addNewNotice', notice)
@@ -117,7 +117,7 @@ export const mutations = {
       id: Date.now(),
       type: 'info',
       message: updatedProduct.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
-      timeToShow: 3000,
+      timeToShow: 5000,
       active: true
     }
     this.commit('notifications/addNewNotice', notice)
@@ -228,7 +228,6 @@ export const mutations = {
         kkal: null,
         category: "Мясо",
         favorite: false,
-        userProduct: true
       }
     }
     state.modalActive = true
@@ -261,23 +260,26 @@ export const actions = {
       }
 
       commit('addNewProduct', response.data)
-
     } catch (err) {
       console.log(err)
     }
   },
   async removeProduct ({ commit }, product) {
     try {
-      const remove = await this.$axios.$post('/api/food-calorie-table/remove-product', product)
+      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/remove-product`, product)
 
-      if (remove) {
-        await commit('deleteProduct', product)
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
+      }
+
+      if (response.data.removed) {
+        await commit('deleteProduct', response.data.productId)
       } else {
         const notice = {
           id: Date.now(),
           type: 'alert',
           message: 'Удалить продукт не удалось.',
-          timeToShow: 3000,
+          timeToShow: 5000,
           active: true
         }
         this.commit('notifications/addNewNotice', notice)
@@ -295,7 +297,6 @@ export const actions = {
       }
 
       commit('updateFavoriteProduct', response.data)
-
     } catch (err) {
       console.log(err)
     }

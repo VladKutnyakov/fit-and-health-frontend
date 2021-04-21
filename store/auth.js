@@ -13,6 +13,9 @@ export const getters = {
 export const mutations = {
   setToken (state, token) {
     state.token = token
+
+    // сохраняем cookie на 30 дней (пользователь сможет обновить протухший токен в течении 30 дней)
+    Cookies.set('Authorization', token, { expires: 30 })
   },
   clearToken (state) {
     state.token = null
@@ -30,8 +33,6 @@ export const actions = {
       this.$axios.setToken(fetchedToken, 'Bearer ')
       // сохроняем в state токен полученный из action login
       commit('setToken', fetchedToken)
-      // сохраняем cookie на 30 дней (пользователь сможет обновить протухший токен в течении 30 дней)
-      Cookies.set('Authorization', fetchedToken, { expires: 30 })
     } catch (err) {
       // выводим сообщение об ошибке для пользователя
       const notice = {
@@ -54,9 +55,6 @@ export const actions = {
       this.$axios.setToken(newUserToken, 'Bearer ')
       // сохроняем в state токен полученный из action login
       commit('setToken', newUserToken)
-      // сохраняем cookie на 361 день
-      Cookies.set('Authorization', newUserToken, { expires: 365 })
-      // console.log(newUserToken);
     } catch (err) {
       // выводим сообщение об ошибке для пользователя
       const notice = {
