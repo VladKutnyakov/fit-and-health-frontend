@@ -139,7 +139,7 @@ export const mutations = {
     // Фильтрация по типу продуктов (все, мои, избранное)
     if (state.selectedFilters.productType === 'Мои продукты') {
       // console.log('Мои продукты')
-      state.sortedProducts = [...state.products.filter(product => product.userProduct !== false)]
+      state.sortedProducts = [...state.products.filter(product => product.userId !== null)]
     } else if (state.selectedFilters.productType === 'Избранное') {
       // console.log('Избранное')
       state.sortedProducts = [...state.products.filter(product => product.favorite !== false)]
