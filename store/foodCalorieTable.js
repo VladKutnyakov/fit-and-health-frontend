@@ -36,7 +36,7 @@ export const getters = {
   getUserProductsAmount (state) {
     let userProducts = 0
     for (let i = 0; i < state.products.length; i++) {
-      if (state.products[i].userProduct) {
+      if (state.products[i].userId) {
         userProducts += 1
       }
     }
