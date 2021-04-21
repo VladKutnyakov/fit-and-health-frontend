@@ -111,6 +111,7 @@ export const mutations = {
         break
       }
     }
+    this.commit('foodCalorieTable/sortProducts')
 
     const notice = {
       id: Date.now(),
