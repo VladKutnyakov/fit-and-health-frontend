@@ -244,7 +244,7 @@ export const actions = {
       const response = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
 
       if (response.updatedToken) {
-        this.commit('auth/setToken', response.data)
+        this.commit('auth/setToken', response.updatedToken)
       }
 
       commit('setProducts', response.data)
@@ -254,13 +254,13 @@ export const actions = {
   },
   async saveProduct ({ state, commit }) {
     try {
-      const newProduct = await this.$axios.$post('/api/food-calorie-table/save-product', state.newProduct)
+      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/save-product`, state.newProduct)
 
-      if (newProduct === 1) {
-        commit('updateProducts', state.newProduct)
-      } else {
-        commit('addNewProduct', newProduct)
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
       }
+
+      commit('addNewProduct', response.data)
 
     } catch (err) {
       console.log(err)
@@ -291,10 +291,8 @@ export const actions = {
       const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/change-favorite-param`, {productId: productId})
 
       if (response.updatedToken) {
-        this.commit('auth/setToken', response.data)
+        this.commit('auth/setToken', response.updatedToken)
       }
-
-      // console.log(response.data.favorite)
 
       commit('updateFavoriteProduct', response.data)
 
