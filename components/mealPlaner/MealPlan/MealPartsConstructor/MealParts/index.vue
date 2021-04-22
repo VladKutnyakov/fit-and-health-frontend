@@ -9,9 +9,9 @@
     >
       <p class="meal-part__title">{{ item.mealTime }} - {{ item.title }}</p>
     </div>
-    <div class="meal-part">
+    <!-- <div class="meal-part">
       <i class="ti-plus"></i>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -64,14 +64,14 @@ export default {
       font-weight: 500;
     }
   }
-  .meal-part:last-child {
-    margin-left: auto;
-    padding: 10px;
-    margin-right: 0;
-    background: $green;
-    color: $white;
-    border: $green;
-  }
+  // .meal-part:last-child {
+  //   margin-left: auto;
+  //   padding: 10px;
+  //   margin-right: 0;
+  //   background: $green;
+  //   color: $white;
+  //   border: $green;
+  // }
   .meal-part--active {
     background: $green;
     color: $white;

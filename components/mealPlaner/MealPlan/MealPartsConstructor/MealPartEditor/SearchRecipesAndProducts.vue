@@ -1,5 +1,8 @@
 <template>
-  <div class="search-recipes-and-products">
+  <div
+    class="search-recipes-and-products"
+    :class="[{ 'search-recipes-and-products--active': active }]"
+  >
     <app-search-block placeholder="Поиск продуктов и рецептов" small />
     <div class="filters">
       <div class="filter__checbox">
@@ -39,6 +42,9 @@ import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FoundProductOrRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/FoundProductOrRecipe'
 
 export default {
+  props: {
+    active: Boolean
+  },
   components: {
     AppInputRadio,
     AppInputCheckbox,
@@ -61,7 +67,7 @@ export default {
 
 .search-recipes-and-products {
   position: absolute;
-  top: 10px;
+  top: calc(-100%);
   left: 10px;
   display: flex;
   flex-direction: column;
@@ -72,6 +78,7 @@ export default {
   border: 1px solid $blockBorder;
   border-radius: 6px;
   box-shadow: $btnShadow;
+  transition: $tr-04;
   .filters {
     display: flex;
     align-items: center;
@@ -109,6 +116,9 @@ export default {
     background: rgba(0, 0, 0, 0.025);
     box-shadow: inset 0 0 5px 0px rgb(0 0 0 / 25%);
   }
+}
+.search-recipes-and-products--active {
+  top: 10px;
 }
 
 </style>

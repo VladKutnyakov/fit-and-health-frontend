@@ -49,7 +49,8 @@ export const state = () => ({
         ]
       }
     ]
-  }
+  },
+  searchRecipesAndProductsModalActive: false,
 })
 
 export const getters = {
@@ -75,10 +76,9 @@ export const mutations = {
   setMealPlanerInfo (state, mealPlanerInfo) {
     state.mealPlanerInfo = mealPlanerInfo
   },
-  // Настройки модального окна
-  // setMealPartModalActive (state) {
-  //   state.mealPartModalActive = !state.mealPartModalActive
-  // },
+  setSearchRecipesAndProductsModalActive (state) {
+    state.searchRecipesAndProductsModalActive = !state.searchRecipesAndProductsModalActive
+  }
 }
 
 export const actions = {

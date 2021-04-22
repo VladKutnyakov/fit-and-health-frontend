@@ -1,17 +1,32 @@
 <template>
   <div class="actions">
     <nuxt-link class="action-btn" to="" title="Поиск продуктов и рецептов">
+      <i class="ti-plus"></i>
+    </nuxt-link>
+    <div
+      class="action-btn"
+      title="Поиск продуктов и рецептов"
+      @click="setSearchRecipesAndProductsModalActive()"
+    >
       <i class="ti-search"></i>
-    </nuxt-link>
+    </div>
 
-    <nuxt-link class="action-btn" to="" title="Удалить">
+    <div class="action-btn" title="Удалить">
       <i class="ti-trash"></i>
-    </nuxt-link>
+    </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapMutations } from 'vuex'
+
+export default {
+  methods: {
+    ...mapMutations({
+      setSearchRecipesAndProductsModalActive: 'mealPlaner/setSearchRecipesAndProductsModalActive'
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>

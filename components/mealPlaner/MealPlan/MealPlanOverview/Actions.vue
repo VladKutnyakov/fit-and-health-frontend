@@ -1,19 +1,16 @@
 <template>
   <div class="actions">
-    <nuxt-link class="action-btn" to="" title="Приступить к выполнению">
-      <i class="ti-control-play"></i>
-    </nuxt-link>
-    <nuxt-link class="action-btn" to="" title="Подробнее">
-      <i class="ti-layout"></i>
+    <nuxt-link class="action-btn" to="" title="Сохранить рацион">
+      <i class="ti-save"></i>
     </nuxt-link>
     <nuxt-link class="action-btn" to="" title="Найти похожие">
       <i class="ti-search"></i>
     </nuxt-link>
-    <nuxt-link class="action-btn" to="" title="Лучшие результаты">
-      <i class="ti-cup"></i>
+    <nuxt-link class="action-btn" to="" title="Поделиться">
+      <i class="ti-share"></i>
     </nuxt-link>
-    <nuxt-link class="action-btn" to="" title="Не интересно">
-      <i class="ti-reload"></i>
+    <nuxt-link class="action-btn" to="" title="Удалить данные">
+      <i class="ti-trash"></i>
     </nuxt-link>
   </div>
 </template>

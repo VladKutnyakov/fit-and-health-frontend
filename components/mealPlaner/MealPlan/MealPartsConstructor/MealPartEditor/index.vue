@@ -21,7 +21,7 @@
           <added-product />
           <added-product />
 
-          <search-recipes-and-products />
+          <search-recipes-and-products :active="searchRecipesAndProductsModalActive" />
         </div>
       </div>
     </div>
@@ -57,7 +57,8 @@ export default {
   },
   computed: {
     ...mapState({
-      mealParts: state => state.mealPlaner.mealPlanerInfo.mealParts
+      mealParts: state => state.mealPlaner.mealPlanerInfo.mealParts,
+      searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive
     })
   }
 }
@@ -110,6 +111,7 @@ export default {
         background: rgba(0, 0, 0, 0.025);
         box-shadow: inset 0 0 5px 0px rgba(0, 0, 0, 0.25);
         border-radius: 6px;
+        overflow: hidden;
       }
     }
   }
