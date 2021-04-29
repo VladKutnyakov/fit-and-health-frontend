@@ -1,52 +1,28 @@
+const BASE_URL = process.env.BASE_URL
+
 export const state = () => ({
   mealPlanerInfo: {
-    id: 1,
-    userId: 1,
-    date: '21.11.2020',
+    id: null,
+    userId: undefined,
+    date: '',
     targetProtein: 1,
     targetFats: 0.5,
     targetCarb: 2,
-    targetWeight: 65.8,
-    title: 'Название рациона на сутки',
-    description: 'Короткое описание рациона из нескольких предложений',
-    marks: ['Отметка 1', 'Отметка 2', 'Отметка 3'],
+    targetWeight: null,
+    title: '',
+    description: '',
+    marks: [],
     socials: {
-      like: 2,
-      dislike: 0,
-      repost: 54
+      like: null,
+      dislike: null,
+      repost: null
     },
     mealParts: [
       {
-        title: 'Завтрак',
-        mealTime: '09 : 00',
-        products: [
-          {
-            id: null,
-            title: 'Название рецепта',
-          }
-        ],
-        recipes: [
-          {
-            id: null,
-            title: 'Название рецепта',
-          }
-        ]
-      },
-      {
-        title: 'Обед',
-        mealTime: '13 : 00',
-        products: [
-          {
-            id: null,
-            title: 'Название рецепта',
-          }
-        ],
-        recipes: [
-          {
-            id: null,
-            title: 'Название рецепта',
-          }
-        ]
+        title: '',
+        mealTime: '',
+        products: [],
+        recipes: []
       }
     ]
   },
@@ -83,12 +59,20 @@ export const mutations = {
 
 export const actions = {
   async fetchMealPlanerInfo ({ commit }, query ) {
+    const url = `${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`
+
     try {
-      // const MealPlanerInfo = await this.$axios.$get(`http://localhost:3000/api/meal-planer?date=${query.date}`)
+      const response = await this.$axios.$get(url)
 
-      // console.log(MealPlanerInfo)
+      // console.log(response)
 
-      // commit('setMealPlanerInfo', mealPlanerInfo)
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
+      }
+
+      if (response.data.mealPlanerInfo !== false) {
+        commit('setMealPlanerInfo', response.data.mealPlanerInfo)
+      }
     } catch (e) {
       console.log(e)
     }

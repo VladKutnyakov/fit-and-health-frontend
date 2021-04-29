@@ -15,11 +15,15 @@ import AdditionalInfo from '@/components/mealPlaner/AdditionalInfo/index'
 
 export default {
   layout: 'default',
+  middleware: ['userAuth'],
   components: {
     AppPageTitle,
     MealPlan,
     AdditionalInfo
-  }
+  },
+  async asyncData ({ store, route }) {
+    await store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: route.query.date})
+  },
 }
 </script>
 
