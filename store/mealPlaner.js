@@ -52,6 +52,12 @@ export const mutations = {
   setMealPlanerInfo (state, mealPlanerInfo) {
     state.mealPlanerInfo = mealPlanerInfo
   },
+  setTargetNutrient (state, updatedNutrient) {
+    state.mealPlanerInfo[updatedNutrient.field] = updatedNutrient.value
+  },
+  setTargetWeight (state, value) {
+    state.mealPlanerInfo.targetWeight = value
+  },
   setSearchRecipesAndProductsModalActive (state) {
     state.searchRecipesAndProductsModalActive = !state.searchRecipesAndProductsModalActive
   }
@@ -63,8 +69,6 @@ export const actions = {
 
     try {
       const response = await this.$axios.$get(url)
-
-      // console.log(response)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)

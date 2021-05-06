@@ -4,7 +4,7 @@
     <div class="chart">
       <app-chart-circle />
       <div class="chart__calculated-calories">
-        <p class="calculated-calories__value">1264</p>
+        <p class="calculated-calories__value">{{ getDayTargetKkal }}</p>
         <p class="calculated-calories__scale">ккал</p>
       </div>
     </div>
@@ -20,7 +20,7 @@
               v-show="proteinIsEdit"
               class="value__input"
               type="text"
-              v-model="targetProtein"
+              :value="targetProtein"
               @keyup.enter="proteinEdit()"
             >
           </div>
@@ -37,7 +37,7 @@
               v-show="fatsIsEdit"
               class="value__input"
               type="text"
-              v-model.number="targetFats"
+              :value="targetFats"
               @keyup.enter="fatsEdit()"
             >
           </div>
@@ -54,7 +54,7 @@
               v-show="carbIsEdit"
               class="value__input"
               type="text"
-              v-model="targetCarb"
+              :value="targetCarb"
               @keyup.enter="carbEdit()"
             >
           </div>
@@ -91,7 +91,7 @@
               v-show="weightIsEdit"
               class="value__input"
               type="text"
-              v-model="targetWeight"
+              :value="targetWeight"
               @keyup.enter="weightEdit()"
             >
           </div>
@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 import AppChartCircle from '@/components/basic/AppChartCircle'
 import AppTooltip from '@/components/basic/AppTooltip'
@@ -131,6 +131,9 @@ export default {
       targetFats: state => state.mealPlaner.mealPlanerInfo.targetFats,
       targetCarb: state => state.mealPlaner.mealPlanerInfo.targetCarb,
       targetWeight: state => state.mealPlaner.mealPlanerInfo.targetWeight,
+    }),
+    ...mapGetters({
+      getDayTargetKkal: 'mealPlaner/getDayTargetKkal',
     })
   },
   methods: {
@@ -143,7 +146,7 @@ export default {
         })
       } else {
         this.proteinIsEdit = false
-        // сохранить на сервере в бд
+        this.$store.commit('mealPlaner/setTargetNutrient', {field: 'targetProtein', value: this.$refs.proteinInput.value})
       }
     },
     fatsEdit () {
@@ -155,7 +158,7 @@ export default {
         })
       } else {
         this.fatsIsEdit = false
-        // сохранить на сервере в бд
+        this.$store.commit('mealPlaner/setTargetNutrient', {field: 'targetFats', value: this.$refs.fatsInput.value})
       }
     },
     carbEdit () {
@@ -167,7 +170,7 @@ export default {
         })
       } else {
         this.carbIsEdit = false
-        // сохранить на сервере в бд
+        this.$store.commit('mealPlaner/setTargetNutrient', {field: 'targetCarb', value: this.$refs.carbInput.value})
       }
     },
     weightEdit () {
@@ -179,7 +182,7 @@ export default {
         })
       } else {
         this.weightIsEdit = false
-        // сохранить на сервере в бд
+        this.$store.commit('mealPlaner/setTargetWeight', this.$refs.weightInput.value)
       }
     }
   }

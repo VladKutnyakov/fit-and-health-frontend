@@ -9,9 +9,6 @@
     >
       <p class="meal-part__title">{{ item.mealTime }} - {{ item.title }}</p>
     </div>
-    <!-- <div class="meal-part">
-      <i class="ti-plus"></i>
-    </div> -->
   </div>
 </template>
 
@@ -46,7 +43,6 @@ export default {
   display: flex;
   padding: 0 10px;
   .meal-part {
-    // flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     margin-right: 5px;
@@ -64,14 +60,6 @@ export default {
       font-weight: 500;
     }
   }
-  // .meal-part:last-child {
-  //   margin-left: auto;
-  //   padding: 10px;
-  //   margin-right: 0;
-  //   background: $green;
-  //   color: $white;
-  //   border: $green;
-  // }
   .meal-part--active {
     background: $green;
     color: $white;
