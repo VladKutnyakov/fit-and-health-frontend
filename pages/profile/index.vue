@@ -2,9 +2,15 @@
   <div class="profile-page">
     <app-page-title>Профиль</app-page-title>
     <div class="profile-page__content">
-      <user-card />
+      <div class="user-card-and-publication">
+        <user-card />
+        <!-- <publication /> -->
+      </div>
       <user-activity />
-      <main-info />
+      <div class="main-info-and-publication">
+        <main-info />
+        <!-- <publication /> -->
+      </div>
     </div>
   </div>
 </template>
@@ -71,6 +77,16 @@ export default {
     align-items: flex-start;
     width: 100%;
     max-width: 1700px;
+    .user-card-and-publication {
+      width: 400px;
+      min-width: 400px;
+      max-width: 400px;
+    }
+    .main-info-and-publication {
+      width: 400px;
+      min-width: 400px;
+      max-width: 400px;
+    }
   }
 }
 
