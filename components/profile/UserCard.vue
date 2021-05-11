@@ -153,13 +153,11 @@ export default {
         }
 
         // Если высота контента больше высоты браузерного окна
-        // console.log(-(fixedBlockRect.height + offset) - window.innerHeight - (startPageYOffset - window.pageYOffset))
-        console.log((fixedBlockRect.height + offset) - window.innerHeight - (startPageYOffset - window.pageYOffset))
-
-        if (pageContentRect.top - offset < 0 && fixedBlockRect.bottom <= window.innerHeight - offset) {
+        if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) < 0) {
           fixedBlock.style.position = 'fixed'
-          fixedBlock.style.top = `-${(fixedBlockRect.height + offset) - window.innerHeight - (startPageYOffset - window.pageYOffset)}px`
+          fixedBlock.style.top = `${parseFloat(fixedBlock.style.top) - (startPageYOffset - window.pageYOffset)}px`
         }
+        console.log(startPageYOffset - window.pageYOffset)
 
         startPageYOffset = window.pageYOffset
       }
