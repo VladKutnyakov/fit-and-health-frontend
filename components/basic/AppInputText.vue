@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     changeInputValue () {
-      this.$emit('valueChanged', this.inputValue)
+      this.$emit('input', this.inputValue)
     }
   }
 }
@@ -49,6 +49,10 @@ export default {
 }
 .input-text:focus {
   border: 1px solid $green;
+  transition: $tr-02;
+}
+.input-text::placeholder {
+  opacity: .6;
   transition: $tr-02;
 }
 .input-text:focus::placeholder {

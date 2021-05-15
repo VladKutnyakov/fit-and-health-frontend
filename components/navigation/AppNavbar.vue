@@ -313,7 +313,7 @@ export default {
       border-radius: 50%;
       transition: $tr-02;
       .page-link__icon {
-        color: rgba(0,0,0,.5);
+        color: $black;
         font-size: 18px;
         transition: $tr-02;
       }
@@ -326,7 +326,7 @@ export default {
     }
     .navbar__page-link--active {
       background: $white;
-      box-shadow: 0 0 5px 1px rgba(0,0,0,.2);
+      box-shadow: $boxShadow;
       .page-link__icon {
         color: $green;
       }
@@ -334,14 +334,14 @@ export default {
   }
 
   .navbar__page-links-group--active {
-    background: rgba(0,0,0,.05);
+    background: $hiddenBlockBG;
   }
   
   .logout {
     margin: auto 0 10px 0;
     padding: 10px;
     transform: rotate(90deg);
-    color: rgba(0,0,0,.5);
+    color: $black;
     font-size: 18px;
   }
 }

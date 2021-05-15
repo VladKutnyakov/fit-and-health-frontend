@@ -13,8 +13,8 @@
 
           <add-marks
             :marks="marks"
-            @addMark="addMark($event)"
-            @removeMark="removeMark($event)"
+            @addMark="setMealPlanMark($event)"
+            @removeMark="removeMealPlanMark($event)"
           />
         </div>
 
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import OverviewTitle from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewTitle'
 import NutrientsSettings from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsSettings'
@@ -52,12 +52,10 @@ export default {
     })
   },
   methods: {
-    addMark ($event) {
-      console.log($event)
-    },
-    removeMark ($event) {
-      console.log($event)
-    }
+    ...mapMutations({
+      setMealPlanMark: 'mealPlaner/setMealPlanMark',
+      removeMealPlanMark: 'mealPlaner/removeMealPlanMark'
+    })
   }
 }
 </script>

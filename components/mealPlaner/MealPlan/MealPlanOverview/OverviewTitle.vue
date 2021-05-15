@@ -1,12 +1,17 @@
 <template>
   <div class="overview-title">
     <p class="overview-title__text">Название рациона:</p>
-    <app-input-text :value="title" class="title__input" />
+    <app-input-text
+      :value="title"
+      class="title__input"
+      placeholder="Укажите название рациона"
+      @input="setMealPlanTitle($event)"
+    />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 
 export default {
@@ -19,6 +24,11 @@ export default {
   computed: {
     ...mapState({
       title: state => state.mealPlaner.mealPlanerInfo.title
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setMealPlanTitle: 'mealPlaner/setMealPlanTitle'
     })
   }
 }

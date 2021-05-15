@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     changeTextareaValue () {
-      this.$emit('valueChanged', this.inputValue)
+      this.$emit('input', this.inputValue)
     }
   }
 }
@@ -45,6 +45,10 @@ export default {
 }
 .textarea:focus {
   border: 1px solid $green;
+}
+.textarea::placeholder {
+  opacity: .6;
+  transition: $tr-02;
 }
 .textarea:focus::placeholder {
   opacity: 0;

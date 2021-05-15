@@ -5,31 +5,30 @@
       :key="index"
       class="meal-part"
       :class="[{'meal-part--active' : index == selectedMealPart ? true : false}]"
-      @click="changeSelectedMealPart(index)"
+      @click="setSelectedMealPart(index)"
     >
-      <p class="meal-part__title">{{ item.mealTime }} - {{ item.title }}</p>
+      <p class="meal-part__title">{{ item.title }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
   data () {
-    return {
-      selectedMealPart: 0,
-    }
+    return {}
   },
   computed: {
     ...mapState({
-      mealParts: state => state.mealPlaner.mealPlanerInfo.mealParts
+      mealParts: state => state.mealPlaner.mealPlanerInfo.mealParts,
+      selectedMealPart: state => state.mealPlaner.selectedMealPart
     })
   },
   methods: {
-    changeSelectedMealPart(index) {
-      this.selectedMealPart = index
-    }
+    ...mapMutations({
+      setSelectedMealPart: 'mealPlaner/setSelectedMealPart'
+    })
   }
 }
 </script>
@@ -47,25 +46,25 @@ export default {
     flex-direction: column;
     margin-right: 5px;
     padding: 10px 20px;
-    max-width: 200px;
+    min-height: 40px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     border: 1px solid $blockBorder;
     border-bottom: none;
+    transition: $tr-02;
     cursor: pointer;
     .meal-part__title {
-      text-transform: uppercase;
-      font-size: 14px;
+      font-size: 16px;
       text-align: center;
       font-weight: 500;
     }
   }
   .meal-part--active {
     background: $green;
-    color: $white;
-    border: $green;
+    border: 1px solid $green;
+    border-bottom: none;
     .meal-part__title {
-      font-weight: 600;
+      color: $white;
     }
   }
 }

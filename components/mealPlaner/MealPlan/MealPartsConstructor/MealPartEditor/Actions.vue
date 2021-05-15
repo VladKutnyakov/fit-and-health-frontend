@@ -1,8 +1,13 @@
 <template>
   <div class="actions">
-    <nuxt-link class="action-btn" to="" title="Поиск продуктов и рецептов">
+    <div
+      class="action-btn"
+      title="Добавить прием пищи"
+      @click="addNewMealPart()"
+    >
       <i class="ti-plus"></i>
-    </nuxt-link>
+    </div>
+
     <div
       class="action-btn"
       title="Поиск продуктов и рецептов"
@@ -11,7 +16,11 @@
       <i class="ti-search"></i>
     </div>
 
-    <div class="action-btn" title="Удалить">
+    <div
+      class="action-btn"
+      title="Удалить"
+      @click="removeSelectedMealPart()"
+    >
       <i class="ti-trash"></i>
     </div>
   </div>
@@ -23,7 +32,9 @@ import { mapMutations } from 'vuex'
 export default {
   methods: {
     ...mapMutations({
-      setSearchRecipesAndProductsModalActive: 'mealPlaner/setSearchRecipesAndProductsModalActive'
+      setSearchRecipesAndProductsModalActive: 'mealPlaner/setSearchRecipesAndProductsModalActive',
+      addNewMealPart: 'mealPlaner/addNewMealPart',
+      removeSelectedMealPart: 'mealPlaner/removeSelectedMealPart'
     })
   }
 }
@@ -50,6 +61,9 @@ export default {
   }
   .action-btn:hover {
     color: $green;
+  }
+  .action-btn:last-child:hover {
+    color: $red;
   }
 }
 

@@ -1,13 +1,17 @@
 <template>
   <div class="overview-description">
     <p class="overview-description__text">Описание:</p>
-    <app-textarea class="fill-area" :value="description" />
+    <app-textarea
+      class="fill-area"
+      :value="description"
+      placeholder="Укажите описание рациона"
+      @input="setMealPlanDescription($event)"
+    />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
+import { mapState, mapMutations } from 'vuex'
 import AppTextarea from '@/components/basic/AppTextarea'
 
 export default {
@@ -17,6 +21,11 @@ export default {
   computed: {
     ...mapState({
       description: state => state.mealPlaner.mealPlanerInfo.description
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setMealPlanDescription: 'mealPlaner/setMealPlanDescription'
     })
   }
 }

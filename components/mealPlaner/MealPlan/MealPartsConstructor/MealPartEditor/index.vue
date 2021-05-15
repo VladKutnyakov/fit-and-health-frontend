@@ -4,11 +4,17 @@
       <div class="settings">
         <div class="settings__element">
           <p class="element__title">Время приема пищи:</p>
-          <app-input-text :value="mealParts[selectedMealPart].mealTime" />
+          <app-input-text
+            :value="mealParts[selectedMealPart].mealTime"
+            @input="setMealPartTime($event)"
+          />
         </div>
         <div class="settings__element">
           <p class="element__title">Название приема пищи:</p>
-          <app-input-text :value="mealParts[selectedMealPart].title" />
+          <app-input-text
+            :value="mealParts[selectedMealPart].title"
+            @input="setMealPartTitle($event)"
+          />
         </div>
       </div>
 
@@ -31,10 +37,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
-import AddedProduct from '@/components/mealPlaner/MealPlan/MealPartsConstructor/AddedProduct'
-import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/AddedRecipe'
+import AddedProduct from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedProduct'
+import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedRecipe'
 import Actions from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/Actions'
 import SearchRecipesAndProducts from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/SearchRecipesAndProducts'
 
@@ -48,7 +54,6 @@ export default {
   },
   data() {
     return {
-      selectedMealPart: 0,
       filterByMarks: ['Все совпадения', 'Добавленные мной', 'Избранное'],
       filterByMarksChecked: 'Все совпадения',
       filterByType: ['Продукты', 'Рецепты'],
@@ -58,7 +63,14 @@ export default {
   computed: {
     ...mapState({
       mealParts: state => state.mealPlaner.mealPlanerInfo.mealParts,
+      selectedMealPart: state => state.mealPlaner.selectedMealPart,
       searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setMealPartTime: 'mealPlaner/setMealPartTime',
+      setMealPartTitle: 'mealPlaner/setMealPartTitle',
     })
   }
 }

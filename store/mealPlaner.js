@@ -8,7 +8,7 @@ export const state = () => ({
     targetProtein: 1,
     targetFats: 0.5,
     targetCarb: 2,
-    targetWeight: null,
+    targetWeight: 70,
     title: '',
     description: '',
     marks: [],
@@ -19,13 +19,14 @@ export const state = () => ({
     },
     mealParts: [
       {
-        title: '',
-        mealTime: '',
-        products: [],
-        recipes: []
-      }
+        title: 'Затрак',
+        mealTime: '07:00',
+        recipes: [],
+        products: []
+      },
     ]
   },
+  selectedMealPart: 0,
   searchRecipesAndProductsModalActive: false,
 })
 
@@ -60,6 +61,45 @@ export const mutations = {
   },
   setSearchRecipesAndProductsModalActive (state) {
     state.searchRecipesAndProductsModalActive = !state.searchRecipesAndProductsModalActive
+  },
+  setMealPlanMark (state, mark) {
+    state.mealPlanerInfo.marks.push(mark)
+  },
+  removeMealPlanMark (state, markIndex) {
+    state.mealPlanerInfo.marks.splice(markIndex, 1)
+  },
+  setMealPlanTitle (state, newValue) {
+    state.mealPlanerInfo.title = newValue
+  },
+  setMealPlanDescription (state, newValue) {
+    state.mealPlanerInfo.description = newValue
+  },
+  setSelectedMealPart (state, index) {
+    state.selectedMealPart = index
+  },
+  addNewMealPart (state) {
+    const emptyMealPart = {
+      title: 'Новый прием пищи',
+      mealTime: '00:00',
+      recipes: [],
+      products: []
+    }
+    state.mealPlanerInfo.mealParts.push(emptyMealPart)
+    state.selectedMealPart = state.mealPlanerInfo.mealParts.length - 1
+  },
+  removeSelectedMealPart (state) {
+    if (state.mealPlanerInfo.mealParts.length > 1) {
+      state.mealPlanerInfo.mealParts.splice(state.selectedMealPart, 1)
+      if (state.selectedMealPart !== 0) {
+        state.selectedMealPart -= 1
+      }
+    }
+  },
+  setMealPartTime (state, newValue) {
+    state.mealPlanerInfo.mealParts[state.selectedMealPart].mealTime = newValue
+  },
+  setMealPartTitle (state, newValue) {
+    state.mealPlanerInfo.mealParts[state.selectedMealPart].title = newValue
   }
 }
 
