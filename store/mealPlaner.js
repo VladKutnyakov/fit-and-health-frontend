@@ -22,7 +22,30 @@ export const state = () => ({
         title: 'Затрак',
         mealTime: '07:00',
         recipes: [],
-        products: []
+        products: [
+          {
+            id: 0,
+            title: 'Гречка',
+            weight: 142,
+            protein: 20,
+            fats: 10,
+            carb: 123,
+            kkal: 314,
+            category: '',
+            userId: null
+          },
+          {
+            id: 1,
+            title: 'Курица',
+            weight: 260,
+            protein: 16,
+            fats: 5,
+            carb: 26,
+            kkal: 245,
+            category: '',
+            userId: null
+          },
+        ]
       },
     ]
   },
@@ -46,6 +69,9 @@ export const getters = {
     let currentKkal = (state.mealPlanerInfo.targetProtein * state.mealPlanerInfo.targetWeight * 4.1) + (state.mealPlanerInfo.targetFats * state.mealPlanerInfo.targetWeight * 9.3) + (state.mealPlanerInfo.targetCarb * state.mealPlanerInfo.targetWeight * 4.1)
 
     return Math.round(currentKkal)
+  },
+  getMealPartProducts (state) {
+    return state.mealPlanerInfo.mealParts[state.selectedMealPart].products
   }
 }
 
@@ -100,6 +126,22 @@ export const mutations = {
   },
   setMealPartTitle (state, newValue) {
     state.mealPlanerInfo.mealParts[state.selectedMealPart].title = newValue
+  },
+  setProductWeight (state, ctx) {
+    const products = state.mealPlanerInfo.mealParts[state.selectedMealPart].products
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].id === ctx.id) {
+        products[i].weight = ctx.newValue
+      }
+    }
+  },
+  removeProduct (state, productId) {
+    const products = state.mealPlanerInfo.mealParts[state.selectedMealPart].products
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].id === productId) {
+        products.splice(i, 1)
+      }
+    }
   }
 }
 

@@ -118,7 +118,7 @@ export default {
   },
   data () {
     return {
-      currentWeight: 72.3,
+      currentWeight: 72.6,
       proteinIsEdit: false,
       fatsIsEdit: false,
       carbIsEdit: false,

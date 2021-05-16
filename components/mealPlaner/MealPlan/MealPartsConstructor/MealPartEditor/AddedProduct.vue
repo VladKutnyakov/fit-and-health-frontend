@@ -4,40 +4,57 @@
       <i class="ti-exchange-vertical"></i>
     </div>
     <div class="item__element">
-      <p class="element__value">Гречка</p>
+      <p class="element__value">{{ product.title }}</p>
     </div>
     <div class="item__element">
-      <p class="element__title">Вес</p>
       <div class="element__input-wrapper">
-        <input class="element__weight-input" type="text" value="100" />
+        <input
+          class="element__weight-input"
+          type="text"
+          :value="product.weight"
+          @input="setProductWeight({id: product.id, newValue: $event.target.value})"
+          @focus="setFocus($event)"
+        />
         <span class="element__weight-scale">гр.</span>
       </div>
     </div>
     <div class="item__element">
-      <p class="element__title">Белки</p>
-      <p class="element__value">100</p>
+      <p class="element__value">{{ Math.round( (product.protein / 100 * product.weight) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__title">Жиры</p>
-      <p class="element__value">0</p>
+      <p class="element__value">{{ Math.round( (product.fats / 100 * product.weight) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__title">Углеводы</p>
-      <p class="element__value">0</p>
+      <p class="element__value">{{ Math.round( (product.carb / 100 * product.weight) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__title">Ккал</p>
-      <p class="element__value">0</p>
+      <p class="element__value">{{ Math.round( (product.kkal / 100 * product.weight) * 100) / 100 }}</p>
     </div>
-    <div class="item__element">
+    <div class="item__element" @click="removeProduct(product.id)">
       <i class="ti-trash"></i>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
-  
+  props: {
+    product: Object
+  },
+  data () {
+    return {}
+  },
+  methods: {
+    ...mapMutations({
+      setProductWeight: 'mealPlaner/setProductWeight',
+      removeProduct: 'mealPlaner/removeProduct'
+    }),
+    setFocus ($event) {
+      $event.target.select()
+    }
+  }
 }
 </script>
 
@@ -47,7 +64,7 @@ export default {
 .added-product {
   display: flex;
   margin-bottom: 5px;
-  padding: 5px 0px;
+  padding: 10px 0px;
   background: $white;
   border: 1px solid $blockBorder;
   border-radius: 6px;
@@ -61,12 +78,6 @@ export default {
     max-width: 150px;
     text-align: center;
     border-right: 1px solid $inputBorder;
-    .element__title {
-      margin-bottom: 5px;
-      text-transform: uppercase;
-      font-size: 8px;
-      font-weight: 500;
-    }
     .element__value {
       font-size: 16px;
     }
