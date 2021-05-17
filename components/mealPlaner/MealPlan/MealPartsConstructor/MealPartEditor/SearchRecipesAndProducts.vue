@@ -30,12 +30,17 @@
     </div>
 
     <div class="founding__results">
-      <found-product-or-recipe v-for="(item,index) in 5" :key="index" />
+      <found-product-or-recipe
+        v-for="(item, index) in products"
+        :key="index"
+        :item="item"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppInputRadio from '@/components/basic/AppInputRadio'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
@@ -59,6 +64,11 @@ export default {
       filterByTypeChecked: ['Продукты', 'Рецепты'],
     }
   },
+  computed: {
+    ...mapState({
+      products: state => state.mealPlaner.products
+    }),
+  }
 }
 </script>
 

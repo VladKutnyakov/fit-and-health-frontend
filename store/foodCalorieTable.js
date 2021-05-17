@@ -242,6 +242,8 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
 
+      console.log(response.data)
+
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
       }

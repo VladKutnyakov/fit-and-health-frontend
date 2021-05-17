@@ -51,6 +51,23 @@ export const state = () => ({
   },
   selectedMealPart: 0,
   searchRecipesAndProductsModalActive: false,
+
+  products: [
+    {
+      id: 10,
+      title: "Гречка",
+      protein: 1,
+      fats: 4,
+      carb: 7,
+      kkal: 2,
+      category: "Мясо",
+      userId: 1,
+      weight: 100,
+      favorite: true,
+      pinned: false,
+      added: false,
+    }
+  ]
 })
 
 export const getters = {
@@ -135,13 +152,29 @@ export const mutations = {
       }
     }
   },
-  removeProduct (state, productId) {
+  addFoodToMealPart (state, food) {
+    state.products.forEach(element => {
+      if (element.id === food.id) {
+        element.added = true
+      }
+    })
+    state.mealPlanerInfo.mealParts[state.selectedMealPart].products.push(food)
+  },
+  removeFoodFromMealPart (state, productId) {
+    // Удалить продукт из списка продуктов для выбранного приема пищи
     const products = state.mealPlanerInfo.mealParts[state.selectedMealPart].products
     for (let i = 0; i < products.length; i++) {
       if (products[i].id === productId) {
         products.splice(i, 1)
       }
     }
+
+    // Убрать статус добавлен в окне поиска и добавления продуктов
+    state.products.forEach(element => {
+      if (element.id === productId) {
+        element.added = false
+      }
+    })
   }
 }
 

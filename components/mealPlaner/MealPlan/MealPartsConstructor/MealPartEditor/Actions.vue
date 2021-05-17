@@ -13,7 +13,8 @@
       title="Поиск продуктов и рецептов"
       @click="setSearchRecipesAndProductsModalActive()"
     >
-      <i class="ti-search"></i>
+      <i v-if="!searchRecipesAndProductsModalActive" class="ti-zoom-in"></i>
+      <i v-if="searchRecipesAndProductsModalActive" class="ti-zoom-out"></i>
     </div>
 
     <div
@@ -27,9 +28,14 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 
 export default {
+  computed: {
+    ...mapState({
+      searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive
+    })
+  },
   methods: {
     ...mapMutations({
       setSearchRecipesAndProductsModalActive: 'mealPlaner/setSearchRecipesAndProductsModalActive',

@@ -30,7 +30,7 @@
     <div class="item__element">
       <p class="element__value">{{ Math.round( (product.kkal / 100 * product.weight) * 100) / 100 }}</p>
     </div>
-    <div class="item__element" @click="removeProduct(product.id)">
+    <div class="item__element" @click="removeFoodFromMealPart(product.id)">
       <i class="ti-trash"></i>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default {
   methods: {
     ...mapMutations({
       setProductWeight: 'mealPlaner/setProductWeight',
-      removeProduct: 'mealPlaner/removeProduct'
+      removeFoodFromMealPart: 'mealPlaner/removeFoodFromMealPart'
     }),
     setFocus ($event) {
       $event.target.select()

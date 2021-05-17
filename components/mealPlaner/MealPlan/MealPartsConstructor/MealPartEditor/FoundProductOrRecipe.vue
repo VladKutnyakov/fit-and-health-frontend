@@ -4,7 +4,7 @@
       <i class="ti-heart"></i>
     </div>
     <div class="found-product__element">
-      <p class="element__value">Гречка</p>
+      <p class="element__value">{{ item.title }}</p>
     </div>
     <!-- <div class="found-product__element">
       <p class="element__title">Вес</p>
@@ -31,18 +31,28 @@
     </div>
     <div class="found-product__element">
       <div class="element__actions">
-        <i class="ti-plus action-btn"></i>
-        <i class="ti-pin-alt action-btn"></i>
-        <!-- <i class="ti-pin2 action-btn"></i> -->
         <i class="ti-new-window action-btn"></i>
+        <!-- <i class="ti-pin-alt action-btn"></i> -->
+        <!-- <i class="ti-pin2 action-btn"></i> -->
+        <i v-if="!item.added" class="ti-plus action-btn" @click="addFoodToMealPart(item)"></i>
+        <i v-if="item.added" class="ti-check action-btn action-btn--active"></i>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
-  components: {}
+  props: {
+    item: Object
+  },
+  methods: {
+    ...mapMutations({
+      addFoodToMealPart: 'mealPlaner/addFoodToMealPart'
+    })
+  }
 }
 </script>
 
@@ -122,9 +132,17 @@ export default {
     border-right: none;
     .action-btn {
       margin-right: 20px;
+      transition: $tr-02;
+      cursor: pointer;
     }
     .action-btn:last-child {
       margin-right: 0;
+    }
+    .action-btn:hover {
+      color: $green;
+    }
+    .action-btn--active {
+      color: $green;
     }
   }
 }
