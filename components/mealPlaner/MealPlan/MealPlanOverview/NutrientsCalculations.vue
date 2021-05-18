@@ -3,7 +3,7 @@
     <div class="nutrients-calculations__item">
       <p class="item__title">Белки</p>
       <div class="item__value">
-        <p class="value__current">128</p>
+        <p class="value__current">{{ getCurrentProtein }}</p>
         <p class="value__divider">/</p>
         <p class="value__max">{{ Math.round(parseFloat(targetProtein * targetWeight) * 100) / 100 }}</p>
         <p class="value__scale">гр</p>
@@ -12,7 +12,7 @@
     <div class="nutrients-calculations__item">
       <p class="item__title">Жиры</p>
       <div class="item__value">
-        <p class="value__current">24</p>
+        <p class="value__current">{{ getCurrentFats }}</p>
         <p class="value__divider">/</p>
         <p class="value__max">{{ Math.round(parseFloat(targetFats * targetWeight) * 100) / 100 }}</p>
         <p class="value__scale">гр</p>
@@ -21,7 +21,7 @@
     <div class="nutrients-calculations__item">
       <p class="item__title">Углеводы</p>
       <div class="item__value">
-        <p class="value__current">70</p>
+        <p class="value__current">{{ getCurrentCarb }}</p>
         <p class="value__divider">/</p>
         <p class="value__max">{{ Math.round(parseFloat(targetCarb * targetWeight) * 100) / 100 }}</p>
         <p class="value__scale">гр</p>
@@ -30,7 +30,7 @@
     <div class="nutrients-calculations__item">
       <p class="item__title">Калорийность</p>
       <div class="item__value">
-        <p class="value__current">1768</p>
+        <p class="value__current">{{ getCurrentKkal }}</p>
         <p class="value__divider">/</p>
         <p class="value__max">{{ getDayTargetKkal }}</p>
         <p class="value__scale">ккал</p>
@@ -54,6 +54,10 @@ export default {
       targetWeight: state => state.mealPlaner.mealPlanerInfo.targetWeight
     }),
     ...mapGetters({
+      getCurrentProtein: 'mealPlaner/getCurrentProtein',
+      getCurrentFats: 'mealPlaner/getCurrentFats',
+      getCurrentCarb: 'mealPlaner/getCurrentCarb',
+      getCurrentKkal: 'mealPlaner/getCurrentKkal',
       getDayTargetKkal: 'mealPlaner/getDayTargetKkal',
     })
   }
