@@ -273,5 +273,21 @@ export const actions = {
     } catch (e) {
       console.log(e)
     }
+  },
+  async saveMealPlanerInfo ({ state }) {
+    try {
+      // console.log(`${BASE_URL}/api/meal-planer/save-meal-planer-info`)
+      const response = await this.$axios.$post(`${BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
+
+      // if (response.updatedToken) {
+      //   this.commit('auth/setToken', response.updatedToken)
+      // }
+
+      // if (response.data.mealPlanerInfo !== false) {
+      //   commit('setMealPlanerInfo', response.data.mealPlanerInfo)
+      // }
+    } catch (e) {
+      console.log(e)
+    }
   }
 }

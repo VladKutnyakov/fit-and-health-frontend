@@ -1,8 +1,12 @@
 <template>
   <div class="actions">
-    <nuxt-link class="action-btn" to="" title="Сохранить рацион">
+    <div
+      class="action-btn"
+      title="Сохранить рацион"
+      @click='saveMealPlanerInfo()'
+    >
       <i class="ti-save"></i>
-    </nuxt-link>
+    </div>
     <nuxt-link class="action-btn" to="" title="Найти похожие">
       <i class="ti-search"></i>
     </nuxt-link>
@@ -16,7 +20,15 @@
 </template>
 
 <script>
-export default {}
+import { mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions({
+      saveMealPlanerInfo: 'mealPlaner/saveMealPlanerInfo'
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
