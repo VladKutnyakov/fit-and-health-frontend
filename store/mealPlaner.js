@@ -22,70 +22,20 @@ export const state = () => ({
         title: 'Затрак',
         mealTime: '07:00',
         recipes: [],
-        products: [
-          {
-            id: 0,
-            title: 'Гречка',
-            weight: 142,
-            protein: 20,
-            fats: 10,
-            carb: 123,
-            kkal: 314,
-            category: '',
-            userId: null
-          },
-          {
-            id: 1,
-            title: 'Курица',
-            weight: 260,
-            protein: 16,
-            fats: 5,
-            carb: 26,
-            kkal: 245,
-            category: '',
-            userId: null
-          },
-        ]
+        products: []
       },
       {
         title: 'Обед',
         mealTime: '13:00',
         recipes: [],
-        products: [
-          {
-            id: 0,
-            title: 'Гречка',
-            weight: 142,
-            protein: 20,
-            fats: 10,
-            carb: 123,
-            kkal: 314,
-            category: '',
-            userId: null
-          },
-        ]
+        products: []
       },
     ]
   },
   selectedMealPart: 0,
   searchRecipesAndProductsModalActive: false,
 
-  products: [
-    {
-      id: 10,
-      title: "Гречка",
-      protein: 1,
-      fats: 4,
-      carb: 7,
-      kkal: 2,
-      category: "Мясо",
-      userId: 1,
-      weight: 100,
-      favorite: true,
-      pinned: false,
-      added: false,
-    }
-  ]
+  products: []
 })
 
 export const getters = {
@@ -178,6 +128,14 @@ export const mutations = {
     state.mealPlanerInfo.social = JSON.parse(mealPlanerInfo.social)
     state.mealPlanerInfo.mealParts = JSON.parse(mealPlanerInfo.mealParts)
   },
+  setProducts (state, products) {
+    state.products = products
+
+    // Добавить свойство "добавлен для всех продуктов"
+    state.products.forEach(element => {
+      element.added = false
+    })
+  },
   setTargetNutrient (state, updatedNutrient) {
     state.mealPlanerInfo[updatedNutrient.field] = updatedNutrient.value
   },
@@ -198,11 +156,11 @@ export const mutations = {
       // Перебор всех добавленных продуктов
       for (let i = 0; i < mealPartProducts.length; i++) {
         // Перебор списка всех продуктов
-        for (let i = 0; i < state.products.length; i++) {
-          if (mealPartProducts[i].id === state.products[i].id) {
-            state.products[i].added = true
+        state.products.forEach(element => {
+          if (element.id === mealPartProducts[i].id) {
+            element.added = true
           }
-        }
+        })
       }
     }
   },
@@ -314,6 +272,20 @@ export const actions = {
       }
     } catch (e) {
       console.log(e)
+    }
+  },
+
+  async fetchProducts ({ state, commit }) {
+    try {
+      const response = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
+
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
+      }
+
+      commit('setProducts', response.data)
+    } catch (err) {
+      console.log(err)
     }
   }
 }
