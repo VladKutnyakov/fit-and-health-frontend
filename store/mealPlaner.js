@@ -186,6 +186,25 @@ export const mutations = {
   },
   setSearchRecipesAndProductsModalActive (state) {
     state.searchRecipesAndProductsModalActive = !state.searchRecipesAndProductsModalActive
+
+    // Снять статус "добавлен" со всех продуктов, чтобы в дальнейшем установить его для продуктов добавленных в выбранный прием пищи рациона
+    state.products.forEach(element => {
+      element.added = false
+    })
+
+    // Установка статуса "добавлен" для продуктов, которые есть в выбранном приеме пищи
+    if (state.searchRecipesAndProductsModalActive) {
+      const mealPartProducts = state.mealPlanerInfo.mealParts[state.selectedMealPart].products
+      // Перебор всех добавленных продуктов
+      for (let i = 0; i < mealPartProducts.length; i++) {
+        // Перебор списка всех продуктов
+        for (let i = 0; i < state.products.length; i++) {
+          if (mealPartProducts[i].id === state.products[i].id) {
+            state.products[i].added = true
+          }
+        }
+      }
+    }
   },
   setMealPlanMark (state, mark) {
     state.mealPlanerInfo.marks.push(mark)
@@ -201,6 +220,9 @@ export const mutations = {
   },
   setSelectedMealPart (state, index) {
     state.selectedMealPart = index
+
+    // Скрываем модальное окно со списком продуктов и рецептов для добавления в прием пищи
+    state.searchRecipesAndProductsModalActive = false
   },
   addNewMealPart (state) {
     const emptyMealPart = {
