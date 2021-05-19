@@ -7,12 +7,21 @@
     >
       <i class="ti-save"></i>
     </div>
+
     <nuxt-link class="action-btn" to="" title="Найти похожие">
       <i class="ti-search"></i>
     </nuxt-link>
     <nuxt-link class="action-btn" to="" title="Поделиться">
       <i class="ti-share"></i>
     </nuxt-link>
+
+    <div
+      class="action-btn"
+      title="Сохранить рацион как..."
+    >
+      <i class="ti-bookmark-alt"></i>
+    </div>
+
     <nuxt-link class="action-btn" to="" title="Удалить данные">
       <i class="ti-trash"></i>
     </nuxt-link>

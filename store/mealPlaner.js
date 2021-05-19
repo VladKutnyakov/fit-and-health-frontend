@@ -2,7 +2,7 @@ const BASE_URL = process.env.BASE_URL
 
 export const state = () => ({
   mealPlanerInfo: {
-    id: null,
+    id: 12,
     userId: undefined,
     date: '',
     targetProtein: 1,
@@ -12,7 +12,7 @@ export const state = () => ({
     title: '',
     description: '',
     marks: [],
-    socials: {
+    social: {
       like: null,
       dislike: null,
       repost: null
@@ -173,6 +173,10 @@ export const getters = {
 export const mutations = {
   setMealPlanerInfo (state, mealPlanerInfo) {
     state.mealPlanerInfo = mealPlanerInfo
+
+    state.mealPlanerInfo.marks = JSON.parse(mealPlanerInfo.marks)
+    state.mealPlanerInfo.social = JSON.parse(mealPlanerInfo.social)
+    state.mealPlanerInfo.mealParts = JSON.parse(mealPlanerInfo.mealParts)
   },
   setTargetNutrient (state, updatedNutrient) {
     state.mealPlanerInfo[updatedNutrient.field] = updatedNutrient.value
@@ -258,10 +262,10 @@ export const mutations = {
 
 export const actions = {
   async fetchMealPlanerInfo ({ commit }, query ) {
-    const url = `${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`
-
     try {
-      const response = await this.$axios.$get(url)
+      const response = await this.$axios.$get(`${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
+
+      // console.log(response)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -279,13 +283,13 @@ export const actions = {
       // console.log(`${BASE_URL}/api/meal-planer/save-meal-planer-info`)
       const response = await this.$axios.$post(`${BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
 
-      // if (response.updatedToken) {
-      //   this.commit('auth/setToken', response.updatedToken)
-      // }
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
+      }
 
-      // if (response.data.mealPlanerInfo !== false) {
-      //   commit('setMealPlanerInfo', response.data.mealPlanerInfo)
-      // }
+      if (response.data.mealPlanerInfo !== false) {
+        commit('setMealPlanerInfo', response.data.mealPlanerInfo)
+      }
     } catch (e) {
       console.log(e)
     }
