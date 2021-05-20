@@ -32,6 +32,8 @@ export const state = () => ({
       },
     ]
   },
+  userWeight: [74.8, 74.05, ],
+
   selectedMealPart: 0,
   searchRecipesAndProductsModalActive: false,
 

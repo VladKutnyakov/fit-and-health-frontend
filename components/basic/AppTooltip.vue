@@ -1,13 +1,10 @@
 <template>
   <div class="tooltip">
     <div class="tooltip__element">
-
       <slot name="tooltipElement"></slot>
-
       <div class="tooltip__hidden-content">
         <slot name="tooltipText"></slot>
       </div>
-
     </div>
   </div>
 </template>
@@ -37,13 +34,15 @@ export default {
       left: 50%;
       transform: translateX(-50%);
       padding: 10px 20px;
-      background: $white;
-      border: 1px solid $blockBorder;
+      // background: $white;
+      background: $blue;
+      color: $white;
+      // border: 1px solid $blockBorder;
       border-radius: 6px;
       box-shadow: $boxShadow;
       font-size: 14px;
       transition: $tr-02;
-      transition-delay: .2s;
+      // transition-delay: .2s;
       opacity: 0;
       visibility: hidden;
     }
