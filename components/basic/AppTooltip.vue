@@ -8,10 +8,11 @@
       { 'tooltip--alert': alert },
       { 'tooltip--center': textAlignCenter },
     ]"
-    @mouseenter="setPosition($event)"
+    @mouseenter="setPosition()"
   >
     <slot name="tooltipElement"></slot>
     <div
+      ref="tooltipHiddenContent"
       class="tooltip__hidden-content"
       :style="{ width: width }"
     >
@@ -35,17 +36,24 @@ export default {
     textAlignCenter: Boolean,
   },
   methods: {
-    setPosition ($event) {
-      const TooltipParent = $event.target.closest('.tooltip')
-      const TooltipHiddenContent = TooltipParent.querySelector('.tooltip__hidden-content')
+    setPosition () {
+      const TooltipHiddenContent = this.$refs.tooltipHiddenContent
+      const TooltipHiddenContentRect = TooltipHiddenContent.getBoundingClientRect()
 
       if (this.top) {
-        TooltipHiddenContent.style.top = '-150px'
+        
+        TooltipHiddenContent.style.top = `-${TooltipHiddenContentRect.height + 10}px`
+        console.log(TooltipHiddenContentRect.top);
+        if (TooltipHiddenContentRect.top < 0) {
+          TooltipHiddenContent.style.top = 0
+        }
         TooltipHiddenContent.style.left = '50%'
         TooltipHiddenContent.style.transform = 'translateX(-50%)'
       }
-      // console.log(TooltipHiddenContent)
     }
+  },
+  mounted () {
+    this.setPosition()
   }
 }
 </script>
