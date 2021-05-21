@@ -24,15 +24,9 @@ export const state = () => ({
         recipes: [],
         products: []
       },
-      {
-        title: 'Обед',
-        mealTime: '13:00',
-        recipes: [],
-        products: []
-      },
     ]
   },
-  userWeight: [74.8, 74.05, ],
+  userWeight: [74.8, 74.05, 73.6],
 
   selectedMealPart: 0,
   searchRecipesAndProductsModalActive: false,
