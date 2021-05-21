@@ -73,14 +73,14 @@
             <p class="value__number">{{ userWeight[userWeight.length - 1] }}</p>
           </div>
           <p class="element__scale">кг.</p>
-          <app-tooltip>
+          <app-tooltip width="250px" top info textAlignCenter >
             <template v-slot:tooltipElement>
               <i class="ti-info-alt element__action-btn"></i>
             </template>
             <template v-slot:tooltipText>
-              <p style="text-align: center; min-width: 250px">Количество дней до достижений результата: <b style="font-weight: 600">{{ timeToResult }}</b></p>
+              <p>Количество дней до достижений результата: <b>{{ timeToResult }}</b></p>
               <br>
-              <p style="text-align: center; min-width: 250px">Изменить значение текущего веса можно в разделе "Замеры и статистика"</p>
+              <p>Изменить значение текущего веса можно в разделе "Замеры и статистика"</p>
             </template>
           </app-tooltip>
         </div>
