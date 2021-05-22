@@ -73,7 +73,7 @@
             <p class="value__number">{{ userWeight[userWeight.length - 1] }}</p>
           </div>
           <p class="element__scale">кг.</p>
-          <app-tooltip width="250px" top info textAlignCenter >
+          <app-tooltip width="250px" right info textAlignCenter >
             <template v-slot:tooltipElement>
               <i class="ti-info-alt element__action-btn"></i>
             </template>
@@ -109,7 +109,6 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-
 import AppChartCircle from '@/components/basic/AppChartCircle'
 import AppTooltip from '@/components/basic/AppTooltip'
 

@@ -41,12 +41,19 @@ export default {
       const TooltipHiddenContentRect = TooltipHiddenContent.getBoundingClientRect()
 
       if (this.top) {
-        
         TooltipHiddenContent.style.top = `-${TooltipHiddenContentRect.height + 10}px`
-        console.log(TooltipHiddenContentRect.top);
-        if (TooltipHiddenContentRect.top < 0) {
-          TooltipHiddenContent.style.top = 0
-        }
+        TooltipHiddenContent.style.left = '50%'
+        TooltipHiddenContent.style.transform = 'translateX(-50%)'
+      }
+
+      if (this.right) {
+        TooltipHiddenContent.style.top = 'calc(50% - 5px)'
+        TooltipHiddenContent.style.left = 'calc(100% + 10px)'
+        TooltipHiddenContent.style.transform = 'translateY(-50%)'
+      }
+
+      if (this.bottom) {
+        TooltipHiddenContent.style.top = 'calc(100% - 10px)'
         TooltipHiddenContent.style.left = '50%'
         TooltipHiddenContent.style.transform = 'translateX(-50%)'
       }

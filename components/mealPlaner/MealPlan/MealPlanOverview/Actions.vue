@@ -1,37 +1,70 @@
 <template>
   <div class="actions">
-    <div
-      class="action-btn"
-      title="Сохранить рацион"
-      @click='saveMealPlanerInfo()'
-    >
-      <i class="ti-save"></i>
-    </div>
+    <app-tooltip width="180px" right info textAlignCenter >
+      <template v-slot:tooltipElement>
+        <div class="action-btn" @click="saveMealPlanerInfo()">
+          <i class="ti-save"></i>
+        </div>
+      </template>
+      <template v-slot:tooltipText>
+        <p>Сохранить рацион</p>
+      </template>
+    </app-tooltip>
 
-    <nuxt-link class="action-btn" to="" title="Найти похожие">
-      <i class="ti-search"></i>
-    </nuxt-link>
-    <nuxt-link class="action-btn" to="" title="Поделиться">
-      <i class="ti-share"></i>
-    </nuxt-link>
+    <app-tooltip width="160px" right info textAlignCenter >
+      <template v-slot:tooltipElement>
+        <div class="action-btn">
+          <i class="ti-search"></i>
+        </div>
+      </template>
+      <template v-slot:tooltipText>
+        <p>Поиск рациона</p>
+      </template>
+    </app-tooltip>
 
-    <div
-      class="action-btn"
-      title="Сохранить рацион как..."
-    >
-      <i class="ti-bookmark-alt"></i>
-    </div>
+    <app-tooltip width="140px" right info textAlignCenter >
+      <template v-slot:tooltipElement>
+        <div class="action-btn">
+          <i class="ti-share"></i>
+        </div>
+      </template>
+      <template v-slot:tooltipText>
+        <p>Поделиться</p>
+      </template>
+    </app-tooltip>
 
-    <nuxt-link class="action-btn" to="" title="Удалить данные">
-      <i class="ti-trash"></i>
-    </nuxt-link>
+    <app-tooltip width="220px" right info textAlignCenter >
+      <template v-slot:tooltipElement>
+        <div class="action-btn">
+          <i class="ti-bookmark-alt"></i>
+        </div>
+      </template>
+      <template v-slot:tooltipText>
+        <p>Сохранить рацион как...</p>
+      </template>
+    </app-tooltip>
+
+    <app-tooltip class="mt-auto" width="170px" right alert textAlignCenter >
+      <template v-slot:tooltipElement>
+        <div class="action-btn action-btn--remove">
+          <i class="ti-trash"></i>
+        </div>
+      </template>
+      <template v-slot:tooltipText>
+        <p>Удалить рацион</p>
+      </template>
+    </app-tooltip>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import AppTooltip from '@/components/basic/AppTooltip'
 
 export default {
+  components: {
+    AppTooltip
+  },
   methods: {
     ...mapActions({
       saveMealPlanerInfo: 'mealPlaner/saveMealPlanerInfo'
@@ -55,12 +88,15 @@ export default {
     transition: $tr-02;
     cursor: pointer;
   }
-  .action-btn:last-child {
+  .action-btn:hover {
+    color: $green;
+  }
+  .action-btn--remove {
     margin-top: auto;
     margin-bottom: 0;
   }
-  .action-btn:hover {
-    color: $green;
+  .action-btn--remove:hover {
+    color: $red;
   }
 }
 
