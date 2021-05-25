@@ -3,23 +3,23 @@
     <p class="register__form-title">Регистрация</p>
     <i class="register__form-icon ti-user"></i>
 
-    <form class="register__form">
+    <form class="register__form" @submit.prevent>
       <p class="form__input-title">E-mail</p>
       <app-input-text
         :value="email"
-        @valueChanged="email = $event"
+        @input="email = $event"
       />
 
-      <p class="form__input-title">E-mail</p>
+      <p class="form__input-title">Телефон</p>
       <app-input-text
         :value="phone"
-        @valueChanged="phone = $event"
+        @input="phone = $event"
       />
 
       <p class="form__input-title">Password</p>
       <app-input-text
         :value="password"
-        @valueChanged="password = $event"
+        @input="password = $event"
       />
     </form>
 
@@ -29,7 +29,7 @@
       center
       mt20
       mb20
-      @click.native.prevent="createUser()"
+      @click.native="createUser()"
     >Создать аккаунт</app-button>
 
     <p class="register__question">

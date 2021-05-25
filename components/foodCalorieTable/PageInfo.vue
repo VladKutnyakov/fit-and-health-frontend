@@ -23,7 +23,7 @@
               <p class="field__title">Название</p>
               <app-input-text
                 :value="newProduct.title"
-                @valueChanged="setNewProductParams({field: 'title', value: $event})"
+                @input="setNewProductParams({field: 'title', value: $event})"
               />
             </div>
 
@@ -55,7 +55,7 @@
               <p class="field__title">Белки</p>
               <app-input-text
                 :value="newProduct.protein"
-                @valueChanged="setNewProductParams({field: 'protein', value: $event})"
+                @input="setNewProductParams({field: 'protein', value: $event})"
               />
             </div>
 
@@ -63,7 +63,7 @@
               <p class="field__title">Жиры</p>
               <app-input-text
                 :value="newProduct.fats"
-                @valueChanged="setNewProductParams({field: 'fats', value: $event})"
+                @input="setNewProductParams({field: 'fats', value: $event})"
               />
             </div>
 
@@ -71,7 +71,7 @@
               <p class="field__title">Углеводы</p>
               <app-input-text
                 :value="newProduct.carb"
-                @valueChanged="setNewProductParams({field: 'carb', value: $event})"
+                @input="setNewProductParams({field: 'carb', value: $event})"
               />
             </div>
 
@@ -79,7 +79,7 @@
               <p class="field__title">Калорийность</p>
               <app-input-text
                 :value="newProduct.kkal"
-                @valueChanged="setNewProductParams({field: 'kkal', value: $event})"
+                @input="setNewProductParams({field: 'kkal', value: $event})"
               />
             </div>
           </div>

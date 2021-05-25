@@ -26,7 +26,7 @@ export const state = () => ({
       },
     ]
   },
-  userWeight: [74.8, 74.05, 73.6, 73.4],
+  userWeight: [74.8, 74.05, 73.6, 73.4, 73.4],
 
   selectedMealPart: 0,
   searchRecipesAndProductsModalActive: false,
@@ -240,8 +240,6 @@ export const actions = {
   async fetchMealPlanerInfo ({ commit }, query ) {
     try {
       const response = await this.$axios.$get(`${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
-
-      // console.log(response)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
