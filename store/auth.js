@@ -15,7 +15,7 @@ export const mutations = {
     state.token = token
 
     // добавляем токен к запросам axios
-    this.$axios.setToken(fetchedToken, 'Bearer ')
+    this.$axios.setToken(token, 'Bearer ')
 
     // сохраняем cookie на 30 дней (пользователь сможет обновить протухший токен в течении 30 дней)
     Cookies.set('Authorization', token, { expires: 30 })

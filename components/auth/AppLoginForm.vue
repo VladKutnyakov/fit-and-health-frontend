@@ -7,19 +7,19 @@
       <p class="form__input-title">E-mail</p>
       <app-input-text
         :value="email"
-        @valueChanged="email = $event"
+        @input="email = $event"
       />
 
       <!-- <p class="form__input-title">Телефон</p>
       <app-input-text
         :value="phone"
-        @valueChanged="email = $event"
+        @input="email = $event"
       /> -->
 
       <p class="form__input-title">Пароль</p>
       <app-input-text
         :value="password"
-        @valueChanged="password = $event"
+        @input="password = $event"
       />
     </form>
 
