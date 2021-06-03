@@ -13,12 +13,10 @@ export const getters = {
 export const mutations = {
   setToken (state, token) {
     state.token = token
-
     // добавляем токен к запросам axios
-    this.$axios.setToken(token, 'Bearer ')
-
+    this.$axios.setToken(token, 'Bearer')
     // сохраняем cookie на 30 дней (пользователь сможет обновить протухший токен в течении 30 дней)
-    Cookies.set('Authorization', token, { expires: 30 })
+    Cookies.set('authorization', token, { expires: 30 })
   },
   clearToken (state) {
     state.token = null
@@ -31,6 +29,7 @@ export const actions = {
       commit('clearToken')
 
       const fetchedToken = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/login/`, formData)
+      console.log(fetchedToken)
 
       // сохроняем в state токен полученный из action login
       commit('setToken', fetchedToken)
