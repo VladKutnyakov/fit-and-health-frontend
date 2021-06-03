@@ -46,7 +46,7 @@
 
     <app-tooltip class="mt-auto" width="170px" right alert textAlignCenter >
       <template v-slot:tooltipElement>
-        <div class="action-btn action-btn--remove">
+        <div class="action-btn action-btn--remove" @click="removeMealPlanerInfo()">
           <i class="ti-trash"></i>
         </div>
       </template>
@@ -67,7 +67,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      saveMealPlanerInfo: 'mealPlaner/saveMealPlanerInfo'
+      saveMealPlanerInfo: 'mealPlaner/saveMealPlanerInfo',
+      removeMealPlanerInfo: 'mealPlaner/removeMealPlanerInfo',
     })
   }
 }

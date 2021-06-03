@@ -2,7 +2,7 @@ const BASE_URL = process.env.BASE_URL
 
 export const state = () => ({
   mealPlanerInfo: {
-    id: 12,
+    id: null,
     userId: undefined,
     date: '',
     targetProtein: 1,
@@ -248,24 +248,120 @@ export const actions = {
       if (response.data.mealPlanerInfo !== false) {
         commit('setMealPlanerInfo', response.data.mealPlanerInfo)
       }
-    } catch (e) {
-      console.log(e)
+    } catch (error) {
+      console.log(error)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных для дневника питания. Обновите страницу или зайдите позже.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
-  async saveMealPlanerInfo ({ state }) {
+  async saveMealPlanerInfo ({ state, commit }) {
     try {
-      // console.log(`${BASE_URL}/api/meal-planer/save-meal-planer-info`)
       const response = await this.$axios.$post(`${BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
       }
 
-      if (response.data.mealPlanerInfo !== false) {
-        commit('setMealPlanerInfo', response.data.mealPlanerInfo)
+      console.log(response.data.mealPlanerInfo)
+      commit('setMealPlanerInfo', response.data.mealPlanerInfo)
+
+      const notice = {
+        id: Date.now(),
+        type: 'success',
+        message: 'Данные успешно сохранены.',
+        timeToShow: 5000,
+        active: true
       }
-    } catch (e) {
-      console.log(e)
+      this.commit('notifications/addNewNotice', notice)
+
+    } catch (error) {
+      console.log(error)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при сохранении. Попробуйте еще раз или обратитесь в службу поддержки.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  async removeMealPlanerInfo ({ state, commit }) {
+    try {
+      const response = await this.$axios.$post(`${BASE_URL}/api/meal-planer/remove-meal-planer-info`, { mealPlanerInfoID: state.mealPlanerInfo.id })
+
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
+      }
+
+      if (response.data.removed) {
+        const emptyMealPlanerInfo = {
+          id: null,
+          userId: undefined,
+          date: '',
+          targetProtein: 1,
+          targetFats: 0.5,
+          targetCarb: 2,
+          targetWeight: 70,
+          title: '',
+          description: '',
+          marks: [],
+          social: {
+            like: null,
+            dislike: null,
+            repost: null
+          },
+          mealParts: [
+            {
+              title: 'Затрак',
+              mealTime: '07:00',
+              recipes: [],
+              products: []
+            },
+          ]
+        }
+
+        commit('setMealPlanerInfo', emptyMealPlanerInfo)
+
+        const notice = {
+          id: Date.now(),
+          type: 'success',
+          message: 'Данные успешно удалены.',
+          timeToShow: 5000,
+          active: true
+        }
+        this.commit('notifications/addNewNotice', notice)
+      }
+    } catch (error) {
+      console.log(error)
+
+      if (error.response.status === 400) {
+        const notice = {
+          id: Date.now(),
+          type: 'warning',
+          message: error.response.data.message,
+          timeToShow: 5000,
+          active: true
+        }
+        this.commit('notifications/addNewNotice', notice)
+      } else {
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: 'Ошибка при удалении. Попробуйте еще раз или обратитесь в службу поддержки.',
+          timeToShow: 5000,
+          active: true
+        }
+        this.commit('notifications/addNewNotice', notice)
+      }
     }
   },
 
@@ -278,8 +374,17 @@ export const actions = {
       }
 
       commit('setProducts', response.data)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных для списка продуктов. Обновите страницу или зайдите позже.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   }
 }
