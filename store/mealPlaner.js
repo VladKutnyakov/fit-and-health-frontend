@@ -269,7 +269,6 @@ export const actions = {
         this.commit('auth/setToken', response.updatedToken)
       }
 
-      console.log(response.data.mealPlanerInfo)
       commit('setMealPlanerInfo', response.data.mealPlanerInfo)
 
       const notice = {
@@ -313,20 +312,9 @@ export const actions = {
           targetWeight: 70,
           title: '',
           description: '',
-          marks: [],
-          social: {
-            like: null,
-            dislike: null,
-            repost: null
-          },
-          mealParts: [
-            {
-              title: 'Затрак',
-              mealTime: '07:00',
-              recipes: [],
-              products: []
-            },
-          ]
+          marks: "[]",
+          social: '{"like":null,"dislike":null,"repost":null}',
+          mealParts: '[{"title":"Затрак","mealTime":"07:00","recipes":[],"products":[]},{"title":"Обед","mealTime":"13:00","recipes":[],"products":[]}]'
         }
 
         commit('setMealPlanerInfo', emptyMealPlanerInfo)
@@ -343,7 +331,7 @@ export const actions = {
     } catch (error) {
       console.log(error)
 
-      if (error.response.status === 400) {
+      if (error.response && error.response.status === 400) {
         const notice = {
           id: Date.now(),
           type: 'warning',
