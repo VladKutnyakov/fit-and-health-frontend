@@ -12,11 +12,9 @@ export const state = () => ({
     title: '',
     description: '',
     marks: [],
-    social: {
-      like: null,
-      dislike: null,
-      repost: null
-    },
+    like: null,
+    dislike: null,
+    repost: null,
     mealParts: [
       {
         title: 'Затрак',
@@ -119,10 +117,6 @@ export const getters = {
 export const mutations = {
   setMealPlanerInfo (state, mealPlanerInfo) {
     state.mealPlanerInfo = mealPlanerInfo
-
-    state.mealPlanerInfo.marks = JSON.parse(mealPlanerInfo.marks)
-    state.mealPlanerInfo.social = JSON.parse(mealPlanerInfo.social)
-    state.mealPlanerInfo.mealParts = JSON.parse(mealPlanerInfo.mealParts)
   },
   setProducts (state, products) {
     state.products = products
@@ -240,6 +234,8 @@ export const actions = {
   async fetchMealPlanerInfo ({ commit }, query ) {
     try {
       const response = await this.$axios.$get(`${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
+
+      console.log(response)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
