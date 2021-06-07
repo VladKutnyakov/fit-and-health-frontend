@@ -235,7 +235,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
 
-      console.log(response.data.mealPlanerInfo.mealParts[0].products)
+      // console.log(response)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
