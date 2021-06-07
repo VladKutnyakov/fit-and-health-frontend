@@ -70,7 +70,7 @@
         <div class="target__element">
           <p class="element__text">Текущий вес:</p>
           <div class="element__value">
-            <p class="value__number">{{ userWeight[userWeight.length - 1] }}</p>
+            <p class="value__number">{{ currentWeight[currentWeight.length - 1] }}</p>
           </div>
           <p class="element__scale">кг.</p>
           <app-tooltip width="250px" right info textAlignCenter >
@@ -119,7 +119,7 @@ export default {
   },
   data () {
     return {
-      // userWeight: [75.1, 74.2, 74.7, 74.05, 73.9],
+      // currentWeight: [75.1, 74.2, 74.7, 74.05, 73.9],
       proteinIsEdit: false,
       fatsIsEdit: false,
       carbIsEdit: false,
@@ -128,7 +128,7 @@ export default {
   },
   computed: {
     ...mapState({
-      userWeight: state => state.mealPlaner.userWeight,
+      currentWeight: state => state.mealPlaner.mealPlanerInfo.currentWeight,
       targetProtein: state => state.mealPlaner.mealPlanerInfo.targetProtein,
       targetFats: state => state.mealPlaner.mealPlanerInfo.targetFats,
       targetCarb: state => state.mealPlaner.mealPlanerInfo.targetCarb,
@@ -138,10 +138,10 @@ export default {
       getDayTargetKkal: 'mealPlaner/getDayTargetKkal',
     }),
     timeToResult () {
-      // Минимальное и максимальное изменение веса за период в массиве userWeight
+      // Минимальное и максимальное изменение веса за период в массиве currentWeight
       const weightChanges = []
-      for (let i = 0; i < this.userWeight.length - 1; i++) {
-        weightChanges.push(Math.round((this.userWeight[i] - this.userWeight[i + 1]) * 100) / 100)
+      for (let i = 0; i < this.currentWeight.length - 1; i++) {
+        weightChanges.push(Math.round((this.currentWeight[i] - this.currentWeight[i + 1]) * 100) / 100)
       }
       // console.log(weightChanges)
       const maxWeightChange = Math.max.apply(null, weightChanges)
@@ -149,10 +149,10 @@ export default {
 
       // console.log(maxWeightChange, minWeightChange)
 
-      // Среднее изменение веса за период в массиве userWeight
+      // Среднее изменение веса за период в массиве currentWeight
       const middleWeightChange = minWeightChange + ((maxWeightChange - minWeightChange) / 2)
 
-      const resultAfterDays = (this.userWeight[this.userWeight.length - 1] - this.targetWeight) / middleWeightChange
+      const resultAfterDays = (this.currentWeight[this.currentWeight.length - 1] - this.targetWeight) / middleWeightChange
 
       return Math.round(resultAfterDays)
     }

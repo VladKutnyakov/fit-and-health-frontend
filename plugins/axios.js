@@ -1,4 +1,4 @@
-export default function ({$axios, redirect, store}) {
+export default function ({ $axios, error: nuxtError, redirect, store }) {
 
   // Добавление токена в headers (добавляется в commit setToken модуля store auth)
   $axios.interceptors.request.use(request => {
@@ -12,14 +12,11 @@ export default function ({$axios, redirect, store}) {
 
   // Обработка ошибок, приходящих с сервера (для 401 и 500)
   // $axios.onError(error => {
-  //   console.log('Плагин axios', error.responce)
-  //   if (error.responce.status === 401) {
-  //     console.error('Server error 401')
-  //     // redirect('/auth')
-  //     // store.dispatch('auth/logout')
-  //   }
-  //   if (error.responce.status === 500) {
-  //     console.error('Server error 500')
+  //   console.log(error.response.status);
+  //   if(error.response.status === 401) {
+  //     store.dispatch('auth/logout')
+  //     redirect('/auth')
   //   }
   // })
+
 }

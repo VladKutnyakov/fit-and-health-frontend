@@ -9,6 +9,7 @@ export const state = () => ({
     targetFats: 0.5,
     targetCarb: 2,
     targetWeight: 70,
+    currentWeight: [],
     title: '',
     description: '',
     marks: [],
@@ -24,7 +25,6 @@ export const state = () => ({
       },
     ]
   },
-  userWeight: [74.8, 74.05, 73.6, 73.4, 73.4],
 
   selectedMealPart: 0,
   searchRecipesAndProductsModalActive: false,
@@ -235,7 +235,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
 
-      console.log(response)
+      console.log(response.data.mealPlanerInfo.mealParts[0].products)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
