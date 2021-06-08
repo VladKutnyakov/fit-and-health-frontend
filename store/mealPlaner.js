@@ -3,19 +3,19 @@ const BASE_URL = process.env.BASE_URL
 export const state = () => ({
   mealPlanerInfo: {
     id: null,
-    userId: undefined,
+    userId: null,
     date: '',
     targetProtein: 1,
     targetFats: 0.5,
     targetCarb: 2,
-    targetWeight: 70,
-    currentWeight: [],
+    targetWeight: null,
+    currentWeight: null,
     title: '',
     description: '',
     marks: [],
     like: null,
     dislike: null,
-    repost: null,
+    share: null,
     mealParts: [
       {
         title: 'Затрак',
@@ -126,11 +126,8 @@ export const mutations = {
       element.added = false
     })
   },
-  setTargetNutrient (state, updatedNutrient) {
-    state.mealPlanerInfo[updatedNutrient.field] = updatedNutrient.value
-  },
-  setTargetWeight (state, value) {
-    state.mealPlanerInfo.targetWeight = value
+  setNutrientsSettingsParam (state, ctx) {
+    state.mealPlanerInfo[ctx.field] = ctx.newValue
   },
   setSearchRecipesAndProductsModalActive (state) {
     state.searchRecipesAndProductsModalActive = !state.searchRecipesAndProductsModalActive
@@ -227,7 +224,28 @@ export const mutations = {
         element.added = false
       }
     })
-  }
+  },
+
+  // Рассчет времени, необходимого для достижения результата (набор массы или похудение)
+  // timeToResult () {
+  //   // Минимальное и максимальное изменение веса за период в массиве currentWeight
+  //   const weightChanges = []
+  //   for (let i = 0; i < this.currentWeight.length - 1; i++) {
+  //     weightChanges.push(Math.round((this.currentWeight[i] - this.currentWeight[i + 1]) * 100) / 100)
+  //   }
+  //   // console.log(weightChanges)
+  //   const maxWeightChange = Math.max.apply(null, weightChanges)
+  //   const minWeightChange = Math.min.apply(null, weightChanges)
+
+  //   // console.log(maxWeightChange, minWeightChange)
+
+  //   // Среднее изменение веса за период в массиве currentWeight
+  //   const middleWeightChange = minWeightChange + ((maxWeightChange - minWeightChange) / 2)
+
+  //   const resultAfterDays = (this.currentWeight[this.currentWeight.length - 1] - this.targetWeight) / middleWeightChange
+
+  //   return Math.round(resultAfterDays)
+  // }
 }
 
 export const actions = {

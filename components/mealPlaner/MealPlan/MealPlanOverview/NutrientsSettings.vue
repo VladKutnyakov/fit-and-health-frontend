@@ -13,54 +13,42 @@
       <div class="nutrients__target">
         <div class="target__element">
           <p class="element__text">Белки:</p>
-          <div class="element__value">
-            <p class="value__number">{{ targetProtein }}</p>
-            <input
-              ref="proteinInput"
-              v-show="proteinIsEdit"
-              class="value__input"
-              type="text"
-              :value="targetProtein"
-              @keyup.enter="proteinEdit()"
-            >
-          </div>
+          <app-input-text
+            class="element__value"
+            :value="targetProtein"
+            small
+            textRight
+            @focus.native="selectInputValue($event)"
+            @keypress.enter.native="blurInputValue($event)"
+            @input="setNutrientsSettingsParam({field: 'targetProtein', newValue: $event})"
+          />
           <p class="element__scale">гр.</p>
-          <i v-if="!proteinIsEdit" class="ti-pencil element__action-btn" @click="proteinEdit()"></i>
-          <i v-if="proteinIsEdit" class="ti-save element__action-btn" @click="proteinEdit()"></i>
         </div>
         <div class="target__element">
           <p class="element__text">Жиры:</p>
-          <div class="element__value">
-            <p class="value__number">{{ targetFats }}</p>
-            <input
-              ref="fatsInput"
-              v-show="fatsIsEdit"
-              class="value__input"
-              type="text"
-              :value="targetFats"
-              @keyup.enter="fatsEdit()"
-            >
-          </div>
+          <app-input-text
+            class="element__value"
+            :value="targetFats"
+            small
+            textRight
+            @focus.native="selectInputValue($event)"
+            @keypress.enter.native="blurInputValue($event)"
+            @input="setNutrientsSettingsParam({field: 'targetFats', newValue: $event})"
+          />
           <p class="element__scale">гр.</p>
-          <i v-if="!fatsIsEdit" class="ti-pencil element__action-btn" @click="fatsEdit()"></i>
-          <i v-if="fatsIsEdit" class="ti-save element__action-btn" @click="fatsEdit()"></i>
         </div>
         <div class="target__element">
           <p class="element__text">Углеводы:</p>
-          <div class="element__value">
-            <p class="value__number">{{ targetCarb }}</p>
-            <input
-              ref="carbInput"
-              v-show="carbIsEdit"
-              class="value__input"
-              type="text"
-              :value="targetCarb"
-              @keyup.enter="carbEdit()"
-            >
-          </div>
+          <app-input-text
+            class="element__value"
+            :value="targetCarb"
+            small
+            textRight
+            @focus.native="selectInputValue($event)"
+            @keypress.enter.native="blurInputValue($event)"
+            @input="setNutrientsSettingsParam({field: 'targetCarb', newValue: $event})"
+          />
           <p class="element__scale">гр.</p>
-          <i v-if="!carbIsEdit" class="ti-pencil element__action-btn" @click="carbEdit()"></i>
-          <i v-if="carbIsEdit" class="ti-save element__action-btn" @click="carbEdit()"></i>
         </div>
       </div>
     </div>
@@ -69,37 +57,29 @@
       <div class="weight__target">
         <div class="target__element">
           <p class="element__text">Текущий вес:</p>
-          <div class="element__value">
-            <p class="value__number">{{ currentWeight[currentWeight.length - 1] }}</p>
-          </div>
+          <app-input-text
+            class="element__value"
+            :value="currentWeight"
+            small
+            textRight
+            @focus.native="selectInputValue($event)"
+            @keypress.enter.native="blurInputValue($event)"
+            @input="setNutrientsSettingsParam({field: 'currentWeight', newValue: $event})"
+          />
           <p class="element__scale">кг.</p>
-          <app-tooltip width="250px" right info textAlignCenter >
-            <template v-slot:tooltipElement>
-              <i class="ti-info-alt element__action-btn"></i>
-            </template>
-            <template v-slot:tooltipText>
-              <p>Количество дней до достижений результата: <b>{{ timeToResult }}</b></p>
-              <br>
-              <p>Изменить значение текущего веса можно в разделе "Замеры и статистика"</p>
-            </template>
-          </app-tooltip>
         </div>
         <div class="target__element">
           <p class="element__text">Желаемый вес:</p>
-          <div class="element__value">
-            <p class="value__number">{{ targetWeight }}</p>
-            <input
-              ref="weightInput"
-              v-show="weightIsEdit"
-              class="value__input"
-              type="text"
-              :value="targetWeight"
-              @keyup.enter="weightEdit()"
-            >
-          </div>
+          <app-input-text
+            class="element__value"
+            :value="targetWeight"
+            small
+            textRight
+            @click.native="selectInputValue($event)"
+            @keypress.enter.native="blurInputValue($event)"
+            @input="setNutrientsSettingsParam({field: 'targetWeight', newValue: $event})"
+          />
           <p class="element__scale">кг.</p>
-          <i v-if="!weightIsEdit" class="ti-pencil element__action-btn" @click="weightEdit()"></i>
-          <i v-if="weightIsEdit" class="ti-save element__action-btn" @click="weightEdit()"></i>
         </div>
       </div>
     </div>
@@ -108,18 +88,19 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import AppChartCircle from '@/components/basic/AppChartCircle'
 import AppTooltip from '@/components/basic/AppTooltip'
+import AppInputText from '@/components/basic/AppInputText.vue'
 
 export default {
   components: {
     AppChartCircle,
+    AppInputText,
     AppTooltip
   },
   data () {
     return {
-      // currentWeight: [75.1, 74.2, 74.7, 74.05, 73.9],
       proteinIsEdit: false,
       fatsIsEdit: false,
       carbIsEdit: false,
@@ -137,74 +118,20 @@ export default {
     ...mapGetters({
       getDayTargetKkal: 'mealPlaner/getDayTargetKkal',
     }),
-    timeToResult () {
-      // Минимальное и максимальное изменение веса за период в массиве currentWeight
-      const weightChanges = []
-      for (let i = 0; i < this.currentWeight.length - 1; i++) {
-        weightChanges.push(Math.round((this.currentWeight[i] - this.currentWeight[i + 1]) * 100) / 100)
-      }
-      // console.log(weightChanges)
-      const maxWeightChange = Math.max.apply(null, weightChanges)
-      const minWeightChange = Math.min.apply(null, weightChanges)
-
-      // console.log(maxWeightChange, minWeightChange)
-
-      // Среднее изменение веса за период в массиве currentWeight
-      const middleWeightChange = minWeightChange + ((maxWeightChange - minWeightChange) / 2)
-
-      const resultAfterDays = (this.currentWeight[this.currentWeight.length - 1] - this.targetWeight) / middleWeightChange
-
-      return Math.round(resultAfterDays)
-    }
   },
   methods: {
-    proteinEdit () {
-      if (!this.proteinIsEdit) {
-        this.proteinIsEdit = true
-        this.$nextTick(() => {
-          this.$refs.proteinInput.focus()
-          this.$refs.proteinInput.select()
-        })
-      } else {
-        this.proteinIsEdit = false
-        this.$store.commit('mealPlaner/setTargetNutrient', {field: 'targetProtein', value: this.$refs.proteinInput.value})
-      }
+    ...mapMutations({
+      setNutrientsSettingsParam: 'mealPlaner/setNutrientsSettingsParam'
+    }),
+    selectInputValue ($event) {
+      this.$nextTick(() => {
+        $event.target.select()
+      })
     },
-    fatsEdit () {
-      if (!this.fatsIsEdit) {
-        this.fatsIsEdit = true
-        this.$nextTick(() => {
-          this.$refs.fatsInput.focus()
-          this.$refs.fatsInput.select()
-        })
-      } else {
-        this.fatsIsEdit = false
-        this.$store.commit('mealPlaner/setTargetNutrient', {field: 'targetFats', value: this.$refs.fatsInput.value})
-      }
-    },
-    carbEdit () {
-      if (!this.carbIsEdit) {
-        this.carbIsEdit = true
-        this.$nextTick(() => {
-          this.$refs.carbInput.focus()
-          this.$refs.carbInput.select()
-        })
-      } else {
-        this.carbIsEdit = false
-        this.$store.commit('mealPlaner/setTargetNutrient', {field: 'targetCarb', value: this.$refs.carbInput.value})
-      }
-    },
-    weightEdit () {
-      if (!this.weightIsEdit) {
-        this.weightIsEdit = true
-        this.$nextTick(() => {
-          this.$refs.weightInput.focus()
-          this.$refs.weightInput.select()
-        })
-      } else {
-        this.weightIsEdit = false
-        this.$store.commit('mealPlaner/setTargetWeight', this.$refs.weightInput.value)
-      }
+    blurInputValue ($event) {
+      this.$nextTick(() => {
+        $event.target.blur()
+      })
     }
   }
 }
@@ -252,49 +179,22 @@ export default {
     border-top: 1px dashed $blockBorder;
     .nutrients__target {
       flex: 1 1 auto;
-      padding: 0 10px;
+      padding: 0 5px;
       .target__element {
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         .element__text {
           font-weight: 500;
         }
         .element__value {
-          position: relative;
           margin-left: auto;
-          .value__number {
-            margin-right: 5px;
-            font-weight: 600;
-          }
-          .value__input {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 0px 5px;
-            width: 70px;
-            background: $white;
-            outline: none;
-            border: none;
-            border-bottom: 1px solid $blockBorder;
-            text-align: right;
-            color: $green;
-            font-family: $fontMontserrat;
-            font-weight: 600;
-          }
-          .value__input::selection {
-            color: $white;
-            background: $green;
-          }
+          max-width: 70px;
         }
         .element__scale {
-          margin-top: 2px;
+          margin-left: 5px;
           font-size: 12px;
           font-weight: 600;
-        }
-        .element__action-btn {
-          margin-left: 10px;
-          cursor: pointer;
         }
       }
       .target__element:last-child {
@@ -309,49 +209,22 @@ export default {
     border-top: 1px dashed $blockBorder;
     .weight__target {
       flex: 1 1 auto;
-      padding: 0 10px;
+      padding: 0 5px;
       .target__element {
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
         .element__text {
           font-weight: 500;
         }
         .element__value {
-          position: relative;
           margin-left: auto;
-          .value__number {
-            margin-right: 5px;
-            font-weight: 600;
-          }
-          .value__input {
-            position: absolute;
-            top: 0;
-            right: 0;
-            padding: 0px 5px;
-            width: 70px;
-            background: $white;
-            outline: none;
-            border: none;
-            border-bottom: 1px solid $blockBorder;
-            text-align: right;
-            color: $green;
-            font-family: $fontMontserrat;
-            font-weight: 600;
-          }
-          .value__input::selection {
-            color: $white;
-            background: $green;
-          }
+          max-width: 70px;
         }
         .element__scale {
-          margin-top: 2px;
+          margin-left: 5px;
           font-size: 12px;
           font-weight: 600;
-        }
-        .element__action-btn {
-          margin-left: 10px;
-          cursor: pointer;
         }
       }
       .target__element:last-child {
