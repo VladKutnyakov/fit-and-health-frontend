@@ -1,27 +1,29 @@
-import Cookies from 'js-cookie'
-
 export const state = () => ({})
+
 export const getters = {}
+
 export const mutations = {}
+
 export const actions = {
   // этот action вызывается на стороне сервера при запуске SSR
-  nuxtServerInit ({dispatch}) {
-    // console.log('nuxt server init')
-    // выполняем autoLogin, если token хранится в cookies
-    let cookieToken = undefined
-
-    if (process.browser) {
-      cookieToken = Cookies.get('token')
-    } else {
+  nuxtServerInit () {
+    const getCookie = (name) => {
       const headerCookie = this.app.context.req.headers.cookie
 
+      console.log(headerCookie)
+
       if (headerCookie) {
-        cookieToken = headerCookie.split('=')[1]
+        let matches = headerCookie.match(new RegExp(
+          "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+        ))
+
+        return matches ? decodeURIComponent(matches[1]) : undefined
       }
+
+      return null
     }
 
-    if (cookieToken) {
-      this.commit('auth/setToken', cookieToken)
-    }
+    // Устанавливаем token, который пришел с запросом из headers cookie
+    this.commit('auth/setToken', getCookie('authorization'))
   }
 }

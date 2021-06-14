@@ -250,29 +250,46 @@ export const mutations = {
 
 export const actions = {
   async fetchMealPlanerInfo ({ commit }, query ) {
+    console.log('token', this.state.auth.token)
+
     try {
+      this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
+
       const response = await this.$axios.$get(`${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
 
       // console.log(response)
 
       if (response.updatedToken) {
+        // console.log('token', this.state.auth.token)
+        console.log(response.updatedToken)
         this.commit('auth/setToken', response.updatedToken)
+        // console.log('updated token', this.state.auth.token)
       }
 
       if (response.data.mealPlanerInfo !== false) {
         commit('setMealPlanerInfo', response.data.mealPlanerInfo)
       }
+
+      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     } catch (error) {
       console.log(error)
 
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: 'Ошибка при загрузке данных для дневника питания. Обновите страницу или зайдите позже.',
-        timeToShow: 5000,
-        active: true
-      }
-      this.commit('notifications/addNewNotice', notice)
+      // if (error.response.status === 400) {
+      //   // console.log(error.response.config.headers.Authorization);
+      //   // console.log(this.state.auth.token)
+      //   if (this.state.auth.token === error.response.config.headers.Authorization) {
+      //     const notice = {
+      //       id: Date.now(),
+      //       type: 'alert',
+      //       message: 'Ошибка при загрузке данных для дневника питания. Обновите страницу или зайдите позже.',
+      //       timeToShow: 5000,
+      //       active: true
+      //     }
+      //     this.commit('notifications/addNewNotice', notice)
+      //   } else {
+      //     console.log('Обновить данные об авторизации и повторить запрос')
+      //   }
+      // }
     }
   },
   async saveMealPlanerInfo ({ state, commit }) {
