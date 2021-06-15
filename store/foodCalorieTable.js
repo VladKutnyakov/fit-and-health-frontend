@@ -240,6 +240,8 @@ export const mutations = {
 export const actions = {
   async getAllProducts ({ commit }) {
     try {
+      this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
+
       const response = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
 
       if (response.updatedToken) {
@@ -247,8 +249,12 @@ export const actions = {
       }
 
       commit('setProducts', response.data)
-    } catch (err) {
-      console.log(err)
+
+      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
+    } catch (error) {
+      console.log(error)
+
+      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     }
   },
   async saveProduct ({ state, commit }) {
@@ -260,8 +266,8 @@ export const actions = {
       }
 
       commit('addNewProduct', response.data)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   },
   async removeProduct ({ commit }, product) {
@@ -284,8 +290,8 @@ export const actions = {
         }
         this.commit('notifications/addNewNotice', notice)
       }
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   },
   async changeFavoriteParam ({ commit }, productId) {
@@ -297,8 +303,8 @@ export const actions = {
       }
 
       commit('updateFavoriteProduct', response.data)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   }
 }
