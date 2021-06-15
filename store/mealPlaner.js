@@ -250,8 +250,6 @@ export const mutations = {
 
 export const actions = {
   async fetchMealPlanerInfo ({ commit }, query ) {
-    console.log('token', this.state.auth.token)
-
     try {
       this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
 
@@ -260,10 +258,7 @@ export const actions = {
       // console.log(response)
 
       if (response.updatedToken) {
-        // console.log('token', this.state.auth.token)
-        console.log(response.updatedToken)
         this.commit('auth/setToken', response.updatedToken)
-        // console.log('updated token', this.state.auth.token)
       }
 
       if (response.data.mealPlanerInfo !== false) {
@@ -274,22 +269,18 @@ export const actions = {
     } catch (error) {
       console.log(error)
 
-      // if (error.response.status === 400) {
-      //   // console.log(error.response.config.headers.Authorization);
-      //   // console.log(this.state.auth.token)
-      //   if (this.state.auth.token === error.response.config.headers.Authorization) {
-      //     const notice = {
-      //       id: Date.now(),
-      //       type: 'alert',
-      //       message: 'Ошибка при загрузке данных для дневника питания. Обновите страницу или зайдите позже.',
-      //       timeToShow: 5000,
-      //       active: true
-      //     }
-      //     this.commit('notifications/addNewNotice', notice)
-      //   } else {
-      //     console.log('Обновить данные об авторизации и повторить запрос')
-      //   }
-      // }
+      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных для дневника питания. Обновите страницу или зайдите позже.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+
+      
     }
   },
   async saveMealPlanerInfo ({ state, commit }) {
@@ -386,6 +377,8 @@ export const actions = {
 
   async fetchProducts ({ state, commit }) {
     try {
+      this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
+
       const response = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
 
       if (response.updatedToken) {
@@ -393,8 +386,12 @@ export const actions = {
       }
 
       commit('setProducts', response.data)
+
+      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     } catch (error) {
       console.log(error)
+
+      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
 
       const notice = {
         id: Date.now(),

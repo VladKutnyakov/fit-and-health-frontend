@@ -8,16 +8,14 @@ export const actions = {
   // этот action вызывается на стороне сервера при запуске SSR
   nuxtServerInit () {
     const getCookie = (name) => {
-      const headerCookie = this.app.context.req.headers.cookie
-
-      console.log(headerCookie)
+      const headerCookie = process.browser ? document.cookie : this.app.context.req.headers.cookie
 
       if (headerCookie) {
         let matches = headerCookie.match(new RegExp(
           "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
         ))
 
-        return matches ? decodeURIComponent(matches[1]) : undefined
+        return matches ? decodeURIComponent(matches[1]) : null
       }
 
       return null

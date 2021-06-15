@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import Cookies from 'js-cookie'
 import { mapState } from 'vuex'
 import AppNavbar from '@/components/navigation/AppNavbar'
 import AppNotifications from '@/components/basic/AppNotifications'
@@ -24,6 +25,15 @@ export default {
       isActive: state => state.loaderPreview.isActive,
       message: state => state.loaderPreview.message
     })
+  },
+  mounted () {
+    // Если при серверном рендеринге был выдан новый токен, необходимо обновить куки с устаревшим токеном
+    const browserToken = Cookies.get('authorization')
+    const currentToken = this.$store.state.auth.token
+
+    if (browserToken !== currentToken) {
+      Cookies.set('authorization', currentToken, { expires: 30 })
+    }
   }
 }
 </script>

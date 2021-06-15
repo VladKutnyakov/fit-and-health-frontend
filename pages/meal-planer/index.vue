@@ -23,7 +23,7 @@ export default {
   },
   async asyncData ({ store, route }) {
     await store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: route.query.date})
-    // await store.dispatch('mealPlaner/fetchProducts')
+    await store.dispatch('mealPlaner/fetchProducts')
   },
 }
 </script>

@@ -1,14 +1,14 @@
 export default function ({ $axios, error: nuxtError, redirect, store }) {
 
-  // Добавление токена в headers (требуется для работы метода vuex nuxtServerInit при первом заходена страницу сайта)
-  // $axios.interceptors.request.use(request => {
-  //   // console.log('interceptor')
-  //   if (store.getters['auth/isAuthenticated'] && !request.headers.common.authorization) {
-  //     const token = 'Bearer ' + store.state.auth.token
-  //     request.headers.common.authorization = token
-  //   }
-  //   return request
-  // })
+  // Добавление токена в headers (требуется для работы метода vuex nuxtServerInit при первом заходе на страницу сайта)
+  $axios.interceptors.request.use(request => {
+    // console.log('interceptor')
+    if (store.getters['auth/isAuthenticated']) {
+      request.headers.common.authorization = `Bearer ${store.state.auth.token}`
+    }
+
+    return request
+  })
 
   // Обработка ошибок, приходящих с сервера (для 401 и 500)
   // $axios.onError(error => {
