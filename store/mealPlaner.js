@@ -291,7 +291,7 @@ export const actions = {
         this.commit('auth/setToken', response.updatedToken)
       }
 
-      commit('setMealPlanerInfo', response.data.mealPlanerInfo)
+      // commit('setMealPlanerInfo', response.data.mealPlanerInfo)
 
       const notice = {
         id: Date.now(),
