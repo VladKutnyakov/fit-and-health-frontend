@@ -12,40 +12,43 @@
       <template v-slot:accordionHiddenContent>
         <div class="meal-planer-calendar__date-table">
           <div class="calendar-settings">
-            <app-select
-              :defaultValue="selectedMonth"
-              :selectOptionsList="monthTitle"
-              @selectValueChanged="month = $event"
-              class="calendar-settings__select"
-            />
-            <app-select
-              :defaultValue="selectedYear"
-              :selectOptionsList="yearsOptoisArray"
-              @selectValueChanged="year = $event"
-              class="calendar-settings__select"
-            />
+            <div class="calendar-settings__select-month-or-year">
+              <app-select
+                :defaultValue="selectedMonth"
+                :selectOptionsList="monthTitle"
+                @select="monthSelect($event)"
+                class="calendar-settings__select"
+              />
+              <app-select
+                :defaultValue="selectedYear"
+                :selectOptionsList="yearsOptions"
+                @select="yearSelect($event)"
+                class="calendar-settings__select"
+              />
+            </div>
 
-            <div class="calendar-settings__change-month-btn">
-              <i class="ti-angle-up change-month-btn" @click="prevMonth()"></i>
-              <i class="ti-angle-down change-month-btn" @click="nextMonth()"></i>
+            <div class="calendar-settings__nav-btn">
+              <i class="ti-angle-up nav-btn" @click="prevMonth()"></i>
+              <i class="ti-angle-down nav-btn" @click="nextMonth()"></i>
             </div>
           </div>
           <div class="week-day">
             <p v-for="(item, index) in weekDaysTitle" :key="index" class="week-day__item">{{ item }}</p>
           </div>
           <div ref="calendarTable" class="calendar-table">
-            <nuxt-link
-              v-for="(item, index) in calendarCellsValues"
+            <div
+              v-for="(item, index) in days"
               :key="index"
-              tag="div"
-              :to="`/meal-planer?date=${item.queryDate}`"
               class="date-table__day-item"
-              :class="[
-                {'date-table__previosly-day-item': !item.isCurrentMonth}
-              ]"
+              :class="[{ 'date-table__previosly-day-item': !item.isCurrentMonth }]"
+              @click="getMealPlanerInfo(item)"
             >
-              <p class="day-item__value" :data-query-date="item.queryDate" @click="getMealPlanerInfo($event)">{{ item.day }}</p>
-            </nuxt-link>
+              <p
+                class="day-item__value"
+                :class="[{ 'day-item__value--selected': item.active }]"
+                :data-query-date="item.queryDate"
+              >{{ item.day }}</p>
+            </div>
           </div>
         </div>
       </template>
@@ -65,23 +68,23 @@ export default {
   },
   data () {
     return {
+      days: [],
       weekDaysTitle: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
-      monthTitle: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'],
-      // год месяц и день возвращает сервер исходя из гет запроса ?date=2020-1-11 и данные находятся в сторе. Поэтому для выпадающих списков и рассчета календарного блока используются данные current
-      currentYear: 2020,
-      currentMonth: 1,
-      currentDay: 11,
+      monthTitle: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
+      currentYear: new Date().getFullYear(),
+      currentMonth: new Date().getMonth(),
+      currentDay: new Date().getDate(),
       month: this.currentMonth,
       year: this.currentYear
     }
   },
   computed: {
-    yearsOptoisArray () {
-      let yearsArr = []
-      for (let i = 2010; i < 2030; i++) {
-        yearsArr.push(i.toString())
+    yearsOptions () {
+      let years = []
+      for (let i = 2015; i <= new Date().getFullYear(); i++) {
+        years.push(i.toString())
       }
-      return yearsArr
+      return years.reverse()
     },
     selectedMonth () {
       return this.monthTitle[this.currentMonth]
@@ -92,50 +95,6 @@ export default {
     daysInThisMonth () {
       return new Date(this.currentYear, this.currentMonth + 1, 0).getDate()
     },
-    calendarCellsValues () {
-      const previoslyMonthDays = []
-      const previoslyMonthDaysAmount = new Date(this.currentYear, this.currentMonth, 0).getDay()
-      for (let i = 0; i <= previoslyMonthDaysAmount; i++) {
-        // если первый день месяца не равен начальному дню недели добавить в массив значение предыдущего месяца
-        if (i < previoslyMonthDaysAmount) {
-          const previoslyMonthDay = new Date(this.currentYear, this.currentMonth, 0).getDate() - previoslyMonthDaysAmount + 1
-
-          const queryDate = this.currentYear  + '-' + (this.currentMonth - 1) + '-' + (previoslyMonthDay + i)
-          previoslyMonthDays.push({
-            isCurrentMonth: false,
-            day: previoslyMonthDay + i,
-            queryDate: queryDate
-          })
-        }
-      }
-
-      // Получаем массив дней в текущем месяце
-      const currentMonthDays = []
-      for (let i = 0; i < this.daysInThisMonth; i++) {
-        const queryDate = this.currentYear  + '-' + this.currentMonth + '-' + (i + 1)
-        currentMonthDays.push({
-          isCurrentMonth: true,
-          day: i + 1,
-          queryDate: queryDate
-        })
-      }
-
-      const nextMonthDays = []
-      const freeCells = 42 - previoslyMonthDays.length - currentMonthDays.length
-      for (let i = 0; i < freeCells; i++) {
-        const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + (i + 1)
-        nextMonthDays.push({
-          isCurrentMonth: false,
-          day: i + 1,
-          queryDate: queryDate
-        })
-      }
-
-      const calendarCellsValues = previoslyMonthDays.concat(currentMonthDays, nextMonthDays)
-      // console.log(calendarCellsValues.length)
-
-      return calendarCellsValues
-    }
   },
   watch: {
     month ($event) {
@@ -151,23 +110,85 @@ export default {
     }
   },
   methods: {
-    getMealPlanerInfo ($event) {
-      const queryDate = {
-        date: $event.target.getAttribute('data-query-date')
-      }
-      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
-      this.currentDay = parseInt(queryDate.date.split('-')[2])
-      this.currentMonth = parseInt(queryDate.date.split('-')[1])
+    calendarCellsValues () {
+      const previoslyMonthDays = []
+      const previoslyMonthDaysAmount = new Date(this.currentYear, this.currentMonth, 0).getDay()
+      for (let i = 0; i <= previoslyMonthDaysAmount; i++) {
+        // если первый день месяца не равен начальному дню недели добавить в массив значение предыдущего месяца
+        if (i < previoslyMonthDaysAmount) {
+          const previoslyMonthDay = new Date(this.currentYear, this.currentMonth, 0).getDate() - previoslyMonthDaysAmount + 1
 
-      // Установить класс выбранного дня дневника питания
-      for (let i = 0; i < this.$refs.calendarTable.children.length; i++) {
-        console.log();
-        if (this.$refs.calendarTable.children[i].children[0].innerHTML == this.currentDay && this.$refs.calendarTable.children[i].children[0].getAttribute('data-query-date').split('-')[1] == this.currentMonth) {
-          this.$refs.calendarTable.children[i].children[0].classList.add('day-item__value--selected')
-        } else {
-          this.$refs.calendarTable.children[i].children[0].classList.remove('day-item__value--selected')
+          const queryDate = this.currentYear  + '-' + this.currentMonth + '-' + (previoslyMonthDay + i)
+          previoslyMonthDays.push({
+            isCurrentMonth: false,
+            day: previoslyMonthDay + i,
+            month: this.currentMonth,
+            queryDate: queryDate,
+            active: false
+          })
         }
       }
+
+      // Получаем массив дней в текущем месяце
+      const currentMonthDays = []
+      for (let i = 0; i < this.daysInThisMonth; i++) {
+        const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + (i + 1)
+        currentMonthDays.push({
+          isCurrentMonth: true,
+          day: i + 1,
+          month: this.currentMonth,
+          queryDate: queryDate,
+          active: (i + 1) === this.currentDay ? true : false
+        })
+      }
+
+      const nextMonthDays = []
+      const freeCells = 42 - previoslyMonthDays.length - currentMonthDays.length
+      for (let i = 0; i < freeCells; i++) {
+        const queryDate = this.currentYear  + '-' + (this.currentMonth + 2) + '-' + (i + 1)
+        nextMonthDays.push({
+          isCurrentMonth: false,
+          day: i + 1,
+          month: this.currentMonth,
+          queryDate: queryDate,
+          active: false
+        })
+      }
+
+      const calendarCellsValues = previoslyMonthDays.concat(currentMonthDays, nextMonthDays)
+
+      // console.log(calendarCellsValues)
+
+      return calendarCellsValues
+    },
+    getMealPlanerInfo (item) {
+      const queryDate = {
+        date: item.queryDate
+      }
+      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
+
+      this.currentDay = parseInt(queryDate.date.split('-')[2])
+      this.currentMonth = parseInt(queryDate.date.split('-')[1]) - 1
+
+      this.days = this.calendarCellsValues()
+
+      this.$router.push(`/meal-planer?date=${item.queryDate}`)
+    },
+    monthSelect ($event) {
+      this.month = $event
+      this.currentDay = 1
+      this.days = this.calendarCellsValues()
+      const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + this.currentDay
+      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
+      this.$router.push(`/meal-planer?date=${queryDate}`)
+    },
+    yearSelect ($event) {
+      this.year = $event
+      this.currentDay = 1
+      this.days = this.calendarCellsValues()
+      const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + this.currentDay
+      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
+      this.$router.push(`/meal-planer?date=${queryDate}`)
     },
     prevMonth () {
       if (this.currentMonth > 0) {
@@ -176,6 +197,14 @@ export default {
         this.currentMonth = 11
         --this.currentYear
       }
+
+      this.currentDay = 1
+
+      this.days = this.calendarCellsValues()
+
+      const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + this.currentDay
+      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
+      this.$router.push(`/meal-planer?date=${queryDate}`)
     },
     nextMonth () {
       if (this.currentMonth < 11) {
@@ -184,17 +213,18 @@ export default {
         this.currentMonth = 0
         ++this.currentYear
       }
-    },
-    
-  },
-  mounted () {
-    for (let i = 0; i < this.$refs.calendarTable.children.length; i++) {
-      if (this.$refs.calendarTable.children[i].children[0].innerHTML == this.currentDay) {
-        this.$refs.calendarTable.children[i].children[0].classList.add('day-item__value--selected')
-      } else {
-        this.$refs.calendarTable.children[i].children[0].classList.remove('day-item__value--selected')
-      }
+
+      this.currentDay = 1
+
+      this.days = this.calendarCellsValues()
+
+      const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + this.currentDay
+      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
+      this.$router.push(`/meal-planer?date=${queryDate}`)
     }
+  },
+  created () {
+    this.days = this.calendarCellsValues()
   }
 }
 </script>
@@ -228,24 +258,28 @@ export default {
       // border: 1px solid red;
       display: flex;
       margin-bottom: 5px;
-      .calendar-settings__select:first-child {
-        margin-right: 5px;
+      .calendar-settings__select-month-or-year {
+        display: flex;
+        .calendar-settings__select:first-child {
+          margin-right: 5px;
+        }
       }
-      .calendar-settings__change-month-btn {
+
+      .calendar-settings__nav-btn {
         display: flex;
         margin-left: auto;
-        .change-month-btn {
+        .nav-btn {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 6px 12px;
+          padding: 0px 12px;
           background: $white;
           border: 1px solid $blockBorder;
           border-radius: 6px;
-          font-size: 14px;
+          font-size: 12px;
           cursor: pointer;
         }
-        .change-month-btn:first-child {
+        .nav-btn:first-child {
           margin-right: 5px;
         }
       }
@@ -293,13 +327,22 @@ export default {
           justify-content: center;
           height: 100%;
           width: 100%;
+          border-radius: 6px;
+          transition: $tr-02;
           cursor: pointer;
         }
         .day-item__value--selected {
           background: $green;
           color: $white;
           font-weight: 600;
-          border-radius: 6px;
+        }
+      }
+      .date-table__day-item:hover {
+        .day-item__value {
+          color: $green;
+        }
+        .day-item__value--selected {
+          color: $white;
         }
       }
       .date-table__previosly-day-item {
