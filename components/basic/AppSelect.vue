@@ -82,14 +82,10 @@ export default {
       document.removeEventListener('click', this.closeSelect)
     },
     changeSelectValue () {
-      this.$emit('selectValueChanged', this.selectValue)
-      // console.log(`emit select --> ${this.selectValue}`)
+      this.$emit('select', this.selectValue)
     }
   },
   mounted: function () {
-    // При добавлении в дом компонента отправить текущие выбранные данные
-    this.changeSelectValue()
-
     // Задать минимальную ширину для элементов текущего значения и списка для выбора
     this.$refs.defaultValue.style.minWidth = this.minWidth
     this.$refs.listOptions.style.minWidth = this.minWidth
@@ -121,9 +117,9 @@ export default {
     .app-select__default-value {
       position: relative;
       flex: 1 1 auto;
-      padding: 10px;
+      padding: 10px 15px;
       background: $white;
-      border: 1px solid rgba(52,40,104,.2);
+      border: 1px solid $blockBorder;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
       border-top-right-radius: 0;
@@ -134,11 +130,11 @@ export default {
     }
     .app-select__icon {
       // border: 1px solid red;
-      padding: 11.5px 10px;
+      padding: 12.5px 12px;
       background: $white;
       font-family: $fontThemify;
-      font-style: normal;
-      border: 1px solid rgba(52,40,104,.2);
+      font-size: 14px;
+      border: 1px solid $blockBorder;
       border-left: none;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -153,7 +149,7 @@ export default {
       right: 37px;
       width: calc(100% - 37px);
       background: $white;
-      border: 1px solid rgba(52,40,104,.2);
+      border: 1px solid $blockBorder;
       border-radius: 6px;
       box-shadow: $boxShadow;
       opacity: 0;
