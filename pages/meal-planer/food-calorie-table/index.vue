@@ -8,6 +8,7 @@
         <product-table />
       </div>
     </div>
+    <product-form-modal />
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import AppPageTitle from '@/components/basic/AppPageTitle'
 import PageInfo from '@/components/foodCalorieTable/PageInfo'
 import SortingFilters from '@/components/foodCalorieTable/SortingFilters'
 import ProductTable from '@/components/foodCalorieTable/ProductTable'
+import ProductFormModal from '@/components/foodCalorieTable/ProductFormModal'
 
 export default {
   layout: 'default',
@@ -27,7 +29,8 @@ export default {
     AppPageTitle,
     PageInfo,
     SortingFilters,
-    ProductTable
+    ProductTable,
+    ProductFormModal
   }
 }
 </script>

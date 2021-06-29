@@ -1,5 +1,5 @@
 <template>
-  <i :class="categoryIcon"></i>
+  <i class="icon" :class="categoryIcon"></i>
 </template>
 
 <script>
@@ -11,39 +11,39 @@ export default {
     categoryIcon () {
       switch (this.icon) {
         case 'Мясо':
-          return 'ti-close'
+          return 'food-category__meat'
         case 'Морепродукты':
-          return 'ti-more'
+          return 'food-category__seafood'
         case 'Яйца, яичные продукты':
-          return 'ti-more'
+          return 'food-category__eggs'
         case 'Молоко, молочные продукты':
-          return 'ti-more'
+          return 'food-category__milk-products'
         case 'Соя, соевые продукты':
-          return 'ti-more'
+          return 'food-category__soy'
         case 'Овощи, овощные продукты':
-          return 'ti-info'
+          return 'food-category__vegetable'
         case 'Зелень, травы, листья, салаты':
-          return 'ti-more'
+          return 'food-category__salad'
         case 'Фрукты, ягоды, сухофрукты':
-          return 'ti-check'
+          return 'food-category__fruits'
         case 'Грибы':
-          return 'ti-more'
+          return 'food-category__mushroom'
         case 'Жиры, масла':
-          return 'ti-more'
+          return 'food-category__oil'
         case 'Орехи':
-          return 'ti-more'
+          return 'food-category__nuts'
         case 'Крупы, злаки':
-          return 'ti-star'
+          return 'food-category__cereals'
         case 'Семена':
-          return 'ti-more'
+          return 'food-category__seeds'
         case 'Специи, пряности':
-          return 'ti-pin'
+          return 'food-category__spices'
         case 'Мука, продукты из муки':
-          return 'ti-more'
+          return 'food-category__flour'
         case 'Напитки, соки':
-          return 'ti-email'
+          return 'food-category__drink'
         default:
-          return 'ti-more'
+          return ''
       }
     }
   }
@@ -51,5 +51,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.icon {
+  font-size: 30px;
+}
 </style>

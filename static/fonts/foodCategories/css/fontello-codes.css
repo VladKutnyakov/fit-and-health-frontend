@@ -1,0 +1,17 @@
+
+.food-category__cereals:before { content: '\e800'; } /* '' */
+.food-category__flour:before { content: '\e803'; } /* '' */
+.food-category__fruits:before { content: '\e804'; } /* '' */
+.food-category__meat:before { content: '\e805'; } /* '' */
+.food-category__milk-products:before { content: '\e806'; } /* '' */
+.food-category__mushroom:before { content: '\e807'; } /* '' */
+.food-category__nuts:before { content: '\e808'; } /* '' */
+.food-category__oil:before { content: '\e809'; } /* '' */
+.food-category__salad:before { content: '\e80a'; } /* '' */
+.food-category__seafood:before { content: '\e80b'; } /* '' */
+.food-category__seeds:before { content: '\e80c'; } /* '' */
+.food-category__soy:before { content: '\e80d'; } /* '' */
+.food-category__spices:before { content: '\e80e'; } /* '' */
+.food-category__vegetable:before { content: '\e80f'; } /* '' */
+.food-category__drink:before { content: '\e810'; } /* '' */
+.food-category__eggs:before { content: '\e811'; } /* '' */
