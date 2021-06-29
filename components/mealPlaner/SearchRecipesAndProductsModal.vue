@@ -1,11 +1,10 @@
 <template>
-  <app-modal :isActive="searchRecipesAndProductsModalActive" @close="closeModal()">
-    <template v-slot:modalHeader>
-      <p class="header__title">Добавление продуктов или рецептов в рацион</p>
-      <div class="header__description">
-        <p class="description__text">Найдите и добавьте продукт или рецепт в выбранный прием пищи.</p>
-      </div>
-    </template>
+  <app-modal
+    :isActive="searchRecipesAndProductsModalActive"
+    headerTitle="Добавление продуктов или рецептов в рацион"
+    :headerDescriptions="['Найдите и добавьте продукт или рецепт в выбранный прием пищи.']"
+    @close="closeModal()"
+  >
     <template v-slot:modalContent>
       <div class="search-recipes-and-products">
         <app-search-block placeholder="Поиск продуктов и рецептов" small />
@@ -44,7 +43,11 @@
       </div>
     </template>
     <template v-slot:modalFooter>
-      <p>кнопки</p>
+      <div class="footer__action-btns">
+        <app-button
+          @click.native="closeModal()"
+        >Закрыть</app-button>
+      </div>
     </template>
   </app-modal>
 </template>
@@ -56,6 +59,7 @@ import AppInputRadio from '@/components/basic/AppInputRadio'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FoundProductOrRecipe from '@/components/mealPlaner/FoundProductOrRecipe'
+import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
@@ -64,6 +68,7 @@ export default {
     AppInputCheckbox,
     AppSearchBlock,
     FoundProductOrRecipe,
+    AppButton,
   },
   data() {
     return {
@@ -157,5 +162,12 @@ export default {
 // .search-recipes-and-products--active {
 //   top: 10px;
 // }
+
+.footer__action-btns {
+  // border: 1px solid red;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+}
 
 </style>

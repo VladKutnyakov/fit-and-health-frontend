@@ -1,16 +1,27 @@
 <template>
-  <div v-show="isActive" class="modal__wrapper" @click="closeModal()">
-    <div class="modal__content-wrapper" @click.stop>
+  <div v-show="isActive" class="modal__wrapper" @mousedown="closeModal()">
+    <div class="modal__content-wrapper" @mousedown.stop>
 
-      <div class="modal__header">
+      <div v-if="haveHeaderTemplate" class="modal__header">
         <slot name="modalHeader"></slot>
       </div>
 
-      <div class="modal__content">
+      <div v-if="!haveHeaderTemplate" class="modal__header">
+        <p class="header__title">{{ headerTitle }}</p>
+        <div class="header__description" v-if="headerDescriptions">
+          <p
+            v-for="(item, index) in headerDescriptions"
+            :key="index"
+            class="description__text"
+          >{{ item }}</p>
+        </div>
+      </div>
+
+      <div v-if="haveContentTemplate" class="modal__content">
         <slot name="modalContent"></slot>
       </div>
 
-      <div class="modal__footer">
+      <div v-if="haveFooterTemplate" class="modal__footer">
         <slot name="modalFooter"></slot>
       </div>
 
@@ -21,7 +32,29 @@
 <script>
 export default {
   props: {
-    isActive: Boolean
+    isActive: Boolean,
+    headerTitle: String,
+    headerDescriptions: Array,
+  },
+  computed: {
+    haveHeaderTemplate () {
+      if (this.$slots.modalHeader) {
+        return true
+      }
+      return false
+    },
+    haveContentTemplate () {
+      if (this.$slots.modalContent) {
+        return true
+      }
+      return false
+    },
+    haveFooterTemplate () {
+      if (this.$slots.modalFooter) {
+        return true
+      }
+      return false
+    }
   },
   watch: {
     isActive: {
@@ -59,7 +92,6 @@ export default {
   top: 0;
   left: 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -70,9 +102,10 @@ export default {
     // border: 1px solid red;
     display: flex;
     flex-direction: column;
-    margin: 40px;
+    margin: 0 40px;
     padding: 20px;
-    width: 50%;
+    width: 100%;
+    max-width: 800px;
     max-height: calc(100vh - 80px);
     background: $white;
     border-radius: 6px;
@@ -81,11 +114,21 @@ export default {
       // border: 1px solid red;
       padding: 0 10px 20px 10px;
       border-bottom: 1px solid $blockBorder;
+      .header__title {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      .header__description {
+        margin-top: 10px;
+        .description__text {
+          font-size: 14px;
+        }
+      }
     }
     .modal__content {
       // border: 1px solid red;
       padding: 20px 10px 20px 10px;
-      overflow: auto;
+      // overflow: auto;
     }
     .modal__footer {
       // border: 1px solid red;
