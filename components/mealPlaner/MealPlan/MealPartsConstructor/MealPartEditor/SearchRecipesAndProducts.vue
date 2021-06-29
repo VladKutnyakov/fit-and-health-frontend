@@ -125,6 +125,7 @@ export default {
     // border: 1px solid $blockBorder;
     background: rgba(0, 0, 0, 0.025);
     box-shadow: inset 0 0 5px 0px rgb(0 0 0 / 25%);
+    overflow: auto;
   }
 }
 .search-recipes-and-products--active {
