@@ -5,6 +5,7 @@
       <meal-plan />
       <additional-info />
     </div>
+    <SearchRecipesAndProductsModal />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import AppPageTitle from '@/components/basic/AppPageTitle'
 import MealPlan from '@/components/mealPlaner/MealPlan/index'
 import AdditionalInfo from '@/components/mealPlaner/AdditionalInfo/index'
+import SearchRecipesAndProductsModal from '@/components/mealPlaner/SearchRecipesAndProductsModal'
 
 export default {
   layout: 'default',
@@ -19,7 +21,8 @@ export default {
   components: {
     AppPageTitle,
     MealPlan,
-    AdditionalInfo
+    AdditionalInfo,
+    SearchRecipesAndProductsModal,
   },
   async asyncData ({ store, route }) {
     await store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: route.query.date})

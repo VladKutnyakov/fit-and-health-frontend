@@ -76,7 +76,7 @@
         </div>
       </div>
     </template>
-    <template v-slot:modalButton>
+    <template v-slot:modalFooter>
       <app-button uppercase size14px @click.native="closeModal()">Отмена</app-button>
       <app-button
         uppercase

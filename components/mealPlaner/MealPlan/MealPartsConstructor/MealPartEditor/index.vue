@@ -54,8 +54,6 @@
             :product="item"
           />
           <!-- <added-recipe /> -->
-
-          <search-recipes-and-products :active="searchRecipesAndProductsModalActive" />
         </div>
       </div>
     </div>
@@ -70,14 +68,12 @@ import AppInputText from '@/components/basic/AppInputText'
 import AddedProduct from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedProduct'
 // import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedRecipe'
 import Actions from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/Actions'
-import SearchRecipesAndProducts from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/SearchRecipesAndProducts'
 
 export default {
   components: {
     AppInputText,
     AddedProduct,
     // AddedRecipe,
-    SearchRecipesAndProducts,
     Actions
   },
   data() {

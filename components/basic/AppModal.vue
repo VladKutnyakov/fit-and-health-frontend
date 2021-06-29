@@ -10,8 +10,8 @@
         <slot name="modalContent"></slot>
       </div>
 
-      <div class="modal__button">
-        <slot name="modalButton"></slot>
+      <div class="modal__footer">
+        <slot name="modalFooter"></slot>
       </div>
 
     </div>
@@ -87,7 +87,7 @@ export default {
       padding: 20px 10px 20px 10px;
       overflow: auto;
     }
-    .modal__button {
+    .modal__footer {
       // border: 1px solid red;
       display: flex;
       justify-content: center;
