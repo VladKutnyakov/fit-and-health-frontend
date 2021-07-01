@@ -77,39 +77,39 @@ export default {
   components: {
     AppBlockTitle
   },
-  mounted () {
-    document.addEventListener('scroll', () => {
-      const fixedBlock = this.$refs.mainInfo
-      const fixedBlockRect = fixedBlock.getBoundingClientRect()
+  // mounted () {
+  //   document.addEventListener('scroll', () => {
+  //     const fixedBlock = this.$refs.mainInfo
+  //     const fixedBlockRect = fixedBlock.getBoundingClientRect()
 
-      const pageContent = document.querySelector('.profile-page__content')
-      const pageContentRect = pageContent.getBoundingClientRect()
+  //     const pageContent = document.querySelector('.profile-page__content')
+  //     const pageContentRect = pageContent.getBoundingClientRect()
 
-      const offset = 40
+  //     const offset = 40
 
-      // Если высота контента меньше высоты браузерного окна
-      if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
-        fixedBlock.style.position = 'fixed'
-        fixedBlock.style.top = `${offset}px`
-        fixedBlock.style.zIndex = 1000
-      } else {
-        fixedBlock.style.position = ''
-        fixedBlock.style.top = ''
-        fixedBlock.style.zIndex = ''
-      }
+  //     // Если высота контента меньше высоты браузерного окна
+  //     if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
+  //       fixedBlock.style.position = 'fixed'
+  //       fixedBlock.style.top = `${offset}px`
+  //       fixedBlock.style.zIndex = 1000
+  //     } else {
+  //       fixedBlock.style.position = ''
+  //       fixedBlock.style.top = ''
+  //       fixedBlock.style.zIndex = ''
+  //     }
 
-      // Если высота контента больше высоты браузерного окна
-      if (pageContentRect.top - offset < 0 && fixedBlockRect.bottom <= window.innerHeight - offset) {
-        fixedBlock.style.position = 'fixed'
-        fixedBlock.style.top = `-${(fixedBlockRect.height + offset) - window.innerHeight}px`
-        fixedBlock.style.zIndex = 1000
-      } else {
-        fixedBlock.style.position = ''
-        fixedBlock.style.top = ''
-        fixedBlock.style.zIndex = ''
-      }
-    })
-  }
+  //     // Если высота контента больше высоты браузерного окна
+  //     if (pageContentRect.top - offset < 0 && fixedBlockRect.bottom <= window.innerHeight - offset) {
+  //       fixedBlock.style.position = 'fixed'
+  //       fixedBlock.style.top = `-${(fixedBlockRect.height + offset) - window.innerHeight}px`
+  //       fixedBlock.style.zIndex = 1000
+  //     } else {
+  //       fixedBlock.style.position = ''
+  //       fixedBlock.style.top = ''
+  //       fixedBlock.style.zIndex = ''
+  //     }
+  //   })
+  // }
 }
 </script>
 

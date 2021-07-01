@@ -101,68 +101,67 @@ export default {
   components: {
     AppButton
   },
-  computed: {
-    lastName () {
-      return this.$store.getters['userProfile/getUserLastName']
-    },
-    firstName () {
-      return this.$store.getters['userProfile/getUserFirstName']
-    }
-  },
-  mounted () {
-    let startPageYOffset = window.pageYOffset
-    document.addEventListener('scroll', () => {
-      const fixedBlock = this.$refs.userCard
-      const fixedBlockRect = fixedBlock.getBoundingClientRect()
+  // mounted () {
+  //   let startPageYOffset = window.pageYOffset
+  //   document.addEventListener('scroll', () => {
+  //     const fixedBlock = this.$refs.userCard
+  //     const fixedBlockRect = fixedBlock.getBoundingClientRect()
 
-      const pageContent = document.querySelector('.profile-page__content')
-      const pageContentRect = pageContent.getBoundingClientRect()
+  //     console.log((fixedBlockRect.bottom + 40) - window.innerHeight)
 
-      const offset = 40
+  //     if ((fixedBlockRect.bottom + 40) - window.innerHeight <= 0) {
+  //       fixedBlock.style.position = 'fixed'
+  //       fixedBlock.style.bottom = '40px'
+  //     }
 
-      // Определяем направление скрола
-      if (startPageYOffset < window.pageYOffset) {
-        console.log('вверх')
+  //     // const pageContent = document.querySelector('.profile-page__content')
+  //     // const pageContentRect = pageContent.getBoundingClientRect()
 
-        // Если высота контента меньше высоты браузерного окна
-        if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
-          fixedBlock.style.position = 'fixed'
-          fixedBlock.style.top = `${offset}px`
-        } else {
-          fixedBlock.style.position = ''
-          fixedBlock.style.top = ''
-        }
+  //     // const offset = 40
 
-        // Если высота контента больше высоты браузерного окна
-        if (pageContentRect.top - offset < 0 && fixedBlockRect.bottom <= window.innerHeight - offset) {
-          fixedBlock.style.position = 'fixed'
-          fixedBlock.style.top = `-${(fixedBlockRect.height + offset) - window.innerHeight}px`
-        }
+  //     // Определяем направление скрола
+  //     // if (startPageYOffset < window.pageYOffset) {
+  //     //   console.log('вверх')
 
-        startPageYOffset = window.pageYOffset
-      } else {
-        console.log('вниз')
+  //     //   // Если высота контента меньше высоты браузерного окна
+  //     //   if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
+  //     //     fixedBlock.style.position = 'fixed'
+  //     //     fixedBlock.style.top = `${offset}px`
+  //     //   } else {
+  //     //     fixedBlock.style.position = ''
+  //     //     fixedBlock.style.top = ''
+  //     //   }
 
-        // Если высота контента меньше высоты браузерного окна
-        if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
-          fixedBlock.style.position = 'fixed'
-          fixedBlock.style.top = `${offset}px`
-        } else {
-          fixedBlock.style.position = ''
-          fixedBlock.style.top = ''
-        }
+  //     //   // Если высота контента больше высоты браузерного окна
+  //     //   if (pageContentRect.top - offset < 0 && fixedBlockRect.bottom <= window.innerHeight - offset) {
+  //     //     fixedBlock.style.position = 'fixed'
+  //     //     fixedBlock.style.top = `-${(fixedBlockRect.height + offset) - window.innerHeight}px`
+  //     //   }
 
-        // Если высота контента больше высоты браузерного окна
-        if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) < 0) {
-          fixedBlock.style.position = 'fixed'
-          fixedBlock.style.top = `${parseFloat(fixedBlock.style.top) - (startPageYOffset - window.pageYOffset)}px`
-        }
-        console.log(startPageYOffset - window.pageYOffset)
+  //     //   startPageYOffset = window.pageYOffset
+  //     // } else {
+  //     //   console.log('вниз')
 
-        startPageYOffset = window.pageYOffset
-      }
-    })
-  }
+  //     //   // Если высота контента меньше высоты браузерного окна
+  //     //   if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
+  //     //     fixedBlock.style.position = 'fixed'
+  //     //     fixedBlock.style.top = `${offset}px`
+  //     //   } else {
+  //     //     fixedBlock.style.position = ''
+  //     //     fixedBlock.style.top = ''
+  //     //   }
+
+  //     //   // Если высота контента больше высоты браузерного окна
+  //     //   if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) < 0) {
+  //     //     fixedBlock.style.position = 'fixed'
+  //     //     fixedBlock.style.top = `${parseFloat(fixedBlock.style.top) - (startPageYOffset - window.pageYOffset)}px`
+  //     //   }
+  //     //   console.log(startPageYOffset - window.pageYOffset)
+
+  //     //   startPageYOffset = window.pageYOffset
+  //     // }
+  //   })
+  // }
 }
 </script>
 
