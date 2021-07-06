@@ -13,11 +13,12 @@
           <div class="form-field">
             <p class="field__title">Название</p>
             <app-input-text
-              :value="newProduct.title"
-              :error="newProductErrors.title"
+              :value="productForm.fields.title"
+              :error="productForm.errors.title"
+              placeholder="Введите значение"
               @input="
-                setNewProductParams({field: 'title', value: $event}),
-                clearNewProductParamError('title')
+                setProductFormField({field: 'title', value: $event}),
+                clearProductFormFieldError('title')
               "
             />
           </div>
@@ -25,21 +26,30 @@
           <div class="form-field">
             <p class="field__title">Категория</p>
             <app-select
-              minWidth="236px"
+              :defaultValue="productForm.fields.category"
               :selectOptionsList="productCategories"
-              :defaultValue="newProduct.category"
+              :error="productForm.errors.category"
+              minWidth="236px"
               alignListLeft
               alignSelectedValueLeft
-              @select="setNewProductParams({field: 'category', value: $event})"
+              placeholder="Введите значение"
+              @select="
+                setProductFormField({field: 'category', value: $event}),
+                clearProductFormFieldError('category')
+              "
             />
           </div>
 
           <div class="form-field">
             <div class="checkbox-group">
               <app-input-checkbox
-                :value="newProduct.favorite"
+                :value="productForm.fields.favorite"
+                :error="productForm.errors.favorite"
                 label="Добавить в избранное"
-                @change="setNewProductParams({field: 'favorite', value: $event})"
+                @change="
+                  setProductFormField({field: 'favorite', value: $event}),
+                  clearProductFormFieldError('favorite')
+                "
               />
             </div>
           </div>
@@ -47,9 +57,13 @@
           <div class="form-field">
             <div class="checkbox-group">
               <app-input-checkbox
-                :value="newProduct.pinned"
+                :value="productForm.fields.pinned"
+                :error="productForm.errors.pinned"
                 label="Закрепить"
-                @change="setNewProductParams({field: 'pinned', value: $event})"
+                @change="
+                  setProductFormField({field: 'pinned', value: $event}),
+                  clearProductFormFieldError('pinned')
+                "
               />
             </div>
           </div>
@@ -59,32 +73,52 @@
           <div class="form-field">
             <p class="field__title">Белки</p>
             <app-input-text
-              :value="newProduct.protein"
-              @input="setNewProductParams({field: 'protein', value: $event})"
+              :value="productForm.fields.protein"
+              :error="productForm.errors.protein"
+              placeholder="Введите значение"
+              @input="
+                setProductFormField({field: 'protein', value: $event}),
+                clearProductFormFieldError('protein')
+              "
             />
           </div>
 
           <div class="form-field">
             <p class="field__title">Жиры</p>
             <app-input-text
-              :value="newProduct.fats"
-              @input="setNewProductParams({field: 'fats', value: $event})"
+              :value="productForm.fields.fats"
+              :error="productForm.errors.fats"
+              placeholder="Введите значение"
+              @input="
+                setProductFormField({field: 'fats', value: $event}),
+                clearProductFormFieldError('fats')
+              "
             />
           </div>
 
           <div class="form-field">
             <p class="field__title">Углеводы</p>
             <app-input-text
-              :value="newProduct.carb"
-              @input="setNewProductParams({field: 'carb', value: $event})"
+              :value="productForm.fields.carb"
+              :error="productForm.errors.carb"
+              placeholder="Введите значение"
+              @input="
+                setProductFormField({field: 'carb', value: $event}),
+                clearProductFormFieldError('carb')
+              "
             />
           </div>
 
           <div class="form-field">
             <p class="field__title">Калорийность</p>
             <app-input-text
-              :value="newProduct.kkal"
-              @input="setNewProductParams({field: 'kkal', value: $event})"
+              :value="productForm.fields.kkal"
+              :error="productForm.errors.kkal"
+              placeholder="Введите значение"
+              @input="
+                setProductFormField({field: 'kkal', value: $event}),
+                clearProductFormFieldError('kkal')
+              "
             />
           </div>
         </div>
@@ -109,6 +143,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import { requiredFieldsValidation } from '@/utils/handlers'
 import AppPageInfo from "@/components/basic/AppPageInfo"
 import AppModal from "@/components/basic/AppModal"
 import AppInputText from "@/components/basic/AppInputText"
@@ -130,8 +165,7 @@ export default {
   },
   computed: {
     ...mapState({
-      newProduct: state => state.foodCalorieTable.newProduct,
-      newProductErrors: state => state.foodCalorieTable.newProductErrors,
+      productForm: state => state.foodCalorieTable.productForm,
       productCategories: state => state.foodCalorieTable.productCategories,
       productModalActive: state => state.foodCalorieTable.productModalActive
     }),
@@ -139,16 +173,28 @@ export default {
   methods: {
     ...mapMutations({
       toggleModalVisibility: 'foodCalorieTable/toggleModalVisibility',
-      setNewProductParams: 'foodCalorieTable/setNewProductParams',
-      clearNewProductParamError: 'foodCalorieTable/clearNewProductParamError'
+      setProductFormField: 'foodCalorieTable/setProductFormField',
+      clearProductFormFieldError: 'foodCalorieTable/clearProductFormFieldError'
     }),
     saveUserProduct() {
-      this.$store.dispatch('foodCalorieTable/saveProduct')
+      const isValid = requiredFieldsValidation(this.productForm, ['title', 'weight', 'protein', 'fats', 'carb', 'kkal', 'category'], 'foodCalorieTable/setProductFormFieldError', null)
+
+      if (isValid) {
+        this.$store.dispatch('foodCalorieTable/saveProduct')
+      } else {
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: 'Заполните обязательные поля.',
+          timeToShow: 5000,
+          active: true
+        }
+        this.$store.commit('notifications/addNewNotice', notice)
+      }
     }
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";

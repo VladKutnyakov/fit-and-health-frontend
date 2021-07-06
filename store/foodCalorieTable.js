@@ -10,27 +10,30 @@ export const state = () => ({
     productCategory: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
     searchString: ''
   },
-  newProduct: {
-    title: null,
-    weight: 100,
-    protein: null,
-    fats: null,
-    carb: null,
-    kkal: null,
-    category: "Мясо",
-    favorite: false,
-    pinned: false
-  },
-  newProductErrors: {
-    title: { enabled: false, errorMessage: null },
-    weight: { enabled: false, errorMessage: null },
-    protein: { enabled: false, errorMessage: null },
-    fats: { enabled: false, errorMessage: null },
-    carb: { enabled: false, errorMessage: null },
-    kkal: { enabled: false, errorMessage: null },
-    category: { enabled: false, errorMessage: null },
-    favorite: { enabled: false, errorMessage: null },
-    pinned: { enabled: false, errorMessage: null },
+
+  productForm: {
+    fields: {
+      title: null,
+      weight: 100,
+      protein: null,
+      fats: null,
+      carb: null,
+      kkal: null,
+      category: "Мясо",
+      favorite: false,
+      pinned: false
+    },
+    errors: {
+      title: { enabled: false, errorMessage: null },
+      weight: { enabled: false, errorMessage: null },
+      protein: { enabled: false, errorMessage: null },
+      fats: { enabled: false, errorMessage: null },
+      carb: { enabled: false, errorMessage: null },
+      kkal: { enabled: false, errorMessage: null },
+      category: { enabled: false, errorMessage: null },
+      favorite: { enabled: false, errorMessage: null },
+      pinned: { enabled: false, errorMessage: null }
+    }
   },
   productModalActive: false
 })
@@ -224,11 +227,12 @@ export const mutations = {
 
     state.sortedProducts.splice(index, 1, product)
   },
-  setNewProductParams (state, params) {
-    state.newProduct[params.field] = params.value
+
+  setProductFormField (state, params) {
+    state.productForm.fields[params.field] = params.value
   },
-  clearNewProductParams (state) {
-    state.newProduct = {
+  clearProductFormField (state) {
+    state.productForm.fields = {
       title: null,
       weight: 100,
       protein: null,
@@ -240,10 +244,11 @@ export const mutations = {
       pinned: false
     }
   },
-  clearNewProductParamError (state, field) {
-    if (state.newProductErrors[field].enabled) {
-      state.newProductErrors[field] = { enabled: false, errorMessage: null }
-    }
+  setProductFormFieldError (state, ctx) {
+    state.productForm.errors[ctx.field] = { enabled: true, errorMessage: ctx.errorMessage }
+  },
+  clearProductFormFieldError (state, field) {
+    state.productForm.errors[field] = { enabled: false, errorMessage: null }
   },
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
@@ -272,36 +277,24 @@ export const actions = {
   },
   async saveProduct ({ state, commit }) {
     try {
-      if (
-        state.newProduct.title &&
-        state.newProduct.weight === 100 &&
-        state.newProduct.protein &&
-        state.newProduct.fats &&
-        state.newProduct.carb &&
-        state.newProduct.carb &&
-        state.newProduct.kkal &&
-        state.newProduct.category
-      ) {
-        const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/save-product`, state.newProduct)
+      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/save-product`, state.productForm.fields)
 
-        if (response.updatedToken) {
-          this.commit('auth/setToken', response.updatedToken)
-        }
-
-        commit('addNewProduct', response.data)
-        commit('clearNewProductParams')
-      } else {
-        const notice = {
-          id: Date.now(),
-          type: 'alert',
-          message: 'Заполните обязательные поля',
-          timeToShow: 5000,
-          active: true
-        }
-        this.commit('notifications/addNewNotice', notice)
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
       }
+
+      commit('addNewProduct', response.data)
     } catch (error) {
       console.log(error)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при сохранении.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
   async removeProduct ({ commit }, product) {
