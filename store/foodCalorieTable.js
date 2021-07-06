@@ -19,7 +19,7 @@ export const state = () => ({
       fats: null,
       carb: null,
       kkal: null,
-      category: "Мясо",
+      category: 'Мясо',
       favorite: false,
       pinned: false
     },
@@ -228,28 +228,39 @@ export const mutations = {
     state.sortedProducts.splice(index, 1, product)
   },
 
+  clearProductForm (state) {
+    state.productForm = {
+      fields: {
+        title: null,
+        weight: 100,
+        protein: null,
+        fats: null,
+        carb: null,
+        kkal: null,
+        category: 'Мясо',
+        favorite: false,
+        pinned: false
+      },
+      errors: {
+        title: { enabled: false, errorMessage: null },
+        weight: { enabled: false, errorMessage: null },
+        protein: { enabled: false, errorMessage: null },
+        fats: { enabled: false, errorMessage: null },
+        carb: { enabled: false, errorMessage: null },
+        kkal: { enabled: false, errorMessage: null },
+        category: { enabled: false, errorMessage: null },
+        favorite: { enabled: false, errorMessage: null },
+        pinned: { enabled: false, errorMessage: null }
+      }
+    }
+  },
   setProductFormField (state, params) {
     state.productForm.fields[params.field] = params.value
   },
-  clearProductFormField (state) {
-    state.productForm.fields = {
-      title: null,
-      weight: 100,
-      protein: null,
-      fats: null,
-      carb: null,
-      kkal: null,
-      category: "Мясо",
-      favorite: false,
-      pinned: false
-    }
-  },
   setProductFormFieldError (state, ctx) {
-    state.productForm.errors[ctx.field] = { enabled: true, errorMessage: ctx.errorMessage }
+    state.productForm.errors[ctx.field] = { enabled: ctx.enabled, errorMessage: ctx.errorMessage }
   },
-  clearProductFormFieldError (state, field) {
-    state.productForm.errors[field] = { enabled: false, errorMessage: null }
-  },
+
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
   }
