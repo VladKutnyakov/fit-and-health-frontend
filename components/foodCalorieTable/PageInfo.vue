@@ -3,13 +3,13 @@
     <app-page-info
       :infoElements="pageInfoElements"
       btnTitle="Добавить продукт"
-      @btnAction="openModal()"
+      @btnAction="openProductModal()"
     />
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import AppPageInfo from "@/components/basic/AppPageInfo"
 
 export default {
@@ -50,9 +50,10 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({
-      openModal: 'foodCalorieTable/openModal',
-    }),
+    openProductModal () {
+      this.$store.commit('foodCalorieTable/clearNewProductParams')
+      this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
+    }
   }
 }
 </script>

@@ -279,8 +279,6 @@ export const actions = {
         active: true
       }
       this.commit('notifications/addNewNotice', notice)
-
-      
     }
   },
   async saveMealPlanerInfo ({ state, commit }) {

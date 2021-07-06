@@ -11,7 +11,7 @@ export const state = () => ({
     searchString: ''
   },
   newProduct: {
-    title: "",
+    title: null,
     weight: 100,
     protein: null,
     fats: null,
@@ -19,8 +19,20 @@ export const state = () => ({
     kkal: null,
     category: "Мясо",
     favorite: false,
+    pinned: false
   },
-  modalActive: false
+  newProductErrors: {
+    title: { enabled: false, errorMessage: null },
+    weight: { enabled: false, errorMessage: null },
+    protein: { enabled: false, errorMessage: null },
+    fats: { enabled: false, errorMessage: null },
+    carb: { enabled: false, errorMessage: null },
+    kkal: { enabled: false, errorMessage: null },
+    category: { enabled: false, errorMessage: null },
+    favorite: { enabled: false, errorMessage: null },
+    pinned: { enabled: false, errorMessage: null },
+  },
+  productModalActive: false
 })
 
 export const getters = {
@@ -215,25 +227,26 @@ export const mutations = {
   setNewProductParams (state, params) {
     state.newProduct[params.field] = params.value
   },
-  openModal (state, productId) {
-    if (productId) {
-      state.newProduct = state.products.filter(product => product.id === productId)[0]
-    } else {
-      state.newProduct = {
-        title: "",
-        weight: 100,
-        protein: null,
-        fats: null,
-        carb: null,
-        kkal: null,
-        category: "Мясо",
-        favorite: false,
-      }
+  clearNewProductParams (state) {
+    state.newProduct = {
+      title: null,
+      weight: 100,
+      protein: null,
+      fats: null,
+      carb: null,
+      kkal: null,
+      category: "Мясо",
+      favorite: false,
+      pinned: false
     }
-    state.modalActive = true
   },
-  closeModal (state) {
-    state.modalActive = false
+  clearNewProductParamError (state, field) {
+    if (state.newProductErrors[field].enabled) {
+      state.newProductErrors[field] = { enabled: false, errorMessage: null }
+    }
+  },
+  toggleModalVisibility (state, ctx) {
+    state[ctx.modal] = ctx.condition
   }
 }
 
@@ -259,13 +272,34 @@ export const actions = {
   },
   async saveProduct ({ state, commit }) {
     try {
-      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/save-product`, state.newProduct)
+      if (
+        state.newProduct.title &&
+        state.newProduct.weight === 100 &&
+        state.newProduct.protein &&
+        state.newProduct.fats &&
+        state.newProduct.carb &&
+        state.newProduct.carb &&
+        state.newProduct.kkal &&
+        state.newProduct.category
+      ) {
+        const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/save-product`, state.newProduct)
 
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
+        if (response.updatedToken) {
+          this.commit('auth/setToken', response.updatedToken)
+        }
+
+        commit('addNewProduct', response.data)
+        commit('clearNewProductParams')
+      } else {
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: 'Заполните обязательные поля',
+          timeToShow: 5000,
+          active: true
+        }
+        this.commit('notifications/addNewNotice', notice)
       }
-
-      commit('addNewProduct', response.data)
     } catch (error) {
       console.log(error)
     }

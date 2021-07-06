@@ -1,5 +1,5 @@
 <template>
-  <app-modal :isActive="modalActive" @close="closeModal()">
+  <app-modal :isActive="productModalActive" @close="toggleModalVisibility({modal: 'productModalActive', condition: false})">
     <template v-slot:modalHeader>
       <p class="header__title">Добавить продукт</p>
       <div class="header__description">
@@ -14,7 +14,11 @@
             <p class="field__title">Название</p>
             <app-input-text
               :value="newProduct.title"
-              @input="setNewProductParams({field: 'title', value: $event})"
+              :error="newProductErrors.title"
+              @input="
+                setNewProductParams({field: 'title', value: $event}),
+                clearNewProductParamError('title')
+              "
             />
           </div>
 
@@ -23,7 +27,7 @@
             <app-select
               minWidth="236px"
               :selectOptionsList="productCategories"
-              defaultValue="Мясо"
+              :defaultValue="newProduct.category"
               alignListLeft
               alignSelectedValueLeft
               @select="setNewProductParams({field: 'category', value: $event})"
@@ -36,6 +40,16 @@
                 :value="newProduct.favorite"
                 label="Добавить в избранное"
                 @change="setNewProductParams({field: 'favorite', value: $event})"
+              />
+            </div>
+          </div>
+
+          <div class="form-field">
+            <div class="checkbox-group">
+              <app-input-checkbox
+                :value="newProduct.pinned"
+                label="Закрепить"
+                @change="setNewProductParams({field: 'pinned', value: $event})"
               />
             </div>
           </div>
@@ -77,7 +91,12 @@
       </div>
     </template>
     <template v-slot:modalFooter>
-      <app-button uppercase size14px @click.native="closeModal()">Отмена</app-button>
+      <app-button
+        uppercase
+        size14px
+        @click.native="toggleModalVisibility({modal: 'productModalActive', condition: false})"
+      >Отмена</app-button>
+
       <app-button
         uppercase
         size14px
@@ -89,7 +108,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapActions } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppPageInfo from "@/components/basic/AppPageInfo"
 import AppModal from "@/components/basic/AppModal"
 import AppInputText from "@/components/basic/AppInputText"
@@ -111,22 +130,20 @@ export default {
   },
   computed: {
     ...mapState({
-      modalActive: state => state.foodCalorieTable.modalActive,
       newProduct: state => state.foodCalorieTable.newProduct,
-      productCategories: state => state.foodCalorieTable.productCategories
+      newProductErrors: state => state.foodCalorieTable.newProductErrors,
+      productCategories: state => state.foodCalorieTable.productCategories,
+      productModalActive: state => state.foodCalorieTable.productModalActive
     }),
   },
   methods: {
     ...mapMutations({
-      closeModal: 'foodCalorieTable/closeModal',
+      toggleModalVisibility: 'foodCalorieTable/toggleModalVisibility',
       setNewProductParams: 'foodCalorieTable/setNewProductParams',
-    }),
-    ...mapActions({
-      saveProduct: 'foodCalorieTable/saveProduct'
+      clearNewProductParamError: 'foodCalorieTable/clearNewProductParamError'
     }),
     saveUserProduct() {
-      this.saveProduct()
-      this.closeModal()
+      this.$store.dispatch('foodCalorieTable/saveProduct')
     }
   }
 }
