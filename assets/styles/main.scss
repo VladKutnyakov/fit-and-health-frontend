@@ -28,6 +28,12 @@ input, textarea, a, button {
   outline: none;
 }
 
+pre {
+  font-family: $fontMontserrat;
+  font-size: 16px;
+  color: $black;
+}
+
 b {
   font-weight: 600;
 }
