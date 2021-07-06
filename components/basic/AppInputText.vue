@@ -18,6 +18,7 @@
     <pre
       v-if="error && error.errorMessage"
       class="error-message"
+      :class="[{ 'error-message--active': error && error.enabled }]"
     >{{ error.errorMessage }}</pre>
   </div>
 </template>
@@ -107,22 +108,30 @@ export default {
   .error-message {
     // border: 1px solid red;
     position: absolute;
-    top: calc(100% + 10px);
+    top: calc(100% + 5px);
     padding: 5px 10px;
     background: $red;
+    text-align: center;
     color: $white;
+    font-size: 12px;
     border-radius: 6px;
+    opacity: 0;
+    visibility: hidden;
     z-index: 2000;
   }
   .error-message::before {
     position: absolute;
     content: '';
-    top: -2px;
+    top: -1px;
     left: 50%;
     transform: rotate(45deg) translateX(-50%);
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
     background: $red;
+  }
+  .error-message--active {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
