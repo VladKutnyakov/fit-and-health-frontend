@@ -143,7 +143,7 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import { requiredFieldsValidation } from '@/utils/handlers'
+// import { requiredFieldsValidation } from '@/utils/handlers'
 import AppPageInfo from "@/components/basic/AppPageInfo"
 import AppModal from "@/components/basic/AppModal"
 import AppInputText from "@/components/basic/AppInputText"
@@ -177,7 +177,8 @@ export default {
       setProductFormFieldError: 'foodCalorieTable/setProductFormFieldError'
     }),
     saveUserProduct() {
-      const isValid = requiredFieldsValidation(this.productForm, ['title', 'weight', 'protein', 'fats', 'carb', 'kkal', 'category'], 'foodCalorieTable/setProductFormFieldError', null)
+      // $requiredFieldsValidation --> custom pluguin в папке pluguins
+      const isValid = this.$requiredFieldsValidation(this.productForm, ['title', 'weight', 'protein', 'fats', 'carb', 'kkal', 'category'], 'foodCalorieTable/setProductFormFieldError', null)
 
       if (isValid) {
         this.$store.dispatch('foodCalorieTable/saveProduct')
