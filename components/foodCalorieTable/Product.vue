@@ -145,12 +145,7 @@ export default {
       color: $green;
     }
     .element__action-btn--active {
-      color: $white;
-      background: $green;
-      cursor: pointer;
-    }
-    .element__action-btn--active:hover {
-      color: $white;
+      color: $green;
     }
     .element__weight-input {
       flex: 1 1 auto;
