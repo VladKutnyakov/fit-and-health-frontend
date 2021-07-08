@@ -16,6 +16,13 @@
     </div>
     <div class="item__element">
       <i
+        v-if="!item.favorite"
+        class="ti-heart-broken element__action-btn"
+        :class="[{'element__action-btn--active': item.favorite}]"
+        @click="changeFavoriteParam(item.id)"
+      ></i>
+      <i
+        v-if="item.favorite"
         class="ti-heart element__action-btn"
         :class="[{'element__action-btn--active': item.favorite}]"
         @click="changeFavoriteParam(item.id)"
