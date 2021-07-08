@@ -122,7 +122,9 @@ export const mutations = {
   updateFavoriteProduct (state, updatedProduct) {
     for (let i = 0; i < state.products.length; i++) {
       if (state.products[i].id === updatedProduct.productId) {
-        state.products[i].favorite = updatedProduct.favorite
+        const item = JSON.parse(JSON.stringify(state.products[i]))
+        item.favorite = updatedProduct.favorite
+        state.products.splice(i, 1, item)
         break
       }
     }
@@ -221,13 +223,14 @@ export const mutations = {
     }
 
   },
-  changeProductWeight (state, {index, newWeight}) {
-    let product = {...state.sortedProducts[index]}
-    product.weight = newWeight
-
-    state.sortedProducts.splice(index, 1, product)
+  changeProductWeight (state, {item, newWeight}) {
+    for (let i = 0; i < state.sortedProducts.length; i++) {
+      if (state.sortedProducts[i].id === item.id) {
+        state.sortedProducts[i].weight = newWeight
+        break
+      }
+    }
   },
-
   clearProductForm (state) {
     state.productForm = {
       fields: {
@@ -260,7 +263,6 @@ export const mutations = {
   setProductFormFieldError (state, ctx) {
     state.productForm.errors[ctx.field] = { enabled: ctx.enabled, errorMessage: ctx.errorMessage }
   },
-
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
   }
@@ -344,5 +346,19 @@ export const actions = {
     } catch (error) {
       console.log(error)
     }
+  },
+  async changePinnedParam ({ commit }, productId) {
+    console.log(productId)
+    // try {
+    //   const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/change-favorite-param`, {productId: productId})
+
+    //   if (response.updatedToken) {
+    //     this.commit('auth/setToken', response.updatedToken)
+    //   }
+
+    //   commit('updateFavoriteProduct', response.data)
+    // } catch (error) {
+    //   console.log(error)
+    // }
   }
 }

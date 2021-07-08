@@ -20,8 +20,36 @@ import ProductTable from '@/components/foodCalorieTable/ProductTable'
 import ProductFormModal from '@/components/foodCalorieTable/ProductFormModal'
 
 export default {
+  name: 'FoodCalorieTablePage',
   layout: 'default',
   middleware: ['userAuth'],
+  head () {
+    return {
+      title: 'Fit and Health - Таблица калорийности продуктов',
+      __dangerouslyDisableSanitizers: ['script'],
+      script: [
+        { // МИКРОРАЗМЕТКА
+          innerHTML: `{
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "https://website.com",
+            "name": "Website",
+            "description": "This website is awesome.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Website",
+              "alternateName": "SiteWeb",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://someimage.com/image"
+              }
+            }
+          }`,
+          type: 'application/ld+json'
+        }
+      ]
+    }
+  },
   async asyncData ({ store }) {
     await store.dispatch('foodCalorieTable/getAllProducts')
   },
