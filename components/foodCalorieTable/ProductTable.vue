@@ -250,6 +250,10 @@ export default {
             color: $green;
             font-family: $fontMontserrat;
             font-weight: 500;
+            transition: $tr-02;
+          }
+          .element__weight-input:focus {
+            border: 1px solid $green;
           }
           .element__weight-input::selection {
             color: $white;
