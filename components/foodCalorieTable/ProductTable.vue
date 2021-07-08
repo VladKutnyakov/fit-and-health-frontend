@@ -17,22 +17,30 @@
         <p class="header__column-title">Белки</p>
         <p class="header__column-title">Жиры</p>
         <p class="header__column-title">Углеводы</p>
-        <p class="header__column-title">Калорийность</p>
+        <p class="header__column-title">Ккал</p>
         <p class="header__column-title"><i class="ti-pencil"></i></p>
       </div>
       <ul class="food-table__product-list">
         <li v-for="(item, index) in sortedProducts" :key="index" class="product-list__item">
           <div class="item__element">
             <i
-              class="ti-heart element__favorite-product"
-              :class="[{'element__favorite-product--active': item.favorite}]"
-              @click="changeFavoriteParam(item.id)"
+              class="ti-pin-alt element__action-btn"
+              :class="[{'element__action-btn--active': item.pinned}]"
+              @click="changePinnedParam(item.id)"
             ></i>
           </div>
           <div class="item__element">
+            <i
+              class="ti-heart element__action-btn"
+              :class="[{'element__action-btn--active': item.favorite}]"
+              @click="changeFavoriteParam(item.id)"
+            ></i>
+          </div>
+          
+          <div class="item__element">
             <p class="element__value">{{ item.title }}</p>
           </div>
-          <div class="item__element">
+          <!-- <div class="item__element">
             <app-tooltip>
               <template v-slot:tooltipElement>
                 <category-icon :icon="item.category" />
@@ -41,7 +49,7 @@
                 <p class="element__tooltip-text">{{ item.category }}</p>
               </template>
             </app-tooltip>
-          </div>
+          </div> -->
           <div class="item__element">
             <input
               class="element__weight-input"
@@ -50,7 +58,7 @@
               @input="changeProductWeight({index, newWeight: $event.target.value})"
               @focus="setFocus($event)"
             >
-            <span class="element__weight-scale">гр.</span>
+            <!-- <span class="element__weight-scale">гр.</span> -->
           </div>
           <div class="item__element">
             <p class="element__value">{{ Math.round( (item.protein / 100 * item.weight) * 100) / 100 }}</p>
@@ -65,11 +73,21 @@
             <p class="element__value">{{ Math.round( (item.kkal / 100 * item.weight) * 100) / 100 }}</p>
           </div>
           <div class="item__element">
-            <app-button-with-actions
+            <!-- <app-button-with-actions
               :actions="btnActions"
               :params="{id: item.id}"
               @actionHandler="productMoreAction($event)"
-            />
+            /> -->
+            <i
+              class="ti-pencil element__action-btn"
+              :class="[{'element__action-btn--active': item.userId}]"
+            ></i>
+          </div>
+          <div class="item__element">
+            <i
+              class="ti-trash element__action-btn"
+              :class="[{'element__action-btn--active': item.userId}]"
+            ></i>
           </div>
         </li>
       </ul>
@@ -202,46 +220,46 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 7px;
+          padding: 5px;
           width: 120px;
           text-align: center;
           border-right: 1px solid $inputBorder;
           .element__value {
             font-size: 16px;
           }
-          .element__favorite-product {
+          .element__action-btn {
             // border: 1px solid red;
             padding: 5px;
             opacity: .3;
             transition: $tr-02;
             cursor: pointer;
           }
-          // .element__favorite-product:hover {
-          //   color: $green;
-          //   opacity: 1;
-          // }
-          .element__favorite-product--active {
+          .element__action-btn--active {
             padding: 5px;
             color: $green;
             opacity: 1;
             cursor: pointer;
           }
-          .element__img {
-            width: 25px;
-            height: 25px;
-          }
-          .element__tooltip-text {
-            font-style: 14px;
-          }
+          // .element__img {
+          //   width: 25px;
+          //   height: 25px;
+          // }
+          // .element__tooltip-text {
+          //   font-style: 14px;
+          // }
           .element__weight-input {
-            margin-top: 3px;
-            padding: 0 5px;
-            width: 60px;
-            min-width: 60px;
-            max-width: 60px;
+            // flex: 1 1 auto;
+            // margin-top: 3px;
+            padding: 3px 5px;
+            // width: 100%;
+            // height: 100%;
+            width: 90px;
+            min-width: 90px;
+            max-width: 90px;
             outline: none;
-            border: none;
-            border-bottom: 1px solid $blockBorder;
+            // border: none;
+            border: 1px solid $inputBorder;
+            border-radius: 6px;
             text-align: center;
             color: $green;
             font-family: $fontMontserrat;
@@ -257,23 +275,34 @@ export default {
             font-size: 12px;
           }
         }
-        .item__element:first-child {
+        .item__element:nth-child(1) {
           width: 50px;
           min-width: 50px;
           max-width: 50px;
         }
         .item__element:nth-child(2) {
-          flex: 1 1 auto;
-          min-width: 200px;
-          border: none;
+          width: 50px;
+          min-width: 50px;
+          max-width: 50px;
         }
         .item__element:nth-child(3) {
-          border-left: 1px solid $inputBorder;
+          flex: 1 1 auto;
+          min-width: 200px;
+          // border: none;
         }
-        .item__element:nth-child(8) {
-          min-width: 155px;
+        // .item__element:nth-child(4) {
+        //   border-left: 1px solid $inputBorder;
+        // }
+        // .item__element:nth-child(8) {
+        //   min-width: 155px;
+        // }
+        .item__element:nth-child(9) {
+          width: 50px;
+          min-width: 50px;
+          max-width: 50px;
+          // border: none;
         }
-        .item__element:last-child {
+        .item__element:nth-child(10) {
           width: 50px;
           min-width: 50px;
           max-width: 50px;
