@@ -241,7 +241,7 @@ export default {
           }
           .element__weight-input {
             flex: 1 1 auto;
-            padding: 8px 5px;
+            padding: 10px 5px;
             width: 100%;
             outline: none;
             border: 1px solid $inputBorder;
