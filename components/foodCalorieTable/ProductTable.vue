@@ -10,21 +10,29 @@
 
     <div class="food-table">
       <div class="food-table__header">
+        <p class="header__column-title"><i class="ti-pin-alt"></i></p>
         <p class="header__column-title"><i class="ti-heart"></i></p>
         <p class="header__column-title">Название</p>
-        <p class="header__column-title">Категория</p>
         <p class="header__column-title">Масса</p>
         <p class="header__column-title">Белки</p>
         <p class="header__column-title">Жиры</p>
         <p class="header__column-title">Углеводы</p>
         <p class="header__column-title">Ккал</p>
         <p class="header__column-title"><i class="ti-pencil"></i></p>
+        <p class="header__column-title"><i class="ti-trash"></i></p>
       </div>
       <ul class="food-table__product-list">
         <li v-for="(item, index) in sortedProducts" :key="index" class="product-list__item">
           <div class="item__element">
             <i
+              v-if="!item.pinned"
               class="ti-pin-alt element__action-btn"
+              :class="[{'element__action-btn--active': item.pinned}]"
+              @click="changePinnedParam(item.id)"
+            ></i>
+            <i
+              v-if="item.pinned"
+              class="ti-pin2 element__action-btn"
               :class="[{'element__action-btn--active': item.pinned}]"
               @click="changePinnedParam(item.id)"
             ></i>
@@ -36,20 +44,9 @@
               @click="changeFavoriteParam(item.id)"
             ></i>
           </div>
-          
           <div class="item__element">
             <p class="element__value">{{ item.title }}</p>
           </div>
-          <!-- <div class="item__element">
-            <app-tooltip>
-              <template v-slot:tooltipElement>
-                <category-icon :icon="item.category" />
-              </template>
-              <template v-slot:tooltipText>
-                <p class="element__tooltip-text">{{ item.category }}</p>
-              </template>
-            </app-tooltip>
-          </div> -->
           <div class="item__element">
             <input
               class="element__weight-input"
@@ -58,7 +55,6 @@
               @input="changeProductWeight({index, newWeight: $event.target.value})"
               @focus="setFocus($event)"
             >
-            <!-- <span class="element__weight-scale">гр.</span> -->
           </div>
           <div class="item__element">
             <p class="element__value">{{ Math.round( (item.protein / 100 * item.weight) * 100) / 100 }}</p>
@@ -73,20 +69,15 @@
             <p class="element__value">{{ Math.round( (item.kkal / 100 * item.weight) * 100) / 100 }}</p>
           </div>
           <div class="item__element">
-            <!-- <app-button-with-actions
-              :actions="btnActions"
-              :params="{id: item.id}"
-              @actionHandler="productMoreAction($event)"
-            /> -->
             <i
               class="ti-pencil element__action-btn"
-              :class="[{'element__action-btn--active': item.userId}]"
+              @click="editProduct(item)"
             ></i>
           </div>
           <div class="item__element">
             <i
               class="ti-trash element__action-btn"
-              :class="[{'element__action-btn--active': item.userId}]"
+              @click="removeProduct(item)"
             ></i>
           </div>
         </li>
@@ -121,8 +112,8 @@ export default {
   },
   watch: {
     searchString () {
-      this.setSearchString(this.searchString)
-      this.sortProducts()
+      this.$store.commit('foodCalorieTable/setSearchString', this.searchString)
+      this.$store.commit('foodCalorieTable/sortProducts')
     }
   },
   computed: {
@@ -132,30 +123,23 @@ export default {
   },
   methods: {
     ...mapMutations({
-      openModal: 'foodCalorieTable/openModal',
-      setSearchString: 'foodCalorieTable/setSearchString',
-      sortProducts: 'foodCalorieTable/sortProducts',
       changeProductWeight: 'foodCalorieTable/changeProductWeight'
     }),
     ...mapActions({
-      editProduct: 'foodCalorieTable/editProduct',
-      changeFavoriteParam: 'foodCalorieTable/changeFavoriteParam',
-      removeProduct: 'foodCalorieTable/removeProduct'
+      changeFavoriteParam: 'foodCalorieTable/changeFavoriteParam'
     }),
     setFocus ($event) {
       $event.target.select()
     },
-    productMoreAction ($event) {
-      switch ($event.action) {
-        case 'Редактировать':
-          this.openModal($event.params.id)
-          break
-        case 'Удалить':
-          this.removeProduct({productId: $event.params.id})
-          break
-        default:
-          break
+    editProduct (product) {
+      for (const key in product) {
+        this.$store.commit('foodCalorieTable/setProductFormField', {field: key, value: product[key]})
       }
+
+      this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
+    },
+    removeProduct (product) {
+      this.$store.dispatch('foodCalorieTable/removeProduct', product)
     }
   }
 }
@@ -169,8 +153,11 @@ export default {
   flex: 1 1 auto;
   margin-left: 40px;
   .food-table {
+    position: relative;
     margin-top: 20px;
     .food-table__header {
+      position: sticky;
+      top: 0;
       display: flex;
       align-items: center;
       margin-bottom: 10px;
@@ -188,19 +175,26 @@ export default {
         font-weight: 500;
         border-right: 1px solid rgba(255,255,255,.4);
       }
-      .header__column-title:first-child {
+      .header__column-title:nth-child(1) {
         width: 50px;
         min-width: 50px;
         max-width: 50px;
       }
       .header__column-title:nth-child(2) {
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
+      }
+      .header__column-title:nth-child(3) {
         flex: 1 1 auto;
         min-width: 200px;
       }
-      .header__column-title:nth-child(8) {
-        min-width: 155px;
+      .header__column-title:nth-child(9) {
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
       }
-      .header__column-title:last-child {
+      .header__column-title:nth-child(10) {
         width: 50px;
         min-width: 50px;
         max-width: 50px;
@@ -210,13 +204,13 @@ export default {
     .food-table__product-list {
       .product-list__item {
         display: flex;
-        align-items: center;
         margin-bottom: 5px;
         padding: 5px 0px;
         background: $white;
         border: 1px solid $blockBorder;
         border-radius: 6px;
         .item__element {
+          flex: 0 1 auto;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -228,36 +222,28 @@ export default {
             font-size: 16px;
           }
           .element__action-btn {
-            // border: 1px solid red;
-            padding: 5px;
-            opacity: .3;
+            padding: 8px;
+            color: $black30;
+            border-radius: 50%;
             transition: $tr-02;
             cursor: pointer;
           }
-          .element__action-btn--active {
-            padding: 5px;
+          .element__action-btn:hover {
             color: $green;
-            opacity: 1;
+          }
+          .element__action-btn--active {
+            color: $white;
+            background: $green;
             cursor: pointer;
           }
-          // .element__img {
-          //   width: 25px;
-          //   height: 25px;
-          // }
-          // .element__tooltip-text {
-          //   font-style: 14px;
-          // }
+          .element__action-btn--active:hover {
+            color: $white;
+          }
           .element__weight-input {
-            // flex: 1 1 auto;
-            // margin-top: 3px;
-            padding: 3px 5px;
-            // width: 100%;
-            // height: 100%;
-            width: 90px;
-            min-width: 90px;
-            max-width: 90px;
+            flex: 1 1 auto;
+            padding: 8px 5px;
+            width: 100%;
             outline: none;
-            // border: none;
             border: 1px solid $inputBorder;
             border-radius: 6px;
             text-align: center;
@@ -288,25 +274,26 @@ export default {
         .item__element:nth-child(3) {
           flex: 1 1 auto;
           min-width: 200px;
-          // border: none;
         }
-        // .item__element:nth-child(4) {
-        //   border-left: 1px solid $inputBorder;
-        // }
-        // .item__element:nth-child(8) {
-        //   min-width: 155px;
-        // }
+        .item__element:nth-child(4) {
+          padding: 0 5px;
+        }
         .item__element:nth-child(9) {
           width: 50px;
           min-width: 50px;
           max-width: 50px;
-          // border: none;
+          .element__action-btn:hover {
+            color: $black;
+          }
         }
         .item__element:nth-child(10) {
           width: 50px;
           min-width: 50px;
           max-width: 50px;
           border: none;
+          .element__action-btn:hover {
+            color: $red;
+          }
         }
       }
     }
