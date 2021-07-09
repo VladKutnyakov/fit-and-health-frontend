@@ -35,6 +35,7 @@ export const state = () => ({
       pinned: { enabled: false, errorMessage: null }
     }
   },
+  modalCondition: 'create',
   productModalActive: false
 })
 
@@ -65,59 +66,26 @@ export const mutations = {
     this.commit('foodCalorieTable/sortProducts')
   },
   addNewProduct (state, payload) {
-    payload.product.favorite = payload.favorite
-
     state.products.push(payload.product)
     this.commit('foodCalorieTable/sortProducts')
-
-    const notice = {
-      id: Date.now(),
-      type: 'success',
-      message: 'Продукт успешно добавлен.',
-      timeToShow: 5000,
-      active: true
-    }
-    this.commit('notifications/addNewNotice', notice)
   },
-  updateProducts (state, newProduct) {
-    let targetProduct = null
+  updateProduct (state, product) {
     for (let i = 0; i < state.products.length; i++) {
-      if (state.products[i].id === newProduct.id) {
-        targetProduct = i
-        state.products[i] = newProduct
+      if (state.products[i].id === product.id) {
+        state.products.splice(i, 1, product)
         break
       }
     }
     this.commit('foodCalorieTable/sortProducts')
-
-    const notice = {
-      id: Date.now(),
-      type: 'success',
-      message: 'Информация о продукте успешно обновлена.',
-      timeToShow: 5000,
-      active: true
-    }
-    this.commit('notifications/addNewNotice', notice)
   },
   deleteProduct (state, productId) {
-    let targetProduct = null
     for (let i = 0; i < state.products.length; i++) {
-      if (state.products[i].id === productId) {
-        targetProduct = i
+      if (state.products[i].id === parseInt(productId)) {
+        state.products.splice(i, 1)
         break
       }
     }
-    state.products.splice(targetProduct, 1)
     this.commit('foodCalorieTable/sortProducts')
-
-    const notice = {
-      id: Date.now(),
-      type: 'info',
-      message: 'Продукт удален из базы данных.',
-      timeToShow: 5000,
-      active: true
-    }
-    this.commit('notifications/addNewNotice', notice)
   },
   updateFavoriteProduct (state, updatedProduct) {
     for (let i = 0; i < state.products.length; i++) {
@@ -129,15 +97,6 @@ export const mutations = {
       }
     }
     this.commit('foodCalorieTable/sortProducts')
-
-    const notice = {
-      id: Date.now(),
-      type: 'info',
-      message: updatedProduct.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
-      timeToShow: 5000,
-      active: true
-    }
-    this.commit('notifications/addNewNotice', notice)
   },
   updatePinnedProduct (state, updatedProduct) {
     for (let i = 0; i < state.products.length; i++) {
@@ -149,15 +108,6 @@ export const mutations = {
       }
     }
     this.commit('foodCalorieTable/sortProducts')
-
-    const notice = {
-      id: Date.now(),
-      type: 'info',
-      message: updatedProduct.favorite ? 'Продукт добавлен в закрепленные.' : 'Продукт удален из закрепленных.',
-      timeToShow: 5000,
-      active: true
-    }
-    this.commit('notifications/addNewNotice', notice)
   },
   setSearchString (state, searchString) {
     state.selectedFilters.searchString = searchString
@@ -285,6 +235,9 @@ export const mutations = {
   setProductFormFieldError (state, ctx) {
     state.productForm.errors[ctx.field] = { enabled: ctx.enabled, errorMessage: ctx.errorMessage }
   },
+  setModalCondition (state, condition) {
+    state.modalCondition = condition
+  },
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
   }
@@ -312,13 +265,23 @@ export const actions = {
   },
   async saveProduct ({ state, commit }) {
     try {
-      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/save-product`, state.productForm.fields)
+      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/save-product`, {product: state.productForm.fields})
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
       }
 
       commit('addNewProduct', response.data)
+      commit('toggleModalVisibility', {modal: 'productModalActive', condition: false})
+
+      const notice = {
+        id: Date.now(),
+        type: 'success',
+        message: 'Продукт успешно сохранен.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     } catch (error) {
       console.log(error.response)
 
@@ -332,9 +295,52 @@ export const actions = {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+  async updateProduct ({ state, commit }) {
+    try {
+      const response = await this.$axios.$put(`${BASE_URL}/api/food-calorie-table/update-product`, {product: state.productForm.fields})
+
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
+      }
+
+      if (response.data.product) {
+        commit('updateProduct', response.data.product)
+        commit('toggleModalVisibility', {modal: 'productModalActive', condition: false})
+
+        const notice = {
+          id: Date.now(),
+          type: 'success',
+          message: 'Продукт успешно обновлен.',
+          timeToShow: 5000,
+          active: true
+        }
+        this.commit('notifications/addNewNotice', notice)
+      } else {
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: 'Неизвестная ошибка. Попробуйте еще раз или обратитесь в службу поддержки.',
+          timeToShow: 5000,
+          active: true
+        }
+        this.commit('notifications/addNewNotice', notice)
+      }
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при обновлении.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
   async removeProduct ({ commit }, product) {
     try {
-      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/remove-product`, product)
+      const response = await this.$axios.$delete(`${BASE_URL}/api/food-calorie-table/remove-product/${product.id}`)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -342,6 +348,15 @@ export const actions = {
 
       if (response.data.removed) {
         await commit('deleteProduct', response.data.productId)
+
+        const notice = {
+          id: Date.now(),
+          type: 'info',
+          message: 'Продукт удален из базы данных.',
+          timeToShow: 5000,
+          active: true
+        }
+        this.commit('notifications/addNewNotice', notice)
       } else {
         const notice = {
           id: Date.now(),
@@ -354,6 +369,15 @@ export const actions = {
       }
     } catch (error) {
       console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Неизвестная ошибка. Попробуйте еще раз или обратитесь в службу поддержки.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
   async changeFavoriteParam ({ commit }, productId) {
@@ -365,6 +389,15 @@ export const actions = {
       }
 
       commit('updateFavoriteProduct', response.data)
+
+      const notice = {
+        id: Date.now(),
+        type: 'info',
+        message: response.data.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     } catch (error) {
       console.log(error.response)
     }
@@ -378,6 +411,15 @@ export const actions = {
       }
 
       commit('updatePinnedProduct', response.data)
+
+      const notice = {
+        id: Date.now(),
+        type: 'info',
+        message: response.data.pinned ? 'Продукт добавлен в закрепленные.' : 'Продукт удален из закрепленных.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     } catch (error) {
       console.log(error.response)
     }
