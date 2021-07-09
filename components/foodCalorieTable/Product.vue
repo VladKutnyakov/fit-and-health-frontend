@@ -82,11 +82,6 @@ export default {
   props: {
     item: Object
   },
-  watch: {
-    item () {
-      console.log(1);
-    }
-  },
   methods: {
     ...mapMutations({
       changeProductWeight: 'foodCalorieTable/changeProductWeight'
@@ -99,10 +94,17 @@ export default {
       $event.target.select()
     },
     editProduct (product) {
+      // Очистить поля и ошибки формы
+      this.$store.commit('foodCalorieTable/clearProductForm', 'edit')
+
+      // Установить значение для полей на основе редактируемого продукта
       for (const key in product) {
         this.$store.commit('foodCalorieTable/setProductFormField', {field: key, value: product[key]})
       }
 
+      // Установить режим редактирования для модального окна
+      this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
+      // Открыть модальное окно
       this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
     },
     removeProduct (product) {
