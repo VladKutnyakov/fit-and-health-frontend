@@ -95,31 +95,9 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.header__title {
-  font-size: 18px;
-  font-weight: 500;
-}
-.header__description {
-  margin-top: 10px;
-  .description__text {
-    font-size: 14px;
-  }
-}
-
 .search-recipes-and-products {
-  // position: fixed;
-  // top: 0;
-  // left: 0;
   display: flex;
   flex-direction: column;
-  // padding: 10px;
-  // width: calc(100% - 20px);
-  // height: calc(100% - 20px);
-  // background: $white;
-  // border: 1px solid $blockBorder;
-  // border-radius: 6px;
-  // box-shadow: $btnShadow;
-  // transition: $tr-04;
   .filters {
     display: flex;
     align-items: center;
@@ -149,22 +127,17 @@ export default {
     }
   }
   .founding__results {
-    flex: 1 1 auto;
     padding: 10px;
+    max-height: 400px;
     background: $white;
     border-radius: 6px;
-    // border: 1px solid $blockBorder;
     background: rgba(0, 0, 0, 0.025);
     box-shadow: inset 0 0 5px 0px rgb(0 0 0 / 25%);
     overflow: auto;
   }
 }
-// .search-recipes-and-products--active {
-//   top: 10px;
-// }
 
 .footer__action-btns {
-  // border: 1px solid red;
   flex: 1 1 auto;
   display: flex;
   justify-content: flex-end;
