@@ -55,12 +55,14 @@
     <div class="item__element">
       <i
         class="ti-pencil element__action-btn"
+        :class="[{ 'element__action-btn--disabled': !item.userId }]"
         @click="editProduct(item)"
       ></i>
     </div>
     <div class="item__element">
       <i
         class="ti-trash element__action-btn"
+        :class="[{ 'element__action-btn--disabled': !item.userId }]"
         @click="removeProduct(item)"
       ></i>
     </div>
@@ -94,21 +96,25 @@ export default {
       $event.target.select()
     },
     editProduct (product) {
-      // Очистить поля и ошибки формы
-      this.$store.commit('foodCalorieTable/clearProductForm', 'edit')
+      if (product.userId) {
+        // Очистить поля и ошибки формы
+        this.$store.commit('foodCalorieTable/clearProductForm', 'edit')
 
-      // Установить значение для полей на основе редактируемого продукта
-      for (const key in product) {
-        this.$store.commit('foodCalorieTable/setProductFormField', {field: key, value: product[key]})
+        // Установить значение для полей на основе редактируемого продукта
+        for (const key in product) {
+          this.$store.commit('foodCalorieTable/setProductFormField', {field: key, value: product[key]})
+        }
+
+        // Установить режим редактирования для модального окна
+        this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
+        // Открыть модальное окно
+        this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
       }
-
-      // Установить режим редактирования для модального окна
-      this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
-      // Открыть модальное окно
-      this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
     },
     removeProduct (product) {
-      this.$store.dispatch('foodCalorieTable/removeProduct', product)
+      if (product.userId) {
+        this.$store.dispatch('foodCalorieTable/removeProduct', product)
+      }
     }
   }
 }
@@ -148,6 +154,12 @@ export default {
     }
     .element__action-btn--active {
       color: $green;
+    }
+    .element__action-btn--disabled {
+      color: $black30;
+    }
+    .element__action-btn--disabled:hover {
+      color: $black30 !important;
     }
     .element__weight-input {
       flex: 1 1 auto;
