@@ -34,7 +34,7 @@ export default {
   css: [
     '~/assets/styles/reset.scss',
     '@/static/fonts/css/themify-icons.css',
-    '@/static/fonts/foodCategories/css/fontello.css',
+    // '@/static/fonts/foodCategories/css/fontello.css',
     '~/assets/styles/main.scss'
   ],
 
