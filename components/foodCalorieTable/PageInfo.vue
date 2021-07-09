@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     openProductModal () {
+      this.$store.commit('foodCalorieTable/setModalCondition', 'create')
       this.$store.commit('foodCalorieTable/clearProductForm')
       this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
     }
