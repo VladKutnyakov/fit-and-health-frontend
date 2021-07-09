@@ -139,6 +139,26 @@ export const mutations = {
     }
     this.commit('notifications/addNewNotice', notice)
   },
+  updatePinnedProduct (state, updatedProduct) {
+    for (let i = 0; i < state.products.length; i++) {
+      if (state.products[i].id === updatedProduct.productId) {
+        const item = JSON.parse(JSON.stringify(state.products[i]))
+        item.pinned = updatedProduct.pinned
+        state.products.splice(i, 1, item)
+        break
+      }
+    }
+    this.commit('foodCalorieTable/sortProducts')
+
+    const notice = {
+      id: Date.now(),
+      type: 'info',
+      message: updatedProduct.favorite ? 'Продукт добавлен в закрепленные.' : 'Продукт удален из закрепленных.',
+      timeToShow: 5000,
+      active: true
+    }
+    this.commit('notifications/addNewNotice', notice)
+  },
   setSearchString (state, searchString) {
     state.selectedFilters.searchString = searchString
   },
@@ -157,8 +177,11 @@ export const mutations = {
     if (state.selectedFilters.productType === 'Мои продукты') {
       // console.log('Мои продукты')
       state.sortedProducts = [...state.products.filter(product => product.userId !== null)]
-    } else if (state.selectedFilters.productType === 'Избранное') {
-      // console.log('Избранное')
+    } else if (state.selectedFilters.productType === 'Закрепленные') {
+      // console.log('Закрепленные')
+      state.sortedProducts = [...state.products.filter(product => product.pinned !== false)]
+    } else if (state.selectedFilters.productType === 'Избранные') {
+      // console.log('Избранные')
       state.sortedProducts = [...state.products.filter(product => product.favorite !== false)]
     } else {
       // console.log('Все продукты')
@@ -200,7 +223,6 @@ export const mutations = {
       switch (state.selectedFilters.sortingBy) {
         case 'Белкам':
           field = 'protein'
-          console.log(field)
           break
         case 'Жирам':
           field = 'fats'
@@ -283,7 +305,7 @@ export const actions = {
 
       this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
 
       this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     }
@@ -298,7 +320,7 @@ export const actions = {
 
       commit('addNewProduct', response.data)
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
 
       const notice = {
         id: Date.now(),
@@ -331,7 +353,7 @@ export const actions = {
         this.commit('notifications/addNewNotice', notice)
       }
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
     }
   },
   async changeFavoriteParam ({ commit }, productId) {
@@ -344,21 +366,20 @@ export const actions = {
 
       commit('updateFavoriteProduct', response.data)
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
     }
   },
   async changePinnedParam ({ commit }, productId) {
-    console.log(productId)
-    // try {
-    //   const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/change-favorite-param`, {productId: productId})
+    try {
+      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/change-pinned-param`, {productId: productId})
 
-    //   if (response.updatedToken) {
-    //     this.commit('auth/setToken', response.updatedToken)
-    //   }
+      if (response.updatedToken) {
+        this.commit('auth/setToken', response.updatedToken)
+      }
 
-    //   commit('updateFavoriteProduct', response.data)
-    // } catch (error) {
-    //   console.log(error)
-    // }
+      commit('updatePinnedProduct', response.data)
+    } catch (error) {
+      console.log(error.response)
+    }
   }
 }
