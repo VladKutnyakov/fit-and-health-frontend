@@ -1,12 +1,10 @@
 <template>
-  <app-modal :isActive="productModalActive" @close="toggleModalVisibility({modal: 'productModalActive', condition: false})">
-    <template v-slot:modalHeader>
-      <p class="header__title">Добавить продукт</p>
-      <div class="header__description">
-        <p class="description__text">Заполните форму и нажмите "сохранить продукт", что бы добавить новый продукт в общую базу.</p>
-        <p class="description__text">Новый продукт будет доступен только для вас.</p>
-      </div>
-    </template>
+  <app-modal
+    :isActive="productModalActive"
+    :headerTitle="headerTitle"
+    :headerDescriptions="headerDescriptions"
+    @close="toggleModalVisibility({modal: 'productModalActive', condition: false})"
+  >
     <template v-slot:modalContent>
       <div class="content__add-product-form">
         <div class="form-group">
@@ -135,15 +133,14 @@
         uppercase
         size14px
         class="modal-action-btn ml-auto"
-        @click.native="saveUserProduct()"
-      >Сохранить продукт</app-button>
+        @click.native="saveOrUpdateProduct()"
+      >{{ modalCondition === 'create' ? 'Сохранить' : 'Редактировать' }}</app-button>
     </template>
   </app-modal>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-// import { requiredFieldsValidation } from '@/utils/handlers'
 import AppPageInfo from "@/components/basic/AppPageInfo"
 import AppModal from "@/components/basic/AppModal"
 import AppInputText from "@/components/basic/AppInputText"
@@ -167,8 +164,24 @@ export default {
     ...mapState({
       productForm: state => state.foodCalorieTable.productForm,
       productCategories: state => state.foodCalorieTable.productCategories,
+      modalCondition: state => state.foodCalorieTable.modalCondition,
+      modalCondition: state => state.foodCalorieTable.modalCondition,
       productModalActive: state => state.foodCalorieTable.productModalActive
     }),
+    headerTitle () {
+      if (this.modalCondition === 'create') {
+        return 'Добавить продукт'
+      } else {
+        return 'Редактировать продукт'
+      }
+    },
+    headerDescriptions () {
+      if (this.modalCondition === 'create') {
+        return ['Заполните форму и нажмите "Cохранить", чтобы добавить новый продукт в общую базу.', 'Новый продукт будет доступен только для вас.']
+      } else {
+        return ['Отредактируйте информацию и нажмите "Редактировать", чтобы обновить данные о продукте.']
+      }
+    }
   },
   methods: {
     ...mapMutations({
@@ -176,12 +189,16 @@ export default {
       setProductFormField: 'foodCalorieTable/setProductFormField',
       setProductFormFieldError: 'foodCalorieTable/setProductFormFieldError'
     }),
-    saveUserProduct() {
+    saveOrUpdateProduct() {
       // $requiredFieldsValidation --> custom pluguin в папке pluguins
       const isValid = this.$requiredFieldsValidation(this.productForm, ['title', 'weight', 'protein', 'fats', 'carb', 'kkal', 'category'], 'foodCalorieTable/setProductFormFieldError', null)
 
       if (isValid) {
-        this.$store.dispatch('foodCalorieTable/saveProduct')
+        if (this.modalCondition === 'create') {
+          this.$store.dispatch('foodCalorieTable/saveProduct')
+        } else if (this.modalCondition === 'edit') {
+          this.$store.dispatch('foodCalorieTable/updateProduct')
+        }
       } else {
         const notice = {
           id: Date.now(),
@@ -199,17 +216,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
-
-.header__title {
-  font-size: 18px;
-  font-weight: 500;
-}
-.header__description {
-  margin-top: 10px;
-  .description__text {
-    font-size: 14px;
-  }
-}
 
 .content__add-product-form {
   display: flex;
