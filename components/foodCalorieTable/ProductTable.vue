@@ -35,7 +35,7 @@
       </div>
 
       <div v-if="notPinnedProducts.length > 0" class="not-pinned-products">
-        <app-block-title>Не закрепленные продукты</app-block-title>
+        <app-block-title v-if="pinnedProducts.length > 0">Не закрепленные продукты</app-block-title>
 
         <ul class="food-table__product-list">
           <product
@@ -139,11 +139,9 @@ export default {
       }
     }
     .pinned-products {
-      margin-top: 20px;
+      margin: 20px 0;
     }
-    .not-pinned-products {
-      margin-top: 20px;
-    }
+    // .not-pinned-products {}
   }
 }
 
