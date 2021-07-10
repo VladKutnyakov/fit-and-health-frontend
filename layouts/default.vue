@@ -3,6 +3,7 @@
     <app-navbar />
     <Nuxt />
     <app-notifications />
+    <app-scroll-to-top />
     <app-loader-preview :isActive="isActive" :message="message"/>
   </div>
 </template>
@@ -12,12 +13,14 @@ import Cookies from 'js-cookie'
 import { mapState } from 'vuex'
 import AppNavbar from '@/components/navigation/AppNavbar'
 import AppNotifications from '@/components/basic/AppNotifications'
+import AppScrollToTop from '@/components/basic/AppScrollToTop'
 import AppLoaderPreview from '@/components/basic/AppLoaderPreview'
 
 export default {
   components: {
     AppNavbar,
     AppNotifications,
+    AppScrollToTop,
     AppLoaderPreview
   },
   computed: {
