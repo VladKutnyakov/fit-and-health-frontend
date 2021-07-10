@@ -66,6 +66,7 @@ export default {
   visibility: hidden;
   transition: $tr-02;
   cursor: pointer;
+  z-index: 8000;
 }
 .app-scroll-to-top:hover {
   box-shadow: $boxShadow;
