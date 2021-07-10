@@ -22,13 +22,30 @@
         <p class="header__column-title"><i class="ti-trash"></i></p>
       </div>
 
-      <ul class="food-table__product-list">
-        <product
-          v-for="(item, index) in sortedProducts"
-          :key="index"
-          :item="item"
-        />
-      </ul>
+      <div v-if="pinnedProducts.length > 0" class="pinned-products">
+        <app-block-title>Закрепленные продукты</app-block-title>
+
+        <ul class="food-table__product-list">
+          <product
+            v-for="(item, index) in pinnedProducts"
+            :key="index"
+            :item="item"
+          />
+        </ul>
+      </div>
+
+      <div v-if="notPinnedProducts.length > 0" class="not-pinned-products">
+        <app-block-title>Не закрепленные продукты</app-block-title>
+
+        <ul class="food-table__product-list">
+          <product
+            v-for="(item, index) in notPinnedProducts"
+            :key="index"
+            :item="item"
+          />
+        </ul>
+      </div>
+
     </div>
   </div>
 </template>
@@ -58,7 +75,8 @@ export default {
   },
   computed: {
     ...mapState({
-      sortedProducts: state => state.foodCalorieTable.sortedProducts
+      pinnedProducts: state => state.foodCalorieTable.pinnedProducts,
+      notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts
     })
   }
 }
@@ -119,6 +137,12 @@ export default {
         max-width: 50px;
         border: none;
       }
+    }
+    .pinned-products {
+      margin-top: 20px;
+    }
+    .not-pinned-products {
+      margin-top: 20px;
     }
   }
 }

@@ -4,6 +4,8 @@ export const state = () => ({
   productCategories: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
   products: [],
   sortedProducts: [],
+  pinnedProducts: [],
+  notPinnedProducts: [],
   selectedFilters: {
     sortingBy: 'Названию',
     productType: 'Все продукты',
@@ -147,7 +149,7 @@ export const mutations = {
     }
     state.sortedProducts = [...sortedBySearchString]
 
-    // // Фильтрация по категориям
+    // Фильтрация по категориям
     let sortedByCategory = []
     for (let i = 0; i < state.sortedProducts.length; i++) {
       // проверка на совпадение выбранных категорий у продукта в массиве state.sortedProducts
@@ -193,6 +195,19 @@ export const mutations = {
         return 0
       })
     }
+
+    // Перенос закрепенных в верх списка
+    const pinnedProducts = []
+    const notPinnedProducts = []
+    for (let i = 0; i < state.sortedProducts.length; i++) {
+      if (state.sortedProducts[i].pinned) {
+        pinnedProducts.push(state.sortedProducts[i])
+      } else {
+        notPinnedProducts.push(state.sortedProducts[i])
+      }
+    }
+    state.pinnedProducts = pinnedProducts
+    state.notPinnedProducts = notPinnedProducts
 
   },
   changeProductWeight (state, {item, newWeight}) {
