@@ -52,18 +52,17 @@
     <div class="item__element">
       <p class="element__value">{{ Math.round( (item.kkal / 100 * item.weight) * 100) / 100 }}</p>
     </div>
-    <div class="item__element">
+    <!-- <div class="item__element">
       <i
         class="ti-pencil element__action-btn"
         :class="[{ 'element__action-btn--disabled': !item.userId }]"
         @click="editProduct(item)"
       ></i>
-    </div>
+    </div> -->
     <div class="item__element">
       <i
-        class="ti-trash element__action-btn"
-        :class="[{ 'element__action-btn--disabled': !item.userId }]"
-        @click="removeProduct(item)"
+        class="ti-plus element__action-btn"
+        @click="addFoodToMealPart(item)"
       ></i>
     </div>
   </li>
@@ -78,7 +77,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      changeProductWeight: 'foodCalorieTable/changeProductWeight'
+      changeProductWeight: 'foodCalorieTable/changeProductWeight',
+      addFoodToMealPart: 'mealPlaner/addFoodToMealPart'
     }),
     ...mapActions({
       changeFavoriteParam: 'foodCalorieTable/changeFavoriteParam',
@@ -112,7 +112,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
 .product__item {
@@ -132,11 +132,12 @@ export default {
     text-align: center;
     border-right: 1px solid $inputBorder;
     .element__value {
-      font-size: 16px;
+      font-size: 14px;
     }
     .element__action-btn {
-      padding: 8px;
+      padding: 5px;
       color: $black30;
+      font-size: 14px;
       border-radius: 50%;
       transition: $tr-02;
       cursor: pointer;
@@ -155,13 +156,14 @@ export default {
     }
     .element__weight-input {
       flex: 1 1 auto;
-      padding: 10px 5px;
+      padding: 5px;
       width: 100%;
       outline: none;
       border: 1px solid $inputBorder;
       border-radius: 6px;
       text-align: center;
       color: $green;
+      font-size: 14px;
       font-family: $fontMontserrat;
       font-weight: 500;
       transition: $tr-02;
@@ -180,14 +182,14 @@ export default {
     }
   }
   .item__element:nth-child(1) {
-    width: 50px;
-    min-width: 50px;
-    max-width: 50px;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
   }
   .item__element:nth-child(2) {
-    width: 50px;
-    min-width: 50px;
-    max-width: 50px;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
   }
   .item__element:nth-child(3) {
     flex: 1 1 auto;
@@ -196,21 +198,21 @@ export default {
   .item__element:nth-child(4) {
     padding: 0 5px;
   }
+  // .item__element:nth-child(9) {
+  //   width: 50px;
+  //   min-width: 50px;
+  //   max-width: 50px;
+  //   .element__action-btn:hover {
+  //     color: $black;
+  //   }
+  // }
   .item__element:nth-child(9) {
-    width: 50px;
-    min-width: 50px;
-    max-width: 50px;
-    .element__action-btn:hover {
-      color: $black;
-    }
-  }
-  .item__element:nth-child(10) {
-    width: 50px;
-    min-width: 50px;
-    max-width: 50px;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
     border: none;
     .element__action-btn:hover {
-      color: $red;
+      color: $green;
     }
   }
 }
