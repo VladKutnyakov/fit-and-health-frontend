@@ -1,36 +1,58 @@
 <template>
   <div class="actions">
-    <div
-      class="action-btn"
-      title="Добавить прием пищи"
-      @click="addNewMealPart()"
-    >
-      <i class="ti-plus"></i>
-    </div>
+    <app-tooltip width="210px" right alert textAlignCenter >
+      <template v-slot:tooltipElement>
+        <div
+          class="action-btn"
+          @click="addNewMealPart()"
+        >
+          <i class="ti-plus"></i>
+        </div>
+      </template>
+      <template v-slot:tooltipText>
+        <p>Добавить прием пищи</p>
+      </template>
+    </app-tooltip>
 
-    <div
-      class="action-btn"
-      title="Поиск продуктов и рецептов"
-      @click="setSearchRecipesAndProductsModalActive()"
-    >
-      <i v-if="!searchRecipesAndProductsModalActive" class="ti-zoom-in"></i>
-      <i v-if="searchRecipesAndProductsModalActive" class="ti-zoom-out"></i>
-    </div>
+    <app-tooltip width="200px" right alert textAlignCenter >
+      <template v-slot:tooltipElement>
+        <div
+          class="action-btn"
+          @click="setSearchRecipesAndProductsModalActive()"
+        >
+          <i v-if="!searchRecipesAndProductsModalActive" class="ti-zoom-in"></i>
+          <i v-if="searchRecipesAndProductsModalActive" class="ti-zoom-out"></i>
+        </div>
+      </template>
+      <template v-slot:tooltipText>
+        <p>Поиск продуктов и рецептов</p>
+      </template>
+    </app-tooltip>
 
-    <div
-      class="action-btn"
-      title="Удалить"
-      @click="removeSelectedMealPart()"
-    >
-      <i class="ti-trash"></i>
-    </div>
+    <app-tooltip width="200px" right alert textAlignCenter >
+      <template v-slot:tooltipElement>
+        <div
+          class="action-btn action-btn--remove"
+          @click="removeSelectedMealPart()"
+        >
+          <i class="ti-trash"></i>
+        </div>
+      </template>
+      <template v-slot:tooltipText>
+        <p>Удалить прием пищи</p>
+      </template>
+    </app-tooltip>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex'
+import AppTooltip from '@/components/basic/AppTooltip'
 
 export default {
+  components: {
+    AppTooltip
+  },
   computed: {
     ...mapState({
       searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive
@@ -61,14 +83,14 @@ export default {
     transition: $tr-02;
     cursor: pointer;
   }
-  .action-btn:last-child {
-    margin-top: auto;
-    margin-bottom: 0;
-  }
+  // .action-btn:last-child {
+  //   margin-top: auto;
+  //   margin-bottom: 0;
+  // }
   .action-btn:hover {
     color: $green;
   }
-  .action-btn:last-child:hover {
+  .action-btn--remove:hover {
     color: $red;
   }
 }
