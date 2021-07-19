@@ -3,7 +3,12 @@
     <app-block-title>Рацион на сутки</app-block-title>
 
     <div class="meal-plan-overview__content">
+      <!-- <div class="preview-image">
+        <i class="ti-image"></i>
+      </div> -->
+
       <nutrients-settings />
+
       <div class="overview">
         <div class="title-description-marks">
           <div class="title-and-description">
@@ -73,6 +78,22 @@ export default {
     background: $white;
     border: 1px solid $blockBorder;
     border-radius: 6px;
+    // .preview-image {
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   margin: 10px;
+    //   padding: 10px;
+    //   width: 100%;
+    //   min-width: 350px;
+    //   max-width: 350px;
+    //   background: $hiddenBlockBG;
+    //   border-radius: 6px;
+    //   i {
+    //     color: $black20;
+    //     font-size: 100px;
+    //   }
+    // }
     .overview {
       flex: 1 1 auto;
       display: flex;

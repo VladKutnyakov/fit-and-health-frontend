@@ -45,9 +45,6 @@ export default {
     padding: 0 10px 5px 10px;
     font-weight: 500;
   }
-  .title__input {
-    margin-right: 10px;
-  }
 }
 
 </style>
