@@ -1,15 +1,15 @@
 <template>
-  <div class="add-marks-form">
-    <div class="add-marks-form__block-title">Добавленные отметки</div>
+  <div class="added-marks-form">
+    <div class="added-marks-form__block-title">Добавленные отметки</div>
 
-    <div class="add-marks-form__marks">
+    <div class="added-marks-form__marks">
       <div class="mark" v-for="(item, index) in marks" :key="index">
-        <p class="mark__text" :title="item">{{ item }}</p>
+        <p class="mark__text" :title="item">{{ item.text }}</p>
         <i class="ti-close mark__icon" @click="remove(index)"></i>
       </div>
     </div>
 
-    <div class="add-marks-form__input-wrapper">
+    <div class="added-marks-form__input-wrapper">
       <input
         class="input"
         type="text"
@@ -49,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.add-marks-form {
+.added-marks-form {
   display: flex;
   flex-direction: column;
   padding: 10px 10px 0 10px;
@@ -57,13 +57,13 @@ export default {
   min-width: 250px;
   max-width: 250px;
   border-left: 1px solid $blockBorder;
-  .add-marks-form__block-title {
+  .added-marks-form__block-title {
     text-align: center;
     font-weight: 500;
     padding-bottom: 10px;
     border-bottom: 1px dashed $blockBorder;
   }
-  .add-marks-form__marks {
+  .added-marks-form__marks {
     display: flex;
     flex-direction: column;
     padding: 10px 5px;
@@ -100,7 +100,7 @@ export default {
       margin-bottom: 0;
     }
   }
-  .add-marks-form__input-wrapper {
+  .added-marks-form__input-wrapper {
     display: flex;
     align-items: center;
     margin-top: auto;

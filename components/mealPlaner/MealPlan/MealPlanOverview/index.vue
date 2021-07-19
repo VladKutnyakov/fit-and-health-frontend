@@ -11,7 +11,7 @@
             <overview-description />
           </div>
 
-          <add-marks
+          <added-marks
             :marks="marks"
             @addMark="setMealPlanMark($event)"
             @removeMark="removeMealPlanMark($event)"
@@ -32,7 +32,7 @@ import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import OverviewTitle from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewTitle'
 import NutrientsSettings from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsSettings'
 import OverviewDescription from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewDescription'
-import AddMarks from '@/components/mealPlaner/MealPlan/MealPlanOverview/AddMarks'
+import AddedMarks from '@/components/mealPlaner/MealPlan/MealPlanOverview/AddedMarks'
 import NutrientsCalculations from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsCalculations'
 import Actions from '@/components/mealPlaner/MealPlan/MealPlanOverview/Actions'
 
@@ -42,7 +42,7 @@ export default {
     OverviewTitle,
     NutrientsSettings,
     OverviewDescription,
-    AddMarks,
+    AddedMarks,
     NutrientsCalculations,
     Actions
   },
