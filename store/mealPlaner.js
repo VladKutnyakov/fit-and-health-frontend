@@ -151,7 +151,11 @@ export const mutations = {
       }
     }
   },
-  setMealPlanMark (state, mark) {
+  setMealPlanMark (state, text) {
+    const mark = {
+      id: null,
+      tag: text
+    }
     state.mealPlanerInfo.marks.push(mark)
   },
   removeMealPlanMark (state, markIndex) {

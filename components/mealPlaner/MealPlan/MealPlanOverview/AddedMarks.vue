@@ -4,7 +4,7 @@
 
     <div class="added-marks-form__marks">
       <div class="mark" v-for="(item, index) in marks" :key="index">
-        <p class="mark__text" :title="item">{{ item.text }}</p>
+        <p class="mark__text" :title="item">{{ item.tag }}</p>
         <i class="ti-close mark__icon" @click="remove(index)"></i>
       </div>
     </div>
