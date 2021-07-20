@@ -116,7 +116,7 @@ export default {
             },
             {
               title: 'Редактор рационов',
-              link: '/meal-planer/meal-plans/meal-planer-editor',
+              link: '/meal-planer/meal-plan-editor',
               icon: 'ti-pencil-alt',
               exact: true
             },

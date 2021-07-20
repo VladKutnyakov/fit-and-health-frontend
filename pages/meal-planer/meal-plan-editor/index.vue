@@ -1,26 +1,24 @@
 <template>
-  <div class="meal-planer-page">
-    <app-page-title>Дневник питания</app-page-title>
-    <div class="meal-planer-page__content">
+  <div class="meal-plan-editor-page">
+    <app-page-title>Редактор рациона</app-page-title>
+    <div class="meal-plan-editor-page__content">
       <meal-plan />
       <additional-info />
     </div>
-    <SearchRecipesAndProductsModal />
   </div>
 </template>
 
 <script>
 import AppPageTitle from '@/components/basic/AppPageTitle'
-import MealPlan from '@/components/mealPlaner/MealPlan/index'
-import AdditionalInfo from '@/components/mealPlaner/AdditionalInfo/index'
-import SearchRecipesAndProductsModal from '@/components/mealPlaner/SearchRecipesAndProductsModal'
+import MealPlan from '@/components/mealPlanEditor/MealPlan/index'
+import AdditionalInfo from '@/components/mealPlanEditor/AdditionalInfo/index'
 
 export default {
-  name: 'MealPlanerPage',
+  name: 'MealPlanEditorPage',
   layout: 'default',
   head () {
     return {
-      title: 'Fit and Health - Дневник питания',
+      title: 'Fit and Health - Редактор рациона',
       __dangerouslyDisableSanitizers: ['script'],
       script: [
         { // МИКРОРАЗМЕТКА
@@ -49,27 +47,26 @@ export default {
   components: {
     AppPageTitle,
     MealPlan,
-    AdditionalInfo,
-    SearchRecipesAndProductsModal,
+    AdditionalInfo
   },
-  async asyncData ({ store, route }) {
-    await store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: route.query.date})
-    await store.dispatch('mealPlaner/fetchProducts')
-  },
+  // async asyncData ({ store, route }) {
+  //   await store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: route.query.date})
+  //   await store.dispatch('mealPlaner/fetchProducts')
+  // },
 }
 </script>
 
 <style lang="scss">
 @import '@/assets/styles/vars.scss';
 
-.meal-planer-page {
+.meal-plan-editor-page {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 80px;
   padding: 40px;
-  .meal-planer-page__content {
+  .meal-plan-editor-page__content {
     // border: 1px solid red;
     display: flex;
     width: 100%;
