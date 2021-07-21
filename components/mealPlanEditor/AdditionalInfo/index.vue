@@ -1,25 +1,31 @@
 <template>
   <div class="additional-info">
-    <app-block-title>Базовые настрокий</app-block-title>
+    <app-block-title>Настрокий рациона</app-block-title>
 
     <div class="additional-info__content">
       <nutrients-settings />
 
       <div class="actions">
         <div class="actions__top">
-          <app-button >
+          <app-input-checkbox
+            :value="availability"
+            label="Доступно для всех пользователей"
+            @change="availability = $event"
+          />
+          <!-- <app-input-checkbox
+            class="mt-10"
+            :value="false"
+            label="Использовать"
+            @change="availability = $event"
+          /> -->
+        </div>
+
+        <div class="actions__bottom">
+          <app-button fillArea >Сохранить рацион</app-button>
+
+          <app-button  class="ml-5" >
             <i class="ti-trash"></i>
           </app-button>
-
-          <app-button class="ml-5" >
-            <i class="ti-save"></i>
-          </app-button>
-
-          <app-button class="ml-5" fillArea >Сделать основной</app-button>
-        </div>
-        
-        <div class="actions__bottom">
-          <app-button class="mt-10" fillArea >Начать тренировку</app-button>
         </div>
       </div>
 
@@ -30,11 +36,20 @@
 <script>
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import NutrientsSettings from '@/components/mealPlanEditor/AdditionalInfo/NutrientsSettings'
+import AppButton from '@/components/basic/AppButton'
+import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 
 export default {
   components: {
     AppBlockTitle,
-    NutrientsSettings
+    NutrientsSettings,
+    AppButton,
+    AppInputCheckbox
+  },
+  data () {
+    return {
+      availability: false
+    }
   }
 }
 </script>
@@ -60,7 +75,14 @@ export default {
     padding: 10px;
     background: $hiddenBlockBG;
     .actions__top {
+      padding: 10px;
+      background: $white;
+      border: 1px solid $black10;
+      border-radius: 6px;
+    }
+    .actions__bottom {
       display: flex;
+      margin-top: 10px;
     }
   }
 }
