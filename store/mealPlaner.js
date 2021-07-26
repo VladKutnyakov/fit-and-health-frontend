@@ -154,7 +154,8 @@ export const mutations = {
   setMealPlanMark (state, text) {
     const mark = {
       id: null,
-      tag: text
+      tag: text,
+      entityType: 'mealPlaner'
     }
     state.mealPlanerInfo.marks.push(mark)
   },
