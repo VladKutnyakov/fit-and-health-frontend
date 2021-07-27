@@ -1,6 +1,6 @@
 <template>
   <div class="actions">
-    <app-tooltip width="180px" right info textAlignCenter >
+    <!-- <app-tooltip width="180px" right info textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn" @click="saveMealPlanerInfo()">
           <i class="ti-save"></i>
@@ -9,7 +9,7 @@
       <template v-slot:tooltipText>
         <p>Сохранить рацион</p>
       </template>
-    </app-tooltip>
+    </app-tooltip> -->
 
     <app-tooltip width="160px" right info textAlignCenter >
       <template v-slot:tooltipElement>
@@ -22,7 +22,7 @@
       </template>
     </app-tooltip>
 
-    <app-tooltip width="220px" right info textAlignCenter >
+    <!-- <app-tooltip width="220px" right info textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn">
           <i class="ti-bookmark-alt"></i>
@@ -31,9 +31,9 @@
       <template v-slot:tooltipText>
         <p>Сохранить рацион как...</p>
       </template>
-    </app-tooltip>
+    </app-tooltip> -->
 
-    <app-tooltip class="mb-auto" width="170px" right alert textAlignCenter >
+    <!-- <app-tooltip class="mb-auto" width="170px" right alert textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn action-btn--remove" @click="removeMealPlanerInfo()">
           <i class="ti-trash"></i>
@@ -42,9 +42,9 @@
       <template v-slot:tooltipText>
         <p>Удалить рацион</p>
       </template>
-    </app-tooltip>
+    </app-tooltip> -->
 
-    <app-tooltip width="120px" right info textAlignCenter >
+    <app-tooltip class="mt-auto" width="120px" right info textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn action-btn--social action-btn--social-like">
           <i class="ti-heart"></i>

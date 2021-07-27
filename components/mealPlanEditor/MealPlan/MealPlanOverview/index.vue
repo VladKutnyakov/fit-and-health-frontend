@@ -24,7 +24,7 @@
         <nutrients-calculations />
       </div>
 
-      <!-- <actions /> -->
+      <actions />
     </div>
   </div>
 </template>
