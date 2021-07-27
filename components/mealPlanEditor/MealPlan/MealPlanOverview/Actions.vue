@@ -11,7 +11,7 @@
       </template>
     </app-tooltip> -->
 
-    <app-tooltip width="160px" right info textAlignCenter >
+    <!-- <app-tooltip width="160px" right info textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn">
           <i class="ti-search"></i>
@@ -20,7 +20,7 @@
       <template v-slot:tooltipText>
         <p>Поиск рациона</p>
       </template>
-    </app-tooltip>
+    </app-tooltip> -->
 
     <!-- <app-tooltip width="220px" right info textAlignCenter >
       <template v-slot:tooltipElement>
@@ -44,7 +44,7 @@
       </template>
     </app-tooltip> -->
 
-    <app-tooltip class="mt-auto" width="120px" right info textAlignCenter >
+    <app-tooltip width="120px" right info textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn action-btn--social action-btn--social-like">
           <i class="ti-heart"></i>
