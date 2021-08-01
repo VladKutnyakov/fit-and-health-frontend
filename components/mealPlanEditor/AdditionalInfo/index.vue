@@ -1,13 +1,10 @@
 <template>
   <div class="additional-info">
 
-    <div class="calendar">
-      <app-block-title>Календарь</app-block-title>
-      <meal-planer-calendar />
-    </div>
+    
 
     <div class="settings">
-      <app-block-title>Настрокий рациона</app-block-title>
+      <app-block-title>Параметры рациона</app-block-title>
 
       <div class="settings__content">
         <nutrients-settings />
@@ -16,7 +13,21 @@
           <div class="actions__top">
             <app-input-checkbox
               :value="availability"
-              label="Доступно для всех пользователей"
+              label="Добавить в избранное"
+              @change="availability = $event"
+            />
+
+            <app-input-checkbox
+              class="mt-10"
+              :value="availability"
+              label="Добавить в закрепленные"
+              @change="availability = $event"
+            />
+
+            <app-input-checkbox
+              class="mt-10"
+              :value="availability"
+              label="Доступно для поиска всем пользователям"
               @change="availability = $event"
             />
           </div>
@@ -31,6 +42,11 @@
         </div>
       </div>
     </div>
+
+    <!-- <div class="calendar">
+      <app-block-title>Календарь</app-block-title>
+      <meal-planer-calendar />
+    </div> -->
 
     <useful-pages />
 

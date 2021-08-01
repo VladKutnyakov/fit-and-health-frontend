@@ -1,7 +1,7 @@
 <template>
   <div class="meal-planer-calendar">
 
-    <app-accordion :isOpened="true">
+    <app-accordion :isOpened="false">
       <template v-slot:accordionHeader>
         <div class="meal-planer-calendar__target-date">
           <i class="ti-calendar"></i>
