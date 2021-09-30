@@ -12,7 +12,7 @@
     </div>
 
     <div class="user-card__user">
-      <p class="user__name">Дмитрий Коробов</p>
+      <p class="user__name">{{ `${profileInfo.firstName} ${profileInfo.lastName}` }}</p>
       <p class="user__followers">40 517 подписчиков</p>
     </div>
 
@@ -95,12 +95,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
     AppButton
   },
+  computed: {
+    ...mapState({
+      profileInfo: state => state.profile.profileInfo
+    })
+  }
   // mounted () {
   //   let startPageYOffset = window.pageYOffset
   //   document.addEventListener('scroll', () => {
