@@ -30,11 +30,11 @@
       </div>
       <div class="main-info__item">
         <p class="main-info__item-text">Вес:</p>
-        <p class="main-info__item-value">70.2</p>
+        <p class="main-info__item-value">{{ profileInfo.weight }}</p>
       </div>
       <div class="main-info__item">
         <p class="main-info__item-text">Рост:</p>
-        <p class="main-info__item-value">174</p>
+        <p class="main-info__item-value">{{ profileInfo.height }}</p>
       </div>
     </div>
 
@@ -42,28 +42,31 @@
       <div class="contacts__item">
         <i class="ti-location-pin contacts__item-icon"></i>
         <p class="contacts__item-title">Город:</p>
-        <p class="contacts__item-text">г. Самара</p>
+        <p class="contacts__item-text">{{ profileInfo.city }}</p>
       </div>
       <div class="contacts__item">
         <i class="ti-pencil contacts__item-icon"></i>
         <p class="contacts__item-title">Телефон:</p>
-        <p class="contacts__item-text">+7 845 879 87 96</p>
+        <p class="contacts__item-text">{{ profileInfo.phone }}</p>
       </div>
       <div class="contacts__item">
         <i class="ti-email contacts__item-icon"></i>
         <p class="contacts__item-title">E-mail:</p>
-        <p class="contacts__item-text">TestMail@gmail.com</p>
+        <p class="contacts__item-text">mail@mail.com</p>
       </div>
       <div class="contacts__item">
         <i class="ti-world contacts__item-icon"></i>
         <p class="contacts__item-title">Website:</p>
-        <p class="contacts__item-text">johndow-website.com</p>
+        <p class="contacts__item-text">{{ profileInfo.site }}</p>
       </div>
       <div class="contacts__item">
         <i class="ti-new-window contacts__item-icon"></i>
         <p class="contacts__item-title">Соц. сети:</p>
         <p class="contacts__item-text">
-          <i class="social-link">vk</i>
+          <a :href="profileInfo.vk" target="_blank" rel="noopener noreferrer">
+            <i class="social-link">vk</i>
+          </a>
+          
           <i class="ti-facebook social-link"></i>
           <i class="ti-instagram social-link"></i>
           <i class="ti-youtube social-link"></i>
