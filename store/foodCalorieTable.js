@@ -1,5 +1,3 @@
-const BASE_URL = process.env.BASE_URL
-
 export const state = () => ({
   productCategories: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
   products: [],
@@ -263,7 +261,7 @@ export const actions = {
     try {
       this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
 
-      const response = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -280,7 +278,7 @@ export const actions = {
   },
   async saveProduct ({ state, commit }) {
     try {
-      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/save-product`, {product: state.productForm.fields})
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/save-product`, {product: state.productForm.fields})
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -312,7 +310,7 @@ export const actions = {
   },
   async updateProduct ({ state, commit }) {
     try {
-      const response = await this.$axios.$put(`${BASE_URL}/api/food-calorie-table/update-product`, {product: state.productForm.fields})
+      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/update-product`, {product: state.productForm.fields})
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -355,7 +353,7 @@ export const actions = {
   },
   async removeProduct ({ commit }, product) {
     try {
-      const response = await this.$axios.$delete(`${BASE_URL}/api/food-calorie-table/remove-product/${product.id}`)
+      const response = await this.$axios.$delete(`${process.env.BASE_URL}/api/food-calorie-table/remove-product/${product.id}`)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -397,7 +395,7 @@ export const actions = {
   },
   async changeFavoriteParam ({ commit }, productId) {
     try {
-      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/change-favorite-param`, {productId: productId})
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/change-favorite-param`, {productId: productId})
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -419,7 +417,7 @@ export const actions = {
   },
   async changePinnedParam ({ commit }, productId) {
     try {
-      const response = await this.$axios.$post(`${BASE_URL}/api/food-calorie-table/change-pinned-param`, {productId: productId})
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/change-pinned-param`, {productId: productId})
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)

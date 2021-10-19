@@ -1,5 +1,3 @@
-const BASE_URL = process.env.baseUrl
-
 export const state = () => ({
   exercises: [
     {
@@ -100,7 +98,7 @@ export const mutations = {
 export const actions = {
   async fetchExercisesList ({ commit }) {
     try {
-      // const ExercisesList = await this.$axios.$get(`${BASE_URL}/api/exercises/`)
+      // const ExercisesList = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/`)
 
       // console.log(ExercisesList)
       // commit('setExercises', ExercisesList)
@@ -110,7 +108,7 @@ export const actions = {
   },
   async fetchExerciseInfo ({ commit }, exercisesId) {
     try {
-      // const ExerciseInfo = await this.$axios.$post(`${BASE_URL}/api/exercises/fetch-exercise-info`, {id: exercisesId})
+      // const ExerciseInfo = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/fetch-exercise-info`, {id: exercisesId})
 
       // console.log(ExerciseInfo)
       // commit('setExerciseInfo', ExerciseInfo)
@@ -121,7 +119,7 @@ export const actions = {
   async saveNewExercises ({ commit }, newExercise) {
     try {
       // console.log('seve ', newExercises)
-      // const savedExercise = await this.$axios.$post(`${BASE_URL}/api/exercises/save-new-exercise`, newExercise)
+      // const savedExercise = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/save-new-exercise`, newExercise)
 
       // console.log(savedExercise)
       // commit('addNewExercises', savedExercise)

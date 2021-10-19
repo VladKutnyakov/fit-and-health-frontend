@@ -1,5 +1,3 @@
-const BASE_URL = process.env.BASE_URL
-
 export const state = () => ({
   mealPlanerInfo: {
     id: null,
@@ -258,7 +256,7 @@ export const actions = {
     try {
       this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
 
-      const response = await this.$axios.$get(`${BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
 
       // console.log(response)
 
@@ -288,7 +286,7 @@ export const actions = {
   },
   async saveMealPlanerInfo ({ state, commit }) {
     try {
-      const response = await this.$axios.$post(`${BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -320,7 +318,7 @@ export const actions = {
   },
   async removeMealPlanerInfo ({ state, commit }) {
     try {
-      const response = await this.$axios.$post(`${BASE_URL}/api/meal-planer/remove-meal-planer-info`, { mealPlanerInfoID: state.mealPlanerInfo.id })
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/meal-planer/remove-meal-planer-info`, { mealPlanerInfoID: state.mealPlanerInfo.id })
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)
@@ -382,7 +380,7 @@ export const actions = {
     try {
       this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
 
-      const response = await this.$axios.$get(`${BASE_URL}/api/food-calorie-table`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
 
       if (response.updatedToken) {
         this.commit('auth/setToken', response.updatedToken)

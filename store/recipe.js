@@ -1,5 +1,3 @@
-const BASE_URL = process.env.baseUrl
-
 export const state = () => ({
   recipe: {
     id: 0,
@@ -53,7 +51,7 @@ export const mutations = {
 export const actions = {
   async fetchRecipe ({ commit }, recipe) {
     try {
-      const Recipe = await this.$axios.$get(`${BASE_URL}/api/recipe/${recipe}`)
+      const Recipe = await this.$axios.$get(`${process.env.BASE_URL}/api/recipe/${recipe}`)
 
       commit('setRecipe', Recipe)
       // console.log(Recipe)

@@ -1,5 +1,3 @@
-const BASE_URL = process.env.baseUrl
-
 export const state = () => ({
   mainTrainingProgram: undefined
 })
@@ -15,7 +13,7 @@ export const mutations = {
 export const actions = {
   async fetchMainTrainingProgram ({ commit } ) {
     try {
-      const MainTrainingProgram = await this.$axios.$get(`${BASE_URL}/api/training-diary`)
+      const MainTrainingProgram = await this.$axios.$get(`${process.env.BASE_URL}/api/training-diary`)
       commit('setMainTrainingProgram', MainTrainingProgram)
       console.log(MainTrainingProgram)
     } catch (err) {
