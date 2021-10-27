@@ -38,7 +38,9 @@ export const actions = {
         this.commit('auth/setToken', response.updatedToken)
       }
 
-      commit('setProfileInfo', response.data)
+      if (response.data) {
+        commit('setProfileInfo', response.data)
+      }
     } catch (err) {
       console.log(err)
     }

@@ -12,7 +12,7 @@
     </div>
 
     <div class="user-card__user">
-      <p class="user__name">{{ `${profileInfo.firstName} ${profileInfo.lastName}` }}</p>
+      <p class="user__name">{{ userName }}</p>
       <p class="user__followers">40 517 подписчиков</p>
     </div>
 
@@ -30,11 +30,11 @@
       </div>
       <div class="main-info__item">
         <p class="main-info__item-text">Вес:</p>
-        <p class="main-info__item-value">{{ profileInfo.weight }}</p>
+        <p class="main-info__item-value">{{ profileInfo.weight ? profileInfo.weight : 'н/д' }}</p>
       </div>
       <div class="main-info__item">
         <p class="main-info__item-text">Рост:</p>
-        <p class="main-info__item-value">{{ profileInfo.height }}</p>
+        <p class="main-info__item-value">{{ profileInfo.height ? profileInfo.height : 'н/д' }}</p>
       </div>
     </div>
 
@@ -42,12 +42,12 @@
       <div class="contacts__item">
         <i class="ti-location-pin contacts__item-icon"></i>
         <p class="contacts__item-title">Город:</p>
-        <p class="contacts__item-text">{{ profileInfo.city }}</p>
+        <p class="contacts__item-text">{{ profileInfo.city ? profileInfo.city : 'н/д' }}</p>
       </div>
       <div class="contacts__item">
         <i class="ti-pencil contacts__item-icon"></i>
         <p class="contacts__item-title">Телефон:</p>
-        <p class="contacts__item-text">{{ profileInfo.phone }}</p>
+        <p class="contacts__item-text">{{ profileInfo.phone ? profileInfo.phone : 'н/д' }}</p>
       </div>
       <div class="contacts__item">
         <i class="ti-email contacts__item-icon"></i>
@@ -57,16 +57,16 @@
       <div class="contacts__item">
         <i class="ti-world contacts__item-icon"></i>
         <p class="contacts__item-title">Website:</p>
-        <p class="contacts__item-text">{{ profileInfo.site }}</p>
+        <p class="contacts__item-text">{{ profileInfo.site ? profileInfo.site : 'н/д' }}</p>
       </div>
       <div class="contacts__item">
         <i class="ti-new-window contacts__item-icon"></i>
         <p class="contacts__item-title">Соц. сети:</p>
         <p class="contacts__item-text">
-          <a :href="profileInfo.vk" target="_blank" rel="noopener noreferrer">
+          <a :href="profileInfo.vk ? profileInfo.vk : ''" target="_blank" rel="noopener noreferrer">
             <i class="social-link">vk</i>
           </a>
-          
+
           <i class="ti-facebook social-link"></i>
           <i class="ti-instagram social-link"></i>
           <i class="ti-youtube social-link"></i>
@@ -108,7 +108,10 @@ export default {
   computed: {
     ...mapState({
       profileInfo: state => state.profile.profileInfo
-    })
+    }),
+    userName () {
+      return this.profileInfo.firstName && this.profileInfo.lastName ? `${this.profileInfo.firstName} ${this.profileInfo.lastName}` : 'нет данных'
+    }
   }
   // mounted () {
   //   let startPageYOffset = window.pageYOffset
