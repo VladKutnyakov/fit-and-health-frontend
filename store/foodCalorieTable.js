@@ -122,7 +122,6 @@ export const mutations = {
     state.selectedFilters.productCategory = ProductCategory
   },
   sortProducts (state) {
-
     // Фильтрация по типу продуктов (все, мои, избранное)
     if (state.selectedFilters.productType === 'Мои продукты') {
       // console.log('Мои продукты')
@@ -151,9 +150,8 @@ export const mutations = {
     let sortedByCategory = []
     for (let i = 0; i < state.sortedProducts.length; i++) {
       // проверка на совпадение выбранных категорий у продукта в массиве state.sortedProducts
-      // console.log(selectedFilters.productCategory);
       state.selectedFilters.productCategory.forEach(item => {
-        if (item === state.sortedProducts[i].category) {
+        if (item === state.sortedProducts[i].category.title) {
           sortedByCategory.push(state.sortedProducts[i])
         }
       })
