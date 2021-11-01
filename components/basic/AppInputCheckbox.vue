@@ -2,7 +2,7 @@
   <label class="input__label" :class="[{'input__label--small': small}]">
     <input class="input__value-field" type="checkbox" :checked="shouldBeChecked" :value="value" @change="updateInput($event)">
     <p class="input__visible-switch"></p>
-    <p class="input__text">{{ label }}</p>
+    <p class="input__text">{{ typeof label === 'string' ? label : label.title }}</p>
   </label>
 </template>
 
@@ -14,13 +14,13 @@ export default {
   },
   props: {
     value: {
-      type: [String, Boolean]
+      type: [String, Object, Boolean]
     },
     modelValue: {
       default: false
     },
     label: {
-      type: String,
+      type: [String, Object],
       required: true
     },
     // Мы установили `true-value` и `false-value` в true и false по-умолчанию, таким образом
@@ -120,9 +120,9 @@ export default {
 
 .input__label--small {
 
-  .input__value-field {}
-  .input__value-field:checked + .input__visible-switch:after {}
-  .input__value-field:checked ~ .input__text {}
+  // .input__value-field {}
+  // .input__value-field:checked + .input__visible-switch:after {}
+  // .input__value-field:checked ~ .input__text {}
 
   .input__visible-switch {
     height: 16px;

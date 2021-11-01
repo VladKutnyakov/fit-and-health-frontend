@@ -10,7 +10,7 @@
           {'app-select__default-value-center': alignSelectedValueCenter},
         ]"
         @click="toggleVisibility($event)"
-      >{{ selectValue }}</p>
+      >{{ typeof selectValue === 'string' ? selectValue : selectValue.title }}</p>
       <i class="app-select__icon ti-angle-double-down" @click="toggleVisibility($event)"></i>
 
       <ul
@@ -28,7 +28,7 @@
           :key="index"
           class="app-select__list-item"
           @click="toggleVisibility($event)"
-        >{{ item }}</li>
+        >{{ typeof item === 'string' ? item : item.title }}</li>
       </ul>
     </div>
 
@@ -39,7 +39,7 @@
 export default {
   props: {
     minWidth: String,
-    defaultValue: String,
+    defaultValue: [String, Object],
     selectOptionsList: Array,
     alignListLeft: Boolean,
     alignListRight: Boolean,
