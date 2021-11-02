@@ -55,14 +55,14 @@
     <div class="item__element">
       <i
         class="ti-pencil element__action-btn"
-        :class="[{ 'element__action-btn--disabled': !item.userId }]"
+        :class="[{ 'element__action-btn--disabled': !item.user }]"
         @click="editProduct(item)"
       ></i>
     </div>
     <div class="item__element">
       <i
         class="ti-trash element__action-btn"
-        :class="[{ 'element__action-btn--disabled': !item.userId }]"
+        :class="[{ 'element__action-btn--disabled': !item.user }]"
         @click="removeProduct(item)"
       ></i>
     </div>
@@ -88,7 +88,7 @@ export default {
       $event.target.select()
     },
     editProduct (product) {
-      if (product.userId) {
+      if (product.user) {
         // Очистить поля и ошибки формы
         this.$store.commit('foodCalorieTable/clearProductForm', 'edit')
 
@@ -104,7 +104,7 @@ export default {
       }
     },
     removeProduct (product) {
-      if (product.userId) {
+      if (product.user) {
         this.$store.dispatch('foodCalorieTable/removeProduct', product)
       }
     }
