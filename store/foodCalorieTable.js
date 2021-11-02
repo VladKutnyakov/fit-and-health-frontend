@@ -262,10 +262,6 @@ export const actions = {
 
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
 
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
-      }
-
       commit('setProducts', response.data)
 
       this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
@@ -278,10 +274,6 @@ export const actions = {
   async saveProduct ({ state, commit }) {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/save-product`, {product: state.productForm.fields})
-
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
-      }
 
       commit('addNewProduct', response.data)
       commit('toggleModalVisibility', {modal: 'productModalActive', condition: false})
@@ -310,10 +302,6 @@ export const actions = {
   async updateProduct ({ state, commit }) {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/update-product`, {product: state.productForm.fields})
-
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
-      }
 
       if (response.data.product) {
         commit('updateProduct', response.data.product)
@@ -354,10 +342,6 @@ export const actions = {
     try {
       const response = await this.$axios.$delete(`${process.env.BASE_URL}/api/food-calorie-table/remove-product/${product.id}`)
 
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
-      }
-
       if (response.data.removed) {
         await commit('deleteProduct', response.data.productId)
 
@@ -396,10 +380,6 @@ export const actions = {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/change-favorite-param`, {productId: productId})
 
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
-      }
-
       commit('updateFavoriteProduct', response.data)
 
       const notice = {
@@ -417,10 +397,6 @@ export const actions = {
   async changePinnedParam ({ commit }, productId) {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/change-pinned-param`, {productId: productId})
-
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
-      }
 
       commit('updatePinnedProduct', response.data)
 
