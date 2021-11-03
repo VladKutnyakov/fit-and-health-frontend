@@ -69,28 +69,28 @@ export default {
     protein () {
       let amount = 0
       for (let i = 0; i < this.recipe.products.length; i++) {
-        amount += this.recipe.products[i].protein / 100 * this.recipe.products[i].weightInRecipe
+        amount += this.recipe.products[i].product.protein / 100 * this.recipe.products[i].weightInRecipe
       }
       return Math.round(amount * 100) / 100
     },
     fats () {
       let amount = 0
       for (let i = 0; i < this.recipe.products.length; i++) {
-        amount += this.recipe.products[i].fats / 100 * this.recipe.products[i].weightInRecipe
+        amount += this.recipe.products[i].product.fats / 100 * this.recipe.products[i].weightInRecipe
       }
       return Math.round(amount * 100) / 100
     },
     carb () {
       let amount = 0
       for (let i = 0; i < this.recipe.products.length; i++) {
-        amount += this.recipe.products[i].carb / 100 * this.recipe.products[i].weightInRecipe
+        amount += this.recipe.products[i].product.carb / 100 * this.recipe.products[i].weightInRecipe
       }
       return Math.round(amount * 100) / 100
     },
     kkal () {
       let amount = 0
       for (let i = 0; i < this.recipe.products.length; i++) {
-        amount += this.recipe.products[i].kkal / 100 * this.recipe.products[i].weightInRecipe
+        amount += this.recipe.products[i].product.kkal / 100 * this.recipe.products[i].weightInRecipe
       }
       return Math.round(amount * 100) / 100
     }

@@ -33,9 +33,9 @@
 
     <div class="found-recipes">
       <found-recipe
-        v-for="(recipe, index) in recipes"
+        v-for="(item, index) in recipes"
         :key="index"
-        :recipe="recipe"
+        :recipe="item"
       />
     </div>
 
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
@@ -69,10 +70,10 @@ export default {
     }
   },
   computed: {
-    recipes () {
-      return this.$store.getters['recipesBook/getRecipes']
-    }
-  },
+    ...mapState({
+      recipes: state => state.recipesBook.recipes
+    })
+  }
 }
 </script>
 
