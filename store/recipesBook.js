@@ -33,18 +33,18 @@ export const getters = {
 }
 
 export const mutations = {
-  setRecipes (state, Recipes) {
-    state.recipes = Recipes
+  setRecipes (state, fetchedRecipes) {
+    state.recipes = fetchedRecipes
   }
 }
 
 export const actions = {
   async fetchRecipes ({ commit }) {
     try {
-      // const Recipes = await this.$axios.$get('http://localhost:3030/api/recipes-book')
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/recipes-book`)
+      // console.log(response)
 
-      // commit('setRecipes', Recipes)
-      // console.log(Recipes)
+      // commit('setRecipes', response.data)
     } catch (e) {
       console.log(e)
     }

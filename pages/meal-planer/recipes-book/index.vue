@@ -69,9 +69,9 @@ import AppButton from '@/components/basic/AppButton'
 export default {
   layout: 'default',
   middleware: ['userAuth'],
-  // async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
-  //   await store.dispatch('recipesBook/fetchRecipes')
-  // },
+  async asyncData ({ store }) {
+    await store.dispatch('recipesBook/fetchRecipes')
+  },
   components: {
     AppPageTitle,
     AppPageInfo,
