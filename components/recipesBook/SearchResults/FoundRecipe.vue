@@ -15,7 +15,7 @@
       </div>
       <div class="info__element">
         <i class="ti-pie-chart element__icon"></i>
-        <p class="element__count">{{ recipe.products.length }} продуктов</p>
+        <p class="element__count">{{ recipe.recipeProducts.length }} продуктов</p>
       </div>
     </div>
 
@@ -68,29 +68,29 @@ export default {
   computed: {
     protein () {
       let amount = 0
-      for (let i = 0; i < this.recipe.products.length; i++) {
-        amount += this.recipe.products[i].product.protein / 100 * this.recipe.products[i].weightInRecipe
+      for (let i = 0; i < this.recipe.recipeProducts.length; i++) {
+        amount += this.recipe.recipeProducts[i].product.protein / 100 * this.recipe.recipeProducts[i].weightInRecipe
       }
       return Math.round(amount * 100) / 100
     },
     fats () {
       let amount = 0
-      for (let i = 0; i < this.recipe.products.length; i++) {
-        amount += this.recipe.products[i].product.fats / 100 * this.recipe.products[i].weightInRecipe
+      for (let i = 0; i < this.recipe.recipeProducts.length; i++) {
+        amount += this.recipe.recipeProducts[i].product.fats / 100 * this.recipe.recipeProducts[i].weightInRecipe
       }
       return Math.round(amount * 100) / 100
     },
     carb () {
       let amount = 0
-      for (let i = 0; i < this.recipe.products.length; i++) {
-        amount += this.recipe.products[i].product.carb / 100 * this.recipe.products[i].weightInRecipe
+      for (let i = 0; i < this.recipe.recipeProducts.length; i++) {
+        amount += this.recipe.recipeProducts[i].product.carb / 100 * this.recipe.recipeProducts[i].weightInRecipe
       }
       return Math.round(amount * 100) / 100
     },
     kkal () {
       let amount = 0
-      for (let i = 0; i < this.recipe.products.length; i++) {
-        amount += this.recipe.products[i].product.kkal / 100 * this.recipe.products[i].weightInRecipe
+      for (let i = 0; i < this.recipe.recipeProducts.length; i++) {
+        amount += this.recipe.recipeProducts[i].product.kkal / 100 * this.recipe.recipeProducts[i].weightInRecipe
       }
       return Math.round(amount * 100) / 100
     }
