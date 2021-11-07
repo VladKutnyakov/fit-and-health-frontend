@@ -51,6 +51,7 @@ export default {
     }
   },
   async asyncData ({ store }) {
+    await store.dispatch('foodCalorieTable/getProductCategories')
     await store.dispatch('foodCalorieTable/getAllProducts')
   },
   components: {

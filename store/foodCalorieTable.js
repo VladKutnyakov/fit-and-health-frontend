@@ -1,5 +1,5 @@
 export const state = () => ({
-  productCategories: [{id: 1, title: 'Мясо'}],
+  productCategories: [],
   // productCategories: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
   products: [],
   sortedProducts: [],
@@ -8,7 +8,8 @@ export const state = () => ({
   selectedFilters: {
     sortingBy: 'Названию',
     productType: 'Все продукты',
-    productCategory: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
+    productCategory: [],
+    // productCategory: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
     searchString: ''
   },
 
@@ -52,8 +53,9 @@ export const getters = {
   },
   getUserProductsAmount (state) {
     let userProducts = 0
+    // console.log(state.products);
     for (let i = 0; i < state.products.length; i++) {
-      if (state.products[i].userId) {
+      if (state.products[i].user?.id) {
         userProducts += 1
       }
     }
@@ -62,6 +64,10 @@ export const getters = {
 }
 
 export const mutations = {
+  setProductCategories (state, categories) {
+    state.productCategories = categories
+    state.selectedFilters.productCategory = categories
+  },
   setProducts (state, products) {
     state.products = products
     this.commit('foodCalorieTable/sortProducts')
@@ -126,7 +132,7 @@ export const mutations = {
     // Фильтрация по типу продуктов (все, мои, избранное)
     if (state.selectedFilters.productType === 'Мои продукты') {
       // console.log('Мои продукты')
-      state.sortedProducts = [...state.products.filter(product => product.userId !== null)]
+      state.sortedProducts = [...state.products.filter(product => product.user !== null)]
     } else if (state.selectedFilters.productType === 'Закрепленные') {
       // console.log('Закрепленные')
       state.sortedProducts = [...state.products.filter(product => product.pinned !== false)]
@@ -152,7 +158,7 @@ export const mutations = {
     for (let i = 0; i < state.sortedProducts.length; i++) {
       // проверка на совпадение выбранных категорий у продукта в массиве state.sortedProducts
       state.selectedFilters.productCategory.forEach(item => {
-        if (item === state.sortedProducts[i].category.title) {
+        if (item.title === state.sortedProducts[i].category.title) {
           sortedByCategory.push(state.sortedProducts[i])
         }
       })
@@ -256,6 +262,16 @@ export const mutations = {
 }
 
 export const actions = {
+  async getProductCategories ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table/product-categories`)
+      // console.log(response);
+
+      commit('setProductCategories', response.data)
+    } catch (error) {
+      console.log(error.response)
+    }
+  },
   async getAllProducts ({ commit }) {
     try {
       this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
