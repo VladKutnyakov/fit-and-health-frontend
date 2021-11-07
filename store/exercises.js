@@ -1,46 +1,19 @@
 export const state = () => ({
-  exercises: [
+  exercisesList: [
     {
-      category: 'test',
+      category: 'Широчайшие',
       exercises: [
         {
-          title: '1'
-        }
-      ]
-    },
-    {
-      category: 'test 2',
-      exercises: [
-        {
-          title: '1'
-        },
-        {
-          title: '2'
-        },
-        {
-          title: '3'
-        }
-      ]
-    },
-    {
-      category: 'test 3',
-      exercises: [
-        {
-          title: '1'
-        }
-      ]
-    },{
-      category: 'test 4',
-      exercises: [
-        {
-          title: '1'
-        }
-      ]
-    },{
-      category: 'test 5',
-      exercises: [
-        {
-          title: '1'
+          title: 'Подтягивания',
+          targetMuscles: ['Широчайшие'],
+          additionalMuscles: ['Бицепсы', 'Средняя часть спины'],
+          type: 'Базовое',
+          sort: 'Силовое',
+          equipment: 'Нет',
+          exertion: 'Тяга',
+          practiceLevel: 'Начинающий',
+          techniqueDescription: 'Базовое',
+          analogs: [{id: 1, title: 'test'}],
         }
       ]
     },
@@ -53,9 +26,6 @@ export const state = () => ({
 })
 
 export const getters = {
-  getExercises (state) {
-    return state.exercises
-  },
   getExerciseInfo (state) {
     return state.exerciseInfo
   }
