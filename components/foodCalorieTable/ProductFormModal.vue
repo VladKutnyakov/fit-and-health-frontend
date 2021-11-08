@@ -15,7 +15,7 @@
               :error="productForm.errors.title"
               placeholder="Введите значение"
               @input="
-                setProductFormField({field: 'title', value: $event}),
+                setProductFormFieldValue({field: 'title', newValue: $event}),
                 setProductFormFieldError({field: 'title', enabled: false, errorMessage: null})
               "
             />
@@ -32,7 +32,7 @@
               alignSelectedValueLeft
               placeholder="Введите значение"
               @select="
-                setProductFormField({field: 'category', value: $event}),
+                setProductFormFieldValue({field: 'category', newValue: $event}),
                 setProductFormFieldError({field: 'category', enabled: false, errorMessage: null})
               "
             />
@@ -45,7 +45,7 @@
                 :error="productForm.errors.favorite"
                 label="Добавить в избранное"
                 @change="
-                  setProductFormField({field: 'favorite', value: $event}),
+                  setProductFormFieldValue({field: 'favorite', newValue: $event}),
                   setProductFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
                 "
               />
@@ -59,7 +59,7 @@
                 :error="productForm.errors.pinned"
                 label="Закрепить"
                 @change="
-                  setProductFormField({field: 'pinned', value: $event}),
+                  setProductFormFieldValue({field: 'pinned', newValue: $event}),
                   setProductFormFieldError({field: 'pinned', enabled: false, errorMessage: null})
                 "
               />
@@ -75,7 +75,7 @@
               :error="productForm.errors.protein"
               placeholder="Введите значение"
               @input="
-                setProductFormField({field: 'protein', value: $event}),
+                setProductFormFieldValue({field: 'protein', newValue: $event}),
                 setProductFormFieldError({field: 'protein', enabled: false, errorMessage: null})
               "
             />
@@ -88,7 +88,7 @@
               :error="productForm.errors.fats"
               placeholder="Введите значение"
               @input="
-                setProductFormField({field: 'fats', value: $event}),
+                setProductFormFieldValue({field: 'fats', newValue: $event}),
                 setProductFormFieldError({field: 'fats', enabled: false, errorMessage: null})
               "
             />
@@ -101,7 +101,7 @@
               :error="productForm.errors.carb"
               placeholder="Введите значение"
               @input="
-                setProductFormField({field: 'carb', value: $event}),
+                setProductFormFieldValue({field: 'carb', newValue: $event}),
                 setProductFormFieldError({field: 'carb', enabled: false, errorMessage: null})
               "
             />
@@ -114,7 +114,7 @@
               :error="productForm.errors.kkal"
               placeholder="Введите значение"
               @input="
-                setProductFormField({field: 'kkal', value: $event}),
+                setProductFormFieldValue({field: 'kkal', newValue: $event}),
                 setProductFormFieldError({field: 'kkal', enabled: false, errorMessage: null})
               "
             />
@@ -186,7 +186,7 @@ export default {
   methods: {
     ...mapMutations({
       toggleModalVisibility: 'foodCalorieTable/toggleModalVisibility',
-      setProductFormField: 'foodCalorieTable/setProductFormField',
+      setProductFormFieldValue: 'foodCalorieTable/setProductFormFieldValue',
       setProductFormFieldError: 'foodCalorieTable/setProductFormFieldError'
     }),
     saveOrUpdateProduct() {

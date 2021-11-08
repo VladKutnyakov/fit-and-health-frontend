@@ -1,3 +1,5 @@
+import { formGenerator } from '../utils/formGenerator'
+
 export const state = () => ({
   productCategories: [],
   // productCategories: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
@@ -13,30 +15,17 @@ export const state = () => ({
     searchString: ''
   },
 
-  productForm: {
-    fields: {
-      title: null,
-      weight: 100,
-      protein: null,
-      fats: null,
-      carb: null,
-      kkal: null,
-      category: 'Мясо',
-      favorite: false,
-      pinned: false
-    },
-    errors: {
-      title: { enabled: false, errorMessage: null },
-      weight: { enabled: false, errorMessage: null },
-      protein: { enabled: false, errorMessage: null },
-      fats: { enabled: false, errorMessage: null },
-      carb: { enabled: false, errorMessage: null },
-      kkal: { enabled: false, errorMessage: null },
-      category: { enabled: false, errorMessage: null },
-      favorite: { enabled: false, errorMessage: null },
-      pinned: { enabled: false, errorMessage: null }
-    }
-  },
+  productForm: formGenerator({
+    title: null,
+    weight: 100,
+    protein: null,
+    fats: null,
+    carb: null,
+    kkal: null,
+    category: null,
+    favorite: false,
+    pinned: false
+  }),
   modalCondition: 'create',
   productModalActive: false
 })
@@ -73,7 +62,7 @@ export const mutations = {
     this.commit('foodCalorieTable/sortProducts')
   },
   addNewProduct (state, payload) {
-    state.products.push(payload.product)
+    state.products.push(payload)
     this.commit('foodCalorieTable/sortProducts')
   },
   updateProduct (state, product) {
@@ -247,8 +236,8 @@ export const mutations = {
       }
     }
   },
-  setProductFormField (state, params) {
-    state.productForm.fields[params.field] = params.value
+  setProductFormFieldValue (state, ctx) {
+    state.productForm.fields[ctx.field] = ctx.newValue
   },
   setProductFormFieldError (state, ctx) {
     state.productForm.errors[ctx.field] = { enabled: ctx.enabled, errorMessage: ctx.errorMessage }
@@ -291,7 +280,7 @@ export const actions = {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/save-product`, {product: state.productForm.fields})
 
-      commit('addNewProduct', response.data)
+      commit('addNewProduct', response.data.product)
       commit('toggleModalVisibility', {modal: 'productModalActive', condition: false})
 
       const notice = {

@@ -31,7 +31,6 @@
         >{{ typeof item === 'string' ? item : item.title }}</li>
       </ul>
     </div>
-
   </div>
 </template>
 
@@ -51,7 +50,7 @@ export default {
   data () {
     return {
       listOpened: false,
-      selectValue: this.defaultValue
+      selectValue: this.defaultValue || ''
     }
   },
   watch: {
