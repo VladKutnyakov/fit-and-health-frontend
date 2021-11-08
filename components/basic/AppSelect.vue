@@ -27,7 +27,7 @@
           v-for="(item, index) in selectOptionsList"
           :key="index"
           class="app-select__list-item"
-          @click="toggleVisibility($event)"
+          @click="toggleVisibility($event, item)"
         >{{ typeof item === 'string' ? item : item.title }}</li>
       </ul>
     </div>
@@ -38,7 +38,7 @@
 export default {
   props: {
     minWidth: String,
-    defaultValue: [String, Object],
+    value: [String, Object],
     selectOptionsList: Array,
     alignListLeft: Boolean,
     alignListRight: Boolean,
@@ -49,23 +49,22 @@ export default {
   },
   data () {
     return {
-      listOpened: false,
-      selectValue: this.defaultValue || ''
+      selectValue: this.value || '',
+      listOpened: false
     }
   },
   watch: {
-    defaultValue () {
-      this.selectValue = this.defaultValue
+    value () {
+      this.selectValue = this.value || ''
     }
   },
   methods: {
-    toggleVisibility ($event) {
+    toggleVisibility ($event, item) {
       if (!this.listOpened) {
         this.openSelect()
       } else {
         if ($event.target.classList.contains('app-select__list-item')) {
-          this.selectValue = $event.target.innerHTML
-          this.changeSelectValue()
+          this.$emit('select', item)
         }
         this.closeSelect()
       }
@@ -79,9 +78,6 @@ export default {
     closeSelect () {
       this.listOpened = false
       document.removeEventListener('click', this.closeSelect)
-    },
-    changeSelectValue () {
-      this.$emit('select', this.selectValue)
     }
   },
   mounted: function () {
