@@ -17,7 +17,6 @@ export const state = () => ({
 
   productForm: formGenerator({
     title: null,
-    weight: 100,
     protein: null,
     fats: null,
     carb: null,
@@ -210,37 +209,27 @@ export const mutations = {
       }
     }
   },
-  clearProductForm (state) {
-    state.productForm = {
-      fields: {
-        title: null,
-        weight: 100,
-        protein: null,
-        fats: null,
-        carb: null,
-        kkal: null,
-        category: 'Мясо',
-        favorite: false,
-        pinned: false
-      },
-      errors: {
-        title: { enabled: false, errorMessage: null },
-        weight: { enabled: false, errorMessage: null },
-        protein: { enabled: false, errorMessage: null },
-        fats: { enabled: false, errorMessage: null },
-        carb: { enabled: false, errorMessage: null },
-        kkal: { enabled: false, errorMessage: null },
-        category: { enabled: false, errorMessage: null },
-        favorite: { enabled: false, errorMessage: null },
-        pinned: { enabled: false, errorMessage: null }
-      }
-    }
-  },
   setProductFormFieldValue (state, ctx) {
     state.productForm.fields[ctx.field] = ctx.newValue
   },
   setProductFormFieldError (state, ctx) {
-    state.productForm.errors[ctx.field] = { enabled: ctx.enabled, errorMessage: ctx.errorMessage }
+    state.productForm.errors[ctx.field] = {
+      enabled: ctx.enabled,
+      errorMessage: ctx.errorMessage
+    }
+  },
+  clearProductForm (state) {
+    // Очистить значения полей формы
+    for (const key in state.productForm.fields) {
+      state.productForm.fields[key] = null
+    }
+    // Очистить ошибки полей формы
+    for (const key in state.productForm.fields) {
+      state.productForm.errors[key] = {
+        enabled: false,
+        errorMessage: null
+      }
+    }
   },
   setModalCondition (state, condition) {
     state.modalCondition = condition

@@ -24,7 +24,7 @@
           <div class="form-field">
             <p class="field__title">Категория</p>
             <app-select
-              :defaultValue="productForm.fields.category"
+              :value="productForm.fields.category"
               :selectOptionsList="productCategories"
               :error="productForm.errors.category"
               minWidth="236px"
@@ -191,7 +191,7 @@ export default {
     }),
     saveOrUpdateProduct() {
       // $requiredFieldsValidation --> custom pluguin в папке pluguins
-      const isValid = this.$requiredFieldsValidation(this.productForm, ['title', 'weight', 'protein', 'fats', 'carb', 'kkal', 'category'], 'foodCalorieTable/setProductFormFieldError', null)
+      const isValid = this.$requiredFieldsValidation(this.productForm, ['title', 'protein', 'fats', 'carb', 'kkal', 'category'], 'foodCalorieTable/setProductFormFieldError', null)
 
       if (isValid) {
         if (this.modalCondition === 'create') {
