@@ -94,7 +94,7 @@ export default {
 
         // Установить значение для полей на основе редактируемого продукта
         for (const key in product) {
-          this.$store.commit('foodCalorieTable/setProductFormField', {field: key, value: product[key]})
+          this.$store.commit('foodCalorieTable/setProductFormFieldValue', {field: key, newValue: product[key]})
         }
 
         // Установить режим редактирования для модального окна
