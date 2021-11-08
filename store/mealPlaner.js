@@ -1,15 +1,14 @@
 export const state = () => ({
   mealPlanerInfo: {
     id: null,
-    userId: null,
-    date: '',
+    date: null,
+    title: null,
+    description: null,
     targetProtein: 1,
     targetFats: 0.5,
     targetCarb: 2,
     targetWeight: null,
     currentWeight: null,
-    title: '',
-    description: '',
     marks: [],
     like: null,
     dislike: null,
@@ -21,7 +20,10 @@ export const state = () => ({
         recipes: [],
         products: []
       },
-    ]
+    ],
+    user: {
+      id: null
+    }
   },
 
   selectedMealPart: 0,
@@ -257,16 +259,9 @@ export const actions = {
       this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
 
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
-
       // console.log(response)
 
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
-      }
-
-      if (response.data.mealPlanerInfo !== false) {
-        commit('setMealPlanerInfo', response.data.mealPlanerInfo)
-      }
+      commit('setMealPlanerInfo', response.data)
 
       this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     } catch (error) {
