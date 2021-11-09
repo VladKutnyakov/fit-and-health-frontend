@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppPageInfo from '@/components/basic/AppPageInfo'
 import AppModal from '@/components/basic/AppModal'
 import AppButton from '@/components/basic/AppButton'
@@ -42,26 +43,33 @@ export default {
   },
   data () {
     return {
-      pageInfoElements: [
-        {
-          title: "Всего упражнений",
-          value: 147
-        },
-        {
-          title: "Категорий",
-          value: 6
-        },
-        {
-          title: "Мои упражнения",
-          value: 8
-        }
-      ],
       modalActive: false,
       newExercise: {
         title: '',
         techniqueDescription: '',
         category: ''
       }
+    }
+  },
+  computed: {
+    ...mapState({
+      musclesGroupsCount: state => state.exercises.exercisesList.length
+    }),
+    pageInfoElements () {
+      return [
+        {
+          title: "Всего упражнений",
+          value: this.$store.getters['exercises/getExercisesCount']
+        },
+        {
+          title: "Категорий",
+          value: this.musclesGroupsCount
+        },
+        {
+          title: "Мои упражнения",
+          value: this.$store.getters['exercises/getUserExercisesCount']
+        }
+      ]
     }
   },
   methods: {

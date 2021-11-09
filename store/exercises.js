@@ -18,7 +18,25 @@ export const state = () => ({
 export const getters = {
   getExerciseInfo (state) {
     return state.exerciseInfo
-  }
+  },
+  getExercisesCount (state) {
+    let ExercisesCount = 0
+    for (let i = 0; i < state.exercisesList.length; i++) {
+      ExercisesCount += state.exercisesList[i].exercises.length
+    }
+    return ExercisesCount
+  },
+  getUserExercisesCount (state) {
+    let UserExercisesCount = 0
+    for (let i = 0; i < state.exercisesList.length; i++) {
+      state.exercisesList[i].exercises.forEach(element => {
+        if (element.user) {
+          UserExercisesCount += 1
+        }
+      })
+    }
+    return UserExercisesCount
+  },
 }
 
 export const mutations = {
