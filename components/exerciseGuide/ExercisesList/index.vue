@@ -36,7 +36,11 @@
                         <p class="exercises-title">{{ exercise.title }}</p>
                         <p class="exercise__target-muscles">{{ getMuscles(element, exercise) }}</p>
                       </div>
-                      <i class="ti-heart item__favorite-icon"></i>
+                      <div class="item__actions">
+                        <i class="ti-pin-alt actions-btn"></i>
+                        <!-- <i class="ti-pin2 actions-btn"></i> -->
+                        <i class="ti-heart actions-btn"></i>
+                      </div>
                     </li>
                   </ul>
                 </template>
@@ -132,7 +136,6 @@ export default {
           background: $white;
           border: 1px solid $blockBorder;
           border-radius: 6px;
-          overflow: hidden;
           .item__header {
             display: flex;
             align-items: center;
@@ -159,23 +162,28 @@ export default {
             }
           }
           .item__exercises-list {
-            // border: 1px solid red;
-            // padding: 10px;
-            // background: $hiddenBlockBG;
+            display: flex;
+            flex-direction: column;
+            padding: 5px 5px 0 5px;
+            background: $black10;
+            border-top: 1px solid $blockBorder;
             .exercises-list__item {
               display: flex;
               align-items: center;
-              // margin-bottom: 10px;
+              margin-bottom: 5px;
               padding: 10px;
               background: $white;
-              border-bottom: 1px dashed $blockBorder;
-              // border-radius: 6px;
+              // border-bottom: 1px dashed $blockBorder;
+              border-radius: 6px;
               user-select: none;
               cursor: pointer;
               transition: $tr-02;
               .item__exercise-title-and-type {
-                margin-left: 10px;
+                flex: 1 1 auto;
+                margin-left: 5px;
+                margin-right: 5px;
                 .exercises-title {
+                  font-size: 14px;
                   font-weight: 500;
                   transition: $tr-02;
                 }
@@ -185,23 +193,32 @@ export default {
                   font-size: 10px;
                 }
               }
-              .item__favorite-icon {
-                align-self: center;
-                margin-left: auto;
-                color: $green;
-                // font-size: 12px;
+              .item__actions {
+                display: flex;
+                align-self: stretch;
+                align-items: center;
+                padding-left: 10px;
+                flex-direction: column;
+                border-left: 1px dashed $blockBorder;
+                .actions-btn {
+                  margin: 5px 0px;
+                  padding: 2.5px;
+                  color: $black30;
+                  // font-size: 18px;
+                  transition: $tr-02;
+                }
+                .actions-btn:hover {
+                  color: $green;
+                }
               }
             }
             .exercises-list__item:first-child {
-              // margin-bottom: 0;
               border-top: 1px solid $blockBorder;
             }
             .exercises-list__item:last-child {
-              // margin-bottom: 0;
               border-bottom: none;
             }
             .exercises-list__item:hover {
-              // box-shadow: $boxShadow;
               .exercises-title {
                 color: $green;
               }
