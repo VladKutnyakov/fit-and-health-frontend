@@ -34,8 +34,7 @@
                     >
                       <div class="item__exercise-title-and-type">
                         <p class="exercises-title">{{ exercise.title }}</p>
-                        <p class="exercise__target-muscles">{{ exercise.targetMuscles }} targetMuscles</p>
-                        <p class="exercise__target-muscles">{{ exercise.additionalMuscles }} additionalMuscles</p>
+                        <p class="exercise__target-muscles">{{ getMuscles(element, exercise) }}</p>
                       </div>
                       <i class="ti-heart item__favorite-icon"></i>
                     </li>
@@ -73,6 +72,15 @@ export default {
     })
   },
   methods: {
+    getMuscles (muscleGroup, exercise) {
+      const Muscles = [muscleGroup.title]
+
+      for (let i = 0; i < exercise.additionalMuscles.length; i++) {
+        Muscles.push(exercise.additionalMuscles[i].title)
+      }
+
+      return Muscles.join(', ')
+    },
     fetchExerciseInfo (exercisesId) {
       this.$store.dispatch('exercises/fetchExerciseInfo', exercisesId)
     }

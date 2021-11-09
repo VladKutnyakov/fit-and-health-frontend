@@ -10,6 +10,7 @@ export const state = () => ({
     practiceLevel: null,
     techniqueDescription: null,
     muscleGroup: null,
+    additionalMuscles: [],
     user: null
   }
 })
