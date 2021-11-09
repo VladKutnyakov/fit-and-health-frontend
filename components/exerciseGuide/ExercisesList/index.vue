@@ -74,7 +74,6 @@ export default {
   },
   methods: {
     fetchExerciseInfo (exercisesId) {
-      // console.log(exercisesId)
       this.$store.dispatch('exercises/fetchExerciseInfo', exercisesId)
     }
   }

@@ -1,9 +1,16 @@
 export const state = () => ({
   exercisesList: [],
   exerciseInfo: {
-    id: 1,
-    title: 'Название упражнения',
-    techniqueDescription: 'techniqueDescription'
+    id: null,
+    title: null,
+    type: null,
+    sort: null,
+    equipment: null,
+    exertion: null,
+    practiceLevel: null,
+    techniqueDescription: null,
+    muscleGroup: null,
+    user: null
   }
 })
 
@@ -46,10 +53,9 @@ export const actions = {
   },
   async fetchExerciseInfo ({ commit }, exercisesId) {
     try {
-      // const ExerciseInfo = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/fetch-exercise-info`, {id: exercisesId})
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-info/${exercisesId}`)
 
-      // console.log(ExerciseInfo)
-      // commit('setExerciseInfo', ExerciseInfo)
+      commit('setExerciseInfo', response.data)
     } catch (err) {
       console.log(err)
     }
