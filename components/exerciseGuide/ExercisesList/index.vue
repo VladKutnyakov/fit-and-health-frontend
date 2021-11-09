@@ -118,7 +118,7 @@ export default {
       position: relative;
       flex: 1 1 auto;
       margin: 10px;
-      background: $white;
+      // background: $white;
       border: 1px solid $black10;
       border-radius: 6px;
       background: $insetBlockBG;
@@ -133,13 +133,16 @@ export default {
         .list__item {
           // border: 1px solid red;
           margin-bottom: 10px;
-          background: $white;
-          border: 1px solid $blockBorder;
-          border-radius: 6px;
+          // background: $white;
+          // border: 1px solid $blockBorder;
+          // border-radius: 6px;
           .item__header {
             display: flex;
             align-items: center;
             padding: 10px;
+            background: $white;
+            border: 1px solid $blockBorder;
+            border-radius: 6px;
             .preview-image {
               border: 1px solid $blockBorder;
               border-radius: 6px;
@@ -164,9 +167,12 @@ export default {
           .item__exercises-list {
             display: flex;
             flex-direction: column;
-            padding: 5px 5px 0 5px;
+            padding: 10px 10px 5px 10px;
+            margin: 0 5px;
             background: $black10;
-            border-top: 1px solid $blockBorder;
+            // border-top: 1px solid $blockBorder;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
             .exercises-list__item {
               display: flex;
               align-items: center;
@@ -212,17 +218,17 @@ export default {
                 }
               }
             }
-            .exercises-list__item:first-child {
-              border-top: 1px solid $blockBorder;
-            }
-            .exercises-list__item:last-child {
-              border-bottom: none;
-            }
-            .exercises-list__item:hover {
-              .exercises-title {
-                color: $green;
-              }
-            }
+            // .exercises-list__item:first-child {
+            //   border-top: 1px solid $blockBorder;
+            // }
+            // .exercises-list__item:last-child {
+            //   border-bottom: none;
+            // }
+            // .exercises-list__item:hover {
+            //   .exercises-title {
+            //     color: $green;
+            //   }
+            // }
           }
         }
         .category__item:last-child {
