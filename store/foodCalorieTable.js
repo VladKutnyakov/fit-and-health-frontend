@@ -84,7 +84,7 @@ export const mutations = {
   },
   updateFavoriteProduct (state, updatedProduct) {
     for (let i = 0; i < state.products.length; i++) {
-      if (state.products[i].id === updatedProduct.productId) {
+      if (state.products[i].id == updatedProduct.productId) {
         const item = JSON.parse(JSON.stringify(state.products[i]))
         item.favorite = updatedProduct.favorite
         state.products.splice(i, 1, item)
@@ -95,7 +95,7 @@ export const mutations = {
   },
   updatePinnedProduct (state, updatedProduct) {
     for (let i = 0; i < state.products.length; i++) {
-      if (state.products[i].id === updatedProduct.productId) {
+      if (state.products[i].id == updatedProduct.productId) {
         const item = JSON.parse(JSON.stringify(state.products[i]))
         item.pinned = updatedProduct.pinned
         state.products.splice(i, 1, item)
@@ -372,7 +372,7 @@ export const actions = {
   },
   async changeFavoriteParam ({ commit }, productId) {
     try {
-      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/change-favorite-param`, {productId: productId})
+      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-favorite-param/${productId}`)
 
       commit('updateFavoriteProduct', response.data)
 
@@ -390,7 +390,7 @@ export const actions = {
   },
   async changePinnedParam ({ commit }, productId) {
     try {
-      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/change-pinned-param`, {productId: productId})
+      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-pinned-param/${productId}`)
 
       commit('updatePinnedProduct', response.data)
 
