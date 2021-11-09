@@ -1,23 +1,5 @@
 export const state = () => ({
-  exercisesList: [
-    {
-      category: 'Широчайшие',
-      exercises: [
-        {
-          title: 'Подтягивания',
-          targetMuscles: ['Широчайшие'],
-          additionalMuscles: ['Бицепсы', 'Средняя часть спины'],
-          type: 'Базовое',
-          sort: 'Силовое',
-          equipment: 'Нет',
-          exertion: 'Тяга',
-          practiceLevel: 'Начинающий',
-          techniqueDescription: 'Базовое',
-          analogs: [{id: 1, title: 'test'}],
-        }
-      ]
-    },
-  ],
+  exercisesList: [],
   exerciseInfo: {
     id: 1,
     title: 'Название упражнения',
@@ -32,30 +14,8 @@ export const getters = {
 }
 
 export const mutations = {
-  setExercises (state, ExercisesList) {
-    // получаем массив возможных категорий
-    let categories = []
-    for (let i = 0; i < ExercisesList.length; i++) {
-      if (!categories.includes(ExercisesList[i].category)) {
-        categories.push(ExercisesList[i].category)
-      }
-    }
-    // Формируем массив упражнений с категориями
-    let exercises = []
-    categories.forEach(element => {
-      exercises.push({category: element, exercises: []})
-    })
-    // Распределяем упражнения по категориям в массиве exercises
-    for (let i = 0; i < ExercisesList.length; i++) {
-      exercises.forEach(element => {
-        if (ExercisesList[i].category === element.category) {
-          element.exercises.push(ExercisesList[i])
-        }
-      })
-    }
-
-    // устанавливаем разбитые по категориям данные об упражнениях
-    state.exercises = exercises
+  setExercisesList (state, payload) {
+    state.exercisesList = payload
   },
   setExerciseInfo (state, ExerciseInfo) {
     state.exerciseInfo = ExerciseInfo
@@ -68,12 +28,20 @@ export const mutations = {
 export const actions = {
   async fetchExercisesList ({ commit }) {
     try {
-      // const ExercisesList = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises`)
 
-      // console.log(ExercisesList)
-      // commit('setExercises', ExercisesList)
-    } catch (err) {
-      console.log(err)
+      commit('setExercisesList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
   async fetchExerciseInfo ({ commit }, exercisesId) {

@@ -1,8 +1,8 @@
 <template>
-  <div class="exercise-guide-page">
+  <div class="exercises-guide-page">
     <app-page-title>Справочник по упражнениям</app-page-title>
 
-    <div class="exercise-guide-page__content">
+    <div class="exercises-guide-page__content">
       <page-info />
       <div class="exercises-list-and-overview">
         <exercises-list />
@@ -21,9 +21,36 @@ import ExerciseOverview from '@/components/exerciseGuide/ExerciseOverview/index'
 import ExerciseOverviewEmpty from '@/components/exerciseGuide/ExerciseOverviewEmpty/index'
 
 export default {
-  // async fetch ({ store }) {
-  //   await store.dispatch('exercises/fetchExercisesList')
-  // },
+  name: 'ExercisesGuidPage',
+  layout: 'default',
+  head () {
+    return {
+      title: 'Fit and Health - Справочник по упражнениям',
+      __dangerouslyDisableSanitizers: ['script'],
+      script: [
+        { // МИКРОРАЗМЕТКА
+          innerHTML: `{
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "https://website.com",
+            "name": "Website",
+            "description": "This website is awesome.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Website",
+              "alternateName": "SiteWeb",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://someimage.com/image"
+              }
+            }
+          }`,
+          type: 'application/ld+json'
+        }
+      ]
+    }
+  },
+  middleware: ['userAuth'],
   components: {
     AppPageTitle,
     PageInfo,
@@ -31,15 +58,14 @@ export default {
     ExerciseOverview,
     ExerciseOverviewEmpty
   },
-  data() {
-    return {}
+  async asyncData ({ store }) {
+    await store.dispatch('exercises/fetchExercisesList')
   },
   computed: {
     overviewFetched () {
       if (this.$store.getters['exercises/getExerciseInfo'].id) {
         return true
       }
-
       return false
     }
   }
@@ -49,14 +75,14 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.exercise-guide-page {
+.exercises-guide-page {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-left: 80px;
   padding: 40px;
-  .exercise-guide-page__content {
+  .exercises-guide-page__content {
     // border: 1px solid red;
     display: flex;
     flex-direction: column;

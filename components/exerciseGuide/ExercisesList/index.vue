@@ -18,7 +18,7 @@
                       <img src="" alt="img" class="image">
                     </div>
                     <div class="header__title">
-                      <p class="title__text">{{ element.category }}</p>
+                      <p class="title__text">{{ element.title }}</p>
                       <p class="title__exercises-count">Кол-во упражнений {{ element.exercises.length }}</p>
                     </div>
                     <i class="ti-angle-double-down header__icon"></i>
@@ -34,8 +34,8 @@
                     >
                       <div class="item__exercise-title-and-type">
                         <p class="exercises-title">{{ exercise.title }}</p>
-                        <p class="exercise__target-muscles">{{ exercise.targetMuscles }}</p>
-                        <p class="exercise__target-muscles">{{ exercise.additionalMuscles }}</p>
+                        <p class="exercise__target-muscles">{{ exercise.targetMuscles }} targetMuscles</p>
+                        <p class="exercise__target-muscles">{{ exercise.additionalMuscles }} additionalMuscles</p>
                       </div>
                       <i class="ti-heart item__favorite-icon"></i>
                     </li>
