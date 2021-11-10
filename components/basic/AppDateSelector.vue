@@ -45,6 +45,7 @@
             class="date-table__day-item"
             :class="[{ 'date-table__previosly-day-item': !item.isCurrentMonth }]"
             @click="selectDate(item.queryDate)"
+            :title="item.queryDate"
           >
             <p
               class="day-item__value"
@@ -115,7 +116,7 @@ export default {
           const previoslyMonthDay = new Date(this.currentYear, this.currentMonth.id, 0).getDate() - previoslyMonthDaysAmount + 1
 
           const year = this.currentYear
-          const month = this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`
+          const month = this.currentMonth.id + 1 >= 9 ? this.currentMonth.id : `0${this.currentMonth.id}`
           const day = previoslyMonthDay + i
 
           previoslyMonthDays.push({
@@ -159,7 +160,7 @@ export default {
           isCurrentMonth: false,
           day: i + 1,
           month: this.currentMonth,
-          queryDate: `${year}-${month}-${day}`,
+          queryDate: `${month <= 12 ? year : year + 1}-${month <= 12 ? month : '01'}-${day}`,
           active: false
         })
       }
@@ -215,17 +216,8 @@ export default {
       console.log(item)
 
       this.currentYear = parseInt(item.split('-')[0])
-
-      let monthId = null
-      if (parseInt(item.split('-')[1] - 1) <= 11 ) {
-        monthId = parseInt(item.split('-')[1] - 1)
-      } else {
-        monthId = 0
-      }
-      this.currentMonth = this.monthsOptions[monthId]
-
+      this.currentMonth = this.monthsOptions[parseInt(item.split('-')[1] - 1) <= 11 ? parseInt(item.split('-')[1] - 1) : 0]
       this.currentDay = parseInt(item.split('-')[2])
-
       this.days = this.calendarCellsValues()
 
       // console.log(this.currentDay)
