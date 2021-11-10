@@ -7,13 +7,13 @@
       :placeholder="placeholder"
       v-model="searchString"
     >
-    <div class="search__action-btn">
+    <div class="search__action-btns">
       <i class="search__action-btn-icon ti-close" @click="resetSearchInputValue()" />
       <i v-if="filters" class="search__action-btn-icon ti-panel" @click="openFilters()"></i>
     </div>
     <div class="search__btn" @click="searchProduct()">
-      <i v-if="small" class="search__btn-text ti-search" />
       <p v-if="!small" class="search__btn-text">Найти</p>
+      <i v-if="small" class="search__small-btn-text ti-search" />
     </div>
   </div>
 </template>
@@ -69,30 +69,31 @@ export default {
     outline: none;
     transition: $tr-02;
   }
-  .search__action-btn {
+  .search__action-btns {
     // border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
     background: $white;
-    padding: 0 10px;
+    padding-left: 10px;
     color: $green;
     border-top: 1px solid $blockBorder;
     border-bottom: 1px solid $blockBorder;
     transition: $tr-02;
     .search__action-btn-icon {
       // border: 1px solid red;
+      margin-right: 5px;
       padding: 5px;
-      color: $gray-dark;
+      color: $black30;
       user-select: none;
+      transition: $tr-02;
       cursor: pointer;
     }
-    .search__action-btn-icon:first-child {
-      margin-right: 5px;
+    .search__action-btn-icon:hover {
+      color: $green;
     }
   }
   .search__btn {
-    padding: 0 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,8 +107,12 @@ export default {
     cursor: pointer;
     transition: $tr-02;
     .search__btn-text {
+      padding: 0 20px;
       color: $white;
-      transition: $tr-02;
+    }
+    .search__small-btn-text {
+      padding: 0 15px;
+      color: $white;
     }
   }
 }
