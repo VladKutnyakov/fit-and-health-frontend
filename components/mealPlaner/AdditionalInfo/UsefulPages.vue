@@ -33,6 +33,7 @@ export default {
 @import '@/assets/styles/vars.scss';
 
 .useful-pages {
+  margin-top: 20px;
   .useful-pages__elements {
     display: flex;
     flex-wrap: wrap;
