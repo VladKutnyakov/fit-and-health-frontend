@@ -176,15 +176,16 @@ export default {
       this.currentDay = 1
       this.days = this.calendarCellsValues()
 
-      // const queryDate = `${this.year}-${this.month.id + 1 >= 9 ? this.month.id + 1 : `0${this.month.id + 1}`}-01`
-      // this.selectDate(queryDate)
+      const newSelectedDate = `${this.currentYear}-${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}-01`
+      this.selectDate(newSelectedDate)
     },
     yearSelect ($event) {
       this.currentYear = $event
       this.currentDay = 1
       this.days = this.calendarCellsValues()
 
-      // this.selectDate()
+      const newSelectedDate = `${this.currentYear}-${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}-01`
+      this.selectDate(newSelectedDate)
     },
     prevMonth () {
       if (this.currentMonth.id > 0) {
@@ -197,7 +198,8 @@ export default {
       this.currentDay = 1
       this.days = this.calendarCellsValues()
 
-      // this.selectDate()
+      const newSelectedDate = `${this.currentYear}-${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}-01`
+      this.selectDate(newSelectedDate)
     },
     nextMonth () {
       if (this.currentMonth.id < 11) {
@@ -210,17 +212,15 @@ export default {
       this.currentDay = 1
       this.days = this.calendarCellsValues()
 
-      // this.selectDate()
+      const newSelectedDate = `${this.currentYear}-${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}-01`
+      this.selectDate(newSelectedDate)
     },
     selectDate (item) {
-      console.log(item)
-
       this.currentYear = parseInt(item.split('-')[0])
       this.currentMonth = this.monthsOptions[parseInt(item.split('-')[1] - 1) <= 11 ? parseInt(item.split('-')[1] - 1) : 0]
       this.currentDay = parseInt(item.split('-')[2])
       this.days = this.calendarCellsValues()
 
-      // console.log(this.currentDay)
       this.$emit('select', item)
     },
   },
