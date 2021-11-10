@@ -122,8 +122,8 @@ export default {
           previoslyMonthDays.push({
             isCurrentMonth: false,
             day: previoslyMonthDay + i,
-            month: this.currentMonth,
-            queryDate: `${year}-${month}-${day}`,
+            // month: this.currentMonth,
+            queryDate: `${this.currentMonth.id > 0 ? year : year - 1}-${this.currentMonth.id > 0 ? month : 12}-${day}`,
             active: false
           })
         }
@@ -141,7 +141,7 @@ export default {
         currentMonthDays.push({
           isCurrentMonth: true,
           day: i + 1,
-          month: this.currentMonth,
+          // month: this.currentMonth,
           queryDate: `${year}-${month}-${day}`,
           active: (i + 1) === this.currentDay ? true : false
         })
@@ -159,7 +159,7 @@ export default {
         nextMonthDays.push({
           isCurrentMonth: false,
           day: i + 1,
-          month: this.currentMonth,
+          // month: this.currentMonth,
           queryDate: `${month <= 12 ? year : year + 1}-${month <= 12 ? month : '01'}-${day}`,
           active: false
         })
