@@ -3,7 +3,7 @@
     <template v-slot:accordionHeader>
       <div class="meal-planer-calendar__target-date" @click="calendarIsOpen = !calendarIsOpen">
         <i class="ti-calendar"></i>
-        <p class="target-date__selected-day">{{ currentDay }} {{ monthTitle[currentMonth] }} {{ currentYear }}</p>
+        <p class="target-date__selected-day">{{ currentDay }} {{ currentMonth.title }} {{ currentYear }}</p>
         <i v-if="!calendarIsOpen" class="ti-angle-double-down"></i>
         <i v-if="calendarIsOpen" class="ti-angle-double-up"></i>
       </div>
@@ -13,15 +13,15 @@
         <div class="calendar-settings">
           <div class="calendar-settings__select-month-or-year">
             <app-select
-              :defaultValue="selectedMonth"
-              :selectOptionsList="monthTitle"
-              minWidth="120px"
-              maxWidth="120px"
+              :value="currentMonth"
+              :selectOptionsList="monthsOptions"
+              minWidth="140px"
+              maxWidth="140px"
               @select="monthSelect($event)"
               class="calendar-settings__select"
             />
             <app-select
-              :defaultValue="selectedYear"
+              :value="currentYear"
               :selectOptionsList="yearsOptions"
               minWidth="120px"
               maxWidth="120px"
@@ -75,12 +75,9 @@ export default {
       calendarIsOpen: true,
       days: [],
       weekDaysTitle: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
-      monthTitle: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
-      currentYear: new Date().getFullYear(),
-      currentMonth: new Date().getMonth(),
-      currentDay: new Date().getDate(),
-      month: this.currentMonth,
-      year: this.currentYear
+      currentYear: null,
+      currentMonth: null,
+      currentDay: null,
     }
   },
   computed: {
@@ -91,137 +88,155 @@ export default {
       }
       return years.reverse()
     },
-    selectedMonth () {
-      return this.monthTitle[this.currentMonth]
+    monthsOptions () {
+      return [
+        { id: 0, title: 'Январь' },
+        { id: 1, title: 'Февраль' },
+        { id: 2, title: 'Март' },
+        { id: 3, title: 'Апрель' },
+        { id: 4, title: 'Май' },
+        { id: 5, title: 'Июнь' },
+        { id: 6, title: 'Июль' },
+        { id: 7, title: 'Август' },
+        { id: 8, title: 'Сентябрь' },
+        { id: 9, title: 'Октябрь' },
+        { id: 10, title: 'Ноябрь' },
+        { id: 11, title: 'Декабрь' }
+      ]
     },
-    selectedYear () {
-      return this.currentYear.toString()
-    },
-    daysInThisMonth () {
-      return new Date(this.currentYear, this.currentMonth + 1, 0).getDate()
-    },
-  },
-  watch: {
-    month ($event) {
-      // отслеживаем изменение переменной, что бы установить нужное значение для currentMonth и верного расчета календарных дней
-      for (let i = 0; i <= this.monthTitle.length; i++) {
-        if ($event === this.monthTitle[i]) {
-          this.currentMonth = i
-        }
-      }
-    },
-    year () {
-      this.currentYear = +this.year
-    }
   },
   methods: {
     calendarCellsValues () {
       const previoslyMonthDays = []
-      const previoslyMonthDaysAmount = new Date(this.currentYear, this.currentMonth, 0).getDay()
+      const previoslyMonthDaysAmount = new Date(this.currentYear, this.currentMonth.id, 0).getDay()
       for (let i = 0; i <= previoslyMonthDaysAmount; i++) {
-        // если первый день месяца не равен начальному дню недели добавить в массив значение предыдущего месяца
+        // Получить массив дней предыдущего месяца, если первый день месяца не равен начальному дню недели
         if (i < previoslyMonthDaysAmount) {
-          const previoslyMonthDay = new Date(this.currentYear, this.currentMonth, 0).getDate() - previoslyMonthDaysAmount + 1
+          const previoslyMonthDay = new Date(this.currentYear, this.currentMonth.id, 0).getDate() - previoslyMonthDaysAmount + 1
 
-          const queryDate = this.currentYear  + '-' + this.currentMonth + '-' + (previoslyMonthDay + i)
+          const year = this.currentYear
+          const month = this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`
+          const day = previoslyMonthDay + i
+
           previoslyMonthDays.push({
             isCurrentMonth: false,
             day: previoslyMonthDay + i,
             month: this.currentMonth,
-            queryDate: queryDate,
+            queryDate: `${year}-${month}-${day}`,
             active: false
           })
         }
       }
+      // console.log(previoslyMonthDays)
 
-      // Получаем массив дней в текущем месяце
+      // Получить массив дней в текущем месяце
+      const daysInThisMonth = new Date(this.currentYear, this.currentMonth.id + 1, 0).getDate()
       const currentMonthDays = []
-      for (let i = 0; i < this.daysInThisMonth; i++) {
-        const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + (i + 1)
+      for (let i = 0; i < daysInThisMonth; i++) {
+        const year = this.currentYear
+        const month = this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`
+        const day = i + 1 >= 9 ? i + 1 : `0${i + 1}`
+
         currentMonthDays.push({
           isCurrentMonth: true,
           day: i + 1,
           month: this.currentMonth,
-          queryDate: queryDate,
+          queryDate: `${year}-${month}-${day}`,
           active: (i + 1) === this.currentDay ? true : false
         })
       }
+      // console.log(currentMonthDays)
 
+      // Получить массив дней в следущем месяце
       const nextMonthDays = []
       const freeCells = 42 - previoslyMonthDays.length - currentMonthDays.length
       for (let i = 0; i < freeCells; i++) {
-        const queryDate = this.currentYear  + '-' + (this.currentMonth + 2) + '-' + (i + 1)
+        const year = this.currentYear
+        const month = this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 2 : `0${this.currentMonth.id + 2}`
+        const day = i + 1 >= 9 ? i + 1 : `0${i + 1}`
+
         nextMonthDays.push({
           isCurrentMonth: false,
           day: i + 1,
           month: this.currentMonth,
-          queryDate: queryDate,
+          queryDate: `${year}-${month}-${day}`,
           active: false
         })
       }
+      // console.log(nextMonthDays)
 
       const calendarCellsValues = previoslyMonthDays.concat(currentMonthDays, nextMonthDays)
-
       // console.log(calendarCellsValues)
 
       return calendarCellsValues
     },
     monthSelect ($event) {
-      this.month = $event
+      this.currentMonth = $event
       this.currentDay = 1
       this.days = this.calendarCellsValues()
-      const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + this.currentDay
-      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
-      this.$router.push(`/meal-planer?date=${queryDate}`)
+
+      // const queryDate = `${this.year}-${this.month.id + 1 >= 9 ? this.month.id + 1 : `0${this.month.id + 1}`}-01`
+      // this.selectDate(queryDate)
     },
     yearSelect ($event) {
-      this.year = $event
+      this.currentYear = $event
       this.currentDay = 1
       this.days = this.calendarCellsValues()
-      const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + this.currentDay
-      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
-      this.$router.push(`/meal-planer?date=${queryDate}`)
+
+      // this.selectDate()
     },
     prevMonth () {
-      if (this.currentMonth > 0) {
-        --this.currentMonth
+      if (this.currentMonth.id > 0) {
+        this.currentMonth = this.monthsOptions[this.currentMonth.id - 1]
       } else {
-        this.currentMonth = 11
-        --this.currentYear
+        this.currentMonth = this.monthsOptions[11]
+        this.currentYear -= 1
       }
 
       this.currentDay = 1
-
       this.days = this.calendarCellsValues()
 
-      const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + this.currentDay
-      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
-      this.$router.push(`/meal-planer?date=${queryDate}`)
+      // this.selectDate()
     },
     nextMonth () {
-      if (this.currentMonth < 11) {
-        ++this.currentMonth
+      if (this.currentMonth.id < 11) {
+        this.currentMonth = this.monthsOptions[this.currentMonth.id + 1]
       } else {
-        this.currentMonth = 0
-        ++this.currentYear
+        this.currentMonth = this.monthsOptions[0]
+        this.currentYear += 1
       }
 
       this.currentDay = 1
-
       this.days = this.calendarCellsValues()
 
-      const queryDate = this.currentYear  + '-' + (this.currentMonth + 1) + '-' + this.currentDay
-      this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', queryDate)
-      this.$router.push(`/meal-planer?date=${queryDate}`)
+      // this.selectDate()
     },
     selectDate (item) {
+      console.log(item)
+
+      this.currentYear = parseInt(item.split('-')[0])
+
+      let monthId = null
+      if (parseInt(item.split('-')[1] - 1) <= 11 ) {
+        monthId = parseInt(item.split('-')[1] - 1)
+      } else {
+        monthId = 0
+      }
+      this.currentMonth = this.monthsOptions[monthId]
+
       this.currentDay = parseInt(item.split('-')[2])
-      this.currentMonth = parseInt(item.split('-')[1]) - 1
+
       this.days = this.calendarCellsValues()
+
+      // console.log(this.currentDay)
       this.$emit('select', item)
     },
   },
   created () {
+    // Задать текущую дату для календаря (занчение по умолчанию при рендеринге компонента)
+    this.currentYear = new Date().getFullYear()
+    this.currentMonth = this.monthsOptions[new Date().getMonth()]
+    this.currentDay = new Date().getDate()
     this.days = this.calendarCellsValues()
   }
 }

@@ -36,7 +36,7 @@
         :key="index"
         class="app-select__list-item"
         @click="selectItem(item)"
-      >{{ typeof item === 'string' ? item : item.title }}</li>
+      >{{ typeof item === 'object' ? item.title : item }}</li>
     </ul>
   </div>
 </template>
