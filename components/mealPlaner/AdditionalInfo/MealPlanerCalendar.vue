@@ -16,12 +16,16 @@
               <app-select
                 :defaultValue="selectedMonth"
                 :selectOptionsList="monthTitle"
+                minWidth="120px"
+                maxWidth="120px"
                 @select="monthSelect($event)"
                 class="calendar-settings__select"
               />
               <app-select
                 :defaultValue="selectedYear"
                 :selectOptionsList="yearsOptions"
+                minWidth="120px"
+                maxWidth="120px"
                 @select="yearSelect($event)"
                 class="calendar-settings__select"
               />
