@@ -107,7 +107,7 @@ export default {
   .item__exercises-list {
     display: flex;
     flex-direction: column;
-    padding: 10px 10px 5px 10px;
+    // padding: 10px 10px 5px 10px;
     margin: 0 5px;
     background: $black10;
     border-bottom-left-radius: 6px;
@@ -115,7 +115,7 @@ export default {
     .exercises-list__item {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
+      margin: 10px 10px 5px 10px;
       padding: 10px;
       background: $white;
       border-radius: 6px;
@@ -154,6 +154,9 @@ export default {
           color: $green;
         }
       }
+    }
+    .exercises-list__item:last-child {
+      margin-bottom: 10px;
     }
   }
 }
