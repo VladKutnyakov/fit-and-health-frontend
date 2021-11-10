@@ -2,39 +2,68 @@
   <div class="exercise-info">
     <div class="exercise-info__item">
       <p class="item__title">Группа мышц:</p>
-      <p class="item__value">Квадрицепсы</p>
-    </div>
-    <div class="exercise-info__item">
-      <p class="item__title">Тип упражнения:</p>
-      <p class="item__value">Базовое</p>
+      <p class="item__value">{{ muscleGroup }}</p>
     </div>
     <div class="exercise-info__item">
       <p class="item__title">Дополнительные мышцы:</p>
-      <p class="item__value">Абдукторы, Аддукторы, Бедра, Икры</p>
+      <p class="item__value">{{ additionalMuscles }}</p>
+    </div>
+    <div class="exercise-info__item">
+      <p class="item__title">Тип упражнения:</p>
+      <p class="item__value">{{ type }}</p>
     </div>
     <div class="exercise-info__item">
       <p class="item__title">Вид упражнения:</p>
-      <p class="item__value">Плиометрическое</p>
+      <p class="item__value">{{ sort }}</p>
+    </div>
+    <div class="exercise-info__item">
+      <p class="item__title">Усилие:</p>
+      <p class="item__value">{{ exertion }}</p>
     </div>
     <div class="exercise-info__item">
       <p class="item__title">Оборудование:</p>
-      <p class="item__value">Другое</p>
+      <p class="item__value">{{ equipment }}</p>
     </div>
     <div class="exercise-info__item">
-      <p class="item__title">Уровень сложности:</p>
-      <p class="item__value">
-        <i class="ti-crown"></i>
-        <i class="ti-crown"></i>
-        <i class="ti-crown"></i>
-        <i class="ti-crown"></i>
-        <i class="ti-crown"></i>
-      </p>
+      <p class="item__title mr-10">Уровень сложности:</p>
+      <app-rating :rating="practiceLevel" />
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+import AppRating from '@/components/basic/AppRating'
+
+export default {
+  components: {
+    AppRating
+  },
+  computed: {
+    ...mapState({
+      muscleGroup: state => state.exercises.exerciseInfo.muscleGroup.title,
+      type: state => state.exercises.exerciseInfo.type,
+      sort: state => state.exercises.exerciseInfo.sort,
+      equipment: state => state.exercises.exerciseInfo.equipment,
+      exertion: state => state.exercises.exerciseInfo.exertion,
+      practiceLevel: state => state.exercises.exerciseInfo.practiceLevel,
+    }),
+    additionalMuscles () {
+      const additionalExerciseMuscles = this.$store.state.exercises.exerciseInfo.additionalMuscles
+      const Muscles = []
+
+      for (let i = 0; i < additionalExerciseMuscles.length; i++) {
+        Muscles.push(additionalExerciseMuscles[i].title)
+      }
+
+      if (Muscles.length === 0) {
+        Muscles.push('нет данных')
+      }
+
+      return Muscles.join(', ')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -48,11 +77,11 @@ export default {}
     align-items: center;
     margin-bottom: 10px;
     .item__title {
-      font-size: 14px;
+      // font-size: 14px;
       font-weight: 500;
     }
     .item__value {
-      font-size: 14px;
+      // font-size: 14px;
       margin-left: 10px;
     }
   }

@@ -36,7 +36,7 @@ export default {
     display: flex;
     margin: 0 10px;
     padding: 10px 0;
-    border-top: 1px solid $blockBorder;
+    // border-top: 1px solid $blockBorder;
   }
 }
 

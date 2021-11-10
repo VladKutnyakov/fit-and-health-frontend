@@ -11,7 +11,7 @@
         <ul class="categories__list">
           <!-- <app-scroll-block> -->
             <li v-for="(element, index) in exercises" :key="index" class="list__item">
-              <app-accordion :isOpened="true">
+              <app-accordion :isOpened="false">
                 <template v-slot:accordionHeader>
                   <div class="item__header">
                     <div class="preview-image">

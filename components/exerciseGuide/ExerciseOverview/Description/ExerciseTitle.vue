@@ -19,9 +19,10 @@ export default {
 .exercise-title {
   margin: 0 10px;
   text-align: center;
+  font-size: 18px;
   font-weight: 500;
   padding: 10px 20px;
-  // border-bottom: 1px solid $blockBorder;
+  // border-bottom: 1px dashed $blockBorder;
 }
 
 </style>
