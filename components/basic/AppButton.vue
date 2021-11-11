@@ -164,9 +164,10 @@ export default {
   background: $green;
 }
 .info-btn {
-  background: $blue-light;
+  background: $blue;
 }
 .warning-btn {
+  color: $black;
   background: $yellow;
 }
 .danger-btn {

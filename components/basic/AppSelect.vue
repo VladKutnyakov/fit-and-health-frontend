@@ -15,7 +15,7 @@
           {'app-select__selected-value--right': alignSelectedValueRight},
           {'app-select__selected-value--center': alignSelectedValueCenter},
         ]"
-        :value="typeof selectValue === 'object' ? selectValue.title : selectValue"
+        :value="typeof selectValue === 'object' && selectValue != null ? selectValue.title : selectValue"
         :placeholder="placeholder || 'Выберите значение'"
       />
       <i class="app-select__icon ti-angle-double-down"></i>
@@ -36,7 +36,7 @@
         :key="index"
         class="app-select__list-item"
         @click="selectItem(item)"
-      >{{ typeof item === 'object' ? item.title : item }}</li>
+      >{{ typeof item === 'object' && item != null ? item.title : item }}</li>
     </ul>
   </div>
 </template>
@@ -101,10 +101,10 @@ export default {
   flex: 1 1 auto;
   position: relative;
   display: flex;
-  align-self: flex-start;
   width: 100%;
   .app-select__value {
     display: flex;
+    flex: 1 1 auto;
     background: $white;
     border: 1px solid $blockBorder;
     border-radius: 6px;
