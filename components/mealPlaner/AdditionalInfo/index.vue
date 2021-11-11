@@ -1,19 +1,16 @@
 <template>
   <div class="additional-info">
-    <app-block-title>Календарь</app-block-title>
     <meal-planer-calendar />
     <useful-pages />
   </div>
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import MealPlanerCalendar from '@/components/mealPlaner/AdditionalInfo/MealPlanerCalendar'
 import UsefulPages from '@/components/mealPlaner/AdditionalInfo/UsefulPages'
 
 export default {
   components: {
-    AppBlockTitle,
     MealPlanerCalendar,
     UsefulPages
   }

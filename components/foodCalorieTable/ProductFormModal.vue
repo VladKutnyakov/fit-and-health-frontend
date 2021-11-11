@@ -27,7 +27,6 @@
               :value="productForm.fields.category"
               :selectOptionsList="productCategories"
               :error="productForm.errors.category"
-              minWidth="236px"
               alignListLeft
               alignSelectedValueLeft
               placeholder="Введите значение"
@@ -126,15 +125,15 @@
       <app-button
         uppercase
         size14px
-        @click.native="toggleModalVisibility({modal: 'productModalActive', condition: false})"
-      >Отмена</app-button>
+        class="modal-action-btn mr-auto"
+        @click.native="saveOrUpdateProduct()"
+      >{{ modalCondition === 'create' ? 'Сохранить' : 'Редактировать' }}</app-button>
 
       <app-button
         uppercase
         size14px
-        class="modal-action-btn ml-auto"
-        @click.native="saveOrUpdateProduct()"
-      >{{ modalCondition === 'create' ? 'Сохранить' : 'Редактировать' }}</app-button>
+        @click.native="toggleModalVisibility({modal: 'productModalActive', condition: false})"
+      >Отмена</app-button>
     </template>
   </app-modal>
 </template>
