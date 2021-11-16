@@ -18,8 +18,7 @@
             :value="targetProtein"
             small
             textRight
-            @focus.native="selectInputValue($event)"
-            @keypress.enter.native="blurInputValue($event)"
+            selectOnFocus
             @input="setNutrientsSettingsParam({field: 'targetProtein', newValue: $event})"
           />
           <p class="element__scale">гр.</p>
@@ -31,8 +30,7 @@
             :value="targetFats"
             small
             textRight
-            @focus.native="selectInputValue($event)"
-            @keypress.enter.native="blurInputValue($event)"
+            selectOnFocus
             @input="setNutrientsSettingsParam({field: 'targetFats', newValue: $event})"
           />
           <p class="element__scale">гр.</p>
@@ -44,8 +42,7 @@
             :value="targetCarb"
             small
             textRight
-            @focus.native="selectInputValue($event)"
-            @keypress.enter.native="blurInputValue($event)"
+            selectOnFocus
             @input="setNutrientsSettingsParam({field: 'targetCarb', newValue: $event})"
           />
           <p class="element__scale">гр.</p>
@@ -62,8 +59,7 @@
             :value="currentWeight"
             small
             textRight
-            @focus.native="selectInputValue($event)"
-            @keypress.enter.native="blurInputValue($event)"
+            selectOnFocus
             @input="setNutrientsSettingsParam({field: 'currentWeight', newValue: $event})"
           />
           <p class="element__scale">кг.</p>
@@ -75,8 +71,7 @@
             :value="targetWeight"
             small
             textRight
-            @click.native="selectInputValue($event)"
-            @keypress.enter.native="blurInputValue($event)"
+            selectOnFocus
             @input="setNutrientsSettingsParam({field: 'targetWeight', newValue: $event})"
           />
           <p class="element__scale">кг.</p>
@@ -117,22 +112,12 @@ export default {
     }),
     ...mapGetters({
       getDayTargetKkal: 'mealPlaner/getDayTargetKkal',
-    }),
+    })
   },
   methods: {
     ...mapMutations({
       setNutrientsSettingsParam: 'mealPlaner/setNutrientsSettingsParam'
-    }),
-    selectInputValue ($event) {
-      this.$nextTick(() => {
-        $event.target.select()
-      })
-    },
-    blurInputValue ($event) {
-      this.$nextTick(() => {
-        $event.target.blur()
-      })
-    }
+    })
   }
 }
 </script>
