@@ -130,6 +130,9 @@ export const mutations = {
   setNutrientsSettingsParam (state, ctx) {
     state.mealPlanerInfo[ctx.field] = ctx.newValue
   },
+  setUserParam (state, ctx) {
+    state.mealPlanerInfo.user.params[0][ctx.field] = ctx.newValue
+  },
   setSearchRecipesAndProductsModalActive (state) {
     state.searchRecipesAndProductsModalActive = !state.searchRecipesAndProductsModalActive
 
@@ -281,22 +284,24 @@ export const actions = {
   },
   async saveMealPlanerInfo ({ state, commit }) {
     try {
-      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
+      console.log(state.mealPlanerInfo)
 
-      if (response.updatedToken) {
-        this.commit('auth/setToken', response.updatedToken)
-      }
+      // const response = await this.$axios.$post(`${process.env.BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
+
+      // if (response.updatedToken) {
+      //   this.commit('auth/setToken', response.updatedToken)
+      // }
 
       // commit('setMealPlanerInfo', response.data.mealPlanerInfo)
 
-      const notice = {
-        id: Date.now(),
-        type: 'success',
-        message: 'Данные успешно сохранены.',
-        timeToShow: 5000,
-        active: true
-      }
-      this.commit('notifications/addNewNotice', notice)
+      // const notice = {
+      //   id: Date.now(),
+      //   type: 'success',
+      //   message: 'Данные успешно сохранены.',
+      //   timeToShow: 5000,
+      //   active: true
+      // }
+      // this.commit('notifications/addNewNotice', notice)
 
     } catch (error) {
       console.log(error)

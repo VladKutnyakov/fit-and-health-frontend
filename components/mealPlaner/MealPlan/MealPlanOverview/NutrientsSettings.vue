@@ -60,7 +60,7 @@
             small
             textRight
             selectOnFocus
-            @input="setNutrientsSettingsParam({field: 'currentWeight', newValue: $event})"
+            @input="setUserParam({field: 'weight', newValue: $event})"
           />
           <p class="element__scale">кг.</p>
         </div>
@@ -72,7 +72,7 @@
             small
             textRight
             selectOnFocus
-            @input="setNutrientsSettingsParam({field: 'targetWeight', newValue: $event})"
+            @input="setUserParam({field: 'targetWeight', newValue: $event})"
           />
           <p class="element__scale">кг.</p>
         </div>
@@ -116,7 +116,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setNutrientsSettingsParam: 'mealPlaner/setNutrientsSettingsParam'
+      setNutrientsSettingsParam: 'mealPlaner/setNutrientsSettingsParam',
+      setUserParam: 'mealPlaner/setUserParam'
     })
   }
 }
