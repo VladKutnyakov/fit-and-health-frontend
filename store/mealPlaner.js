@@ -44,18 +44,19 @@ export const getters = {
     //   lettargetKkal = (447.6 + (9.2 * state.targetWeight) + (3.1 * state.userHeight) - (4.3 * state.userAge)) * state.userActivity
     //   return Math.round(targetKkal)
     // }
+    const targetWeight = state.mealPlanerInfo.user.params[0].targetWeight
 
-    let currentKkal = (state.mealPlanerInfo.targetProtein * state.mealPlanerInfo.targetWeight * 4.1) + (state.mealPlanerInfo.targetFats * state.mealPlanerInfo.targetWeight * 9.3) + (state.mealPlanerInfo.targetCarb * state.mealPlanerInfo.targetWeight * 4.1)
+    let currentKkal = (state.mealPlanerInfo.targetProtein * targetWeight * 4.1) + (state.mealPlanerInfo.targetFats * targetWeight * 9.3) + (state.mealPlanerInfo.targetCarb * targetWeight * 4.1)
 
     return Math.round(currentKkal)
   },
   getMealPartProducts (state) {
-    return state.mealPlanerInfo.mealParts[state.selectedMealPart].products
+    return state.mealPlanerInfo.mealParts[state.selectedMealPart].mealPartProducts
   },
   getCurrentProtein (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.mealParts.length; i++) {
-      state.mealPlanerInfo.mealParts[i].products.forEach(element => {
+      state.mealPlanerInfo.mealParts[i].mealPartProducts.forEach(element => {
         products.push(element)
       })
     }
@@ -70,7 +71,7 @@ export const getters = {
   getCurrentFats (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.mealParts.length; i++) {
-      state.mealPlanerInfo.mealParts[i].products.forEach(element => {
+      state.mealPlanerInfo.mealParts[i].mealPartProducts.forEach(element => {
         products.push(element)
       })
     }
@@ -85,7 +86,7 @@ export const getters = {
   getCurrentCarb (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.mealParts.length; i++) {
-      state.mealPlanerInfo.mealParts[i].products.forEach(element => {
+      state.mealPlanerInfo.mealParts[i].mealPartProducts.forEach(element => {
         products.push(element)
       })
     }
@@ -100,7 +101,7 @@ export const getters = {
   getCurrentKkal (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.mealParts.length; i++) {
-      state.mealPlanerInfo.mealParts[i].products.forEach(element => {
+      state.mealPlanerInfo.mealParts[i].mealPartProducts.forEach(element => {
         products.push(element)
       })
     }
