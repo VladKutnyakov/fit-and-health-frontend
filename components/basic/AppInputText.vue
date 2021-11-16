@@ -12,6 +12,8 @@
       type="text"
       :placeholder="placeholder"
       @input="changeInputValue()"
+      @focus="onFocuse($event)"
+      @keypress.enter="onKeypressEnter($event)"
       v-model="inputValue"
     >
 
@@ -33,6 +35,7 @@ export default {
     textRight: Boolean,
     textCenter: Boolean,
     error: Object,
+    selectOnFocus: Boolean
   },
   data () {
     return {
@@ -47,6 +50,14 @@ export default {
   methods: {
     changeInputValue () {
       this.$emit('input', this.inputValue)
+    },
+    onFocuse ($event) {
+      if (this.selectOnFocus) {
+        $event.target.select()
+      }
+    },
+    onKeypressEnter ($event) {
+      $event.target.blur()
     }
   }
 }
@@ -83,6 +94,10 @@ export default {
   }
   .input:focus::placeholder {
     opacity: 0;
+  }
+  .input::selection {
+    color: $white;
+    background: $green;
   }
 
   .input--small {
