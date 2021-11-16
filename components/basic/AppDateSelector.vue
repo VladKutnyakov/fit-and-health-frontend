@@ -65,6 +65,7 @@ import AppSelect from '@/components/basic/AppSelect'
 
 export default {
   props: {
+    initialDate: String,
     isOpened: Boolean
   },
   components: {
@@ -225,10 +226,16 @@ export default {
     },
   },
   created () {
+    // console.log(this.initialDate)
+    const initialYear = this.initialDate ? parseInt(this.initialDate.split('-')[0]) : null
+    const initialMonth = this.initialDate ? parseInt(this.initialDate.split('-')[1]) : null
+    const initialDay = this.initialDate ? parseInt(this.initialDate.split('-')[2]) : null
+    // console.log(initialYear, initialMonth, initialDay)
+
     // Задать текущую дату для календаря (занчение по умолчанию при рендеринге компонента)
-    this.currentYear = new Date().getFullYear()
-    this.currentMonth = this.monthsOptions[new Date().getMonth()]
-    this.currentDay = new Date().getDate()
+    this.currentYear = initialYear || new Date().getFullYear()
+    this.currentMonth = this.monthsOptions[initialMonth - 1] || this.monthsOptions[new Date().getMonth()]
+    this.currentDay = initialDay || new Date().getDate()
     this.days = this.calendarCellsValues()
   }
 }
