@@ -1,7 +1,7 @@
 <template>
   <div class="meal-planer-calendar">
     <app-block-title>Календарь</app-block-title>
-    <app-date-selector :isOpened="true" @select="getMealPlanerInfo($event)" />
+    <app-date-selector :initialDate="calendarInitialDate" :isOpened="true" @select="getMealPlanerInfo($event)" />
   </div>
 </template>
 
@@ -13,6 +13,11 @@ export default {
   components: {
     AppBlockTitle,
     AppDateSelector
+  },
+  computed: {
+    calendarInitialDate () {
+      return this.$route.query.date
+    }
   },
   methods: {
     getMealPlanerInfo (date) {
