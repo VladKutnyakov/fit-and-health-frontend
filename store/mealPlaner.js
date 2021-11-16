@@ -286,7 +286,7 @@ export const actions = {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
 
-      commit('setMealPlanerInfo', response.data)
+      // commit('setMealPlanerInfo', response.data)
 
       const notice = {
         id: Date.now(),
