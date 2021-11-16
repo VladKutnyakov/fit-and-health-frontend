@@ -179,10 +179,11 @@ export const mutations = {
   },
   addNewMealPart (state) {
     const emptyMealPart = {
+      id: null,
       title: 'Новый прием пищи',
       mealTime: '00:00',
-      recipes: [],
-      products: []
+      mealPartProducts: [],
+      mealPartRecipes: []
     }
     state.mealPlanerInfo.mealParts.push(emptyMealPart)
     state.selectedMealPart = state.mealPlanerInfo.mealParts.length - 1
