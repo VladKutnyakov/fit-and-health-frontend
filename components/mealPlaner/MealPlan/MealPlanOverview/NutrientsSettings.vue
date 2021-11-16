@@ -86,7 +86,7 @@
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import AppChartCircle from '@/components/basic/AppChartCircle'
 import AppTooltip from '@/components/basic/AppTooltip'
-import AppInputText from '@/components/basic/AppInputText.vue'
+import AppInputText from '@/components/basic/AppInputText'
 
 export default {
   components: {
