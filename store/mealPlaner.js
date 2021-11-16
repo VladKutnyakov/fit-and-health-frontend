@@ -63,7 +63,7 @@ export const getters = {
 
     let currentProteinSumm = 0
     products.forEach(element => {
-      currentProteinSumm += parseFloat(element.protein * element.weight / 100)
+      currentProteinSumm += parseFloat(element.product.protein * element.weightInMealPart / 100)
     })
 
     return Math.round(currentProteinSumm * 100) / 100
@@ -78,7 +78,7 @@ export const getters = {
 
     let currentFatsSumm = 0
     products.forEach(element => {
-      currentFatsSumm += parseFloat(element.fats * element.weight / 100)
+      currentFatsSumm += parseFloat(element.product.fats * element.weightInMealPart / 100)
     })
 
     return Math.round(currentFatsSumm * 100) / 100
@@ -93,7 +93,7 @@ export const getters = {
 
     let currentCarbSumm = 0
     products.forEach(element => {
-      currentCarbSumm += parseFloat(element.carb * element.weight / 100)
+      currentCarbSumm += parseFloat(element.product.carb * element.weightInMealPart / 100)
     })
 
     return Math.round(currentCarbSumm * 100) / 100
@@ -108,7 +108,7 @@ export const getters = {
 
     let currentKkalSumm = 0
     products.forEach(element => {
-      currentKkalSumm += parseFloat(element.kkal * element.weight / 100)
+      currentKkalSumm += parseFloat(element.product.kkal * element.weightInMealPart / 100)
     })
 
     return Math.round(currentKkalSumm * 100) / 100
