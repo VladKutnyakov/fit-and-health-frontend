@@ -284,24 +284,18 @@ export const actions = {
   },
   async saveMealPlanerInfo ({ state, commit }) {
     try {
-      console.log(state.mealPlanerInfo)
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
 
-      // const response = await this.$axios.$post(`${process.env.BASE_URL}/api/meal-planer/save-meal-planer-info`, { mealPlanerInfo: state.mealPlanerInfo })
+      commit('setMealPlanerInfo', response.data.mealPlanerInfo)
 
-      // if (response.updatedToken) {
-      //   this.commit('auth/setToken', response.updatedToken)
-      // }
-
-      // commit('setMealPlanerInfo', response.data.mealPlanerInfo)
-
-      // const notice = {
-      //   id: Date.now(),
-      //   type: 'success',
-      //   message: 'Данные успешно сохранены.',
-      //   timeToShow: 5000,
-      //   active: true
-      // }
-      // this.commit('notifications/addNewNotice', notice)
+      const notice = {
+        id: Date.now(),
+        type: 'success',
+        message: 'Данные успешно сохранены.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
 
     } catch (error) {
       console.log(error)
