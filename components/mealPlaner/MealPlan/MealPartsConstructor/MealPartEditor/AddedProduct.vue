@@ -4,33 +4,33 @@
       <i class="ti-exchange-vertical"></i>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ product.title }}</p>
+      <p class="element__value">{{ mealPartProduct.product.title }}</p>
     </div>
     <div class="item__element">
       <div class="element__input-wrapper">
         <input
           class="element__weight-input"
           type="text"
-          :value="product.weight"
-          @input="setProductWeight({id: product.id, newValue: $event.target.value})"
+          :value="mealPartProduct.weightInMealPart"
+          @input="setProductWeight({id: mealPartProduct.product.id, newValue: $event.target.value})"
           @focus="setFocus($event)"
         />
         <span class="element__weight-scale">гр.</span>
       </div>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (product.protein / 100 * product.weight) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (mealPartProduct.product.protein / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (product.fats / 100 * product.weight) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (mealPartProduct.product.fats / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (product.carb / 100 * product.weight) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (mealPartProduct.product.carb / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (product.kkal / 100 * product.weight) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (mealPartProduct.product.kkal / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
     </div>
-    <div class="item__element" @click="removeFoodFromMealPart(product.id)">
+    <div class="item__element" @click="removeFoodFromMealPart(mealPartProduct.product.id)">
       <i class="ti-trash"></i>
     </div>
   </div>
@@ -41,7 +41,7 @@ import { mapMutations } from 'vuex'
 
 export default {
   props: {
-    product: Object
+    mealPartProduct: Object
   },
   data () {
     return {}

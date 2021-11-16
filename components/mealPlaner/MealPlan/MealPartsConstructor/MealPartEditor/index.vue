@@ -51,7 +51,7 @@
           <added-product
             v-for="(item, index) in mealPartProducts"
             :key="index"
-            :product="item"
+            :mealPartProduct="item"
           />
           <!-- <added-recipe /> -->
         </div>

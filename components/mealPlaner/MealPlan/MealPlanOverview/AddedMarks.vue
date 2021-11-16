@@ -4,7 +4,7 @@
 
     <div class="added-marks-form__marks">
       <div class="mark" v-for="(item, index) in marks" :key="index">
-        <p class="mark__text" :title="item">{{ item.tag }}</p>
+        <p class="mark__text" :title="item">{{ item.title }}</p>
         <i class="ti-close mark__icon" @click="remove(index)"></i>
       </div>
     </div>
@@ -31,13 +31,15 @@ export default {
   },
   data () {
     return {
-      mark: ''
+      mark: null
     }
   },
   methods: {
     add () {
-      this.$emit('addMark', this.mark)
-      this.mark = ''
+      if (this.mark) {
+        this.$emit('addMark', this.mark)
+        this.mark = null
+      }
     },
     remove (index) {
       this.$emit('removeMark', index)
@@ -127,7 +129,7 @@ export default {
       opacity: 0;
     }
     .action-btn {
-      padding: 5px 10px;
+      padding: 4.5px 10px;
       background: $green;
       color: $white;
       border: 1px solid $green;

@@ -155,8 +155,7 @@ export const mutations = {
   setMealPlanMark (state, text) {
     const mark = {
       id: null,
-      tag: text,
-      entityType: 'mealPlaner'
+      title: text
     }
     state.mealPlanerInfo.marks.push(mark)
   },
@@ -200,10 +199,10 @@ export const mutations = {
     state.mealPlanerInfo.mealParts[state.selectedMealPart].title = newValue
   },
   setProductWeight (state, ctx) {
-    const products = state.mealPlanerInfo.mealParts[state.selectedMealPart].products
-    for (let i = 0; i < products.length; i++) {
-      if (products[i].id === ctx.id) {
-        products[i].weight = ctx.newValue
+    const mealPartProducts = state.mealPlanerInfo.mealParts[state.selectedMealPart].mealPartProducts
+    for (let i = 0; i < mealPartProducts.length; i++) {
+      if (mealPartProducts[i].product.id === ctx.id) {
+        mealPartProducts[i].weightInMealPart = ctx.newValue
       }
     }
   },
