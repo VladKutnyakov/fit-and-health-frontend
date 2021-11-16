@@ -103,7 +103,7 @@ export default {
     Product,
     AppButton,
   },
-  data() {
+  data () {
     return {
       // filterByMarks: ['Все совпадения', 'Добавленные мной', 'Избранные', 'Закрепленные'],
       // filterByMarksChecked: 'Все совпадения',
@@ -114,7 +114,6 @@ export default {
   computed: {
     ...mapState({
       searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive,
-      // products: state => state.mealPlaner.products,
       pinnedProducts: state => state.foodCalorieTable.pinnedProducts,
       notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts
     })

@@ -25,11 +25,8 @@ export const state = () => ({
       id: null
     }
   },
-
   selectedMealPart: 0,
   searchRecipesAndProductsModalActive: false,
-
-  products: []
 })
 
 export const getters = {
@@ -137,23 +134,23 @@ export const mutations = {
     state.searchRecipesAndProductsModalActive = !state.searchRecipesAndProductsModalActive
 
     // Снять статус "добавлен" со всех продуктов, чтобы в дальнейшем установить его для продуктов добавленных в выбранный прием пищи рациона
-    state.products.forEach(element => {
-      element.added = false
-    })
+    // state.products.forEach(element => {
+    //   element.added = false
+    // })
 
     // Установка статуса "добавлен" для продуктов, которые есть в выбранном приеме пищи
-    if (state.searchRecipesAndProductsModalActive) {
-      const mealPartProducts = state.mealPlanerInfo.mealParts[state.selectedMealPart].products
-      // Перебор всех добавленных продуктов
-      for (let i = 0; i < mealPartProducts.length; i++) {
-        // Перебор списка всех продуктов
-        state.products.forEach(element => {
-          if (element.id === mealPartProducts[i].id) {
-            element.added = true
-          }
-        })
-      }
-    }
+    // if (state.searchRecipesAndProductsModalActive) {
+    //   const mealPartProducts = state.mealPlanerInfo.mealParts[state.selectedMealPart].products
+    //   // Перебор всех добавленных продуктов
+    //   for (let i = 0; i < mealPartProducts.length; i++) {
+    //     // Перебор списка всех продуктов
+    //     state.products.forEach(element => {
+    //       if (element.id === mealPartProducts[i].id) {
+    //         element.added = true
+    //       }
+    //     })
+    //   }
+    // }
   },
   setMealPlanMark (state, text) {
     const mark = {
