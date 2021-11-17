@@ -13,6 +13,10 @@ body {
   min-height: -webkit-fill-available;
 }
 
+.body-overflow {
+  overflow: hidden;
+}
+
 #__nuxt {
   font-family: $fontMontserrat;
   -webkit-font-smoothing: antialiased;
