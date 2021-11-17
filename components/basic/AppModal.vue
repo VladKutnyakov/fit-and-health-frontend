@@ -1,5 +1,9 @@
 <template>
-  <div v-show="isActive" class="modal__wrapper" @mousedown="closeModal()">
+  <div
+    v-show="isActive"
+    class="modal__wrapper"
+    @mousedown="closeModal()"
+  >
     <div class="modal__content-wrapper" @mousedown.stop>
 
       <div v-if="haveHeaderTemplate" class="modal__header">
@@ -60,13 +64,13 @@ export default {
     isActive: {
       handler: function () {
         if (this.isActive) {
-          document.querySelector('#__nuxt').style.marginTop = `-${window.pageYOffset}px`
+          document.querySelector('#__nuxt').style.marginTop = `-${document.body.scrollTop}px`
+          document.querySelector('#__nuxt').style.overflowY = 'scroll'
           document.querySelector('body').classList.add('body-overflow')
         } else {
-          const currentScroll = parseFloat(document.querySelector('#__nuxt').style.marginTop) * -1
           document.querySelector('#__nuxt').style.marginTop = '0px'
+          document.querySelector('#__nuxt').style.overflowY = ''
           document.querySelector('body').classList.remove('body-overflow')
-          window.scrollTo(0, currentScroll)
         }
       },
       // Коллбэк (handler) будет вызываться каждый раз, когда изменяется любое из свойств наблюдаемого объекта, независимо от глубины их вложенности
@@ -78,7 +82,10 @@ export default {
   methods: {
     closeModal () {
       this.$emit('close')
-    }
+    },
+    // onScroll ($event) {
+    //   $event.preventDefault
+    // }
   }
 }
 </script>
@@ -128,7 +135,7 @@ export default {
     .modal__content {
       // border: 1px solid red;
       padding: 20px 10px 20px 10px;
-      // overflow: auto;
+      overflow-y: auto;
     }
     .modal__footer {
       // border: 1px solid red;
