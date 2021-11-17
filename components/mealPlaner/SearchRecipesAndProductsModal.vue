@@ -23,17 +23,7 @@
 
           <div class="filters__groups">
             <div class="group">
-              <app-input-radio
-                small
-                class="input-item"
-                v-for="(item, index) in filterByUserImportances"
-                :key="index"
-                v-model="filterByUserImportanceChecked"
-                :label="item"
-                :value="item"
-              />
-            </div>
-            <div class="group">
+              <p>Сортировать по...</p>
               <app-input-radio
                 small
                 class="input-item"
@@ -45,6 +35,19 @@
               />
             </div>
             <div class="group">
+              <p>Нутриенты</p>
+              <app-input-radio
+                small
+                class="input-item"
+                v-for="(item, index) in filterByUserImportances"
+                :key="index"
+                v-model="filterByUserImportanceChecked"
+                :label="item"
+                :value="item"
+              />
+            </div>
+            <div class="group">
+              <p>Тип</p>
               <app-input-checkbox
                 small
                 class="input-item"
@@ -177,12 +180,19 @@ export default {
       padding-top: 10px;
       border-top: 1px dashed $blockBorder;
       .group {
+        flex: 1 1 auto;
         display: flex;
         flex-direction: column;
-        margin-right: 20px;
+        margin-right: 10px;
+        padding-right: 10px;
+        border-right: 1px solid $blockBorder;
         .input-item {
           margin-bottom: 5px;
         }
+      }
+      .group:last-child {
+        margin-right: 0;
+        border-right: none;
       }
     }
   }
