@@ -4,7 +4,11 @@
     class="modal__wrapper"
     @mousedown="closeModal()"
   >
-    <div class="modal__content-wrapper" @mousedown.stop>
+    <div
+      class="modal__content-wrapper"
+      :style="[{ 'max-width': maxWidth }]"
+      @mousedown.stop
+    >
 
       <div v-if="haveHeaderTemplate" class="modal__header">
         <slot name="modalHeader"></slot>
@@ -37,6 +41,7 @@
 export default {
   props: {
     isActive: Boolean,
+    maxWidth: String,
     headerTitle: String,
     headerDescriptions: Array,
   },
