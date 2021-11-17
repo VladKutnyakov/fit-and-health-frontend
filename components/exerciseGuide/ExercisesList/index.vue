@@ -20,7 +20,7 @@
 import { mapState } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
-import MuscleGroup from '@/components/exerciseGuide/ExercisesList/MuscleGroup.vue'
+import MuscleGroup from '@/components/exerciseGuide/ExercisesList/MuscleGroup'
 
 export default {
   components: {
