@@ -1,38 +1,62 @@
 <template>
   <app-modal
     :isActive="searchRecipesAndProductsModalActive"
+    maxWidth="1200px"
     headerTitle="Добавление продуктов или рецептов в рацион"
     :headerDescriptions="['Найдите и добавьте продукт или рецепт в выбранный прием пищи.']"
     @close="closeModal()"
   >
     <template v-slot:modalContent>
       <div class="search-recipes-and-products">
-        <app-search-block placeholder="Поиск продуктов и рецептов" small />
+        <app-search-block
+          small
+          filters
+          placeholder="Поиск продуктов и рецептов"
+          @openFilters="openFilters()"
+        />
 
-        <!-- <div class="filters">
-          <div class="filter__checbox">
-            <app-input-checkbox
-              small
-              class="input-item"
-              v-for="(item, index) in filterByType"
-              :key="index"
-              v-model="filterByTypeChecked"
-              :label="item"
-              :value="item"
-            />
+        <div v-if="filtersIsOpened" class="filters">
+          <app-info
+            small
+            text="Нажмите кнопку поиска (лупа), чтобы применить фильтры."
+          />
+
+          <div class="filters__groups">
+            <div class="group">
+              <app-input-radio
+                small
+                class="input-item"
+                v-for="(item, index) in filterByUserImportances"
+                :key="index"
+                v-model="filterByUserImportanceChecked"
+                :label="item"
+                :value="item"
+              />
+            </div>
+            <div class="group">
+              <app-input-radio
+                small
+                class="input-item"
+                v-for="(item, index) in sortingByNutrients"
+                :key="index"
+                v-model="nutrientChecked"
+                :label="item"
+                :value="item"
+              />
+            </div>
+            <div class="group">
+              <app-input-checkbox
+                small
+                class="input-item"
+                v-for="(item, index) in filterByTypes"
+                :key="index"
+                v-model="filterByTypeChecked"
+                :label="item"
+                :value="item"
+              />
+            </div>
           </div>
-          <div class="filter__radio">
-            <app-input-radio
-              small
-              class="input-item"
-              v-for="(item, index) in filterByMarks"
-              :key="index"
-              v-model="filterByMarksChecked"
-              :label="item"
-              :value="item"
-            />
-          </div>
-        </div> -->
+        </div>
 
         <div class="founding__results">
           <div class="product__header">
@@ -87,6 +111,7 @@
 import { mapState, mapMutations } from 'vuex'
 import AppModal from '@/components/basic/AppModal'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
+import AppInfo from '@/components/basic/AppInfo'
 import AppInputRadio from '@/components/basic/AppInputRadio'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
@@ -97,6 +122,7 @@ export default {
   components: {
     AppModal,
     AppSearchBlock,
+    AppInfo,
     AppInputRadio,
     AppInputCheckbox,
     AppBlockTitle,
@@ -105,10 +131,13 @@ export default {
   },
   data () {
     return {
-      // filterByMarks: ['Все совпадения', 'Добавленные мной', 'Избранные', 'Закрепленные'],
-      // filterByMarksChecked: 'Все совпадения',
-      // filterByType: ['Продукты', 'Рецепты'],
-      // filterByTypeChecked: ['Продукты', 'Рецепты'],
+      filtersIsOpened: false,
+      filterByUserImportances: ['Все доступные', 'Добавленные мной', 'Закрепленные', 'Избранные'],
+      filterByUserImportanceChecked: 'Все доступные',
+      sortingByNutrients: ['Названию', 'Белкам', 'Жирам', 'Углеводам', 'Калорийности'],
+      nutrientChecked: 'Названию',
+      filterByTypes: ['Продукты', 'Рецепты'],
+      filterByTypeChecked: ['Продукты', 'Рецепты']
     }
   },
   computed: {
@@ -121,8 +150,11 @@ export default {
   methods: {
     ...mapMutations({
       closeModal: 'mealPlaner/setSearchRecipesAndProductsModalActive'
-    })
-  },
+    }),
+    openFilters () {
+      this.filtersIsOpened = !this.filtersIsOpened
+    }
+  }
 }
 </script>
 
@@ -132,49 +164,43 @@ export default {
 .search-recipes-and-products {
   display: flex;
   flex-direction: column;
-  // .filters {
-  //   display: flex;
-  //   padding: 10px;
-  //   .filter__checbox {
-  //     display: flex;
-  //     flex-direction: column;
-  //     .input-item {
-  //       margin-right: 20px;
-  //       margin-bottom: 5px;
-  //     }
-  //     .input-item:last-child {
-  //       margin-right: 0;
-  //       margin-bottom: 0;
-  //     }
-  //   }
-  //   .filter__radio {
-  //     display: flex;
-  //     flex-direction: column;
-  //     .input-item {
-  //       margin-right: 20px;
-  //       margin-bottom: 5px;
-  //     }
-  //     .input-item:last-child {
-  //       margin-right: 0;
-  //       margin-bottom: 0;
-  //     }
-  //   }
-  // }
+  .filters {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid $blockBorder;
+    border-radius: 6px;
+    .filters__groups {
+      display: flex;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed $blockBorder;
+      .group {
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+        .input-item {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
   .founding__results {
     // position: relative;
     margin-top: 20px;
-    // padding: 10px;
-    // height: 800px;
+    padding: 10px;
+    height: 800px;
     // max-height: 400px;
     background: $white;
-    // border: 1px solid $inputBorder;
-    // border-radius: 6px;
-    // background: rgba(0, 0, 0, 0.025);
-    // box-shadow: inset 0 0 5px 0px rgb(0,0,0,.25);
+    border: 1px solid $inputBorder;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.025);
+    box-shadow: inset 0 0 5px 0px rgb(0,0,0,.25);
     // overflow: auto;
     .product__header {
       position: sticky;
-      top: -10px;
+      top: -20px;
       display: flex;
       align-items: center;
       margin-bottom: 10px;
