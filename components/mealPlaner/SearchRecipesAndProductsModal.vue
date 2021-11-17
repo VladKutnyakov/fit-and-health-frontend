@@ -161,16 +161,17 @@ export default {
   //   }
   // }
   .founding__results {
-    position: relative;
+    // position: relative;
     margin-top: 20px;
-    padding: 10px;
-    max-height: 400px;
+    // padding: 10px;
+    // height: 800px;
+    // max-height: 400px;
     background: $white;
-    border: 1px solid $inputBorder;
-    border-radius: 6px;
-    background: rgba(0, 0, 0, 0.025);
-    box-shadow: inset 0 0 5px 0px rgb(0,0,0,.25);
-    overflow: auto;
+    // border: 1px solid $inputBorder;
+    // border-radius: 6px;
+    // background: rgba(0, 0, 0, 0.025);
+    // box-shadow: inset 0 0 5px 0px rgb(0,0,0,.25);
+    // overflow: auto;
     .product__header {
       position: sticky;
       top: -10px;
