@@ -179,14 +179,11 @@ export default {
     .filters__groups {
       display: flex;
       margin-top: 10px;
-      
       .group {
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
         margin-right: 5px;
-        // padding-right: 10px;
-        // border-right: 1px solid $blockBorder;
         padding: 10px;
         background: $white;
         border: 1px solid $blockBorder;
@@ -204,7 +201,6 @@ export default {
       }
       .group:last-child {
         margin-right: 0;
-        // border-right: none;
       }
     }
   }
