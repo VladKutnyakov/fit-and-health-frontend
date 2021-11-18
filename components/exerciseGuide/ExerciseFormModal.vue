@@ -1,124 +1,202 @@
 <template>
   <app-modal
     :isActive="exerciseFormModalActive"
+    maxWidth="1200px"
     :headerTitle="headerTitle"
     :headerDescriptions="headerDescriptions"
     @close="toggleModalVisibility({modal: 'exerciseFormModalActive', condition: false})"
   >
     <template v-slot:modalContent>
-      <div class="content__add-product-form">
-        <div class="form-group">
-          <div class="form-field">
-            <p class="field__title">Название</p>
-            <app-input-text
-              :value="exerciseForm.fields.title"
-              :error="exerciseForm.errors.title"
-              placeholder="Введите значение"
-              @input="
-                setProductFormFieldValue({field: 'title', newValue: $event}),
-                setProductFormFieldError({field: 'title', enabled: false, errorMessage: null})
-              "
-            />
+      <div class="content__add-exercise-form">
+        <div class="add-exercise-form__fields-group">
+
+          <div class="fields-group__section">
+            <p class="section__title">Общая информация</p>
+
+            <div class="fields-group__field">
+              <p class="field__title">Название</p>
+              <app-input-text
+                :value="exerciseForm.fields.title"
+                :error="exerciseForm.errors.title"
+                placeholder="Введите значение"
+                @input="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+
+            <div class="fields-group__field">
+              <p class="field__title">Группа мышц</p>
+              <app-select
+                :value="exerciseForm.fields.title"
+                :selectOptionsList="[]"
+                :error="exerciseForm.errors.title"
+                alignListLeft
+                alignSelectedValueLeft
+                placeholder="Введите значение"
+                @select="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+
+            <div class="fields-group__field">
+              <p class="field__title">Дополнительные мышцы</p>
+              <app-select
+                :value="exerciseForm.fields.title"
+                :selectOptionsList="[]"
+                :error="exerciseForm.errors.title"
+                alignListLeft
+                alignSelectedValueLeft
+                placeholder="Введите значение"
+                @select="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+
+            <div class="fields-group__field">
+              <p class="field__title">Тип упражнения</p>
+              <app-select
+                :value="exerciseForm.fields.title"
+                :selectOptionsList="[]"
+                :error="exerciseForm.errors.title"
+                alignListLeft
+                alignSelectedValueLeft
+                placeholder="Введите значение"
+                @select="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+
+            <div class="fields-group__field">
+              <p class="field__title">Вид упражнения</p>
+              <app-select
+                :value="exerciseForm.fields.title"
+                :selectOptionsList="[]"
+                :error="exerciseForm.errors.title"
+                alignListLeft
+                alignSelectedValueLeft
+                placeholder="Введите значение"
+                @select="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+
+            <div class="fields-group__field">
+              <p class="field__title">Усилие</p>
+              <app-select
+                :value="exerciseForm.fields.title"
+                :selectOptionsList="[]"
+                :error="exerciseForm.errors.title"
+                alignListLeft
+                alignSelectedValueLeft
+                placeholder="Введите значение"
+                @select="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+
+            <div class="fields-group__field">
+              <p class="field__title">Оборудование</p>
+              <app-input-text
+                :value="exerciseForm.fields.title"
+                :error="exerciseForm.errors.title"
+                placeholder="Введите значение"
+                @input="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+
+            <div class="fields-group__field">
+              <p class="field__title">Сложность выполнения</p>
+              <app-input-text
+                :value="exerciseForm.fields.title"
+                :error="exerciseForm.errors.title"
+                placeholder="Введите значение"
+                @input="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
           </div>
 
-          <!-- <div class="form-field">
-            <p class="field__title">Категория</p>
-            <app-select
-              :value="productForm.fields.category"
-              :selectOptionsList="productCategories"
-              :error="productForm.errors.category"
-              alignListLeft
-              alignSelectedValueLeft
-              placeholder="Введите значение"
-              @select="
-                setProductFormFieldValue({field: 'category', newValue: $event}),
-                setProductFormFieldError({field: 'category', enabled: false, errorMessage: null})
-              "
-            />
-          </div> -->
+          <div class="fields-group__section mt-10">
+            <p class="section__title">Акцент упражнения</p>
 
-          <!-- <div class="form-field">
-            <div class="checkbox-group">
-              <app-input-checkbox
-                :value="productForm.fields.favorite"
-                :error="productForm.errors.favorite"
-                label="Добавить в избранное"
-                @change="
-                  setProductFormFieldValue({field: 'favorite', newValue: $event}),
-                  setProductFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
+            <div class="fields-group__field">
+              <p class="field__title">Сила</p>
+              <app-input-text
+                :value="exerciseForm.fields.title"
+                :error="exerciseForm.errors.title"
+                placeholder="Введите значение"
+                @input="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
                 "
               />
             </div>
-          </div> -->
 
-          <!-- <div class="form-field">
-            <div class="checkbox-group">
-              <app-input-checkbox
-                :value="productForm.fields.pinned"
-                :error="productForm.errors.pinned"
-                label="Закрепить"
-                @change="
-                  setProductFormFieldValue({field: 'pinned', newValue: $event}),
-                  setProductFormFieldError({field: 'pinned', enabled: false, errorMessage: null})
+            <div class="fields-group__field">
+              <p class="field__title">Выносливость</p>
+              <app-input-text
+                :value="exerciseForm.fields.title"
+                :error="exerciseForm.errors.title"
+                placeholder="Введите значение"
+                @input="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
                 "
               />
             </div>
-          </div> -->
+
+            <div class="fields-group__field">
+              <p class="field__title">Гибкость</p>
+              <app-input-text
+                :value="exerciseForm.fields.title"
+                :error="exerciseForm.errors.title"
+                placeholder="Введите значение"
+                @input="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+
+            <div class="fields-group__field">
+              <p class="field__title">Кардио</p>
+              <app-input-text
+                :value="exerciseForm.fields.title"
+                :error="exerciseForm.errors.title"
+                placeholder="Введите значение"
+                @input="
+                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                "
+              />
+            </div>
+          </div>
         </div>
 
-        <!-- <div class="form-group">
-          <div class="form-field">
-            <p class="field__title">Белки</p>
-            <app-input-text
-              :value="productForm.fields.protein"
-              :error="productForm.errors.protein"
-              placeholder="Введите значение"
-              @input="
-                setProductFormFieldValue({field: 'protein', newValue: $event}),
-                setProductFormFieldError({field: 'protein', enabled: false, errorMessage: null})
-              "
-            />
-          </div>
+        <div class="add-exercise-form__fields-group">
+          Видео инструкция <br>
+          Описание <br>
 
-          <div class="form-field">
-            <p class="field__title">Жиры</p>
-            <app-input-text
-              :value="productForm.fields.fats"
-              :error="productForm.errors.fats"
-              placeholder="Введите значение"
-              @input="
-                setProductFormFieldValue({field: 'fats', newValue: $event}),
-                setProductFormFieldError({field: 'fats', enabled: false, errorMessage: null})
-              "
-            />
-          </div>
-
-          <div class="form-field">
-            <p class="field__title">Углеводы</p>
-            <app-input-text
-              :value="productForm.fields.carb"
-              :error="productForm.errors.carb"
-              placeholder="Введите значение"
-              @input="
-                setProductFormFieldValue({field: 'carb', newValue: $event}),
-                setProductFormFieldError({field: 'carb', enabled: false, errorMessage: null})
-              "
-            />
-          </div>
-
-          <div class="form-field">
-            <p class="field__title">Калорийность</p>
-            <app-input-text
-              :value="productForm.fields.kkal"
-              :error="productForm.errors.kkal"
-              placeholder="Введите значение"
-              @input="
-                setProductFormFieldValue({field: 'kkal', newValue: $event}),
-                setProductFormFieldError({field: 'kkal', enabled: false, errorMessage: null})
-              "
-            />
-          </div>
-        </div> -->
+          избранное <br>
+          Закреплено <br>
+        </div>
       </div>
     </template>
     <template v-slot:modalFooter>
@@ -214,23 +292,33 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.content__add-product-form {
+.content__add-exercise-form {
   display: flex;
-  .form-group {
-    flex: 1 1 auto;
-    .form-field {
-      .field__title {
-        padding: 10px 10px 5px 10px;
+  .add-exercise-form__fields-group {
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 10px);
+    .fields-group__section {
+      padding: 10px;
+      border: 1px solid $blockBorder;
+      border-radius: 6px;
+      .section__title {
+        padding: 0 10px 10px 10px;
+        font-weight: 500;
+        border-bottom: 1px dashed $blockBorder;
+      }
+      .fields-group__field {
+        .field__title {
+          padding: 10px 10px 5px 10px;
+        }
       }
     }
-    .checkbox-group {
-      margin-top: 20px;
-    }
   }
-  .form-group:first-child {
+  .add-exercise-form__fields-group:first-child {
     margin-right: 10px;
   }
-  .form-group:last-child {
+  .add-exercise-form__fields-group:last-child {
     margin-left: 10px;
   }
 }
