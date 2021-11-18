@@ -8,7 +8,6 @@
       </div>
 
       <div class="right">
-        <app-block-title>Календарь тренировок</app-block-title>
         <training-diary-calendar />
 
         <div class="useful-pages">
