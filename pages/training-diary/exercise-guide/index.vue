@@ -8,6 +8,7 @@
         <exercises-list />
         <exercise-overview v-if="overviewFetched" />
         <exercise-overview-empty v-else />
+        <additional-info />
       </div>
     </div>
   </div>
@@ -19,6 +20,7 @@ import PageInfo from '@/components/exerciseGuide/PageInfo'
 import ExercisesList from "@/components/exerciseGuide/ExercisesList/index"
 import ExerciseOverview from '@/components/exerciseGuide/ExerciseOverview/index'
 import ExerciseOverviewEmpty from '@/components/exerciseGuide/ExerciseOverviewEmpty/index'
+import AdditionalInfo from '@/components/exerciseGuide/AdditionalInfo/index'
 
 export default {
   name: 'ExercisesGuidPage',
@@ -56,7 +58,8 @@ export default {
     PageInfo,
     ExercisesList,
     ExerciseOverview,
-    ExerciseOverviewEmpty
+    ExerciseOverviewEmpty,
+    AdditionalInfo
   },
   async asyncData ({ store }) {
     await store.dispatch('exercises/fetchExercisesList')

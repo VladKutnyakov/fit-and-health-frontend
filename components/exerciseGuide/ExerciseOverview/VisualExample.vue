@@ -1,13 +1,11 @@
 <template>
   <div class="visual-example">
-    <!-- <iframe width="400px" height="600px" src="https://www.youtube.com/embed/FntGgrPurFA"></iframe> -->
+    <iframe width="750px" height="420px" src="https://www.youtube.com/embed/FntGgrPurFA"></iframe>
   </div>
 </template>
 
 <script>
-export default {
-  
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
@@ -18,8 +16,6 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 10px;
-  width: 400px;
-  border-left: 1px solid $blockBorder;
   iframe {
     border-radius: 6px;
   }

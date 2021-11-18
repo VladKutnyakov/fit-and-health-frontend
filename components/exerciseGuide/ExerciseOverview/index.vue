@@ -2,25 +2,31 @@
   <div class="exercise-overview">
     <app-block-title>Описание упражения</app-block-title>
     <div class="exercise-overview__content">
-      <description />
-      <visual-example />
-      <exercise-actions />
+      <div class="description">
+        <exercise-title />
+        <visual-example />
+        <exercise-info />
+        <exercise-technique />
+      </div>
+      <!-- <exercise-actions /> -->
     </div>
   </div>
 </template>
 
 <script>
 import AppBlockTitle from "@/components/basic/AppBlockTitle"
-import Description from '@/components/exerciseGuide/ExerciseOverview/Description/index'
 import VisualExample from '@/components/exerciseGuide/ExerciseOverview/VisualExample'
-import ExerciseActions from '@/components/exerciseGuide/ExerciseOverview/ExerciseActions'
+import ExerciseInfo from '@/components/exerciseGuide/ExerciseOverview/ExerciseInfo'
+import ExerciseTitle from '@/components/exerciseGuide/ExerciseOverview/ExerciseTitle'
+import ExerciseTechnique from '@/components/exerciseGuide/ExerciseOverview/ExerciseTechnique'
 
 export default {
   components: {
     AppBlockTitle,
-    Description,
     VisualExample,
-    ExerciseActions
+    ExerciseInfo,
+    ExerciseTitle,
+    ExerciseTechnique
   },
 }
 </script>
@@ -40,6 +46,11 @@ export default {
     background: $white;
     border: 1px solid $blockBorder;
     border-radius: 6px;
+    .description {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
