@@ -58,7 +58,7 @@
             <i class="ti-trash"></i>
           </app-button>
 
-          <app-button class="ml-5" fillArea :disabled="true">Редактировать</app-button>
+          <app-button class="ml-5 fill-area" fillArea :disabled="true">Редактировать</app-button>
         </div>
       </div>
 
