@@ -32,6 +32,28 @@
 
       <div class="actions">
         <div class="actions__top">
+          <app-input-checkbox
+            :value="availability"
+            label="Добавить в избранное"
+            @change="availability = $event"
+          />
+
+          <app-input-checkbox
+            class="mt-10"
+            :value="availability"
+            label="Добавить в закрепленные"
+            @change="availability = $event"
+          />
+
+          <app-input-checkbox
+            class="mt-10"
+            :value="availability"
+            label="Доступно для поиска всем пользователям"
+            @change="availability = $event"
+          />
+        </div>
+
+        <div class="actions__bottom">
           <app-button >
             <i class="ti-trash"></i>
           </app-button>
@@ -42,10 +64,6 @@
 
           <app-button class="ml-5" fillArea >Сделать основной</app-button>
         </div>
-        
-        <div class="actions__bottom">
-          <app-button class="mt-10" fillArea >Начать тренировку</app-button>
-        </div>
       </div>
 
     </div>
@@ -55,11 +73,18 @@
 <script>
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
+import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 
 export default {
   components: {
     AppBlockTitle,
-    AppButton
+    AppButton,
+    AppInputCheckbox
+  },
+  data () {
+    return {
+      availability: false
+    }
   }
 }
 </script>
@@ -85,7 +110,14 @@ export default {
     padding: 10px;
     background: $hiddenBlockBG;
     .actions__top {
+      padding: 10px;
+      background: $white;
+      border: 1px solid $black10;
+      border-radius: 6px;
+    }
+    .actions__bottom {
       display: flex;
+      margin-top: 10px;
     }
   }
 }
@@ -94,30 +126,21 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  // background: $white;
-  // border: 1px solid $blockBorder;
-  // border-radius: 6px;
-
   .chart {
-    // border: 1px solid red;
-    margin: 160px 0;
+    margin: 150px 0;
   }
   .percents {
-    margin-top: auto;
     padding: 20px 10px 10px 10px;
     border-top: 1px dashed $blockBorder;
     .percents__element {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
       .element__title {
-        // font-size: 18px;
-        // font-weight: 500;
+        margin-right: auto;
       }
       .element__value {
         color: $green;
-        // font-size: 18px;
         font-weight: 500;
       }
     }
