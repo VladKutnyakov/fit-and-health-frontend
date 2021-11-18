@@ -18,11 +18,12 @@
         :value="typeof selectValue === 'object' && selectValue != null ? selectValue.title : selectValue"
         :placeholder="placeholder || 'Выберите значение'"
       />
-      <i class="app-select__icon ti-angle-double-down"></i>
+      <i class="app-select__icon" :class="[{'ti-angle-down': true}]"></i>
     </div>
 
     <ul
       ref="listOptions"
+      v-if="selectOptionsList"
       class="app-select__list"
       :class="[
         {'app-select__list-opened': listOpened},
@@ -31,6 +32,10 @@
         {'app-select__list-center': alignListCenter}
       ]"
     >
+      <li
+        v-if="selectOptionsList.length == 0"
+        class="app-select__list-item--empty"
+      >Нет данных</li>
       <li
         v-for="(item, index) in selectOptionsList"
         :key="index"
@@ -160,6 +165,13 @@ export default {
     }
     .app-select__list-item:last-child {
       margin-bottom: 4px;
+    }
+    .app-select__list-item--empty {
+      padding: 10px;
+      background: $gray-light;
+      text-align: center;
+      white-space: nowrap;
+      user-select: none;
     }
   }
   .app-select__list-opened {
