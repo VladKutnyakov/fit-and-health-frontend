@@ -18,12 +18,13 @@
         <div v-if="filtersIsOpened" class="filters">
           <app-info
             small
+            info
             text="Нажмите кнопку поиска (лупа), чтобы применить фильтры."
           />
 
           <div class="filters__groups">
             <div class="group">
-              <p>Сортировать по...</p>
+              <p class="group__title">Сортировать по...</p>
               <app-input-radio
                 small
                 class="input-item"
@@ -35,7 +36,7 @@
               />
             </div>
             <div class="group">
-              <p>Нутриенты</p>
+              <p class="group__title">Показать</p>
               <app-input-radio
                 small
                 class="input-item"
@@ -47,7 +48,7 @@
               />
             </div>
             <div class="group">
-              <p>Тип</p>
+              <p class="group__title">Тип</p>
               <app-input-checkbox
                 small
                 class="input-item"
@@ -170,29 +171,40 @@ export default {
   .filters {
     display: flex;
     flex-direction: column;
-    margin-top: 5px;
+    margin: 0 10px;
     padding: 10px;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
+    background: $hiddenBlockBG;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     .filters__groups {
       display: flex;
       margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px dashed $blockBorder;
+      
       .group {
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
-        margin-right: 10px;
-        padding-right: 10px;
-        border-right: 1px solid $blockBorder;
+        margin-right: 5px;
+        // padding-right: 10px;
+        // border-right: 1px solid $blockBorder;
+        padding: 10px;
+        background: $white;
+        border: 1px solid $blockBorder;
+        border-radius: 6px;
+        .group__title {
+          margin-bottom: 10px;
+          padding-bottom: 10px;
+          font-size: 14px;
+          font-weight: 500;
+          border-bottom: 1px dashed $blockBorder;
+        }
         .input-item {
           margin-bottom: 5px;
         }
       }
       .group:last-child {
         margin-right: 0;
-        border-right: none;
+        // border-right: none;
       }
     }
   }
