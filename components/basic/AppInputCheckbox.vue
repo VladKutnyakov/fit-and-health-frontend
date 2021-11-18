@@ -92,7 +92,11 @@ export default {
     // border: 1px solid red;
     position: relative;
     height: 20px;
+    min-height: 20px;
+    max-height: 20px;
     width: 20px;
+    min-width: 20px;
+    max-width: 20px;
     border: 2px solid #6EB63B;
     border-radius: 4px;
   }
