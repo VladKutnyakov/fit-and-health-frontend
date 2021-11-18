@@ -33,7 +33,7 @@
       >
         <template v-slot:btnWrapper>
           <app-button size14px uppercase>Очистить</app-button>
-          <app-button size14px uppercase right>Выбрать все</app-button>
+          <app-button size14px uppercase>Выбрать все</app-button>
         </template>
       </filter-checkbox-group>
 

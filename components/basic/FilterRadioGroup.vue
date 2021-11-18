@@ -20,8 +20,8 @@
             </li>
           </ul>
           <div class="footer__btn-wrapper">
-            <app-button size12px uppercase mt10 @click.native="setDefaultValue()">значение по умолчанию</app-button>
-            <app-button size12px uppercase mt10 @click.native="applyFilter()">Применить</app-button>
+            <app-button class="mt-10" size12px uppercase @click="setDefaultValue()">значение по умолчанию</app-button>
+            <app-button class="mt-10" size12px uppercase @click="applyFilter()">Применить</app-button>
           </div>
         </div>
       </template>
