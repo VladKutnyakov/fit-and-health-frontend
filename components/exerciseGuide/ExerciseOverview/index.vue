@@ -2,13 +2,10 @@
   <div class="exercise-overview">
     <app-block-title>Описание упражения</app-block-title>
     <div class="exercise-overview__content">
-      <div class="description">
-        <exercise-title />
-        <visual-example />
-        <exercise-info />
-        <exercise-technique />
-      </div>
-      <!-- <exercise-actions /> -->
+      <exercise-title />
+      <visual-example />
+      <exercise-info />
+      <!-- <exercise-technique /> -->
     </div>
   </div>
 </template>
@@ -43,14 +40,10 @@ export default {
   .exercise-overview__content {
     flex: 1 1 auto;
     display: flex;
+    flex-direction: column;
     background: $white;
     border: 1px solid $blockBorder;
     border-radius: 6px;
-    .description {
-      flex: 1 1 auto;
-      display: flex;
-      flex-direction: column;
-    }
   }
 }
 

@@ -15,7 +15,10 @@ export default {}
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 10px;
   padding: 10px;
+  border-top: 1px dashed $blockBorder;
+  border-bottom: 1px dashed $blockBorder;
   iframe {
     border-radius: 6px;
   }

@@ -25,7 +25,7 @@
       <p class="item__value">{{ equipment }}</p>
     </div>
     <div class="exercise-info__item">
-      <p class="item__title mr-10">Уровень сложности:</p>
+      <p class="item__title mr-10">Сложность выполнения:</p>
       <app-rating :rating="practiceLevel" />
     </div>
   </div>
@@ -71,21 +71,29 @@ export default {
 
 .exercise-info {
   flex: 1 1 auto;
-  padding: 0 10px;
+  margin: 10px;
+  // padding: 0 10px;
   .exercise-info__item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    padding: 0 10px;
     .item__title {
-      // font-size: 14px;
+      font-size: 14px;
       font-weight: 500;
     }
     .item__value {
-      // font-size: 14px;
       margin-left: 10px;
+      padding: 5px 10px;
+      background: $hiddenBlockBG;
+      font-size: 14px;
+      border-radius: 6px;
     }
   }
   .exercise-info__item:last-child {
+    border-top: 1px dashed $blockBorder;
+    margin-top: 10px;
+    padding-top: 10px;
     margin-bottom: 0;
   }
 }
