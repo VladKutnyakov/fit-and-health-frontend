@@ -140,36 +140,36 @@ export default {
             }
           ]
         },
-        {
-          active: false,
-          group: 'challenges',
-          links: [
-            {
-              title: 'Вызовы',
-              link: '/challenges',
-              icon: 'ti-cup',
-              exact: true
-            },
-            {
-              title: 'Поиск вызывов',
-              link: '/challenges/challenges-book',
-              icon: 'ti-book',
-              exact: true
-            },
-            {
-              title: 'Конструктор вызывов',
-              link: '/challenges/challenges-book/challenge-editor',
-              icon: 'ti-layout',
-              exact: true
-            },
-            {
-              title: 'Статистика по вызовам',
-              link: '/challenges/challenge-in-progress',
-              icon: 'ti-bolt',
-              exact: true
-            },
-          ]
-        },
+        // {
+        //   active: false,
+        //   group: 'challenges',
+        //   links: [
+        //     {
+        //       title: 'Вызовы',
+        //       link: '/challenges',
+        //       icon: 'ti-cup',
+        //       exact: true
+        //     },
+        //     {
+        //       title: 'Поиск вызывов',
+        //       link: '/challenges/challenges-book',
+        //       icon: 'ti-book',
+        //       exact: true
+        //     },
+        //     {
+        //       title: 'Конструктор вызывов',
+        //       link: '/challenges/challenges-book/challenge-editor',
+        //       icon: 'ti-layout',
+        //       exact: true
+        //     },
+        //     {
+        //       title: 'Статистика по вызовам',
+        //       link: '/challenges/challenge-in-progress',
+        //       icon: 'ti-bolt',
+        //       exact: true
+        //     },
+        //   ]
+        // },
         // {
         //   active: false,
         //   group: 'measurements',
