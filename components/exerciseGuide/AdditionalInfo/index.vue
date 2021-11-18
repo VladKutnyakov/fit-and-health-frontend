@@ -31,7 +31,7 @@
       </div>
 
       <div class="actions">
-        <div class="actions__top">
+        <!-- <div class="actions__top">
           <app-input-checkbox
             :value="availability"
             label="Добавить в избранное"
@@ -51,18 +51,18 @@
             label="Доступно для поиска всем пользователям"
             @change="availability = $event"
           />
-        </div>
+        </div> -->
 
         <div class="actions__bottom">
           <app-button >
             <i class="ti-trash"></i>
           </app-button>
 
-          <app-button class="ml-5" >
-            <i class="ti-save"></i>
-          </app-button>
+          <!-- <app-button class="ml-5" >
+            <i class="ti-pencil"></i>
+          </app-button> -->
 
-          <app-button class="ml-5" fillArea >Сделать основной</app-button>
+          <app-button class="ml-5" fillArea >Редактировать</app-button>
         </div>
       </div>
 
@@ -117,7 +117,7 @@ export default {
     }
     .actions__bottom {
       display: flex;
-      margin-top: 10px;
+      // margin-top: 10px;
     }
   }
 }
