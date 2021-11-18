@@ -13,189 +13,223 @@
           <div class="fields-group__section">
             <p class="section__title">Общая информация</p>
 
-            <div class="fields-group__field">
-              <p class="field__title">Название</p>
-              <app-input-text
-                :value="exerciseForm.fields.title"
-                :error="exerciseForm.errors.title"
-                placeholder="Введите значение"
-                @input="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
-            </div>
+            <div class="fields">
+              <div class="fields__field">
+                <p class="field__title">Название</p>
+                <app-input-text
+                  :value="exerciseForm.fields.title"
+                  :error="exerciseForm.errors.title"
+                  placeholder="Введите значение"
+                  @input="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
 
-            <div class="fields-group__field">
-              <p class="field__title">Группа мышц</p>
-              <app-select
-                :value="exerciseForm.fields.title"
-                :selectOptionsList="[]"
-                :error="exerciseForm.errors.title"
-                alignListLeft
-                alignSelectedValueLeft
-                placeholder="Введите значение"
-                @select="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
-            </div>
+              <div class="fields__field">
+                <p class="field__title">Группа мышц</p>
+                <app-select
+                  :value="exerciseForm.fields.title"
+                  :selectOptionsList="[]"
+                  :error="exerciseForm.errors.title"
+                  alignListLeft
+                  alignSelectedValueLeft
+                  placeholder="Введите значение"
+                  @select="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
 
-            <div class="fields-group__field">
-              <p class="field__title">Дополнительные мышцы</p>
-              <app-select
-                :value="exerciseForm.fields.title"
-                :selectOptionsList="[]"
-                :error="exerciseForm.errors.title"
-                alignListLeft
-                alignSelectedValueLeft
-                placeholder="Введите значение"
-                @select="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
-            </div>
+              <div class="fields__field">
+                <p class="field__title">Дополнительные мышцы</p>
+                <app-select
+                  :value="exerciseForm.fields.title"
+                  :selectOptionsList="[]"
+                  :error="exerciseForm.errors.title"
+                  alignListLeft
+                  alignSelectedValueLeft
+                  placeholder="Введите значение"
+                  @select="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
 
-            <div class="fields-group__field">
-              <p class="field__title">Тип упражнения</p>
-              <app-select
-                :value="exerciseForm.fields.title"
-                :selectOptionsList="[]"
-                :error="exerciseForm.errors.title"
-                alignListLeft
-                alignSelectedValueLeft
-                placeholder="Введите значение"
-                @select="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
-            </div>
+              <div class="fields__field">
+                <p class="field__title">Тип упражнения</p>
+                <app-select
+                  :value="exerciseForm.fields.title"
+                  :selectOptionsList="[]"
+                  :error="exerciseForm.errors.title"
+                  alignListLeft
+                  alignSelectedValueLeft
+                  placeholder="Введите значение"
+                  @select="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
 
-            <div class="fields-group__field">
-              <p class="field__title">Вид упражнения</p>
-              <app-select
-                :value="exerciseForm.fields.title"
-                :selectOptionsList="[]"
-                :error="exerciseForm.errors.title"
-                alignListLeft
-                alignSelectedValueLeft
-                placeholder="Введите значение"
-                @select="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
-            </div>
+              <div class="fields__field">
+                <p class="field__title">Вид упражнения</p>
+                <app-select
+                  :value="exerciseForm.fields.title"
+                  :selectOptionsList="[]"
+                  :error="exerciseForm.errors.title"
+                  alignListLeft
+                  alignSelectedValueLeft
+                  placeholder="Введите значение"
+                  @select="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
 
-            <div class="fields-group__field">
-              <p class="field__title">Усилие</p>
-              <app-select
-                :value="exerciseForm.fields.title"
-                :selectOptionsList="[]"
-                :error="exerciseForm.errors.title"
-                alignListLeft
-                alignSelectedValueLeft
-                placeholder="Введите значение"
-                @select="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
-            </div>
+              <div class="fields__field">
+                <p class="field__title">Усилие</p>
+                <app-select
+                  :value="exerciseForm.fields.title"
+                  :selectOptionsList="[]"
+                  :error="exerciseForm.errors.title"
+                  alignListLeft
+                  alignSelectedValueLeft
+                  placeholder="Введите значение"
+                  @select="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
 
-            <div class="fields-group__field">
-              <p class="field__title">Оборудование</p>
-              <app-input-text
-                :value="exerciseForm.fields.title"
-                :error="exerciseForm.errors.title"
-                placeholder="Введите значение"
-                @input="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
-            </div>
+              <div class="fields__field">
+                <p class="field__title">Оборудование</p>
+                <app-input-text
+                  :value="exerciseForm.fields.title"
+                  :error="exerciseForm.errors.title"
+                  placeholder="Введите значение"
+                  @input="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
 
-            <div class="fields-group__field">
-              <p class="field__title">Сложность выполнения</p>
-              <app-input-text
-                :value="exerciseForm.fields.title"
-                :error="exerciseForm.errors.title"
-                placeholder="Введите значение"
-                @input="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
+              <div class="fields__field">
+                <p class="field__title">Сложность выполнения</p>
+                <app-input-text
+                  :value="exerciseForm.fields.title"
+                  :error="exerciseForm.errors.title"
+                  placeholder="Введите значение"
+                  @input="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
             </div>
           </div>
 
           <div class="fields-group__section mt-10">
             <p class="section__title">Акцент упражнения</p>
 
-            <div class="fields-group__field">
-              <p class="field__title">Сила</p>
-              <app-input-text
-                :value="exerciseForm.fields.title"
-                :error="exerciseForm.errors.title"
-                placeholder="Введите значение"
-                @input="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+            <div class="fields">
+              <div class="fields__field">
+                <p class="field__title">Сила</p>
+                <app-input-text
+                  :value="exerciseForm.fields.title"
+                  :error="exerciseForm.errors.title"
+                  placeholder="Введите значение"
+                  @input="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
+
+              <div class="fields__field">
+                <p class="field__title">Выносливость</p>
+                <app-input-text
+                  :value="exerciseForm.fields.title"
+                  :error="exerciseForm.errors.title"
+                  placeholder="Введите значение"
+                  @input="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
+
+              <div class="fields__field">
+                <p class="field__title">Гибкость</p>
+                <app-input-text
+                  :value="exerciseForm.fields.title"
+                  :error="exerciseForm.errors.title"
+                  placeholder="Введите значение"
+                  @input="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
+
+              <div class="fields__field">
+                <p class="field__title">Кардио</p>
+                <app-input-text
+                  :value="exerciseForm.fields.title"
+                  :error="exerciseForm.errors.title"
+                  placeholder="Введите значение"
+                  @input="
+                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
+                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+                  "
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="fields-group__section mt-10">
+            <p class="section__title">Пользовательские параметры</p>
+
+            <div class="fields mt-10">
+              <div class="fields__field">
+                <app-input-checkbox
+                :value="exerciseForm.fields.favorite"
+                :error="exerciseForm.errors.favorite"
+                label="Добавить в избранное"
+                @change="
+                  setProductFormFieldValue({field: 'favorite', newValue: $event}),
+                  setProductFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
                 "
               />
+              </div>
             </div>
 
-            <div class="fields-group__field">
-              <p class="field__title">Выносливость</p>
-              <app-input-text
-                :value="exerciseForm.fields.title"
-                :error="exerciseForm.errors.title"
-                placeholder="Введите значение"
-                @input="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
+            <div class="fields mt-10">
+              <div class="fields__field">
+                <app-input-checkbox
+                :value="exerciseForm.fields.favorite"
+                :error="exerciseForm.errors.favorite"
+                label="Добавить в закрепленное"
+                @change="
+                  setProductFormFieldValue({field: 'favorite', newValue: $event}),
+                  setProductFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
                 "
               />
-            </div>
-
-            <div class="fields-group__field">
-              <p class="field__title">Гибкость</p>
-              <app-input-text
-                :value="exerciseForm.fields.title"
-                :error="exerciseForm.errors.title"
-                placeholder="Введите значение"
-                @input="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
-            </div>
-
-            <div class="fields-group__field">
-              <p class="field__title">Кардио</p>
-              <app-input-text
-                :value="exerciseForm.fields.title"
-                :error="exerciseForm.errors.title"
-                placeholder="Введите значение"
-                @input="
-                  setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                  setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                "
-              />
+              </div>
             </div>
           </div>
         </div>
 
         <div class="add-exercise-form__fields-group">
-          Видео инструкция <br>
-          Описание <br>
+          <div class="video-instruction">video</div>
 
-          избранное <br>
-          Закреплено <br>
+          <app-textarea class="mt-10 fill-area" placeholder="Описнаие техники выполнения упражнения" />
         </div>
       </div>
     </template>
@@ -223,6 +257,7 @@ import AppModal from "@/components/basic/AppModal"
 import AppInputText from "@/components/basic/AppInputText"
 import AppInputCheckbox from "@/components/basic/AppInputCheckbox"
 import AppSelect from "@/components/basic/AppSelect"
+import AppTextarea from '@/components/basic/AppTextarea'
 import AppButton from "@/components/basic/AppButton"
 
 export default {
@@ -232,6 +267,7 @@ export default {
     AppInputText,
     AppInputCheckbox,
     AppSelect,
+    AppTextarea,
     AppButton
   },
   data () {
@@ -308,9 +344,19 @@ export default {
         font-weight: 500;
         border-bottom: 1px dashed $blockBorder;
       }
-      .fields-group__field {
-        .field__title {
-          padding: 10px 10px 5px 10px;
+      .fields {
+        display: flex;
+        flex-wrap: wrap;
+        .fields__field {
+          margin-right: 5px;
+          width: calc(50% - 5px);
+          .field__title {
+            padding: 10px 10px 5px 10px;
+          }
+        }
+        .fields__field:nth-child(2n) {
+          margin-left: 5px;
+          margin-right: 0;
         }
       }
     }
@@ -321,6 +367,15 @@ export default {
   .add-exercise-form__fields-group:last-child {
     margin-left: 10px;
   }
+}
+
+.video-instruction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
+  background: $hiddenBlockBG;
 }
 
 </style>
