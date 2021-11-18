@@ -75,10 +75,8 @@ export default {
 .input__label {
   // border: 1px solid red;
   display: flex;
-  align-items: center;
 
   .input__value-field {
-    // visibility: hidden;
     display: none;
   }
   .input__value-field:checked + .input__visible-switch:after {
@@ -123,11 +121,6 @@ export default {
 }
 
 .input__label--small {
-
-  // .input__value-field {}
-  // .input__value-field:checked + .input__visible-switch:after {}
-  // .input__value-field:checked ~ .input__text {}
-
   .input__visible-switch {
     height: 16px;
     width: 16px;
@@ -137,7 +130,6 @@ export default {
     height: 8px;
     width: 8px;
   }
-
   .input__text {
     margin-left: 5px;
     font-size: 14px;
