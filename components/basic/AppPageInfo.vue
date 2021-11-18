@@ -8,7 +8,11 @@
       </li>
     </ul>
 
-    <app-button v-if="btnTitle" right @click.native="btnHandler()">{{ btnTitle }}</app-button>
+    <app-button
+      v-if="btnTitle"
+      class="page-info__btn"
+      @click="btnHandler()"
+    >{{ btnTitle }}</app-button>
 
   </div>
 </template>
@@ -64,6 +68,10 @@ export default {
       margin-right: auto;
       border-right: none;
     }
+  }
+  .page-info__btn {
+    align-self: center;
+    margin-left: auto;
   }
 }
 
