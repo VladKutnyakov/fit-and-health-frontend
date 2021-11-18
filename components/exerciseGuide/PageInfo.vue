@@ -5,40 +5,17 @@
       btnTitle="Добавить упражнение"
       @btnAction="openModal()"
     />
-
-    <app-modal :isActive="modalActive" @close="toggleModalVisibility()">
-      <template v-slot:modalHeader>
-        <p class="header__title">Добавить упражнение</p>
-        <div class="header__description">
-          <p class="description__text">Заполните форму и нажмите "сохранить продукт", что бы добавить новый продукт в общую базу.</p>
-          <p class="description__text">Новый продукт будет доступен только для вас.</p>
-        </div>
-      </template>
-      <template v-slot:modalContent>
-        <div class="new-exercise-form">
-          <input type="text" v-model="newExercise.title" placeholder="title">
-          <input type="text" v-model="newExercise.techniqueDescription" placeholder="technique description">
-          <input type="text" v-model="newExercise.category" placeholder="category">
-        </div>
-      </template>
-      <template v-slot:modalButton>
-        <app-button uppercase @click.native="toggleModalVisibility()">Отменить</app-button>
-        <app-button uppercase class="ml-auto" @click.native="saveExercise()">Сохранить</app-button>
-      </template>
-    </app-modal>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import AppPageInfo from '@/components/basic/AppPageInfo'
-import AppModal from '@/components/basic/AppModal'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
     AppPageInfo,
-    AppModal,
     AppButton,
   },
   data () {
@@ -74,7 +51,8 @@ export default {
   },
   methods: {
     openModal () {
-      console.log('Добавить упражнение');
+      // console.log('Добавить упражнение');
+      this.$store.commit('exercises/setModalVisibility', {modal: 'exerciseFormModalActive', condition: true})
     },
     // toggleModalVisibility () {
     //   console.log('Открыть модальное окно "Добавить упражнение"')

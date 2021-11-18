@@ -1,3 +1,5 @@
+import { formGenerator } from '../utils/formGenerator'
+
 export const state = () => ({
   exercisesList: [],
   exerciseInfo: {
@@ -12,7 +14,12 @@ export const state = () => ({
     muscleGroup: null,
     additionalMuscles: [],
     user: null
-  }
+  },
+  exerciseForm: formGenerator({
+    title: null
+  }),
+  modalCondition: 'create',
+  exerciseFormModalActive: false
 })
 
 export const getters = {
@@ -48,6 +55,9 @@ export const mutations = {
   },
   addNewExercises (state, savedExercise) {
     state.exercises.push(savedExercise)
+  },
+  setModalVisibility (state, ctx) {
+    state[ctx.modal] = ctx.condition
   }
 }
 

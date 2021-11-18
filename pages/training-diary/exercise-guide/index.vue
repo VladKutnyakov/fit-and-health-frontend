@@ -11,6 +11,7 @@
         <additional-info />
       </div>
     </div>
+    <exercise-form-modal />
   </div>
 </template>
 
@@ -21,6 +22,7 @@ import ExercisesList from "@/components/exerciseGuide/ExercisesList/index"
 import ExerciseOverview from '@/components/exerciseGuide/ExerciseOverview/index'
 import ExerciseOverviewEmpty from '@/components/exerciseGuide/ExerciseOverviewEmpty/index'
 import AdditionalInfo from '@/components/exerciseGuide/AdditionalInfo/index'
+import ExerciseFormModal from '@/components/exerciseGuide/ExerciseFormModal'
 
 export default {
   name: 'ExercisesGuidPage',
@@ -59,7 +61,8 @@ export default {
     ExercisesList,
     ExerciseOverview,
     ExerciseOverviewEmpty,
-    AdditionalInfo
+    AdditionalInfo,
+    ExerciseFormModal
   },
   async asyncData ({ store }) {
     await store.dispatch('exercises/fetchExercisesList')
