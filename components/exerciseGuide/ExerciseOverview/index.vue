@@ -5,7 +5,6 @@
       <exercise-title />
       <visual-example />
       <exercise-info />
-      <!-- <exercise-technique /> -->
     </div>
   </div>
 </template>
@@ -15,15 +14,13 @@ import AppBlockTitle from "@/components/basic/AppBlockTitle"
 import VisualExample from '@/components/exerciseGuide/ExerciseOverview/VisualExample'
 import ExerciseInfo from '@/components/exerciseGuide/ExerciseOverview/ExerciseInfo'
 import ExerciseTitle from '@/components/exerciseGuide/ExerciseOverview/ExerciseTitle'
-import ExerciseTechnique from '@/components/exerciseGuide/ExerciseOverview/ExerciseTechnique'
 
 export default {
   components: {
     AppBlockTitle,
     VisualExample,
     ExerciseInfo,
-    ExerciseTitle,
-    ExerciseTechnique
+    ExerciseTitle
   },
 }
 </script>
