@@ -54,15 +54,11 @@
         </div> -->
 
         <div class="actions__bottom">
-          <app-button >
+          <app-button :disabled="true">
             <i class="ti-trash"></i>
           </app-button>
 
-          <!-- <app-button class="ml-5" >
-            <i class="ti-pencil"></i>
-          </app-button> -->
-
-          <app-button class="ml-5" fillArea >Редактировать</app-button>
+          <app-button class="ml-5" fillArea :disabled="true">Редактировать</app-button>
         </div>
       </div>
 
@@ -84,6 +80,11 @@ export default {
   data () {
     return {
       availability: false
+    }
+  },
+  methods: {
+    testClick() {
+      console.log('test click');
     }
   }
 }
