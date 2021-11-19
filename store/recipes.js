@@ -13,7 +13,7 @@ export const mutations = {
 export const actions = {
   async fetchRecipes ({ commit }) {
     try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/recipes-book`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/recipes`)
       // console.log(response)
 
       commit('setRecipes', response.data)

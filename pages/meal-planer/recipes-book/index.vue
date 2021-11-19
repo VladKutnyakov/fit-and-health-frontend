@@ -70,7 +70,7 @@ export default {
   layout: 'default',
   middleware: ['userAuth'],
   async asyncData ({ store }) {
-    await store.dispatch('recipesBook/fetchRecipes')
+    await store.dispatch('recipes/fetchRecipes')
   },
   components: {
     AppPageTitle,
