@@ -10,7 +10,7 @@ export const state = () => ({
     dislikes: 25,
     shares: 14,
     marks: ['asd'],
-    media: '',
+    media: [],
     products: [
       {
         id: 0,
