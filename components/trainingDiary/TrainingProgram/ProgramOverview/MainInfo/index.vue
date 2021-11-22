@@ -1,6 +1,6 @@
 <template>
   <div class="main-info">
-      <p class="title">Название тренировочной программы</p>
+      <training-program-title />
       <additional-info />
       <description />
       <added-marks />
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import TrainingProgramTitle from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/TrainingProgramTitle'
 import AdditionalInfo from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/AdditionalInfo'
 import Description from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/Description'
 import AddedMarks from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/AddedMarks'
@@ -16,6 +17,7 @@ import TrainingSkill from '@/components/trainingDiary/TrainingProgram/ProgramOve
 
 export default {
   components: {
+    TrainingProgramTitle,
     AdditionalInfo,
     Description,
     AddedMarks,
@@ -33,13 +35,6 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 10px 10px 0 0;
-  .title {
-    padding-bottom: 10px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    border-bottom: 1px dashed $blockBorder;
-  }
 }
 
 </style>
