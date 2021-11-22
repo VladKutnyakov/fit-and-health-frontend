@@ -21,8 +21,7 @@ export default {
   },
   methods: {
     getTrainingDiaryInfo (date) {
-      console.log(`fetch training-diary info (date -> ${date})`)
-      // this.$store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: date})
+      this.$store.dispatch('trainingDiary/fetchTrainingDiaryInfo', {date: date})
       this.$router.push(`/training-diary?date=${date}`)
     }
   }

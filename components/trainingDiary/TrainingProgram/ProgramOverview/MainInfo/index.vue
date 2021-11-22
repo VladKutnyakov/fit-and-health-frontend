@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import AdditionalInfo from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/AdditionalInfo'
-import Description from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/Description'
-import AddedMarks from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/AddedMarks'
-import TrainingSkill from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/TrainingSkill'
+import AdditionalInfo from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/AdditionalInfo'
+import Description from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/Description'
+import AddedMarks from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/AddedMarks'
+import TrainingSkill from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/TrainingSkill'
 
 export default {
   components: {

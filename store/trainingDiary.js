@@ -1,23 +1,32 @@
 export const state = () => ({
-  mainTrainingProgram: undefined
+  trainingDiaryInfo: null
 })
 
 export const getters = {}
 
 export const mutations = {
-  setMainTrainingProgram (state, MainTrainingProgram) {
-    state.mainTrainingProgram = MainTrainingProgram
+  setTrainingDiaryInfo (state, payload) {
+    state.trainingDiaryInfo = payload
   }
 }
 
 export const actions = {
-  async fetchMainTrainingProgram ({ commit } ) {
+  async fetchTrainingDiaryInfo ({ commit }, query ) {
     try {
-      const MainTrainingProgram = await this.$axios.$get(`${process.env.BASE_URL}/api/training-diary`)
-      commit('setMainTrainingProgram', MainTrainingProgram)
-      console.log(MainTrainingProgram)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-diary?date=${query.date ? query.date : ''}`)
+
+      commit('setTrainingDiaryInfo', response.data)
     } catch (err) {
       console.log(err)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных для дневника тренировок. Обновите страницу или зайдите позже.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   }
 }

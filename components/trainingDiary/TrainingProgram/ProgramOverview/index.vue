@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import PreviewImage from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/PreviewImage'
-import MainInfo from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/MainInfo/index'
-import Actions from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/Actions'
+import PreviewImage from '@/components/trainingDiary/TrainingProgram/ProgramOverview/PreviewImage'
+import MainInfo from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/index'
+import Actions from '@/components/trainingDiary/TrainingProgram/ProgramOverview/Actions'
 
 export default {
   components: {

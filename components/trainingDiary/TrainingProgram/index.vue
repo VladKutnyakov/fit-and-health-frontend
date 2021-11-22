@@ -10,8 +10,8 @@
 
 <script>
 import AppBlockTitle from "@/components/basic/AppBlockTitle"
-import ProgramOverview from '@/components/trainingDiary/MainTrainingProgram/ProgramOverview/index'
-import ProgramStats from '@/components/trainingDiary/MainTrainingProgram/ProgramStats/index'
+import ProgramOverview from '@/components/trainingDiary/TrainingProgram/ProgramOverview/index'
+import ProgramStats from '@/components/trainingDiary/TrainingProgram/ProgramStats/index'
 
 export default {
   components: {
