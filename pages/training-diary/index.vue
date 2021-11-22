@@ -72,7 +72,7 @@ export default {
     TrainingDiaryCalendar
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
-    store.dispatch('trainingDiary/fetchTrainingDiaryInfo', query)
+    await store.dispatch('trainingDiary/fetchTrainingDiaryInfo', query)
   }
 }
 </script>
