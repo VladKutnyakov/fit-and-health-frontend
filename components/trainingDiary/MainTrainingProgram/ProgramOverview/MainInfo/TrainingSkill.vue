@@ -26,7 +26,7 @@ export default {
   justify-content: space-between;
   margin-top: 10px;
   padding: 10px;
-  border-top: 1px solid $blockBorder;
+  border-top: 1px dashed $blockBorder;
   .training-skill__block-title {
     font-size: 14px;
     font-weight: 500;

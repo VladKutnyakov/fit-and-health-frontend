@@ -15,7 +15,7 @@ export default {}
   display: flex;
   flex-direction: column;
   padding: 10px;
-  border-right: 1px solid $blockBorder;
+  // border-right: 1px solid $blockBorder;
   .image {
     width: 100%;
     min-width: 300px;

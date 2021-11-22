@@ -1,9 +1,9 @@
 <template>
   <div class="main-training-program">
-    <app-block-title>Основная тренировочная программа</app-block-title>
+    <app-block-title>Тренировочная программа</app-block-title>
     <program-overview />
 
-    <app-block-title>Статистика по тренировкам</app-block-title>
+    <app-block-title>Информация о тренировке</app-block-title>
     <program-stats />
   </div>
 </template>

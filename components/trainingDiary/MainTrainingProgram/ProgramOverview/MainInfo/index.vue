@@ -32,13 +32,13 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  padding: 10px 10px 5px 10px;
+  padding: 10px 10px 0 0;
   .title {
     padding-bottom: 10px;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
-    border-bottom: 1px solid $blockBorder;
+    border-bottom: 1px dashed $blockBorder;
   }
 }
 

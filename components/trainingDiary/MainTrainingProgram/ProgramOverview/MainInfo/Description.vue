@@ -15,7 +15,7 @@ export default {}
 .description {
   flex: 1 1 auto;
   padding-top: 10px;
-  border-top: 1px solid $blockBorder;
+  border-top: 1px dashed $blockBorder;
   .description__title {
     text-align: center;
     font-weight: 500;
