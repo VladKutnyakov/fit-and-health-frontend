@@ -3,7 +3,7 @@
     <app-page-title>Новая тренировка</app-page-title>
 
     <div class="training-in-progress-page__content">
-      <training-days />
+      <training-program />
       <training-process />
     </div>
   </div>
@@ -11,17 +11,48 @@
 
 <script>
 import AppPageTitle from '@/components/basic/AppPageTitle'
-import TrainingDays from '@/components/trainingInProgress/TrainingDays'
+import TrainingProgram from '@/components/trainingInProgress/TrainingProgram'
 import TrainingProcess from '@/components/trainingInProgress/TrainingProcess/index'
 
 export default {
+  name: 'TrainingInProgressPage',
   layout: 'default',
+  head () {
+    return {
+      title: 'Fit and Health - Новая тренировка',
+      __dangerouslyDisableSanitizers: ['script'],
+      script: [
+        { // МИКРОРАЗМЕТКА
+          innerHTML: `{
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "https://website.com",
+            "name": "Website",
+            "description": "This website is awesome.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Website",
+              "alternateName": "SiteWeb",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://someimage.com/image"
+              }
+            }
+          }`,
+          type: 'application/ld+json'
+        }
+      ]
+    }
+  },
   middleware: ['userAuth'],
   components: {
     AppPageTitle,
-    TrainingDays,
+    TrainingProgram,
     TrainingProcess
-  }
+  },
+  // async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+  //   await store.dispatch('trainingDiary/fetchTrainingDiaryInfo', query)
+  // }
 }
 </script>
 

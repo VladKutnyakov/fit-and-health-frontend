@@ -33,9 +33,9 @@ export default {}
 
 .main-stats {
   padding: 10px 0;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  // background: $white;
+  border-bottom: 1px dashed $blockBorder;
+  // border-radius: 6px;
   .main-stats__overview {
     display: flex;
     flex-wrap: wrap;

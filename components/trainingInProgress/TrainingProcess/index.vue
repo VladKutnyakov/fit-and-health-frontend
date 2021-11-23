@@ -5,16 +5,16 @@
 
       <main-stats />
 
+      <app-info class="mt-10 ml-10 mr-10" info text="Комментарий к тренировочному дню в несколько предложений." />
+
       <div class="video-and-comment">
         <div class="video">video and training comment</div>
-        <comment />
+        <timer />
+        <!-- <comment /> -->
       </div>
 
-      <div class="exercise-timer-audio">
-        <div class="timer-and-audio">
-          <timer />
-          <audio-player />
-        </div>
+      <div class="exercise-and-timer">
+        <!-- <timer /> -->
         <exercises />
       </div>
 
@@ -24,6 +24,7 @@
 
 <script>
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
+import AppInfo from '@/components/basic/AppInfo'
 import MainStats from '@/components/trainingInProgress/TrainingProcess/MainStats'
 import Timer from '@/components/trainingInProgress/TrainingProcess/Timer'
 import Comment from '@/components/trainingInProgress/TrainingProcess/Comment'
@@ -33,6 +34,7 @@ import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises
 export default {
   components: {
     AppBlockTitle,
+    AppInfo,
     MainStats,
     Timer,
     Comment,
@@ -54,30 +56,27 @@ export default {
   .training-process__content {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    background: $hiddenBlockBG;
-    box-shadow: $boxShadow;
+    background: $white;
+    border: 1px solid $blockBorder;
+    border-radius: 6px;
 
-    .exercise-timer-audio {
+    .exercise-and-timer {
       display: flex;
-      .timer-and-audio {
-        display: flex;
-        flex-direction: column;
-      }
+      margin: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed $blockBorder;
     }
-
-
-
-
 
     .video-and-comment {
       display: flex;
-      margin-top: 5px;
+      // border-top: 1px dashed $blockBorder;
+      margin: 0 10px;
       .video {
         flex: 1 1 auto;
+        margin-top: 10px;
         padding: 10px;
         height: 500px;
-        background: $white;
+        background: $hiddenBlockBG;
         border: 1px solid $blockBorder;
         border-radius: 6px;
       }

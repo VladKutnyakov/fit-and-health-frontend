@@ -92,13 +92,9 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
-  margin-left: 5px;
-  padding: 10px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
-
+  // margin: 10px 10px 0 10px;
+  // padding: 10px 0;
+  // background: $white;
   .exercises-list {
     flex: 1 1 auto;
     padding: 10px;
@@ -106,6 +102,7 @@ export default {
     box-shadow: $insetBoxShadow;
     border-radius: 6px;
     min-height: 600px;
+    overflow-y: scroll;
     .exercise {
       margin-bottom: 10px;
       background: $white;
