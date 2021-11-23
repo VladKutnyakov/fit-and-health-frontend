@@ -2,7 +2,7 @@
   <div class="additional-info">
     <div class="additional-info__element">
       <i class="ti-timer element__icon"></i>
-      <p class="element__amount">4</p>
+      <p class="element__amount">{{ trainingProgramDays.length }}</p>
       <p class="element__text">тренировочных дня</p>
     </div>
     <div class="additional-info__element">
@@ -14,7 +14,15 @@
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState({
+      trainingProgramDays: state => state.trainingDiary.trainingDiaryInfo.trainingProgram.trainingProgramDays
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>

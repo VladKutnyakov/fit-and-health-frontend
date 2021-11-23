@@ -9,7 +9,7 @@ export const state = () => ({
       trainingSkill: null,
       marks: [],
       trainingProgramDays: [],
-      trainingProcesses: []
+      trainingProcess: {}
     },
     user: {
       id: null

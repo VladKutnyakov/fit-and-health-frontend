@@ -1,26 +1,23 @@
 <template>
   <div class="added-marks">
-    <div class="mark">
-      <p class="mark__text">Низкоуглеводное</p>
-      <i class="ti-close mark__icon"></i>
-    </div>
-    <div class="mark">
-      <p class="mark__text">Веганское</p>
-      <i class="ti-close mark__icon"></i>
-    </div>
-    <div class="mark">
-      <p class="mark__text">Без ГМО</p>
-      <i class="ti-close mark__icon"></i>
-    </div>
-    <div class="mark">
-      <p class="mark__text">Для набора массы</p>
-      <i class="ti-close mark__icon"></i>
-    </div>
+    <p
+      v-for="(item, index) in marks"
+      :key="index"
+      class="mark"
+    >{{ item.title }}</p>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState({
+      marks: state => state.trainingDiary.trainingDiaryInfo.trainingProgram.marks
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -30,27 +27,14 @@ export default {}
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  // margin-bottom: 5px;
-  // padding-top: 10px;
-  // border-top: 1px solid $blockBorder;
   .mark {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     margin-right: 5px;
     margin-bottom: 5px;
     padding: 5px 10px;
     background: $hiddenBlockBG;
     border-radius: 6px;
-    .mark__text {
-      font-size: 14px;
-      white-space: nowrap;
-    }
-    .mark__icon {
-      margin-left: 10px;
-      font-size: 10px;
-      cursor: pointer;
-    }
+    font-size: 14px;
+    white-space: nowrap;
   }
 }
 

@@ -1,19 +1,23 @@
 <template>
   <div class="training-skill">
     <p class="training-skill__block-title">Сложность тренировочной программы:</p>
-    <div class="training-skill__level-view">
-      <i class="ti-crown level-view__icon level-view__icon--active"></i>
-      <i class="ti-crown level-view__icon level-view__icon--active"></i>
-      <i class="ti-crown level-view__icon level-view__icon--active"></i>
-      <i class="ti-crown level-view__icon"></i>
-      <i class="ti-crown level-view__icon"></i>
-    </div>
+    <app-rating :rating="trainingSkill" />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import AppRating from '@/components/basic/AppRating'
+
 export default {
-  
+  components: {
+    AppRating
+  },
+  computed: {
+    ...mapState({
+      trainingSkill: state => state.trainingDiary.trainingDiaryInfo.trainingProgram.trainingSkill
+    })
+  }
 }
 </script>
 

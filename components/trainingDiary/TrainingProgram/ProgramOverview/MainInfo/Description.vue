@@ -1,12 +1,20 @@
 <template>
   <div class="description">
     <p class="description__title">Описание</p>
-    <p class="description__text">Короткое описание тренировочной программы</p>
+    <pre class="description__text">{{ description }}</pre>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState({
+      description: state => state.trainingDiary.trainingDiaryInfo.trainingProgram.description
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>

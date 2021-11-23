@@ -1,11 +1,20 @@
 <template>
   <div class="program-stats">
-    графики
+    Информация о проведенной тренировке
+    <pre style="white-space: pre-wrap;">{{ trainingDiaryInfo }}</pre>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState, mapMutations } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState({
+      trainingDiaryInfo: state => state.trainingDiary.trainingDiaryInfo
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
