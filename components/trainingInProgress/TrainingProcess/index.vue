@@ -2,33 +2,29 @@
   <div class="training-process">
     <app-block-title>Процесс тренировки</app-block-title>
     <div class="training-process__content">
-
       <main-stats />
-
-      <app-info class="mt-10 ml-10 mr-10" info text="Комментарий к тренировочному дню в несколько предложений." />
-
-      <div class="video-and-comment">
-        <div class="video">video and training comment</div>
+      <app-info
+        v-if="trainingDay.comment"
+        class="mt-10 ml-10 mr-10"
+        info
+        :text="trainingDay.comment"
+      />
+      <!-- <div class="video-and-timer">
+        <training-video />
         <timer />
-        <!-- <comment /> -->
-      </div>
-
-      <div class="exercise-and-timer">
-        <!-- <timer /> -->
-        <exercises />
-      </div>
-
+      </div> -->
+      <exercises :exercisesList="trainingDay.trainingProgramDayExercises" />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppInfo from '@/components/basic/AppInfo'
 import MainStats from '@/components/trainingInProgress/TrainingProcess/MainStats'
+import TrainingVideo from '@/components/trainingInProgress/TrainingProcess/TrainingVideo'
 import Timer from '@/components/trainingInProgress/TrainingProcess/Timer'
-import Comment from '@/components/trainingInProgress/TrainingProcess/Comment'
-import AudioPlayer from '@/components/trainingInProgress/TrainingProcess/AudioPlayer'
 import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises'
 
 export default {
@@ -36,10 +32,14 @@ export default {
     AppBlockTitle,
     AppInfo,
     MainStats,
+    TrainingVideo,
     Timer,
-    Comment,
-    AudioPlayer,
     Exercises
+  },
+  computed: {
+    ...mapState({
+      trainingDay: state => state.trainingProcess.trainingDay
+    })
   }
 }
 </script>
@@ -59,27 +59,9 @@ export default {
     background: $white;
     border: 1px solid $blockBorder;
     border-radius: 6px;
-
-    .exercise-and-timer {
+    .video-and-timer {
       display: flex;
-      margin: 10px;
-      padding-top: 10px;
-      border-top: 1px dashed $blockBorder;
-    }
-
-    .video-and-comment {
-      display: flex;
-      // border-top: 1px dashed $blockBorder;
       margin: 0 10px;
-      .video {
-        flex: 1 1 auto;
-        margin-top: 10px;
-        padding: 10px;
-        height: 500px;
-        background: $hiddenBlockBG;
-        border: 1px solid $blockBorder;
-        border-radius: 6px;
-      }
     }
   }
 }

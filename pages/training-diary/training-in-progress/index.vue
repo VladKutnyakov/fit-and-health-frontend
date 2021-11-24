@@ -50,9 +50,12 @@ export default {
     TrainingProgram,
     TrainingProcess
   },
-  // async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
-  //   await store.dispatch('trainingDiary/fetchTrainingDiaryInfo', query)
-  // }
+  async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+    await store.dispatch('trainingProcess/fetchTrainingProgram', query)
+    if (query.trainingDayId) {
+      await store.dispatch('trainingProcess/fetchTrainingDay', query)
+    }
+  }
 }
 </script>
 

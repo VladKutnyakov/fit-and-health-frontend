@@ -1,24 +1,27 @@
 <template>
   <div class="exercises">
-
     <ul class="exercises-list">
-      <li class="exercise">
+      <li
+        v-for="(item, index) in exercisesList"
+        :key="index"
+        class="exercise"
+      >
         <div class="exercise__header">
           <div class="header__drag-drop-btn">
             <i class="ti-exchange-vertical"></i>
           </div>
-          <p class="header__title">Гиперэкстензия</p>
+          <p class="header__title">{{ item.exercise.title }}</p>
           <div class="header__parameter">
             <p class="parameter__text">Подходы</p>
-            <p class="parameter__value">4</p>
+            <p class="parameter__value">{{ item.approaches }}</p>
           </div>
           <div class="header__parameter">
             <p class="parameter__text">Повторений</p>
-            <p class="parameter__value">10 - 15</p>
+            <p class="parameter__value">{{ item.repeats }}</p>
           </div>
           <div class="header__parameter">
             <p class="parameter__text">Отягощение</p>
-            <p class="parameter__value">5 кг.</p>
+            <p class="parameter__value">{{ item.additionalWeight }} кг.</p>
           </div>
           <div class="header__accrodion-btn">
             <i class="ti-angle-double-down"></i>
@@ -76,6 +79,9 @@
 import AppButton from '@/components/basic/AppButton'
 
 export default {
+  props: {
+    exercisesList: Array
+  },
   components: {
     AppButton
   },
@@ -92,6 +98,7 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  margin: 10px;
   // margin: 10px 10px 0 10px;
   // padding: 10px 0;
   // background: $white;

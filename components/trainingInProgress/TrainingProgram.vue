@@ -3,7 +3,7 @@
     <app-block-title>Тренировочная программа</app-block-title>
 
     <div class="training-program__content">
-      <p class="title">Название тренировочной программы</p>
+      <p class="title">{{ trainingProgram.title }}</p>
 
       <img class="preview" src="https://cdn.imgbb.ru/community/7/74658/201602/2e5bbfb866325797fc99c79021a9b829.jpg">
 
@@ -11,7 +11,9 @@
         <div class="actions__select">
           <p class="select__title">Тренировочный день</p>
           <app-select
-            :selectOptionsList="[1]"
+            :value="trainingProgramTargetDay"
+            :selectOptionsList="trainingProgram.trainingProgramDays"
+            @select="fetchTrainingDay($event)"
           />
         </div>
         
@@ -28,6 +30,7 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import AppBlockTitle from "@/components/basic/AppBlockTitle"
 import AppSelect from '@/components/basic/AppSelect'
 import AppButton from '@/components/basic/AppButton'
@@ -37,6 +40,22 @@ export default {
     AppBlockTitle,
     AppSelect,
     AppButton
+  },
+  data () {
+    return {
+      trainingProgramTargetDay: null
+    }
+  },
+  computed: {
+    ...mapState({
+      trainingProgram: state => state.trainingProcess.trainingProgram
+    })
+  },
+  methods: {
+    fetchTrainingDay ($event) {
+      this.trainingProgramTargetDay = $event
+      this.$store.dispatch('trainingProcess/fetchTrainingDay', {trainingDayId: $event.id})
+    }
   }
 }
 </script>
