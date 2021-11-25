@@ -13,8 +13,8 @@
           <div class="fields-group__section">
             <p class="section__title">Общая информация</p>
 
-            <div class="fields">
-              <div class="fields__field">
+            <div class="section__fields">
+              <div class="field">
                 <p class="field__title">Название</p>
                 <app-input-text
                   :value="exerciseForm.fields.title"
@@ -27,7 +27,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Группа мышц</p>
                 <app-select
                   :value="exerciseForm.fields.title"
@@ -43,7 +43,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Дополнительные мышцы</p>
                 <app-select
                   :value="exerciseForm.fields.title"
@@ -59,7 +59,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Тип упражнения</p>
                 <app-select
                   :value="exerciseForm.fields.title"
@@ -75,7 +75,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Вид упражнения</p>
                 <app-select
                   :value="exerciseForm.fields.title"
@@ -91,7 +91,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Усилие</p>
                 <app-select
                   :value="exerciseForm.fields.title"
@@ -107,7 +107,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Оборудование</p>
                 <app-input-text
                   :value="exerciseForm.fields.title"
@@ -120,7 +120,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Сложность выполнения</p>
                 <app-input-text
                   :value="exerciseForm.fields.title"
@@ -135,11 +135,20 @@
             </div>
           </div>
 
-          <div class="fields-group__section mt-10">
+          <div class="fields-group__section">
+            <p class="section__title">Техника выполнения</p>
+
+            <div class="section__fields">
+              <div class="video">video</div>
+              <app-textarea class="description" placeholder="Описнаие техники выполнения упражнения" />
+            </div>
+          </div>
+
+          <div class="fields-group__section">
             <p class="section__title">Акцент упражнения</p>
 
-            <div class="fields">
-              <div class="fields__field">
+            <div class="section__fields">
+              <div class="field">
                 <p class="field__title">Сила</p>
                 <app-input-text
                   :value="exerciseForm.fields.title"
@@ -152,7 +161,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Выносливость</p>
                 <app-input-text
                   :value="exerciseForm.fields.title"
@@ -165,7 +174,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Гибкость</p>
                 <app-input-text
                   :value="exerciseForm.fields.title"
@@ -178,7 +187,7 @@
                 />
               </div>
 
-              <div class="fields__field">
+              <div class="field">
                 <p class="field__title">Кардио</p>
                 <app-input-text
                   :value="exerciseForm.fields.title"
@@ -193,44 +202,39 @@
             </div>
           </div>
 
-          <div class="fields-group__section mt-10">
+          <div class="fields-group__section">
             <p class="section__title">Пользовательские параметры</p>
 
-            <div class="fields mt-10">
-              <div class="fields__field">
+            <div class="section__fields">
+              <div class="field">
                 <app-input-checkbox
-                :value="exerciseForm.fields.favorite"
-                :error="exerciseForm.errors.favorite"
-                label="Добавить в избранное"
-                @change="
-                  setProductFormFieldValue({field: 'favorite', newValue: $event}),
-                  setProductFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
-                "
-              />
+                  :value="exerciseForm.fields.favorite"
+                  :error="exerciseForm.errors.favorite"
+                  label="Добавить в избранное"
+                  @change="
+                    setProductFormFieldValue({field: 'favorite', newValue: $event}),
+                    setProductFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
+                  "
+                />
               </div>
             </div>
 
-            <div class="fields mt-10">
-              <div class="fields__field">
+            <div class="section__fields">
+              <div class="field">
                 <app-input-checkbox
-                :value="exerciseForm.fields.favorite"
-                :error="exerciseForm.errors.favorite"
-                label="Добавить в закрепленное"
-                @change="
-                  setProductFormFieldValue({field: 'favorite', newValue: $event}),
-                  setProductFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
-                "
-              />
+                  :value="exerciseForm.fields.favorite"
+                  :error="exerciseForm.errors.favorite"
+                  label="Добавить в закрепленное"
+                  @change="
+                    setProductFormFieldValue({field: 'favorite', newValue: $event}),
+                    setProductFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
+                  "
+                />
               </div>
             </div>
           </div>
         </div>
 
-        <div class="add-exercise-form__fields-group">
-          <div class="video-instruction">video</div>
-
-          <app-textarea class="mt-10 fill-area" placeholder="Описнаие техники выполнения упражнения" />
-        </div>
       </div>
     </template>
     <template v-slot:modalFooter>
@@ -329,53 +333,60 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .content__add-exercise-form {
+  // border: 1px solid red;
   display: flex;
+  flex-direction: column;
   .add-exercise-form__fields-group {
-    // border: 1px solid red;
+    // border: 1px solid black;
     display: flex;
     flex-direction: column;
-    width: calc(50% - 10px);
     .fields-group__section {
-      padding: 10px;
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed $blockBorder;
       .section__title {
-        padding: 0 10px 10px 10px;
+        padding: 0 10px;
         font-weight: 500;
-        border-bottom: 1px dashed $blockBorder;
       }
-      .fields {
+      .section__fields {
         display: flex;
         flex-wrap: wrap;
-        .fields__field {
-          margin-right: 5px;
-          width: calc(50% - 5px);
+        margin-top: 10px;
+        .field {
+          // border: 1px solid red;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          width: 100%;
+          max-width: calc(100% / 4 - 8px);
           .field__title {
-            padding: 10px 10px 5px 10px;
+            padding: 0 10px 5px 10px;
           }
         }
-        .fields__field:nth-child(2n) {
-          margin-left: 5px;
+        .field:nth-child(4n) {
           margin-right: 0;
+        }
+        .video {
+          margin-right: 5px;
+          margin-bottom: 10px;
+          width: calc(50% - 5px);
+          height: 300px;
+          background: $hiddenBlockBG;
+        }
+        .description {
+          margin-left: 5px;
+          margin-bottom: 10px;
+          width: calc(50% - 5px);
         }
       }
     }
+    .fields-group__section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
   }
-  .add-exercise-form__fields-group:first-child {
-    margin-right: 10px;
-  }
-  .add-exercise-form__fields-group:last-child {
-    margin-left: 10px;
-  }
-}
-
-.video-instruction {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 300px;
-  background: $hiddenBlockBG;
 }
 
 </style>

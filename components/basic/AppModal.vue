@@ -139,7 +139,7 @@ export default {
     }
     .modal__content {
       // border: 1px solid red;
-      padding: 20px 10px 20px 10px;
+      padding: 20px 10px;
       overflow-y: auto;
     }
     .modal__footer {
