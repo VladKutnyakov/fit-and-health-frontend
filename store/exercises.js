@@ -16,8 +16,30 @@ export const state = () => ({
     user: null
   },
   exerciseForm: formGenerator({
-    title: null
+    id: null,
+    title: null,
+    techniqueDescription: null,
+    type: null,
+    sort: null,
+    exertion: null,
+    equipment: null,
+    skill: null,
+    muscleGroup: null,
+    additionalMuscles: null,
+    power: null,
+    endurance: null,
+    flexibility: null,
+    cardio: null,
+    favorite: false,
+    pinned: false,
+    user: null,
   }),
+  exerciseMusclesList: [],
+  exerciseTypesList: [],
+  exerciseSortsList: [],
+  exerciseExertionsList: [],
+  exerciseEquipmentsList: [],
+  // exerciseSkillsList: [],
   modalCondition: 'create',
   exerciseFormModalActive: false
 })
@@ -55,6 +77,33 @@ export const mutations = {
   },
   addNewExercises (state, savedExercise) {
     state.exercises.push(savedExercise)
+  },
+  setExerciseMusclesList (state, payload) {
+    state.exerciseMusclesList = payload
+  },
+  setExerciseTypesList (state, payload) {
+    state.exerciseTypesList = payload
+  },
+  setExerciseSortsList (state, payload) {
+    state.exerciseSortsList = payload
+  },
+  setExerciseExertionsList (state, payload) {
+    state.exerciseExertionsList = payload
+  },
+  setExerciseEquipmentsList (state, payload) {
+    state.exerciseEquipmentsList = payload
+  },
+  // setExerciseSkillsList (state, payload) {
+  //   state.exerciseSkillsList = payload
+  // },
+  setExerciseFormFieldValue (state, ctx) {
+    state.exerciseForm.fields[ctx.field] = ctx.newValue
+  },
+  setExerciseFormFieldError (state, ctx) {
+    state.exerciseForm.errors[ctx.field] = {
+      enabled: false,
+      errorMessage: null
+    }
   },
   setModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
@@ -99,5 +148,113 @@ export const actions = {
     } catch (err) {
       console.log(err)
     }
-  }
+  },
+  async fetchMuscles ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/muscles`)
+
+      commit('setExerciseMusclesList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  async fethExerciseTypes ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-types`)
+
+      commit('setExerciseTypesList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  async fethExerciseSorts ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-sorts`)
+
+      commit('setExerciseSortsList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  async fethExerciseExertions ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-exertions`)
+
+      commit('setExerciseExertionsList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  async fethExerciseEquipments ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-equipments`)
+
+      commit('setExerciseEquipmentsList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  // async fethSkills ({ commit }) {
+  //   try {
+  //     const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-equipments`)
+
+  //     commit('setExerciseEquipmentsList', response.data)
+  //   } catch (error) {
+  //     console.log(error.response)
+
+  //     const notice = {
+  //       id: Date.now(),
+  //       type: 'alert',
+  //       message: 'Ошибка при загрузке данных',
+  //       timeToShow: 5000,
+  //       active: true
+  //     }
+  //     this.commit('notifications/addNewNotice', notice)
+  //   }
+  // },
 }
