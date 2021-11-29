@@ -106,6 +106,32 @@ export const mutations = {
       errorMessage: null
     }
   },
+  updatePinnedExercise (state, updatedExercise) {
+    state.exercisesList.forEach(element => {
+      for (let i = 0; i < element.exercises.length; i++) {
+        if (element.exercises[i].id == updatedExercise.exerciseId) {
+          // console.log(element.exercises[i].id)
+          const item = JSON.parse(JSON.stringify(element.exercises[i]))
+          item.pinned = updatedExercise.pinned
+          element.exercises.splice(i, 1, item)
+          break
+        }
+      }
+    })
+  },
+  updateFavoriteExercise (state, updatedExercise) {
+    state.exercisesList.forEach(element => {
+      for (let i = 0; i < element.exercises.length; i++) {
+        if (element.exercises[i].id == updatedExercise.exerciseId) {
+          // console.log(element.exercises[i].id)
+          const item = JSON.parse(JSON.stringify(element.exercises[i]))
+          item.favorite = updatedExercise.favorite
+          element.exercises.splice(i, 1, item)
+          break
+        }
+      }
+    })
+  },
   setModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
   }
@@ -139,6 +165,7 @@ export const actions = {
       console.log(err)
     }
   },
+
   async saveNewExercises ({ commit }, newExercise) {
     try {
       // console.log('seve ', newExercises)
@@ -150,6 +177,61 @@ export const actions = {
       console.log(err)
     }
   },
+  async changePinnedParam ({ commit }, exerciseId) {
+    try {
+      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/exercises/change-pinned-param/${exerciseId}`)
+
+      commit('updatePinnedExercise', response.data)
+
+      const notice = {
+        id: Date.now(),
+        type: 'info',
+        message: response.data.pinned ? 'Упражнение добавлено в закрепленные.' : 'Упражнение удалено из закрепленных.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при сохранении.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  async changeFavoriteParam ({ commit }, exerciseId) {
+    try {
+      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/exercises/change-favorite-param/${exerciseId}`)
+
+      commit('updateFavoriteExercise', response.data)
+
+      const notice = {
+        id: Date.now(),
+        type: 'info',
+        message: response.data.favorite ? 'Упражнение добавлено в избранное.' : 'Упражнение удалено из избранного.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при сохранении.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+
   async fetchMuscles ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/muscles`)
