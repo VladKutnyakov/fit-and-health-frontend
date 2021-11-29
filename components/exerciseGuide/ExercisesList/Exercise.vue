@@ -62,7 +62,6 @@ export default {
   background: $white;
   border-radius: 6px;
   user-select: none;
-  cursor: pointer;
   transition: $tr-02;
   .item__exercise-title-and-type {
     // border: 1px solid red;
@@ -71,6 +70,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     margin: 10px 5px 10px 15px;
+    cursor: pointer;
     .exercises-title {
       font-size: 14px;
       font-weight: 500;
@@ -101,6 +101,7 @@ export default {
       padding: 2.5px;
       color: $black30;
       transition: $tr-02;
+      cursor: pointer;
     }
     .actions-btn:hover {
       color: $green;
