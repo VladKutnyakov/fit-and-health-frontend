@@ -15,7 +15,7 @@
 
             <div class="section__fields">
               <div class="field">
-                <p class="field__title">Название</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.title }]">Название</p>
                 <app-input-text
                   :value="exerciseForm.fields.title"
                   :error="exerciseForm.errors.title"
@@ -28,7 +28,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Группа мышц</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.muscleGroup }]">Группа мышц</p>
                 <app-select
                   :value="exerciseForm.fields.muscleGroup"
                   :selectOptionsList="exerciseMusclesList"
@@ -44,7 +44,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Дополнительные мышцы</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.additionalMuscles }]">Дополнительные мышцы</p>
                 <app-select
                   :value="exerciseForm.fields.additionalMuscles"
                   :selectOptionsList="exerciseMusclesList"
@@ -60,7 +60,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Тип упражнения</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.type }]">Тип упражнения</p>
                 <app-select
                   :value="exerciseForm.fields.type"
                   :selectOptionsList="exerciseTypesList"
@@ -76,7 +76,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Вид упражнения</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.sort }]">Вид упражнения</p>
                 <app-select
                   :value="exerciseForm.fields.sort"
                   :selectOptionsList="exerciseSortsList"
@@ -92,7 +92,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Усилие</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.exertion }]">Усилие</p>
                 <app-select
                   :value="exerciseForm.fields.exertion"
                   :selectOptionsList="exerciseExertionsList"
@@ -108,7 +108,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Оборудование</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.equipment }]">Оборудование</p>
                 <app-select
                   :value="exerciseForm.fields.equipment"
                   :selectOptionsList="exerciseEquipmentsList"
@@ -124,12 +124,15 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Сложность выполнения</p>
-                <app-input-text
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.skill }]">Сложность выполнения</p>
+                <app-select
                   :value="exerciseForm.fields.skill"
+                  :selectOptionsList="skillsList"
                   :error="exerciseForm.errors.skill"
+                  alignListLeft
+                  alignSelectedValueLeft
                   placeholder="Введите значение"
-                  @input="
+                  @select="
                     setExerciseFormFieldValue({field: 'skill', newValue: $event}),
                     setExerciseFormFieldError({field: 'skill', enabled: false, errorMessage: null})
                   "
@@ -152,7 +155,7 @@
 
             <div class="section__fields">
               <div class="field">
-                <p class="field__title">Сила</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.power }]">Сила</p>
                 <app-input-text
                   :value="exerciseForm.fields.power"
                   :error="exerciseForm.errors.power"
@@ -165,7 +168,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Выносливость</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.endurance }]">Выносливость</p>
                 <app-input-text
                   :value="exerciseForm.fields.endurance"
                   :error="exerciseForm.errors.endurance"
@@ -178,7 +181,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Гибкость</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.flexibility }]">Гибкость</p>
                 <app-input-text
                   :value="exerciseForm.fields.flexibility"
                   :error="exerciseForm.errors.flexibility"
@@ -191,7 +194,7 @@
               </div>
 
               <div class="field">
-                <p class="field__title">Кардио</p>
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.cardio }]">Кардио</p>
                 <app-input-text
                   :value="exerciseForm.fields.cardio"
                   :error="exerciseForm.errors.cardio"
@@ -288,6 +291,7 @@ export default {
       exerciseSortsList: state => state.exercises.exerciseSortsList,
       exerciseExertionsList: state => state.exercises.exerciseExertionsList,
       exerciseEquipmentsList: state => state.exercises.exerciseEquipmentsList,
+      skillsList: state => state.exercises.skillsList,
       modalCondition: state => state.exercises.modalCondition,
       exerciseFormModalActive: state => state.exercises.exerciseFormModalActive
     }),
@@ -307,14 +311,14 @@ export default {
     }
   },
   watch: {
-    exerciseFormModalActive (newValue) {
+    async exerciseFormModalActive (newValue) {
       if (newValue) {
-        this.$store.dispatch('exercises/fetchMuscles')
-        this.$store.dispatch('exercises/fethExerciseTypes')
-        this.$store.dispatch('exercises/fethExerciseSorts')
-        this.$store.dispatch('exercises/fethExerciseEquipments')
-        this.$store.dispatch('exercises/fethExerciseExertions')
-        // this.$store.dispatch('exercises/fethSkills')
+        await this.$store.dispatch('exercises/fetchMuscles')
+        await this.$store.dispatch('exercises/fethExerciseTypes')
+        await this.$store.dispatch('exercises/fethExerciseSorts')
+        await this.$store.dispatch('exercises/fethExerciseEquipments')
+        await this.$store.dispatch('exercises/fethExerciseExertions')
+        await this.$store.dispatch('exercises/fethSkills')
       }
     }
   },
@@ -382,6 +386,10 @@ export default {
           max-width: calc(100% / 4 - 8px);
           .field__title {
             padding: 0 10px 5px 10px;
+            transition: $tr-02;
+          }
+          .field__title--active {
+            color: $green;
           }
         }
         .field:nth-child(4n) {

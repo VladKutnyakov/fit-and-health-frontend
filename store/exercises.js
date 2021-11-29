@@ -39,15 +39,12 @@ export const state = () => ({
   exerciseSortsList: [],
   exerciseExertionsList: [],
   exerciseEquipmentsList: [],
-  // exerciseSkillsList: [],
+  skillsList: [],
   modalCondition: 'create',
   exerciseFormModalActive: false
 })
 
 export const getters = {
-  getExerciseInfo (state) {
-    return state.exerciseInfo
-  },
   getExercisesCount (state) {
     let ExercisesCount = 0
     for (let i = 0; i < state.exercisesList.length; i++) {
@@ -93,9 +90,13 @@ export const mutations = {
   setExerciseEquipmentsList (state, payload) {
     state.exerciseEquipmentsList = payload
   },
-  // setExerciseSkillsList (state, payload) {
-  //   state.exerciseSkillsList = payload
-  // },
+  setSkillsList (state, payload) {
+    const list = []
+    for (let i = 0; i < payload.length; i++) {
+      list.push({id: payload[i].id, title: payload[i].excellenceTitle})
+    }
+    state.skillsList = list
+  },
   setExerciseFormFieldValue (state, ctx) {
     state.exerciseForm.fields[ctx.field] = ctx.newValue
   },
@@ -239,22 +240,22 @@ export const actions = {
       this.commit('notifications/addNewNotice', notice)
     }
   },
-  // async fethSkills ({ commit }) {
-  //   try {
-  //     const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-equipments`)
+  async fethSkills ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/skill-types`)
 
-  //     commit('setExerciseEquipmentsList', response.data)
-  //   } catch (error) {
-  //     console.log(error.response)
+      commit('setSkillsList', response.data)
+    } catch (error) {
+      console.log(error.response)
 
-  //     const notice = {
-  //       id: Date.now(),
-  //       type: 'alert',
-  //       message: 'Ошибка при загрузке данных',
-  //       timeToShow: 5000,
-  //       active: true
-  //     }
-  //     this.commit('notifications/addNewNotice', notice)
-  //   }
-  // },
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
 }

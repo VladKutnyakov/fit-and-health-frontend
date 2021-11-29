@@ -69,11 +69,26 @@ export default {
   },
   computed: {
     overviewFetched () {
-      if (this.$store.getters['exercises/getExerciseInfo'].id) {
+      if (this.$store.state.exercises.exerciseInfo?.id) {
         return true
       }
       return false
     }
+  },
+  beforeCreate () {
+    this.$store.commit('exercises/setExerciseInfo', {
+      id: null,
+      title: null,
+      type: null,
+      sort: null,
+      equipment: null,
+      exertion: null,
+      practiceLevel: null,
+      techniqueDescription: null,
+      muscleGroup: null,
+      additionalMuscles: [],
+      user: null
+    })
   }
 }
 </script>
