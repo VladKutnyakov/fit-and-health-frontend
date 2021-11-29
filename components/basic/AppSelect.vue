@@ -6,7 +6,7 @@
       { 'min-width': minWidth },
     ]"
   >
-    <div class="app-select__value" @click="toggleVisibility()">
+    <div class="app-select__value">
       <input
         ref="selectedValue"
         class="app-select__selected-value"
@@ -17,8 +17,14 @@
         ]"
         :value="typeof selectValue === 'object' && selectValue != null ? selectValue.title : selectValue"
         :placeholder="placeholder || 'Выберите значение'"
+         @click="toggleVisibility()"
       />
-      <i class="app-select__icon" :class="[{'ti-angle-down': true}]"></i>
+      <div class="app-select__action"  @click="toggleVisibility()">
+        <i class="app-select__icon" :class="[{'ti-angle-down': selectOptionsList}]"></i>
+      </div>
+      <div class="app-select__action" @click="clearSelect()">
+        <i class="ti-close app-select__icon"></i>
+      </div>
     </div>
 
     <ul
@@ -93,6 +99,10 @@ export default {
     selectItem (item) {
       this.closeSelect()
       this.$emit('select', item)
+    },
+    clearSelect () {
+      this.closeSelect()
+      this.$emit('select', null)
     }
   }
 }
@@ -125,16 +135,26 @@ export default {
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
     }
-    .app-select__icon {
+    .app-select__action {
       // border: 1px solid red;
       flex: 1 1 auto;
-      align-self: center;
-      padding: 0 10px;
-      font-family: $fontThemify;
-      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid $blockBorder;
+      .app-select__icon {
+        // border: 1px solid red;
+        padding: 0 10px;
+        font-family: $fontThemify;
+        font-size: 14px;
+        
+      }
+      
+    }
+    .app-select__action:last-child {
+      border-right: none;
     }
   }
-  
   .app-select__list {
     // border: 1px solid red;
     position: absolute;
