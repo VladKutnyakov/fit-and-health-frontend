@@ -8,7 +8,7 @@
         <exercises-list />
         <exercise-overview v-if="overviewFetched" />
         <exercise-overview-empty v-else />
-        <additional-info />
+        <additional-info v-if="overviewFetched" />
       </div>
     </div>
     <exercise-form-modal />
