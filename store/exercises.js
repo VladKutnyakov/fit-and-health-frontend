@@ -83,6 +83,9 @@ export const mutations = {
       }
     }
   },
+  updateExercise (state, payload) {
+    console.log(payload)
+  },
   setExerciseMusclesList (state, payload) {
     state.exerciseMusclesList = payload
   },
@@ -114,6 +117,32 @@ export const mutations = {
       errorMessage: ctx.errorMessage
     }
   },
+  clearExerciseForm (state) {
+    // Очистить значения полей формы
+    for (const key in state.exerciseForm.fields) {
+      state.exerciseForm.fields[key] = null
+    }
+    // Очистить ошибки полей формы
+    for (const key in state.exerciseForm.fields) {
+      state.exerciseForm.errors[key] = {
+        enabled: false,
+        errorMessage: null
+      }
+    }
+  },
+  setExerciseForm (state, payload) {
+    // Установить значения полей формы
+    for (const key in state.exerciseForm.fields) {
+      state.exerciseForm.fields[key] = payload[key]
+    }
+    // Очистить ошибки полей формы
+    for (const key in state.exerciseForm.fields) {
+      state.exerciseForm.errors[key] = {
+        enabled: false,
+        errorMessage: null
+      }
+    }
+  },
   updatePinnedExercise (state, updatedExercise) {
     state.exercisesList.forEach(element => {
       for (let i = 0; i < element.exercises.length; i++) {
@@ -139,6 +168,9 @@ export const mutations = {
         }
       }
     })
+  },
+  setModalCondition (state, condition) {
+    state.modalCondition = condition
   },
   setModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
@@ -179,19 +211,35 @@ export const actions = {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/save-new-exercise`, { exercise: newExercise })
 
       commit('addNewExercise', response.data)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при сохранении.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
-  async updateExercise ({ commit }, newExercise) {
+  async updateExercise ({ commit }, exercise) {
     try {
-      // console.log('seve ', newExercises)
-      // const savedExercise = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/save-new-exercise`, newExercise)
+      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/exercises/update-exercise`, { exercise: exercise })
 
-      // console.log(savedExercise)
-      // commit('addNewExercises', savedExercise)
-    } catch (err) {
-      console.log(err)
+      commit('updateExercise',  response.data)
+    } catch (error) {
+      console.log(error)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при сохранении.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
   async changePinnedParam ({ commit }, exerciseId) {

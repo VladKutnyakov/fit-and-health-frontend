@@ -9,7 +9,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import AppPageInfo from '@/components/basic/AppPageInfo'
 import AppButton from '@/components/basic/AppButton'
 
@@ -18,20 +17,7 @@ export default {
     AppPageInfo,
     AppButton,
   },
-  data () {
-    return {
-      modalActive: false,
-      newExercise: {
-        title: '',
-        techniqueDescription: '',
-        category: ''
-      }
-    }
-  },
   computed: {
-    ...mapState({
-      musclesGroupsCount: state => state.exercises.exercisesList.length
-    }),
     pageInfoElements () {
       return [
         {
@@ -40,7 +26,7 @@ export default {
         },
         {
           title: "Категорий",
-          value: this.musclesGroupsCount
+          value: this.$store.state.exercises.exercisesList.length
         },
         {
           title: "Мои упражнения",
@@ -51,17 +37,10 @@ export default {
   },
   methods: {
     openModal () {
-      // console.log('Добавить упражнение');
-      this.$store.commit('exercises/setModalVisibility', {modal: 'exerciseFormModalActive', condition: true})
+      this.$store.commit('exercises/setModalCondition', 'create')
+      this.$store.commit('exercises/clearExerciseForm')
+      this.$store.commit('exercises/setModalVisibility', { modal: 'exerciseFormModalActive', condition: true })
     },
-    // toggleModalVisibility () {
-    //   console.log('Открыть модальное окно "Добавить упражнение"')
-    //   // this.modalActive = !this.modalActive
-    // },
-    saveExercise () {
-      // console.log('сохранить упражнение в БД', this.newExercise)
-      this.$store.dispatch('exercises/saveNewExercises', this.newExercise)
-    }
   }
 }
 </script>

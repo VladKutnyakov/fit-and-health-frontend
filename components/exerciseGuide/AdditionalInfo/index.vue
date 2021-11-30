@@ -33,7 +33,11 @@
           <i class="ti-trash"></i>
         </app-button>
 
-        <app-button class="ml-5 fill-area" :disabled="!exerciseUser">Редактировать</app-button>
+        <app-button
+          class="ml-5 fill-area"
+          :disabled="!exerciseUser"
+          @click="openModal()"
+        >Редактировать</app-button>
       </div>
     </div>
   </div>
@@ -66,8 +70,12 @@ export default {
     })
   },
   methods: {
-    testClick() {
-      console.log('test click');
+    openModal () {
+      const exerciseInfo = JSON.parse(JSON.stringify(this.$store.state.exercises.exerciseInfo))
+      this.$store.commit('exercises/setExerciseForm', exerciseInfo)
+
+      this.$store.commit('exercises/setModalCondition', 'edit')
+      this.$store.commit('exercises/setModalVisibility', { modal: 'exerciseFormModalActive', condition: true })
     }
   }
 }
