@@ -34,8 +34,8 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background: $white;
-    border: 1px solid $blockBorder;
+    background: $hiddenBlockBG;
+    // border: 1px solid $blockBorder;
     border-radius: 6px;
     .message {
       display: flex;
@@ -45,10 +45,12 @@ export default {
       width: 100%;
       max-width: 500px;
       .message__icon {
+        color: $black40;
         font-size: 40px;
       }
       .message__text {
         margin-top: 20px;
+        color: $black40;
         text-align: center;
         font-size: 16px;
         font-weight: 500;
