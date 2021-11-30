@@ -62,7 +62,7 @@ export default {
 .exercises-list__item {
   // border: 1px solid red;
   display: flex;
-  margin: 10px 10px 5px 10px;
+  margin: 5px 10px 0px 10px;
   background: $white;
   border-radius: 6px;
   user-select: none;
@@ -73,7 +73,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 10px 5px 10px 15px;
+    margin: 0 5px 0 15px;
     cursor: pointer;
     .exercises-title {
       font-size: 14px;

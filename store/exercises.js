@@ -4,7 +4,6 @@ export const state = () => ({
   exercisesList: [],
   exerciseInfo: {
     id: null,
-    previewImage: null,
     title: null,
     techniqueDescription: null,
     muscleGroup: null,
@@ -77,8 +76,12 @@ export const mutations = {
   setExerciseInfo (state, ExerciseInfo) {
     state.exerciseInfo = ExerciseInfo
   },
-  addNewExercises (state, savedExercise) {
-    state.exercises.push(savedExercise)
+  addNewExercise (state, createdExercise) {
+    for (let i = 0; i < state.exercisesList.length; i++) {
+      if (state.exercisesList[i].id === createdExercise.muscleGroup.id) {
+        state.exercisesList[i].exercises.push(createdExercise)
+      }
+    }
   },
   setExerciseMusclesList (state, payload) {
     state.exerciseMusclesList = payload
@@ -107,8 +110,8 @@ export const mutations = {
   },
   setExerciseFormFieldError (state, ctx) {
     state.exerciseForm.errors[ctx.field] = {
-      enabled: false,
-      errorMessage: null
+      enabled: ctx.enabled,
+      errorMessage: ctx.errorMessage
     }
   },
   updatePinnedExercise (state, updatedExercise) {
@@ -171,7 +174,16 @@ export const actions = {
     }
   },
 
-  async saveNewExercises ({ commit }, newExercise) {
+  async saveNewExercise ({ commit }, newExercise) {
+    try {
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/save-new-exercise`, { exercise: newExercise })
+
+      commit('addNewExercise', response.data)
+    } catch (err) {
+      console.log(err)
+    }
+  },
+  async updateExercise ({ commit }, newExercise) {
     try {
       // console.log('seve ', newExercises)
       // const savedExercise = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/save-new-exercise`, newExercise)

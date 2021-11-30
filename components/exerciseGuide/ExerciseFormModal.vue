@@ -146,7 +146,14 @@
 
             <div class="section__fields">
               <div class="video">video</div>
-              <app-textarea class="description" placeholder="Описнаие техники выполнения упражнения" />
+              <app-textarea
+                class="description"
+                placeholder="Описнаие техники выполнения упражнения"
+                @input="
+                    setExerciseFormFieldValue({field: 'techniqueDescription', newValue: $event}),
+                    setExerciseFormFieldError({field: 'techniqueDescription', enabled: false, errorMessage: null})
+                  "
+              />
             </div>
           </div>
 
@@ -248,7 +255,7 @@
         uppercase
         size14px
         class="modal-action-btn mr-auto"
-        @click="saveOrUpdateProduct()"
+        @click="confirmAction()"
       >{{ modalCondition === 'create' ? 'Сохранить' : 'Редактировать' }}</app-button>
 
       <app-button
@@ -328,27 +335,29 @@ export default {
       setExerciseFormFieldValue: 'exercises/setExerciseFormFieldValue',
       setExerciseFormFieldError: 'exercises/setExerciseFormFieldError'
     }),
-    // saveOrUpdateProduct() {
-    //   // $requiredFieldsValidation --> custom pluguin в папке pluguins
-    //   const isValid = this.$requiredFieldsValidation(this.productForm, ['title', 'protein', 'fats', 'carb', 'kkal', 'category'], 'foodCalorieTable/setProductFormFieldError', null)
+    confirmAction () {
+      // $requiredFieldsValidation --> custom pluguin в папке pluguins
+      const isValid = this.$requiredFieldsValidation(this.exerciseForm, ['title', 'muscleGroup'], 'exercises/setExerciseFormFieldError', 'Поле обязательно для заполнения')
 
-    //   if (isValid) {
-    //     if (this.modalCondition === 'create') {
-    //       this.$store.dispatch('foodCalorieTable/saveProduct')
-    //     } else if (this.modalCondition === 'edit') {
-    //       this.$store.dispatch('foodCalorieTable/updateProduct')
-    //     }
-    //   } else {
-    //     const notice = {
-    //       id: Date.now(),
-    //       type: 'alert',
-    //       message: 'Заполните обязательные поля.',
-    //       timeToShow: 5000,
-    //       active: true
-    //     }
-    //     this.$store.commit('notifications/addNewNotice', notice)
-    //   }
-    // }
+      if (isValid) {
+        const payload = JSON.parse(JSON.stringify(this.exerciseForm.fields))
+
+        if (this.modalCondition === 'create') {
+          this.$store.dispatch('exercises/saveNewExercise', payload)
+        } else if (this.modalCondition === 'edit') {
+          this.$store.dispatch('exercises/updateExercise', payload)
+        }
+      } else {
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: 'Заполните обязательные поля.',
+          timeToShow: 5000,
+          active: true
+        }
+        this.$store.commit('notifications/addNewNotice', notice)
+      }
+    }
   }
 }
 </script>
