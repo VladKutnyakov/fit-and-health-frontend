@@ -15,8 +15,12 @@
         @click="changePinnedParam(item)"
       ></i>
       <i
-        class="ti-heart actions-btn"
-        :class="[{ 'actions-btn--active': item.favorite }]"
+        class="actions-btn"
+        :class="[
+          { 'ti-heart-broken': !item.favorite },
+          { 'ti-heart': item.favorite },
+          { 'actions-btn--active': item.favorite }
+        ]"
         @click="changeFavoriteParam(item)"
       ></i>
     </div>
