@@ -147,12 +147,13 @@
             <div class="section__fields">
               <div class="video">video</div>
               <app-textarea
+                :value="exerciseForm.fields.techniqueDescription"
                 class="description"
                 placeholder="Описнаие техники выполнения упражнения"
                 @input="
-                    setExerciseFormFieldValue({field: 'techniqueDescription', newValue: $event}),
-                    setExerciseFormFieldError({field: 'techniqueDescription', enabled: false, errorMessage: null})
-                  "
+                  setExerciseFormFieldValue({field: 'techniqueDescription', newValue: $event}),
+                  setExerciseFormFieldError({field: 'techniqueDescription', enabled: false, errorMessage: null})
+                "
               />
             </div>
           </div>
