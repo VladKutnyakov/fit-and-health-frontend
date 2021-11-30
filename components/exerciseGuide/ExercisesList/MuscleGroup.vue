@@ -4,7 +4,7 @@
       <template v-slot:accordionHeader>
         <div class="item__header" @click="muscleGroupIsOpened = !muscleGroupIsOpened">
           <div class="preview-image">
-            <img src="" alt="img" class="image">
+            <img :src="muscleGroup.previewImage" :alt="muscleGroup.title" class="image">
           </div>
           <div class="header__title">
             <p class="title__text">{{ muscleGroup.title }}</p>

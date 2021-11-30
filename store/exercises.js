@@ -4,6 +4,7 @@ export const state = () => ({
   exercisesList: [],
   exerciseInfo: {
     id: null,
+    previewImage: null,
     title: null,
     techniqueDescription: null,
     muscleGroup: null,
