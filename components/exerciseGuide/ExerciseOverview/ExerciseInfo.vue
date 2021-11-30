@@ -26,7 +26,7 @@
     </div>
     <div class="exercise-info__item">
       <p class="item__title mr-10">Сложность выполнения:</p>
-      <app-rating :rating="practiceLevel" />
+      <app-rating :rating="skill" />
     </div>
   </div>
 </template>
@@ -42,11 +42,11 @@ export default {
   computed: {
     ...mapState({
       muscleGroup: state => state.exercises.exerciseInfo.muscleGroup.title,
-      type: state => state.exercises.exerciseInfo.type,
-      sort: state => state.exercises.exerciseInfo.sort,
-      equipment: state => state.exercises.exerciseInfo.equipment,
-      exertion: state => state.exercises.exerciseInfo.exertion,
-      practiceLevel: state => state.exercises.exerciseInfo.practiceLevel,
+      type: state => state.exercises.exerciseInfo.type?.title || 'нет данных',
+      sort: state => state.exercises.exerciseInfo.sort?.title || 'нет данных',
+      equipment: state => state.exercises.exerciseInfo.equipment?.title || 'нет данных',
+      exertion: state => state.exercises.exerciseInfo.exertion?.title || 'нет данных',
+      skill: state => state.exercises.exerciseInfo.skill?.value,
     }),
     additionalMuscles () {
       const additionalExerciseMuscles = this.$store.state.exercises.exerciseInfo.additionalMuscles

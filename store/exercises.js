@@ -9,7 +9,7 @@ export const state = () => ({
     sort: null,
     equipment: null,
     exertion: null,
-    practiceLevel: null,
+    skill: null,
     techniqueDescription: null,
     muscleGroup: null,
     additionalMuscles: [],
