@@ -3,8 +3,6 @@
     <app-block-title>Дополнительная информация</app-block-title>
     <div class="additional-info__content">
       <div class="training-focus">
-        <p>Акцент упражнения</p>
-
         <div class="chart-and-percents">
           <div class="chart">
             <p>график круговой показывает смещение акцента в тренировках (выносливость, сила, кардио)</p>
@@ -12,61 +10,37 @@
           <div class="percents">
             <div class="percents__element">
               <p class="element__title">Сила:</p>
-              <div class="element__value">60%</div>
+              <div class="element__value">{{ power }}%</div>
             </div>
             <div class="percents__element">
               <p class="element__title">Выносливость:</p>
-              <div class="element__value">20%</div>
+              <div class="element__value">{{ endurance }}%</div>
             </div>
             <div class="percents__element">
               <p class="element__title">Гибкость:</p>
-              <div class="element__value">5%</div>
+              <div class="element__value">{{ flexibility }}%</div>
             </div>
             <div class="percents__element">
               <p class="element__title">Кардио:</p>
-              <div class="element__value">5%</div>
+              <div class="element__value">{{ cardio }}%</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="actions">
-        <!-- <div class="actions__top">
-          <app-input-checkbox
-            :value="availability"
-            label="Добавить в избранное"
-            @change="availability = $event"
-          />
+        <app-button :disabled="!exerciseUser">
+          <i class="ti-trash"></i>
+        </app-button>
 
-          <app-input-checkbox
-            class="mt-10"
-            :value="availability"
-            label="Добавить в закрепленные"
-            @change="availability = $event"
-          />
-
-          <app-input-checkbox
-            class="mt-10"
-            :value="availability"
-            label="Доступно для поиска всем пользователям"
-            @change="availability = $event"
-          />
-        </div> -->
-
-        <div class="actions__bottom">
-          <app-button :disabled="true">
-            <i class="ti-trash"></i>
-          </app-button>
-
-          <app-button class="ml-5 fill-area" :disabled="true">Редактировать</app-button>
-        </div>
+        <app-button class="ml-5 fill-area" :disabled="!exerciseUser">Редактировать</app-button>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
@@ -81,6 +55,15 @@ export default {
     return {
       availability: false
     }
+  },
+  computed: {
+    ...mapState({
+      power: state => state.exercises.exerciseInfo.power || 0,
+      endurance: state => state.exercises.exerciseInfo.endurance || 0,
+      flexibility: state => state.exercises.exerciseInfo.flexibility || 0,
+      cardio: state => state.exercises.exerciseInfo.cardio || 0,
+      exerciseUser: state => state.exercises.exerciseInfo.user,
+    })
   },
   methods: {
     testClick() {
@@ -107,19 +90,8 @@ export default {
   }
   .actions {
     display: flex;
-    flex-direction: column;
     padding: 10px;
     background: $hiddenBlockBG;
-    .actions__top {
-      padding: 10px;
-      background: $white;
-      border: 1px solid $black10;
-      border-radius: 6px;
-    }
-    .actions__bottom {
-      display: flex;
-      // margin-top: 10px;
-    }
   }
 }
 
@@ -131,12 +103,12 @@ export default {
     margin: 150px 0;
   }
   .percents {
-    padding: 20px 10px 10px 10px;
+    padding: 10px 10px 00px 10px;
     border-top: 1px dashed $blockBorder;
     .percents__element {
       display: flex;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
       .element__title {
         margin-right: auto;
       }

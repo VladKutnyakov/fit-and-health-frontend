@@ -5,14 +5,18 @@ export const state = () => ({
   exerciseInfo: {
     id: null,
     title: null,
+    techniqueDescription: null,
+    muscleGroup: null,
+    additionalMuscles: [],
     type: null,
     sort: null,
     equipment: null,
     exertion: null,
     skill: null,
-    techniqueDescription: null,
-    muscleGroup: null,
-    additionalMuscles: [],
+    power: null,
+    endurance: null,
+    flexibility: null,
+    cardio: null,
     user: null
   },
   exerciseForm: formGenerator({
