@@ -11,10 +11,12 @@
 body {
   background-color: $app-background;
   min-height: -webkit-fill-available;
+  overflow-y: scroll;
 }
 
 .body-overflow {
   overflow: hidden;
+  overflow-y: hidden;
 }
 
 #__nuxt {
