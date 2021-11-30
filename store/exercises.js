@@ -211,6 +211,16 @@ export const actions = {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/save-new-exercise`, { exercise: newExercise })
 
       commit('addNewExercise', response.data)
+      commit('setModalVisibility', { modal: 'exerciseFormModalActive', condition: false })
+
+      const notice = {
+        id: Date.now(),
+        type: 'success',
+        message: 'Упражнение успешно сохранено.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     } catch (error) {
       console.log(error)
 
@@ -229,6 +239,16 @@ export const actions = {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/exercises/update-exercise`, { exercise: exercise })
 
       commit('updateExercise',  response.data)
+      commit('setModalVisibility', { modal: 'exerciseFormModalActive', condition: false })
+
+      const notice = {
+        id: Date.now(),
+        type: 'success',
+        message: 'Упражнение успешно отредактированно.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
     } catch (error) {
       console.log(error)
 
