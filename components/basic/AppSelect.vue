@@ -57,7 +57,7 @@ export default {
   props: {
     minWidth: String,
     maxWidth: String,
-    value: [String, Number, Object],
+    value: [String, Number, Object, Array],
     selectOptionsList: Array,
     placeholder: String,
     alignListLeft: Boolean,

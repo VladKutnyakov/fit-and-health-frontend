@@ -18,6 +18,11 @@ export default {
       inputValue: this.value || ''
     }
   },
+  watch: {
+    value () {
+      this.inputValue = this.value
+    }
+  },
   methods: {
     changeTextareaValue () {
       this.$emit('input', this.inputValue)
