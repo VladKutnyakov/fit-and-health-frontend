@@ -5,30 +5,23 @@
       <training-focus />
 
       <div class="actions">
-        <div class="actions__top">
-          <app-button >
-            <i class="ti-trash"></i>
-          </app-button>
+        <app-button >
+          <i class="ti-trash"></i>
+        </app-button>
 
-          <app-button class="ml-5" >
-            <i class="ti-save"></i>
-          </app-button>
+        <app-button class="ml-5" >
+          <i class="ti-control-play"></i>
+        </app-button>
 
-          <app-button class="ml-5 fill-area" >Сделать основной</app-button>
-        </div>
-
-        <div class="actions__bottom fill-area">
-          <app-button class="mt-5 fill-area" >Начать тренировку</app-button>
-        </div>
+        <app-button class="ml-5 fill-area">Сохранить</app-button>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
-import AppButton from '@/components/basic/AppButton.vue'
+import AppButton from '@/components/basic/AppButton'
 import TrainingFocus from '@/components/trainingProgramEditor/AdditionalInfo/TrainingFocus'
 
 export default {
@@ -57,15 +50,8 @@ export default {
   }
   .actions {
     display: flex;
-    flex-direction: column;
     padding: 10px;
     background: $hiddenBlockBG;
-    .actions__top {
-      display: flex;
-    }
-    .actions__bottom {
-      display: flex;
-    }
   }
 }
 
