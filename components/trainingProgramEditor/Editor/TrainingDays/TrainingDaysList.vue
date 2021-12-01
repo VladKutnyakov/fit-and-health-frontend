@@ -1,12 +1,12 @@
 <template>
-  <div class="days">
-    <div class="day day--active">
-      <p class="day__title">День 0. Спина и бицепсы</p>
-      <i class="ti-close day__remove-btn"></i>
-    </div>
-    <div class="day" v-for="(item, index) in 3" :key="index">
-      <p class="day__title">День {{ index + 1}}. Ноги и плечи</p>
-      <i class="ti-close day__remove-btn"></i>
+  <div class="training-days-list">
+    <div
+      class="day"
+      :class="[{ 'day--active': index == 0 }]"
+      v-for="(item, index) in 3"
+      :key="index"
+    >
+      <p class="day__title">День {{ index + 1}}</p>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {}
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.days {
+.training-days-list {
   display: flex;
   padding: 0 10px;
   .day {
@@ -32,18 +32,12 @@ export default {}
     transition: $tr-02;
     cursor: pointer;
     .day__title {
-      padding: 10px 10px 10px 20px;
+      padding: 10px 20px;
       font-weight: 500;
       transition: $tr-02;
     }
     .day__title:hover {
       color: $green;
-    }
-    .day__remove-btn {
-      margin-top: 5px;
-      margin-right: 5px;
-      padding: 5px;
-      font-size: 10px;
     }
   }
   .day--active {
@@ -54,9 +48,6 @@ export default {}
       color: $white;
     }
     .day__title:hover {
-      color: $white;
-    }
-    .day__remove-btn {
       color: $white;
     }
   }

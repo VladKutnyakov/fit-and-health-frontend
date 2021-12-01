@@ -14,11 +14,11 @@
             <i class="ti-save"></i>
           </app-button>
 
-          <app-button class="ml-5" fillArea >Сделать основной</app-button>
+          <app-button class="ml-5 fill-area" >Сделать основной</app-button>
         </div>
-        
-        <div class="actions__bottom">
-          <app-button class="mt-10" fillArea >Начать тренировку</app-button>
+
+        <div class="actions__bottom fill-area">
+          <app-button class="mt-5 fill-area" >Начать тренировку</app-button>
         </div>
       </div>
 
@@ -61,6 +61,9 @@ export default {
     padding: 10px;
     background: $hiddenBlockBG;
     .actions__top {
+      display: flex;
+    }
+    .actions__bottom {
       display: flex;
     }
   }

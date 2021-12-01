@@ -12,7 +12,7 @@
       </div>
 
       <add-marks
-        :marks="['mark 1']"
+        :marks="[{id: 1, title: 'test'}]"
         @addMark="addMark($event)"
         @removeMark="removeMark($event)"
       />
@@ -65,6 +65,7 @@ export default {
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
+      border-left: 1px solid $blockBorder;
     }
   }
 }

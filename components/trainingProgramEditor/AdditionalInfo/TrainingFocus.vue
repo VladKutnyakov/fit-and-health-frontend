@@ -52,7 +52,7 @@ export default {
   }
   .percents {
     margin-top: auto;
-    padding: 20px 10px 10px 10px;
+    padding: 10px 10px 0px 10px;
     border-top: 1px dashed $blockBorder;
     .percents__element {
       display: flex;

@@ -3,23 +3,23 @@
     <app-block-title>Тренировочные дни</app-block-title>
 
     <div class="tarining-days__content">
-      <days />
+      <training-days-list />
 
-      <settings />
+      <training-day-settings />
     </div>
   </div>
 </template>
 
 <script>
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
-import Days from '@/components/trainingProgramEditor/Editor/TrainingDays/Days'
-import Settings from '@/components/trainingProgramEditor/Editor/TrainingDays/Settings'
+import TrainingDaysList from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaysList'
+import TrainingDaySettings from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/index'
 
 export default {
   components: {
     AppBlockTitle,
-    Days,
-    Settings
+    TrainingDaysList,
+    TrainingDaySettings
   }
 }
 </script>
