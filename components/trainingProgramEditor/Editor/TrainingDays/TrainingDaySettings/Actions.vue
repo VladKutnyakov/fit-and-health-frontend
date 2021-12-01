@@ -1,35 +1,35 @@
 <template>
   <div class="actions">
-    <app-tooltip width="180px" right info textAlignCenter >
+    <app-tooltip width="200px" right info textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn" @click="saveMealPlanerInfo()">
           <i class="ti-plus"></i>
         </div>
       </template>
       <template v-slot:tooltipText>
-        <p>Сохранить рацион</p>
+        <p>Добавить тренировочный день</p>
       </template>
     </app-tooltip>
 
-    <app-tooltip width="160px" right info textAlignCenter >
+    <app-tooltip width="190px" right info textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn">
           <i class="ti-zoom-in"></i>
         </div>
       </template>
       <template v-slot:tooltipText>
-        <p>Поиск рациона</p>
+        <p>Поиск упражнений</p>
       </template>
     </app-tooltip>
 
-    <app-tooltip class="mb-auto" width="170px" right alert textAlignCenter >
+    <app-tooltip class="mb-auto" width="200px" right alert textAlignCenter >
       <template v-slot:tooltipElement>
         <div class="action-btn action-btn--remove">
           <i class="ti-trash"></i>
         </div>
       </template>
       <template v-slot:tooltipText>
-        <p>Удалить рацион</p>
+        <p>Удалить тренировочный день</p>
       </template>
     </app-tooltip>
   </div>
