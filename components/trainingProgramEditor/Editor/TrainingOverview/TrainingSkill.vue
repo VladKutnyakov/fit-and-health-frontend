@@ -1,16 +1,21 @@
 <template>
   <div class="training-skill">
     <p class="training-skill__block-title">Сложность тренировочной программы:</p>
-    <app-rating :rating="5" />
+
+    <app-select
+      :value="null"
+      :selectOptionsList="[]"
+      
+    />
   </div>
 </template>
 
 <script>
-import AppRating from "@/components/basic/AppRating"
+import AppSelect from "@/components/basic/AppSelect"
 
 export default {
   components: {
-    AppRating
+    AppSelect
   }
 }
 </script>
@@ -20,12 +25,11 @@ export default {
 
 .training-skill {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 5px;
-  padding: 10px 20px;
+  flex-direction: column;
+  padding: 10px;
   .training-skill__block-title {
-    margin-right: 10px;
+    margin-bottom: 5px;
+    padding: 0 20px;
     font-weight: 500;
   }
 }

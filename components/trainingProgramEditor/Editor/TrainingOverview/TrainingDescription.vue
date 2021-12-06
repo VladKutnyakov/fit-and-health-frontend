@@ -4,18 +4,30 @@
 
     <app-textarea
       class="fill-area"
+      :value="trainingProgram.fields.description"
       placeholder="Описание программы тренировок"
-      @valueChanged="test = $event"
+      @input="setTrainingProgramFormFieldValue({field: 'description', newValue: $event})"
     />
   </div>
 </template>
 
 <script>
-import AppTextarea from "@/components/basic/AppTextarea";
+import { mapState, mapMutations } from 'vuex'
+import AppTextarea from "@/components/basic/AppTextarea"
 
 export default {
   components: {
     AppTextarea
+  },
+  computed: {
+    ...mapState({
+      trainingProgram: state => state.trainingProgramEditor.trainingProgram
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setTrainingProgramFormFieldValue: 'trainingProgramEditor/setTrainingProgramFormFieldValue'
+    })
   }
 }
 </script>

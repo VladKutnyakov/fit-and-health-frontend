@@ -11,21 +11,22 @@
         <training-skill />
       </div>
 
-      <add-marks
-        :marks="[{id: 1, title: 'test'}]"
-        @addMark="addMark($event)"
-        @removeMark="removeMark($event)"
+      <added-marks
+        :marks="trainingProgram.fields.marks"
+        @addMark="setTrainingProgramMark($event)"
+        @removeMark="removeTrainingProgramMark($event)"
       />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import PreviewImage from '@/components/trainingProgramEditor/Editor/TrainingOverview/PreviewImage'
 import ProgramTitle from '@/components/trainingProgramEditor/Editor/TrainingOverview/ProgramTitle'
 import TrainingSkill from '@/components/trainingProgramEditor/Editor/TrainingOverview/TrainingSkill'
-import AddMarks from "@/components/trainingProgramEditor/Editor/TrainingOverview/AddMarks"
+import AddedMarks from "@/components/trainingProgramEditor/Editor/TrainingOverview/AddedMarks"
 import TrainingDescription from '@/components/trainingProgramEditor/Editor/TrainingOverview/TrainingDescription'
 
 export default {
@@ -35,15 +36,17 @@ export default {
     ProgramTitle,
     TrainingDescription,
     TrainingSkill,
-    AddMarks
+    AddedMarks
+  },computed: {
+    ...mapState({
+      trainingProgram: state => state.trainingProgramEditor.trainingProgram
+    })
   },
   methods: {
-    addMark($event) {
-      console.log($event)
-    },
-    removeMark($event) {
-      console.log($event)
-    }
+    ...mapMutations({
+      setTrainingProgramMark: 'trainingProgramEditor/setTrainingProgramMark',
+      removeTrainingProgramMark: 'trainingProgramEditor/removeTrainingProgramMark'
+    })
   }
 }
 </script>

@@ -3,18 +3,30 @@
     <p class="program-title__text">Название программы:</p>
 
     <app-input-text
+      :value="trainingProgram.fields.title"
       placeholder="Название программы тренировок"
-      @valueChanged="test = $event"
+      @input="setTrainingProgramFormFieldValue({field: 'title', newValue: $event})"
     />
   </div>
 </template>
 
 <script>
-import AppInputText from "@/components/basic/AppInputText";
+import { mapState, mapMutations } from 'vuex'
+import AppInputText from "@/components/basic/AppInputText"
 
 export default {
   components: {
     AppInputText
+  },
+  computed: {
+    ...mapState({
+      trainingProgram: state => state.trainingProgramEditor.trainingProgram
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setTrainingProgramFormFieldValue: 'trainingProgramEditor/setTrainingProgramFormFieldValue'
+    })
   }
 }
 </script>
