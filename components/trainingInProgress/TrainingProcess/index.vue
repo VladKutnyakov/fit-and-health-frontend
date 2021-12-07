@@ -9,10 +9,10 @@
         info
         :text="trainingDay.comment"
       />
-      <!-- <div class="video-and-timer">
+      <div class="video-and-timer">
         <training-video />
         <timer />
-      </div> -->
+      </div>
       <exercises :exercisesList="trainingDay.trainingProgramDayExercises" />
     </div>
   </div>
@@ -25,7 +25,7 @@ import AppInfo from '@/components/basic/AppInfo'
 import MainStats from '@/components/trainingInProgress/TrainingProcess/MainStats'
 import TrainingVideo from '@/components/trainingInProgress/TrainingProcess/TrainingVideo'
 import Timer from '@/components/trainingInProgress/TrainingProcess/Timer'
-import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises'
+import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises/index'
 
 export default {
   components: {
