@@ -26,30 +26,30 @@
       </template>
       <template v-slot:accordionHiddenContent>
         <ul class="exercise__steps">
-          <li class="step">
-            <div class="step__intensity">
-              <div class="intensity"></div>
+          <li class="approach approach--not-active">
+            <div class="approach__status">
+              <div class="status"></div>
             </div>
-            <div class="step__number">
+            <div class="approach__number">
               <p class="number__title">Подход 0</p>
             </div>
-            <div class="step__element">
+            <div class="approach__element">
               <p class="element__text">Повторений</p>
               <p class="element__value">15</p>
             </div>
-            <div class="step__element">
+            <div class="approach__element">
               <p class="element__text">Отягощение</p>
               <p class="element__value">5 кг.</p>
             </div>
-            <div class="step__element">
+            <div class="approach__element">
               <p class="element__text">Время выполнения</p>
               <p class="element__value">00 : 02 : 32</p>
             </div>
-            <div class="step__element">
+            <div class="approach__element">
               <p class="element__text">Время отдыха</p>
               <p class="element__value">00 : 01 : 12</p>
             </div>
-            <div class="step__btn">
+            <div class="approach__action-btn">
               <i class="ti-more"></i>
             </div>
           </li>
@@ -141,25 +141,25 @@ export default {
     flex-direction: column;
     // background: rgba(0,0,0,.025);
     border-top: 1px solid $blockBorder;
-    .step {
+    .approach {
       display: flex;
       align-items: center;
       padding: 10px;
       border-bottom: 1px dashed $blockBorder;
-      .step__intensity {
+      .approach__status {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 40px;
         height: 50px;
-        .intensity {
+        .status {
           width: 16px;
           height: 16px;
           background: $red;
           border-radius: 50%;
         }
       }
-      .step__number {
+      .approach__number {
         margin-left: 10px;
         margin-right: auto;
         .number__title {
@@ -167,7 +167,7 @@ export default {
           white-space: nowrap;
         }
       }
-      .step__element {
+      .approach__element {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -183,13 +183,16 @@ export default {
           font-weight: 500;
         }
       }
-      .step__btn {
+      .approach__action-btn {
         // border: 1px solid red;
         padding: 10px;
       }
     }
-    .step:last-child {
+    .approach:last-child {
       border-bottom: none;
+    }
+    .approach--not-active {
+      background: $black10;
     }
   }
   .exercise__control {
