@@ -12,9 +12,42 @@ import AppPageTitle from "@/components/basic/AppPageTitle"
 import TrainingProgramsBook from "@/components/trainingProgramsBook/index"
 
 export default {
+  name: 'TrainingPrograms',
+  layout: 'default',
+  head () {
+    return {
+      title: 'Fit and Health - Тренировочные программы',
+      __dangerouslyDisableSanitizers: ['script'],
+      script: [
+        { // МИКРОРАЗМЕТКА
+          innerHTML: `{
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "https://website.com",
+            "name": "Website",
+            "description": "This website is awesome.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Website",
+              "alternateName": "SiteWeb",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://someimage.com/image"
+              }
+            }
+          }`,
+          type: 'application/ld+json'
+        }
+      ]
+    }
+  },
+  middleware: ['userAuth'],
   components: {
     TrainingProgramsBook,
     AppPageTitle
+  },
+  async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+    await store.dispatch('trainingPrograms/fetchTrainingProgramsList')
   }
 }
 </script>

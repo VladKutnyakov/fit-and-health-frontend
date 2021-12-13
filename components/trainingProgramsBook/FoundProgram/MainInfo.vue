@@ -1,6 +1,6 @@
 <template>
   <div class="main-info">
-    <p class="title">Круговая жиросжигающая тренировка "BATMAN"</p>
+    <p class="title">{{ program.title }}</p>
 
     <div class="additional-info">
       <div class="additional-info__element">
@@ -53,7 +53,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    program: Object
+  }
+}
 </script>
 
 <style lang="scss" scoped>

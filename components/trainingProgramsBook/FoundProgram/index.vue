@@ -1,7 +1,7 @@
 <template>
   <div class="found-program">
     <preview-image />
-    <main-info />
+    <main-info :program="item" />
     <training-accent />
     <actions />
   </div>
@@ -14,6 +14,9 @@ import TrainingAccent from '@/components/trainingProgramsBook/FoundProgram/Train
 import Actions from '@/components/trainingProgramsBook/FoundProgram/Actions'
 
 export default {
+  props: {
+    item: Object
+  },
   components: {
     PreviewImage,
     MainInfo,

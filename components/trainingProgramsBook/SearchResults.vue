@@ -30,7 +30,11 @@
     </div>
 
     <div class="found-programs">
-      <found-program v-for="(item, index) in 5" :key="index" />
+      <found-program
+        v-for="(item, index) in trainingProgramsList"
+        :key="index"
+        :item="item"
+      />
     </div>
 
     <app-pagination />
@@ -38,12 +42,13 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
-import AppButton from '@/components/basic/AppButton.vue'
-import AppSearchBlock from '@/components/basic/AppSearchBlock.vue'
+import AppButton from '@/components/basic/AppButton'
+import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
 import FoundProgram from '@/components/trainingProgramsBook/FoundProgram/index'
-import AppPagination from '@/components/basic/AppPagination.vue'
+import AppPagination from '@/components/basic/AppPagination'
 
 export default {
   components: {
@@ -62,6 +67,11 @@ export default {
         type: 'Все'
       }
     }
+  },
+  computed: {
+    ...mapState({
+      trainingProgramsList: state => state.trainingPrograms.trainingProgramsList
+    })
   }
 }
 </script>
