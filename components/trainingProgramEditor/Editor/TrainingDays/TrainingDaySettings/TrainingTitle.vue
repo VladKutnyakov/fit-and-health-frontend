@@ -1,16 +1,31 @@
 <template>
   <div class="training-title">
     <p class="training-title__text">Название тренировочного дня:</p>
-    <app-input-text value="День 1. Ноги и плечи" />
+    <app-input-text
+      :value="trainingProgramDays[selectedTrainingDay].title"
+      @input="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'title', index: selectedTrainingDay, newValue: $event})"
+    />
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 
 export default {
   components: {
     AppInputText
+  },
+  computed: {
+    ...mapState({
+      selectedTrainingDay: state => state.trainingProgramEditor.selectedTrainingDay,
+      trainingProgramDays: state => state.trainingProgramEditor.trainingProgram.fields.trainingProgramDays
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setTrainingProgramFormFieldValue: 'trainingProgramEditor/setTrainingProgramFormFieldValue'
+    })
   }
 }
 </script>

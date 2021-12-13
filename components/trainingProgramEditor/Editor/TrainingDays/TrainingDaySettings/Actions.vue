@@ -2,7 +2,7 @@
   <div class="actions">
     <app-tooltip width="200px" right info textAlignCenter >
       <template v-slot:tooltipElement>
-        <div class="action-btn" @click="saveMealPlanerInfo()">
+        <div class="action-btn" @click="addTrainingProgramDay()">
           <i class="ti-plus"></i>
         </div>
       </template>
@@ -24,7 +24,7 @@
 
     <app-tooltip class="mb-auto" width="200px" right alert textAlignCenter >
       <template v-slot:tooltipElement>
-        <div class="action-btn action-btn--remove">
+        <div class="action-btn action-btn--remove" @click="removeTrainingProgramDay()">
           <i class="ti-trash"></i>
         </div>
       </template>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapMutations } from 'vuex'
 import AppTooltip from '@/components/basic/AppTooltip'
 
 export default {
@@ -44,9 +44,9 @@ export default {
     AppTooltip
   },
   methods: {
-    ...mapActions({
-      saveMealPlanerInfo: 'mealPlaner/saveMealPlanerInfo',
-      removeMealPlanerInfo: 'mealPlaner/removeMealPlanerInfo',
+    ...mapMutations({
+      addTrainingProgramDay: 'trainingProgramEditor/addTrainingProgramDay',
+      removeTrainingProgramDay: 'trainingProgramEditor/removeTrainingProgramDay',
     })
   }
 }

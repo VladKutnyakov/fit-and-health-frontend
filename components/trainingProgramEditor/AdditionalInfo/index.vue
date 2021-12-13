@@ -13,7 +13,10 @@
           <i class="ti-control-play"></i>
         </app-button>
 
-        <app-button class="ml-5 fill-area">Сохранить</app-button>
+        <app-button
+          class="ml-5 fill-area"
+          @click="saveTrainingProgram()"
+        >Сохранить</app-button>
       </div>
     </div>
   </div>
@@ -29,6 +32,13 @@ export default {
     AppBlockTitle,
     AppButton,
     TrainingFocus
+  },
+  methods: {
+    saveTrainingProgram () {
+      const payload = JSON.parse(JSON.stringify(this.$store.state.trainingProgramEditor.trainingProgram.fields))
+
+      this.$store.dispatch('trainingProgramEditor/saveTrainingProgram', payload)
+    }
   }
 }
 </script>

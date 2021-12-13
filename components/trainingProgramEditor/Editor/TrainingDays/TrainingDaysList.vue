@@ -1,18 +1,33 @@
 <template>
   <div class="training-days-list">
     <div
-      class="day"
-      :class="[{ 'day--active': index == 0 }]"
-      v-for="(item, index) in 3"
+      v-for="(item, index) in trainingProgramDays"
       :key="index"
+      class="day"
+      :class="[{ 'day--active': index == selectedTrainingDay ? true : false }]"
+      @click="setSelectedTrainingDay(index)"
     >
-      <p class="day__title">День {{ index + 1}}</p>
+      <p class="day__title">{{ item.title }}</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { mapState, mapMutations } from 'vuex'
+
+export default {
+  computed: {
+    ...mapState({
+      trainingProgramDays: state => state.trainingProgramEditor.trainingProgram.fields.trainingProgramDays,
+      selectedTrainingDay: state => state.trainingProgramEditor.selectedTrainingDay
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setSelectedTrainingDay: 'trainingProgramEditor/setSelectedTrainingDay'
+    })
+  }
+}
 </script>
 
 <style lang="scss" scoped>
