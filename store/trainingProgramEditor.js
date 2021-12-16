@@ -12,17 +12,22 @@ export const state = () => ({
       {
         id: null,
         title: 'День 1',
-        description: null,
+        comment: null,
         video: null,
-        exercises: [],
+        trainingProgramDayExercises: [
+          // {
+          //   approaches: "4-5",
+          //   repeats: "10-12",
+          //   additionalWeight: 12.2,
+          //   implementationTime: null,
+          //   restTime: null,
+          //   exercise: {
+          //     id: 1,
+          //     title: "Отжимания"
+          //   }
+          // }
+        ],
       },
-      {
-        id: null,
-        title: 'День 2',
-        description: null,
-        video: null,
-        exercises: [],
-      }
     ],
     user: null
   }),
@@ -32,6 +37,11 @@ export const state = () => ({
 export const getters = {}
 
 export const mutations = {
+  setTrainingProgram (state, payload) {
+    for (const key in state.trainingProgram.fields) {
+      state.trainingProgram.fields[key] = payload[key]
+    }
+  },
   setTrainingProgramFormFieldValue (state, ctx) {
     if (ctx.subfield && ctx.index >= 0) {
       state.trainingProgram.fields[ctx.field][ctx.index][ctx.subfield] = ctx.newValue
@@ -78,6 +88,24 @@ export const mutations = {
 }
 
 export const actions = {
+  async fetchTrainingProgram ({ commit }, trainingProgramId ) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-programs/${trainingProgramId}`)
+
+      commit('setTrainingProgram', response.data)
+    } catch (err) {
+      console.log(err)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных для дневника тренировок. Обновите страницу или зайдите позже.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
   async saveTrainingProgram ({ commit }, trainingProgram ) {
     try {
       console.log(trainingProgram)

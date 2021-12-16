@@ -49,9 +49,11 @@ export default {
     Editor,
     AdditionalInfo
   },
-  // async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
-  //   await store.dispatch('trainingPrograms/fetchTrainingProgramsList')
-  // }
+  async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+    if (query.trainingProgramId) {
+      await store.dispatch('trainingProgramEditor/fetchTrainingProgram', query.trainingProgramId)
+    }
+  }
 }
 </script>
 
