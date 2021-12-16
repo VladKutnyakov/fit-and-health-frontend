@@ -3,19 +3,30 @@
     <p class="training-skill__block-title">Сложность тренировочной программы:</p>
 
     <app-select
-      :value="null"
-      :selectOptionsList="[]"
-      
+      :value="skill"
+      :selectOptionsList="skillList"
     />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppSelect from "@/components/basic/AppSelect"
 
 export default {
   components: {
     AppSelect
+  },
+  computed: {
+    ...mapState({
+      skill: state => {
+        return {
+          id: state.trainingProgramEditor.trainingProgram.fields.skill.id,
+          title: state.trainingProgramEditor.trainingProgram.fields.skill.complexityTitle,
+        }
+      },
+      skillList: state => state.trainingProgramEditor.skillList,
+    })
   }
 }
 </script>

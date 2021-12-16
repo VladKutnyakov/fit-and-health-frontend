@@ -32,9 +32,14 @@ export const state = () => ({
     user: null
   }),
   selectedTrainingDay: 0,
+  skillList: [],
 })
 
-export const getters = {}
+export const getters = {
+  trainingDayExercies (state) {
+    return state.trainingProgram.fields.trainingProgramDays[state.selectedTrainingDay].trainingProgramDayExercises
+  }
+}
 
 export const mutations = {
   setTrainingProgram (state, payload) {
@@ -85,6 +90,18 @@ export const mutations = {
       }
     }
   },
+  setSkillsList (state, payload) {
+    const list = []
+
+    payload.forEach(element => {
+      list.push({
+        id: element.title,
+        title: element.complexityTitle
+      })
+    })
+
+    state.skillList = list
+  },
 }
 
 export const actions = {
@@ -120,6 +137,25 @@ export const actions = {
         id: Date.now(),
         type: 'alert',
         message: 'Ошибка при загрузке данных для дневника тренировок. Обновите страницу или зайдите позже.',
+        timeToShow: 5000,
+        active: true
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+
+  async fetchSkills ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/skill-types`)
+
+      commit('setSkillsList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
         timeToShow: 5000,
         active: true
       }

@@ -53,6 +53,7 @@ export default {
     if (query.trainingProgramId) {
       await store.dispatch('trainingProgramEditor/fetchTrainingProgram', query.trainingProgramId)
     }
+    await store.dispatch('trainingProgramEditor/fetchSkills')
   }
 }
 </script>
