@@ -20,10 +20,13 @@ export default {
   computed: {
     ...mapState({
       skill: state => {
-        return {
-          id: state.trainingProgramEditor.trainingProgram.fields.skill.id,
-          title: state.trainingProgramEditor.trainingProgram.fields.skill.complexityTitle,
+        if (state.trainingProgramEditor.trainingProgram.fields.skill) {
+          return {
+            id: state.trainingProgramEditor.trainingProgram.fields.skill.id,
+            title: state.trainingProgramEditor.trainingProgram.fields.skill.complexityTitle,
+          }
         }
+        return null
       },
       skillList: state => state.trainingProgramEditor.skillList,
     })
