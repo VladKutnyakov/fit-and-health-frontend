@@ -77,7 +77,7 @@ export const mutations = {
       title: `День ${state.trainingProgram.fields.trainingProgramDays.length + 1}`,
       description: null,
       video: null,
-      exercises: [],
+      trainingProgramDayExercises: [],
     }
     state.trainingProgram.fields.trainingProgramDays.push(trainingProgramDay)
     state.selectedTrainingDay = state.trainingProgram.fields.trainingProgramDays.length - 1
