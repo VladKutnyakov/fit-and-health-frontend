@@ -123,20 +123,22 @@ export const actions = {
       this.commit('notifications/addNewNotice', notice)
     }
   },
-  async saveTrainingProgram ({ commit }, trainingProgram ) {
+  async saveTrainingProgram ({ commit }, payload ) {
     try {
-      console.log(trainingProgram)
+      // console.log(trainingProgram)
 
-      // const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-diary?date=${query.date ? query.date : ''}`)
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/training-programs/save-training-program`, { trainingProgram: payload })
+
+      console.log(response.data)
 
       // commit('setTrainingDiaryInfo', response.data)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error.response.data.errorMessage)
 
       const notice = {
         id: Date.now(),
         type: 'alert',
-        message: 'Ошибка при загрузке данных для дневника тренировок. Обновите страницу или зайдите позже.',
+        message: error.response.data.errorMessage,
         timeToShow: 5000,
         active: true
       }
