@@ -1,7 +1,7 @@
 <template>
   <div class="training-skill">
     <p class="training-skill__block-title">Сложность тренировочной программы:</p>
-    <app-rating :rating="trainingSkill" />
+    <app-rating :rating="trainingSkill ? trainingSkill.value : null" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     ...mapState({
-      trainingSkill: state => state.trainingDiary.trainingDiaryInfo.trainingProgram.skill.value
+      trainingSkill: state => state.trainingDiary.trainingDiaryInfo.trainingProgram.skill
     })
   }
 }
