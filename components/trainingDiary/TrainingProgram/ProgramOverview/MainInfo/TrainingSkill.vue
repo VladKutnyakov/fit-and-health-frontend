@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     ...mapState({
-      trainingSkill: state => state.trainingDiary.trainingDiaryInfo.trainingProgram.trainingSkill
+      trainingSkill: state => state.trainingDiary.trainingDiaryInfo.trainingProgram.skill.value
     })
   }
 }
