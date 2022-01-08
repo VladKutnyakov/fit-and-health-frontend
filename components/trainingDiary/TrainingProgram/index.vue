@@ -1,30 +1,31 @@
 <template>
-  <div class="main-training-program">
-    <app-block-title>Тренировочная программа</app-block-title>
-    <program-overview />
-
-    <app-block-title>Информация о тренировке</app-block-title>
-    <program-stats />
+  <div class="training-program-info">
+    <empty-training-program-info v-if="!trainingDiaryInfo" />
+    <program-overview v-if="trainingDiaryInfo" />
   </div>
 </template>
 
 <script>
-import AppBlockTitle from "@/components/basic/AppBlockTitle"
+import { mapState } from 'vuex'
+import EmptyTrainingProgramInfo from '@/components/trainingDiary/TrainingProgram/EmptyTrainingProgramInfo'
 import ProgramOverview from '@/components/trainingDiary/TrainingProgram/ProgramOverview/index'
 import ProgramStats from '@/components/trainingDiary/TrainingProgram/ProgramStats/index'
 
 export default {
   components: {
-    AppBlockTitle,
+    EmptyTrainingProgramInfo,
     ProgramOverview,
     ProgramStats
+  },
+  computed: {
+    ...mapState({
+      trainingDiaryInfo: state => state.trainingDiary.trainingDiaryInfo
+    })
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
-
-// .main-training-program {}
 
 </style>

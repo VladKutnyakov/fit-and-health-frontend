@@ -39,7 +39,8 @@ export default {
   },
   methods: {
     openModal () {
-      console.log('Добавить рацион')
+      // console.log('Добавить рацион')
+      this.$router.push('/meal-planer/meal-plan-editor')
     }
   }
 }

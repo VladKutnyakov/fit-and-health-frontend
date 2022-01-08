@@ -35,7 +35,8 @@ export default {
   },
   methods: {
     openModal () {
-      console.log('Добавить программу тренировок')
+      // console.log('Добавить программу тренировок')
+      this.$router.push('/training-programs/training-program-editor')
     }
   }
 }

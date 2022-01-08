@@ -13,11 +13,11 @@
         <div class="useful-pages">
           <app-block-title>Полезные страницы</app-block-title>
           <div class="useful-pages__elements">
-            <nuxt-link tag="a" to="/training-diary/training-programs" class="element">
+            <nuxt-link tag="a" to="/training-programs" class="element">
               <i class="ti-clipboard element__icon"></i>
               <p class="element__text">Тренировочные<br>программы</p>
             </nuxt-link>
-            <nuxt-link tag="a" to="/training-diary/exercise-guide" class="element">
+            <nuxt-link tag="a" to="/exercise-guide" class="element">
               <i class="ti-book element__icon"></i>
               <p class="element__text">Справочник<br>по упражнениям</p>
             </nuxt-link>

@@ -79,28 +79,22 @@ export default {
               exact: true
             },
             {
-              title: 'Редактор тренировочных программ',
-              link: '/training-diary/training-programs/training-program-editor',
-              icon: 'ti-pencil-alt',
-              exact: true
-            },
-            {
               title: 'Программы тренировок',
-              link: '/training-diary/training-programs',
+              link: '/training-programs',
               icon: 'ti-clipboard',
-              exact: true
+              exact: false
             },
             {
               title: 'Справочник по упражнениям',
-              link: '/training-diary/exercise-guide',
+              link: '/exercise-guide',
               icon: 'ti-headphone-alt',
-              exact: true
+              exact: false
             },
             {
               title: 'Новая тренировка',
               link: '/training-diary/training-in-progress',
               icon: 'ti-bolt',
-              exact: true
+              exact: false
             }
           ]
         },
@@ -112,31 +106,25 @@ export default {
               title: 'Дневник питания',
               link: '/meal-planer',
               icon: 'ti-agenda',
-              exact: true
-            },
-            {
-              title: 'Редактор рационов',
-              link: '/meal-planer/meal-plan-editor',
-              icon: 'ti-pencil-alt',
-              exact: true
+              exact: false
             },
             {
               title: 'Сохраненные рационы',
-              link: '/meal-planer/meal-plans',
+              link: '/meal-plans',
               icon: 'ti-write',
-              exact: true
+              exact: false
             },
             {
               title: 'Книга рецептов',
-              link: '/meal-planer/recipes-book',
+              link: '/recipes-book',
               icon: 'ti-book',
-              exact: true
+              exact: false
             },
             {
               title: 'Таблица калорийности продуктов',
-              link: '/meal-planer/food-calorie-table',
+              link: '/food-calorie-table',
               icon: 'ti-view-list-alt',
-              exact: true
+              exact: false
             }
           ]
         },
