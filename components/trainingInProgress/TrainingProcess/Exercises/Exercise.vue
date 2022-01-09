@@ -1,6 +1,6 @@
 <template>
   <li class="exercise">
-    <app-accordion :isOpened="false">
+    <app-accordion :isOpened="true">
       <template v-slot:accordionHeader>
         <div class="exercise__header">
           <div class="header__drag-drop-btn">
@@ -13,11 +13,11 @@
           </div>
           <div class="header__parameter">
             <p class="parameter__text">Повторений</p>
-            <p class="parameter__value">{{ item.repeats }}</p>
+            <p class="parameter__value">{{ item.repeats ? item.repeats : '--' }}</p>
           </div>
           <div class="header__parameter">
             <p class="parameter__text">Отягощение</p>
-            <p class="parameter__value">{{ item.additionalWeight }} кг.</p>
+            <p class="parameter__value">{{ item.additionalWeight ? item.additionalWeight : 0 }} кг.</p>
           </div>
           <div class="header__accrodion-btn">
             <i class="ti-angle-double-down"></i>
@@ -35,19 +35,19 @@
             </div>
             <div class="approach__element">
               <p class="element__text">Повторений</p>
-              <p class="element__value">15</p>
+              <p class="element__value">--</p>
             </div>
             <div class="approach__element">
               <p class="element__text">Отягощение</p>
-              <p class="element__value">5 кг.</p>
+              <p class="element__value">-- кг.</p>
             </div>
             <div class="approach__element">
               <p class="element__text">Время выполнения</p>
-              <p class="element__value">00 : 02 : 32</p>
+              <p class="element__value">{{ item.implementationTime ? item.implementationTime : '00 : 00 : 00' }}</p>
             </div>
             <div class="approach__element">
               <p class="element__text">Время отдыха</p>
-              <p class="element__value">00 : 01 : 12</p>
+              <p class="element__value">{{ item.restTime ? item.restTime : '00 : 00 : 00' }}</p>
             </div>
             <div class="approach__action-btn">
               <i class="ti-more"></i>
@@ -191,9 +191,9 @@ export default {
     .approach:last-child {
       border-bottom: none;
     }
-    .approach--not-active {
-      background: $black10;
-    }
+    // .approach--not-active {
+    //   background: $black10;
+    // }
   }
   .exercise__control {
     display: flex;

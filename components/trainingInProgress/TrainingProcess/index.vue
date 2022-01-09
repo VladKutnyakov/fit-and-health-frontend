@@ -9,10 +9,10 @@
         info
         :text="trainingDay.comment"
       />
-      <div class="video-and-timer">
+      <!-- <div class="video-and-timer">
         <training-video />
         <timer />
-      </div>
+      </div> -->
       <exercises :exercisesList="trainingDay.trainingProgramDayExercises" />
     </div>
   </div>
