@@ -14,7 +14,7 @@
         />
       </div>
 
-      <div class="chart-and-percents">
+      <div v-if="trainingProgramTargetDay" class="chart-and-percents">
         <div class="chart">
           <p>график круговой показывает смещение акцента в тренировках (выносливость, сила, кардио)</p>
         </div>
@@ -40,7 +40,7 @@
 
       <!-- <img class="preview" src="https://cdn.imgbb.ru/community/7/74658/201602/2e5bbfb866325797fc99c79021a9b829.jpg"> -->
 
-      <div class="actions">
+      <div v-if="trainingProgramTargetDay" class="actions">
         <!-- <div class="actions__select">
           <p class="select__title">Тренировочный день</p>
           <app-select
@@ -87,7 +87,10 @@ export default {
   methods: {
     fetchTrainingDay ($event) {
       this.trainingProgramTargetDay = $event
-      this.$store.dispatch('trainingProcess/fetchTrainingDay', {trainingDayId: $event.id})
+
+      if ($event) {
+        this.$store.dispatch('trainingProcess/fetchTrainingDay', {trainingDayId: $event.id})
+      }
     }
   }
 }

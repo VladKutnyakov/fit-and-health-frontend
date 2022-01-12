@@ -1,14 +1,14 @@
 <template>
   <div>
     <app-block-title>Тренировочная программа</app-block-title>
-    <!-- <div class="program-overview">
+    <div class="program-overview">
       <preview-image />
       <main-info />
       <actions />
-    </div> -->
+    </div>
 
-    <!-- <app-block-title>Информация о тренировке</app-block-title>
-    <program-stats /> -->
+    <app-block-title>Информация о тренировке</app-block-title>
+    <program-stats />
   </div>
 </template>
 
@@ -17,13 +17,15 @@ import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import PreviewImage from '@/components/trainingDiary/TrainingProgram/ProgramOverview/PreviewImage'
 import MainInfo from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/index'
 import Actions from '@/components/trainingDiary/TrainingProgram/ProgramOverview/Actions'
+import ProgramStats from '@/components/trainingDiary/TrainingProgram/ProgramOverview/ProgramStats'
 
 export default {
   components: {
     AppBlockTitle,
     PreviewImage,
     MainInfo,
-    Actions
+    Actions,
+    ProgramStats
   }
 }
 </script>

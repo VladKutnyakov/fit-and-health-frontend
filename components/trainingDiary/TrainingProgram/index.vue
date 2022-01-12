@@ -9,13 +9,11 @@
 import { mapState } from 'vuex'
 import EmptyTrainingProgramInfo from '@/components/trainingDiary/TrainingProgram/EmptyTrainingProgramInfo'
 import ProgramOverview from '@/components/trainingDiary/TrainingProgram/ProgramOverview/index'
-import ProgramStats from '@/components/trainingDiary/TrainingProgram/ProgramStats/index'
 
 export default {
   components: {
     EmptyTrainingProgramInfo,
-    ProgramOverview,
-    ProgramStats
+    ProgramOverview
   },
   computed: {
     ...mapState({

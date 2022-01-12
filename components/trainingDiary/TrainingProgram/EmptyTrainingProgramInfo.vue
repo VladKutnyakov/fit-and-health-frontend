@@ -5,8 +5,8 @@
     <div class="empty-training-program-info__content">
       <div class="message">
         <p class="message__info">Нет данных о тренировке.</p>
-        
-        <p class="message__offer">Начните <router-link to="/training-diary/training-in-progress" class="offer__link">новую тернировку</router-link> с использованием последней тренировочной программы или используйте поиск, чтобы <router-link to="/training-diary/training-programs" class="offer__link">найти программу</router-link> для тренировок.</p>
+
+        <p class="message__offer">Начните <router-link to="/training-diary/training-in-progress" class="offer__link">новую тернировку</router-link> с использованием последней тренировочной программы или используйте поиск, чтобы <router-link to="/training-programs" class="offer__link">найти программу</router-link> для тренировок.</p>
       </div>
     </div>
   </div>
