@@ -65,7 +65,13 @@ export default {
               link: '/profile/subscriptions',
               icon: 'ti-crown',
               exact: true
-            }
+            },
+            {
+              title: 'Статистика и замеры',
+              link: '/profile/measurements',
+              icon: 'ti-bar-chart',
+              exact: true
+            },
           ]
         },
         {
@@ -160,18 +166,6 @@ export default {
         },
         {
           active: false,
-          group: 'measurements',
-          links: [
-            {
-              title: 'Статистика и замеры',
-              link: '/measurements',
-              icon: 'ti-bar-chart',
-              exact: true
-            }
-          ]
-        },
-        {
-          active: false,
           group: 'handbook',
           links: [
             {
@@ -237,14 +231,14 @@ export default {
     this.$nextTick(function () {
       const LinksGroups = document.querySelectorAll('.navbar__page-links-group')
       const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
-      
+
       for (let i = 0; i < LinksGroups.length; i++) {
         LinksGroups[i].style.height = LinkHeight + 10 + 'px'
       }
 
-      const TargetLinksGroup = document.querySelector('.navbar__page-links-group--active')
-      const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
-      TargetLinksGroup.style.height = TargetLinksGroupChildElements.length * LinkHeight + 10 + 'px'
+      // const TargetLinksGroup = document.querySelector('.navbar__page-links-group--active')
+      // const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
+      // TargetLinksGroup.style.height = TargetLinksGroupChildElements.length * LinkHeight + 10 + 'px'
     })
   }
 }
