@@ -2,8 +2,8 @@
   <div v-show="isVisible" class="notifications">
     <ul class="notifications-list">
       <app-notice
-        v-for="(item, index) in notifications"
-        :key="index"
+        v-for="item in notifications"
+        :key="item.id"
         :notice="item"
       />
     </ul>

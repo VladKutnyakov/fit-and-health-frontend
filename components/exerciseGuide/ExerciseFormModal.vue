@@ -354,7 +354,6 @@ export default {
           type: 'alert',
           message: 'Заполните обязательные поля.',
           timeToShow: 5000,
-          active: true
         }
         this.$store.commit('notifications/addNewNotice', notice)
       }

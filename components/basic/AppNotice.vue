@@ -3,20 +3,20 @@
     ref="notice"
     class="notice"
     :class="[
-      {'notice-success': success},
-      {'notice-warning': warning},
-      {'notice-info': info},
-      {'notice-alert': alert}
+      { 'notice-success': this.notice.type === 'success' },
+      { 'notice-warning': this.notice.type === 'warning' },
+      { 'notice-info': this.notice.type === 'info' },
+      { 'notice-alert': this.notice.type === 'alert' }
     ]"
     @mouseenter="setHoverEffect()"
     @mouseleave="setHoverEffect()"
   >
     <div class="notice__info">
       <div class="info__icon">
-        <i v-if="success" class="ti-check-box"></i>
-        <i v-if="warning" class="ti-na"></i>
-        <i v-if="alert" class="ti-alert"></i>
-        <i v-if="info" class="ti-info"></i>
+        <i v-if="this.notice.type === 'success'" class="ti-check-box"></i>
+        <i v-if="this.notice.type === 'warning'" class="ti-na"></i>
+        <i v-if="this.notice.type === 'info'" class="ti-alert"></i>
+        <i v-if="this.notice.type === 'alert'" class="ti-info"></i>
       </div>
       <p class="info__text">{{ notice.message }}</p>
     </div>
@@ -43,18 +43,6 @@ export default {
     }
   },
   computed: {
-    success () {
-      return this.notice.type === 'success' ? true : false
-    },
-    warning () {
-      return this.notice.type === 'warning' ? true : false
-    },
-    info () {
-      return this.notice.type === 'info' ? true : false
-    },
-    alert () {
-      return this.notice.type === 'alert' ? true : false
-    },
     step () {
       let currentIndicatorWidth = this.$refs.timeIndicator.getBoundingClientRect().width
       return ((currentIndicatorWidth / 30) / (this.notice.timeToShow / 1000))

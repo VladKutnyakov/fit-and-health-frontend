@@ -277,7 +277,6 @@ export const actions = {
         type: 'success',
         message: 'Продукт успешно сохранен.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
@@ -288,7 +287,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при сохранении.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -306,7 +304,6 @@ export const actions = {
           type: 'success',
           message: 'Продукт успешно обновлен.',
           timeToShow: 5000,
-          active: true
         }
         this.commit('notifications/addNewNotice', notice)
       } else {
@@ -315,7 +312,6 @@ export const actions = {
           type: 'alert',
           message: 'Неизвестная ошибка. Попробуйте еще раз или обратитесь в службу поддержки.',
           timeToShow: 5000,
-          active: true
         }
         this.commit('notifications/addNewNotice', notice)
       }
@@ -327,7 +323,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при обновлении.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -344,7 +339,6 @@ export const actions = {
           type: 'info',
           message: 'Продукт удален из базы данных.',
           timeToShow: 5000,
-          active: true
         }
         this.commit('notifications/addNewNotice', notice)
       } else {
@@ -353,7 +347,6 @@ export const actions = {
           type: 'alert',
           message: 'Удалить продукт не удалось.',
           timeToShow: 5000,
-          active: true
         }
         this.commit('notifications/addNewNotice', notice)
       }
@@ -365,7 +358,6 @@ export const actions = {
         type: 'alert',
         message: 'Неизвестная ошибка. Попробуйте еще раз или обратитесь в службу поддержки.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -381,7 +373,6 @@ export const actions = {
         type: 'info',
         message: response.data.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
@@ -399,7 +390,6 @@ export const actions = {
         type: 'info',
         message: response.data.pinned ? 'Продукт добавлен в закрепленные.' : 'Продукт удален из закрепленных.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {

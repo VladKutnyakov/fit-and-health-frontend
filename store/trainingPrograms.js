@@ -25,7 +25,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных. Обновите страницу или зайдите позже.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }

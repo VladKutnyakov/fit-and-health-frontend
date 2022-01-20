@@ -191,7 +191,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -218,7 +217,6 @@ export const actions = {
         type: 'success',
         message: 'Упражнение успешно сохранено.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
@@ -229,7 +227,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при сохранении.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -246,7 +243,6 @@ export const actions = {
         type: 'success',
         message: 'Упражнение успешно отредактированно.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
@@ -257,7 +253,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при сохранении.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -273,7 +268,6 @@ export const actions = {
         type: 'info',
         message: response.data.pinned ? 'Упражнение добавлено в закрепленные.' : 'Упражнение удалено из закрепленных.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
@@ -284,7 +278,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при сохранении.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -300,7 +293,6 @@ export const actions = {
         type: 'info',
         message: response.data.favorite ? 'Упражнение добавлено в избранное.' : 'Упражнение удалено из избранного.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
@@ -311,7 +303,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при сохранении.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -330,7 +321,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -348,7 +338,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -366,7 +355,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -384,7 +372,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -402,7 +389,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -420,7 +406,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }

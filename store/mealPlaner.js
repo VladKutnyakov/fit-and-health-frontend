@@ -275,7 +275,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных для дневника питания. Обновите страницу или зайдите позже.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -291,7 +290,6 @@ export const actions = {
         type: 'success',
         message: 'Данные успешно сохранены.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
 
@@ -303,7 +301,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при сохранении. Попробуйте еще раз или обратитесь в службу поддержки.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -339,7 +336,6 @@ export const actions = {
   //         type: 'success',
   //         message: 'Данные успешно удалены.',
   //         timeToShow: 5000,
-  //         active: true
   //       }
   //       this.commit('notifications/addNewNotice', notice)
   //     }
@@ -352,7 +348,6 @@ export const actions = {
   //         type: 'warning',
   //         message: error.response.data.message,
   //         timeToShow: 5000,
-  //         active: true
   //       }
   //       this.commit('notifications/addNewNotice', notice)
   //     } else {
@@ -361,7 +356,6 @@ export const actions = {
   //         type: 'alert',
   //         message: 'Ошибка при удалении. Попробуйте еще раз или обратитесь в службу поддержки.',
   //         timeToShow: 5000,
-  //         active: true
   //       }
   //       this.commit('notifications/addNewNotice', notice)
   //     }

@@ -11,20 +11,9 @@ export const mutations = {
   removeNotice (state, noticeId) {
     for (let i = 0; i < state.notices.length; i++) {
       if (state.notices[i].id === noticeId) {
-        state.notices[i].active = false
+        state.notices.splice(i, 1)
         break
       }
-    }
-
-    let clearNotice = true
-    for (let i = 0; i < state.notices.length; i++) {
-      if (state.notices[i].active) {
-        clearNotice = false
-      }
-    }
-
-    if (clearNotice) {
-      state.notices = []
     }
   }
 }

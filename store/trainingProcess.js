@@ -42,7 +42,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных для дневника тренировок. Обновите страницу или зайдите позже.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }
@@ -62,7 +61,6 @@ export const actions = {
         type: 'alert',
         message: 'Ошибка при загрузке данных для дневника тренировок. Обновите страницу или зайдите позже.',
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
     }

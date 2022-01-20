@@ -36,7 +36,6 @@ export const actions = {
         type: 'alert',
         message: err.response.data.message,
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
 
@@ -58,7 +57,6 @@ export const actions = {
         type: 'alert',
         message: err.response.data.message,
         timeToShow: 5000,
-        active: true
       }
       this.commit('notifications/addNewNotice', notice)
 
