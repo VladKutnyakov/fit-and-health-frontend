@@ -235,7 +235,6 @@ export default {
       for (let i = 0; i < LinksGroups.length; i++) {
         LinksGroups[i].style.height = LinkHeight + 10 + 'px'
       }
-      console.log(1)
 
       // const TargetLinksGroup = document.querySelector('.navbar__page-links-group--active')
       // const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
