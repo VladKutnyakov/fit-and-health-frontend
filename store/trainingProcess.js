@@ -11,7 +11,21 @@ export const state = () => ({
     id: null,
     title: null,
     comment: null,
-    trainingProgramDayExercises: []
+    trainingProgramDayExercises: [
+      {
+        exercise: {
+          title: '1'
+        },
+        approaches: 4,
+        repeats: 1,
+        additionalWeight: 1,
+      },
+      {
+        exercise: {
+          title: '2'
+        }
+      },
+    ]
   },
 })
 
@@ -33,7 +47,9 @@ export const actions = {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-process/training-program-info?trainingProgramId=${query.trainingProgramId || ''}`)
       // console.log(response)
 
-      commit('setTrainingProgram', response.data)
+      if (response.data) {
+        commit('setTrainingProgram', response.data)
+      }
     } catch (err) {
       console.log(err)
 

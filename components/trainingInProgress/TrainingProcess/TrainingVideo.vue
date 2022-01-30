@@ -1,5 +1,5 @@
 <template>
-  <div class="video">video and training comment</div>
+  <div class="video">виртуальный ассистент или видео-тренировка от тренера</div>
 </template>
 
 <script>
@@ -11,11 +11,10 @@ export default {}
 
 .video {
   flex: 1 1 auto;
-  margin-top: 10px;
+  margin: 10px;
   padding: 10px;
-  height: 500px;
+  height: 550px;
   background: $hiddenBlockBG;
-  border: 1px solid $blockBorder;
   border-radius: 6px;
 }
 

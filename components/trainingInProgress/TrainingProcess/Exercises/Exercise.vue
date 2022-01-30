@@ -6,10 +6,10 @@
           <div class="header__drag-drop-btn">
             <i class="ti-exchange-vertical"></i>
           </div>
-          <p class="header__title">{{ item.exercise.title }}</p>
+          <p class="header__title">{{ item.exercise.title ? item.exercise.title : '' }}</p>
           <div class="header__parameter">
             <p class="parameter__text">Подходы</p>
-            <p class="parameter__value">{{ item.approaches }}</p>
+            <p class="parameter__value">{{ item.approaches ? item.approaches : '--' }}</p>
           </div>
           <div class="header__parameter">
             <p class="parameter__text">Повторений</p>
@@ -26,33 +26,12 @@
       </template>
       <template v-slot:accordionHiddenContent>
         <ul class="exercise__steps">
-          <li class="approach approach--not-active">
-            <div class="approach__status">
-              <div class="status"></div>
-            </div>
-            <div class="approach__number">
-              <p class="number__title">Подход 0</p>
-            </div>
-            <div class="approach__element">
-              <p class="element__text">Повторений</p>
-              <p class="element__value">--</p>
-            </div>
-            <div class="approach__element">
-              <p class="element__text">Отягощение</p>
-              <p class="element__value">-- кг.</p>
-            </div>
-            <div class="approach__element">
-              <p class="element__text">Время выполнения</p>
-              <p class="element__value">{{ item.implementationTime ? item.implementationTime : '00 : 00 : 00' }}</p>
-            </div>
-            <div class="approach__element">
-              <p class="element__text">Время отдыха</p>
-              <p class="element__value">{{ item.restTime ? item.restTime : '00 : 00 : 00' }}</p>
-            </div>
-            <div class="approach__action-btn">
-              <i class="ti-more"></i>
-            </div>
-          </li>
+          <approach
+            v-for="(approach, index) in item.approaches"
+            :key="index"
+            :item="item"
+            :approach="approach"
+          />
         </ul>
         <div class="exercise__control">
           <div class="control">
@@ -76,6 +55,7 @@
 <script>
 import AppAccordion from '@/components/basic/AppAccordion'
 import AppButton from '@/components/basic/AppButton'
+import Approach from '@/components/trainingInProgress/TrainingProcess/Exercises/Approach'
 
 export default {
   props: {
@@ -83,7 +63,8 @@ export default {
   },
   components: {
     AppAccordion,
-    AppButton
+    AppButton,
+    Approach
   }
 }
 </script>
@@ -139,61 +120,9 @@ export default {
   .exercise__steps {
     display: flex;
     flex-direction: column;
-    // background: rgba(0,0,0,.025);
+    padding: 10px 10px 5px 10px;
+    background: $black10;
     border-top: 1px solid $blockBorder;
-    .approach {
-      display: flex;
-      align-items: center;
-      padding: 10px;
-      border-bottom: 1px dashed $blockBorder;
-      .approach__status {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px;
-        height: 50px;
-        .status {
-          width: 16px;
-          height: 16px;
-          background: $red;
-          border-radius: 50%;
-        }
-      }
-      .approach__number {
-        margin-left: 10px;
-        margin-right: auto;
-        .number__title {
-          font-weight: 500;
-          white-space: nowrap;
-        }
-      }
-      .approach__element {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 0 10px;
-        width: 100%;
-        max-width: 150px;
-        .element__text {
-          text-transform: uppercase;
-          font-size: 10px;
-        }
-        .element__value {
-          margin-top: 5px;
-          font-weight: 500;
-        }
-      }
-      .approach__action-btn {
-        // border: 1px solid red;
-        padding: 10px;
-      }
-    }
-    .approach:last-child {
-      border-bottom: none;
-    }
-    // .approach--not-active {
-    //   background: $black10;
-    // }
   }
   .exercise__control {
     display: flex;

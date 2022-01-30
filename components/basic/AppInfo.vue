@@ -50,8 +50,8 @@ export default {
   color: $gray-dark;
   border-radius: 6px;
   .app-info__icon {
-    margin-right: 10px;
-    font-size: 20px;
+    margin-right: 15px;
+    font-size: 26px;
   }
   .app-info__text {
     font-size: 16px;

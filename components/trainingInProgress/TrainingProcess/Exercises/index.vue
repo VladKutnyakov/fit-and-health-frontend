@@ -30,9 +30,10 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  border-top: 1px dashed $blockBorder;
   .exercises-list {
     flex: 1 1 auto;
+    margin: 10px;
     padding: 10px;
     background: rgba(0,0,0,.025);
     box-shadow: $insetBoxShadow;

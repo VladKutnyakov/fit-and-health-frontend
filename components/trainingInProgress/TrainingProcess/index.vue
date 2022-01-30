@@ -9,10 +9,10 @@
         info
         :text="trainingDay.comment"
       />
-      <!-- <div class="video-and-timer">
+      <div class="video-and-timer">
         <training-video />
-        <timer />
-      </div> -->
+        <laps-overview />
+      </div>
       <exercises :exercisesList="trainingDay.trainingProgramDayExercises" />
     </div>
   </div>
@@ -24,7 +24,7 @@ import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppInfo from '@/components/basic/AppInfo'
 import MainStats from '@/components/trainingInProgress/TrainingProcess/MainStats'
 import TrainingVideo from '@/components/trainingInProgress/TrainingProcess/TrainingVideo'
-import Timer from '@/components/trainingInProgress/TrainingProcess/Timer'
+import LapsOverview from '@/components/trainingInProgress/TrainingProcess/LapsOverview'
 import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises/index'
 
 export default {
@@ -33,7 +33,7 @@ export default {
     AppInfo,
     MainStats,
     TrainingVideo,
-    Timer,
+    LapsOverview,
     Exercises
   },
   computed: {
@@ -61,7 +61,6 @@ export default {
     border-radius: 6px;
     .video-and-timer {
       display: flex;
-      margin: 0 10px;
     }
   }
 }

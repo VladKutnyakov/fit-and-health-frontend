@@ -3,7 +3,7 @@
     <app-block-title>Тренировочная программа</app-block-title>
 
     <div class="training-program__content">
-      <p class="title">{{ trainingProgram.title }}</p>
+      <p class="title">{{ trainingProgram.title }}1234124</p>
 
       <div class="training-day">
         <p class="select__title">Тренировочный день</p>
@@ -14,7 +14,7 @@
         />
       </div>
 
-      <div v-if="trainingProgramTargetDay" class="chart-and-percents">
+      <div class="chart-and-percents">
         <div class="chart">
           <p>график круговой показывает смещение акцента в тренировках (выносливость, сила, кардио)</p>
         </div>
@@ -38,32 +38,19 @@
         </div>
       </div>
 
-      <!-- <img class="preview" src="https://cdn.imgbb.ru/community/7/74658/201602/2e5bbfb866325797fc99c79021a9b829.jpg"> -->
-
-      <div v-if="trainingProgramTargetDay" class="actions">
-        <!-- <div class="actions__select">
-          <p class="select__title">Тренировочный день</p>
-          <app-select
-            :value="trainingProgramTargetDay"
-            :selectOptionsList="trainingProgram.trainingProgramDays"
-            @select="fetchTrainingDay($event)"
-          />
-        </div> -->
-        
-        <div class="actions__btns">
-          <app-button>
-            <i class="ti-pencil"></i>
-          </app-button>
-          <app-button class="ml-10 fill-area">Начать тренироваку</app-button>
-        </div>
+      <div class="actions">
+        <app-button>
+          <i class="ti-pencil"></i>
+        </app-button>
+        <app-button class="ml-10 fill-area">Начать тренироваку</app-button>
       </div>
 
-     </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 import AppBlockTitle from "@/components/basic/AppBlockTitle"
 import AppSelect from '@/components/basic/AppSelect'
 import AppButton from '@/components/basic/AppButton'
@@ -114,57 +101,40 @@ export default {
     border: 1px solid $blockBorder;
     border-radius: 6px;
     .title {
-      margin: 0 10px;
-      padding: 10px;
-      text-transform: uppercase;
+      flex: 1 1 auto;
+      // margin: 0 10px;
+      padding: 15px 10px;
+      // text-transform: uppercase;
       text-align: center;
+      font-size: 18px;
       font-weight: 500;
       // border-bottom: 1px dashed $blockBorder;
+    }
+    .overview {
+      display: flex;
+      padding: 10px;
+      .preview-image {
+        align-self: center;
+        // width: 120px;
+        border: 1px solid $blockBorder;
+        border-radius: 6px;
+      }
     }
     .training-day {
       display: flex;
       flex-direction: column;
-      // margin-top: 10px;
       padding: 10px;
       background: $hiddenBlockBG;
-      // border: 1px solid $blockBorder;
-      // border-radius: 6px;
-      // border-bottom: 1px dashed $blockBorder;
       .select__title {
         margin-bottom: 5px;
         padding: 0 10px;
         font-weight: 500;
       }
     }
-    .preview {
-      margin: 10px;
-      align-self: center;
-      width: calc(100% - 20px);
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
-    }
     .actions {
       display: flex;
-      flex-direction: column;
       padding: 10px;
       background: $hiddenBlockBG;
-      // .actions__select {
-      //   display: flex;
-      //   flex-direction: column;
-      //   padding: 10px;
-      //   background: $white;
-      //   // border: 1px solid $blockBorder;
-      //   border-radius: 6px;
-      //   .select__title {
-      //     margin-bottom: 5px;
-      //     padding: 0 10px;
-      //     font-weight: 500;
-      //   }
-      // }
-      .actions__btns {
-        display: flex;
-        // margin-top: 10px;
-      }
     }
   }
 }
@@ -173,17 +143,11 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  // background: $white;
-  // border: 1px solid $blockBorder;
-  // border-radius: 6px;
-
   .chart {
-    // border: 1px solid red;
-    height: 300px;
+    height: 250px;
   }
   .percents {
     margin-top: auto;
-    // padding-top: 10px;
     padding: 10px 10px 0px 10px;
     border-top: 1px dashed $blockBorder;
     .percents__element {
@@ -191,13 +155,8 @@ export default {
       align-items: center;
       justify-content: space-between;
       margin-bottom: 5px;
-      .element__title {
-        // font-size: 18px;
-        // font-weight: 500;
-      }
       .element__value {
         color: $green;
-        // font-size: 18px;
         font-weight: 600;
       }
     }
