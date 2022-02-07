@@ -34,16 +34,16 @@
           />
         </ul>
         <div class="exercise__control">
-          <div class="control">
+          <div class="control" title="Добавить подход">
             <i class="ti-plus control__icon"></i>
           </div>
-          <div class="control">
+          <div class="control" title="Завершить подход">
             <i class="ti-control-stop control__icon"></i>
           </div>
-          <div class="control">
+          <div class="control" title="Приостановить выполнение подхода">
             <i class="ti-control-pause control__icon"></i>
           </div>
-          <div class="control">
+          <div class="control" title="Начать выполнение подхода">
             <i class="ti-control-play control__icon"></i>
           </div>
         </div>

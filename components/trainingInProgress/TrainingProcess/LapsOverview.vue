@@ -1,6 +1,5 @@
 <template>
   <div class="laps-overview">
-    <!-- <p class="lap-timer">00 : 00 : 00</p> -->
     <div class="laps-counter">
       <p class="laps-counter__text">Завершено кругов:</p>
       <p class="laps-counter__count">6 из 10</p>
@@ -8,8 +7,9 @@
     <div class="laps">
       <div class="lap">
         <div class="lap__title">
-          <p class="title">Круг 1</p>
-          <i class="ti-trash"></i>
+          <p class="title">Круг</p>
+          <p class="value">1</p>
+          <!-- <i class="ti-trash"></i> -->
         </div>
         <div class="lap__info">
           <div class="info__element">
@@ -31,12 +31,13 @@
             <p class="element__value">00 : 05 : 00</p>
           </div>
         </div>
+        <div class="lap__actions">
+          <i class="ti-control-stop control__btn"></i>
+          <i class="ti-control-pause control__btn"></i>
+          <i class="ti-control-play control__btn"></i>
+        </div>
       </div>
     </div>
-    <!-- <div class="laps-counter">
-      <p class="laps-counter__text">Завершено кругов:</p>
-      <p class="laps-counter__count">6 из 10</p>
-    </div> -->
   </div>
 </template>
 
@@ -89,9 +90,11 @@ export default {
         border-bottom: 1px solid $blockBorder;
         .title {
           margin-right: auto;
-          font-size: 16px;
+          text-transform: uppercase;
           font-weight: 500;
+          // font-size: 18px;
         }
+        // .value {}
       }
       .lap__info {
         margin: 0 10px;
@@ -130,6 +133,23 @@ export default {
         }
         .stats__element:last-child {
           margin-bottom: 0;
+        }
+      }
+      .lap__actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0px 10px 0 10px;
+        border-top: 1px dashed $blockBorder;
+        .control__btn {
+          margin: 5px 10px;
+          padding: 5px;
+          font-size: 18px;
+          transition: $tr-02;
+          cursor: pointer;
+        }
+        .control__btn:hover {
+          color: $green;
         }
       }
     }

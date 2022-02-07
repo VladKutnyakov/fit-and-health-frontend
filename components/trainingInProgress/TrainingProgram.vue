@@ -144,7 +144,7 @@ export default {
   flex-direction: column;
   padding: 10px;
   .chart {
-    height: 250px;
+    height: 300px;
   }
   .percents {
     margin-top: auto;

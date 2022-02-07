@@ -1,5 +1,5 @@
 <template>
-  <li class="approach" :class="[{ 'approach--not-active': false }]">
+  <li class="approach" :class="[{ 'approach--not-active': true }]">
     <div class="approach__status">
       <div class="status"></div>
     </div>
