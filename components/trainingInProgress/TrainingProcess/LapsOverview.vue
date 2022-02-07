@@ -1,6 +1,10 @@
 <template>
   <div class="laps-overview">
-    <p class="lap-timer">00 : 00 : 00</p>
+    <!-- <p class="lap-timer">00 : 00 : 00</p> -->
+    <div class="laps-counter">
+      <p class="laps-counter__text">Завершено кругов:</p>
+      <p class="laps-counter__count">6 из 10</p>
+    </div>
     <div class="laps">
       <div class="lap">
         <div class="lap__title">
@@ -29,10 +33,10 @@
         </div>
       </div>
     </div>
-    <div class="laps-counter">
+    <!-- <div class="laps-counter">
       <p class="laps-counter__text">Завершено кругов:</p>
       <p class="laps-counter__count">6 из 10</p>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -66,7 +70,7 @@ export default {
   }
   .laps {
     flex: 1 1 auto;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px;
     background: rgba(0,0,0,.025);
     box-shadow: $insetBoxShadow;
@@ -132,13 +136,19 @@ export default {
   }
   .laps-counter {
     display: flex;
-    padding: 15px 10px 10px 10px;
+    // margin-top: 10px;
+    padding: 10px 10px 10px 10px;
+    // background: $green;
+    border: 1px solid $blockBorder;
+    border-radius: 6px;
     .laps-counter__text {
       margin-right: auto;
+      // color: $white;
       font-weight: 500;
     }
     .laps-counter__count {
       color: $green;
+      // color: $white;
       font-weight: 500;
     }
   }
