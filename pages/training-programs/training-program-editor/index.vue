@@ -13,7 +13,7 @@
 import AppPageTitle from '@/components/basic/AppPageTitle'
 import Editor from '@/components/trainingProgramEditor/Editor/index'
 import AdditionalInfo from '@/components/trainingProgramEditor/AdditionalInfo/index'
-import SelectExercisesModal from '@/components/trainingProgramEditor/SelectExercisesModal'
+import SelectExercisesModal from '@/components/trainingProgramEditor/SelectExercisesModal/index'
 
 export default {
   name: 'TrainingProgramEditor',
