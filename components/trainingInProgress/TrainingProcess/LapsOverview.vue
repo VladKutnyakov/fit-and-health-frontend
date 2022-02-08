@@ -1,15 +1,21 @@
 <template>
   <div class="laps-overview">
-    <div class="laps-counter">
-      <p class="laps-counter__text">Завершено кругов:</p>
-      <p class="laps-counter__count">6 из 10</p>
+    <div class="laps-overview__counter">
+      <div class="counter__element">
+        <p class="element__text">Завершено кругов:</p>
+        <p class="element__count">6 из 10</p>
+      </div>
+      <!-- <div class="counter__element">
+        <p class="element__text">Среднее время круга:</p>
+        <p class="element__count">00 : 00 : 00</p>
+      </div> -->
     </div>
-    <div class="laps">
-      <div class="lap">
+
+    <ul class="laps-overview__laps">
+      <li class="lap" v-for="(item, index) in 4" :key="index">
         <div class="lap__title">
           <p class="title">Круг</p>
-          <p class="value">1</p>
-          <!-- <i class="ti-trash"></i> -->
+          <p class="value">{{ index + 1 }}</p>
         </div>
         <div class="lap__info">
           <div class="info__element">
@@ -32,11 +38,18 @@
           </div>
         </div>
         <div class="lap__actions">
+          <i class="ti-trash control__btn"></i>
           <i class="ti-control-stop control__btn"></i>
           <i class="ti-control-pause control__btn"></i>
           <i class="ti-control-play control__btn"></i>
+          <i class="ti-control-record control__btn control__btn--record-on"></i>
         </div>
-      </div>
+      </li>
+    </ul>
+
+    <div class="laps-overview__actions">
+      <app-button size14px >Очистить список</app-button>
+      <app-button size14px >Добавить круг</app-button>
     </div>
   </div>
 </template>
@@ -62,39 +75,57 @@ export default {
   width: 100%;
   min-width: 350px;
   max-width: 350px;
-  .lap-timer {
-    margin-top: 10px;
-    text-align: center;
-    color: $green;
-    font-size: 32px;
-    font-weight: 600;
+  border: 1px solid $blockBorder;
+  border-radius: 6px;
+  .laps-overview__counter {
+    padding: 10px 20px;
+    .counter__element {
+      display: flex;
+      margin-bottom: 10px;
+      .element__text {
+        margin-right: auto;
+        font-weight: 500;
+      }
+      .element__count {
+        color: $green;
+        font-weight: 500;
+      }
+    }
+    .counter__element:last-child {
+      margin-bottom: 0;
+    }
   }
-  .laps {
+  .laps-overview__laps {
     flex: 1 1 auto;
-    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
     padding: 10px;
+    max-height: 455px;
     background: rgba(0,0,0,.025);
     box-shadow: $insetBoxShadow;
-    border-radius: 6px;
+    border-top: 1px solid $blockBorder;
+    border-bottom: 1px solid $blockBorder;
     overflow-y: scroll;
     .lap {
       display: flex;
       flex-direction: column;
+      margin-bottom: 10px;
       background: $white;
       border: 1px solid $blockBorder;
       border-radius: 6px;
       .lap__title {
         display: flex;
-        margin: 10px;
-        padding: 0 10px 10px 10px;
+        margin: 10px 0;
+        padding: 0 20px 10px 20px;
         border-bottom: 1px solid $blockBorder;
         .title {
           margin-right: auto;
           text-transform: uppercase;
           font-weight: 500;
-          // font-size: 18px;
         }
-        // .value {}
+        .value {
+          font-weight: 500;
+        }
       }
       .lap__info {
         margin: 0 10px;
@@ -138,9 +169,7 @@ export default {
       .lap__actions {
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        margin: 0px 10px 0 10px;
-        border-top: 1px dashed $blockBorder;
+        background: $hiddenBlockBG;
         .control__btn {
           margin: 5px 10px;
           padding: 5px;
@@ -148,29 +177,26 @@ export default {
           transition: $tr-02;
           cursor: pointer;
         }
+        .control__btn:first-child {
+          margin-right: auto;
+        }
+        .control__btn:first-child:hover {
+          color: $red;
+        }
         .control__btn:hover {
           color: $green;
+        }
+        .control__btn--record-on {
+          color: $red;
         }
       }
     }
   }
-  .laps-counter {
+  .laps-overview__actions {
     display: flex;
-    // margin-top: 10px;
-    padding: 10px 10px 10px 10px;
-    // background: $green;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
-    .laps-counter__text {
-      margin-right: auto;
-      // color: $white;
-      font-weight: 500;
-    }
-    .laps-counter__count {
-      color: $green;
-      // color: $white;
-      font-weight: 500;
-    }
+    justify-content: space-between;
+    padding: 10px;
+    background: $hiddenBlockBG;
   }
 }
 
