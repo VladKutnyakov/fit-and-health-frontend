@@ -33,6 +33,8 @@ export const state = () => ({
   }),
   selectedTrainingDay: 0,
   skillList: [],
+  modalCondition: 'create',
+  selectExercisesModalActive: false,
 })
 
 export const getters = {
@@ -101,6 +103,9 @@ export const mutations = {
     })
 
     state.skillList = list
+  },
+  toggleModalVisibility (state, ctx) {
+    state[ctx.modal] = ctx.condition
   },
 }
 

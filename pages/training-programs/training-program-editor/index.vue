@@ -5,6 +5,7 @@
       <editor />
       <additional-info />
     </div>
+    <select-exercises-modal />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import AppPageTitle from '@/components/basic/AppPageTitle'
 import Editor from '@/components/trainingProgramEditor/Editor/index'
 import AdditionalInfo from '@/components/trainingProgramEditor/AdditionalInfo/index'
+import SelectExercisesModal from '@/components/trainingProgramEditor/SelectExercisesModal'
 
 export default {
   name: 'TrainingProgramEditor',
@@ -47,7 +49,8 @@ export default {
   components: {
     AppPageTitle,
     Editor,
-    AdditionalInfo
+    AdditionalInfo,
+    SelectExercisesModal
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
     if (query.trainingProgramId) {

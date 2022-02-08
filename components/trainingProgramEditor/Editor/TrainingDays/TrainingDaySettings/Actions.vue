@@ -13,7 +13,7 @@
 
     <app-tooltip width="190px" right info textAlignCenter >
       <template v-slot:tooltipElement>
-        <div class="action-btn">
+        <div class="action-btn" @click="toggleModalVisibility({modal: 'selectExercisesModalActive', condition: true})">
           <i class="ti-zoom-in"></i>
         </div>
       </template>
@@ -47,6 +47,7 @@ export default {
     ...mapMutations({
       addTrainingProgramDay: 'trainingProgramEditor/addTrainingProgramDay',
       removeTrainingProgramDay: 'trainingProgramEditor/removeTrainingProgramDay',
+      toggleModalVisibility: 'trainingProgramEditor/toggleModalVisibility',
     })
   }
 }
