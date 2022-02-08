@@ -5,6 +5,7 @@
         <div class="title-and-description">
           <training-title />
           <training-description />
+          <training-type />
         </div>
 
         <training-video />
@@ -21,6 +22,7 @@
 <script>
 import TrainingTitle from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/TrainingTitle'
 import TrainingDescription from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/TrainingDescription'
+import TrainingType from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/TrainingType'
 import TrainingVideo from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/TrainingVideo'
 import Exercises from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Exercises/index'
 // import Stats from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Stats'
@@ -30,6 +32,7 @@ export default {
   components: {
     TrainingTitle,
     TrainingDescription,
+    TrainingType,
     TrainingVideo,
     Exercises,
     // Stats,
@@ -45,8 +48,8 @@ export default {
   // border: 1px solid red;
   display: flex;
   background: $white;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
+  border: 1px solid $blockBorder;
+  border-radius: 6px;
   .settings {
     flex: 1 1 auto;
     padding: 10px;

@@ -27,9 +27,9 @@ export default {}
     justify-content: center;
     background: $black10;
     width: 100%;
-    max-width: 500px;
-    min-width: 500px;
-    height: 300px;
+    max-width: 600px;
+    min-width: 600px;
+    height: 350px;
   }
 }
 
