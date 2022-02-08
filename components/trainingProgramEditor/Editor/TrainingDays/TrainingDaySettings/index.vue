@@ -12,7 +12,7 @@
       </div>
 
       <exercises />
-      <!-- <stats /> -->
+      <stats />
     </div>
 
     <actions />
@@ -25,7 +25,7 @@ import TrainingDescription from '@/components/trainingProgramEditor/Editor/Train
 import TrainingType from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/TrainingType'
 import TrainingVideo from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/TrainingVideo'
 import Exercises from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Exercises/index'
-// import Stats from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Stats'
+import Stats from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Stats'
 import Actions from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Actions'
 
 export default {
@@ -35,7 +35,7 @@ export default {
     TrainingType,
     TrainingVideo,
     Exercises,
-    // Stats,
+    Stats,
     Actions
   }
 }
