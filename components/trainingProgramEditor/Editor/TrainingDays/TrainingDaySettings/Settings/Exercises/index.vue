@@ -9,7 +9,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import Exercise from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Exercises/Exercise'
+import Exercise from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Settings/Exercises/Exercise'
 
 export default {
   components: {

@@ -1,10 +1,8 @@
 <template>
   <div class="tarining-days">
     <app-block-title>Тренировочные дни</app-block-title>
-
     <div class="tarining-days__content">
       <training-days-list />
-
       <training-day-settings />
     </div>
   </div>
