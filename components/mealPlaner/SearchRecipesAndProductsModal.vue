@@ -232,7 +232,7 @@ export default {
         width: 120px;
         text-transform: uppercase;
         text-align: center;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 500;
         border-right: 1px solid rgba(255,255,255,.4);
       }
@@ -259,16 +259,12 @@ export default {
     }
     .pinned-products {
       margin-bottom: 10px;
-      // padding: 0 10px;
       .pinned-products__title {
-        font-size: 14px;
         padding: 0 0 10px 10px;
       }
     }
     .not-pinned-products {
-      // padding: 0 10px;
       .not-pinned-products__title {
-        font-size: 14px;
         padding: 0 0 10px 10px;
       }
     }
