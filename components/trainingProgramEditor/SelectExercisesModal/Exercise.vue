@@ -1,68 +1,62 @@
 <template>
-  <li class="product__item">
-    <div class="item__element">
+  <li class="exercise">
+    <div class="exercise__element">
       <i
-        v-if="!item.pinned"
         class="ti-pin-alt element__action-btn"
-        :class="[{'element__action-btn--active': item.pinned}]"
-        @click="changePinnedParam(item.id)"
-      ></i>
-      <i
-        v-if="item.pinned"
-        class="ti-pin2 element__action-btn"
-        :class="[{'element__action-btn--active': item.pinned}]"
-        @click="changePinnedParam(item.id)"
+        :class="[
+          { 'ti-pin2': item.pinned },
+          { 'ti-pin-alt': !item.pinned },
+          { 'element__action-btn--active': item.pinned }
+        ]"
+        @click="changePinnedParam(item)"
       ></i>
     </div>
-    <div class="item__element">
+    <div class="exercise__element">
       <i
-        v-if="!item.favorite"
-        class="ti-heart-broken element__action-btn"
-        :class="[{'element__action-btn--active': item.favorite}]"
-        @click="changeFavoriteParam(item.id)"
-      ></i>
-      <i
-        v-if="item.favorite"
-        class="ti-heart element__action-btn"
-        :class="[{'element__action-btn--active': item.favorite}]"
-        @click="changeFavoriteParam(item.id)"
+        class="element__action-btn"
+        :class="[
+          { 'ti-heart': item.favorite },
+          { 'ti-heart-broken': !item.favorite },
+          { 'element__action-btn--active': item.favorite },
+        ]"
+        @click="changeFavoriteParam(item)"
       ></i>
     </div>
-    <div class="item__element">
+    <div class="exercise__element">
       <p class="element__value">{{ item.title }}</p>
     </div>
-    <div class="item__element">
+    <div class="exercise__element">
       <p class="element__value">{{ item.category }}</p>
     </div>
-    <div class="item__element">
+    <div class="exercise__element">
       <input
-        class="element__weight-input"
+        class="element__input"
         type="text"
         :value="item.approaches"
-        @input="changeProductWeight({item, newWeight: $event.target.value})"
+        @input="changeExerciseProperty({ item, newValue: $event.target.value })"
         @focus="setFocus($event)"
       >
     </div>
-    <div class="item__element">
+    <div class="exercise__element">
       <input
-        class="element__weight-input"
+        class="element__input"
         type="text"
         :value="item.repeats"
-        @input="changeProductWeight({item, newWeight: $event.target.value})"
+        @input="changeExerciseProperty({ item, newValue: $event.target.value })"
         @focus="setFocus($event)"
       >
     </div>
-    <div class="item__element">
+    <div class="exercise__element">
       <input
-        class="element__weight-input"
+        class="element__input"
         type="text"
         :value="item.additionalWeight"
-        @input="changeProductWeight({item, newWeight: $event.target.value})"
+        @input="changeExerciseProperty({ item, newValue: $event.target.value })"
         @focus="setFocus($event)"
       >
     </div>
-    <div class="item__element">
-      <i class="ti-plus element__action-btn" @click="addFoodToMealPart(item)"></i>
+    <div class="exercise__element">
+      <i class="ti-plus element__action-btn" @click="addExerciseToTrainingDay(item)"></i>
     </div>
   </li>
 </template>
@@ -86,26 +80,17 @@ export default {
     setFocus ($event) {
       $event.target.select()
     },
-    editProduct (product) {
-      if (product.userId) {
-        // Очистить поля и ошибки формы
-        this.$store.commit('foodCalorieTable/clearProductForm', 'edit')
-
-        // Установить значение для полей на основе редактируемого продукта
-        for (const key in product) {
-          this.$store.commit('foodCalorieTable/setProductFormField', {field: key, value: product[key]})
-        }
-
-        // Установить режим редактирования для модального окна
-        this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
-        // Открыть модальное окно
-        this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
-      }
+    changePinnedParam (item) {
+      console.log(item)
     },
-    removeProduct (product) {
-      if (product.userId) {
-        this.$store.dispatch('foodCalorieTable/removeProduct', product)
-      }
+    changeFavoriteParam (item) {
+      console.log(item)
+    },
+    changeExerciseProperty (ctx) {
+      console.log(ctx)
+    },
+    addExerciseToTrainingDay (item) {
+      console.log(item)
     }
   }
 }
@@ -114,14 +99,14 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.product__item {
+.exercise {
   display: flex;
   margin-bottom: 5px;
   padding: 5px 0px;
   background: $white;
   border: 1px solid $blockBorder;
   border-radius: 6px;
-  .item__element {
+  .exercise__element {
     flex: 0 1 auto;
     display: flex;
     align-items: center;
@@ -130,13 +115,9 @@ export default {
     width: 120px;
     text-align: center;
     border-right: 1px dashed $inputBorder;
-    .element__value {
-      // font-size: 14px;
-    }
     .element__action-btn {
       padding: 5px;
       color: $black30;
-      // font-size: 14px;
       border-radius: 50%;
       transition: $tr-02;
       cursor: pointer;
@@ -147,13 +128,7 @@ export default {
     .element__action-btn--active {
       color: $green;
     }
-    .element__action-btn--disabled {
-      color: $black30;
-    }
-    .element__action-btn--disabled:hover {
-      color: $black30 !important;
-    }
-    .element__weight-input {
+    .element__input {
       flex: 1 1 auto;
       padding: 10px 5px;
       width: 100%;
@@ -162,50 +137,36 @@ export default {
       border-radius: 6px;
       text-align: center;
       color: $green;
-      // font-size: 14px;
       font-family: $fontMontserrat;
       font-weight: 500;
       transition: $tr-02;
     }
-    .element__weight-input:focus {
+    .element__input:focus {
       border: 1px solid $green;
     }
-    .element__weight-input::selection {
+    .element__input::selection {
       color: $white;
       background: $green;
     }
-    .element__weight-scale {
-      margin-top: 5px;
-      margin-left: 5px;
-      // font-size: 12px;
-    }
   }
-  .item__element:nth-child(1) {
+  .exercise__element:nth-child(1) {
     width: 40px;
     min-width: 40px;
     max-width: 40px;
   }
-  .item__element:nth-child(2) {
+  .exercise__element:nth-child(2) {
     width: 40px;
     min-width: 40px;
     max-width: 40px;
   }
-  .item__element:nth-child(3) {
+  .exercise__element:nth-child(3) {
     flex: 1 1 auto;
     min-width: 200px;
   }
-  .item__element:nth-child(4) {
+  .exercise__element:nth-child(4) {
     padding: 0 5px;
   }
-  // .item__element:nth-child(9) {
-  //   width: 50px;
-  //   min-width: 50px;
-  //   max-width: 50px;
-  //   .element__action-btn:hover {
-  //     color: $black;
-  //   }
-  // }
-  .item__element:last-child {
+  .exercise__element:last-child {
     width: 40px;
     min-width: 40px;
     max-width: 40px;

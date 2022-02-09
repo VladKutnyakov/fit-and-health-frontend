@@ -63,21 +63,21 @@
         </div>
 
         <div class="founding__results">
-          <div class="product__header">
-            <p class="header__column-title"><i class="ti-pin-alt"></i></p>
-            <p class="header__column-title"><i class="ti-heart"></i></p>
-            <p class="header__column-title">Название</p>
-            <p class="header__column-title">Категория</p>
-            <p class="header__column-title">Подходов</p>
-            <p class="header__column-title">Повторений</p>
-            <p class="header__column-title">Отягощение</p>
-            <p class="header__column-title"><i class="ti-trash"></i></p>
+          <div class="results__header">
+            <p class="header__column"><i class="ti-pin-alt"></i></p>
+            <p class="header__column"><i class="ti-heart"></i></p>
+            <p class="header__column">Название</p>
+            <p class="header__column">Категория</p>
+            <p class="header__column">Подходов</p>
+            <p class="header__column">Повторений</p>
+            <p class="header__column">Отягощение</p>
+            <p class="header__column"><i class="ti-trash"></i></p>
           </div>
 
-          <div v-if="pinnedExercises.length > 0" class="pinned-products">
-            <p class="pinned-products__title">Закрепленные упражнения</p>
+          <div v-if="pinnedExercises.length > 0" class="pinned-exercises">
+            <p class="pinned-exercises__title">Закрепленные упражнения</p>
 
-            <ul class="food-table__product-list">
+            <ul class="exercises-list">
               <exercise
                 v-for="(item, index) in pinnedExercises"
                 :key="index"
@@ -86,10 +86,10 @@
             </ul>
           </div>
 
-          <div v-if="notPinnedExercises.length > 0" class="not-pinned-products">
-            <p v-if="pinnedExercises.length > 0" class="not-pinned-products__title">Не закрепленные упражнения</p>
+          <div v-if="notPinnedExercises.length > 0" class="not-pinned-exercises">
+            <p v-if="pinnedExercises.length > 0" class="not-pinned-exercises__title">Не закрепленные упражнения</p>
 
-            <ul class="food-table__product-list">
+            <ul class="exercises-list">
               <exercise
                 v-for="(item, index) in notPinnedExercises"
                 :key="index"
@@ -194,46 +194,44 @@ export default {
     background: $hiddenBlockBG;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    .filters__groups {
-      display: flex;
-      margin-top: 10px;
-      .group {
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        margin-right: 5px;
-        padding: 10px;
-        background: $white;
-        border: 1px solid $blockBorder;
-        border-radius: 6px;
-        .group__title {
-          margin-bottom: 10px;
-          padding-bottom: 10px;
-          font-size: 14px;
-          font-weight: 500;
-          border-bottom: 1px dashed $blockBorder;
-        }
-        .input-item {
-          margin-bottom: 5px;
-        }
-      }
-      .group:last-child {
-        margin-right: 0;
-      }
-    }
+    // .filters__groups {
+    //   display: flex;
+    //   margin-top: 10px;
+    //   .group {
+    //     flex: 1 1 auto;
+    //     display: flex;
+    //     flex-direction: column;
+    //     margin-right: 5px;
+    //     padding: 10px;
+    //     background: $white;
+    //     border: 1px solid $blockBorder;
+    //     border-radius: 6px;
+    //     .group__title {
+    //       margin-bottom: 10px;
+    //       padding-bottom: 10px;
+    //       font-size: 14px;
+    //       font-weight: 500;
+    //       border-bottom: 1px dashed $blockBorder;
+    //     }
+    //     .input-item {
+    //       margin-bottom: 5px;
+    //     }
+    //   }
+    //   .group:last-child {
+    //     margin-right: 0;
+    //   }
+    // }
   }
   .founding__results {
-    // position: relative;
     margin-top: 20px;
     padding: 10px;
     height: 800px;
-    // max-height: 400px;
     background: $white;
     border: 1px solid $inputBorder;
     border-radius: 6px;
     background: rgba(0, 0, 0, 0.025);
     box-shadow: inset 0 0 5px 0px rgb(0,0,0,.25);
-    .product__header {
+    .results__header {
       position: sticky;
       top: -20px;
       display: flex;
@@ -244,7 +242,7 @@ export default {
       background: $green;
       border: 1px solid transparent;
       border-radius: 6px;
-      .header__column-title {
+      .header__column {
         padding: 5px;
         width: 120px;
         text-transform: uppercase;
@@ -253,39 +251,35 @@ export default {
         font-weight: 500;
         border-right: 1px solid rgba(255,255,255,.4);
       }
-      .header__column-title:nth-child(1) {
+      .header__column:nth-child(1) {
         width: 40px;
         min-width: 40px;
         max-width: 40px;
       }
-      .header__column-title:nth-child(2) {
+      .header__column:nth-child(2) {
         width: 40px;
         min-width: 40px;
         max-width: 40px;
       }
-      .header__column-title:nth-child(3) {
+      .header__column:nth-child(3) {
         flex: 1 1 auto;
         min-width: 200px;
       }
-      .header__column-title:last-child {
+      .header__column:last-child {
         width: 40px;
         min-width: 40px;
         max-width: 40px;
         border: none;
       }
     }
-    .pinned-products {
+    .pinned-exercises {
       margin-bottom: 10px;
-      // padding: 0 10px;
-      .pinned-products__title {
-        // font-size: 14px;
+      .pinned-exercises__title {
         padding: 0 0 10px 10px;
       }
     }
-    .not-pinned-products {
-      // padding: 0 10px;
-      .not-pinned-products__title {
-        // font-size: 14px;
+    .not-pinned-exercises {
+      .not-pinned-exercises__title {
         padding: 0 0 10px 10px;
       }
     }
