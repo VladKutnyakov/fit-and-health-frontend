@@ -33,6 +33,7 @@ export const state = () => ({
   }),
   selectedTrainingDay: 0,
   skillList: [],
+  exercisesList: [],
   modalCondition: 'create',
   selectExercisesModalActive: false,
 })
@@ -92,6 +93,9 @@ export const mutations = {
       }
     }
   },
+  setExercisesList (state, payload) {
+    state.exercisesList = payload
+  },
   setSkillsList (state, payload) {
     const list = []
 
@@ -148,7 +152,23 @@ export const actions = {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+  async fetchExercisesList ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-list`)
 
+      commit('setExercisesList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
   async fetchSkills ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/skill-types`)

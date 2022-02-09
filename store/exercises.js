@@ -180,7 +180,7 @@ export const mutations = {
 export const actions = {
   async fetchExercisesList ({ commit }) {
     try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-by-muscles`)
 
       commit('setExercisesList', response.data)
     } catch (error) {

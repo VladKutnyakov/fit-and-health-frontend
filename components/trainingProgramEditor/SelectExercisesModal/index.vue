@@ -166,6 +166,13 @@ export default {
       selectExercisesModalActive: state => state.trainingProgramEditor.selectExercisesModalActive,
     }),
   },
+  watch: {
+    selectExercisesModalActive (newValue) {
+      if (newValue) {
+        this.$store.dispatch('trainingProgramEditor/fetchExercisesList')
+      }
+    }
+  },
   methods: {
     ...mapMutations({
       toggleModalVisibility: 'trainingProgramEditor/toggleModalVisibility',
