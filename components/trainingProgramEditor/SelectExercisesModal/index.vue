@@ -11,18 +11,18 @@
         <app-search-block
           small
           filters
-          placeholder="Поиск продуктов и рецептов"
+          placeholder="Поиск упражнения"
           @openFilters="openFilters()"
         />
 
-        <!-- <div v-if="filtersIsOpened" class="filters">
+        <div v-if="filtersIsOpened" class="filters">
           <app-info
             small
             info
-            text="Нажмите кнопку поиска (лупа), чтобы применить фильтры."
+            text="Нажмите кнопку поиска, чтобы применить фильтры."
           />
 
-          <div class="filters__groups">
+          <!-- <div class="filters__groups">
             <div class="group">
               <p class="group__title">Сортировать по...</p>
               <app-input-radio
@@ -59,43 +59,44 @@
                 :value="item"
               />
             </div>
-          </div>
-        </div> -->
+          </div> -->
+        </div>
 
         <div class="founding__results">
           <div class="product__header">
             <p class="header__column-title"><i class="ti-pin-alt"></i></p>
             <p class="header__column-title"><i class="ti-heart"></i></p>
             <p class="header__column-title">Название</p>
+            <p class="header__column-title">Категория</p>
             <p class="header__column-title">Подходов</p>
             <p class="header__column-title">Повторений</p>
             <p class="header__column-title">Отягощение</p>
             <p class="header__column-title"><i class="ti-trash"></i></p>
           </div>
 
-          <!-- <div v-if="pinnedProducts.length > 0" class="pinned-products">
-            <p class="pinned-products__title">Закрепленные продукты</p>
+          <div v-if="pinnedExercises.length > 0" class="pinned-products">
+            <p class="pinned-products__title">Закрепленные упражнения</p>
 
             <ul class="food-table__product-list">
-              <product
-                v-for="(item, index) in pinnedProducts"
+              <exercise
+                v-for="(item, index) in pinnedExercises"
                 :key="index"
                 :item="item"
               />
             </ul>
-          </div> -->
+          </div>
 
-          <!-- <div v-if="notPinnedProducts.length > 0" class="not-pinned-products">
-            <p v-if="pinnedProducts.length > 0" class="not-pinned-products__title">Не закрепленные продукты</p>
+          <div v-if="notPinnedExercises.length > 0" class="not-pinned-products">
+            <p v-if="pinnedExercises.length > 0" class="not-pinned-products__title">Не закрепленные упражнения</p>
 
             <ul class="food-table__product-list">
-              <product
-                v-for="(item, index) in notPinnedProducts"
+              <exercise
+                v-for="(item, index) in notPinnedExercises"
                 :key="index"
                 :item="item"
               />
             </ul>
-          </div> -->
+          </div>
         </div>
       </div>
     </template>
@@ -115,18 +116,53 @@
 import { mapState, mapMutations } from 'vuex'
 import AppModal from "@/components/basic/AppModal"
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
-import AppAccordion from '@/components/basic/AppAccordion'
+import AppInfo from '@/components/basic/AppInfo'
+import Exercise from '@/components/trainingProgramEditor/SelectExercisesModal/Exercise'
 import AppButton from "@/components/basic/AppButton"
 
 export default {
   components: {
     AppModal,
     AppSearchBlock,
-    AppAccordion,
+    AppInfo,
+    Exercise,
     AppButton
   },
   data () {
-    return {}
+    return {
+      filtersIsOpened: false,
+      pinnedExercises: [
+        {
+          title: 'Отжимания',
+          category: 'Грудь',
+          approaches: 10,
+          repeats: null,
+          additionalWeight: null,
+          pinned: true,
+          favorite: false,
+        }
+      ],
+      notPinnedExercises: [
+        {
+          title: 'Подтягивания',
+          category: 'Широчайшие',
+          approaches: 5,
+          repeats: 15,
+          additionalWeight: 45,
+          pinned: false,
+          favorite: false,
+        },
+        {
+          title: 'Тяга гантели к поясу в наклоне',
+          category: 'Широчайшие',
+          approaches: 5,
+          repeats: 15,
+          additionalWeight: 45,
+          pinned: false,
+          favorite: true,
+        }
+      ],
+    }
   },
   computed: {
     ...mapState({
@@ -137,6 +173,9 @@ export default {
     ...mapMutations({
       toggleModalVisibility: 'trainingProgramEditor/toggleModalVisibility',
     }),
+    openFilters () {
+      this.filtersIsOpened = !this.filtersIsOpened
+    }
   }
 }
 </script>
@@ -210,7 +249,7 @@ export default {
         width: 120px;
         text-transform: uppercase;
         text-align: center;
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 500;
         border-right: 1px solid rgba(255,255,255,.4);
       }
@@ -239,14 +278,14 @@ export default {
       margin-bottom: 10px;
       // padding: 0 10px;
       .pinned-products__title {
-        font-size: 14px;
+        // font-size: 14px;
         padding: 0 0 10px 10px;
       }
     }
     .not-pinned-products {
       // padding: 0 10px;
       .not-pinned-products__title {
-        font-size: 14px;
+        // font-size: 14px;
         padding: 0 0 10px 10px;
       }
     }
