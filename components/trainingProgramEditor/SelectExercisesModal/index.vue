@@ -22,19 +22,20 @@
             text="Нажмите кнопку поиска, чтобы применить фильтры."
           />
 
-          <!-- <div class="filters__groups">
+          <div class="filters__groups">
             <div class="group">
-              <p class="group__title">Сортировать по...</p>
-              <app-input-radio
+              <p class="group__title">Категория</p>
+              <app-input-checkbox
                 small
                 class="input-item"
-                v-for="(item, index) in sortingByNutrients"
+                v-for="(item, index) in filterByCategories"
                 :key="index"
-                v-model="nutrientChecked"
+                v-model="filterByCategoryChecked"
                 :label="item"
                 :value="item"
               />
             </div>
+
             <div class="group">
               <p class="group__title">Показать</p>
               <app-input-radio
@@ -47,19 +48,7 @@
                 :value="item"
               />
             </div>
-            <div class="group">
-              <p class="group__title">Тип</p>
-              <app-input-checkbox
-                small
-                class="input-item"
-                v-for="(item, index) in filterByTypes"
-                :key="index"
-                v-model="filterByTypeChecked"
-                :label="item"
-                :value="item"
-              />
-            </div>
-          </div> -->
+          </div>
         </div>
 
         <div class="founding__results">
@@ -117,6 +106,8 @@ import { mapState, mapMutations } from 'vuex'
 import AppModal from "@/components/basic/AppModal"
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import AppInfo from '@/components/basic/AppInfo'
+import AppInputRadio from '@/components/basic/AppInputRadio'
+import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 import Exercise from '@/components/trainingProgramEditor/SelectExercisesModal/Exercise'
 import AppButton from "@/components/basic/AppButton"
 
@@ -125,12 +116,18 @@ export default {
     AppModal,
     AppSearchBlock,
     AppInfo,
+    AppInputRadio,
+    AppInputCheckbox,
     Exercise,
     AppButton
   },
   data () {
     return {
       filtersIsOpened: false,
+      filterByCategories: ['Шея', 'Широчайшие', 'Грудь'],
+      filterByCategoryChecked: ['Шея', 'Широчайшие', 'Грудь'],
+      filterByUserImportances: ['Все доступные', 'Добавленные мной', 'Закрепленные', 'Избранные'],
+      filterByUserImportanceChecked: 'Все доступные',
       pinnedExercises: [
         {
           title: 'Отжимания',
@@ -194,33 +191,33 @@ export default {
     background: $hiddenBlockBG;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    // .filters__groups {
-    //   display: flex;
-    //   margin-top: 10px;
-    //   .group {
-    //     flex: 1 1 auto;
-    //     display: flex;
-    //     flex-direction: column;
-    //     margin-right: 5px;
-    //     padding: 10px;
-    //     background: $white;
-    //     border: 1px solid $blockBorder;
-    //     border-radius: 6px;
-    //     .group__title {
-    //       margin-bottom: 10px;
-    //       padding-bottom: 10px;
-    //       font-size: 14px;
-    //       font-weight: 500;
-    //       border-bottom: 1px dashed $blockBorder;
-    //     }
-    //     .input-item {
-    //       margin-bottom: 5px;
-    //     }
-    //   }
-    //   .group:last-child {
-    //     margin-right: 0;
-    //   }
-    // }
+    .filters__groups {
+      display: flex;
+      margin-top: 10px;
+      .group {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        margin-right: 5px;
+        padding: 10px;
+        background: $white;
+        border: 1px solid $blockBorder;
+        border-radius: 6px;
+        .group__title {
+          margin-bottom: 10px;
+          padding-bottom: 10px;
+          font-size: 14px;
+          font-weight: 500;
+          border-bottom: 1px dashed $blockBorder;
+        }
+        .input-item {
+          margin-bottom: 5px;
+        }
+      }
+      .group:last-child {
+        margin-right: 0;
+      }
+    }
   }
   .founding__results {
     margin-top: 20px;
