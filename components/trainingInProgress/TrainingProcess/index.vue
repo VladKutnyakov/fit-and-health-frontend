@@ -9,10 +9,8 @@
         info
         :text="trainingDay.comment"
       />
-      <div class="video-and-timer">
-        <training-video />
-        <laps-overview />
-      </div>
+      <training-video />
+      <laps-overview />
       <exercises :exercisesList="trainingDay.trainingProgramDayExercises" />
     </div>
   </div>
@@ -59,9 +57,6 @@ export default {
     background: $white;
     border: 1px solid $blockBorder;
     border-radius: 6px;
-    .video-and-timer {
-      display: flex;
-    }
   }
 }
 

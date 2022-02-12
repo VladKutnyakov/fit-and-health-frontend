@@ -1,18 +1,7 @@
 <template>
   <div class="laps-overview">
-    <div class="laps-overview__counter">
-      <div class="counter__element">
-        <p class="element__text">Завершено кругов:</p>
-        <p class="element__count">6 из 10</p>
-      </div>
-      <!-- <div class="counter__element">
-        <p class="element__text">Среднее время круга:</p>
-        <p class="element__count">00 : 00 : 00</p>
-      </div> -->
-    </div>
-
     <ul class="laps-overview__laps">
-      <li class="lap" v-for="(item, index) in 4" :key="index">
+      <li class="lap" v-for="(item, index) in 3" :key="index">
         <div class="lap__title">
           <p class="title">Круг</p>
           <p class="value">{{ index + 1 }}</p>
@@ -46,11 +35,6 @@
         </div>
       </li>
     </ul>
-
-    <div class="laps-overview__actions">
-      <app-button size14px >Очистить список</app-button>
-      <app-button size14px >Добавить круг</app-button>
-    </div>
   </div>
 </template>
 
@@ -71,45 +55,20 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  margin: 10px 10px 10px 0;
-  width: 100%;
-  min-width: 350px;
-  max-width: 350px;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
-  .laps-overview__counter {
-    padding: 10px 20px;
-    .counter__element {
-      display: flex;
-      margin-bottom: 10px;
-      .element__text {
-        margin-right: auto;
-        font-weight: 500;
-      }
-      .element__count {
-        color: $green;
-        font-weight: 500;
-      }
-    }
-    .counter__element:last-child {
-      margin-bottom: 0;
-    }
-  }
+  margin: 10px 10px 10px 10px;
   .laps-overview__laps {
     flex: 1 1 auto;
     display: flex;
-    flex-direction: column;
     padding: 10px;
-    max-height: 455px;
     background: rgba(0,0,0,.025);
     box-shadow: $insetBoxShadow;
-    border-top: 1px solid $blockBorder;
-    border-bottom: 1px solid $blockBorder;
-    overflow-y: scroll;
+    border-radius: 6px;
+    overflow-x: scroll;
     .lap {
       display: flex;
       flex-direction: column;
-      margin-bottom: 10px;
+      margin-right: 10px;
+      min-width: 320px;
       background: $white;
       border: 1px solid $blockBorder;
       border-radius: 6px;
@@ -191,12 +150,6 @@ export default {
         }
       }
     }
-  }
-  .laps-overview__actions {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    background: $hiddenBlockBG;
   }
 }
 
