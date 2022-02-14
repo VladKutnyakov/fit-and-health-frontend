@@ -17,8 +17,13 @@ export const mutations = {
     // сохраняем cookie на 30 дней (пользователь сможет обновить протухший токен в течении 30 дней)
     Cookies.set('authorization', token, { expires: 30 })
   },
-  clearToken (state) {
+  logout (state) {
+    // удаляем из state значение токена
     state.token = null
+    // убираем токен из запросов axios
+    this.$axios.setToken(null)
+    // удаляем куки
+    Cookies.remove('authorization')
   }
 }
 
@@ -64,12 +69,4 @@ export const actions = {
       console.log(err.response)
     }
   },
-  logout ({ commit }) {
-    // убираем токен из запросов axios
-    this.$axios.setToken(null)
-    // удаляем из state значение токена
-    commit('clearToken')
-    // удаляем куки
-    Cookies.remove('authorization')
-  }
 }
