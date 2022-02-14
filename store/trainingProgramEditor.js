@@ -13,6 +13,7 @@ export const state = () => ({
         id: null,
         title: 'День 1',
         comment: null,
+        trainingType: null,
         video: null,
         trainingProgramDayExercises: [
           // {
@@ -33,6 +34,7 @@ export const state = () => ({
   }),
   selectedTrainingDay: 0,
   skillList: [],
+  trainingTypesList: [],
   exercisesList: [],
   modalCondition: 'create',
   selectExercisesModalActive: false,
@@ -78,7 +80,8 @@ export const mutations = {
     const trainingProgramDay = {
       id: null,
       title: `День ${state.trainingProgram.fields.trainingProgramDays.length + 1}`,
-      description: null,
+      comment: null,
+      trainingType: null,
       video: null,
       trainingProgramDayExercises: [],
     }
@@ -107,6 +110,9 @@ export const mutations = {
     })
 
     state.skillList = list
+  },
+  setTrainingTypesList (state, payload) {
+    state.trainingTypesList = payload
   },
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
@@ -174,6 +180,23 @@ export const actions = {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/skill-types`)
 
       commit('setSkillsList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  async fetchTrainingTypes ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/training-types`)
+
+      commit('setTrainingTypesList', response.data)
     } catch (error) {
       console.log(error.response)
 

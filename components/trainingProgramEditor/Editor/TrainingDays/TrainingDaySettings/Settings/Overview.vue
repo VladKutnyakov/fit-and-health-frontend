@@ -11,15 +11,20 @@
 
       <div class="params__element fill-area">
         <p class="element__text">Комментарий к тренеровочному дню:</p>
-        <app-textarea class="fill-area" placeholder="Комментарий" />
+        <app-textarea
+          class="fill-area"
+          :value="trainingProgramDays[selectedTrainingDay].comment"
+          placeholder="Комментарий"
+          @input="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'comment', index: selectedTrainingDay, newValue: $event})"
+        />
       </div>
 
       <div class="params__element">
         <p class="element__text">Тип тренировочного дня:</p>
         <app-select
-          :value="null"
-          :selectOptionsList="[]"
-          @select="select($event)"
+          :value="trainingProgramDays[selectedTrainingDay].trainingType"
+          :selectOptionsList="trainingTypesList"
+          @select="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'trainingType', index: selectedTrainingDay, newValue: $event})"
         />
       </div>
     </div>
@@ -45,6 +50,7 @@ export default {
   },
   computed: {
     ...mapState({
+      trainingTypesList: state => state.trainingProgramEditor.trainingTypesList,
       selectedTrainingDay: state => state.trainingProgramEditor.selectedTrainingDay,
       trainingProgramDays: state => state.trainingProgramEditor.trainingProgram.fields.trainingProgramDays
     })
@@ -52,7 +58,10 @@ export default {
   methods: {
     ...mapMutations({
       setTrainingProgramFormFieldValue: 'trainingProgramEditor/setTrainingProgramFormFieldValue'
-    })
+    }),
+    selectTrainingType ($event, index) {
+      console.log($event, index)
+    }
   }
 }
 </script>
