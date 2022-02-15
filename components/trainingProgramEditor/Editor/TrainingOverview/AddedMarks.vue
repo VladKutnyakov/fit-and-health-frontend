@@ -56,8 +56,8 @@ export default {
   flex-direction: column;
   padding: 10px;
   width: 100%;
-  min-width: 250px;
-  max-width: 250px;
+  min-width: 300px;
+  max-width: 300px;
   border-left: 1px solid $blockBorder;
   .added-marks-form__block-title {
     text-align: center;

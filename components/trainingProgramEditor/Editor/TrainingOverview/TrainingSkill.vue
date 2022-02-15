@@ -5,12 +5,13 @@
     <app-select
       :value="skill"
       :selectOptionsList="skillList"
+      @select="setTrainingProgramFormFieldValue({field: 'skill', newValue: $event})"
     />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppSelect from "@/components/basic/AppSelect"
 
 export default {
@@ -23,12 +24,17 @@ export default {
         if (state.trainingProgramEditor.trainingProgram.fields.skill) {
           return {
             id: state.trainingProgramEditor.trainingProgram.fields.skill.id,
-            title: state.trainingProgramEditor.trainingProgram.fields.skill.complexityTitle,
+            title: state.trainingProgramEditor.trainingProgram.fields.skill?.title || state.trainingProgramEditor.trainingProgram.fields.skill?.complexityTitle,
           }
         }
         return null
       },
       skillList: state => state.trainingProgramEditor.skillList,
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setTrainingProgramFormFieldValue: 'trainingProgramEditor/setTrainingProgramFormFieldValue'
     })
   }
 }

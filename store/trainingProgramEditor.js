@@ -14,18 +14,15 @@ export const state = () => ({
         title: 'День 1',
         comment: null,
         trainingType: null,
-        video: null,
         trainingProgramDayExercises: [
           // {
-          //   approaches: "4-5",
-          //   repeats: "10-12",
-          //   additionalWeight: 12.2,
-          //   implementationTime: null,
-          //   restTime: null,
-          //   exercise: {
-          //     id: 1,
-          //     title: "Отжимания"
-          //   }
+          //   exercise: null, // ID дня тренировочной программы,
+          //   trainingProgramDay: null, // ID упражнения
+          //   approaches: "4-5", // Кол-во подходов
+          //   repeats: "10-12", // Кол-во повторений
+          //   additionalWeight: 12.2, // Дополнительный вес (отягощение)
+          //   implementationTime: null, // Время выполнения упражнения
+          //   restTime: null, // Время отдыха после выполнения упражнения
           // }
         ],
       },
@@ -97,14 +94,29 @@ export const mutations = {
     }
   },
   setExercisesList (state, payload) {
-    state.exercisesList = payload
+    const exercises = []
+
+    for (let i = 0; i < payload.length; i++) {
+      const item = {
+        ...payload[i], // Вся информация по упражнению
+        approaches: null, // Кол-во подходов
+        repeats: null, // Кол-во повторений
+        additionalWeight: null, // Дополнительный вес (отягощение)
+        implementationTime: null, // Время выполнения упражнения
+        restTime: null, // Время отдыха после выполнения упражнения
+      }
+      exercises.push(JSON.parse(JSON.stringify(item)))
+    }
+    console.log(exercises[0])
+
+    state.exercisesList = exercises
   },
   setSkillsList (state, payload) {
     const list = []
 
     payload.forEach(element => {
       list.push({
-        id: element.title,
+        id: element.id,
         title: element.complexityTitle
       })
     })
@@ -139,8 +151,6 @@ export const actions = {
   },
   async saveTrainingProgram ({ commit }, payload ) {
     try {
-      // console.log(trainingProgram)
-
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/training-programs/save-training-program`, { trainingProgram: payload })
 
       console.log(response.data)
