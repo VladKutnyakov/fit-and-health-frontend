@@ -107,7 +107,7 @@ export const mutations = {
       }
       exercises.push(JSON.parse(JSON.stringify(item)))
     }
-    console.log(exercises[0])
+    // console.log(exercises[0])
 
     state.exercisesList = exercises
   },
