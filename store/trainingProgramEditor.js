@@ -32,7 +32,8 @@ export const state = () => ({
   selectedTrainingDay: 0,
   skillList: [],
   trainingTypesList: [],
-  exercisesList: [],
+  pinnedExercises: [],
+  notPinnedExercises: [],
   modalCondition: 'create',
   selectExercisesModalActive: false,
 })
@@ -94,7 +95,8 @@ export const mutations = {
     }
   },
   setExercisesList (state, payload) {
-    const exercises = []
+    const pinnedExercises = []
+    const notPinnedExercises = []
 
     for (let i = 0; i < payload.length; i++) {
       const item = {
@@ -105,11 +107,15 @@ export const mutations = {
         implementationTime: null, // Время выполнения упражнения
         restTime: null, // Время отдыха после выполнения упражнения
       }
-      exercises.push(JSON.parse(JSON.stringify(item)))
+      if (item.pinned) {
+        pinnedExercises.push(JSON.parse(JSON.stringify(item)))
+      } else {
+        notPinnedExercises.push(JSON.parse(JSON.stringify(item)))
+      }
     }
-    // console.log(exercises[0])
 
-    state.exercisesList = exercises
+    state.pinnedExercises = pinnedExercises
+    state.notPinnedExercises = notPinnedExercises
   },
   setSkillsList (state, payload) {
     const list = []

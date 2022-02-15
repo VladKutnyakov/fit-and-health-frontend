@@ -128,41 +128,12 @@ export default {
       filterByCategoryChecked: ['Шея', 'Широчайшие', 'Грудь'],
       filterByUserImportances: ['Все доступные', 'Добавленные мной', 'Закрепленные', 'Избранные'],
       filterByUserImportanceChecked: 'Все доступные',
-      pinnedExercises: [
-        {
-          title: 'Отжимания',
-          category: 'Грудь',
-          approaches: 10,
-          repeats: null,
-          additionalWeight: null,
-          pinned: true,
-          favorite: false,
-        }
-      ],
-      notPinnedExercises: [
-        {
-          title: 'Подтягивания',
-          category: 'Широчайшие',
-          approaches: 5,
-          repeats: 15,
-          additionalWeight: 45,
-          pinned: false,
-          favorite: false,
-        },
-        {
-          title: 'Тяга гантели к поясу в наклоне',
-          category: 'Широчайшие',
-          approaches: 5,
-          repeats: 15,
-          additionalWeight: 45,
-          pinned: false,
-          favorite: true,
-        }
-      ],
     }
   },
   computed: {
     ...mapState({
+      pinnedExercises: state => state.trainingProgramEditor.pinnedExercises,
+      notPinnedExercises: state => state.trainingProgramEditor.notPinnedExercises,
       selectExercisesModalActive: state => state.trainingProgramEditor.selectExercisesModalActive,
     }),
   },
