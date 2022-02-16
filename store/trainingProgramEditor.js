@@ -61,7 +61,13 @@ export const mutations = {
     state.trainingProgram.fields.trainingProgramDays[state.selectedTrainingDay].trainingProgramDayExercises.push(item)
   },
   removeExerciseForTrainingProgramDay (state, item) {
-    // state.trainingProgram.fields.trainingProgramDays[state.selectedTrainingDay].trainingProgramDayExercises.push(item)
+    const trainingProgramDayExercises = state.trainingProgram.fields.trainingProgramDays[state.selectedTrainingDay].trainingProgramDayExercises
+
+    for (let i = 0; i < trainingProgramDayExercises.length; i++) {
+      if (trainingProgramDayExercises[i].id === item.id) {
+        trainingProgramDayExercises.splice(i, 1)
+      }
+    }
   },
   setTrainingProgramMark (state, text) {
     const mark = {

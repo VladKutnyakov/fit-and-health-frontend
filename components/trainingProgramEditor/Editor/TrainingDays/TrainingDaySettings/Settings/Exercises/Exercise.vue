@@ -39,7 +39,7 @@
       >
     </div>
     <div class="exercise__element">
-      <i class="ti-close element__action-btn" @click="addExerciseToTrainingDay(item)"></i>
+      <i class="ti-close element__action-btn" @click="removeExerciseToTrainingDay(item)"></i>
     </div>
   </li>
 </template>
@@ -63,7 +63,7 @@ export default {
       console.log(ctx)
     },
     removeExerciseToTrainingDay (item) {
-      // this.$store.commit('trainingProgramEditor/removeExerciseForTrainingProgramDay', item)
+      this.$store.commit('trainingProgramEditor/removeExerciseForTrainingProgramDay', item)
     }
   }
 }
