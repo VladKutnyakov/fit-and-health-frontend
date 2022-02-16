@@ -240,6 +240,9 @@ export default {
         flex: 1 1 auto;
         min-width: 200px;
       }
+      .header__column:nth-child(4) {
+        min-width: 150px;
+      }
       .header__column:last-child {
         width: 40px;
         min-width: 40px;

@@ -1,26 +1,62 @@
 <template>
   <li class="exercise">
-    <div class="list-item__drag-drop-btn">
-      <i class="ti-exchange-vertical"></i>
+    <div class="exercise__element">
+      <i
+        class="ti-pin-alt element__action-btn"
+        :class="[
+          { 'ti-pin2': item.pinned },
+          { 'ti-pin-alt': !item.pinned },
+          { 'element__action-btn--active': item.pinned }
+        ]"
+        @click="changePinnedParam(item)"
+      ></i>
     </div>
-    <p class="list-item__title">{{ item.exercise.title }}</p>
-    <div class="list-item__parameter">
-      <p class="parameter__text">подходы</p>
-      <p class="parameter__value">{{ item.approaches }}</p>
+    <div class="exercise__element">
+      <i
+        class="element__action-btn"
+        :class="[
+          { 'ti-heart': item.favorite },
+          { 'ti-heart-broken': !item.favorite },
+          { 'element__action-btn--active': item.favorite },
+        ]"
+        @click="changeFavoriteParam(item)"
+      ></i>
     </div>
-    <div class="list-item__parameter">
-      <p class="parameter__text">повторений</p>
-      <p class="parameter__value">{{ item.repeats }}</p>
+    <div class="exercise__element">
+      <p class="element__value">{{ item.title }}</p>
     </div>
-    <div class="list-item__parameter">
-      <p class="parameter__text">Отягощение</p>
-      <p class="parameter__value">{{ item.additionalWeight }} кг.</p>
+    <div class="exercise__element">
+      <p class="element__value">{{ item.muscleGroup.title }}</p>
     </div>
-    <div class="list-item__edit-btn">
-      <i class="ti-pencil"></i>
+    <div class="exercise__element">
+      <input
+        class="element__input"
+        type="text"
+        :value="item.approaches"
+        @input="changeExerciseProperty({ item, newValue: $event.target.value })"
+        @focus="setFocus($event)"
+      >
     </div>
-    <div class="list-item__delete-btn">
-      <i class="ti-close"></i>
+    <div class="exercise__element">
+      <input
+        class="element__input"
+        type="text"
+        :value="item.repeats"
+        @input="changeExerciseProperty({ item, newValue: $event.target.value })"
+        @focus="setFocus($event)"
+      >
+    </div>
+    <div class="exercise__element">
+      <input
+        class="element__input"
+        type="text"
+        :value="item.additionalWeight"
+        @input="changeExerciseProperty({ item, newValue: $event.target.value })"
+        @focus="setFocus($event)"
+      >
+    </div>
+    <div class="exercise__element">
+      <i class="ti-plus element__action-btn" @click="addExerciseToTrainingDay(item)"></i>
     </div>
   </li>
 </template>
@@ -29,6 +65,23 @@
 export default {
   props: {
     item: Object
+  },
+  methods: {
+    setFocus ($event) {
+      $event.target.select()
+    },
+    changePinnedParam (item) {
+      console.log(item)
+    },
+    changeFavoriteParam (item) {
+      console.log(item)
+    },
+    changeExerciseProperty (ctx) {
+      console.log(ctx)
+    },
+    removeExerciseToTrainingDay (item) {
+      // this.$store.commit('trainingProgramEditor/removeExerciseForTrainingProgramDay', item)
+    }
   }
 }
 </script>
@@ -38,70 +91,81 @@ export default {
 
 .exercise {
   display: flex;
-  align-items: center;
   margin-bottom: 5px;
-  padding: 10px;
+  padding: 5px 0px;
   background: $white;
   border: 1px solid $blockBorder;
   border-radius: 6px;
-  .list-item__drag-drop-btn {
-    // border: 1px solid red;
+  .exercise__element {
+    flex: 0 1 auto;
     display: flex;
     align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    transition: $tr-02;
-  }
-  .list-item__drag-drop-btn:hover {
-    color: $green;
-  }
-  .list-item__title {
-    // border: 1px solid red;
-    // flex: 1 1 auto;
-    margin-left: 10px;
-    font-weight: 500;
-    margin-right: 40px;
-  }
-  .list-item__parameter {
-    // border: 1px solid red;
-    flex: 1 1 auto;
-    margin-left: 10px;
+    justify-content: center;
+    padding: 0 5px;
+    width: 120px;
     text-align: center;
-    min-width: 100px;
-    .parameter__text {
-      text-transform: uppercase;
-      font-size: 8px;
+    border-right: 1px dashed $inputBorder;
+    .element__action-btn {
+      padding: 5px;
+      color: $black30;
+      border-radius: 50%;
+      transition: $tr-02;
+      cursor: pointer;
     }
-    .parameter__value {
-      margin-top: 5px;
+    .element__action-btn:hover {
+      color: $green;
+    }
+    .element__action-btn--active {
+      color: $green;
+    }
+    .element__input {
+      flex: 1 1 auto;
+      padding: 10px 5px;
+      width: 100%;
+      outline: none;
+      border: 1px solid $inputBorder;
+      border-radius: 6px;
+      text-align: center;
+      color: $green;
+      font-family: $fontMontserrat;
       font-weight: 500;
+      transition: $tr-02;
+    }
+    .element__input:focus {
+      border: 1px solid $green;
+    }
+    .element__input::selection {
+      color: $white;
+      background: $green;
     }
   }
-  .list-item__edit-btn {
-    // border: 1px solid red;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    transition: $tr-02;
+  .exercise__element:nth-child(1) {
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
   }
-  .list-item__edit-btn:hover {
-    color: $green;
+  .exercise__element:nth-child(2) {
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
   }
-  .list-item__delete-btn {
-    // border: 1px solid red;
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    transition: $tr-02;
+  .exercise__element:nth-child(3) {
+    flex: 1 1 auto;
+    min-width: 200px;
   }
-  .list-item__delete-btn:hover {
-    color: $green;
+  .exercise__element:nth-child(4) {
+    padding: 0 5px;
+    min-width: 150px;
   }
-}
-.exercise:last-child {
-  margin-bottom: 0;
+  .exercise__element:last-child {
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    border: none;
+    .element__action-btn:hover {
+      color: $green;
+    }
+  }
 }
 
 </style>

@@ -26,7 +26,7 @@
       <p class="element__value">{{ item.title }}</p>
     </div>
     <div class="exercise__element">
-      <p class="element__value">{{ item.category }}</p>
+      <p class="element__value">{{ item.muscleGroup.title }}</p>
     </div>
     <div class="exercise__element">
       <input
@@ -62,21 +62,12 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
 
 export default {
   props: {
     item: Object
   },
   methods: {
-    ...mapMutations({
-      changeProductWeight: 'foodCalorieTable/changeProductWeight',
-      addFoodToMealPart: 'mealPlaner/addFoodToMealPart'
-    }),
-    ...mapActions({
-      changeFavoriteParam: 'foodCalorieTable/changeFavoriteParam',
-      changePinnedParam: 'foodCalorieTable/changePinnedParam'
-    }),
     setFocus ($event) {
       $event.target.select()
     },
@@ -90,7 +81,7 @@ export default {
       console.log(ctx)
     },
     addExerciseToTrainingDay (item) {
-      console.log(item)
+      this.$store.commit('trainingProgramEditor/addExerciseForTrainingProgramDay', item)
     }
   }
 }
@@ -165,6 +156,7 @@ export default {
   }
   .exercise__element:nth-child(4) {
     padding: 0 5px;
+    min-width: 150px;
   }
   .exercise__element:last-child {
     width: 40px;

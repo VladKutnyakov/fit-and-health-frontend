@@ -38,11 +38,7 @@ export const state = () => ({
   selectExercisesModalActive: false,
 })
 
-export const getters = {
-  trainingDayExercies (state) {
-    return state.trainingProgram.fields.trainingProgramDays[state.selectedTrainingDay].trainingProgramDayExercises
-  }
-}
+export const getters = {}
 
 export const mutations = {
   setTrainingProgram (state, payload) {
@@ -60,6 +56,12 @@ export const mutations = {
       enabled: false,
       errorMessage: null
     }
+  },
+  addExerciseForTrainingProgramDay (state, item) {
+    state.trainingProgram.fields.trainingProgramDays[state.selectedTrainingDay].trainingProgramDayExercises.push(item)
+  },
+  removeExerciseForTrainingProgramDay (state, item) {
+    // state.trainingProgram.fields.trainingProgramDays[state.selectedTrainingDay].trainingProgramDayExercises.push(item)
   },
   setTrainingProgramMark (state, text) {
     const mark = {

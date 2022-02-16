@@ -2,7 +2,11 @@
   <div class="exercises">
     <p class="exercises__block-title">Упражнения</p>
     <ul class="exercises-list">
-      <exercise v-for="(item, index) in trainingDayExercies" :key="index" :item="item" />
+      <exercise
+        v-for="(item, index) in trainingDayExercies"
+        :key="index"
+        :item="item"
+      />
     </ul>
   </div>
 </template>
@@ -18,11 +22,11 @@ export default {
   computed: {
     ...mapState({
       selectedTrainingDay: state => state.trainingProgramEditor.selectedTrainingDay,
-      // trainingProgram: state => state.trainingProgramEditor.trainingProgram,
+      trainingProgram: state => state.trainingProgramEditor.trainingProgram,
     }),
-    ...mapGetters({
-      trainingDayExercies: 'trainingProgramEditor/trainingDayExercies',
-    })
+    trainingDayExercies () {
+      return this.trainingProgram.fields.trainingProgramDays[this.selectedTrainingDay].trainingProgramDayExercises
+    }
   }
 }
 </script>
