@@ -101,14 +101,6 @@ export default {
         border: none;
       }
     }
-    .added-exercises__exercises-list {
-      // border: 1px solid red;
-      // padding: 10px;
-      // min-height: 600px;
-      // background: rgba(0,0,0,.025);
-      // box-shadow: $insetBoxShadow;
-      // border-radius: 6px;
-    }
   }
 }
 
