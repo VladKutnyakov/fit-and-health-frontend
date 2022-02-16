@@ -2,24 +2,7 @@
   <li class="exercise">
     <div class="exercise__element">
       <i
-        class="ti-pin-alt element__action-btn"
-        :class="[
-          { 'ti-pin2': item.pinned },
-          { 'ti-pin-alt': !item.pinned },
-          { 'element__action-btn--active': item.pinned }
-        ]"
-        @click="changePinnedParam(item)"
-      ></i>
-    </div>
-    <div class="exercise__element">
-      <i
-        class="element__action-btn"
-        :class="[
-          { 'ti-heart': item.favorite },
-          { 'ti-heart-broken': !item.favorite },
-          { 'element__action-btn--active': item.favorite },
-        ]"
-        @click="changeFavoriteParam(item)"
+        class="ti-exchange-vertical element__action-btn"
       ></i>
     </div>
     <div class="exercise__element">
@@ -56,7 +39,7 @@
       >
     </div>
     <div class="exercise__element">
-      <i class="ti-plus element__action-btn" @click="addExerciseToTrainingDay(item)"></i>
+      <i class="ti-close element__action-btn" @click="addExerciseToTrainingDay(item)"></i>
     </div>
   </li>
 </template>
@@ -145,15 +128,10 @@ export default {
     max-width: 40px;
   }
   .exercise__element:nth-child(2) {
-    width: 40px;
-    min-width: 40px;
-    max-width: 40px;
-  }
-  .exercise__element:nth-child(3) {
     flex: 1 1 auto;
     min-width: 200px;
   }
-  .exercise__element:nth-child(4) {
+  .exercise__element:nth-child(3) {
     padding: 0 5px;
     min-width: 150px;
   }
