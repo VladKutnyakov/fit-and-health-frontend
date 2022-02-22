@@ -66,7 +66,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 70px;
+  margin-left: 260px;
   padding: 40px;
   .profile-page__content {
     // border: 1px solid red;

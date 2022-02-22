@@ -5,7 +5,7 @@ $fontMontserrat: 'Montserrat', Arial, Helvetica, sans-serif;
 $fontThemify: 'themify';
 
 // COLORS
-$app-background: #FCFCFC;
+$app-background: #f8f8f8;
 
 $white: rgba(255,255,255,1);
 $white10: rgba(255,255,255,.1);
@@ -28,6 +28,57 @@ $black60: rgba(0,0,0,.6);
 $black70: rgba(0,0,0,.7);
 $black80: rgba(0,0,0,.8);
 $black90: rgba(0,0,0,.9);
+
+$primary: #7367f0;
+$primaryLight1: #887ef2;
+$primaryLight2: #9e95f5;
+$primaryLight3: #b3adf7;
+$primaryLight4: #c9c4f9;
+$primaryLight5: #dedbfb;
+
+$secondary: #82868b;
+$secondaryLight1: #8f9397;
+$secondaryLight2: #9ca0a4;
+$secondaryLight3: #aaacb0;
+$secondaryLight4: #b7b9bc;
+$secondaryLight5: #c4c6c8;
+
+$success: #28c76f;
+$successLight1: #33d67c;
+$successLight2: #48da89;
+$successLight3: #5dde97;
+$successLight4: #72e3a4;
+$successLight5: #88e7b2;
+
+$warning: #ff9f43;
+$warningLight1: #ffac5d;
+$warningLight2: #ffb976;
+$warningLight3: #ffc690;
+$warningLight4: #ffd3a9;
+$warningLight5: #ffe0c3;
+
+$danger: #ea5455;
+$dangerLight1: #ed6b6c;
+$dangerLight2: #f08182;
+$dangerLight3: #f29899;
+$dangerLight4: #f5afaf;
+$dangerLight5: #f8c6c6;
+
+$info: #00cfe8;
+$infoLight1: #03e4ff;
+$infoLight2: #1ce7ff;
+$infoLight3: #36e9ff;
+$infoLight4: #4fecff;
+$infoLight5: #69efff;
+
+$primaryGradient: linear-gradient(47deg,#7367f0,#9e95f5);
+$secondaryGradient: linear-gradient(47deg,#82868b,#9ca0a4);
+$successGradient: linear-gradient(47deg,#28c76f,#48da89);
+$warningGradient: linear-gradient(47deg,#ff9f43,#ffb976);
+$dangerGradient: linear-gradient(47deg,#ea5455,#f08182);
+$dangerGradient: linear-gradient(47deg,#00cfe8,#1ce7ff);
+
+$text: #6e6b7b;
 
 $gray-dark: rgba(144, 148, 151);
 $gray: rgba(182, 191, 198, 1);

@@ -1,10 +1,10 @@
 <template>
-  <nav class="navbar">
-    <div class="navbar__logo">
+  <nav class="navbar" :class="[{ 'navbar--active': menuIsOpen }]">
+    <!-- <div class="navbar__logo">
       <nuxt-link to="/" exact no-prefetch>FH</nuxt-link>
-    </div>
+    </div> -->
 
-    <div
+    <!-- <div
       v-for="(linkGroup, index) in mainNav"
       :key="index"
       class="navbar__page-links-group"
@@ -23,17 +23,19 @@
       >
         <i class="page-link__icon" :class="item.icon"></i>
       </nuxt-link>
-    </div>
+    </div> -->
 
-    <i
+    <!-- <i
       class="ti-export logout"
       title="Выйти"
       @click="logout()"
-    ></i>
+    ></i> -->
   </nav>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -191,56 +193,61 @@ export default {
       ]
     }
   },
-  watch: {
-    $route(to, from) {
-      const path = to.path
-      const PathChunks = path.split('/').filter(item => item !== "")
-
-      this.mainNav.forEach(element => {
-        element.group === PathChunks[0] ? element.active = true : element.active = false
-      })
-    }
-  },
-  methods: {
-    updateGroupHeight ($event) {
-      const LinksGroups = document.querySelectorAll('.navbar__page-links-group')
-      const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
-
-      for (let i = 0; i < LinksGroups.length; i++) {
-        LinksGroups[i].style.height = LinkHeight + 10 + 'px'
-      }
-
-      const TargetLinksGroup = $event.target.closest('.navbar__page-links-group')
-      const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
-
-      TargetLinksGroup.style.height = TargetLinksGroupChildElements.length * LinkHeight + 10 + 'px'
-    },
-    logout () {
-      this.$store.dispatch('auth/logout')
-      this.$router.push('/auth')
-    },
-  },
-  mounted () {
-    const Path = this.$route.path
-    const PathChunks = Path.split('/').filter(item => item !== "")
-
-    this.mainNav.forEach(element => {
-      element.group === PathChunks[0] ? element.active = true : element.active = false
+  computed: {
+    ...mapState({
+      menuIsOpen: state => state.settings.menuIsOpen,
     })
+  },
+  // watch: {
+  //   $route(to, from) {
+  //     const path = to.path
+  //     const PathChunks = path.split('/').filter(item => item !== "")
 
-    this.$nextTick(function () {
-      const LinksGroups = document.querySelectorAll('.navbar__page-links-group')
-      const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
+  //     this.mainNav.forEach(element => {
+  //       element.group === PathChunks[0] ? element.active = true : element.active = false
+  //     })
+  //   }
+  // },
+  // methods: {
+  //   updateGroupHeight ($event) {
+  //     const LinksGroups = document.querySelectorAll('.navbar__page-links-group')
+  //     const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
 
-      for (let i = 0; i < LinksGroups.length; i++) {
-        LinksGroups[i].style.height = LinkHeight + 10 + 'px'
-      }
+  //     for (let i = 0; i < LinksGroups.length; i++) {
+  //       LinksGroups[i].style.height = LinkHeight + 10 + 'px'
+  //     }
 
-      // const TargetLinksGroup = document.querySelector('.navbar__page-links-group--active')
-      // const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
-      // TargetLinksGroup.style.height = TargetLinksGroupChildElements.length * LinkHeight + 10 + 'px'
-    })
-  }
+  //     const TargetLinksGroup = $event.target.closest('.navbar__page-links-group')
+  //     const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
+
+  //     TargetLinksGroup.style.height = TargetLinksGroupChildElements.length * LinkHeight + 10 + 'px'
+  //   },
+  //   logout () {
+  //     this.$store.dispatch('auth/logout')
+  //     this.$router.push('/auth')
+  //   },
+  // },
+  // mounted () {
+  //   const Path = this.$route.path
+  //   const PathChunks = Path.split('/').filter(item => item !== "")
+
+  //   this.mainNav.forEach(element => {
+  //     element.group === PathChunks[0] ? element.active = true : element.active = false
+  //   })
+
+  //   this.$nextTick(function () {
+  //     const LinksGroups = document.querySelectorAll('.navbar__page-links-group')
+  //     const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
+
+  //     for (let i = 0; i < LinksGroups.length; i++) {
+  //       LinksGroups[i].style.height = LinkHeight + 10 + 'px'
+  //     }
+
+  //     // const TargetLinksGroup = document.querySelector('.navbar__page-links-group--active')
+  //     // const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
+  //     // TargetLinksGroup.style.height = TargetLinksGroupChildElements.length * LinkHeight + 10 + 'px'
+  //   })
+  // }
 }
 </script>
 
@@ -250,30 +257,31 @@ export default {
 .navbar {
   // border: 1px solid red;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 60px;
+  left: -260px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 70px;
-  height: 100%;
+  width: 260px;
+  height: calc(100vh - 60px);
   background: $white;
-  box-shadow: 0 0 10px 2px rgba(0,0,0,.1);
+  box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);
+  transition: $tr-02;
   z-index: 9000;
-  .navbar__logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    width: 100%;
-    min-height: 60px;
-    background: $green;
-    a {
-      color: $white;
-      font-size: 28px;
-      font-weight: 600;
-    }
-  }
+  // .navbar__logo {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   margin-bottom: 20px;
+  //   width: 100%;
+  //   min-height: 60px;
+  //   background: $green;
+  //   a {
+  //     color: $white;
+  //     font-size: 28px;
+  //     font-weight: 600;
+  //   }
+  // }
   .navbar__page-links-group {
     display: flex;
     flex-direction: column;
@@ -326,6 +334,9 @@ export default {
     color: $black;
     font-size: 18px;
   }
+}
+.navbar--active {
+  left: 0;
 }
 
 </style>

@@ -24,20 +24,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $app-background;
-  color: $black;
+  color: $text;
 }
 
 input, textarea, a, button {
   font-family: $fontMontserrat;
   font-size: 16px;
-  color: $black;
+  color: $text;
   outline: none;
 }
 
 pre {
   font-family: $fontMontserrat;
   font-size: 16px;
-  color: $black;
+  color: $text;
 }
 
 b {
