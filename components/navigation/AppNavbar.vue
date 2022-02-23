@@ -1,35 +1,23 @@
 <template>
   <nav class="navbar" :class="[{ 'navbar--active': menuIsOpen }]">
-    <!-- <div class="navbar__logo">
-      <nuxt-link to="/" exact no-prefetch>FH</nuxt-link>
-    </div> -->
-
-    <!-- <div
-      v-for="(linkGroup, index) in mainNav"
-      :key="index"
-      class="navbar__page-links-group"
-      :class="[{'navbar__page-links-group--active': linkGroup.active}]"
-    >
-      <nuxt-link
-        v-for="(item, index) in linkGroup.links"
-        :key="index"
-        :to="item.link"
-        :exact="item.exact"
-        no-prefetch
-        class="navbar__page-link"
-        active-class="navbar__page-link--active"
-        :title="item.title"
-        @click.native="updateGroupHeight($event)"
-      >
-        <i class="page-link__icon" :class="item.icon"></i>
-      </nuxt-link>
-    </div> -->
-
-    <!-- <i
-      class="ti-export logout"
-      title="Выйти"
-      @click="logout()"
-    ></i> -->
+    <div class="navbar__group" v-for="(group, index) in navbarGroups" :key="index">
+      <p class="group__title">{{ group.title }}</p>
+      <ul class="group__menu-list">
+        <li class="menu-list__item" v-for="(linkItem, linkIndex) in group.links" :key="linkIndex">
+          <nuxt-link
+            :to="linkItem.link"
+            :exact="linkItem.exact"
+            no-prefetch
+            active-class="item__link--active"
+            :title="linkItem.title"
+            class="item__link"
+          >
+            <i class="link__icon" :class="linkItem.icon"></i>
+            <span class="link__text">{{ linkItem.title }}</span>
+          </nuxt-link>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -39,16 +27,15 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      mainNav: [
+      navbarGroups: [
         {
-          active: false,
-          group: 'profile',
+          title: 'Профиль',
           links: [
             {
-              title: 'Профиль',
+              title: 'Моя страница',
               link: '/profile',
               icon: 'ti-home',
-              exact: true
+              exact: true,
             },
             {
               title: 'Сообщения',
@@ -62,29 +49,28 @@ export default {
               icon: 'ti-gallery',
               exact: false
             },
-            {
-              title: 'Интересные страницы',
-              link: '/profile/subscriptions',
-              icon: 'ti-crown',
-              exact: true
-            },
+            // {
+            //   title: 'Интересные страницы',
+            //   link: '/profile/subscriptions',
+            //   icon: 'ti-crown',
+            //   exact: true
+            // },
             {
               title: 'Статистика и замеры',
               link: '/profile/measurements',
               icon: 'ti-bar-chart',
               exact: true
             },
-          ]
+          ],
         },
         {
-          active: false,
-          group: 'training-diary',
+          title: 'Дневник тренировок',
           links: [
             {
-              title: 'Дневник тренировок',
+              title: 'Календарь тренировок',
               link: '/training-diary',
               icon: 'ti-timer',
-              exact: true
+              exact: true,
             },
             {
               title: 'Программы тренировок',
@@ -98,23 +84,22 @@ export default {
               icon: 'ti-headphone-alt',
               exact: false
             },
-            {
-              title: 'Новая тренировка',
-              link: '/training-diary/training-in-progress',
-              icon: 'ti-bolt',
-              exact: false
-            }
-          ]
+            // {
+            //   title: 'Новая тренировка',
+            //   link: '/training-diary/training-in-progress',
+            //   icon: 'ti-bolt',
+            //   exact: false
+            // },
+          ],
         },
         {
-          active: false,
-          group: 'meal-planer',
+          title: 'Дневник питания',
           links: [
             {
-              title: 'Дневник питания',
+              title: 'Редактор рациона',
               link: '/meal-planer',
               icon: 'ti-agenda',
-              exact: false
+              exact: true,
             },
             {
               title: 'Сохраненные рационы',
@@ -134,17 +119,16 @@ export default {
               icon: 'ti-view-list-alt',
               exact: false
             }
-          ]
+          ],
         },
         {
-          active: false,
-          group: 'challenges',
+          title: 'Вызовы',
           links: [
             {
-              title: 'Вызовы',
+              title: 'Вызовы недели',
               link: '/challenges',
               icon: 'ti-cup',
-              exact: true
+              exact: true,
             },
             {
               title: 'Поиск вызывов',
@@ -164,33 +148,28 @@ export default {
               icon: 'ti-bolt',
               exact: true
             },
-          ]
+          ],
         },
         {
-          active: false,
-          group: 'handbook',
+          title: 'Справочник',
           links: [
             {
-              title: 'Справочник',
+              title: 'Основные разделы',
               link: '/handbook',
               icon: 'ti-bookmark-alt',
-              exact: true
+              exact: true,
             }
-          ]
+          ],
         },
-        {
-          active: false,
-          group: 'settings',
-          links: [
-            {
-              title: 'Настройки',
-              link: '/settings',
-              icon: 'ti-settings',
-              exact: true
-            }
-          ]
-        },
-      ]
+      ],
+
+      //   {
+      //     title: 'Настройки',
+      //     link: '/settings',
+      //     icon: 'ti-settings',
+      //     exact: true,
+      //   },
+
     }
   },
   computed: {
@@ -198,56 +177,17 @@ export default {
       menuIsOpen: state => state.settings.menuIsOpen,
     })
   },
-  // watch: {
-  //   $route(to, from) {
-  //     const path = to.path
-  //     const PathChunks = path.split('/').filter(item => item !== "")
-
-  //     this.mainNav.forEach(element => {
-  //       element.group === PathChunks[0] ? element.active = true : element.active = false
-  //     })
-  //   }
-  // },
-  // methods: {
-  //   updateGroupHeight ($event) {
-  //     const LinksGroups = document.querySelectorAll('.navbar__page-links-group')
-  //     const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
-
-  //     for (let i = 0; i < LinksGroups.length; i++) {
-  //       LinksGroups[i].style.height = LinkHeight + 10 + 'px'
-  //     }
-
-  //     const TargetLinksGroup = $event.target.closest('.navbar__page-links-group')
-  //     const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
-
-  //     TargetLinksGroup.style.height = TargetLinksGroupChildElements.length * LinkHeight + 10 + 'px'
-  //   },
-  //   logout () {
-  //     this.$store.dispatch('auth/logout')
-  //     this.$router.push('/auth')
-  //   },
-  // },
-  // mounted () {
-  //   const Path = this.$route.path
-  //   const PathChunks = Path.split('/').filter(item => item !== "")
-
-  //   this.mainNav.forEach(element => {
-  //     element.group === PathChunks[0] ? element.active = true : element.active = false
-  //   })
-
-  //   this.$nextTick(function () {
-  //     const LinksGroups = document.querySelectorAll('.navbar__page-links-group')
-  //     const LinkHeight = document.querySelector('.navbar__page-link').getBoundingClientRect().height
-
-  //     for (let i = 0; i < LinksGroups.length; i++) {
-  //       LinksGroups[i].style.height = LinkHeight + 10 + 'px'
-  //     }
-
-  //     // const TargetLinksGroup = document.querySelector('.navbar__page-links-group--active')
-  //     // const TargetLinksGroupChildElements = TargetLinksGroup.querySelectorAll('.navbar__page-link')
-  //     // TargetLinksGroup.style.height = TargetLinksGroupChildElements.length * LinkHeight + 10 + 'px'
-  //   })
-  // }
+  watch: {
+    $route(to, from) {
+      //
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('auth/logout')
+      this.$router.push('/auth')
+    },
+  },
 }
 </script>
 
@@ -261,78 +201,73 @@ export default {
   left: -260px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 260px;
   height: calc(100vh - 60px);
+  padding-bottom: 20px;
   background: $white;
   box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);
   transition: $tr-02;
   z-index: 9000;
-  // .navbar__logo {
-  //   display: flex;
-  //   align-items: center;
-  //   justify-content: center;
-  //   margin-bottom: 20px;
-  //   width: 100%;
-  //   min-height: 60px;
-  //   background: $green;
-  //   a {
-  //     color: $white;
-  //     font-size: 28px;
-  //     font-weight: 600;
-  //   }
-  // }
-  .navbar__page-links-group {
+  overflow-y: auto;
+  .navbar__group {
     display: flex;
     flex-direction: column;
-    padding: 5px;
-    border-radius: 35px;
-    transition: $tr-04;
-    height: 0;
-    overflow: hidden;
-    .navbar__page-link {
+    .group__title {
+      align-self: flex-start;
+      margin: 20px 20px 10px 20px;
+      text-transform: uppercase;
+      color: #a6a4b0;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .group__menu-list {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      padding: 10px;
-      width: 40px;
-      min-height: 40px;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 50%;
-      transition: $tr-02;
-      .page-link__icon {
-        color: $black;
-        font-size: 18px;
-        transition: $tr-02;
+      flex-direction: column;
+      // margin-top: 10px;
+      .menu-list__item {
+        display: flex;
+        flex-direction: column;
+        margin: 0 10px;
+        border-radius: 6px;
+        .item__link {
+          display: flex;
+          align-items: flex-start;
+          // margin-bottom: 5px;
+          padding: 10px;
+          background: $white;
+          border-radius: 6px;
+          .link__icon {
+            margin-top: 1px;
+            margin-right: 10px;
+            // font-size: 18px;
+          }
+          .link__text {
+            // font-size: 18px;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+            // white-space: nowrap;
+          }
+          .link__arrow {
+            margin-left: auto;
+            font-size: 12px;
+          }
+        }
+        .item__link--active {
+          background: $primaryGradient;
+          box-shadow: 0 0 5px 1px rgba(115,103,240,.7);
+          z-index: 10;
+          .link__icon {
+            color: $white;
+          }
+          .link__text {
+            color: $white;
+          }
+          .link__arrow {
+            color: $white;
+          }
+        }
       }
     }
-    .navbar__page-link:last-child {
-      margin-bottom: 0;
-    }
-    .navbar__page-link:hover {
-      color: $green;
-    }
-    .navbar__page-link--active {
-      background: $white;
-      box-shadow: $boxShadow;
-      .page-link__icon {
-        color: $green;
-      }
-    }
-  }
-
-  .navbar__page-links-group--active {
-    background: $hiddenBlockBG;
-  }
-  
-  .logout {
-    margin: auto 0 10px 0;
-    padding: 10px;
-    transform: rotate(90deg);
-    color: $black;
-    font-size: 18px;
   }
 }
 .navbar--active {
