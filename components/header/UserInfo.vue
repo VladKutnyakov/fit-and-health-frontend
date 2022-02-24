@@ -8,7 +8,7 @@
       <div class="overview__preview">ДК</div>
     </div>
 
-    <div class="user-info__actions" :class="[{ 'user-info__actions-visible': listIsVisible }]">
+    <div class="user-info__actions" :class="[{ 'user-info__actions--visible': listIsVisible }]">
       <ul class="actions__links">
         <li class="links__item">
           <nuxt-link
@@ -91,11 +91,13 @@ export default {
         text-align: right;
         font-size: 14px;
         font-weight: 500;
+        transition: $tr-02;
       }
       .name__last {
         text-align: right;
         font-size: 14px;
         font-weight: 500;
+        transition: $tr-02;
       }
     }
     .overview__preview {
@@ -108,6 +110,16 @@ export default {
       background: $primaryGradient;
       color: $white;
       border-radius: 50%;
+    }
+  }
+  .user-info__overview:hover {
+    .overview__name {
+      .name__first {
+        color: $primary;
+      }
+      .name__last {
+        color: $primary;
+      }
     }
   }
   .user-info__actions {
@@ -185,7 +197,7 @@ export default {
       }
     }
   }
-  .user-info__actions-visible {
+  .user-info__actions--visible {
     opacity: 1;
     visibility: visible;
   }

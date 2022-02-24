@@ -16,9 +16,7 @@
       <i class="ti-shine theme-switcher__icon" :class="[{ 'ti-light-bulb': true }]"></i>
     </div>
 
-    <div class="app-header__notifications">
-      <i class="ti-bell notifications__icon"></i>
-    </div>
+    <notifications />
 
     <user-info />
   </div>
@@ -27,10 +25,12 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import UserInfo from '@/components/header/UserInfo'
+import Notifications from '@/components/header/Notifications'
 
 export default {
   components: {
     UserInfo,
+    Notifications
   },
   computed: {
     ...mapState({
@@ -124,14 +124,6 @@ export default {
     padding: 5px;
     cursor: pointer;
     .theme-switcher__icon {
-      font-size: 20px;
-    }
-  }
-  .app-header__notifications {
-    margin-left: 10px;
-    padding: 5px;
-    cursor: pointer;
-    .notifications__icon {
       font-size: 20px;
     }
   }

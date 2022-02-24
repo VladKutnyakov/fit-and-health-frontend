@@ -279,4 +279,15 @@ export default {
   left: 0;
 }
 
+.navbar::-webkit-scrollbar {
+  width: 4px;
+}
+.navbar::-webkit-scrollbar-thumb {
+  background: $primaryLight4;
+  border-radius: 50px;
+}
+.navbar::-webkit-scrollbar-track {
+  background: $black10;
+}
+
 </style>
