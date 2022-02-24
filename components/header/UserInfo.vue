@@ -149,10 +149,10 @@ export default {
           padding: 10px;
           .link__icon {
             margin-right: 10px;
-            font-size: 14px;
+            // font-size: 14px;
           }
           .link__text {
-            font-size: 14px;
+            // font-size: 14px;
           }
         }
       }
@@ -180,10 +180,10 @@ export default {
         .btn__icon {
           margin-right: 10px;
           transform: rotate(90deg);
-          font-size: 14px;
+          // font-size: 14px;
         }
         .btn__text {
-          font-size: 14px;
+          // font-size: 14px;
         }
       }
       .logout__btn:hover {

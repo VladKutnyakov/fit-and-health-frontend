@@ -1,11 +1,15 @@
 <template>
   <div class="notifications">
     <i class="ti-bell notifications__icon" @click="toggleListVisibility()"></i>
-    <div class="notifications__count">
+    <div class="notifications__count" @click="toggleListVisibility()">
       <span class="count">5</span>
     </div>
 
-    <div class="notifications__notice-list" :class="[{ 'notifications__notice-list--visible': listIsVisible }]">
+    <div
+      class="notifications__notice-list"
+      :class="[{ 'notifications__notice-list--visible': listIsVisible }]"
+      @click.stop
+    >
       <div class="notice-list__title-and-count">
         <p class="title">Оповещения</p>
         <p class="count">Новых: 5</p> 
@@ -93,8 +97,8 @@ export default {
   }
   .notifications__count {
     position: absolute;
-    top: -7px;
-    right: -7px;
+    top: -6px;
+    right: -2px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,6 +129,7 @@ export default {
     transition: $tr-02;
     opacity: 0;
     visibility: hidden;
+    cursor: initial;
     .notice-list__title-and-count {
       display: flex;
       align-items: center;
@@ -136,11 +141,11 @@ export default {
       }
       .count {
         padding: 5px 10px;
-        background: $danger;
-        color: $white;
+        background: $primaryLight5;
+        color: $primary;
         font-size: 12px;
         font-weight: 500;
-        border-radius: 6px;
+        border-radius: 20px;
       }
     }
     .notice-list {
