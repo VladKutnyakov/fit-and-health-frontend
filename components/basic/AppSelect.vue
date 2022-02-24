@@ -90,7 +90,7 @@ export default {
       this.listOpened = true
       setTimeout(() => {
         document.addEventListener('click', this.closeSelect)
-      }, 10)
+      }, 0)
     },
     closeSelect () {
       this.listOpened = false
