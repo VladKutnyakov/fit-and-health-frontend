@@ -26,7 +26,6 @@
           <p class="name__first">Дмитрий</p>
           <p class="name__last">Коробов</p>
         </div>
-        <!-- <img src="" alt="user" class="user-info__preview-image"> -->
         <div class="user-info__preview">ДК</div>
       </div>
 
@@ -195,13 +194,6 @@ export default {
           font-size: 14px;
           font-weight: 500;
         }
-      }
-      .user-info__preview-image {
-        border: 1px solid red;
-        margin-left: 10px;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
       }
       .user-info__preview {
         display: flex;
