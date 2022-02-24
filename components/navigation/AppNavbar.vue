@@ -217,13 +217,12 @@ export default {
       margin: 20px 20px 10px 20px;
       text-transform: uppercase;
       color: #a6a4b0;
-      font-weight: 500;
-      font-size: 14px;
+      // font-weight: 300;
+      font-size: 12px;
     }
     .group__menu-list {
       display: flex;
       flex-direction: column;
-      // margin-top: 10px;
       .menu-list__item {
         display: flex;
         flex-direction: column;
@@ -232,24 +231,24 @@ export default {
         .item__link {
           display: flex;
           align-items: flex-start;
-          // margin-bottom: 5px;
+          margin-bottom: 5px;
           padding: 10px;
           background: $white;
           border-radius: 6px;
           .link__icon {
             margin-top: 1px;
             margin-right: 10px;
-            // font-size: 18px;
+            font-size: 18px;
+          }
+          .link__text {}
+        }
+        .item__link:hover {
+          background: $primaryLight5;
+          .link__icon {
+            color: $primary;
           }
           .link__text {
-            // font-size: 18px;
-            // overflow: hidden;
-            // text-overflow: ellipsis;
-            // white-space: nowrap;
-          }
-          .link__arrow {
-            margin-left: auto;
-            font-size: 12px;
+            color: $primary;
           }
         }
         .item__link--active {
@@ -262,7 +261,13 @@ export default {
           .link__text {
             color: $white;
           }
-          .link__arrow {
+        }
+        .item__link--active:hover {
+          background: $primaryGradient;
+          .link__icon {
+            color: $white;
+          }
+          .link__text {
             color: $white;
           }
         }

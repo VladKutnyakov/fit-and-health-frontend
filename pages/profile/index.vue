@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page">
+  <div class="profile-page" :class="[{ 'profile-page--hidden-menu': !menuIsOpen }]">
     <app-page-title>Профиль</app-page-title>
     <div class="profile-page__content">
       <user-card />
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppPageTitle from '@/components/basic/AppPageTitle'
 import UserCard from '@/components/profile/UserCard'
 import MainInfo from '@/components/profile/MainInfo'
@@ -55,6 +56,11 @@ export default {
     UserActivity,
     MainInfo
   },
+  computed: {
+    ...mapState({
+      menuIsOpen: state => state.settings.menuIsOpen,
+    })
+  },
 }
 </script>
 
@@ -68,6 +74,7 @@ export default {
   align-items: center;
   margin-left: 260px;
   padding: 40px;
+  transition: $tr-02;
   .profile-page__content {
     // border: 1px solid red;
     display: flex;
@@ -85,6 +92,10 @@ export default {
     //   max-width: 400px;
     // }
   }
+}
+
+.profile-page--hidden-menu {
+  margin-left: 0;
 }
 
 </style>
