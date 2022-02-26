@@ -8,9 +8,10 @@
 @import "@/assets/styles/vars.scss";
 
 .page-title {
-  margin-bottom: 40px;
-  text-align: center;
-  font-size: 28px;
+  margin-right: 15px;
+  padding: 0 20px;
+  font-size: 26px;
+  border-right: $dividerBorder;
 }
 
 </style>

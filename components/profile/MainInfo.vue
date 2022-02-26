@@ -16,7 +16,7 @@
         </div>
         <div class="trainings-stats__element">
           <i class="ti-map-alt element__icon"></i>
-          <p class="element__title">Пройденная<br />дистанция</p>
+          <p class="element__title">Преодаленная<br />дистанция</p>
           <p class="element__value">1 862 <span class="element__value-scale">км</span></p>
         </div>
       </div>
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <div class="favorite-sports">
+    <!-- <div class="favorite-sports">
       <app-block-title>Спортивные направления</app-block-title>
       <div class="favorite-sports__elements">
         <p class="element">Плавание</p>
@@ -66,7 +66,7 @@
         <p class="element">CrossFit</p>
         <p class="element">тяжелая атлетика</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -76,40 +76,7 @@ import AppBlockTitle from '@/components/basic/AppBlockTitle'
 export default {
   components: {
     AppBlockTitle
-  },
-  // mounted () {
-  //   document.addEventListener('scroll', () => {
-  //     const fixedBlock = this.$refs.mainInfo
-  //     const fixedBlockRect = fixedBlock.getBoundingClientRect()
-
-  //     const pageContent = document.querySelector('.profile-page__content')
-  //     const pageContentRect = pageContent.getBoundingClientRect()
-
-  //     const offset = 40
-
-  //     // Если высота контента меньше высоты браузерного окна
-  //     if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
-  //       fixedBlock.style.position = 'fixed'
-  //       fixedBlock.style.top = `${offset}px`
-  //       fixedBlock.style.zIndex = 1000
-  //     } else {
-  //       fixedBlock.style.position = ''
-  //       fixedBlock.style.top = ''
-  //       fixedBlock.style.zIndex = ''
-  //     }
-
-  //     // Если высота контента больше высоты браузерного окна
-  //     if (pageContentRect.top - offset < 0 && fixedBlockRect.bottom <= window.innerHeight - offset) {
-  //       fixedBlock.style.position = 'fixed'
-  //       fixedBlock.style.top = `-${(fixedBlockRect.height + offset) - window.innerHeight}px`
-  //       fixedBlock.style.zIndex = 1000
-  //     } else {
-  //       fixedBlock.style.position = ''
-  //       fixedBlock.style.top = ''
-  //       fixedBlock.style.zIndex = ''
-  //     }
-  //   })
-  // }
+  }
 }
 </script>
 
@@ -124,19 +91,18 @@ export default {
   max-width: 400px;
   .trainings-stats {
     margin-bottom: 20px;
+    background: $white;
+    border-radius: 6px;
+    box-shadow: $btnShadow;
     .trainings-stats__elements-wrapper {
       display: flex;
       flex-wrap: wrap;
-      padding: 10px 0;
-      background: $white;
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
+      padding: 10px;
       .trainings-stats__element {
         flex: 1 1 auto;
         text-align: center;
         margin-right: 5px;
         padding: 10px;
-        border-right: 1px dashed $blockBorder;
         .element__icon {
           font-size: 28px;
         }
@@ -146,7 +112,7 @@ export default {
         }
         .element__value {
           margin-top: 5px;
-          color: $green;
+          color: $primary;
           font-size: 18px;
           font-weight: 600;
           .element__value-scale {
@@ -166,18 +132,17 @@ export default {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    background: $white;
+    border-radius: 6px;
+    box-shadow: $btnShadow;
     .trainings-intencity__chart {
       padding: 10px 10px 0 10px;
-      background: $white;
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
       .chart__settings {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 10px;
         padding: 0 10px 10px 10px;
-        border-bottom: 1px dashed $blockBorder;
         .settings__title {
           font-size: 12px;
         }
@@ -208,7 +173,7 @@ export default {
           margin-right: 0;
         }
         .chart__element:hover {
-          background: $green;
+          background: $primary;
         }
         .chart__element:nth-child(1) {
           height: 60%;
@@ -221,6 +186,7 @@ export default {
         }
         .chart__element:nth-child(4) {
           height: 100%;
+          background: $primary;
         }
         .chart__element:nth-child(5) {
           height: 60%;
@@ -242,12 +208,15 @@ export default {
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    background: $white;
+    border-radius: 6px;
+    box-shadow: $btnShadow;
     .challenges-stats__elements {
       display: flex;
-      padding: 10px 0;
-      background: $white;
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
+      padding: 10px;
+      // background: $white;
+      // border: 1px solid $blockBorder;
+      // border-radius: 6px;
       .challenges-stats__element {
         display: flex;
         flex-direction: column;
@@ -255,7 +224,7 @@ export default {
         align-items: center;
         padding: 10px;
         width: 100%;
-        border-right: 1px dashed $blockBorder;
+        // border-right: 1px dashed $blockBorder;
         .element__icon {
           font-size: 24px;
         }

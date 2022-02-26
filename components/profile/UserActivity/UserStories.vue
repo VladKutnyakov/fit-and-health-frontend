@@ -25,19 +25,21 @@ export default {
 
 .user-stories {
   margin-bottom: 30px;
+  background: $white;
+  border-radius: 6px;
+  box-shadow: $btnShadow;
   .user-stories__story-block {
     display: flex;
+    padding: 15px 20px;
     .story-block__element {
       position: relative;
-      padding: 5px;
-      background: $white;
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
+      margin-right: 15px;
+      // padding: 5px;
       transition: $tr-02;
       cursor: pointer;
       .element__user-avatar {
-        width: 60px;
-        height: 60px;
+        width: 100px;
+        height: 160px;
         border-radius: 6px;
         object-fit: cover;
         object-position: center;
@@ -54,6 +56,9 @@ export default {
         transition: $tr-02;
         font-size: 14px;
       }
+    }
+    .story-block__element:last-child {
+      margin-right: 0;
     }
     .story-block__element:hover {
       box-shadow: $btnHoverShadow;

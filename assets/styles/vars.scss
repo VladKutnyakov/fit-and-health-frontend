@@ -96,6 +96,7 @@ $hiddenBlockBG: rgba(0,0,0,.06);
 $insetBlockBG: rgba(0, 0, 0, 0.025);
 $blockBorder: rgba(0,0,0,.2);
 $inputBorder: rgba(0,0,0,.1);
+$dividerBorder: 1px solid rgba(34,41,47,.1);
 
 // TRANSITIONS
 $tr-01: all .1s ease-in-out;
@@ -109,7 +110,8 @@ $tr-09: all .9s ease-in-out;
 $tr-1: all 1s ease-in-out;
 
 // SHADOWS
-$btnShadow: 0 1px 6px 1px rgba(52,40,104,.4);
+// $btnShadow: 0 1px 6px 1px rgba(52,40,104,.4);
+$btnShadow: 0 5px 20px 0 rgb(34,41,47,.1);
 $btnHoverShadow: 0 1px 4px 0px rgba(52,40,104,.4);
 $btnActiveShadow: 0 1px 4px 1px rgba(52,40,104,.4);
 

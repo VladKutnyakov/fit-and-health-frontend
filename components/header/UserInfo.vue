@@ -130,7 +130,7 @@ export default {
     flex-direction: column;
     padding: 5px;
     background: $white;
-    border: 1px solid rgba(34,41,47,.1);
+    border: $dividerBorder;
     box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);
     border-radius: 6px;
     transition: $tr-02;

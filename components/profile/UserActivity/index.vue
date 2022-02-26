@@ -1,8 +1,9 @@
 <template>
   <div class="user-activity">
     <div class="user-activity__news-visibility">
-      <app-block-title>Лента новостей</app-block-title>
+      <h2 class="news-visibility__block-title">Лента новостей</h2>
       <filter-radio-text-group
+        class="news-visibility__filter"
         :valueList="['Все записи', 'Только мои записи']"
         :defaultValue="feed"
         size18px
@@ -50,13 +51,16 @@ export default {
   .user-activity__news-visibility {
     display: flex;
     align-items: center;
-    margin: 0 20px 10px 20px;
+    margin: 0 10px 10px 10px;
     .news-visibility__block-title {
+      // border: 1px solid red;
       margin-right: auto;
-      padding: 2px 5px;
+      padding: 10px;
       font-size: 18px;
-      font-weight: 500;
-      border-bottom: 2px solid transparent;
+    }
+    .news-visibility__filter {
+      // border: 1px solid red;
+      padding: 10px 0;
     }
   }
 }

@@ -8,9 +8,9 @@
 @import "@/assets/styles/vars.scss";
 
 .block-title {
-  margin: 0 10px 10px 10px;
-  padding: 0 5px;
+  padding: 10px 20px;
   font-size: 18px;
+  border-bottom: $dividerBorder;
 }
 
 </style>

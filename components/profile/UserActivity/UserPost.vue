@@ -22,9 +22,10 @@
         <img class="image" src="https://cross.world/wp-content/uploads/2016/11/krossfit-uprazhneniya-na-vynoslivost-1.jpg">
       </div>
       <div class="message">
-        <app-scroll-block>
-          <p class="post__message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus, unde? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores quam rerum, nemo similique cumque quia quas voluptates minima. Cumque aspernatur tempora assumenda libero voluptatibus esse, excepturi ea maiores magnam cupiditate sequi nostrum? Aliquam dicta iure temporibus repellat numquam tempora, unde velit reprehenderit minima voluptates amet vel repudiandae quos illum pariatur!</p>
-        </app-scroll-block>
+        <pre class="post__message-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus.
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus commodi fuga corporis, tempora animi non labore mollitia voluptatibus. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Delectus, unde? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores quam rerum, nemo similique cumque quia quas voluptates minima. Cumque aspernatur tempora assumenda libero voluptatibus esse, excepturi ea maiores magnam cupiditate sequi nostrum?
+        Aliquam dicta iure temporibus repellat numquam tempora, unde velit reprehenderit minima voluptates amet vel repudiandae quos illum pariatur!</pre>
       </div>
     </div>
 
@@ -67,7 +68,6 @@
 <script>
 import AppButtonWithActions from '@/components/basic/AppButtonWithActions'
 import SocialBtns from '@/components/basic/SocialBtns'
-import AppScrollBlock from '@/components/basic/AppScrollBlock'
 import AppTextarea from '@/components/basic/AppTextarea'
 import AppButton from '@/components/basic/AppButton'
 
@@ -75,7 +75,6 @@ export default {
   components: {
     AppButtonWithActions,
     SocialBtns,
-    AppScrollBlock,
     AppTextarea,
     AppButton
   }
@@ -89,21 +88,21 @@ export default {
   margin-bottom: 40px;
   width: 100%;
   background: $white;
-  border: 1px solid $blockBorder;
   border-radius: 6px;
+  box-shadow: $btnShadow;
   .user-post__info {
     // border: 1px solid red;
     margin: 0 10px 10px 10px;
     padding: 10px 0;
     display: flex;
     align-items: center;
-    border-bottom: 1px dashed $blockBorder;
+    border-bottom: $dividerBorder;
     .user-avatar {
       min-width: 50px;
       max-width: 50px;
       height: 50px;
       border: 1px solid $blockBorder;
-      border-radius: 6px;
+      border-radius: 50%;
       object-fit: cover;
       object-position: center;
     }
@@ -129,27 +128,27 @@ export default {
   .user-post__content {
     // border: 1px solid red;
     display: flex;
+    flex-direction: column;
     .user-post__image-wrapper {
       padding: 0 10px 10px 10px;
       width: 100%;
-      max-width: 500px;
       .image {
-        border:1px solid $blockBorder;
+        border: $dividerBorder;
         border-radius: 6px;
       }
     }
     .message {
       flex: 1 1 auto;
       display: flex;
-      padding: 0 10px 10px 10px;
+      padding: 0 20px 0 20px;
     }
   }
 
   .user-post__social-bts {
     display: flex;
-    margin: 0 10px;
-    border-top: 1px dashed $blockBorder;
-    border-bottom: 1px dashed $blockBorder;
+    margin: 10px;
+    background: $primaryLight5;
+    border-radius: 6px;
     .main-social {
       margin: 0 10px;
       width: 100%;
@@ -169,11 +168,11 @@ export default {
       margin-bottom: 20px;
       padding: 0 10px;
       .comment__autor-image {
-        min-width: 40px;
-        max-width: 40px;
-        height: 40px;
+        min-width: 50px;
+        max-width: 50px;
+        height: 50px;
         border: 1px solid $blockBorder;
-        border-radius: 6px;
+        border-radius: 50%;
         object-fit: cover;
         object-position: center;
       }
@@ -212,7 +211,7 @@ export default {
       display: flex;
       flex-direction: column;
       padding-top: 10px;
-      border-top: 1px dashed $blockBorder;
+      border-top: $dividerBorder;
     }
   }
 }

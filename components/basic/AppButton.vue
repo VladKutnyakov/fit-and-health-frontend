@@ -47,7 +47,7 @@ export default {
 
 .btn {
   padding: 10px 20px;
-  background: $green;
+  background: $primary;
   color: $white;
   font-size: 16px;
   border: 1px solid transparent;

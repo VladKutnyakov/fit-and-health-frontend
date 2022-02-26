@@ -1,7 +1,6 @@
 <template>
-  <div class="media-page">
-    <app-page-title>Фото и видео</app-page-title>
-    <div class="media-page__content">
+  <app-page pageTitle="Фото и видео" :breadcrumbs="breadcrumbs">
+    <div class="content">
       <page-info />
       <app-search-block
         class="search-media-album"
@@ -11,11 +10,11 @@
       <filters-and-actions />
       <media-albums />
     </div>
-  </div>
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import PageInfo from '@/components/media/PageInfo'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FiltersAndActions from '@/components/media/FiltersAndActions'
@@ -53,32 +52,39 @@ export default {
   },
   middleware: ['userAuth'],
   components: {
-    AppPageTitle,
+    AppPage,
     PageInfo,
     AppSearchBlock,
     FiltersAndActions,
     MediaAlbums
-  }
+  },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Фото и видео',
+          icon: 'ti-home',
+          link: '/messages',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 
 <style lang="scss">
 @import '@/assets/styles/vars.scss';
 
-.media-page {
-  // border: 1px solid red;
+.content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: 70px;
-  padding: 40px;
-  .media-page__content {
-    // border: 1px solid red;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1700px;
-  }
 }
 
 </style>

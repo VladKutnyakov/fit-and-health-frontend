@@ -60,16 +60,13 @@ export default {
           display: none;
         }
         .input__value-field:checked + .input__text {
-          color: $green;
-          border-bottom: 2px solid $green;
+          color: $primary;
+          font-weight: 500;
         }
         .input__text {
-          // border: 1px solid red;
           margin: 0 5px;
           padding: 0 5px;
           color: $black;
-          font-weight: 500;
-          border-bottom: 2px solid transparent;
         }
       }
     }

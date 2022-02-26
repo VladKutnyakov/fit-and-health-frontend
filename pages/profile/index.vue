@@ -1,17 +1,13 @@
 <template>
-  <div class="profile-page" :class="[{ 'profile-page--hidden-menu': !menuIsOpen }]">
-    <app-page-title>Профиль</app-page-title>
-    <div class="profile-page__content">
-      <user-card />
-      <user-activity />
-      <main-info />
-    </div>
-  </div>
+  <app-page pageTitle="Профиль" :breadcrumbs="breadcrumbs">
+    <user-card />
+    <user-activity />
+    <main-info />
+  </app-page>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import UserCard from '@/components/profile/UserCard'
 import MainInfo from '@/components/profile/MainInfo'
 import UserActivity from '@/components/profile/UserActivity/index'
@@ -50,52 +46,23 @@ export default {
   async asyncData ({ store }) {
     await store.dispatch('profile/fetchProfileInfo')
   },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        }
+      ]
+    }
+  },
   components: {
-    AppPageTitle,
+    AppPage,
     UserCard,
     UserActivity,
     MainInfo
   },
-  computed: {
-    ...mapState({
-      menuIsOpen: state => state.settings.menuIsOpen,
-    })
-  },
 }
 </script>
-
-<style lang="scss">
-@import '@/assets/styles/vars.scss';
-
-.profile-page {
-  // border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 260px;
-  padding: 40px;
-  transition: $tr-02;
-  .profile-page__content {
-    // border: 1px solid red;
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 1700px;
-    // .user-card-and-publication {
-    //   width: 400px;
-    //   min-width: 400px;
-    //   max-width: 400px;
-    // }
-    // .main-info-and-publication {
-    //   width: 400px;
-    //   min-width: 400px;
-    //   max-width: 400px;
-    // }
-  }
-}
-
-.profile-page--hidden-menu {
-  margin-left: 0;
-}
-
-</style>

@@ -113,67 +113,6 @@ export default {
       return this.profileInfo.firstName && this.profileInfo.lastName ? `${this.profileInfo.firstName} ${this.profileInfo.lastName}` : 'нет данных'
     }
   }
-  // mounted () {
-  //   let startPageYOffset = window.pageYOffset
-  //   document.addEventListener('scroll', () => {
-  //     const fixedBlock = this.$refs.userCard
-  //     const fixedBlockRect = fixedBlock.getBoundingClientRect()
-
-  //     console.log((fixedBlockRect.bottom + 40) - window.innerHeight)
-
-  //     if ((fixedBlockRect.bottom + 40) - window.innerHeight <= 0) {
-  //       fixedBlock.style.position = 'fixed'
-  //       fixedBlock.style.bottom = '40px'
-  //     }
-
-  //     // const pageContent = document.querySelector('.profile-page__content')
-  //     // const pageContentRect = pageContent.getBoundingClientRect()
-
-  //     // const offset = 40
-
-  //     // Определяем направление скрола
-  //     // if (startPageYOffset < window.pageYOffset) {
-  //     //   console.log('вверх')
-
-  //     //   // Если высота контента меньше высоты браузерного окна
-  //     //   if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
-  //     //     fixedBlock.style.position = 'fixed'
-  //     //     fixedBlock.style.top = `${offset}px`
-  //     //   } else {
-  //     //     fixedBlock.style.position = ''
-  //     //     fixedBlock.style.top = ''
-  //     //   }
-
-  //     //   // Если высота контента больше высоты браузерного окна
-  //     //   if (pageContentRect.top - offset < 0 && fixedBlockRect.bottom <= window.innerHeight - offset) {
-  //     //     fixedBlock.style.position = 'fixed'
-  //     //     fixedBlock.style.top = `-${(fixedBlockRect.height + offset) - window.innerHeight}px`
-  //     //   }
-
-  //     //   startPageYOffset = window.pageYOffset
-  //     // } else {
-  //     //   console.log('вниз')
-
-  //     //   // Если высота контента меньше высоты браузерного окна
-  //     //   if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) > 0) {
-  //     //     fixedBlock.style.position = 'fixed'
-  //     //     fixedBlock.style.top = `${offset}px`
-  //     //   } else {
-  //     //     fixedBlock.style.position = ''
-  //     //     fixedBlock.style.top = ''
-  //     //   }
-
-  //     //   // Если высота контента больше высоты браузерного окна
-  //     //   if (pageContentRect.top - offset < 0 && window.innerHeight - (fixedBlockRect.height + offset) < 0) {
-  //     //     fixedBlock.style.position = 'fixed'
-  //     //     fixedBlock.style.top = `${parseFloat(fixedBlock.style.top) - (startPageYOffset - window.pageYOffset)}px`
-  //     //   }
-  //     //   console.log(startPageYOffset - window.pageYOffset)
-
-  //     //   startPageYOffset = window.pageYOffset
-  //     // }
-  //   })
-  // }
 }
 </script>
 
@@ -187,8 +126,9 @@ export default {
   min-width: 400px;
   max-width: 400px;
   background: $white;
-  border: 1px solid $blockBorder;
   border-radius: 6px;
+  box-shadow: $btnShadow;
+  overflow: hidden;
   .user-card__avatar-wrapper {
     position: relative;
     padding: 10px;
@@ -255,12 +195,9 @@ export default {
 
   .user-card__action-btns {
     margin-top: 20px;
-    // padding: 20px 10px;
-    // background: $black10;
     display: flex;
     align-items: center;
     justify-content: center;
-    // border-bottom: 1px solid $blockBorder;
   }
 
   .user-card__main-info {
@@ -269,19 +206,19 @@ export default {
     margin-top: 5px;
     margin: 20px 10px 0 10px;
     padding: 10px 0;
-    border-top: 1px solid $blockBorder;
-    border-bottom: 1px solid $blockBorder;
+    border-top: $dividerBorder;
+    border-bottom: $dividerBorder;
     .main-info__item {
       text-align: center;
       width: 100%;
-      border-right: 1px dashed $blockBorder;
+      // border-right: 1px dashed $blockBorder;
       .main-info__item-text {
         font-size: 14px;
         font-weight: 500;
       }
       .main-info__item-value {
         margin-top: 5px;
-        color: $green;
+        color: $primary;
         font-size: 20px;
         font-weight: 600;
       }

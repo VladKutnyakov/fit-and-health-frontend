@@ -174,7 +174,7 @@ export default {
   },
   computed: {
     ...mapState({
-      menuIsOpen: state => state.settings.menuIsOpen,
+      menuIsOpen: state => state.appSettings.menuIsOpen,
     })
   },
   watch: {

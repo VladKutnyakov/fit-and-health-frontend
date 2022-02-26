@@ -26,16 +26,18 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .new-post {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 30px;
+  padding: 20px 20px 10px 20px;
   background: $white;
-  border: 1px solid $blockBorder;
   border-radius: 6px;
+  box-shadow: $btnShadow;
   .new-post__user-message-wrapper {
     // border: 1px solid red;
     display: flex;
     align-items: flex-start;
     .new-post__message {
-      margin: 20px;
       padding: 10px;
       width: 100%;
       height: 41px;
@@ -50,9 +52,7 @@ export default {
     // border: 1px solid red;
     display: flex;
     align-items: center;
-    margin: 0px 20px 10px 20px;
-    padding: 10px 0px 0px 10px;
-    border-top: 1px dashed $blockBorder;
+    margin: 10px 10px 0 10px;
     .new-post__attach-btn {
       margin-right: 20px;
       color: $gray;
