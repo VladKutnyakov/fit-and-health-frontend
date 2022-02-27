@@ -56,6 +56,7 @@ export default {
   // border: 1px solid red;
   display: flex;
   box-shadow: $cardShadow;
+  border-radius: 6px;
   .search__input {
     padding: 10px 0px 10px 20px;
     width: 100%;

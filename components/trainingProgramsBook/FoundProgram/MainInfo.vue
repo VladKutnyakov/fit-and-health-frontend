@@ -2,7 +2,7 @@
   <div class="main-info">
     <p class="title">{{ program.title }}</p>
 
-    <div class="additional-info">
+    <!-- <div class="additional-info">
       <div class="additional-info__element">
         <i class="ti-timer element__icon"></i>
         <p class="element__amount">4</p>
@@ -13,10 +13,10 @@
         <p class="element__amount">27</p>
         <p class="element__text">завершенных тренировок</p>
       </div>
-    </div>
+    </div> -->
 
     <div class="description">
-      <p class="description__title">Описание</p>
+      <!-- <p class="description__title">Описание</p> -->
       <p class="description__text">Короткое описание тренировочной программы</p>
     </div>
 
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div class="training-skill">
+    <!-- <div class="training-skill">
       <p class="training-skill__block-title">Сложность тренировочной программы:</p>
       <div class="training-skill__level-view">
         <i class="ti-crown level-view__icon level-view__icon--active"></i>
@@ -48,7 +48,7 @@
         <i class="ti-crown level-view__icon"></i>
         <i class="ti-crown level-view__icon"></i>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -69,10 +69,11 @@ export default {
   flex-direction: column;
   padding: 10px 10px 10px 0;
   .title {
-    padding: 0 10px 10px 10px;
+    padding: 0 10px;
     text-align: center;
+    font-size: 18px;
     font-weight: 500;
-    border-bottom: 1px solid $blockBorder;
+    // border-bottom: 1px solid $blockBorder;
   }
 
   .additional-info {
@@ -107,8 +108,7 @@ export default {
 
   .description {
     flex: 1 1 auto;
-    padding-top: 10px;
-    border-top: 1px solid $blockBorder;
+    // border-top: 1px solid $blockBorder;
     .description__title {
       text-align: center;
       font-weight: 500;
@@ -123,8 +123,7 @@ export default {
     flex-wrap: wrap;
     margin-top: 10px;
     padding-top: 10px;
-    padding-bottom: 5px;
-    border-top: 1px solid $blockBorder;
+    // border-top: 1px solid $blockBorder;
     .mark {
       display: flex;
       align-items: center;
@@ -135,7 +134,7 @@ export default {
       background: $hiddenBlockBG;
       border-radius: 6px;
       .mark__text {
-        font-size: 14px;
+        font-size: 12px;
         white-space: nowrap;
       }
       .mark__icon {

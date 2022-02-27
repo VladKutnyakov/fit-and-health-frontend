@@ -1,8 +1,8 @@
 <template>
   <div class="actions">
     <i class="ti-control-play action-btn"></i>
-    <nuxt-link to="training-programs/program-123" class="open-program-btn ml-auto">
-      <i class="ti-search action-btn"></i>
+    <nuxt-link to="training-programs/program-123" class="action-btn">
+      <i class="ti-pencil"></i>
     </nuxt-link>
     <i class="ti-check-box action-btn"></i>
     <i class="ti-trash action-btn"></i>
@@ -20,12 +20,16 @@ export default {}
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
   padding: 10px;
   background: $hiddenBlockBG;
   .action-btn {
+    margin-bottom: 20px;
     padding: 5px;
     font-size: 20px;
+  }
+  .action-btn:last-child {
+    margin-top: auto;
+    margin-bottom: 0;
   }
 }
 
