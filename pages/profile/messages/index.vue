@@ -36,7 +36,7 @@ export default {
         {
           title: 'Сообщения',
           icon: 'ti-home',
-          link: '/messages',
+          link: '/profile/messages',
           active: false,
         },
       ]

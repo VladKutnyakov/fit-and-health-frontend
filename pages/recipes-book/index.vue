@@ -1,7 +1,6 @@
 <template>
-  <div class="recipes-book-page">
-    <app-page-title>Книга рецептов</app-page-title>
-    <div class="recipes-book-page__content">
+  <app-page pageTitle="Книга рецептов" :breadcrumbs="breadcrumbs">
+    <div class="content">
       <app-page-info
         :infoElements="pageInfoElements"
         btnTitle="Добавить рецепт"
@@ -55,11 +54,11 @@
         </template>
       </app-modal>
     </div>
-  </div>
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import AppPageInfo from '@/components/basic/AppPageInfo'
 import SortingFilters from '@/components/recipesBook/SortingFilters/SortingFilters'
 import SearchResults from '@/components/recipesBook/SearchResults/SearchResults'
@@ -73,7 +72,7 @@ export default {
     await store.dispatch('recipes/fetchRecipes')
   },
   components: {
-    AppPageTitle,
+    AppPage,
     AppPageInfo,
     SortingFilters,
     SearchResults,
@@ -82,6 +81,20 @@ export default {
   },
   data () {
     return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Книга рецептов',
+          icon: 'ti-book',
+          link: '/recipes-book',
+          active: false,
+        },
+      ],
       pageInfoElements: [
         {
           title: 'Всего рецептов',
@@ -110,37 +123,28 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/vars.scss';
 
-.recipes-book-page {
+.content {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  // margin-top: 60px;
-  margin-left: 80px;
-  padding: 40px;
-  .recipes-book-page__content {
-    // border: 1px solid red;
+  width: 100%;
+  max-width: 1700px;
+  .filters-and-results {
     display: flex;
-    flex-direction: column;
+  }
+  .modal__title {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .modal__description {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  .modal__action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    max-width: 1700px;
-    .filters-and-results {
-      display: flex;
-    }
-    .modal__title {
-      font-size: 20px;
-      font-weight: 500;
-    }
-    .modal__description {
-      margin-top: 5px;
-      font-size: 14px;
-    }
-    .modal__action-btns {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
   }
 }
 

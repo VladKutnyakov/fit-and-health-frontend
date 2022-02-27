@@ -1,16 +1,12 @@
 <template>
-  <div class="settings-page">
-    <app-page-title>Настроки профиля</app-page-title>
-
-    <div class="settings-page__content">
-      <sections />
-      <section-parameters />
-    </div>
-  </div>
+  <app-page pageTitle="Настроки" :breadcrumbs="breadcrumbs">
+    <sections />
+    <section-parameters />
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import Sections from '@/components/settings/Sections/index'
 import SectionParameters from '@/components/settings/SectionParameters/index'
 
@@ -45,7 +41,7 @@ export default {
     }
   },
   components: {
-    AppPageTitle,
+    AppPage,
     Sections,
     SectionParameters
   },
@@ -55,6 +51,24 @@ export default {
   //   console.log(login)
   //   console.log(register)
   // },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Настроки',
+          icon: 'ti-settings',
+          link: '/settings',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 

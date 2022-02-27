@@ -1,21 +1,19 @@
 <template>
-  <div class="measurements-page">
-    <app-page-title>Замеры и статистика</app-page-title>
-    <div class="measurements-page__content">
-      <div class="content__left-block">
-        <tracking-params />
-        <user-progress-chart />
-        <calculation-parameters />
-      </div>
-      <div class="content__right-block">
-        <user-params-overview />
-      </div>
+  <app-page pageTitle="Замеры и статистика" :breadcrumbs="breadcrumbs">
+    <div class="content__left-block">
+      <tracking-params />
+      <user-progress-chart />
+      <calculation-parameters />
     </div>
-  </div>
+    <div class="content__right-block">
+      <user-params-overview />
+    </div>
+  </app-page>
+
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import TrackingParams from '@/components/measurements/TrackingParams'
 import UserProgressChart from '@/components/measurements/UserProgressChart'
 import CalculationParameters from '@/components/measurements/CalculationParameters'
@@ -24,16 +22,34 @@ import UserParamsOverview from '@/components/measurements/UserParamsOverview'
 export default {
   layout: 'default',
   middleware: ['userAuth'],
-  // async asyncData ({ store }) {
-  //   await store.dispatch('foodCalorieTable/getAllProducts')
-  // },
   components: {
-    AppPageTitle,
+    AppPage,
     TrackingParams,
     UserProgressChart,
     CalculationParameters,
     UserParamsOverview
-  }
+  },
+  // async asyncData ({ store }) {
+  //   await store.dispatch('foodCalorieTable/getAllProducts')
+  // },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Замеры и статистика',
+          icon: 'ti-bar-chart',
+          link: '//profile/measurements',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 

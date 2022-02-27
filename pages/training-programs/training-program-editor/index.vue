@@ -1,16 +1,14 @@
 <template>
-  <div class="training-program-editor-page">
-    <app-page-title>Редактор тренировочных программ</app-page-title>
-    <div class="training-program-editor-page__content">
-      <editor />
-      <additional-info />
-    </div>
+  <app-page pageTitle="Редактор тренировочных программ" :breadcrumbs="breadcrumbs">
+    <editor />
+    <additional-info />
+
     <select-exercises-modal />
-  </div>
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import Editor from '@/components/trainingProgramEditor/Editor/index'
 import AdditionalInfo from '@/components/trainingProgramEditor/AdditionalInfo/index'
 import SelectExercisesModal from '@/components/trainingProgramEditor/SelectExercisesModal/index'
@@ -47,7 +45,7 @@ export default {
   },
   middleware: ['userAuth'],
   components: {
-    AppPageTitle,
+    AppPage,
     Editor,
     AdditionalInfo,
     SelectExercisesModal
@@ -58,7 +56,31 @@ export default {
     }
     await store.dispatch('trainingProgramEditor/fetchSkills')
     await store.dispatch('trainingProgramEditor/fetchTrainingTypes')
-  }
+  },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Тренировочные программы',
+          icon: 'ti-clipboard',
+          link: '/training-programs',
+          active: true,
+        },
+        {
+          title: 'Редактор тренировочных программ',
+          icon: 'ti-home',
+          link: '/training-programs/training-program-editor',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 

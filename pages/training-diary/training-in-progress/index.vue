@@ -1,16 +1,12 @@
 <template>
-  <div class="training-in-progress-page">
-    <app-page-title>Новая тренировка</app-page-title>
-
-    <div class="training-in-progress-page__content">
-      <training-program />
-      <training-process />
-    </div>
-  </div>
+  <app-page pageTitle="Новая тренировка" :breadcrumbs="breadcrumbs">
+    <training-program />
+    <training-process />
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import TrainingProgram from '@/components/trainingInProgress/TrainingProgram'
 import TrainingProcess from '@/components/trainingInProgress/TrainingProcess/index'
 
@@ -46,7 +42,7 @@ export default {
   },
   middleware: ['userAuth'],
   components: {
-    AppPageTitle,
+    AppPage,
     TrainingProgram,
     TrainingProcess
   },
@@ -55,7 +51,31 @@ export default {
     if (query.trainingDayId) {
       await store.dispatch('trainingProcess/fetchTrainingDay', query)
     }
-  }
+  },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Дневник тренировок',
+          icon: 'ti-timer',
+          link: '/training-diary',
+          active: true,
+        },
+        {
+          title: 'Новая тренировка',
+          icon: 'ti-bolt',
+          link: '/training-diary/training-in-progress',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 

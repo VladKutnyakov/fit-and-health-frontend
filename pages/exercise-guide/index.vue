@@ -1,22 +1,21 @@
 <template>
-  <div class="exercises-guide-page">
-    <app-page-title>Справочник по упражнениям</app-page-title>
-
-    <div class="exercises-guide-page__content">
+  <app-page pageTitle="Справочник по упражнениям" :breadcrumbs="breadcrumbs">
+    <div class="content">
       <page-info />
       <div class="exercises-list-and-overview">
         <exercises-list />
         <exercise-overview v-if="overviewFetched" />
         <exercise-overview-empty v-else />
         <additional-info v-if="overviewFetched" />
+
+        <exercise-form-modal />
       </div>
     </div>
-    <exercise-form-modal />
-  </div>
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import PageInfo from '@/components/exerciseGuide/PageInfo'
 import ExercisesList from "@/components/exerciseGuide/ExercisesList/index"
 import ExerciseOverview from '@/components/exerciseGuide/ExerciseOverview/index'
@@ -56,7 +55,7 @@ export default {
   },
   middleware: ['userAuth'],
   components: {
-    AppPageTitle,
+    AppPage,
     PageInfo,
     ExercisesList,
     ExerciseOverview,
@@ -67,6 +66,24 @@ export default {
   async asyncData ({ store }) {
     await store.dispatch('exercises/fetchExercisesList')
   },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Справочник по упражнениям',
+          icon: 'ti-headphone-alt',
+          link: '/exercise-guide',
+          active: false,
+        },
+      ]
+    }
+  },
   computed: {
     overviewFetched () {
       if (this.$store.state.exercises.exerciseInfo?.id) {
@@ -75,7 +92,7 @@ export default {
       return false
     }
   },
-  beforeCreate () {
+  create () {
     this.$store.commit('exercises/setExerciseInfo', {
       id: null,
       title: null,
@@ -96,22 +113,14 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.exercises-guide-page {
+.content {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .exercises-guide-page__content {
-    // border: 1px solid red;
+  width: 100%;
+  max-width: 1700px;
+  .exercises-list-and-overview {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1700px;
-    .exercises-list-and-overview {
-      display: flex;
-    }
   }
 }
 

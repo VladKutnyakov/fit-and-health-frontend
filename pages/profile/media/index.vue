@@ -69,8 +69,8 @@ export default {
         },
         {
           title: 'Фото и видео',
-          icon: 'ti-home',
-          link: '/messages',
+          icon: 'ti-media',
+          link: '/profile/media',
           active: false,
         },
       ]

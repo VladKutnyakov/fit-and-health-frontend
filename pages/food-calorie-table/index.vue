@@ -1,19 +1,19 @@
 <template>
-  <div class="food-calorie-table">
-    <app-page-title>Таблица калорийности продуктов</app-page-title>
-    <div class="food-calorie-table__content">
+  <app-page pageTitle="Таблица калорийности продуктов" :breadcrumbs="breadcrumbs">
+    <div class="content">
       <page-info />
       <div class="food-calorie-table__filters-and-table">
         <sorting-filters />
         <product-table />
       </div>
     </div>
+
     <product-form-modal />
-  </div>
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import PageInfo from '@/components/foodCalorieTable/PageInfo'
 import SortingFilters from '@/components/foodCalorieTable/SortingFilters'
 import ProductTable from '@/components/foodCalorieTable/ProductTable'
@@ -50,39 +50,49 @@ export default {
       ]
     }
   },
-  async asyncData ({ store }) {
-    await store.dispatch('foodCalorieTable/getProductCategories')
-    await store.dispatch('foodCalorieTable/getAllProducts')
-  },
   components: {
-    AppPageTitle,
+    AppPage,
     PageInfo,
     SortingFilters,
     ProductTable,
     ProductFormModal
-  }
+  },
+  async asyncData ({ store }) {
+    await store.dispatch('foodCalorieTable/getProductCategories')
+    await store.dispatch('foodCalorieTable/getAllProducts')
+  },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Таблица калорийности продуктов',
+          icon: 'ti-view-list-alt',
+          link: '/food-calorie-table',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.food-calorie-table {
+.content {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .food-calorie-table__content {
-    // border: 1px solid red;
+  width: 100%;
+  max-width: 1700px;
+  .food-calorie-table__filters-and-table {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1700px;
-    .food-calorie-table__filters-and-table {
-      display: flex;
-    }
   }
 }
 

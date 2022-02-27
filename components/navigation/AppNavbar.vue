@@ -49,12 +49,12 @@ export default {
               icon: 'ti-gallery',
               exact: false
             },
-            // {
-            //   title: 'Интересные страницы',
-            //   link: '/profile/subscriptions',
-            //   icon: 'ti-crown',
-            //   exact: true
-            // },
+            {
+              title: 'Интересные страницы',
+              link: '/profile/subscriptions',
+              icon: 'ti-crown',
+              exact: true
+            },
             {
               title: 'Статистика и замеры',
               link: '/profile/measurements',
@@ -64,13 +64,19 @@ export default {
           ],
         },
         {
-          title: 'Дневник тренировок',
+          title: 'Тренировки',
           links: [
             {
-              title: 'Календарь тренировок',
+              title: 'Дневник тренировок',
               link: '/training-diary',
               icon: 'ti-timer',
               exact: true,
+            },
+            {
+              title: 'Новая тренировка',
+              link: '/training-diary/training-in-progress',
+              icon: 'ti-bolt',
+              exact: false
             },
             {
               title: 'Программы тренировок',
@@ -84,19 +90,13 @@ export default {
               icon: 'ti-headphone-alt',
               exact: false
             },
-            // {
-            //   title: 'Новая тренировка',
-            //   link: '/training-diary/training-in-progress',
-            //   icon: 'ti-bolt',
-            //   exact: false
-            // },
           ],
         },
         {
-          title: 'Дневник питания',
+          title: 'Питание',
           links: [
             {
-              title: 'Редактор рациона',
+              title: 'Дневник питания',
               link: '/meal-planer',
               icon: 'ti-agenda',
               exact: true,
@@ -162,14 +162,6 @@ export default {
           ],
         },
       ],
-
-      //   {
-      //     title: 'Настройки',
-      //     link: '/settings',
-      //     icon: 'ti-settings',
-      //     exact: true,
-      //   },
-
     }
   },
   computed: {

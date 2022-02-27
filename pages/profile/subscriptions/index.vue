@@ -1,18 +1,17 @@
 <template>
-  <div class="subscriptions-page">
-    <app-page-title>Интересные страницы</app-page-title>
-    <div class="subscriptions-page__content">
+  <app-page pageTitle="Интересные страницы" :breadcrumbs="breadcrumbs">
+    <div class="content">
       <page-info />
       <div class="filters-and-search">
         <filters />
         <search />
       </div>
     </div>
-  </div>
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import PageInfo from '@/components/subscriptions/PageInfo'
 import Filters from '@/components/subscriptions/Filters/index'
 import Search from '@/components/subscriptions/Search/index'
@@ -20,38 +19,46 @@ import Search from '@/components/subscriptions/Search/index'
 export default {
   layout: 'default',
   middleware: ['userAuth'],
-  // async asyncData ({ store }) {
-  //   await store.dispatch('foodCalorieTable/getAllProducts')
-  // },
   components: {
-    AppPageTitle,
+    AppPage,
     PageInfo,
     Filters,
     Search
-  }
+  },
+  // async asyncData ({ store }) {
+  //   await store.dispatch('foodCalorieTable/getAllProducts')
+  // },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Интересные страницы',
+          icon: 'ti-crown',
+          link: '/profile/subscriptions',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 
 <style lang="scss">
 @import '@/assets/styles/vars.scss';
 
-.subscriptions-page {
+.content {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .subscriptions-page__content {
-    // border: 1px solid red;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1700px;
-    .filters-and-search {
-      display: flex;
-    }
-  }
+}
+.filters-and-search {
+  display: flex;
 }
 
 </style>

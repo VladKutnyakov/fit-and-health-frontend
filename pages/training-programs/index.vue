@@ -1,14 +1,11 @@
 <template>
-  <div class="training-programs-page">
-    <app-page-title>Тренировочные программы</app-page-title>
-    <div class="training-programs-page__content">
-      <training-programs-book />
-    </div>
-  </div>
+  <app-page pageTitle="Тренировочные программы" :breadcrumbs="breadcrumbs">
+    <training-programs-book />
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from "@/components/basic/AppPageTitle"
+import AppPage from "@/components/basic/AppPage"
 import TrainingProgramsBook from "@/components/trainingProgramsBook/index"
 
 export default {
@@ -43,12 +40,30 @@ export default {
   },
   middleware: ['userAuth'],
   components: {
+    AppPage,
     TrainingProgramsBook,
-    AppPageTitle
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
     await store.dispatch('trainingPrograms/fetchTrainingProgramsList')
-  }
+  },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Тренировочные программы',
+          icon: 'ti-clipboard',
+          link: '/training-programs',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 

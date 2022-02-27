@@ -1,35 +1,31 @@
 <template>
-  <div class="training-diary-page">
-    <app-page-title>Дневник тренировок</app-page-title>
+  <app-page pageTitle="Дневник тренировок" :breadcrumbs="breadcrumbs">
+    <div class="center">
+      <training-program />
+    </div>
 
-    <div class="training-diary-page__content">
-      <div class="center">
-        <training-program />
-      </div>
+    <div class="right">
+      <training-diary-calendar />
 
-      <div class="right">
-        <training-diary-calendar />
-
-        <div class="useful-pages">
-          <app-block-title>Полезные страницы</app-block-title>
-          <div class="useful-pages__elements">
-            <nuxt-link tag="a" to="/training-programs" class="element">
-              <i class="ti-clipboard element__icon"></i>
-              <p class="element__text">Тренировочные<br>программы</p>
-            </nuxt-link>
-            <nuxt-link tag="a" to="/exercise-guide" class="element">
-              <i class="ti-book element__icon"></i>
-              <p class="element__text">Справочник<br>по упражнениям</p>
-            </nuxt-link>
-          </div>
+      <div class="useful-pages">
+        <app-block-title>Полезные страницы</app-block-title>
+        <div class="useful-pages__elements">
+          <nuxt-link tag="a" to="/training-programs" class="element">
+            <i class="ti-clipboard element__icon"></i>
+            <p class="element__text">Тренировочные<br>программы</p>
+          </nuxt-link>
+          <nuxt-link tag="a" to="/exercise-guide" class="element">
+            <i class="ti-book element__icon"></i>
+            <p class="element__text">Справочник<br>по упражнениям</p>
+          </nuxt-link>
         </div>
       </div>
     </div>
-  </div>
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from "@/components/basic/AppPageTitle"
+import AppPage from "@/components/basic/AppPage"
 import AppBlockTitle from "@/components/basic/AppBlockTitle"
 import TrainingProgram from "@/components/trainingDiary/TrainingProgram/index"
 import TrainingDiaryCalendar from "@/components/trainingDiary/TrainingDiaryCalendar"
@@ -66,46 +62,46 @@ export default {
   },
   middleware: ['userAuth'],
   components: {
-    AppPageTitle,
+    AppPage,
     AppBlockTitle,
     TrainingProgram,
     TrainingDiaryCalendar
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
     await store.dispatch('trainingDiary/fetchTrainingDiaryInfo', query)
-  }
+  },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Дневник тренировок',
+          icon: 'ti-timer',
+          link: '/training-diary',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.training-diary-page {
-  // border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .training-diary-page__content {
-    // border: 1px solid red;
-    display: flex;
-    width: 100%;
-    max-width: 1700px;
-    .left {
-      margin-right: 40px;
-      width: 400px;
-    }
-    .center {
-      width: 100%;
-    }
-    .right {
-      margin-left: 40px;
-      width: 400px;
-      min-width: 400px;
-      max-width: 400px;
-    }
-  }
+.center {
+  width: 100%;
+}
+.right {
+  margin-left: 40px;
+  width: 400px;
+  min-width: 400px;
+  max-width: 400px;
 }
 
 .useful-pages {

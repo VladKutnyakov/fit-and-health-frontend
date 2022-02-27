@@ -1,16 +1,14 @@
 <template>
-  <div class="meal-planer-page">
-    <app-page-title>Дневник питания</app-page-title>
-    <div class="meal-planer-page__content">
-      <meal-plan />
-      <additional-info />
-    </div>
-    <SearchRecipesAndProductsModal />
-  </div>
+  <app-page pageTitle="Дневник питания" :breadcrumbs="breadcrumbs">
+    <meal-plan />
+    <additional-info />
+
+    <search-recipes-and-products-modal />
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import MealPlan from '@/components/mealPlaner/MealPlan/index'
 import AdditionalInfo from '@/components/mealPlaner/AdditionalInfo/index'
 import SearchRecipesAndProductsModal from '@/components/mealPlaner/SearchRecipesAndProductsModal'
@@ -47,7 +45,7 @@ export default {
   },
   middleware: ['userAuth'],
   components: {
-    AppPageTitle,
+    AppPage,
     MealPlan,
     AdditionalInfo,
     SearchRecipesAndProductsModal,
@@ -55,25 +53,23 @@ export default {
   async asyncData ({ store, route }) {
     await store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: route.query.date})
   },
+  data () {
+    return {
+      breadcrumbs: [
+        {
+          title: 'Моя страница',
+          icon: 'ti-home',
+          link: '/profile',
+          active: true,
+        },
+        {
+          title: 'Дневник питания',
+          icon: 'ti-agenda',
+          link: '/meal-planer',
+          active: false,
+        },
+      ]
+    }
+  },
 }
 </script>
-
-<style lang="scss">
-@import '@/assets/styles/vars.scss';
-
-.meal-planer-page {
-  // border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .meal-planer-page__content {
-    // border: 1px solid red;
-    display: flex;
-    width: 100%;
-    max-width: 1700px;
-  }
-}
-
-</style>
