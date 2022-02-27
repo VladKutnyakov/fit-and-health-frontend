@@ -110,8 +110,9 @@ $tr-09: all .9s ease-in-out;
 $tr-1: all 1s ease-in-out;
 
 // SHADOWS
-// $btnShadow: 0 1px 6px 1px rgba(52,40,104,.4);
-$btnShadow: 0 5px 20px 0 rgb(34,41,47,.1);
+$cardShadow: 0 5px 20px 1px rgb(34,41,47,.1);
+
+$btnShadow: 0 5px 20px 1px rgb(34,41,47,.1);
 $btnHoverShadow: 0 1px 4px 0px rgba(52,40,104,.4);
 $btnActiveShadow: 0 1px 4px 1px rgba(52,40,104,.4);
 

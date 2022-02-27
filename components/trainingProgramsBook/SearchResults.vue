@@ -1,6 +1,5 @@
 <template>
   <div class="search-results">
-    <app-block-title>Тренировочные программы</app-block-title>
     <app-search-block />
 
     <div class="filter-by">
@@ -43,7 +42,6 @@
 
 <script>
 import { mapState } from 'vuex'
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
@@ -52,7 +50,6 @@ import AppPagination from '@/components/basic/AppPagination'
 
 export default {
   components: {
-    AppBlockTitle,
     AppButton,
     AppSearchBlock,
     FilterRadioTextGroup,

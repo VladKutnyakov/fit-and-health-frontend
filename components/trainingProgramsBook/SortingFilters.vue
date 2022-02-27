@@ -1,8 +1,5 @@
 <template>
   <div class="sorting-filters">
-
-    <app-block-title>Фильтры</app-block-title>
-
     <filter-radio-group
       :filterGroupOpened="true"
       headerTitle="Сортировать по ..."
@@ -18,18 +15,15 @@
       :defaultValue="mealtimeOptions"
       @inputGroupValueChanged="filters.mealtime = $event"
     />
-
   </div>
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import FilterRadioGroup from '@/components/basic/FilterRadioGroup'
 import FilterCheckboxGroup from '@/components/basic/FilterCheckboxGroup'
 
 export default {
   components: {
-    AppBlockTitle,
     FilterRadioGroup,
     FilterCheckboxGroup
   },

@@ -35,8 +35,9 @@ export default {
   display: flex;
   margin-bottom: 20px;
   background: $white;
-  border: 1px solid $blockBorder;
+  box-shadow: $cardShadow;
   border-radius: 6px;
+  overflow: hidden;
 }
 
 </style>

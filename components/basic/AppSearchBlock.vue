@@ -1,7 +1,6 @@
 <template>
-  <div ref="search" class="app-search-block">
+  <div class="app-search-block">
     <input
-      ref="searchInput"
       class="search__input"
       type="text"
       :placeholder="placeholder"
@@ -56,12 +55,12 @@ export default {
 .app-search-block {
   // border: 1px solid red;
   display: flex;
+  box-shadow: $cardShadow;
   .search__input {
     padding: 10px 0px 10px 20px;
     width: 100%;
     font-family: $fontMontserrat;
-    border: 1px solid $blockBorder;
-    border-right: none;
+    border: none;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     border-top-right-radius: 0;
@@ -77,8 +76,8 @@ export default {
     background: $white;
     padding-left: 10px;
     color: $green;
-    border-top: 1px solid $blockBorder;
-    border-bottom: 1px solid $blockBorder;
+    // border-top: 1px solid $blockBorder;
+    // border-bottom: 1px solid $blockBorder;
     transition: $tr-02;
     .search__action-btn-icon {
       // border: 1px solid red;
@@ -90,15 +89,15 @@ export default {
       cursor: pointer;
     }
     .search__action-btn-icon:hover {
-      color: $green;
+      color: $primary;
     }
   }
   .search__btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $green;
-    border: 1px solid $green;
+    background: $primary;
+    // border: 1px solid $green;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 6px;

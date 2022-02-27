@@ -56,8 +56,8 @@ export default {
         font-size: 18px;
       }
       .element__value {
-        color: $green;
-        font-size: 32px;
+        color: $primary;
+        font-size: 30px;
         font-weight: 600;
       }
     }
