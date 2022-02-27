@@ -13,8 +13,10 @@
           no-prefetch
           :title="item.title"
         >
-          <i v-if="index === 0" class="link__icon" :class="item.icon"></i>
-          <p v-else class="link__text">{{ item.title }}</p>
+          <p class="link__text">
+            <i v-if="index === 0" class="icon" :class="item.icon"></i>
+            <span class="text">{{ item.title }}</span>
+          </p>
         </nuxt-link>
 
         <div
@@ -22,7 +24,10 @@
           class="item__link item__link--disabled"
           :title="item.title"
         >
-          <p class="link__text">{{ item.title }}</p>
+          <p class="link__text">
+            <i v-if="index === 0" class="icon" :class="item.icon"></i>
+            <span class="text">{{ item.title }}</span>
+          </p>
         </div>
 
         <div v-if="index < breadcrumbs.length - 1" class="item__divider">
@@ -46,6 +51,7 @@ export default {
 
 .app-breadcrumbs {
   // border: 1px solid red;
+  padding: 0 15px;
   .app-breadcrumbs__list {
     // border: 1px solid red;
     display: flex;
@@ -56,29 +62,37 @@ export default {
         // border: 1px solid red;
         display: flex;
         padding: 5px;
-        .link__icon {
-          font-size: 18px;
-          transition: $tr-02;
-        }
         .link__text {
-          font-size: 18px;
-          transition: $tr-02;
+          display: flex;
+          .icon {
+            margin-right: 10px;
+            font-size: 18px;
+            transition: $tr-02;
+          }
+          .text {
+            font-size: 18px;
+            transition: $tr-02;
+          }
         }
       }
       .item__link:hover {
-        .link__icon {
-          color: $primary;
-        }
         .link__text {
-          color: $primary;
+          .icon {
+            color: $primary;
+          }
+          .text {
+            color: $primary;
+          }
         }
       }
       .item__link--disabled:hover {
-        .link__icon {
-          color: $text;
-        }
         .link__text {
-          color: $text;
+          .icon {
+            color: $text;
+          }
+          .text {
+            color: $text;
+          }
         }
       }
       .item__divider {

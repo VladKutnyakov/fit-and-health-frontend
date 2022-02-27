@@ -28,7 +28,7 @@ export default {
     return {
       breadcrumbs: [
         {
-          title: 'Моя страница',
+          title: 'Профиль',
           icon: 'ti-home',
           link: '/profile',
           active: true,

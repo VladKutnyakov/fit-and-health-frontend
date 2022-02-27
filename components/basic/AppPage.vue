@@ -1,9 +1,11 @@
 <template>
   <div class="app-page" :class="[{ 'app-page--hidden-menu': !menuIsOpen }]">
-    <div class="app-page__title-and-breadcrumbs">
-      <app-page-title>{{ pageTitle }}</app-page-title>
+    <!-- <div class="app-page__breadcrumbs">
       <app-breadcrumbs :breadcrumbs="breadcrumbs" />
-    </div>
+    </div> -->
+    <!-- <div class="app-page__title">
+      <app-page-title>{{ pageTitle }}</app-page-title>
+    </div> -->
     <div class="app-page__content">
       <slot></slot>
     </div>
@@ -13,7 +15,7 @@
 <script>
 import { mapState } from 'vuex'
 import AppPageTitle from '@/components/basic/AppPageTitle'
-import AppBreadcrumbs from '@/components/basic/AppBreadcrumbs'
+// import AppBreadcrumbs from '@/components/basic/AppBreadcrumbs'
 
 export default {
   name: 'AppPage',
@@ -23,7 +25,7 @@ export default {
   },
   components: {
     AppPageTitle,
-    AppBreadcrumbs,
+    // AppBreadcrumbs,
   },
   computed: {
     ...mapState({
@@ -43,16 +45,21 @@ export default {
   align-items: center;
   margin-top: 60px;
   margin-left: 260px;
-  padding: 40px;
+  padding: 40px 40px 40px 40px;
   transition: $tr-02;
-  .app-page__title-and-breadcrumbs {
+  // .app-page__breadcrumbs {
+  //   margin-bottom: 20px;
+  //   width: 100%;
+  //   max-width: 1700px;
+  // }
+  .app-page__title {
     // border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 20px;
-    width: 100%;
-    max-width: 1700px;
+    margin-bottom: 40px;
+    // width: 100%;
+    // max-width: 1700px;
   }
   .app-page__content {
     // border: 1px solid red;

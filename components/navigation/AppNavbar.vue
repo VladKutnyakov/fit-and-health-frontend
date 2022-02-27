@@ -29,10 +29,10 @@ export default {
     return {
       navbarGroups: [
         {
-          title: 'Профиль',
+          title: 'Пользователь',
           links: [
             {
-              title: 'Моя страница',
+              title: 'Профиль',
               link: '/profile',
               icon: 'ti-home',
               exact: true,
