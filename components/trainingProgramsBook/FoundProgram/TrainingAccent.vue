@@ -21,7 +21,7 @@ export default {}
   max-width: 230px;
   padding: 10px;
   border-left: $dividerBorder;
-  // border-right: 1px solid $blockBorder;
+  border-right: $dividerBorder;
 }
 
 </style>
