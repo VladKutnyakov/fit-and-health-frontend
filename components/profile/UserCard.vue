@@ -258,7 +258,7 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background: $black10;
+    background: $black15;
     .button-content {
       display: flex;
       align-items: center;
