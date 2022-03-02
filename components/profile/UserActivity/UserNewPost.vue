@@ -69,4 +69,8 @@ export default {
   }
 }
 
+body.dark .new-post {
+  background: $cardBackgroundDarkBG;
+}
+
 </style>

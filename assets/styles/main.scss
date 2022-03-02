@@ -9,7 +9,7 @@
 
 // BASE app style
 body {
-  background-color: $app-background;
+  background: $appBackground;
   min-height: -webkit-fill-available;
   overflow-y: scroll;
 }
@@ -23,7 +23,6 @@ body {
   font-family: $fontMontserrat;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $app-background;
   color: $text;
 }
 
@@ -42,6 +41,16 @@ pre {
 
 b {
   font-weight: 600;
+}
+
+body.dark {
+  background: $appBackgroundDark;
+  #__nuxt {
+    color: $textLight;
+  }
+  input, textarea, a, button, pre {
+    color: $textLight;
+  }
 }
 
 // Standart MARGIN styles

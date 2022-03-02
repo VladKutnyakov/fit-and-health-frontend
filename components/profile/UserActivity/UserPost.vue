@@ -216,4 +216,8 @@ export default {
   }
 }
 
+body.dark .user-post {
+  background: $cardBackgroundDarkBG;
+}
+
 </style>

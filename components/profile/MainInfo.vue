@@ -57,16 +57,6 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="favorite-sports">
-      <app-block-title>Спортивные направления</app-block-title>
-      <div class="favorite-sports__elements">
-        <p class="element">Плавание</p>
-        <p class="element">Легкая  отлетика</p>
-        <p class="element">CrossFit</p>
-        <p class="element">тяжелая атлетика</p>
-      </div>
-    </div> -->
   </div>
 </template>
 
@@ -93,7 +83,7 @@ export default {
     margin-bottom: 20px;
     background: $white;
     border-radius: 6px;
-    box-shadow: $btnShadow;
+    box-shadow: $cardShadow;
     .trainings-stats__elements-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -134,7 +124,7 @@ export default {
     margin-bottom: 20px;
     background: $white;
     border-radius: 6px;
-    box-shadow: $btnShadow;
+    box-shadow: $cardShadow;
     .trainings-intencity__chart {
       padding: 10px 10px 0 10px;
       .chart__settings {
@@ -210,7 +200,7 @@ export default {
     margin-bottom: 20px;
     background: $white;
     border-radius: 6px;
-    box-shadow: $btnShadow;
+    box-shadow: $cardShadow;
     .challenges-stats__elements {
       display: flex;
       padding: 10px;
@@ -261,107 +251,18 @@ export default {
       }
     }
   }
+}
 
-  .favorite-sports {
-    margin:  0 10px;
-    .favorite-sports__elements {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 10px;
-      .element {
-        margin-right: 10px;
-        margin-bottom: 10px;
-        padding: 10px 15px;
-        background: $black10;
-        border-radius: 20px;
-        font-size: 14px;
-      }
-    }
+body.dark .main-info {
+  .trainings-stats {
+    background: $cardBackgroundDarkBG;
   }
-
-  .nutrition-info {
-    margin-bottom: 20px;
-    .nutrition-info__bottom-block {
-      display: flex;
-      .nutrition-info__percent {
-        display: flex;
-        width: 100%;
-        background: $white;
-        border: 1px solid $blockBorder;
-        border-radius: 6px;
-        .percent__nutriets {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          flex: 1 1 auto;
-          .percent__nutriets-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5px;
-            .nutriets-item__indicator {
-              margin: 0 10px 0 20px;
-              width: 20px;
-              height: 6px;
-              border-radius: 6px;
-            }
-            .nutriets-item__indicator-protein {
-              background: $blue;
-            }
-            .nutriets-item__indicator-fats {
-              background: $yellow;
-            }
-            .nutriets-item__indicator-carb {
-              background: $red;
-            }
-            .nutriets-item__text {
-              min-width: 100px;
-              font-size: 14px;
-            }
-            .nutriets-item__value {
-              margin-right: 20px;
-              color: $green;
-              font-size: 18px;
-              font-weight: 600;
-            }
-          }
-        }
-        .percent__chart {
-          margin: 20px 0;
-          padding: 0px 30px;
-          border-right: 1px dashed $blockBorder;
-          .percent__kkal {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 120px;
-            height: 120px;
-            border: 6px solid $blockBorder;
-            border-radius: 50%;
-            .percent__kkal-value {
-              margin-top: 5px;
-              color: $green;
-              font-size: 24px;
-              font-weight: 700;
-            }
-            .percent__kkal-scale {
-              margin-top: -5px;
-              color: $green;
-              font-size: 14px;
-              font-weight: 500;
-            }
-          }
-        }
-      }
-      .nutrition-info__weight-chart {
-        margin-left: 10px;
-        width: 100%;
-        background: $white;
-        border: 1px solid $blockBorder;
-        border-radius: 6px;
-      }
-    }
+  .trainings-intencity {
+    background: $cardBackgroundDarkBG;
+  }
+  .challenges-stats {
+    background: $cardBackgroundDarkBG;
   }
 }
+
 </style>

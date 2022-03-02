@@ -69,4 +69,8 @@ export default {
   }
 }
 
+body.dark .user-stories {
+  background: $cardBackgroundDarkBG;
+}
+
 </style>

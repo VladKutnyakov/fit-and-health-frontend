@@ -131,7 +131,7 @@ export default {
     padding: 5px;
     background: $white;
     border: $dividerBorder;
-    box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);
+    box-shadow: $cardShadow;
     border-radius: 6px;
     transition: $tr-02;
     opacity: 0;
@@ -151,9 +151,9 @@ export default {
             margin-right: 10px;
             // font-size: 14px;
           }
-          .link__text {
-            // font-size: 14px;
-          }
+          // .link__text {
+          //   font-size: 14px;
+          // }
         }
       }
       .links__item:hover {
@@ -170,7 +170,7 @@ export default {
       }
     }
     .logout {
-      border-top: 1px solid rgba(34,41,47,.2);
+      border-top: $dividerBorder;
       .logout__btn {
         display: flex;
         align-items: center;
@@ -182,9 +182,9 @@ export default {
           transform: rotate(90deg);
           // font-size: 14px;
         }
-        .btn__text {
-          // font-size: 14px;
-        }
+        // .btn__text {
+        //   font-size: 14px;
+        // }
       }
       .logout__btn:hover {
         background: $primaryLight5;
@@ -200,6 +200,23 @@ export default {
   .user-info__actions--visible {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+body.dark .user-info {
+  .user-info__actions {
+    background: $cardBackgroundDarkBG;
+    .actions__links {
+      .links__item:hover {
+        background: $primaryDarkHover;
+      }
+    }
+    .logout {
+      border-top: $dividerBorderDarkBG;
+      .logout__btn:hover {
+        background: $primaryDarkHover;
+      }
+    }
   }
 }
 

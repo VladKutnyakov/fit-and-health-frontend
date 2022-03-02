@@ -57,7 +57,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: $green;
+  background: $primary;
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -69,7 +69,7 @@ export default {
   z-index: 8000;
 }
 .app-scroll-to-top:hover {
-  box-shadow: $boxShadow;
+  box-shadow: $cardShadow;
 }
 
 .app-scroll-to-top--visible {

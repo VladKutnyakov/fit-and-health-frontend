@@ -270,4 +270,12 @@ export default {
   }
 }
 
+body.dark .user-card {
+  background: $cardBackgroundDarkBG;
+  .user-card__main-info {
+    border-top: $dividerBorderDarkBG;
+    border-bottom: $dividerBorderDarkBG;
+  }
+}
+
 </style>

@@ -5,7 +5,9 @@ $fontMontserrat: 'Montserrat', Arial, Helvetica, sans-serif;
 $fontThemify: 'themify';
 
 // COLORS
-$app-background: #f8f8f8;
+$appBackground: #f8f8f8;
+$appBackgroundDark: #161d31;
+$cardBackgroundDarkBG: #283046;
 
 $white: rgba(255,255,255,1);
 $white10: rgba(255,255,255,.1);
@@ -35,6 +37,7 @@ $primaryLight2: #9e95f5;
 $primaryLight3: #b3adf7;
 $primaryLight4: #c9c4f9;
 $primaryLight5: #dedbfb;
+$primaryDarkHover: rgba(115,103,240,.12);
 
 $secondary: #82868b;
 $secondaryLight1: #8f9397;
@@ -79,6 +82,7 @@ $dangerGradient: linear-gradient(47deg,#ea5455,#f08182);
 $dangerGradient: linear-gradient(47deg,#00cfe8,#1ce7ff);
 
 $text: #6e6b7b;
+$textLight: #b4b7bd;
 
 $gray-dark: rgba(144, 148, 151);
 $gray: rgba(182, 191, 198, 1);
@@ -97,6 +101,7 @@ $insetBlockBG: rgba(0, 0, 0, 0.025);
 $blockBorder: rgba(0,0,0,.2);
 $inputBorder: rgba(0,0,0,.1);
 $dividerBorder: 1px solid rgba(34,41,47,.1);
+$dividerBorderDarkBG: 1px solid rgb(214,220,225,.2);
 
 // TRANSITIONS
 $tr-01: all .1s ease-in-out;

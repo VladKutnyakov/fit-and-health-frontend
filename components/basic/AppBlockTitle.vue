@@ -13,4 +13,8 @@
   border-bottom: $dividerBorder;
 }
 
+body.dark .block-title {
+  border-bottom: $dividerBorderDarkBG;
+}
+
 </style>
