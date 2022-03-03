@@ -61,7 +61,6 @@ export default {
         }
         .input__value-field:checked + .input__text {
           color: $primary;
-          // font-weight: 500;
         }
         .input__text {
           margin: 0 5px;
@@ -75,7 +74,6 @@ export default {
 
 .text-transform-uppercase {
   text-transform: uppercase;
-  // font-weight: 600;
 }
 .size14px {
   font-size: 14px;

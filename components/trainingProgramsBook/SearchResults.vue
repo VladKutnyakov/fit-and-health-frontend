@@ -1,31 +1,33 @@
 <template>
   <div class="search-results">
-    <app-search-block />
+    <div class="search-training-programs">
+      <app-search-block placeholder="Поиск тренировочной программы" />
 
-    <div class="filter-by">
-      <filter-radio-text-group
-        :valueList="['Все', 'Фото', 'Видео']"
-        :defaultValue="filters.media"
-        uppercase
-        size14px
-        @inputGroupValueChanged="filters.media = $event"
-      />
-      <p class="filter-by__divider">|</p>
-      <filter-radio-text-group
-        :valueList="['Все', 'Домашние', 'Спортзал']"
-        :defaultValue="filters.foodOrDrink"
-        uppercase
-        size14px
-        @inputGroupValueChanged="filters.foodOrDrink = $event"
-      />
-      <p class="filter-by__divider">|</p>
-      <filter-radio-text-group
-        :valueList="['Все', 'Мои программы']"
-        :defaultValue="filters.type"
-        uppercase
-        size14px
-        @inputGroupValueChanged="filters.type = $event"
-      />
+      <div class="filter-by">
+        <filter-radio-text-group
+          :valueList="['Все', 'Фото', 'Видео']"
+          :defaultValue="filters.media"
+          uppercase
+          size14px
+          @inputGroupValueChanged="filters.media = $event"
+        />
+        <p class="filter-by__divider">|</p>
+        <filter-radio-text-group
+          :valueList="['Все', 'Домашние', 'Спортзал']"
+          :defaultValue="filters.foodOrDrink"
+          uppercase
+          size14px
+          @inputGroupValueChanged="filters.foodOrDrink = $event"
+        />
+        <p class="filter-by__divider">|</p>
+        <filter-radio-text-group
+          :valueList="['Все', 'Мои программы']"
+          :defaultValue="filters.type"
+          uppercase
+          size14px
+          @inputGroupValueChanged="filters.type = $event"
+        />
+      </div>
     </div>
 
     <div class="found-programs">
@@ -80,19 +82,41 @@ export default {
   // border: 1px solid red;
   flex: 1 1 auto;
   margin-left: 40px;
-  .filter-by {
-    display: flex;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    .filter-by__divider {
-      margin: 0 20px;
-      color: rgba(0,0,0,.2);
-      user-select: none;
+  .search-training-programs {
+    padding: 10px;
+    background: $white;
+    box-shadow: $cardShadow;
+    border-radius: 6px;
+    transition: $tr-02;
+    overflow: hidden;
+    .filter-by {
+      display: flex;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      .filter-by__divider {
+        margin: 0 20px;
+        color: rgba(34,41,47,.1);
+        user-select: none;
+      }
     }
   }
   .found-programs {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 40px;
+  }
+}
+
+body.dark {
+  .search-results {
+    .search-training-programs {
+      background: $cardBackgroundDarkBG;
+      .filter-by {
+        .filter-by__divider {
+          color: rgba(214,220,225,.2);
+        }
+      }
+    }
   }
 }
 

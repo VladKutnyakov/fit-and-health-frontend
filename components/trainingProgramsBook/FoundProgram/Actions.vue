@@ -20,17 +20,28 @@ export default {}
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  background: $black15;
   .action-btn {
     margin-bottom: 10px;
-    padding: 10px;
-    background: $primary;
-    color: $white;
-    border-radius: 6px;
+    padding: 5px;
+    color: $text;
+    font-size: 20px;
     cursor: pointer;
   }
   .action-btn:last-child {
     margin-top: auto;
     margin-bottom: 0;
+  }
+  .action-btn:hover {
+    color: $primary;
+  }
+}
+
+body.dark {
+  .actions {
+    .action-btn {
+      color: $textLight;
+    }
   }
 }
 

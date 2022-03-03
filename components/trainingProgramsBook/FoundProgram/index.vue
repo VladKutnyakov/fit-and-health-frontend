@@ -37,7 +37,14 @@ export default {
   background: $white;
   box-shadow: $cardShadow;
   border-radius: 6px;
+  transition: $tr-02;
   overflow: hidden;
+}
+
+body.dark {
+  .found-program {
+    background: $cardBackgroundDarkBG;
+  }
 }
 
 </style>

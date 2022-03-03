@@ -55,7 +55,8 @@ export default {
 .app-search-block {
   // border: 1px solid red;
   display: flex;
-  box-shadow: $cardShadow;
+  // box-shadow: $cardShadow;
+  border: 1px solid $blockBorder;
   border-radius: 6px;
   .search__input {
     padding: 10px 0px 10px 20px;
@@ -77,6 +78,8 @@ export default {
     background: $white;
     padding: 5px;
     color: $green;
+    // border-top: 1px solid $blockBorder;
+    // border-bottom: 1px solid $blockBorder;
     transition: $tr-02;
     .search__action-btn-icon {
       // border: 1px solid red;
@@ -95,7 +98,7 @@ export default {
     align-items: center;
     justify-content: center;
     background: $primary;
-    // border: 1px solid $green;
+    border: 1px solid $primary;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: 6px;
