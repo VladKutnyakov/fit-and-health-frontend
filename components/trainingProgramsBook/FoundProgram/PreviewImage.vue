@@ -15,12 +15,20 @@ export default {}
   padding: 10px;
   .image {
     width: 100%;
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 240px;
+    max-width: 240px;
     object-fit: cover;
     object-position: center;
-    border: 1px solid $blockBorder;
+    border: 1px solid $dividerBorder;
     border-radius: 6px;
+  }
+}
+
+body.dark {
+  .preview-image {
+    .image {
+      border: 1px solid $dividerBorderDarkBG;
+    }
   }
 }
 

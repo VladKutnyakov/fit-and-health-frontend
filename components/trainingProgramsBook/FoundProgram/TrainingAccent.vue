@@ -1,10 +1,31 @@
 <template>
   <div class="training-accent">
-    <img src="https://image.freepik.com/free-vector/circle-chart-infographic-template-with-options_93208-410.jpg" alt/>
-    <p>Кардио: 30%</p>
-    <p>Сила: 20%</p>
-    <p>Выносливость: 38%</p>
-    <p>Гибкость: 12%</p>
+    <div class="training-accent__chart">
+      График
+    </div>
+
+    <div class="training-accent__info">
+      <div class="info__element">
+        <span class="element__text">Кардио:</span>
+        <span class="element__value">30%</span>
+      </div>
+      <div class="info__element">
+        <span class="element__text">Сила:</span>
+        <span class="element__value">20%</span>
+      </div>
+      <div class="info__element">
+        <span class="element__text">Выносливость:</span>
+        <span class="element__value">38%</span>
+      </div>
+      <div class="info__element">
+        <span class="element__text">Гибкость:</span>
+        <span class="element__value">12%</span>
+      </div>
+      <div class="info__element">
+        <span class="element__text">Сложность:</span>
+        <span class="element__value">Выше среднего</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,12 +37,48 @@ export default {}
 @import "@/assets/styles/vars.scss";
 
 .training-accent {
-  width: 230px;
-  min-width: 230px;
-  max-width: 230px;
+  display: flex;
+  flex-direction: column;
   padding: 10px;
-  border-left: $dividerBorder;
-  // border-right: $dividerBorder;
+  width: 100%;
+  min-width: 240px;
+  max-width: 240px;
+  .training-accent__chart {
+    margin-bottom: auto;
+  }
+  .training-accent__info {
+    display: flex;
+    flex-direction: column;
+    .info__element {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+      .element__text {
+        font-size: 14px;
+      }
+      .element__value {
+        margin-left: auto;
+        color: $primary;
+        font-size: 14px;
+      }
+    }
+    .info__element:last-child {
+      margin-top: 5px;
+      margin-bottom: 0;
+      padding-top: 10px;
+      border-top: $dividerBorder;
+    }
+  }
+}
+
+body.dark {
+  .training-accent {
+    .training-accent__info {
+      .info__element:last-child {
+        border-top: $dividerBorderDarkBG;
+      }
+    }
+  }
 }
 
 </style>
