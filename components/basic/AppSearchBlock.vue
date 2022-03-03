@@ -75,16 +75,13 @@ export default {
     align-items: center;
     justify-content: center;
     background: $white;
-    padding-left: 10px;
+    padding: 5px;
     color: $green;
-    // border-top: 1px solid $blockBorder;
-    // border-bottom: 1px solid $blockBorder;
     transition: $tr-02;
     .search__action-btn-icon {
       // border: 1px solid red;
-      margin-right: 5px;
       padding: 5px;
-      color: $black30;
+      color: $text;
       user-select: none;
       transition: $tr-02;
       cursor: pointer;
@@ -113,6 +110,19 @@ export default {
     .search__small-btn-text {
       padding: 0 15px;
       color: $white;
+    }
+  }
+}
+
+body.dark {
+  .app-search-block {
+    .search__input {
+      background: $black20;
+      color: $textLight;
+    }
+    .search__action-btns {
+      background: $black20;
+      color: $textLight;
     }
   }
 }

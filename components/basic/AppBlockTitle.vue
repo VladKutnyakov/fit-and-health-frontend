@@ -9,7 +9,7 @@
 
 .block-title {
   padding: 10px 20px;
-  font-size: 18px;
+  // font-size: 18px;
   border-bottom: $dividerBorder;
 }
 

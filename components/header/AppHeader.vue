@@ -36,22 +36,13 @@ export default {
   width: 100vw;
   height: 60px;
   background: $white;
-  box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);
+  box-shadow: $cardShadow;
+  transition: $tr-02;
   z-index: 9000;
 }
 
 body.dark .app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  padding-right: 40px;
-  width: 100vw;
-  height: 60px;
   background: $cardBackgroundDarkBG;
-  box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);
-  z-index: 9000;
 }
 
 </style>

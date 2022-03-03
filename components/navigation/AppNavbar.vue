@@ -225,7 +225,7 @@ export default {
           align-items: flex-start;
           margin-bottom: 5px;
           padding: 10px;
-          background: $white;
+          // background: $white;
           border-radius: 6px;
           .link__icon {
             margin-top: 1px;
@@ -280,6 +280,19 @@ export default {
 }
 .navbar::-webkit-scrollbar-track {
   background: $black10;
+}
+
+body.dark {
+  .navbar {
+    background: $cardBackgroundDarkBG;
+  }
+
+  .navbar::-webkit-scrollbar-thumb {
+    background: $primary;
+  }
+  .navbar::-webkit-scrollbar-track {
+    background: $black;
+  }
 }
 
 </style>

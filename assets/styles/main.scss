@@ -12,6 +12,7 @@ body {
   background: $appBackground;
   min-height: -webkit-fill-available;
   overflow-y: scroll;
+  transition: $tr-02;
 }
 
 .body-overflow {
