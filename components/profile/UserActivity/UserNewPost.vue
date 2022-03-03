@@ -71,6 +71,12 @@ export default {
 
 body.dark .new-post {
   background: $cardBackgroundDarkBG;
+  .new-post__user-message-wrapper {
+    .new-post__message {
+      background: $black20;
+      color: $textLight;
+    }
+  }
 }
 
 </style>

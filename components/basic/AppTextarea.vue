@@ -1,6 +1,6 @@
 <template>
     <textarea
-      class="textarea"
+      class="app-textarea"
       :placeholder="placeholder"
       @input="changeTextareaValue"
       v-model="inputValue"
@@ -34,29 +34,34 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.textarea {
+.app-textarea {
   padding: 10px;
   width: 100%;
   min-height: 100px;
   background: $white;
   border: 1px solid $blockBorder;
   border-radius: 6px;
-  color: $black;
+  color: $text;
   font-family: $fontMontserrat;
   font-size: 16px;
   resize: none;
   outline: none;
   transition: $tr-02;
 }
-.textarea:focus {
+.app-textarea:focus {
   border: 1px solid $green;
 }
-.textarea::placeholder {
+.app-textarea::placeholder {
   opacity: .6;
   transition: $tr-02;
 }
-.textarea:focus::placeholder {
+.app-textarea:focus::placeholder {
   opacity: 0;
+}
+
+body.dark .app-textarea {
+  background: $black20;
+  color: $textLight;
 }
 
 </style>

@@ -150,4 +150,11 @@ export default {
   }
 }
 
+body.dark .app-input-text {
+  .input {
+    background: $black20;
+    color: $textLight;
+  }
+}
+
 </style>
