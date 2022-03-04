@@ -33,6 +33,7 @@ export default {
   background: $white;
   border-radius: 6px;
   box-shadow: $btnShadow;
+  transition: $tr-02;
   .new-post__user-message-wrapper {
     // border: 1px solid red;
     display: flex;
@@ -69,12 +70,14 @@ export default {
   }
 }
 
-body.dark .new-post {
-  background: $cardBackgroundDarkBG;
-  .new-post__user-message-wrapper {
-    .new-post__message {
-      background: $black20;
-      color: $textLight;
+body.dark {
+  .new-post {
+    background: $cardBackgroundDarkBG;
+    .new-post__user-message-wrapper {
+      .new-post__message {
+        background: $black20;
+        color: $textLight;
+      }
     }
   }
 }

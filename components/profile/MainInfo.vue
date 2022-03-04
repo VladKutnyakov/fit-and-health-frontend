@@ -84,6 +84,7 @@ export default {
     background: $white;
     border-radius: 6px;
     box-shadow: $cardShadow;
+    transition: $tr-02;
     .trainings-stats__elements-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -125,6 +126,7 @@ export default {
     background: $white;
     border-radius: 6px;
     box-shadow: $cardShadow;
+    transition: $tr-02;
     .trainings-intencity__chart {
       padding: 10px 10px 0 10px;
       .chart__settings {
@@ -201,12 +203,10 @@ export default {
     background: $white;
     border-radius: 6px;
     box-shadow: $cardShadow;
+    transition: $tr-02;
     .challenges-stats__elements {
       display: flex;
       padding: 10px;
-      // background: $white;
-      // border: 1px solid $blockBorder;
-      // border-radius: 6px;
       .challenges-stats__element {
         display: flex;
         flex-direction: column;
@@ -214,7 +214,6 @@ export default {
         align-items: center;
         padding: 10px;
         width: 100%;
-        // border-right: 1px dashed $blockBorder;
         .element__icon {
           font-size: 24px;
         }
@@ -253,15 +252,17 @@ export default {
   }
 }
 
-body.dark .main-info {
-  .trainings-stats {
-    background: $cardBackgroundDarkBG;
-  }
-  .trainings-intencity {
-    background: $cardBackgroundDarkBG;
-  }
-  .challenges-stats {
-    background: $cardBackgroundDarkBG;
+body.dark {
+  .main-info {
+    .trainings-stats {
+      background: $cardBackgroundDarkBG;
+    }
+    .trainings-intencity {
+      background: $cardBackgroundDarkBG;
+    }
+    .challenges-stats {
+      background: $cardBackgroundDarkBG;
+    }
   }
 }
 

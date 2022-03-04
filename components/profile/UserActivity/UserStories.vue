@@ -28,6 +28,7 @@ export default {
   background: $white;
   border-radius: 6px;
   box-shadow: $btnShadow;
+  transition: $tr-02;
   .user-stories__story-block {
     display: flex;
     padding: 15px 20px;
@@ -69,8 +70,10 @@ export default {
   }
 }
 
-body.dark .user-stories {
-  background: $cardBackgroundDarkBG;
+body.dark {
+  .user-stories {
+    background: $cardBackgroundDarkBG;
+  }
 }
 
 </style>

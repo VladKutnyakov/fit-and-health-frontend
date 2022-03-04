@@ -90,6 +90,7 @@ export default {
   background: $white;
   border-radius: 6px;
   box-shadow: $btnShadow;
+  transition: $tr-02;
   .user-post__info {
     // border: 1px solid red;
     margin: 0 10px 10px 10px;

@@ -128,6 +128,7 @@ export default {
   background: $white;
   border-radius: 6px;
   box-shadow: $btnShadow;
+  transition: $tr-02;
   overflow: hidden;
   .user-card__avatar-wrapper {
     position: relative;
@@ -270,11 +271,13 @@ export default {
   }
 }
 
-body.dark .user-card {
-  background: $cardBackgroundDarkBG;
-  .user-card__main-info {
-    border-top: $dividerBorderDarkBG;
-    border-bottom: $dividerBorderDarkBG;
+body.dark {
+  .user-card {
+    background: $cardBackgroundDarkBG;
+    .user-card__main-info {
+      border-top: $dividerBorderDarkBG;
+      border-bottom: $dividerBorderDarkBG;
+    }
   }
 }
 
