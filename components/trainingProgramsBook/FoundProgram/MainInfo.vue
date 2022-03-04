@@ -40,7 +40,7 @@ export default {
   flex-direction: column;
   padding: 10px 10px 10px 0;
   .title {
-    padding: 0 10px;
+    padding: 0 10px 5px 10px;
     text-align: center;
     font-size: 18px;
     font-weight: 500;
@@ -53,7 +53,7 @@ export default {
       font-weight: 500;
     }
     .description__text {
-      padding: 10px;
+      padding: 0 10px;
     }
   }
 

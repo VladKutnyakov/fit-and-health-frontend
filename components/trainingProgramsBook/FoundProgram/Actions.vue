@@ -2,7 +2,7 @@
   <div class="actions">
     <i class="ti-control-play action-btn"></i>
     <nuxt-link to="training-programs/program-123" class="action-btn">
-      <i class="ti-pencil"></i>
+      <i class="ti-search"></i>
     </nuxt-link>
     <i class="ti-trash action-btn"></i>
   </div>

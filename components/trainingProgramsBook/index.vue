@@ -33,6 +33,7 @@ export default {
   flex: 1 1 auto;
   .training-programs-book__filters-and-results {
     display: flex;
+    align-items: flex-start;
   }
 }
 

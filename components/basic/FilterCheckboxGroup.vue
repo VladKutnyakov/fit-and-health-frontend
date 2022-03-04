@@ -19,11 +19,6 @@
               />
             </li>
           </ul>
-          <div class="footer__btn-wrapper">
-            <app-button class="mt-10" size12px uppercase @click="removeAllValue()">Очистить все</app-button>
-            <app-button class="mt-10" size12px uppercase @click="selectAllValue()">Выбрать все</app-button>
-            <app-button class="mt-10" size12px uppercase @click="applyFilter()">Применить</app-button>
-          </div>
         </div>
       </template>
     </app-accordion>
@@ -32,15 +27,13 @@
 </template>
 
 <script>
-import AppAccordion from '@/components/basic/AppAccordion.vue'
+import AppAccordion from '@/components/basic/AppAccordion'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
-import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
     AppAccordion,
     AppInputCheckbox,
-    AppButton
   },
   props: {
     headerTitle: String,
@@ -66,7 +59,6 @@ export default {
       this.checkedValue = this.defaultValue
     },
     applyFilter () {
-      // console.log('applyFilter')
       this.$emit('applyFunc')
     }
   }
@@ -77,34 +69,32 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .filter-checkbox-group {
-  margin-bottom: 20px;
   .filter-checkbox-group__header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background: $white;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
+    background: $primary;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    transition: $tr-02;
     .header__title {
+      color: $white;
       font-weight: 500;
     }
     .header__icon {
+      color: $white;
       font-size: 14px;
     }
   }
   .filter-checkbox-group__footer {
-    margin-left: 5px;
-    margin-right: 5px;
     padding: 10px;
-    background: $hiddenBlockBG;
+    border: $dividerBorder;
+    // border-top: none;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     .footer__value-list {
-      padding: 15px 20px;
-      background: $white;
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
+      padding: 10px;
       .value-list__item {
         margin-bottom: 10px;
       }
@@ -112,11 +102,14 @@ export default {
         margin-bottom: 0;
       }
     }
-    .footer__btn-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+  }
+}
+
+body.dark {
+  .filter-checkbox-group {
+    .filter-checkbox-group__footer {
+      border: $dividerBorderDarkBG;
+      // border-top: none;
     }
   }
 }

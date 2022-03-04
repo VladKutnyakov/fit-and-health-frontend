@@ -1,6 +1,7 @@
 <template>
   <div class="sorting-filters">
     <filter-radio-group
+      class="mb-20"
       :filterGroupOpened="true"
       headerTitle="Сортировать по ..."
       :valueList="sotringOptions"
@@ -51,9 +52,20 @@ export default {
 
 .sorting-filters {
   // border: 1px solid red;
+  padding: 10px;
   width: 400px;
   min-width: 400px;
   max-width: 400px;
+  background: $white;
+  box-shadow: $cardShadow;
+  border-radius: 6px;
+  transition: $tr-02;
+}
+
+body.dark {
+  .sorting-filters {
+    background: $cardBackgroundDarkBG;
+  }
 }
 
 </style>

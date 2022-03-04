@@ -80,10 +80,10 @@ export default {
     display: none;
   }
   .input__value-field:checked + .input__visible-switch:after {
-    background: $green;
+    background: $primary;
   }
   .input__value-field:checked ~ .input__text {
-    color: $green;
+    color: $primary;
   }
 
   .input__visible-switch {
@@ -95,7 +95,7 @@ export default {
     width: 20px;
     min-width: 20px;
     max-width: 20px;
-    border: 2px solid #6EB63B;
+    border: 2px solid $primary;
     border-radius: 4px;
   }
   .input__visible-switch:after {

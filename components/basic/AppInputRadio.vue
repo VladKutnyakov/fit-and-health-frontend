@@ -51,10 +51,10 @@ export default {
     display: none;
   }
   .input__value-field:checked + .input__visible-switch:after {
-    background: $green;
+    background: $primary;
   }
   .input__value-field:checked ~ .input__text {
-    color: $green;
+    color: $primary;
   }
 
   .input__visible-switch {
@@ -62,7 +62,7 @@ export default {
     position: relative;
     height: 20px;
     width: 20px;
-    border: 2px solid #6EB63B;
+    border: 2px solid $primary;
     border-radius: 10px;
   }
   .input__visible-switch:after {
