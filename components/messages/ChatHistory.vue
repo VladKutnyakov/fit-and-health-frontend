@@ -1,6 +1,5 @@
 <template>
   <div class="chat-history">
-    <app-block-title>История сообщений</app-block-title>
     <div class="chat-history__content">
       <div class="messages">
         <div class="incomming-message">
@@ -35,12 +34,10 @@
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
-    AppBlockTitle,
     AppButton
   }
 }
@@ -56,8 +53,9 @@ export default {
   .chat-history__content {
     padding: 10px;
     background: $white;
-    border: 1px solid $blockBorder;
     border-radius: 6px;
+    box-shadow: $cardShadow;
+    transition: $tr-02;
     .messages {
       // border: 1px solid red;
       display: flex;
@@ -121,7 +119,7 @@ export default {
           margin-right: 10px;
           padding: 10px;
           color: $white;
-          background: $green;
+          background: $primary;
           border-radius: 6px;
           border-top-right-radius: 0;
           .text {
@@ -167,6 +165,14 @@ export default {
           margin-right: auto;
         }
       }
+    }
+  }
+}
+
+body.dark {
+  .chat-history {
+    .chat-history__content {
+      background: $cardBackgroundDarkBG;
     }
   }
 }

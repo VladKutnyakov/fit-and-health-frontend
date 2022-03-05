@@ -1,7 +1,5 @@
 <template>
   <div class="training-overview">
-    <app-block-title>Информация о тренировочной программе</app-block-title>
-
     <div class="training-overview__content">
       <preview-image />
 
@@ -22,7 +20,6 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import PreviewImage from '@/components/trainingProgramEditor/Editor/TrainingOverview/PreviewImage'
 import ProgramTitle from '@/components/trainingProgramEditor/Editor/TrainingOverview/ProgramTitle'
 import TrainingSkill from '@/components/trainingProgramEditor/Editor/TrainingOverview/TrainingSkill'
@@ -31,7 +28,6 @@ import TrainingDescription from '@/components/trainingProgramEditor/Editor/Train
 
 export default {
   components: {
-    AppBlockTitle,
     PreviewImage,
     ProgramTitle,
     TrainingDescription,
@@ -62,13 +58,22 @@ export default {
   .training-overview__content {
     display: flex;
     background: $white;
-    border: 1px solid $blockBorder;
     border-radius: 6px;
+    box-shadow: $cardShadow;
+    transition: $tr-02;
     .overview {
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
-      border-left: 1px solid $blockBorder;
+      border-left: 1px solid $dividerBorder;
+    }
+  }
+}
+
+body.dark {
+  .training-overview {
+    .training-overview__content {
+      background: $cardBackgroundDarkBG;
     }
   }
 }

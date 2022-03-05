@@ -6,13 +6,11 @@
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import TrainingOverview from '@/components/trainingProgramEditor/Editor/TrainingOverview/index'
 import TrainingDays from '@/components/trainingProgramEditor/Editor/TrainingDays/index'
 
 export default {
   components: {
-    AppBlockTitle,
     TrainingOverview,
     TrainingDays
   }

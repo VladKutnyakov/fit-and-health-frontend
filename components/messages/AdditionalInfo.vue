@@ -1,7 +1,5 @@
 <template>
   <div class="additional-info">
-    <app-block-title>Дополнительная информация</app-block-title>
-
     <div class="additional-info__content">
       <div class="members">
         <p class="members__block-title">Участники: 2</p>
@@ -37,13 +35,7 @@
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
-
-export default {
-  components: {
-    AppBlockTitle
-  }
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
@@ -56,14 +48,15 @@ export default {
   min-width: 400px;
   max-width: 400px;
   .additional-info__content {
-    // padding: 10px;
     background: $white;
-    border: 1px solid $blockBorder;
     border-radius: 6px;
+    box-shadow: $btnShadow;
+    transition: $tr-02;
+    overflow: hidden;
     .members {
       .members__block-title {
         padding: 10px;
-        background: $hiddenBlockBG;
+        background: $black10;
         font-size: 14px;
       }
       .members__users-list {
@@ -75,14 +68,14 @@ export default {
           display: flex;
           align-items: center;
           padding: 10px;
-          border-bottom: 1px solid $blockBorder;
+          border-bottom: $dividerBorder;
           .item__image {
             width: 50px;
             min-width: 50px;
             height: 50px;
             object-fit: cover;
             object-position: center;
-            border: 1px solid $blockBorder;
+            border: $dividerBorder;
             border-radius: 6px;
           }
           .item__user-info {
@@ -112,7 +105,7 @@ export default {
     .files-and-links {
       .files-and-links__block-title {
         padding: 10px;
-        background: $hiddenBlockBG;
+        background: $black10;
         font-size: 14px;
       }
       .files-and-links__list {
@@ -138,6 +131,35 @@ export default {
             margin-top: 5px;
             font-size: 10px;
           }
+        }
+      }
+    }
+  }
+}
+
+body.dark {
+  .additional-info {
+    .additional-info__content {
+      background: $cardBackgroundDarkBG;
+      .members {
+        .members__block-title {
+          background: $black15;
+        }
+        .members__users-list {
+          .users-list__item {
+            border-bottom: $dividerBorderDarkBG;
+            .item__image {
+              border: $dividerBorderDarkBG;
+            }
+          }
+          .users-list__item:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+      .files-and-links {
+        .files-and-links__block-title {
+          background: $black15;
         }
       }
     }

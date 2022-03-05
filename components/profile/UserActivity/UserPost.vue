@@ -89,7 +89,7 @@ export default {
   width: 100%;
   background: $white;
   border-radius: 6px;
-  box-shadow: $btnShadow;
+  box-shadow: $cardShadow;
   transition: $tr-02;
   .user-post__info {
     // border: 1px solid red;

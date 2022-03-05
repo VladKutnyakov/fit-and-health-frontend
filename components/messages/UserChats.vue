@@ -1,7 +1,5 @@
 <template>
   <div class="user-chats">
-    <app-block-title>Управление сообщениями</app-block-title>
-
     <div class="user-chats__content">
       <div class="actions">
         <div class="actions-buttons">
@@ -35,12 +33,10 @@
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 
 export default {
   components: {
-    AppBlockTitle,
     AppSearchBlock
   }
 }
@@ -56,11 +52,13 @@ export default {
   max-width: 400px;
   .user-chats__content {
     background: $white;
-    border: 1px solid $blockBorder;
     border-radius: 6px;
+    box-shadow: $cardShadow;
+    transition: $tr-02;
+    overflow: hidden;
     .actions {
       padding: 10px;
-      background: $hiddenBlockBG;
+      background: $black10;
       .actions-buttons {
         margin-bottom: 10px;
         padding: 0 10px;
@@ -168,6 +166,12 @@ export default {
         }
       }
     }
+  }
+}
+
+body.dark .user-chats {
+  .user-chats__content {
+    background: $cardBackgroundDarkBG;
   }
 }
 

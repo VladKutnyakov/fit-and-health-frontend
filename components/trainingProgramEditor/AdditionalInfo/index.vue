@@ -1,6 +1,5 @@
 <template>
   <div class="additional-info">
-    <app-block-title>Дополнительная информация</app-block-title>
     <div class="additional-info__content">
       <training-focus />
 
@@ -23,13 +22,11 @@
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import TrainingFocus from '@/components/trainingProgramEditor/AdditionalInfo/TrainingFocus'
 
 export default {
   components: {
-    AppBlockTitle,
     AppButton,
     TrainingFocus
   },
@@ -55,13 +52,26 @@ export default {
   max-width: 400px;
   .additional-info__content {
     background: $white;
-    border: 1px solid $blockBorder;
     border-radius: 6px;
+    box-shadow: $cardShadow;
+    transition: $tr-02;
+    overflow: hidden;
   }
   .actions {
     display: flex;
     padding: 10px;
-    background: $hiddenBlockBG;
+    background: $black10;
+  }
+}
+
+body.dark {
+  .additional-info {
+    .additional-info__content {
+      background: $cardBackgroundDarkBG;
+    }
+    .actions {
+      background: $black15;
+    }
   }
 }
 
