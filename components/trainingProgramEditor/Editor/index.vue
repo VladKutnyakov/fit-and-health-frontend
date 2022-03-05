@@ -23,6 +23,18 @@ export default {
 .editor {
   // border: 1px solid red;
   flex: 1 1 auto;
+  padding: 10px;
+  background: $white;
+  border-radius: 6px;
+  box-shadow: $cardShadow;
+  transition: $tr-02;
+  overflow: hidden;
+}
+
+body.dark {
+  .editor {
+    background: $cardBackgroundDarkBG;
+  }
 }
 
 </style>

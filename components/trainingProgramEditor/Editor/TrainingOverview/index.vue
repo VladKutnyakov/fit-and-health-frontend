@@ -54,26 +54,12 @@ export default {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   .training-overview__content {
     display: flex;
-    background: $white;
-    border-radius: 6px;
-    box-shadow: $cardShadow;
-    transition: $tr-02;
     .overview {
       flex: 1 1 auto;
       display: flex;
       flex-direction: column;
-      border-left: 1px solid $dividerBorder;
-    }
-  }
-}
-
-body.dark {
-  .training-overview {
-    .training-overview__content {
-      background: $cardBackgroundDarkBG;
     }
   }
 }

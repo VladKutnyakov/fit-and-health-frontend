@@ -23,8 +23,6 @@ export default {
 .training-day__settings {
   // border: 1px solid red;
   display: flex;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
 }
+
 </style>
