@@ -121,7 +121,7 @@ export default {
     display: flex;
     flex: 1 1 auto;
     background: $white;
-    border: 1px solid $blockBorder;
+    border: 1px solid $dividerBorder;
     border-radius: 6px;
     cursor: pointer;
     .app-select__selected-value {
@@ -131,7 +131,7 @@ export default {
       width: 100%;
       min-width: 50px;
       border: none;
-      border-right: 1px solid $blockBorder;
+      border-right: 1px solid $dividerBorder;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
     }
@@ -141,7 +141,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: center;
-      border-right: 1px solid $blockBorder;
+      border-right: 1px solid $dividerBorder;
       .app-select__icon {
         // border: 1px solid red;
         padding: 0 10px;
@@ -162,7 +162,7 @@ export default {
     width: 100%;
     max-height: 200px;
     background: $white;
-    border: 1px solid $blockBorder;
+    border: 1px solid $dividerBorder;
     border-radius: 6px;
     box-shadow: $boxShadow;
     opacity: 0;

@@ -89,7 +89,7 @@ export default {
   }
   .filter-checkbox-group__footer {
     padding: 10px;
-    border: $dividerBorder;
+    border: 1px solid $dividerBorder;
     // border-top: none;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
@@ -108,7 +108,7 @@ export default {
 body.dark {
   .filter-checkbox-group {
     .filter-checkbox-group__footer {
-      border: $dividerBorderDarkBG;
+      border: 1px solid $dividerBorderDarkBG;
       // border-top: none;
     }
   }

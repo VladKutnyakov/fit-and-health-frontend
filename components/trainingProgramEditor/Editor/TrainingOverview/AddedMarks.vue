@@ -54,21 +54,23 @@ export default {
 .added-marks-form {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 0;
   width: 100%;
-  min-width: 300px;
-  max-width: 300px;
-  border-left: 1px solid $blockBorder;
+  min-width: 250px;
+  max-width: 250px;
   .added-marks-form__block-title {
     text-align: center;
     font-weight: 500;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed $blockBorder;
+    padding-bottom: 5px;
+    // border-bottom: 1px solid $dividerBorder;
   }
   .added-marks-form__marks {
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     padding: 10px 5px;
+    border: 1px solid $dividerBorder;
+    border-radius: 6px;
     .mark {
       // border: 1px solid red;
       display: flex;
@@ -76,7 +78,7 @@ export default {
       justify-content: space-between;
       margin-bottom: 5px;
       padding: 5px;
-      background: $hiddenBlockBG;
+      background: $black10;
       border-radius: 6px;
       .mark__text {
         // border: 1px solid red;
@@ -95,7 +97,7 @@ export default {
         cursor: pointer;
       }
       .mark__icon:hover {
-        color: $green;
+        color: $primary;
       }
     }
     .mark:last-child {
@@ -107,12 +109,11 @@ export default {
     align-items: center;
     margin-top: auto;
     padding-top: 10px;
-    border-top: 1px dashed $blockBorder;
     .input {
-      padding: 5px 10px;
+      padding: 8px 15px;
       width: calc(100% - 38px);
       font-size: 14px;
-      border: 1px solid $blockBorder;
+      border: 1px solid $dividerBorder;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
       transition: $tr-02;
@@ -123,16 +124,21 @@ export default {
       transition: $tr-02;
     }
     .input:focus {
-      border: 1px solid $green;
+      border: 1px solid $primary;
     }
     .input:focus::placeholder {
       opacity: 0;
     }
-    .action-btn {
-      padding: 4.5px 10px;
-      background: $green;
+    .input::selection {
       color: $white;
-      border: 1px solid $green;
+      background: $primary;
+    }
+    .action-btn {
+      padding: 7.5px 10px;
+      background: $primary;
+      color: $white;
+      border: 1px solid $primary;
+      // border: none;
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px;
     }

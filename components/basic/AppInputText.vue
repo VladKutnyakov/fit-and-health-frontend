@@ -73,19 +73,19 @@ export default {
   flex-direction: column;
   align-items: center;
   .input {
-    padding: 10px;
+    padding: 8px 15px;
     width: 100%;
     min-width: 50px;
-    color: $black;
+    color: $text;
     font-family: $fontMontserrat;
     font-size: 16px;
-    border: 1px solid $blockBorder;
+    border: 1px solid $dividerBorder;
     border-radius: 6px;
     outline: none;
     transition: $tr-02;
   }
   .input:focus {
-    border: 1px solid $green;
+    border: 1px solid $primary;
     transition: $tr-02;
   }
   .input::placeholder {
@@ -97,12 +97,11 @@ export default {
   }
   .input::selection {
     color: $white;
-    background: $green;
+    background: $primary;
   }
 
   .input--small {
-    padding: 5px 10px;
-    color: $black;
+    padding: 5px 12px;
     font-size: 14px;
   }
 
@@ -117,7 +116,7 @@ export default {
   }
 
   .input--error {
-    border: 1px solid $red !important;
+    border: 1px solid $danger !important;
   }
 
   .error-message {
@@ -125,7 +124,7 @@ export default {
     position: absolute;
     top: calc(100% + 5px);
     padding: 5px 10px;
-    background: $red;
+    background: $danger;
     text-align: center;
     color: $white;
     font-size: 12px;
@@ -142,7 +141,7 @@ export default {
     transform: rotate(45deg) translateX(-50%);
     width: 5px;
     height: 5px;
-    background: $red;
+    background: $danger;
   }
   .error-message--active {
     opacity: 1;

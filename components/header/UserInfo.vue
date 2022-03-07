@@ -130,7 +130,7 @@ export default {
     flex-direction: column;
     padding: 5px;
     background: $white;
-    border: $dividerBorder;
+    border: 1px solid $dividerBorder;
     box-shadow: $cardShadow;
     border-radius: 6px;
     transition: $tr-02;
@@ -170,7 +170,7 @@ export default {
       }
     }
     .logout {
-      border-top: $dividerBorder;
+      border-top: 1px solid $dividerBorder;
       .logout__btn {
         display: flex;
         align-items: center;
@@ -212,7 +212,7 @@ body.dark .user-info {
       }
     }
     .logout {
-      border-top: $dividerBorderDarkBG;
+      border-top: 1px solid $dividerBorderDarkBG;
       .logout__btn:hover {
         background: $primaryDarkHover;
       }

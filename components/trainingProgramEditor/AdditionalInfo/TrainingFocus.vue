@@ -42,30 +42,21 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  // background: $white;
-  // border: 1px solid $blockBorder;
-  // border-radius: 6px;
-
   .chart {
-    // border: 1px solid red;
     margin: 160px 0;
   }
   .percents {
     margin-top: auto;
     padding: 10px 10px 0px 10px;
-    border-top: 1px dashed $blockBorder;
+    border-top: 1px solid $dividerBorder;
     .percents__element {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 5px;
-      .element__title {
-        // font-size: 18px;
-        // font-weight: 500;
-      }
+      // .element__title {}
       .element__value {
-        color: $green;
-        // font-size: 18px;
+        color: $primary;
         font-weight: 500;
       }
     }

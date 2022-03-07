@@ -68,14 +68,14 @@ export default {}
           display: flex;
           align-items: center;
           padding: 10px;
-          border-bottom: $dividerBorder;
+          border-bottom: 1px solid $dividerBorder;
           .item__image {
             width: 50px;
             min-width: 50px;
             height: 50px;
             object-fit: cover;
             object-position: center;
-            border: $dividerBorder;
+            border: 1px solid $dividerBorder;
             border-radius: 6px;
           }
           .item__user-info {
@@ -147,9 +147,9 @@ body.dark {
         }
         .members__users-list {
           .users-list__item {
-            border-bottom: $dividerBorderDarkBG;
+            border-bottom: 1px solid 1px solid $dividerBorderDarkBG;
             .item__image {
-              border: $dividerBorderDarkBG;
+              border: 1px solid 1px solid $dividerBorderDarkBG;
             }
           }
           .users-list__item:last-child {

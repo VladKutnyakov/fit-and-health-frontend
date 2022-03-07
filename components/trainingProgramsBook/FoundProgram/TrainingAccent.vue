@@ -43,7 +43,7 @@ export default {}
   width: 100%;
   min-width: 240px;
   max-width: 240px;
-  border-left: $dividerBorder;
+  border-left: 1px solid $dividerBorder;
   .training-accent__chart {
     margin-bottom: auto;
   }
@@ -67,17 +67,17 @@ export default {}
       margin-top: 5px;
       margin-bottom: 0;
       padding-top: 10px;
-      border-top: $dividerBorder;
+      border-top: 1px solid $dividerBorder;
     }
   }
 }
 
 body.dark {
   .training-accent {
-    border-left: $dividerBorderDarkBG;
+    border-left: 1px solid $dividerBorderDarkBG;
     .training-accent__info {
       .info__element:last-child {
-        border-top: $dividerBorderDarkBG;
+        border-top: 1px solid $dividerBorderDarkBG;
       }
     }
   }

@@ -10,11 +10,11 @@
 .block-title {
   padding: 10px 20px;
   // font-size: 18px;
-  border-bottom: $dividerBorder;
+  border-bottom: 1px solid $dividerBorder;
 }
 
 body.dark .block-title {
-  border-bottom: $dividerBorderDarkBG;
+  border-bottom: 1px solid $dividerBorderDarkBG;
 }
 
 </style>

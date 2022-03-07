@@ -35,11 +35,10 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .app-textarea {
-  padding: 10px;
+  padding: 8px 15px;
   width: 100%;
   min-height: 100px;
-  background: $white;
-  border: 1px solid $blockBorder;
+  border: 1px solid $dividerBorder;
   border-radius: 6px;
   color: $text;
   font-family: $fontMontserrat;
@@ -49,7 +48,7 @@ export default {
   transition: $tr-02;
 }
 .app-textarea:focus {
-  border: 1px solid $green;
+  border: 1px solid $primary;
 }
 .app-textarea::placeholder {
   opacity: .6;
@@ -57,6 +56,10 @@ export default {
 }
 .app-textarea:focus::placeholder {
   opacity: 0;
+}
+.app-textarea::selection {
+  color: $white;
+  background: $primary;
 }
 
 body.dark .app-textarea {

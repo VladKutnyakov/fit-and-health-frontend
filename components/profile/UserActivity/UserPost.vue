@@ -97,7 +97,7 @@ export default {
     padding: 10px 0;
     display: flex;
     align-items: center;
-    border-bottom: $dividerBorder;
+    border-bottom: 1px solid $dividerBorder;
     .user-avatar {
       min-width: 50px;
       max-width: 50px;
@@ -134,7 +134,7 @@ export default {
       padding: 0 10px 10px 10px;
       width: 100%;
       .image {
-        border: $dividerBorder;
+        border: 1px solid $dividerBorder;
         border-radius: 6px;
       }
     }
@@ -212,7 +212,7 @@ export default {
       display: flex;
       flex-direction: column;
       padding-top: 10px;
-      border-top: $dividerBorder;
+      border-top: 1px solid $dividerBorder;
     }
   }
 }

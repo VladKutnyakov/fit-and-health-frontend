@@ -18,10 +18,10 @@ export default {}
   justify-content: center;
   padding: 10px;
   width: 100%;
-  min-width: 350px;
-  max-width: 350px;
-  height: 500px;
-  background: $hiddenBlockBG;
+  min-width: 320px;
+  max-width: 320px;
+  height: 450px;
+  background: $black10;
   border-radius: 6px;
   i {
     color: $black20;
@@ -32,8 +32,17 @@ export default {}
     min-width: 300px;
     max-width: 300px;
     object-fit: cover;
-    border: 1px solid $blockBorder;
+    border: 1px solid $dividerBorder;
     border-radius: 6px;
+  }
+}
+
+body.dark {
+  .preview-image {
+    background: $black20;
+    i {
+      color: $white20;
+    }
   }
 }
 

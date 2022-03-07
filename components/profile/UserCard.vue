@@ -207,8 +207,8 @@ export default {
     margin-top: 5px;
     margin: 20px 10px 0 10px;
     padding: 10px 0;
-    border-top: $dividerBorder;
-    border-bottom: $dividerBorder;
+    border-top: 1px solid $dividerBorder;
+    border-bottom: 1px solid $dividerBorder;
     .main-info__item {
       text-align: center;
       width: 100%;
@@ -275,8 +275,8 @@ body.dark {
   .user-card {
     background: $cardBackgroundDarkBG;
     .user-card__main-info {
-      border-top: $dividerBorderDarkBG;
-      border-bottom: $dividerBorderDarkBG;
+      border-top: 1px solid $dividerBorderDarkBG;
+      border-bottom: 1px solid $dividerBorderDarkBG;
     }
   }
 }
