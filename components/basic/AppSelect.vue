@@ -127,7 +127,7 @@ export default {
     .app-select__selected-value {
       position: relative;
       flex: 1 1 auto;
-      padding: 10px;
+      padding: 8px 15px;
       width: 100%;
       min-width: 50px;
       border: none;
@@ -147,9 +147,7 @@ export default {
         padding: 0 10px;
         font-family: $fontThemify;
         font-size: 14px;
-        
       }
-      
     }
     .app-select__action:last-child {
       border-right: none;
@@ -220,6 +218,37 @@ export default {
 }
 .app-select__list-center {
   text-align: center;
+}
+
+body.dark {
+  .app-select {
+    .app-select__value {
+      background: $black20;
+      .app-select__selected-value {
+        background: transparent;
+        border-right: 1px solid $dividerBorderDarkBG;
+      }
+      .app-select__action {
+        border-right: 1px solid $dividerBorderDarkBG;
+      }
+      .app-select__action:last-child {
+        border-right: none;
+      }
+    }
+    .app-select__list {
+      background: $cardBackgroundDarkBG;
+      border: 1px solid $dividerBorderDarkBG;
+      .app-select__list-item--empty {
+        background: $cardBackgroundDarkBG;
+      }
+    }
+    .app-select__list-opened {
+      top: 45px;
+      opacity: 1;
+      visibility: visible;
+      transition: $tr-02;
+    }
+  }
 }
 
 </style>
