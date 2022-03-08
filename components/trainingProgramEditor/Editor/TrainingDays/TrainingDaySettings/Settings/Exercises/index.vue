@@ -56,7 +56,7 @@ export default {
   }
   .exercises__added-exercises {
     padding: 10px;
-    height: 800px;
+    height: 600px;
     background: $white;
     border: 1px solid $inputBorder;
     border-radius: 6px;
