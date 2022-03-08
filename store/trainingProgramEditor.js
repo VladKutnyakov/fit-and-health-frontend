@@ -100,6 +100,7 @@ export const mutations = {
       if (state.selectedTrainingDay !== 0) {
         state.selectedTrainingDay -= 1
       }
+      window.scrollTo(0, 0)
     }
   },
   setExercisesList (state, payload) {
