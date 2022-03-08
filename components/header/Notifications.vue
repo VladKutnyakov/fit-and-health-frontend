@@ -29,13 +29,11 @@
             <div class="info__icon">
               <i v-if="notice.type === 'success'" class="ti-check-box"></i>
               <i v-if="notice.type === 'warning'" class="ti-na"></i>
-              <i v-if="notice.type === 'info'" class="ti-alert"></i>
-              <i v-if="notice.type === 'alert'" class="ti-info"></i>
+              <i v-if="notice.type === 'info'" class="ti-info"></i>
+              <i v-if="notice.type === 'alert'" class="ti-alert"></i>
             </div>
             <p class="info__text">{{ notice.message }}</p>
           </div>
-
-          <div ref="timeIndicator" class="notice__time-indicator"></div>
 
           <button class="notice__close-btn" @click="closeNotice()">
             <i class="ti-close"></i>
@@ -121,10 +119,9 @@ export default {
     right: 0;
     display: flex;
     flex-direction: column;
-    padding: 5px;
     background: $white;
+    box-shadow: $cardShadow;
     border: 1px solid $dividerBorder;
-    box-shadow: 0 4px 24px 0 rgba(34,41,47,.1);
     border-radius: 6px;
     transition: $tr-02;
     opacity: 0;
@@ -134,11 +131,8 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px;
-      .title {
-        font-size: 18px;
-        font-weight: 500;
-      }
+      padding: 10px 20px;
+      // .title {}
       .count {
         padding: 5px 10px;
         background: $primaryLight5;
@@ -151,49 +145,37 @@ export default {
     .notice-list {
       display: flex;
       flex-direction: column;
-      padding-top: 10px;
       min-width: 400px;
       border-top: 1px solid $dividerBorder;
       .notice {
         position: relative;
-        margin-bottom: 5px;
-        border-radius: 6px;
         .notice__info {
           display: flex;
           align-items: center;
-          color: $white;
           .info__icon {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 15px;
             i {
+              padding: 10px;
+              color: $white;
               font-size: 20px;
+              border-radius: 50%;
             }
           }
           .info__text {
-            // border: 1px solid red;
             margin: 10px 40px 12px 0;
           }
         }
-        .notice__time-indicator {
-          position: absolute;
-          bottom: 2px;
-          width: 100%;
-          height: 2px;
-          background: rgba(255, 255, 255, 0.6);
-        }
         .notice__close-btn {
-          // border: 1px solid red;
           position: absolute;
           top: 0;
           right: 0;
-          // transform: translateY(-50%);
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 10px;
-          color: $white;
           font-size: 12px;
           background: none;
           border: none;
@@ -205,28 +187,58 @@ export default {
       }
 
       .notice-success {
-        background: $successLight2;
+        .notice__info {
+          .info__icon {
+            i {
+              background: $successLight5;
+            }
+          }
+        }
       }
       .notice-warning {
-        background: $warning;
         .notice__info {
-          color: $black;
-        }
-        .notice__close-btn {
-          color: $black;
+          .info__icon {
+            i {
+              background: $warningLight5;
+            }
+          }
         }
       }
       .notice-info {
-        background: $info;
+        .notice__info {
+          .info__icon {
+            i {
+              background: $infoLight5;
+            }
+          }
+        }
       }
       .notice-alert {
-        background: $danger;
+        .notice__info {
+          .info__icon {
+            i {
+              background: $dangerLight5;
+            }
+          }
+        }
       }
     }
   }
   .notifications__notice-list--visible {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+body.dark {
+  .notifications {
+    .notifications__notice-list {
+      border: 1px solid $dividerBorderDarkBG;
+      background: $cardBackgroundDarkBG;
+      .notice-list {
+        border-top: 1px solid $dividerBorderDarkBG;
+      }
+    }
   }
 }
 

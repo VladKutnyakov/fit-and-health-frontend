@@ -46,7 +46,7 @@ export default {
 .training-skill {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   .training-skill__block-title {
     margin-bottom: 5px;
     padding: 0 20px;
