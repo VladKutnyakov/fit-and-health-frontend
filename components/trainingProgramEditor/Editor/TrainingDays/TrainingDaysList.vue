@@ -8,6 +8,14 @@
       @click="setSelectedTrainingDay(index)"
     >
       <p class="day__title">{{ item.title }}</p>
+      <!-- <i class="ti-close day__action-btn" @click="removeTrainingProgramDay()"></i> -->
+    </div>
+
+    <div
+      class="day"
+      @click="addTrainingProgramDay()"
+    >
+      <p class="day__title"><i class="ti-plus"></i></p>
     </div>
   </div>
 </template>
@@ -24,7 +32,10 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setSelectedTrainingDay: 'trainingProgramEditor/setSelectedTrainingDay'
+      setSelectedTrainingDay: 'trainingProgramEditor/setSelectedTrainingDay',
+      addTrainingProgramDay: 'trainingProgramEditor/addTrainingProgramDay',
+      removeTrainingProgramDay: 'trainingProgramEditor/removeTrainingProgramDay',
+      toggleModalVisibility: 'trainingProgramEditor/toggleModalVisibility',
     })
   }
 }
@@ -36,28 +47,43 @@ export default {
 .training-days-list {
   display: flex;
   padding: 0 10px;
+  border-bottom: 1px solid $dividerBorder;
   .day {
     display: flex;
+    // align-items: center;
     margin-right: 5px;
-    background: $white;
-    border: 1px solid $blockBorder;
+    border: 1px solid $dividerBorder;
     border-bottom: none;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     transition: $tr-02;
     cursor: pointer;
     .day__title {
-      padding: 10px 20px;
-      font-weight: 500;
+      padding: 10px 15px;
       transition: $tr-02;
     }
     .day__title:hover {
-      color: $green;
+      color: $primary;
     }
+    // .day__action-btn {
+    //   // margin-right: 5px;
+    //   align-self: flex-start;
+    //   padding: 5px;
+    //   font-size: 12px;
+    //   cursor: pointer;
+    // }
+    // .day__action-btn:hover {
+    //   color: $danger;
+    // }
+  }
+  .day:hover {
+    background: $primaryLight5;
+    border: 1px solid $primaryLight5;
+    border-bottom: none;
   }
   .day--active {
-    background: $green;
-    border: 1px solid $green;
+    background: $primary;
+    border: 1px solid $primary;
     border-bottom: none;
     .day__title {
       color: $white;
@@ -65,6 +91,14 @@ export default {
     .day__title:hover {
       color: $white;
     }
+    // .day__action-btn {
+    //   color: $white;
+    // }
+  }
+  .day--active:hover {
+    background: $primary;
+    border: 1px solid $primary;
+    border-bottom: none;
   }
 }
 

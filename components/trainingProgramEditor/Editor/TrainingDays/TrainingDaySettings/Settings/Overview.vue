@@ -103,6 +103,7 @@ export default {
       max-width: 600px;
       min-width: 600px;
       height: 350px;
+      border-radius: 6px;
     }
   }
 }

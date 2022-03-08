@@ -2,20 +2,29 @@
   <div class="settings">
     <overview />
     <exercises />
-    <stats />
+    <app-button class="mt-20" dangerBtn @click="removeTrainingProgramDay()">Удалить тренировочный день</app-button>
+    <!-- <stats /> -->
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import Overview from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Settings/Overview'
 import Exercises from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Settings/Exercises/index'
-import Stats from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Settings/Stats'
+// import Stats from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Settings/Stats'
+import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
     Overview,
     Exercises,
-    Stats
+    // Stats,
+    AppButton
+  },
+  methods: {
+    ...mapMutations({
+      removeTrainingProgramDay: 'trainingProgramEditor/removeTrainingProgramDay',
+    })
   }
 }
 </script>

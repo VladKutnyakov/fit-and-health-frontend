@@ -70,7 +70,7 @@ export default {
       margin-bottom: 10px;
       padding: 5px 0;
       color: $white;
-      background: $green;
+      background: $primary;
       border: 1px solid transparent;
       border-radius: 6px;
       .header__column {

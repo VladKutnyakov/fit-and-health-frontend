@@ -24,7 +24,9 @@ export default {
 
 .tarining-days {
   // border: 1px solid red;
-  margin-top: 20px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid $dividerBorder;
   // .tarining-days__content {}
 }
 
