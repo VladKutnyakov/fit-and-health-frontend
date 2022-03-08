@@ -65,16 +65,6 @@ export default {
     .day__title:hover {
       color: $primary;
     }
-    // .day__action-btn {
-    //   // margin-right: 5px;
-    //   align-self: flex-start;
-    //   padding: 5px;
-    //   font-size: 12px;
-    //   cursor: pointer;
-    // }
-    // .day__action-btn:hover {
-    //   color: $danger;
-    // }
   }
   .day:hover {
     background: $primaryLight5;
@@ -99,6 +89,24 @@ export default {
     background: $primary;
     border: 1px solid $primary;
     border-bottom: none;
+  }
+}
+
+body.dark {
+  .training-days-list {
+    border-bottom: 1px solid $dividerBorderDarkBG;
+    .day {
+      border: 1px solid $dividerBorderDarkBG;
+      border-bottom: none;
+    }
+    .day:hover {
+      background: $primaryDarkHover;
+    }
+    .day--active:hover {
+      background: $primary;
+      border: 1px solid $primary;
+      border-bottom: none;
+    }
   }
 }
 

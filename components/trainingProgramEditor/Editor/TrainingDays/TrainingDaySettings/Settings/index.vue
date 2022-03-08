@@ -2,7 +2,10 @@
   <div class="settings">
     <overview />
     <exercises />
-    <app-button class="mt-20" dangerBtn @click="removeTrainingProgramDay()">Удалить тренировочный день</app-button>
+    <div class="actions">
+      <app-button @click="toggleModalVisibility({modal: 'selectExercisesModalActive', condition: true})">Добавить упражнение</app-button>
+      <app-button dangerBtn @click="removeTrainingProgramDay()">Удалить тренировочный день</app-button>
+    </div>
     <!-- <stats /> -->
   </div>
 </template>
@@ -24,6 +27,7 @@ export default {
   methods: {
     ...mapMutations({
       removeTrainingProgramDay: 'trainingProgramEditor/removeTrainingProgramDay',
+      toggleModalVisibility: 'trainingProgramEditor/toggleModalVisibility',
     })
   }
 }
@@ -36,6 +40,12 @@ export default {
 .settings {
   flex: 1 1 auto;
   padding: 10px;
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
 }
 
 </style>

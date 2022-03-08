@@ -1,18 +1,15 @@
 <template>
   <div class="training-day__settings">
     <settings />
-    <!-- <actions /> -->
   </div>
 </template>
 
 <script>
 import Settings from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Settings/index'
-// import Actions from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Actions'
 
 export default {
   components: {
     Settings,
-    // Actions
   }
 }
 </script>
