@@ -37,7 +37,7 @@
             </div>
 
             <div class="group">
-              <p class="group__title">Показать</p>
+              <p class="group__title">Показывать</p>
               <app-input-radio
                 small
                 class="input-item"
@@ -214,7 +214,7 @@ export default {
       margin-bottom: 10px;
       padding: 5px 0;
       color: $white;
-      background: $green;
+      background: $primary;
       border: 1px solid transparent;
       border-radius: 6px;
       .header__column {
@@ -268,6 +268,15 @@ export default {
   flex: 1 1 auto;
   display: flex;
   justify-content: flex-end;
+}
+
+body.dark {
+  .search-recipes-and-products {
+    .filters {}
+    .founding__results {
+      background: $black20;
+    }
+  }
 }
 
 </style>

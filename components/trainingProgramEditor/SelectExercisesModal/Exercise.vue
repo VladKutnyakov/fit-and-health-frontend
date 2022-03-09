@@ -95,7 +95,7 @@ export default {
   margin-bottom: 5px;
   padding: 5px 0px;
   background: $white;
-  border: 1px solid $blockBorder;
+  border: 1px solid $dividerBorder;
   border-radius: 6px;
   .exercise__element {
     flex: 0 1 auto;
@@ -105,7 +105,7 @@ export default {
     padding: 0 5px;
     width: 120px;
     text-align: center;
-    border-right: 1px dashed $inputBorder;
+    border-right: 1px solid $dividerBorder;
     .element__action-btn {
       padding: 5px;
       color: $black30;
@@ -114,30 +114,31 @@ export default {
       cursor: pointer;
     }
     .element__action-btn:hover {
-      color: $green;
+      color: $primary;
     }
     .element__action-btn--active {
-      color: $green;
+      color: $primary;
     }
     .element__input {
       flex: 1 1 auto;
       padding: 10px 5px;
       width: 100%;
-      outline: none;
-      border: 1px solid $inputBorder;
+      background: transparent;
+      border: 1px solid $dividerBorder;
       border-radius: 6px;
       text-align: center;
-      color: $green;
+      color: $primary;
       font-family: $fontMontserrat;
       font-weight: 500;
       transition: $tr-02;
+      outline: none;
     }
     .element__input:focus {
-      border: 1px solid $green;
+      border: 1px solid $primary;
     }
     .element__input::selection {
       color: $white;
-      background: $green;
+      background: $primary;
     }
   }
   .exercise__element:nth-child(1) {
@@ -164,7 +165,39 @@ export default {
     max-width: 40px;
     border: none;
     .element__action-btn:hover {
-      color: $green;
+      color: $primary;
+    }
+  }
+}
+
+body.dark {
+  .exercise {
+    background: $cardBackgroundDarkBG;
+    border: 1px solid $dividerBorderDarkBG;
+    .exercise__element {
+      border-right: 1px solid $dividerBorderDarkBG;
+      .element__action-btn {
+        color: $text;
+      }
+      .element__action-btn:hover {
+        color: $primary;
+      }
+      .element__action-btn--active {
+        color: $primary;
+      }
+      .element__input {
+        border: 1px solid $dividerBorderDarkBG;
+      }
+      .element__input:focus {
+        border: 1px solid $primary;
+      }
+      .element__input::selection {
+        color: $white;
+        background: $primary;
+      }
+    }
+    .exercise__element:last-child {
+      border: none;
     }
   }
 }

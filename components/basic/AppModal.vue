@@ -115,7 +115,6 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 0 40px;
-    padding: 20px;
     width: 100%;
     max-width: 800px;
     max-height: calc(100vh - 80px);
@@ -124,14 +123,14 @@ export default {
     overflow: hidden;
     .modal__header {
       // border: 1px solid red;
-      padding: 0 10px 20px 10px;
-      border-bottom: 1px solid $blockBorder;
+      padding: 10px 20px;
+      border-bottom: 1px solid $dividerBorder;
       .header__title {
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 500;
       }
       .header__description {
-        margin-top: 10px;
+        margin-top: 5px;
         .description__text {
           font-size: 14px;
         }
@@ -142,12 +141,43 @@ export default {
       padding: 20px 10px;
       overflow-y: auto;
     }
+    .modal__content::-webkit-scrollbar {
+      width: 4px;
+    }
+    .modal__content::-webkit-scrollbar-thumb {
+      background: $primaryLight4;
+      border-radius: 50px;
+    }
+    .modal__content::-webkit-scrollbar-track {
+      background: $black10;
+    }
     .modal__footer {
       // border: 1px solid red;
       display: flex;
       justify-content: center;
-      padding: 20px 10px 0 10px;
-      border-top: 1px solid $blockBorder;
+      padding: 10px 20px;
+      border-top: 1px solid $dividerBorder;
+    }
+  }
+}
+
+body.dark {
+  .modal__wrapper {
+    background: $black60;
+    .modal__content-wrapper {
+      background: $cardBackgroundDarkBG;
+      .modal__header {
+        border-bottom: 1px solid $dividerBorderDarkBG;
+      }
+      .modal__content::-webkit-scrollbar-thumb {
+        background: $primary;
+      }
+      .modal__content::-webkit-scrollbar-track {
+        background: $black;
+      }
+      .modal__footer {
+        border-top: 1px solid $dividerBorderDarkBG;
+      }
     }
   }
 }
