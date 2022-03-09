@@ -1,7 +1,24 @@
 <template>
   <nav class="navbar" :class="[{ 'navbar--active': menuIsOpen }]">
     <div class="navbar__group" v-for="(group, index) in navbarGroups" :key="index">
-      <p class="group__title">{{ group.title }}</p>
+      <div
+        class="group"
+        :class="[
+          { 'group--opened': group.isOpened },
+          { 'group--active': group.isActive },
+        ]"
+      >
+        <i class="group__icon" :class="group.icon"></i>
+        <p class="group__title">{{ group.title }}</p>
+        <i
+          class="group__arrow"
+          :class="[
+            { 'ti-angle-down': group.isOpened },
+            { 'ti-angle-up': !group.isOpened }
+          ]"
+        ></i>
+      </div>
+
       <ul class="group__menu-list">
         <li class="menu-list__item" v-for="(linkItem, linkIndex) in group.links" :key="linkIndex">
           <nuxt-link
@@ -30,11 +47,14 @@ export default {
       navbarGroups: [
         {
           title: 'Пользователь',
+          icon: 'ti-home',
+          isOpened: true,
+          isActive: true,
           links: [
             {
               title: 'Профиль',
               link: '/profile',
-              icon: 'ti-home',
+              icon: 'ti-user',
               exact: true,
             },
             {
@@ -65,6 +85,9 @@ export default {
         },
         {
           title: 'Тренировки',
+          icon: 'ti-timer',
+          isOpened: false,
+          isActive: false,
           links: [
             {
               title: 'Дневник тренировок',
@@ -94,6 +117,9 @@ export default {
         },
         {
           title: 'Питание',
+          icon: 'ti-agenda',
+          isOpened: false,
+          isActive: false,
           links: [
             {
               title: 'Дневник питания',
@@ -123,6 +149,9 @@ export default {
         },
         {
           title: 'Вызовы',
+          icon: 'ti-cup',
+          isOpened: false,
+          isActive: false,
           links: [
             {
               title: 'Вызовы недели',
@@ -152,6 +181,9 @@ export default {
         },
         {
           title: 'Справочник',
+          icon: 'ti-bookmark-alt',
+          isOpened: false,
+          isActive: false,
           links: [
             {
               title: 'Основные разделы',
@@ -204,28 +236,70 @@ export default {
   .navbar__group {
     display: flex;
     flex-direction: column;
-    .group__title {
-      align-self: flex-start;
-      margin: 20px 20px 10px 20px;
-      text-transform: uppercase;
-      color: #a6a4b0;
-      // font-weight: 300;
-      font-size: 12px;
+    .group {
+      display: flex;
+      align-items: center;
+      margin: 20px 10px 5px 10px;
+      padding: 10px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      transition: $tr-02;
+      cursor: pointer;
+      .group__icon {
+        margin-right: 10px;
+        font-size: 18px;
+      }
+      .group__title {
+        font-size: 16px;
+      }
+      .group__arrow {
+        margin-left: auto;
+        font-size: 12px;
+      }
+    }
+    .group--opened {
+      border: 1px solid $dividerBorder;
+    }
+    .group--active {
+      background: $primaryLight5;
+      border: 1px solid $primaryLight5;
+      .group__icon {
+        color: $primary;
+      }
+      .group__title {
+        color: $primary;
+      }
+      .group__arrow {
+        color: $primary;
+      }
+    }
+    .group:hover {
+      background: $primaryLight5;
+      border: 1px solid $primaryLight5;
+      .group__icon {
+        color: $primary;
+      }
+      .group__title {
+        color: $primary;
+      }
+      .group__arrow {
+        color: $primary;
+      }
     }
     .group__menu-list {
       display: flex;
       flex-direction: column;
+      margin-left: 30px;
+      border-left: 1px solid $dividerBorder;
       .menu-list__item {
         display: flex;
         flex-direction: column;
-        margin: 0 10px;
+        margin: 0 10px 5px 10px;
         border-radius: 6px;
         .item__link {
           display: flex;
           align-items: flex-start;
-          margin-bottom: 5px;
           padding: 10px;
-          // background: $white;
           border-radius: 6px;
           .link__icon {
             margin-top: 1px;
@@ -263,6 +337,9 @@ export default {
             color: $white;
           }
         }
+      }
+      .menu-list__item:last-child {
+        margin-bottom: 0;
       }
     }
   }
