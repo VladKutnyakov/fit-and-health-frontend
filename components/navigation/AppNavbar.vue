@@ -243,7 +243,6 @@ export default {
       padding: 10px;
       border: 1px solid transparent;
       border-radius: 6px;
-      transition: $tr-02;
       cursor: pointer;
       .group__icon {
         margin-right: 10px;
@@ -362,6 +361,46 @@ export default {
 body.dark {
   .navbar {
     background: $cardBackgroundDarkBG;
+    .navbar__group {
+      .group--opened {
+        border: 1px solid $dividerBorderDarkBG;
+      }
+      .group--active {
+        background: $primaryDarkHover;
+        border: 1px solid $primaryDarkHover;
+      }
+      .group:hover {
+        background: $primaryDarkHover;
+        border: 1px solid $primaryDarkHover;
+      }
+      .group__menu-list {
+        border-left: 1px solid $dividerBorderDarkBG;
+        .menu-list__item {
+          .item__link {
+            .link__icon {}
+            .link__text {}
+          }
+          .item__link:hover {
+            background: $primaryDarkHover;
+            .link__icon {
+              color: $primary;
+            }
+            .link__text {
+              color: $primary;
+            }
+          }
+          .item__link--active:hover {
+            background: $primaryGradient;
+            .link__icon {
+              color: $white;
+            }
+            .link__text {
+              color: $white;
+            }
+          }
+        }
+      }
+    }
   }
 
   .navbar::-webkit-scrollbar-thumb {
