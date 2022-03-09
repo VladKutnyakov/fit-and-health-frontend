@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="user-post__social-bts">
+    <!-- <div class="user-post__social-bts">
       <social-btns
         class="main-social"
         :btnsInfo="{
@@ -45,7 +45,7 @@
           views: 1234,
         }"
       />
-    </div>
+    </div> -->
 
     <div class="user-post__comments">
       <div class="comment" v-for="(item, index) in 5" :key="index">
@@ -67,14 +67,14 @@
 
 <script>
 import AppButtonWithActions from '@/components/basic/AppButtonWithActions'
-import SocialBtns from '@/components/basic/SocialBtns'
+// import SocialBtns from '@/components/basic/SocialBtns'
 import AppTextarea from '@/components/basic/AppTextarea'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
     AppButtonWithActions,
-    SocialBtns,
+    // SocialBtns,
     AppTextarea,
     AppButton
   }

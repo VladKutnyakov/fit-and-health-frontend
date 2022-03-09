@@ -7,7 +7,7 @@
       <div class="images-social-main-info">
         <div class="images-and-social">
           <recipe-images />
-          <social-btns class="mt-5" :btnsInfo="{like: likes, dislike: dislikes, share: shares}" />
+          <!-- <social-btns class="mt-5" :btnsInfo="{like: likes, dislike: dislikes, share: shares}" /> -->
         </div>
         <recipe-main-info />
       </div>
@@ -26,7 +26,7 @@ import RecipeImages from '@/components/recipe/RecipeOverview/RecipeImages'
 import RecipeMainInfo from '@/components/recipe/RecipeOverview/RecipeMainInfo'
 import RecipeIngredients from '@/components/recipe/RecipeOverview/RecipeIngredients'
 import RecipeCookingSteps from '@/components/recipe/RecipeOverview/RecipeCookingSteps'
-import SocialBtns from '@/components/basic/SocialBtns'
+// import SocialBtns from '@/components/basic/SocialBtns'
 
 export default {
   components: {
@@ -35,7 +35,7 @@ export default {
     RecipeMainInfo,
     RecipeIngredients,
     RecipeCookingSteps,
-    SocialBtns
+    // SocialBtns
   },
   computed: {
     ...mapState({

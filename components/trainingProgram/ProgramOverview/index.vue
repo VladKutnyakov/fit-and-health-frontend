@@ -11,7 +11,7 @@
               class="image"
             />
           </div>
-          <social-btns :btnsInfo="{like: 0, dislike: 0, share: 0, }" />
+          <!-- <social-btns :btnsInfo="{like: 0, dislike: 0, share: 0, }" /> -->
         </div>
         <div class="main-training-info">
           <div class="main-training-info__title">Название тренировки</div>
@@ -70,12 +70,12 @@
 
 <script>
 import AppBlockTitle from "@/components/basic/AppBlockTitle";
-import SocialBtns from "@/components/basic/SocialBtns";
+// import SocialBtns from "@/components/basic/SocialBtns";
 
 export default {
   components: {
     AppBlockTitle,
-    SocialBtns
+    // SocialBtns
   }
 };
 </script>

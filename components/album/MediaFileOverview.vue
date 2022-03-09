@@ -14,7 +14,7 @@
       class="preview__image"
     />
 
-    <social-btns
+    <!-- <social-btns
       :btnsInfo="{
         like: 12,
         dislike: 12,
@@ -23,7 +23,7 @@
         comments: 12,
         views: 12,
       }"
-    />
+    /> -->
 
     <div class="preview__comments">
       <ul class="comments">
@@ -55,13 +55,13 @@
 </template>
 
 <script>
-import SocialBtns from '@/components/basic/SocialBtns'
+// import SocialBtns from '@/components/basic/SocialBtns'
 import AppTextarea from '@/components/basic/AppTextarea'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
-    SocialBtns,
+    // SocialBtns,
     AppTextarea,
     AppButton
   }
