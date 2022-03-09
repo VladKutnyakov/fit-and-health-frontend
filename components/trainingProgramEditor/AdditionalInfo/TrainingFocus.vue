@@ -25,14 +25,11 @@
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-export default {
-  
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
@@ -62,6 +59,14 @@ export default {
     }
     .percents__element:last-child {
       margin-bottom: 0;
+    }
+  }
+}
+
+body.dark {
+  .training-focus {
+    .percents {
+      border-top: 1px solid $dividerBorderDarkBG;
     }
   }
 }
