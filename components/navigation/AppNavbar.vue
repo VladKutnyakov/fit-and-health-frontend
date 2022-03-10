@@ -5,9 +5,10 @@
       v-for="(group, index) in navbarGroups"
       :key="index"
       :style="[
-          { 'height': group.isOpened ? '' : '41px' },
-          { 'overflow': group.isOpened ? '' : 'hidden' },
-        ]"
+        { 'height': group.isOpened ? '' : '41px' },
+        { 'overflow': group.isOpened ? '' : 'hidden' },
+      ]"
+      @click="toggleOpened(group)"
     >
       <div
         class="group"
@@ -28,7 +29,7 @@
         ></i>
       </div>
 
-      <ul class="group__menu-list">
+      <ul class="group__menu-list" @click.stop>
         <li class="menu-list__item" v-for="(linkItem, linkIndex) in group.links" :key="linkIndex">
           <nuxt-link
             :to="linkItem.link"
@@ -220,6 +221,9 @@ export default {
       this.$store.dispatch('auth/logout')
       this.$router.push('/auth')
     },
+    toggleOpened (group) {
+      group.isOpened = !group.isOpened
+    }
   },
   mounted () {
     // const NavbarGroups = document.querySelectorAll('.navbar__group')
