@@ -1,12 +1,21 @@
 <template>
   <nav class="navbar" :class="[{ 'navbar--active': menuIsOpen }]">
-    <div class="navbar__group" v-for="(group, index) in navbarGroups" :key="index">
+    <div
+      class="navbar__group"
+      v-for="(group, index) in navbarGroups"
+      :key="index"
+      :style="[
+          { 'height': group.isOpened ? '' : '41px' },
+          { 'overflow': group.isOpened ? '' : 'hidden' },
+        ]"
+    >
       <div
         class="group"
         :class="[
           { 'group--opened': group.isOpened },
           { 'group--active': group.isActive },
         ]"
+        
       >
         <i class="group__icon" :class="group.icon"></i>
         <p class="group__title">{{ group.title }}</p>
@@ -14,7 +23,7 @@
           class="group__arrow"
           :class="[
             { 'ti-angle-down': group.isOpened },
-            { 'ti-angle-up': !group.isOpened }
+            { 'ti-angle-right': !group.isOpened }
           ]"
         ></i>
       </div>
@@ -212,6 +221,15 @@ export default {
       this.$router.push('/auth')
     },
   },
+  mounted () {
+    // const NavbarGroups = document.querySelectorAll('.navbar__group')
+    // for (let i = 0; i < NavbarGroups.length; i++) {
+    //   const Group = NavbarGroups[i].querySelector('.group')
+    //   const GroupRect = Group.getBoundingClientRect()
+
+    //   NavbarGroups[i].style.height = GroupRect.height + 'px'
+    // }
+  }
 }
 </script>
 
@@ -234,15 +252,18 @@ export default {
   z-index: 9000;
   overflow-y: auto;
   .navbar__group {
+    // border: 1px solid red;
     display: flex;
     flex-direction: column;
+    margin-top: 10px;
     .group {
       display: flex;
       align-items: center;
-      margin: 20px 10px 5px 10px;
+      margin: 0 10px 5px 10px;
       padding: 10px;
       border: 1px solid transparent;
       border-radius: 6px;
+      // border: 1px solid red;
       cursor: pointer;
       .group__icon {
         margin-right: 10px;
