@@ -6,7 +6,6 @@
       :key="index"
       :style="[
         { 'height': group.isOpened ? '' : '41px' },
-        { 'overflow': group.isOpened ? '' : 'hidden' },
       ]"
       @click="toggleOpened(group)"
     >
@@ -29,7 +28,7 @@
         ></i>
       </div>
 
-      <ul class="group__menu-list" @click.stop>
+      <ul class="group__menu-list" :style="[{ 'visibility': group.isOpened ? '' : 'hidden' }]" @click.stop>
         <li class="menu-list__item" v-for="(linkItem, linkIndex) in group.links" :key="linkIndex">
           <nuxt-link
             :to="linkItem.link"
