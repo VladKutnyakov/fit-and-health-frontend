@@ -29,7 +29,12 @@
       </div>
 
       <ul class="group__menu-list" :style="[{ 'visibility': group.isOpened ? '' : 'hidden' }]" @click.stop>
-        <li class="menu-list__item" v-for="(linkItem, linkIndex) in group.links" :key="linkIndex">
+        <li
+          v-for="(linkItem, linkIndex) in group.links"
+          :key="linkIndex"
+          class="menu-list__item"
+          @click="updateActiveMenuGroup(group)"
+        >
           <nuxt-link
             :to="linkItem.link"
             :exact="linkItem.exact"
@@ -57,8 +62,15 @@ export default {
         {
           title: 'Пользователь',
           icon: 'ti-home',
-          isOpened: true,
-          isActive: true,
+          isOpened: false,
+          isActive: false,
+          nestedRoutes: [
+            'profile',
+            'profile-messages',
+            'profile-media',
+            'profile-subscriptions',
+            'profile-measurements'
+          ],
           links: [
             {
               title: 'Профиль',
@@ -97,6 +109,13 @@ export default {
           icon: 'ti-timer',
           isOpened: false,
           isActive: false,
+          nestedRoutes: [
+            'training-diary',
+            'training-diary-training-in-progress',
+            'training-programs',
+            'training-programs-training-program-editor',
+            'exercise-guide',
+          ],
           links: [
             {
               title: 'Дневник тренировок',
@@ -129,6 +148,12 @@ export default {
           icon: 'ti-agenda',
           isOpened: false,
           isActive: false,
+          nestedRoutes: [
+            'meal-planer',
+            'meal-plans',
+            'recipes-book',
+            'food-calorie-table',
+          ],
           links: [
             {
               title: 'Дневник питания',
@@ -161,6 +186,12 @@ export default {
           icon: 'ti-cup',
           isOpened: false,
           isActive: false,
+          nestedRoutes: [
+            'challenges',
+            'challenges-challenges-book',
+            'challenges-challenges-book-challenge-editor',
+            'challenges-challenge-in-progress',
+          ],
           links: [
             {
               title: 'Вызовы недели',
@@ -193,6 +224,9 @@ export default {
           icon: 'ti-bookmark-alt',
           isOpened: false,
           isActive: false,
+          nestedRoutes: [
+            'handbook',
+          ],
           links: [
             {
               title: 'Основные разделы',
@@ -210,11 +244,6 @@ export default {
       menuIsOpen: state => state.appSettings.menuIsOpen,
     })
   },
-  watch: {
-    $route(to, from) {
-      //
-    }
-  },
   methods: {
     logout () {
       this.$store.dispatch('auth/logout')
@@ -222,16 +251,22 @@ export default {
     },
     toggleOpened (group) {
       group.isOpened = !group.isOpened
+    },
+    updateActiveMenuGroup (group) {
+      for (let i = 0; i < this.navbarGroups.length; i++) {
+        this.navbarGroups[i].isActive = false
+      }
+      group.isActive = true
     }
   },
-  mounted () {
-    // const NavbarGroups = document.querySelectorAll('.navbar__group')
-    // for (let i = 0; i < NavbarGroups.length; i++) {
-    //   const Group = NavbarGroups[i].querySelector('.group')
-    //   const GroupRect = Group.getBoundingClientRect()
-
-    //   NavbarGroups[i].style.height = GroupRect.height + 'px'
-    // }
+  created () {
+    // Открыть пункты меню при старте страницы
+    for (let i = 0; i < this.navbarGroups.length; i++) {
+      if (this.navbarGroups[i].nestedRoutes.includes(this.$route.name)) {
+        this.navbarGroups[i].isOpened = true
+        this.navbarGroups[i].isActive = true
+      }
+    }
   }
 }
 </script>
