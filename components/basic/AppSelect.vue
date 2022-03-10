@@ -6,7 +6,7 @@
       { 'min-width': minWidth },
     ]"
   >
-    <div class="app-select__value">
+    <div class="app-select__value" :class="[{ 'app-select__value--focus': listOpened }]">
       <input
         ref="selectedValue"
         class="app-select__selected-value"
@@ -123,6 +123,7 @@ export default {
     background: $white;
     border: 1px solid $dividerBorder;
     border-radius: 6px;
+    transition: $tr-02;
     cursor: pointer;
     .app-select__selected-value {
       position: relative;
@@ -134,6 +135,17 @@ export default {
       border-right: 1px solid $dividerBorder;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
+    }
+    .app-select__selected-value::placeholder {
+      opacity: .6;
+      transition: $tr-02;
+    }
+    .app-select__selected-value:focus::placeholder {
+      opacity: 0;
+    }
+    .app-select__selected-value::selection {
+      color: $white;
+      background: $primary;
     }
     .app-select__action {
       // border: 1px solid red;
@@ -152,6 +164,9 @@ export default {
     .app-select__action:last-child {
       border-right: none;
     }
+  }
+  .app-select__value--focus {
+    border: 1px solid $primary;
   }
   .app-select__list {
     // border: 1px solid red;

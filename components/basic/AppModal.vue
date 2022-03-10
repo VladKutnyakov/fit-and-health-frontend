@@ -123,7 +123,7 @@ export default {
     overflow: hidden;
     .modal__header {
       // border: 1px solid red;
-      padding: 10px 20px;
+      padding: 15px 20px;
       border-bottom: 1px solid $dividerBorder;
       .header__title {
         font-size: 20px;
@@ -155,7 +155,7 @@ export default {
       // border: 1px solid red;
       display: flex;
       justify-content: center;
-      padding: 10px 20px;
+      padding: 15px 20px;
       border-top: 1px solid $dividerBorder;
     }
   }
