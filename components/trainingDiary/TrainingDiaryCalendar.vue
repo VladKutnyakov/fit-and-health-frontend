@@ -1,18 +1,19 @@
 <template>
   <div class="meal-planer-calendar">
-    <app-block-title>Календарь тренировок</app-block-title>
-    <app-date-selector :initialDate="calendarInitialDate" :isOpened="true" @select="getTrainingDiaryInfo($event)" />
+    <app-date-selector
+      :initialDate="calendarInitialDate"
+      :isOpened="true"
+      @select="getTrainingDiaryInfo($event)"
+    />
   </div>
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppDateSelector from '@/components/basic/AppDateSelector'
 
 export default {
   components: {
-    AppBlockTitle,
-    AppDateSelector
+    AppDateSelector,
   },
   computed: {
     calendarInitialDate () {

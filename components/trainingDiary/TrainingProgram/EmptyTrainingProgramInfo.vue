@@ -1,25 +1,15 @@
 <template>
   <div class="empty-training-program-info">
-    <app-block-title>Тренировочная программа</app-block-title>
+    <div class="message">
+      <p class="message__info">Нет данных о тренировке.</p>
 
-    <div class="empty-training-program-info__content">
-      <div class="message">
-        <p class="message__info">Нет данных о тренировке.</p>
-
-        <p class="message__offer">Начните <router-link to="/training-diary/training-in-progress" class="offer__link">новую тернировку</router-link> с использованием последней тренировочной программы или используйте поиск, чтобы <router-link to="/training-programs" class="offer__link">найти программу</router-link> для тренировок.</p>
-      </div>
+      <p class="message__offer">Начните <router-link to="/training-diary/training-in-progress" class="offer__link">новую тернировку</router-link> с использованием последней тренировочной программы или используйте поиск, чтобы <router-link to="/training-programs" class="offer__link">найти программу</router-link> для тренировок.</p>
     </div>
   </div>
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
-
-export default {
-  components: {
-    AppBlockTitle
-  }
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
@@ -27,24 +17,31 @@ export default {
 
 .empty-training-program-info {
   // border: 1px solid red;
-  .empty-training-program-info__content {
-    padding: 40px 10px;
-    background: $hiddenBlockBG;
-    // border: 1px solid $blockBorder;
-    border-radius: 6px;
-    .message {
-      text-align: center;
-      .message__info {
-        font-size: 20px;
-      }
-      .message__offer {
-        margin-top: 40px;
-        .offer__link {
-          color: $green;
-          font-weight: 500;
-        }
+  padding: 40px 10px;
+  background: $hiddenBlockBG;
+  border-radius: 6px;
+  background: $white;
+  border-radius: 6px;
+  box-shadow: $btnShadow;
+  transition: $tr-02;
+  .message {
+    text-align: center;
+    .message__info {
+      font-size: 20px;
+    }
+    .message__offer {
+      margin-top: 40px;
+      .offer__link {
+        color: $primary;
+        font-weight: 500;
       }
     }
+  }
+}
+
+body.dark {
+  .empty-training-program-info {
+    background: $cardBackgroundDarkBG;
   }
 }
 
