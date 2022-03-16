@@ -3,9 +3,11 @@
 
     <div class="training-program__fields">
       <p class="field-title">Программа тренировок:</p>
-      <app-select
-        value="Batman"
+      <app-picker
+        :value="{id: 1, title: 'Batman'}"
         :selectOptionsList="[]"
+        @openModal="toggleModalVisibility('modalName')"
+        @clear="clear($event)"
       />
 
       <div class="preview-image-and-intensity">
@@ -40,11 +42,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import AppPicker from '@/components/basic/AppPicker'
 import AppSelect from '@/components/basic/AppSelect'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
+    AppPicker,
     AppSelect,
     AppButton
   },
