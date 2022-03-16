@@ -1,63 +1,57 @@
 <template>
   <div class="training-program">
-    <app-block-title>Тренировочная программа</app-block-title>
+    <p class="title">{{ trainingProgram.title }}1234124</p>
 
-    <div class="training-program__content">
-      <p class="title">{{ trainingProgram.title }}1234124</p>
-
-      <div class="training-day">
-        <p class="select__title">Тренировочный день</p>
-        <app-select
-          :value="trainingProgramTargetDay"
-          :selectOptionsList="trainingProgram.trainingProgramDays"
-          @select="fetchTrainingDay($event)"
-        />
-      </div>
-
-      <div class="chart-and-percents">
-        <div class="chart">
-          <p>график круговой показывает смещение акцента в тренировках (выносливость, сила, кардио)</p>
-        </div>
-        <div class="percents">
-          <div class="percents__element">
-            <p class="element__title">Сила:</p>
-            <div class="element__value">60%</div>
-          </div>
-          <div class="percents__element">
-            <p class="element__title">Выносливость:</p>
-            <div class="element__value">20%</div>
-          </div>
-          <div class="percents__element">
-            <p class="element__title">Гибкость:</p>
-            <div class="element__value">5%</div>
-          </div>
-          <div class="percents__element">
-            <p class="element__title">Кардио:</p>
-            <div class="element__value">5%</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="actions">
-        <app-button>
-          <i class="ti-pencil"></i>
-        </app-button>
-        <app-button class="ml-10 fill-area">Начать тренироваку</app-button>
-      </div>
-
+    <div class="training-day">
+      <p class="select__title">Тренировочный день</p>
+      <app-select
+        :value="trainingProgramTargetDay"
+        :selectOptionsList="trainingProgram.trainingProgramDays"
+        @select="fetchTrainingDay($event)"
+      />
     </div>
+
+    <div class="chart-and-percents">
+      <div class="chart">
+        <p>график круговой показывает смещение акцента в тренировках (выносливость, сила, кардио)</p>
+      </div>
+      <div class="percents">
+        <div class="percents__element">
+          <p class="element__title">Сила:</p>
+          <div class="element__value">60%</div>
+        </div>
+        <div class="percents__element">
+          <p class="element__title">Выносливость:</p>
+          <div class="element__value">20%</div>
+        </div>
+        <div class="percents__element">
+          <p class="element__title">Гибкость:</p>
+          <div class="element__value">5%</div>
+        </div>
+        <div class="percents__element">
+          <p class="element__title">Кардио:</p>
+          <div class="element__value">5%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <app-button>
+        <i class="ti-pencil"></i>
+      </app-button>
+      <app-button class="ml-10 fill-area">Начать тренироваку</app-button>
+    </div>
+
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AppBlockTitle from "@/components/basic/AppBlockTitle"
 import AppSelect from '@/components/basic/AppSelect'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
-    AppBlockTitle,
     AppSelect,
     AppButton
   },
@@ -93,49 +87,45 @@ export default {
   width: 400px;
   min-width: 400px;
   max-width: 400px;
-  .training-program__content {
+  background: $white;
+  border-radius: 6px;
+  box-shadow: $btnShadow;
+  transition: $tr-02;
+  .title {
+    flex: 1 1 auto;
+    // margin: 0 10px;
+    padding: 15px 10px;
+    // text-transform: uppercase;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    // border-bottom: 1px dashed $blockBorder;
+  }
+  .overview {
+    display: flex;
+    padding: 10px;
+    .preview-image {
+      align-self: center;
+      // width: 120px;
+      border: 1px solid $blockBorder;
+      border-radius: 6px;
+    }
+  }
+  .training-day {
     display: flex;
     flex-direction: column;
-    // padding: 10px;
-    background: $white;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
-    .title {
-      flex: 1 1 auto;
-      // margin: 0 10px;
-      padding: 15px 10px;
-      // text-transform: uppercase;
-      text-align: center;
-      font-size: 18px;
+    padding: 10px;
+    background: $hiddenBlockBG;
+    .select__title {
+      margin-bottom: 5px;
+      padding: 0 10px;
       font-weight: 500;
-      // border-bottom: 1px dashed $blockBorder;
     }
-    .overview {
-      display: flex;
-      padding: 10px;
-      .preview-image {
-        align-self: center;
-        // width: 120px;
-        border: 1px solid $blockBorder;
-        border-radius: 6px;
-      }
-    }
-    .training-day {
-      display: flex;
-      flex-direction: column;
-      padding: 10px;
-      background: $hiddenBlockBG;
-      .select__title {
-        margin-bottom: 5px;
-        padding: 0 10px;
-        font-weight: 500;
-      }
-    }
-    .actions {
-      display: flex;
-      padding: 10px;
-      background: $hiddenBlockBG;
-    }
+  }
+  .actions {
+    display: flex;
+    padding: 10px;
+    background: $hiddenBlockBG;
   }
 }
 
@@ -163,6 +153,12 @@ export default {
     .percents__element:last-child {
       margin-bottom: 0;
     }
+  }
+}
+
+body.dark {
+  .training-program {
+    background: $cardBackgroundDarkBG;
   }
 }
 

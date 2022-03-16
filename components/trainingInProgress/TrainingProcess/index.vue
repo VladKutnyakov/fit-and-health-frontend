@@ -1,24 +1,20 @@
 <template>
   <div class="training-process">
-    <app-block-title>Процесс тренировки</app-block-title>
-    <div class="training-process__content">
-      <main-stats />
-      <app-info
-        v-if="trainingDay.comment"
-        class="mt-10 ml-10 mr-10"
-        info
-        :text="trainingDay.comment"
-      />
-      <training-video />
-      <laps-overview />
-      <exercises :exercisesList="trainingDay.trainingProgramDayExercises" />
-    </div>
+    <training-video />
+    <app-info
+      v-if="trainingDay.comment"
+      class="ml-10 mr-10"
+      info
+      :text="trainingDay.comment"
+    />
+    <laps-overview />
+    <exercises :exercisesList="trainingDay.trainingProgramDayExercises" />
+    <main-stats />
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppInfo from '@/components/basic/AppInfo'
 import MainStats from '@/components/trainingInProgress/TrainingProcess/MainStats'
 import TrainingVideo from '@/components/trainingInProgress/TrainingProcess/TrainingVideo'
@@ -27,7 +23,6 @@ import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises
 
 export default {
   components: {
-    AppBlockTitle,
     AppInfo,
     MainStats,
     TrainingVideo,
@@ -51,12 +46,15 @@ export default {
   display: flex;
   flex-direction: column;
   margin-left: 40px;
-  .training-process__content {
-    display: flex;
-    flex-direction: column;
-    background: $white;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
+  background: $white;
+  border-radius: 6px;
+  box-shadow: $btnShadow;
+  transition: $tr-02;
+}
+
+body.dark {
+  .training-process {
+    background: $cardBackgroundDarkBG;
   }
 }
 
