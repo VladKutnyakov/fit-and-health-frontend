@@ -83,4 +83,22 @@ export default {
   }
 }
 
+body.dark {
+  .app-picker {
+    .app-picker__value {
+      background: $black20;
+      .app-picker__selected-value {
+        background: transparent;
+        border-right: 1px solid $dividerBorderDarkBG;
+      }
+      .app-picker__action {
+        border-right: 1px solid $dividerBorderDarkBG;
+      }
+      .app-picker__action:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
 </style>
