@@ -1,7 +1,7 @@
 <template>
   <div class="main-info">
       <training-program-title />
-      <additional-info />
+      <!-- <additional-info /> -->
       <description />
       <added-marks />
       <training-skill />
@@ -10,7 +10,7 @@
 
 <script>
 import TrainingProgramTitle from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/TrainingProgramTitle'
-import AdditionalInfo from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/AdditionalInfo'
+// import AdditionalInfo from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/AdditionalInfo'
 import Description from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/Description'
 import AddedMarks from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/AddedMarks'
 import TrainingSkill from '@/components/trainingDiary/TrainingProgram/ProgramOverview/MainInfo/TrainingSkill'
@@ -18,7 +18,7 @@ import TrainingSkill from '@/components/trainingDiary/TrainingProgram/ProgramOve
 export default {
   components: {
     TrainingProgramTitle,
-    AdditionalInfo,
+    // AdditionalInfo,
     Description,
     AddedMarks,
     TrainingSkill

@@ -25,9 +25,15 @@ export default {
   display: flex;
   flex-direction: column;
   background: $white;
-  border: 1px solid $blockBorder;
   border-radius: 6px;
-  height: 400px;
+  box-shadow: $btnShadow;
+  transition: $tr-02;
+}
+
+body.dark {
+  .program-stats {
+    background: $cardBackgroundDarkBG;
+  }
 }
 
 </style>

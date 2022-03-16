@@ -21,7 +21,7 @@ export default {
   text-align: center;
   font-size: 18px;
   font-weight: 500;
-  border-bottom: 1px dashed $blockBorder;
+  // border-bottom: 1px dashed $blockBorder;
 }
 
 </style>
