@@ -1,38 +1,31 @@
 <template>
   <div class="training-program">
-    <p class="title">{{ trainingProgram.title }}1234124</p>
 
-    <div class="training-day">
-      <p class="select__title">Тренировочный день</p>
+    <div class="training-program__fields">
+      <p class="field-title">Программа тренировок:</p>
+      <app-select
+        value="Batman"
+        :selectOptionsList="[]"
+      />
+
+      <div class="preview-image-and-intensity">
+        <img class="preview-image" src="https://cdn.imgbb.ru/community/7/74658/201602/2e5bbfb866325797fc99c79021a9b829.jpg" alt="">
+        <div class="training-day__accent">
+          <div class="accent" title="Сила">10</div>
+          <div class="accent" title="Выносливость">40</div>
+          <div class="accent" title="Кардио">30</div>
+          <div class="accent" title="Гибкость">20</div>
+        </div>
+      </div>
+
+      <p class="field-title">Тренировочный день:</p>
       <app-select
         :value="trainingProgramTargetDay"
         :selectOptionsList="trainingProgram.trainingProgramDays"
         @select="fetchTrainingDay($event)"
       />
-    </div>
 
-    <div class="chart-and-percents">
-      <div class="chart">
-        <p>график круговой показывает смещение акцента в тренировках (выносливость, сила, кардио)</p>
-      </div>
-      <div class="percents">
-        <div class="percents__element">
-          <p class="element__title">Сила:</p>
-          <div class="element__value">60%</div>
-        </div>
-        <div class="percents__element">
-          <p class="element__title">Выносливость:</p>
-          <div class="element__value">20%</div>
-        </div>
-        <div class="percents__element">
-          <p class="element__title">Гибкость:</p>
-          <div class="element__value">5%</div>
-        </div>
-        <div class="percents__element">
-          <p class="element__title">Кардио:</p>
-          <div class="element__value">5%</div>
-        </div>
-      </div>
+      <!-- <img class="preview-image" src="https://cdn.imgbb.ru/community/7/74658/201602/2e5bbfb866325797fc99c79021a9b829.jpg" alt=""> -->
     </div>
 
     <div class="actions">
@@ -91,68 +84,68 @@ export default {
   border-radius: 6px;
   box-shadow: $btnShadow;
   transition: $tr-02;
-  .title {
-    flex: 1 1 auto;
-    // margin: 0 10px;
-    padding: 15px 10px;
-    // text-transform: uppercase;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    // border-bottom: 1px dashed $blockBorder;
-  }
-  .overview {
-    display: flex;
-    padding: 10px;
-    .preview-image {
-      align-self: center;
-      // width: 120px;
-      border: 1px solid $blockBorder;
-      border-radius: 6px;
-    }
-  }
-  .training-day {
+  overflow: hidden;
+  .training-program__fields {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background: $hiddenBlockBG;
-    .select__title {
+    .field-title {
       margin-bottom: 5px;
       padding: 0 10px;
       font-weight: 500;
     }
+    .preview-image-and-intensity {
+      flex: 1 1 auto;
+      display: flex;
+      .preview-image {
+        margin: 10px 10px 10px 0;
+        width: 100%;
+        border-radius: 6px;
+      }
+      .training-day__accent {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+        width: 30px;
+        border-radius: 6px;
+        background: $black10;
+        overflow: hidden;
+        .accent {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: $white;
+          font-size: 12px;
+          cursor: pointer;
+        }
+        .accent:nth-child(1) {
+          width: 100%;
+          height: 10%;
+          background: $dangerLight1;
+        }
+        .accent:nth-child(2) {
+          width: 100%;
+          height: 40%;
+          background: $warningLight1;
+        }
+        .accent:nth-child(3) {
+          width: 100%;
+          height: 30%;
+          background: $successLight1;
+        }
+        .accent:nth-child(4) {
+          width: 100%;
+          height: 20%;
+          background: $infoLight1;
+        }
+      }
+    }
+    
   }
   .actions {
     display: flex;
     padding: 10px;
     background: $hiddenBlockBG;
-  }
-}
-
-.chart-and-percents {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  .chart {
-    height: 300px;
-  }
-  .percents {
-    margin-top: auto;
-    padding: 10px 10px 0px 10px;
-    border-top: 1px dashed $blockBorder;
-    .percents__element {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 5px;
-      .element__value {
-        color: $green;
-        font-weight: 600;
-      }
-    }
-    .percents__element:last-child {
-      margin-bottom: 0;
-    }
   }
 }
 
