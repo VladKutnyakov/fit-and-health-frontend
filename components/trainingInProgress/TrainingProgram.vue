@@ -4,12 +4,9 @@
     <div class="training-program__fields">
       <p class="field-title">Программа тренировок:</p>
       <app-picker
-        :value="{id: trainingProgram.fields.id, title: trainingProgram.fields.title}"
+        :value="trainingProgram.fields.program"
         @openModal="openSelectTrainingProgramModal()"
-        @clear="
-          setTrainingProgramFormFieldValue({field: 'id', newValue: $event}),
-          setTrainingProgramFormFieldValue({field: 'title', newValue: $event})
-        "
+        @clear="setTrainingProgramFormFieldValue({field: 'program', newValue: $event})"
       />
 
       <div class="preview-image-and-intensity">
@@ -24,9 +21,12 @@
 
       <p class="field-title">Тренировочный день:</p>
       <app-select
-        :value="trainingProgramTargetDay"
+        :value="trainingProgram.fields.day"
         :selectOptionsList="trainingProgram.fields.trainingProgramDays"
-        @select="fetchTrainingDay($event)"
+        @select="
+          setTrainingProgramFormFieldValue({field: 'day', newValue: $event}),
+          fetchTrainingDay($event)
+        "
       />
     </div>
 

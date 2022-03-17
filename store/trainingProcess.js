@@ -2,8 +2,8 @@ import { generateForm, setFormFieldsValue, setFormFieldValue } from '@/utils/for
 
 export const state = () => ({
   trainingProgram: generateForm({
-    id: null,
-    title: null,
+    program: null,
+    day: null,
     trainingProgramDays: [],
   }),
   trainingDay: {
