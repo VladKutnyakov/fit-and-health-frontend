@@ -25,11 +25,9 @@
         :selectOptionsList="trainingProgram.trainingProgramDays"
         @select="fetchTrainingDay($event)"
       />
-
-      <!-- <img class="preview-image" src="https://cdn.imgbb.ru/community/7/74658/201602/2e5bbfb866325797fc99c79021a9b829.jpg" alt=""> -->
     </div>
 
-    <div class="actions">
+    <div class="training-program__actions">
       <app-button>
         <i class="ti-pencil"></i>
       </app-button>
@@ -119,6 +117,7 @@ export default {
           justify-content: center;
           color: $white;
           font-size: 12px;
+          font-weight: 500;
           cursor: pointer;
         }
         .accent:nth-child(1) {
@@ -145,7 +144,7 @@ export default {
     }
     
   }
-  .actions {
+  .training-program__actions {
     display: flex;
     padding: 10px;
     background: $hiddenBlockBG;
