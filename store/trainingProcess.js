@@ -42,9 +42,9 @@ export const mutations = {
 
 export const actions = {
 
-  async fetchTrainingProgram ({ commit }, query ) {
+  async fetchTrainingProgram ({ commit }, payload ) {
     try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-process/training-program-info?trainingProgramId=${query.trainingProgramId || ''}`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-process/training-program-info`, { params: payload })
       // console.log(response)
 
       if (response.data) {

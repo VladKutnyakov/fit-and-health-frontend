@@ -47,9 +47,8 @@ export default {
     TrainingProcess
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
-    await store.dispatch('trainingProcess/fetchTrainingProgram', query)
-    if (query.trainingDayId) {
-      await store.dispatch('trainingProcess/fetchTrainingDay', query)
+    if (query.trainingProgram) {
+      await store.dispatch('trainingProcess/fetchTrainingProgram', { trainingProgram: query.trainingProgram })
     }
   },
   data () {
