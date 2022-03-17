@@ -3,9 +3,9 @@
     <div class="app-picker__value">
       <p
         class="app-picker__selected-value"
-        :title="typeof value === 'object' && value !== null ? value.title : value"
-        :placeholder="placeholder || 'Выберите значение'"
-      >{{ typeof value === 'object' && value !== null ? value.title : value }}</p>
+        :class="[{ 'app-picker__selected-value--placeholder': !selectedValue }]"
+        :title="selectedValue"
+      >{{ selectedValue ? selectedValue : placeholder || 'Выберите значение' }}</p>
 
       <div class="app-picker__action"  @click="openModal()">
         <i class="app-picker__icon ti-more"></i>
@@ -23,6 +23,11 @@ export default {
   props: {
     value: [Object, String],
     placeholder: String
+  },
+  computed: {
+    selectedValue () {
+      return typeof this.value === 'object' && this.value !== null ? this.value.title : this.value
+    }
   },
   methods: {
     openModal () {
@@ -68,6 +73,10 @@ export default {
       white-space: nowrap;
       word-wrap: normal;
       word-break: normal;
+    }
+    .app-picker__selected-value--placeholder {
+      opacity: .6;
+      user-select: none;
     }
     .app-picker__action {
       // border: 1px solid red;
