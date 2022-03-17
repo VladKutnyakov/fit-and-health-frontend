@@ -4,9 +4,12 @@
     <div class="training-program__fields">
       <p class="field-title">Программа тренировок:</p>
       <app-picker
-        :value="trainingProgram"
-        @openModal="toggleModalVisibility('modalName')"
-        @clear="clear($event)"
+        :value="{id: trainingProgram.fields.id, title: trainingProgram.fields.title}"
+        @openModal="openSelectTrainingProgramModal()"
+        @clear="
+          setTrainingProgramFormFieldValue({field: 'id', newValue: $event}),
+          setTrainingProgramFormFieldValue({field: 'title', newValue: $event})
+        "
       />
 
       <div class="preview-image-and-intensity">
@@ -22,7 +25,7 @@
       <p class="field-title">Тренировочный день:</p>
       <app-select
         :value="trainingProgramTargetDay"
-        :selectOptionsList="trainingProgram.trainingProgramDays"
+        :selectOptionsList="trainingProgram.fields.trainingProgramDays"
         @select="fetchTrainingDay($event)"
       />
     </div>
@@ -38,7 +41,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppPicker from '@/components/basic/AppPicker'
 import AppSelect from '@/components/basic/AppSelect'
 import AppButton from '@/components/basic/AppButton'
@@ -60,6 +63,12 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({
+      setTrainingProgramFormFieldValue: 'trainingProcess/setTrainingProgramFormFieldValue',
+    }),
+    openSelectTrainingProgramModal () {
+      // this.$store.commit('/toggleModalVisibility', 'selectTrainingProgramModalActive')
+    },
     fetchTrainingDay ($event) {
       this.trainingProgramTargetDay = $event
 

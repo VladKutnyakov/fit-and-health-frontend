@@ -1,4 +1,4 @@
-import { formGenerator } from '../utils/formGenerator'
+import { generateForm } from '../utils/formManager'
 
 export const state = () => ({
   productCategories: [],
@@ -15,7 +15,7 @@ export const state = () => ({
     searchString: ''
   },
 
-  productForm: formGenerator({
+  productForm: generateForm({
     title: null,
     protein: null,
     fats: null,

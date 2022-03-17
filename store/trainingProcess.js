@@ -1,12 +1,11 @@
+import { generateForm, setFormFieldsValue, setFormFieldValue } from '@/utils/formManager'
+
 export const state = () => ({
-  trainingProgram: {
+  trainingProgram: generateForm({
     id: null,
     title: null,
     trainingProgramDays: [],
-    user: {
-      id: null
-    }
-  },
+  }),
   trainingDay: {
     id: null,
     title: null,
@@ -32,9 +31,13 @@ export const state = () => ({
 export const getters = {}
 
 export const mutations = {
-  setTrainingProgram (state, payload) {
-    state.trainingProgram = payload
+  setTrainingProgramFormFieldsValue (state, payload) {
+    setFormFieldsValue(state.trainingProgram, payload)
   },
+  setTrainingProgramFormFieldValue (state, ctx) {
+    setFormFieldValue(state.trainingProgram, ctx)
+  },
+
   setTrainingDay (state, payload) {
     state.trainingDay = payload
   },
@@ -45,9 +48,9 @@ export const actions = {
   async fetchTrainingProgram ({ commit }, payload ) {
     try {
       const response = await this.$axios.get(`${process.env.BASE_URL}/api/training-process/training-program-info`, { params: payload })
-      // console.log(response)
+      // console.log(response.data)
 
-      commit('setTrainingProgram', response.data)
+      commit('setTrainingProgramFormFieldsValue', response.data)
     } catch (error) {
       console.log(error.response)
 

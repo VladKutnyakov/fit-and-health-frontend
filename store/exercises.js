@@ -1,4 +1,4 @@
-import { formGenerator } from '../utils/formGenerator'
+import { generateForm } from '../utils/formManager'
 
 export const state = () => ({
   exercisesList: [],
@@ -19,7 +19,7 @@ export const state = () => ({
     cardio: null,
     user: null
   },
-  exerciseForm: formGenerator({
+  exerciseForm: generateForm({
     id: null,
     title: null,
     techniqueDescription: null,

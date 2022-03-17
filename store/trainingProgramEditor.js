@@ -1,7 +1,7 @@
-import { formGenerator } from '@/utils/formGenerator'
+import { generateForm } from '@/utils/formManager'
 
 export const state = () => ({
-  trainingProgram: formGenerator({
+  trainingProgram: generateForm({
     id: null,
     title: null,
     description: null,
