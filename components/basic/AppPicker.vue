@@ -3,6 +3,7 @@
     <div class="app-picker__value">
       <p
         class="app-picker__selected-value"
+        :title="typeof value === 'object' && value !== null ? value.title : value"
         :placeholder="placeholder || 'Выберите значение'"
       >{{ typeof value === 'object' && value !== null ? value.title : value }}</p>
 
@@ -46,23 +47,28 @@ export default {
   .app-picker__value {
     display: flex;
     flex: 1 1 auto;
+    width: calc(100% - 70px);
     background: $white;
     border: 1px solid $dividerBorder;
     border-radius: 6px;
     transition: $tr-02;
-    cursor: pointer;
     .app-picker__selected-value {
       position: relative;
       flex: 1 1 auto;
       padding: 8px 15px;
       width: 100%;
       min-width: 50px;
+      height: 35px;
       border: none;
       border-right: 1px solid $dividerBorder;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      word-wrap: normal;
+      word-break: normal;
     }
-
     .app-picker__action {
       // border: 1px solid red;
       flex: 1 1 auto;
@@ -70,6 +76,7 @@ export default {
       align-items: center;
       justify-content: center;
       border-right: 1px solid $dividerBorder;
+      cursor: pointer;
       .app-picker__icon {
         // border: 1px solid red;
         padding: 0 10px;

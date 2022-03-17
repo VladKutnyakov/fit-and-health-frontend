@@ -185,7 +185,7 @@ export default {
     overflow: auto;
     .app-select__list-item {
       // border: 1px solid red;
-      padding: 10px;
+      padding: 8px 15px;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
@@ -200,7 +200,7 @@ export default {
       margin-bottom: 4px;
     }
     .app-select__list-item--empty {
-      padding: 10px;
+      padding: 8px 15px;
       background: $gray-light;
       text-align: center;
       white-space: nowrap;
