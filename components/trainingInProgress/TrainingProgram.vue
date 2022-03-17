@@ -4,8 +4,7 @@
     <div class="training-program__fields">
       <p class="field-title">Программа тренировок:</p>
       <app-picker
-        :value="{id: 1, title: 'Batman'}"
-        :selectOptionsList="[]"
+        :value="trainingProgram"
         @openModal="toggleModalVisibility('modalName')"
         @clear="clear($event)"
       />
