@@ -7,7 +7,14 @@
   >
     <template v-slot:modalContent>
       <div class="content__select-training-program-modal">
-        select-training-program-modal
+        <div
+          class="training-program"
+          v-for="(item, index) in trainingProgramsList"
+          :key="index"
+          @click="selectTrainingProgram(item)"
+        >
+          <pre>{{ item }}</pre>
+        </div>
       </div>
     </template>
     <template v-slot:modalFooter>
@@ -15,7 +22,7 @@
         uppercase
         size14px
         class="modal-action-btn mr-auto"
-        @click.native="selectTrainingProgram()"
+        @click.native="selectTrainingProgram(null)"
       >Выбрать</app-button>
 
       <app-button
@@ -39,23 +46,47 @@ export default {
   },
   computed: {
     ...mapState({
+      trainingProgramsList: state => state.trainingProcess.trainingProgramsList,
       selectTrainingProgramModalActive: state => state.trainingProcess.selectTrainingProgramModalActive,
     })
+  },
+  watch: {
+    selectTrainingProgramModalActive (newValue) {
+      if (newValue) {
+        this.$store.commit('trainingProcess/setTrainingProgramsList', [])
+        this.$store.dispatch('trainingProcess/fetchTrainingProgramsList')
+      }
+    },
   },
   methods: {
     ...mapMutations({
       toggleModalVisibility: 'trainingProcess/toggleModalVisibility',
     }),
-    selectTrainingProgram () {
-      console.log('selectTrainingProgram')
+    selectTrainingProgram ($event) {
+      // console.log($event)
+      this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', { field: 'program', newValue: {id: $event.id, title: $event.title} })
+      this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', { field: 'day', newValue: null })
+
+      const payload = {
+        trainingProgram: $event.id,
+        trainingDay: null,
+      }
+      this.$store.dispatch('trainingProcess/fetchTrainingProgram', payload)
+
+      this.toggleModalVisibility({ modal: 'selectTrainingProgramModalActive', condition: false })
     }
-  }
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-// .content__select-training-program-modal {}
+.content__select-training-program-modal {
+  .training-program {
+    border: 1px solid red;
+    margin-bottom: 20px;
+  }
+}
 
 </style>

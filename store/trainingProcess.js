@@ -26,6 +26,7 @@ export const state = () => ({
       },
     ]
   },
+  trainingProgramsList: [],
   selectTrainingProgramModalActive: false,
 })
 
@@ -41,6 +42,10 @@ export const mutations = {
 
   setTrainingDay (state, payload) {
     state.trainingDay = payload
+  },
+
+  setTrainingProgramsList (state, payload) {
+    state.trainingProgramsList = payload
   },
 
   toggleModalVisibility (state, ctx) {
@@ -82,6 +87,24 @@ export const actions = {
         id: Date.now(),
         type: 'alert',
         message: 'Ошибка при загрузке данных для дневника тренировок. Обновите страницу или зайдите позже.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+
+  async fetchTrainingProgramsList ({ commit }, query ) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-programs`)
+
+      commit('setTrainingProgramsList', response.data)
+    } catch (err) {
+      console.log(err)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных. Обновите страницу или зайдите позже.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
