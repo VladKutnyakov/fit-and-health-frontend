@@ -6,7 +6,10 @@
       <app-picker
         :value="trainingProgram.fields.program"
         @openModal="openSelectTrainingProgramModal()"
-        @clear="setTrainingProgramFormFieldValue({field: 'program', newValue: $event})"
+        @clear="
+          setTrainingProgramFormFieldValue({field: 'program', newValue: $event}),
+          setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
+        "
       />
 
       <div class="preview-image-and-intensity">
