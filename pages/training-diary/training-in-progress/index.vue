@@ -56,7 +56,7 @@ export default {
       await store.dispatch('trainingProcess/fetchTrainingProgram', payload)
     }
     if (query.trainingDay) {
-      await store.dispatch('trainingProcess/fetchTrainingDay', { trainingProgram: query.trainingDay })
+      await store.dispatch('trainingProcess/fetchTrainingDay', { trainingDay: query.trainingDay })
     }
   },
   data () {
