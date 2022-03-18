@@ -48,7 +48,15 @@ export default {
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
     if (query.trainingProgram) {
-      await store.dispatch('trainingProcess/fetchTrainingProgram', { trainingProgram: query.trainingProgram })
+      const payload = {
+        trainingProgram: query.trainingProgram,
+        trainingDay: query.trainingDay,
+      }
+
+      await store.dispatch('trainingProcess/fetchTrainingProgram', payload)
+    }
+    if (query.trainingDay) {
+      await store.dispatch('trainingProcess/fetchTrainingDay', { trainingProgram: query.trainingDay })
     }
   },
   data () {

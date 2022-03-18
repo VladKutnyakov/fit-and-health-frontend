@@ -64,9 +64,9 @@ export const actions = {
     }
   },
 
-  async fetchTrainingDay ({ commit }, query ) {
+  async fetchTrainingDay ({ commit }, payload ) {
     try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-process/training-day-info?trainingDayId=${query.trainingDayId || ''}`)
+      const response = await this.$axios.get(`${process.env.BASE_URL}/api/training-process/training-day-info`, { params: payload })
       // console.log(response)
 
       commit('setTrainingDay', response.data)

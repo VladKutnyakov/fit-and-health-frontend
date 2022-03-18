@@ -73,7 +73,7 @@ export default {
       this.trainingProgramTargetDay = $event
 
       if ($event) {
-        this.$store.dispatch('trainingProcess/fetchTrainingDay', {trainingDayId: $event.id})
+        this.$store.dispatch('trainingProcess/fetchTrainingDay', { trainingDay: $event.id })
       }
     }
   }
