@@ -9,6 +9,7 @@ export const state = () => ({
   trainingDay: {
     id: null,
     title: null,
+    trainingType: null,
     comment: null,
     trainingProgramDayExercises: [
       {
