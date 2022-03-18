@@ -70,7 +70,7 @@ export default {
       setTrainingProgramFormFieldValue: 'trainingProcess/setTrainingProgramFormFieldValue',
     }),
     openSelectTrainingProgramModal () {
-      // this.$store.commit('/toggleModalVisibility', 'selectTrainingProgramModalActive')
+      this.$store.commit('trainingProcess/toggleModalVisibility', {modal: 'selectTrainingProgramModalActive', condition: true})
     },
     fetchTrainingDay ($event) {
       this.trainingProgramTargetDay = $event

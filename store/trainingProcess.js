@@ -26,6 +26,7 @@ export const state = () => ({
       },
     ]
   },
+  selectTrainingProgramModalActive: false,
 })
 
 export const getters = {}
@@ -40,6 +41,10 @@ export const mutations = {
 
   setTrainingDay (state, payload) {
     state.trainingDay = payload
+  },
+
+  toggleModalVisibility (state, ctx) {
+    state[ctx.modal] = ctx.condition
   },
 }
 

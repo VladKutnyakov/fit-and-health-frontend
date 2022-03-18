@@ -2,6 +2,8 @@
   <app-page pageTitle="Новая тренировка" :breadcrumbs="breadcrumbs">
     <training-program />
     <training-process />
+
+    <select-training-program-modal />
   </app-page>
 </template>
 
@@ -9,6 +11,7 @@
 import AppPage from '@/components/basic/AppPage'
 import TrainingProgram from '@/components/trainingInProgress/TrainingProgram'
 import TrainingProcess from '@/components/trainingInProgress/TrainingProcess/index'
+import SelectTrainingProgramModal from '@/components/trainingInProgress/SelectTrainingProgramModal/index'
 
 export default {
   name: 'TrainingInProgressPage',
@@ -44,7 +47,8 @@ export default {
   components: {
     AppPage,
     TrainingProgram,
-    TrainingProcess
+    TrainingProcess,
+    SelectTrainingProgramModal
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
     if (query.trainingProgram) {
