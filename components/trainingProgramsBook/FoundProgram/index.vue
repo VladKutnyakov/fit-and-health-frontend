@@ -3,7 +3,7 @@
     <preview-image />
     <main-info :program="item" />
     <training-accent />
-    <actions />
+    <actions :program="item" />
   </div>
 </template>
 

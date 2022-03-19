@@ -1,7 +1,7 @@
 <template>
   <div class="actions">
     <i class="ti-control-play action-btn"></i>
-    <nuxt-link to="training-programs/program-123" class="action-btn">
+    <nuxt-link :to="`training-programs/${program.id}`" class="action-btn">
       <i class="ti-search"></i>
     </nuxt-link>
     <i class="ti-trash action-btn"></i>
@@ -9,7 +9,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    program: Object
+  }
+}
 </script>
 
 <style lang="scss" scoped>
