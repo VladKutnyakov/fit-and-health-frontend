@@ -30,7 +30,7 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  border-top: 1px dashed $blockBorder;
+  border-top: 1px solid $dividerBorder;
   .exercises-list {
     flex: 1 1 auto;
     margin: 10px;

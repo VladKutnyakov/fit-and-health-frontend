@@ -2,32 +2,32 @@
   <div class="training-process">
     <training-video />
     <app-info
-      v-if="trainingDay.comment"
+      v-if="trainingDay.fields.comment"
       class="ml-10 mr-10"
       info
-      :text="trainingDay.comment"
+      :text="trainingDay.fields.comment"
     />
-    <laps-overview />
-    <exercises :exercisesList="trainingDay.trainingProgramDayExercises" />
-    <main-stats />
+    <exercises :exercisesList="trainingDay.fields.trainingProgramDayExercises" />
+    <laps-overview v-if="trainingDay.fields.trainingType && trainingDay.fields.trainingType.id === 2" />
+    <!-- <main-stats /> -->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import AppInfo from '@/components/basic/AppInfo'
-import MainStats from '@/components/trainingInProgress/TrainingProcess/MainStats'
 import TrainingVideo from '@/components/trainingInProgress/TrainingProcess/TrainingVideo'
 import LapsOverview from '@/components/trainingInProgress/TrainingProcess/LapsOverview'
 import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises/index'
+// import MainStats from '@/components/trainingInProgress/TrainingProcess/MainStats'
 
 export default {
   components: {
     AppInfo,
-    MainStats,
     TrainingVideo,
     LapsOverview,
-    Exercises
+    Exercises,
+    // MainStats,
   },
   computed: {
     ...mapState({

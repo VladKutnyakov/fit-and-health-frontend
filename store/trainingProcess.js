@@ -6,27 +6,13 @@ export const state = () => ({
     day: null,
     trainingProgramDays: [],
   }),
-  trainingDay: {
+  trainingDay: generateForm({
     id: null,
     title: null,
     trainingType: null,
     comment: null,
-    trainingProgramDayExercises: [
-      {
-        exercise: {
-          title: '1'
-        },
-        approaches: 4,
-        repeats: 1,
-        additionalWeight: 1,
-      },
-      {
-        exercise: {
-          title: '2'
-        }
-      },
-    ]
-  },
+    trainingProgramDayExercises: []
+  }),
   trainingProgramsList: [],
   selectTrainingProgramModalActive: false,
 })
@@ -41,8 +27,11 @@ export const mutations = {
     setFormFieldValue(state.trainingProgram, ctx)
   },
 
-  setTrainingDay (state, payload) {
-    state.trainingDay = payload
+  setTrainingDayFormFieldsValue (state, payload) {
+    setFormFieldsValue(state.trainingDay, payload)
+  },
+  setTrainingDayFormFieldValue (state, ctx) {
+    setFormFieldValue(state.trainingDay, ctx)
   },
 
   setTrainingProgramsList (state, payload) {
@@ -80,7 +69,7 @@ export const actions = {
       const response = await this.$axios.get(`${process.env.BASE_URL}/api/training-process/training-day-info`, { params: payload })
       // console.log(response)
 
-      commit('setTrainingDay', response.data)
+      commit('setTrainingDayFormFieldsValue', response.data)
     } catch (err) {
       console.log(err)
 

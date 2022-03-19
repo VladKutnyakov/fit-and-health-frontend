@@ -97,7 +97,6 @@ export default {
   border-radius: 6px;
   box-shadow: $btnShadow;
   transition: $tr-02;
-  overflow: hidden;
   .training-program__fields {
     display: flex;
     flex-direction: column;
@@ -160,6 +159,8 @@ export default {
     display: flex;
     padding: 10px;
     background: $hiddenBlockBG;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
 }
 
