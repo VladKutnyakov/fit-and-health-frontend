@@ -114,6 +114,7 @@ export default {
             'training-diary-training-in-progress',
             'training-programs',
             'training-programs-training-program-editor',
+            'training-programs-program',
             'exercise-guide',
           ],
           links: [
