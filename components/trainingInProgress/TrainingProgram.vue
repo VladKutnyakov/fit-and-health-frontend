@@ -30,6 +30,10 @@
           setTrainingProgramFormFieldValue({field: 'day', newValue: $event}),
           fetchTrainingDay($event)
         "
+        @clear="
+          setTrainingProgramFormFieldValue({field: 'day', newValue: $event}),
+          clearTrainingDayForm()
+        "
       />
     </div>
 
@@ -68,6 +72,7 @@ export default {
   methods: {
     ...mapMutations({
       setTrainingProgramFormFieldValue: 'trainingProcess/setTrainingProgramFormFieldValue',
+      clearTrainingDayForm: 'trainingProcess/clearTrainingDayForm',
     }),
     openSelectTrainingProgramModal () {
       this.$store.commit('trainingProcess/toggleModalVisibility', {modal: 'selectTrainingProgramModalActive', condition: true})

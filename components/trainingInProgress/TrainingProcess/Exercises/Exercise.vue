@@ -1,6 +1,6 @@
 <template>
   <li class="exercise">
-    <app-accordion :isOpened="true">
+    <app-accordion :isOpened="isOpened" @click.native="isOpened = !isOpened">
       <template v-slot:accordionHeader>
         <div class="exercise__header">
           <div class="header__drag-drop-btn">
@@ -20,7 +20,12 @@
             <p class="parameter__value">{{ item.additionalWeight ? item.additionalWeight : 0 }} кг.</p>
           </div>
           <div class="header__accrodion-btn">
-            <i class="ti-angle-double-down"></i>
+            <i
+              :class="[
+                { 'ti-angle-down': isOpened },
+                { 'ti-angle-right': !isOpened },
+              ]"
+            ></i>
           </div>
         </div>
       </template>
@@ -65,6 +70,11 @@ export default {
     AppAccordion,
     AppButton,
     Approach
+  },
+  data () {
+    return {
+      isOpened: false,
+    }
   }
 }
 </script>

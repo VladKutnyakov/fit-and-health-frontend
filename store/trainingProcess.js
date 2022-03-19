@@ -1,4 +1,4 @@
-import { generateForm, setFormFieldsValue, setFormFieldValue } from '@/utils/formManager'
+import { generateForm, setFormFieldsValue, setFormFieldValue, clearForm } from '@/utils/formManager'
 
 export const state = () => ({
   trainingProgram: generateForm({
@@ -32,6 +32,9 @@ export const mutations = {
   },
   setTrainingDayFormFieldValue (state, ctx) {
     setFormFieldValue(state.trainingDay, ctx)
+  },
+  clearTrainingDayForm (state) {
+    clearForm(state.trainingDay)
   },
 
   setTrainingProgramsList (state, payload) {

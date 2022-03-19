@@ -102,7 +102,7 @@ export default {
     },
     clearSelect () {
       this.closeSelect()
-      this.$emit('select', null)
+      this.$emit('clear', null)
     }
   }
 }

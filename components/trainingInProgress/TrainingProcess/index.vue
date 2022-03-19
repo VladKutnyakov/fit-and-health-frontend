@@ -3,7 +3,7 @@
     <training-video />
     <app-info
       v-if="trainingDay.fields.comment"
-      class="ml-10 mr-10"
+      class="ml-10 mr-10 mb-10"
       info
       :text="trainingDay.fields.comment"
     />

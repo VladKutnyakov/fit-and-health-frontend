@@ -32,7 +32,7 @@
 export default {
   props: {
     item: Object,
-    approach: Number
+    approach: [String, Number]
   }
 }
 </script>

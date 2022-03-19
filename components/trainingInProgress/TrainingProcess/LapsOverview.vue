@@ -55,7 +55,7 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  margin: 10px 10px 10px 10px;
+  margin: 0 10px 10px 10px;
   .laps-overview__laps {
     flex: 1 1 auto;
     display: flex;
