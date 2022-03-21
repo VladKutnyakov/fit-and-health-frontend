@@ -137,22 +137,22 @@ export default {
         .accent:nth-child(1) {
           width: 100%;
           height: 10%;
-          background: $dangerLight1;
+          background: $danger;
         }
         .accent:nth-child(2) {
           width: 100%;
           height: 40%;
-          background: $warningLight1;
+          background: $warning;
         }
         .accent:nth-child(3) {
           width: 100%;
           height: 30%;
-          background: $successLight1;
+          background: $success;
         }
         .accent:nth-child(4) {
           width: 100%;
           height: 20%;
-          background: $infoLight1;
+          background: $info;
         }
       }
     }

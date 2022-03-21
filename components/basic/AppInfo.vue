@@ -59,19 +59,19 @@ export default {
 }
 
 .app-info--success {
-  background: $green;
+  background: $success;
   color: $white;
 }
 .app-info--warning {
-  background: $yellow;
+  background: $warning;
   color: $black;
 }
 .app-info--info {
-  background: $blue;
+  background: $info;
   color: $white;
 }
 .app-info--alert {
-  background: $red;
+  background: $danger;
   color: $white;
 }
 
