@@ -18,10 +18,6 @@ export const state = () => ({
           id: 1,
           title: "Отжимания"
         },
-        repeats: 12,
-        additionalWeight: 12.2,
-        implementationTime: null,
-        restTime: null,
         approaches: [
           {
             isActive: true,
@@ -47,10 +43,6 @@ export const state = () => ({
           id: 1,
           title: "Подтягивания"
         },
-        repeats: 12,
-        additionalWeight: 12.2,
-        implementationTime: null,
-        restTime: null,
         approaches: [
           {
             isActive: false,

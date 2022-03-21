@@ -7,18 +7,6 @@
             <i class="ti-exchange-vertical"></i>
           </div>
           <p class="header__title">{{ exercise.exercise.title ? exercise.exercise.title : '' }}</p>
-          <!-- <div class="header__parameter">
-            <p class="parameter__text">Подходы</p>
-            <p class="parameter__value">{{ exercise.approaches ? exercise.approaches.length : '--' }}</p>
-          </div> -->
-          <!-- <div class="header__parameter">
-            <p class="parameter__text">Повторений</p>
-            <p class="parameter__value">{{ exercise.repeats ? exercise.repeats : '--' }}</p>
-          </div> -->
-          <!-- <div class="header__parameter">
-            <p class="parameter__text">Отягощение</p>
-            <p class="parameter__value">{{ exercise.additionalWeight ? exercise.additionalWeight : 0 }} кг.</p>
-          </div> -->
           <div class="header__accrodion-btn">
             <i
               :class="[
@@ -107,22 +95,6 @@ export default {
       padding: 0 10px;
       font-weight: 600;
     }
-    // .header__parameter {
-    //   // border: 1px solid red;
-    //   display: flex;
-    //   flex-direction: column;
-    //   align-items: center;
-    //   width: 100%;
-    //   max-width: 200px;
-    //   .parameter__text {
-    //     text-transform: uppercase;
-    //     font-size: 12px;
-    //   }
-    //   .parameter__value {
-    //     margin-top: 5px;
-    //     font-weight: 500;
-    //   }
-    // }
     .header__accrodion-btn {
       // border: 1px solid red;
       display: flex;
