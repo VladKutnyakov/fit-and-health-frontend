@@ -11,7 +11,8 @@
 
     <exercises :exercisesList="trainingDay.fields.trainingProgramDayExercises" />
 
-    <laps-overview v-if="trainingDay.fields.trainingType && trainingDay.fields.trainingType.id === 2" />
+    <laps-overview />
+    <!-- <laps-overview v-if="trainingDay.fields.trainingType && trainingDay.fields.trainingType.id === 2" /> -->
   </div>
 </template>
 

@@ -12,6 +12,10 @@
             <p class="element__value">7</p>
           </div>
           <div class="info__element">
+            <p class="element__text">Выполнено подходов:</p>
+            <p class="element__value">28</p>
+          </div>
+          <div class="info__element">
             <p class="element__text">Тоннаж:</p>
             <p class="element__value">1230 кг.</p>
           </div>
@@ -26,13 +30,13 @@
             <p class="element__value">00 : 05 : 00</p>
           </div>
         </div>
-        <div class="lap__actions">
+        <!-- <div class="lap__actions">
           <i class="ti-trash control__btn"></i>
           <i class="ti-control-stop control__btn"></i>
           <i class="ti-control-pause control__btn"></i>
           <i class="ti-control-play control__btn"></i>
           <i class="ti-control-record control__btn control__btn--record-on"></i>
-        </div>
+        </div> -->
       </li>
     </ul>
   </div>
@@ -62,6 +66,7 @@ export default {
     padding: 10px;
     background: rgba(0,0,0,.025);
     box-shadow: $insetBoxShadow;
+    border: 1px solid $dividerBorder;
     border-radius: 6px;
     overflow-x: scroll;
     .lap {
@@ -70,13 +75,14 @@ export default {
       margin-right: 10px;
       min-width: 320px;
       background: $white;
-      border: 1px solid $blockBorder;
+      box-shadow: $btnShadow;
       border-radius: 6px;
+      transition: $tr-02;
       .lap__title {
         display: flex;
         margin: 10px 0;
         padding: 0 20px 10px 20px;
-        border-bottom: 1px solid $blockBorder;
+        border-bottom: 1px solid $dividerBorder;
         .title {
           margin-right: auto;
           text-transform: uppercase;
@@ -97,7 +103,7 @@ export default {
           }
           .element__value {
             margin-left: auto;
-            color: $green;
+            color: $primary;
             font-weight: 500;
           }
         }
@@ -108,7 +114,7 @@ export default {
       .lap__stats {
         margin: 10px 10px 0 10px;
         padding: 10px;
-        border-top: 1px dashed $blockBorder;
+        border-top: 1px dashed $dividerBorder;
         .stats__element {
           display: flex;
           margin-bottom: 5px;
@@ -117,7 +123,7 @@ export default {
           }
           .element__value {
             margin-left: auto;
-            color: $green;
+            color: $primary;
             font-weight: 500;
           }
         }
@@ -128,7 +134,7 @@ export default {
       .lap__actions {
         display: flex;
         align-items: center;
-        background: $hiddenBlockBG;
+        background: $black10;
         .control__btn {
           margin: 5px 10px;
           padding: 5px;
@@ -147,6 +153,34 @@ export default {
         }
         .control__btn--record-on {
           color: $red;
+        }
+      }
+    }
+  }
+  .laps-overview__laps::-webkit-scrollbar {
+    height: 4px;
+  }
+  .laps-overview__laps::-webkit-scrollbar-thumb {
+    background: $primaryLight4;
+    border-radius: 50px;
+  }
+  .laps-overview__laps::-webkit-scrollbar-track {
+    background: $black10;
+  }
+}
+
+body.dark {
+  .laps-overview {
+    .laps-overview__laps {
+      background: $black20;
+      border: 1px solid $dividerBorderDarkBG;
+      .lap {
+        background: $cardBackgroundDarkBG;
+        .lap__title {
+          border-bottom: 1px solid $dividerBorderDarkBG;
+        }
+        .lap__stats {
+          border-top: 1px dashed $dividerBorderDarkBG;
         }
       }
     }

@@ -57,6 +57,7 @@ body.dark {
   .exercises {
     .exercises-list {
       background: $black20;
+      border: 1px solid $dividerBorderDarkBG;
       .exercises-list::-webkit-scrollbar-thumb {
         background: $primary;
       }
