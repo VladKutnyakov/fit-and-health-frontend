@@ -1,10 +1,10 @@
 <template>
-  <li class="approach" :class="[{ 'approach--not-active': true }]">
+  <li class="approach" :class="[{ 'approach--not-active': !approach.active }]">
     <div class="approach__status">
       <div class="status"></div>
     </div>
     <div class="approach__number">
-      <p class="number__title">Подход {{ approach }}</p>
+      <p class="number__title">{{ approach.title }}</p>
     </div>
     <div class="approach__element">
       <p class="element__text">Повторений</p>
@@ -16,11 +16,11 @@
     </div>
     <div class="approach__element">
       <p class="element__text">Время выполнения</p>
-      <p class="element__value">{{ item.implementationTime ? item.implementationTime : '00 : 00 : 00' }}</p>
+      <p class="element__value">{{ exercise.implementationTime ? exercise.implementationTime : '00 : 00 : 00' }}</p>
     </div>
     <div class="approach__element">
       <p class="element__text">Время отдыха</p>
-      <p class="element__value">{{ item.restTime ? item.restTime : '00 : 00 : 00' }}</p>
+      <p class="element__value">{{ exercise.restTime ? exercise.restTime : '00 : 00 : 00' }}</p>
     </div>
     <div class="approach__action-btn">
       <i class="ti-trash"></i>
@@ -31,8 +31,8 @@
 <script>
 export default {
   props: {
-    item: Object,
-    approach: [String, Number]
+    exercise: Object,
+    approach: [Object, Number]
   }
 }
 </script>
@@ -46,7 +46,7 @@ export default {
   margin-bottom: 5px;
   padding: 10px;
   background: $white;
-  // border-bottom: 1px dashed $blockBorder;
+  border-bottom: 1px dashed $dividerBorder;
   border-radius: 6px;
   .approach__status {
     display: flex;

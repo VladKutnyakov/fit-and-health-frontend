@@ -9,7 +9,7 @@
           <p class="header__title">{{ item.exercise.title ? item.exercise.title : '' }}</p>
           <div class="header__parameter">
             <p class="parameter__text">Подходы</p>
-            <p class="parameter__value">{{ item.approaches ? item.approaches : '--' }}</p>
+            <p class="parameter__value">{{ item.approaches ? item.approaches.length : '--' }}</p>
           </div>
           <div class="header__parameter">
             <p class="parameter__text">Повторений</p>
@@ -34,14 +34,17 @@
           <approach
             v-for="(approach, index) in item.approaches"
             :key="index"
-            :item="item"
+            :exercise="item"
             :approach="approach"
           />
         </ul>
         <div class="exercise__control">
           <div class="control" title="Добавить подход">
-            <i class="ti-plus control__icon"></i>
+            <app-button size14px>Добавить подход</app-button>
           </div>
+          <!-- <div class="control" title="Добавить подход">
+            <i class="ti-plus control__icon"></i>
+          </div> -->
           <div class="control" title="Завершить подход">
             <i class="ti-control-stop control__icon"></i>
           </div>
@@ -85,8 +88,10 @@ export default {
 .exercise {
   margin-bottom: 10px;
   background: $white;
-  border: 1px solid $blockBorder;
+  // border: 1px solid $blockBorder;
   border-radius: 6px;
+  box-shadow: $btnShadow;
+  transition: $tr-02;
   .exercise__header {
     display: flex;
     align-items: center;
@@ -130,15 +135,15 @@ export default {
   .exercise__steps {
     display: flex;
     flex-direction: column;
-    padding: 10px 10px 5px 10px;
-    background: $black10;
-    border-top: 1px solid $blockBorder;
+    // padding: 10px 10px 5px 10px;
+    // background: $black10;
+    border-top: 1px solid $dividerBorder;
   }
   .exercise__control {
     display: flex;
     align-items: center;
     padding: 0 10px;
-    border-top: 1px solid $blockBorder;
+    border-top: 1px solid $dividerBorder;
     .control {
       // border: 1px solid red;
       margin-left: 10px;

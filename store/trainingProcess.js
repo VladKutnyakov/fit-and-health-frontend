@@ -11,7 +11,64 @@ export const state = () => ({
     title: null,
     trainingType: null,
     comment: null,
-    trainingProgramDayExercises: []
+    trainingProgramDayExercises: [
+      {
+        exercise: {
+          id: 1,
+          title: "Отжимания"
+        },
+        repeats: 12,
+        additionalWeight: 12.2,
+        implementationTime: null,
+        restTime: null,
+        approaches: [
+          {
+            active: true,
+            title: 'Подход 1',
+            repeats: 10,
+            additionalWeight: 15,
+            implementationTime: null,
+            restTime: null,
+          },
+          {
+            active: false,
+            title: 'Подход 2',
+            repeats: 8,
+            additionalWeight: 15,
+            implementationTime: null,
+            restTime: null,
+          }
+        ]
+      },
+      {
+        exercise: {
+          id: 1,
+          title: "Подтягивания"
+        },
+        repeats: 12,
+        additionalWeight: 12.2,
+        implementationTime: null,
+        restTime: null,
+        approaches: [
+          {
+            active: true,
+            title: 'Подход 1',
+            repeats: 10,
+            additionalWeight: 15,
+            implementationTime: null,
+            restTime: null,
+          },
+          {
+            active: false,
+            title: 'Подход 2',
+            repeats: 8,
+            additionalWeight: 15,
+            implementationTime: null,
+            restTime: null,
+          }
+        ]
+      },
+    ]
   }),
   trainingProgramsList: [],
   selectTrainingProgramModalActive: false,

@@ -55,7 +55,6 @@ export default {
 
 body.dark {
   .exercises {
-    border-top: 1px solid $dividerBorderDarkBG;
     .exercises-list {
       background: $black20;
       .exercises-list::-webkit-scrollbar-thumb {

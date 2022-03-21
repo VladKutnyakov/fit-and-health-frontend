@@ -1,15 +1,17 @@
 <template>
   <div class="training-process">
     <training-video />
+
     <app-info
       v-if="trainingDay.fields.comment"
       class="ml-10 mr-10 mb-10"
       info
       :text="trainingDay.fields.comment"
     />
+
     <exercises :exercisesList="trainingDay.fields.trainingProgramDayExercises" />
+
     <laps-overview v-if="trainingDay.fields.trainingType && trainingDay.fields.trainingType.id === 2" />
-    <!-- <main-stats /> -->
   </div>
 </template>
 
@@ -19,7 +21,6 @@ import AppInfo from '@/components/basic/AppInfo'
 import TrainingVideo from '@/components/trainingInProgress/TrainingProcess/TrainingVideo'
 import LapsOverview from '@/components/trainingInProgress/TrainingProcess/LapsOverview'
 import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises/index'
-// import MainStats from '@/components/trainingInProgress/TrainingProcess/MainStats'
 
 export default {
   components: {
@@ -27,7 +28,6 @@ export default {
     TrainingVideo,
     LapsOverview,
     Exercises,
-    // MainStats,
   },
   computed: {
     ...mapState({
