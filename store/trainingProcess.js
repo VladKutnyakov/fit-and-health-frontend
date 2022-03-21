@@ -51,7 +51,7 @@ export const state = () => ({
         restTime: null,
         approaches: [
           {
-            active: true,
+            active: false,
             title: 'Подход 1',
             repeats: 10,
             additionalWeight: 15,
@@ -61,6 +61,22 @@ export const state = () => ({
           {
             active: false,
             title: 'Подход 2',
+            repeats: 8,
+            additionalWeight: 15,
+            implementationTime: null,
+            restTime: null,
+          },
+          {
+            active: false,
+            title: 'Подход 3',
+            repeats: 10,
+            additionalWeight: 15,
+            implementationTime: null,
+            restTime: null,
+          },
+          {
+            active: false,
+            title: 'Подход 4',
             repeats: 8,
             additionalWeight: 15,
             implementationTime: null,

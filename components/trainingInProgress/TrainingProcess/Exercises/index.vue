@@ -30,13 +30,13 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  // border-top: 1px solid $dividerBorder;
   .exercises-list {
     flex: 1 1 auto;
     margin: 0 10px 10px 10px;
     padding: 10px;
     background: rgba(0,0,0,.025);
     box-shadow: $insetBoxShadow;
+    border: 1px solid $dividerBorder;
     border-radius: 6px;
     height: 600px;
     overflow-y: scroll;
