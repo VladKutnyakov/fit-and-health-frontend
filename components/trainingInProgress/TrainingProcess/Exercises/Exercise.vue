@@ -1,8 +1,8 @@
 <template>
   <li class="exercise">
-    <app-accordion :isOpened="isOpened" @click.native="isOpened = !isOpened">
+    <app-accordion :isOpened="isOpened">
       <template v-slot:accordionHeader>
-        <div class="exercise__header">
+        <div class="exercise__header" @click="isOpened = !isOpened">
           <div class="header__drag-drop-btn">
             <i class="ti-exchange-vertical"></i>
           </div>

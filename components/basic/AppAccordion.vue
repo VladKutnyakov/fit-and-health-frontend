@@ -44,7 +44,6 @@ export default {
         this.$refs.accordion.style.transition = 'all .2s linear'
       }, 0)
     }
-
   }
 }
 </script>
