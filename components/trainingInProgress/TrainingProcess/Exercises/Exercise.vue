@@ -141,33 +141,23 @@ export default {
     align-items: center;
     padding: 10px;
     border-top: 1px solid $dividerBorder;
-    // .control {
-    //   // border: 1px solid red;
-    //   margin-left: 10px;
-    //   // padding: 10px 0;
-    //   cursor: pointer;
-    //   .control__icon {
-    //     font-size: 20px;
-    //     transition: $tr-02;
-    //   }
-    // }
-    // .control:first-child {
-    //   margin-left: 0;
-    // }
-    // .control:last-child {
-    //   margin-left: 0;
-    //   margin-left: auto;
-    // }
-    // .control:hover {
-    //   .control__icon {
-    //     color: $green;
-    //   }
-    // }
   }
 }
 
 .exercise:last-child {
   margin-bottom: 0;
+}
+
+body.dark {
+  .exercise {
+    background: $cardBackgroundDarkBG;
+    .exercise__steps {
+      border-top: 1px solid $dividerBorderDarkBG;
+    }
+    .exercise__controls {
+      border-top: 1px solid $dividerBorderDarkBG;
+    }
+  }
 }
 
 </style>

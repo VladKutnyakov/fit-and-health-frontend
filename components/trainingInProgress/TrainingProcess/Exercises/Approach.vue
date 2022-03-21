@@ -48,9 +48,7 @@ export default {
   align-items: center;
   margin-bottom: 5px;
   padding: 10px;
-  background: $white;
   border-bottom: 1px dashed $dividerBorder;
-  border-radius: 6px;
   .approach__status {
     display: flex;
     align-items: center;
@@ -60,7 +58,7 @@ export default {
     .status {
       width: 16px;
       height: 16px;
-      background: $red;
+      background: $success;
       border-radius: 50%;
     }
   }
@@ -110,11 +108,12 @@ export default {
   border-bottom: none;
   margin-bottom: 5px;
 }
+
 .approach--not-active {
   opacity: 0.8;
   .approach__status {
     .status {
-      background: $gray;
+      background: $black20;
     }
   }
   .approach__number {
@@ -134,4 +133,15 @@ export default {
     opacity: .5;
   }
 }
+
+body.dark {
+  .approach--not-active {
+    .approach__status {
+      .status {
+        background: $white20;
+      }
+    }
+  }
+}
+
 </style>
