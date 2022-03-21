@@ -58,6 +58,7 @@ export default {
   methods: {
     ...mapMutations({
       setTrainingProgramFormFieldValue: 'trainingProcess/setTrainingProgramFormFieldValue',
+      clearTrainingProgramForm: 'trainingProcess/clearTrainingProgramForm',
       clearTrainingDayForm: 'trainingProcess/clearTrainingDayForm',
     }),
     openSelectTrainingProgramModal () {
@@ -67,6 +68,8 @@ export default {
       this.setTrainingProgramFormFieldValue({field: 'program', newValue: $event})
       this.setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
       this.$router.push('/training-diary/training-in-progress')
+      this.clearTrainingProgramForm()
+      this.clearTrainingDayForm()
     },
     setTrainingDay($event) {
       if ($event) {
@@ -75,7 +78,7 @@ export default {
         this.$store.dispatch('trainingProcess/fetchTrainingDay', { trainingDay: $event.id })
       } else {
         this.setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
-        this.$router.push(`/training-diary/training-in-progress?trainingProgram=${this.$route.query?.trainingProgram}`)
+        this.$router.push(`/training-diary/training-in-progress?trainingProgram=${this.$route.query?.trainingProgram || ''}`)
         this.clearTrainingDayForm()
       }
     },

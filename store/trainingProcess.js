@@ -26,6 +26,9 @@ export const mutations = {
   setTrainingProgramFormFieldValue (state, ctx) {
     setFormFieldValue(state.trainingProgram, ctx)
   },
+  clearTrainingProgramForm (state) {
+    clearForm(state.trainingProgram)
+  },
 
   setTrainingDayFormFieldsValue (state, payload) {
     setFormFieldsValue(state.trainingDay, payload)
