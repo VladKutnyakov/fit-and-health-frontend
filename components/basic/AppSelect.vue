@@ -20,7 +20,7 @@
          @click="toggleVisibility()"
       />
       <div class="app-select__action"  @click="toggleVisibility()">
-        <i class="app-select__icon" :class="[{'ti-angle-down': selectOptionsList}]"></i>
+        <i class="ti-angle-down app-select__icon"></i>
       </div>
       <div class="app-select__action" @click="clearSelect()">
         <i class="ti-close app-select__icon"></i>

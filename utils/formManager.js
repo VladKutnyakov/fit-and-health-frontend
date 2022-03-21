@@ -38,18 +38,12 @@ const setFormFieldError = (form, ctx) => {
 
 const clearForm = (form) => {
   for (const key in form.fields) {
-    const fieldType = typeof form.fields[key]
-
-    switch (fieldType) {
-      case 'boolean':
-        form.fields[key] = false
-        break
-      case 'array':
-        form.fields[key] = []
-        break
-      default:
-        form.fields[key] = null
-        break
+    if (Array.isArray(form.fields[key])) {
+      form.fields[key] = []
+    } else if (typeof form.fields[key] === 'boolean') {
+      form.fields[key] = false
+    } else {
+      form.fields[key] = null
     }
   }
 

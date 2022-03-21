@@ -52,7 +52,8 @@ export default {
   },
   computed: {
     ...mapState({
-      trainingProgram: state => state.trainingProcess.trainingProgram
+      trainingProgram: state => state.trainingProcess.trainingProgram,
+      trainingDay: state => state.trainingProcess.trainingDay,
     })
   },
   methods: {
@@ -65,11 +66,10 @@ export default {
       this.$store.commit('trainingProcess/toggleModalVisibility', {modal: 'selectTrainingProgramModalActive', condition: true})
     },
     setTrainingProgram($event) {
-      this.setTrainingProgramFormFieldValue({field: 'program', newValue: $event})
-      this.setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
       this.$router.push('/training-diary/training-in-progress')
-      this.clearTrainingProgramForm()
-      this.clearTrainingDayForm()
+
+      this.clearTrainingProgramForm(this.trainingProgram)
+      this.clearTrainingDayForm(this.trainingDay)
     },
     setTrainingDay($event) {
       if ($event) {
