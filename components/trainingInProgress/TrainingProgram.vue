@@ -6,10 +6,7 @@
       <app-picker
         :value="trainingProgram.fields.program"
         @openModal="openSelectTrainingProgramModal()"
-        @clear="
-          setTrainingProgramFormFieldValue({field: 'program', newValue: $event}),
-          setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
-        "
+        @clear="setTrainingProgram($event)"
       />
 
       <div class="preview-image-and-intensity">
@@ -26,14 +23,8 @@
       <app-select
         :value="trainingProgram.fields.day"
         :selectOptionsList="trainingProgram.fields.trainingProgramDays"
-        @select="
-          setTrainingProgramFormFieldValue({field: 'day', newValue: $event}),
-          fetchTrainingDay($event)
-        "
-        @clear="
-          setTrainingProgramFormFieldValue({field: 'day', newValue: $event}),
-          clearTrainingDayForm()
-        "
+        @select="setTrainingDay($event)"
+        @clear="setTrainingDay($event)"
       />
     </div>
 
@@ -59,11 +50,6 @@ export default {
     AppSelect,
     AppButton
   },
-  data () {
-    return {
-      trainingProgramTargetDay: null
-    }
-  },
   computed: {
     ...mapState({
       trainingProgram: state => state.trainingProcess.trainingProgram
@@ -77,13 +63,22 @@ export default {
     openSelectTrainingProgramModal () {
       this.$store.commit('trainingProcess/toggleModalVisibility', {modal: 'selectTrainingProgramModalActive', condition: true})
     },
-    fetchTrainingDay ($event) {
-      this.trainingProgramTargetDay = $event
-
+    setTrainingProgram($event) {
+      this.setTrainingProgramFormFieldValue({field: 'program', newValue: $event})
+      this.setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
+      this.$router.push('/training-diary/training-in-progress')
+    },
+    setTrainingDay($event) {
       if ($event) {
+        this.setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
+        this.$router.push(`/training-diary/training-in-progress?trainingProgram=${this.$route.query?.trainingProgram}&trainingDay=${$event?.id}`)
         this.$store.dispatch('trainingProcess/fetchTrainingDay', { trainingDay: $event.id })
+      } else {
+        this.setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
+        this.$router.push(`/training-diary/training-in-progress?trainingProgram=${this.$route.query?.trainingProgram}`)
+        this.clearTrainingDayForm()
       }
-    }
+    },
   }
 }
 </script>
