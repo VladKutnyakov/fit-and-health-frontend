@@ -39,36 +39,21 @@
           />
         </ul>
         <div class="exercise__controls">
-          <!-- <div class="control" title="Добавить подход">
-            <i class="ti-plus control__icon"></i>
-          </div> -->
-
-          <!-- <div class="control" title="Завершить подход">
-            <i class="ti-control-stop control__icon"></i>
-          </div> -->
-          <!-- <div class="control" title="Приостановить выполнение подхода">
-            <i class="ti-control-pause control__icon"></i>
-          </div> -->
-          <!-- <div class="control" title="Начать выполнение подхода">
-            <i class="ti-control-play control__icon"></i>
-          </div> -->
-
-          <app-button
-            size14px
-          >Добавить подход</app-button>
-
           <app-button
             v-if="!exercise.isStarted"
-            class="ml-auto"
             size14px
           >Начать выполнение упражнения</app-button>
 
           <app-button
             v-if="exercise.isStarted"
-            class="ml-auto"
             size14px
             dangerBtn
           >Завершить выполнение упражнения</app-button>
+
+          <app-button
+            class="ml-auto"
+            size14px
+          >Добавить подход</app-button>
         </div>
       </template>
     </app-accordion>

@@ -90,7 +90,20 @@ export default {
   }
   .approach__action-btn {
     // border: 1px solid red;
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+    background: $primary;
+    color: $white;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .approach__action-btn:last-child {
+    margin-left: 0;
+    background: $danger;
   }
 }
 .approach:last-child {
