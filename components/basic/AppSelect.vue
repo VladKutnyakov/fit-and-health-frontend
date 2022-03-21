@@ -185,13 +185,16 @@ export default {
     overflow: auto;
     .app-select__list-item {
       // border: 1px solid red;
-      padding: 8px 15px;
+      margin: 0 5px;
+      padding: 8px 10px;
+      border-radius: 6px;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
     }
     .app-select__list-item:hover {
-      background: rgba(52,40,104,.04);
+      background: $primaryLight5;
+      color: $primary;
     }
     .app-select__list-item:first-child {
       margin-top: 4px;
@@ -253,6 +256,10 @@ body.dark {
     .app-select__list {
       background: $cardBackgroundDarkBG;
       border: 1px solid $dividerBorderDarkBG;
+      .app-select__list-item:hover {
+        background: $primaryDarkHover;
+        color: $primary;
+      }
       .app-select__list-item--empty {
         background: $cardBackgroundDarkBG;
       }
