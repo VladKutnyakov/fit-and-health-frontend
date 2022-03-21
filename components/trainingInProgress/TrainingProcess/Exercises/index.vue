@@ -4,7 +4,7 @@
       <exercise
         v-for="(item, index) in exercisesList"
         :key="index"
-        :item="item"
+        :exercise="item"
       />
     </ul>
   </div>

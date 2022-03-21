@@ -1,5 +1,5 @@
 <template>
-  <li class="approach" :class="[{ 'approach--not-active': !approach.active }]">
+  <li class="approach" :class="[{ 'approach--not-active': !approach.isActive }]">
     <div class="approach__status">
       <div class="status"></div>
     </div>
@@ -21,6 +21,9 @@
     <div class="approach__element">
       <p class="element__text">Время отдыха</p>
       <p class="element__value">{{ exercise.restTime ? exercise.restTime : '00 : 00 : 00' }}</p>
+    </div>
+    <div class="approach__action-btn">
+      <i class="ti-control-play"></i>
     </div>
     <div class="approach__action-btn">
       <i class="ti-trash"></i>

@@ -6,18 +6,18 @@
           <div class="header__drag-drop-btn">
             <i class="ti-exchange-vertical"></i>
           </div>
-          <p class="header__title">{{ item.exercise.title ? item.exercise.title : '' }}</p>
+          <p class="header__title">{{ exercise.exercise.title ? exercise.exercise.title : '' }}</p>
           <div class="header__parameter">
             <p class="parameter__text">Подходы</p>
-            <p class="parameter__value">{{ item.approaches ? item.approaches.length : '--' }}</p>
+            <p class="parameter__value">{{ exercise.approaches ? exercise.approaches.length : '--' }}</p>
           </div>
           <div class="header__parameter">
             <p class="parameter__text">Повторений</p>
-            <p class="parameter__value">{{ item.repeats ? item.repeats : '--' }}</p>
+            <p class="parameter__value">{{ exercise.repeats ? exercise.repeats : '--' }}</p>
           </div>
           <div class="header__parameter">
             <p class="parameter__text">Отягощение</p>
-            <p class="parameter__value">{{ item.additionalWeight ? item.additionalWeight : 0 }} кг.</p>
+            <p class="parameter__value">{{ exercise.additionalWeight ? exercise.additionalWeight : 0 }} кг.</p>
           </div>
           <div class="header__accrodion-btn">
             <i
@@ -32,28 +32,43 @@
       <template v-slot:accordionHiddenContent>
         <ul class="exercise__steps">
           <approach
-            v-for="(approach, index) in item.approaches"
+            v-for="(approach, index) in exercise.approaches"
             :key="index"
-            :exercise="item"
+            :exercise="exercise"
             :approach="approach"
           />
         </ul>
-        <div class="exercise__control">
-          <div class="control" title="Добавить подход">
-            <app-button size14px>Добавить подход</app-button>
-          </div>
+        <div class="exercise__controls">
           <!-- <div class="control" title="Добавить подход">
             <i class="ti-plus control__icon"></i>
           </div> -->
-          <div class="control" title="Завершить подход">
+
+          <!-- <div class="control" title="Завершить подход">
             <i class="ti-control-stop control__icon"></i>
-          </div>
-          <div class="control" title="Приостановить выполнение подхода">
+          </div> -->
+          <!-- <div class="control" title="Приостановить выполнение подхода">
             <i class="ti-control-pause control__icon"></i>
-          </div>
-          <div class="control" title="Начать выполнение подхода">
+          </div> -->
+          <!-- <div class="control" title="Начать выполнение подхода">
             <i class="ti-control-play control__icon"></i>
-          </div>
+          </div> -->
+
+          <app-button
+            size14px
+          >Добавить подход</app-button>
+
+          <app-button
+            v-if="!exercise.isStarted"
+            class="ml-auto"
+            size14px
+          >Начать выполнение упражнения</app-button>
+
+          <app-button
+            v-if="exercise.isStarted"
+            class="ml-auto"
+            size14px
+            dangerBtn
+          >Завершить выполнение упражнения</app-button>
         </div>
       </template>
     </app-accordion>
@@ -67,7 +82,7 @@ import Approach from '@/components/trainingInProgress/TrainingProcess/Exercises/
 
 export default {
   props: {
-    item: Object
+    exercise: Object
   },
   components: {
     AppAccordion,
@@ -88,7 +103,6 @@ export default {
 .exercise {
   margin-bottom: 10px;
   background: $white;
-  // border: 1px solid $blockBorder;
   border-radius: 6px;
   box-shadow: $btnShadow;
   transition: $tr-02;
@@ -135,34 +149,35 @@ export default {
   .exercise__steps {
     display: flex;
     flex-direction: column;
-    // padding: 10px 10px 5px 10px;
-    // background: $black10;
     border-top: 1px solid $dividerBorder;
   }
-  .exercise__control {
+  .exercise__controls {
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    padding: 10px;
     border-top: 1px solid $dividerBorder;
-    .control {
-      // border: 1px solid red;
-      margin-left: 10px;
-      padding: 10px;
-      cursor: pointer;
-      .control__icon {
-        font-size: 20px;
-        transition: $tr-02;
-      }
-    }
-    .control:first-child {
-      margin-left: 0;
-      margin-right: auto;
-    }
-    .control:hover {
-      .control__icon {
-        color: $green;
-      }
-    }
+    // .control {
+    //   // border: 1px solid red;
+    //   margin-left: 10px;
+    //   // padding: 10px 0;
+    //   cursor: pointer;
+    //   .control__icon {
+    //     font-size: 20px;
+    //     transition: $tr-02;
+    //   }
+    // }
+    // .control:first-child {
+    //   margin-left: 0;
+    // }
+    // .control:last-child {
+    //   margin-left: 0;
+    //   margin-left: auto;
+    // }
+    // .control:hover {
+    //   .control__icon {
+    //     color: $green;
+    //   }
+    // }
   }
 }
 

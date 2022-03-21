@@ -13,6 +13,7 @@ export const state = () => ({
     comment: null,
     trainingProgramDayExercises: [
       {
+        isStarted: true,
         exercise: {
           id: 1,
           title: "Отжимания"
@@ -23,7 +24,7 @@ export const state = () => ({
         restTime: null,
         approaches: [
           {
-            active: true,
+            isActive: true,
             title: 'Подход 1',
             repeats: 10,
             additionalWeight: 15,
@@ -31,7 +32,7 @@ export const state = () => ({
             restTime: null,
           },
           {
-            active: false,
+            isActive: false,
             title: 'Подход 2',
             repeats: 8,
             additionalWeight: 15,
@@ -41,6 +42,7 @@ export const state = () => ({
         ]
       },
       {
+        isStarted: false,
         exercise: {
           id: 1,
           title: "Подтягивания"
@@ -51,7 +53,7 @@ export const state = () => ({
         restTime: null,
         approaches: [
           {
-            active: false,
+            isActive: false,
             title: 'Подход 1',
             repeats: 10,
             additionalWeight: 15,
@@ -59,7 +61,7 @@ export const state = () => ({
             restTime: null,
           },
           {
-            active: false,
+            isActive: false,
             title: 'Подход 2',
             repeats: 8,
             additionalWeight: 15,
@@ -67,7 +69,7 @@ export const state = () => ({
             restTime: null,
           },
           {
-            active: false,
+            isActive: false,
             title: 'Подход 3',
             repeats: 10,
             additionalWeight: 15,
@@ -75,7 +77,7 @@ export const state = () => ({
             restTime: null,
           },
           {
-            active: false,
+            isActive: false,
             title: 'Подход 4',
             repeats: 8,
             additionalWeight: 15,
