@@ -14,8 +14,14 @@ export default {}
   margin: 10px;
   padding: 10px;
   height: 550px;
-  background: $hiddenBlockBG;
+  background: $black10;
   border-radius: 6px;
+}
+
+body.dark {
+  .video {
+    background: $black20;
+  }
 }
 
 </style>
