@@ -20,6 +20,7 @@
               <app-select
                 :value="currentMonth"
                 :selectOptionsList="monthsOptions"
+                :canBeClear="false"
                 minWidth="140px"
                 maxWidth="140px"
                 @select="monthSelect($event)"
@@ -28,6 +29,7 @@
               <app-select
                 :value="currentYear"
                 :selectOptionsList="yearsOptions"
+                :canBeClear="false"
                 minWidth="120px"
                 maxWidth="120px"
                 @select="yearSelect($event)"

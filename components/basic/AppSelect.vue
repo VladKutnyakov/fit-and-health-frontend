@@ -22,7 +22,7 @@
       <div class="app-select__action"  @click="toggleVisibility()">
         <i class="ti-angle-down app-select__icon"></i>
       </div>
-      <div class="app-select__action" @click="clearSelect()">
+      <div v-if="canBeClear" class="app-select__action" @click="clearSelect()">
         <i class="ti-close app-select__icon"></i>
       </div>
     </div>
@@ -55,6 +55,10 @@
 <script>
 export default {
   props: {
+    canBeClear: {
+      type: Boolean,
+      default: true,
+    },
     minWidth: String,
     maxWidth: String,
     value: [String, Number, Object, Array],
