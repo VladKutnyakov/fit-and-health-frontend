@@ -1,5 +1,5 @@
 <template>
-  <div class="meal-planer-calendar">
+  <div class="training-diary-calendar">
     <app-date-selector
       :initialDate="calendarInitialDate"
       :isOpened="true"
@@ -28,3 +28,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/vars.scss";
+
+.training-diary-calendar {
+  margin-left: 40px;
+  width: 100%;
+  min-width: 400px;
+  max-width: 400px;
+}
+
+</style>

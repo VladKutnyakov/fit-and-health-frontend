@@ -18,6 +18,7 @@ export default {}
 .empty-training-program-info {
   // border: 1px solid red;
   padding: 40px 10px;
+  flex: 1 1 auto;
   background: $hiddenBlockBG;
   border-radius: 6px;
   background: $white;

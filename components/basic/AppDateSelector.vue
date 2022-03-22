@@ -1,62 +1,70 @@
 <template>
-  <app-accordion :isOpened="isOpened">
-    <template v-slot:accordionHeader>
-      <div class="meal-planer-calendar__target-date" @click="calendarIsOpen = !calendarIsOpen">
-        <i class="ti-calendar"></i>
-        <p class="target-date__selected-day">{{ currentDay }} {{ currentMonth.title }} {{ currentYear }}</p>
-        <i v-if="!calendarIsOpen" class="ti-angle-double-down"></i>
-        <i v-if="calendarIsOpen" class="ti-angle-double-up"></i>
-      </div>
-    </template>
-    <template v-slot:accordionHiddenContent>
-      <div class="meal-planer-calendar__date-table">
-        <div class="calendar-settings">
-          <div class="calendar-settings__select-month-or-year">
-            <app-select
-              :value="currentMonth"
-              :selectOptionsList="monthsOptions"
-              minWidth="140px"
-              maxWidth="140px"
-              @select="monthSelect($event)"
-              class="calendar-settings__select"
-            />
-            <app-select
-              :value="currentYear"
-              :selectOptionsList="yearsOptions"
-              minWidth="120px"
-              maxWidth="120px"
-              @select="yearSelect($event)"
-              class="calendar-settings__select"
-            />
+  <div class="app-date-selector">
+    <app-accordion :isOpened="isOpened">
+      <template v-slot:accordionHeader>
+        <div class="target-date" @click="calendarIsOpen = !calendarIsOpen">
+          <i class="ti-calendar target-date__icon-calendar"></i>
+          <p class="target-date__selected-day">{{ currentDay }} {{ currentMonth.title }} {{ currentYear }}</p>
+          <i
+            :class="[
+              { 'ti-angle-right': !calendarIsOpen },
+              { 'ti-angle-down': calendarIsOpen },
+            ]"
+          ></i>
+        </div>
+      </template>
+      <template v-slot:accordionHiddenContent>
+        <div class="date-table">
+          <div class="calendar-settings">
+            <div class="calendar-settings__select-month-or-year">
+              <app-select
+                :value="currentMonth"
+                :selectOptionsList="monthsOptions"
+                minWidth="140px"
+                maxWidth="140px"
+                @select="monthSelect($event)"
+                class="calendar-settings__select"
+              />
+              <app-select
+                :value="currentYear"
+                :selectOptionsList="yearsOptions"
+                minWidth="120px"
+                maxWidth="120px"
+                @select="yearSelect($event)"
+                class="calendar-settings__select"
+              />
+            </div>
+
+            <div class="calendar-settings__nav-btn">
+              <i class="ti-angle-up nav-btn" @click="prevMonth()"></i>
+              <i class="ti-angle-down nav-btn" @click="nextMonth()"></i>
+            </div>
           </div>
 
-          <div class="calendar-settings__nav-btn">
-            <i class="ti-angle-up nav-btn" @click="prevMonth()"></i>
-            <i class="ti-angle-down nav-btn" @click="nextMonth()"></i>
+          <div class="week-day">
+            <p v-for="(item, index) in weekDaysTitle" :key="index" class="week-day__item">{{ item }}</p>
+          </div>
+
+          <div ref="calendarTable" class="calendar-table">
+            <div
+              v-for="(item, index) in days"
+              :key="index"
+              class="date-table__day-item"
+              :class="[{ 'date-table__previosly-day-item': !item.isCurrentMonth }]"
+              @click="selectDate(item.queryDate)"
+              :title="item.queryDate"
+            >
+              <p
+                class="day-item__value"
+                :class="[{ 'day-item__value--selected': item.active }]"
+                :data-query-date="item.queryDate"
+              >{{ item.day }}</p>
+            </div>
           </div>
         </div>
-        <div class="week-day">
-          <p v-for="(item, index) in weekDaysTitle" :key="index" class="week-day__item">{{ item }}</p>
-        </div>
-        <div ref="calendarTable" class="calendar-table">
-          <div
-            v-for="(item, index) in days"
-            :key="index"
-            class="date-table__day-item"
-            :class="[{ 'date-table__previosly-day-item': !item.isCurrentMonth }]"
-            @click="selectDate(item.queryDate)"
-            :title="item.queryDate"
-          >
-            <p
-              class="day-item__value"
-              :class="[{ 'day-item__value--selected': item.active }]"
-              :data-query-date="item.queryDate"
-            >{{ item.day }}</p>
-          </div>
-        </div>
-      </div>
-    </template>
-  </app-accordion>
+      </template>
+    </app-accordion>
+  </div>
 </template>
 
 <script>
@@ -244,32 +252,31 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/vars.scss';
 
-.meal-planer-calendar {
-  position: relative;
-  margin-bottom: 20px;
-  .meal-planer-calendar__target-date {
+.app-date-selector {
+  background: $white;
+  box-shadow: $cardShadow;
+  border-radius: 6px;
+  transition: $tr-02;
+  .target-date {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-    background: $white;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
+    padding: 20px 20px;
+    .target-date__icon-calendar {
+      font-size: 20px;
+    }
     .target-date__selected-day {
+      font-size: 18px;
       font-weight: 500;
     }
   }
-  .meal-planer-calendar__date-table {
+  .date-table {
     // border: 1px solid red;
-    margin: 0 5px;
-    padding: 10px;
-    background: $hiddenBlockBG;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    border-top: 1px solid $dividerBorder;
     .calendar-settings {
       // border: 1px solid red;
       display: flex;
-      margin-bottom: 5px;
+      margin: 10px;
       .calendar-settings__select-month-or-year {
         display: flex;
         .calendar-settings__select:first-child {
@@ -284,11 +291,11 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
-          padding: 0px 12px;
+          padding: 0 10px;
           background: $white;
-          border: 1px solid $blockBorder;
+          border: 1px solid $dividerBorder;
           border-radius: 6px;
-          font-size: 12px;
+          transition: $tr-02;
           cursor: pointer;
         }
         .nav-btn:first-child {
@@ -299,15 +306,12 @@ export default {
     .week-day {
       display: flex;
       align-items: center;
-      padding: 10px 0;
-      background: $white;
-      border: 1px solid $blockBorder;
-      border-bottom: none;
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
+      padding: 15px 0;
+      border-top: 1px solid $dividerBorder;
+      border-bottom: 1px dashed $dividerBorder;
       .week-day__item {
         // border: 1px solid red;
-        margin-right: auto;
+        margin: 0 auto;
         width: 50px;
         text-transform: uppercase;
         text-align: center;
@@ -318,20 +322,15 @@ export default {
     .calendar-table {
       display: flex;
       flex-wrap: wrap;
-      background: $white;
-      border: 1px solid $blockBorder;
-      border-top: 1px dashed $blockBorder;
-      border-bottom-left-radius: 6px;
-      border-bottom-right-radius: 6px;
       .date-table__day-item {
         // border: 1px solid red;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-right: auto;
-        padding: 10px;
+        padding: 5px;
         width: 14.28%;
-        height: 50px;
+        height: 55px;
         .day-item__value {
           // border: 1px solid red;
           display: flex;
@@ -344,14 +343,15 @@ export default {
           cursor: pointer;
         }
         .day-item__value--selected {
-          background: $green;
+          background: $primary;
           color: $white;
           font-weight: 600;
         }
       }
       .date-table__day-item:hover {
         .day-item__value {
-          color: $green;
+          color: $primary;
+          font-weight: 600;
         }
         .day-item__value--selected {
           color: $white;
@@ -359,6 +359,30 @@ export default {
       }
       .date-table__previosly-day-item {
         opacity: .4;
+      }
+    }
+  }
+}
+
+body.dark {
+  .app-date-selector {
+    background: $cardBackgroundDarkBG;
+    .date-table {
+      border-top: 1px solid $dividerBorderDarkBG;
+      .calendar-settings {
+        .calendar-settings__nav-btn {
+          .nav-btn {
+            background: $black20;
+            border: 1px solid $dividerBorderDarkBG;
+          }
+          .nav-btn:first-child {
+            margin-right: 5px;
+          }
+        }
+      }
+      .week-day {
+        border-top: 1px solid $dividerBorderDarkBG;
+        border-bottom: 1px dashed $dividerBorderDarkBG;
       }
     }
   }
