@@ -1,6 +1,5 @@
 <template>
   <div class="nutrients-settings">
-
     <div class="chart">
       <app-chart-circle />
       <div class="chart__calculated-calories">
@@ -135,7 +134,7 @@ export default {
   width: 100%;
   min-width: 300px;
   max-width: 300px;
-  border-right: 1px solid $blockBorder;
+  // border-right: 1px solid $dividerBorder;
   .chart {
     position: relative;
     flex: 1 1 auto;
@@ -148,13 +147,13 @@ export default {
       z-index: 2;
       .calculated-calories__value {
         margin-top: 15px;
-        color: $green;
+        color: $primary;
         font-size: 32px;
         font-weight: 600;
       }
       .calculated-calories__scale {
         margin-top: -5px;
-        color: $green;
+        color: $primary;
         font-size: 14px;
       }
     }
@@ -162,7 +161,7 @@ export default {
   .nutrients-settings__nutrients {
     display: flex;
     padding-top: 10px;
-    border-top: 1px dashed $blockBorder;
+    // border-top: 1px solid $dividerBorder;
     .nutrients__target {
       flex: 1 1 auto;
       padding: 0 5px;
@@ -192,7 +191,7 @@ export default {
     display: flex;
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px dashed $blockBorder;
+    border-top: 1px dashed $dividerBorder;
     .weight__target {
       flex: 1 1 auto;
       padding: 0 5px;

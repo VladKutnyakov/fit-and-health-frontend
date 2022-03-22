@@ -20,7 +20,7 @@ export default {
     var startAngle = 180
 
     context.lineWidth = 8
-    context.strokeStyle = '#6EB63B'
+    context.strokeStyle = '#7367f0'
     context.lineCap = 'round';
 
 

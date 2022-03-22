@@ -72,13 +72,13 @@ export default {
   justify-content: space-around;
   margin: 10px 10px 0 10px;
   padding: 10px;
-  border-top: 1px solid $blockBorder;
+  border-top: 1px solid $dividerBorder;
   .nutrients-calculations__item {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-right: 1px dashed $blockBorder;
+    border-right: 1px solid $dividerBorder;
     .item__title {
       text-transform: uppercase;
       font-size: 12px;
@@ -88,7 +88,7 @@ export default {
       display: flex;
       margin-top: 5px;
       .value__current {
-        color: $green;
+        color: $primary;
         font-weight: 600;
       }
       .value__divider {

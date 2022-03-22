@@ -1,12 +1,6 @@
 <template>
   <div class="meal-plan-overview">
-    <app-block-title>Рацион на сутки</app-block-title>
-
     <div class="meal-plan-overview__content">
-      <!-- <div class="preview-image">
-        <i class="ti-image"></i>
-      </div> -->
-
       <nutrients-settings />
 
       <div class="overview">
@@ -33,7 +27,6 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import OverviewTitle from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewTitle'
 import NutrientsSettings from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsSettings'
 import OverviewDescription from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewDescription'
@@ -43,7 +36,6 @@ import Actions from '@/components/mealPlaner/MealPlan/MealPlanOverview/Actions'
 
 export default {
   components: {
-    AppBlockTitle,
     OverviewTitle,
     NutrientsSettings,
     OverviewDescription,
@@ -76,24 +68,9 @@ export default {
   .meal-plan-overview__content {
     display: flex;
     background: $white;
-    border: 1px solid $blockBorder;
+    box-shadow: $cardShadow;
     border-radius: 6px;
-    // .preview-image {
-    //   display: flex;
-    //   align-items: center;
-    //   justify-content: center;
-    //   margin: 10px;
-    //   padding: 10px;
-    //   width: 100%;
-    //   min-width: 350px;
-    //   max-width: 350px;
-    //   background: $hiddenBlockBG;
-    //   border-radius: 6px;
-    //   i {
-    //     color: $black20;
-    //     font-size: 100px;
-    //   }
-    // }
+    transition: $tr-02;
     .overview {
       flex: 1 1 auto;
       display: flex;
