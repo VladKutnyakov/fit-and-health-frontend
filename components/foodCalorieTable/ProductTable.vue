@@ -2,12 +2,12 @@
   <div class="product-table">
 
     <div class="product-table__search">
-      <app-block-title>Продукты</app-block-title>
+      <app-block-title>Поиск</app-block-title>
 
       <app-search-block
         class="mt-10 mr-10 mb-10 ml-10"
         :filters="false"
-        placeholder="Поиск"
+        placeholder="Поиск продуктов"
         @searchStringChanged="searchString = $event"
       />
     </div>
@@ -112,7 +112,7 @@ export default {
       margin-bottom: 10px;
       padding: 5px 0;
       color: $white;
-      background: $green;
+      background: $primary;
       border: 1px solid transparent;
       border-radius: 6px;
       .header__column-title {
