@@ -12,7 +12,7 @@
 
       <router-link to="/training-programs/training-program-editor" class="action-card">
         <i class="ti-pencil-alt action-card__icon"></i>
-        <p class="action-card__title">Созадть новую программу тренировок</p>
+        <p class="action-card__title">Создать новую программу тренировок</p>
       </router-link>
     </div>
   </div>
