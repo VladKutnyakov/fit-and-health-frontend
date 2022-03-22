@@ -1,15 +1,15 @@
 <template>
-  <div class="added-marks-form">
-    <div class="added-marks-form__block-title">Добавленные отметки</div>
+  <div class="added-marks">
+    <div class="added-marks__block-title">Добавленные отметки:</div>
 
-    <div class="added-marks-form__marks">
+    <div class="added-marks__marks">
       <div class="mark" v-for="(item, index) in marks" :key="index">
         <p class="mark__text" :title="item">{{ item.title }}</p>
         <i class="ti-close mark__icon" @click="remove(index)"></i>
       </div>
     </div>
 
-    <div class="added-marks-form__input-wrapper">
+    <div class="added-marks__input-wrapper">
       <input
         class="input"
         type="text"
@@ -51,24 +51,25 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.added-marks-form {
+.added-marks {
   display: flex;
   flex-direction: column;
-  padding: 10px 10px 0 10px;
+  padding-top: 10px;
   width: 100%;
   min-width: 250px;
   max-width: 250px;
-  border-left: 1px solid $blockBorder;
-  .added-marks-form__block-title {
-    text-align: center;
+  .added-marks__block-title {
+    padding: 0 20px;
     font-weight: 500;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed $blockBorder;
+    padding-bottom: 5px;
   }
-  .added-marks-form__marks {
+  .added-marks__marks {
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     padding: 10px 5px;
+    border: 1px solid $dividerBorder;
+    border-radius: 6px;
     .mark {
       // border: 1px solid red;
       display: flex;
@@ -76,7 +77,7 @@ export default {
       justify-content: space-between;
       margin-bottom: 5px;
       padding: 5px;
-      background: $hiddenBlockBG;
+      background: $black10;
       border-radius: 6px;
       .mark__text {
         // border: 1px solid red;
@@ -95,46 +96,62 @@ export default {
         cursor: pointer;
       }
       .mark__icon:hover {
-        color: $green;
+        color: $primary;
       }
     }
     .mark:last-child {
       margin-bottom: 0;
     }
   }
-  .added-marks-form__input-wrapper {
+  .added-marks__input-wrapper {
     display: flex;
-    align-items: center;
     margin-top: auto;
     padding-top: 10px;
-    border-top: 1px dashed $blockBorder;
     .input {
-      padding: 5px 10px;
+      padding: 8px 15px;
       width: calc(100% - 38px);
-      font-size: 14px;
-      border: 1px solid $blockBorder;
+      border: 1px solid $dividerBorder;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
       transition: $tr-02;
     }
     .input::placeholder {
-      font-size: 14px;
       opacity: .6;
       transition: $tr-02;
     }
     .input:focus {
-      border: 1px solid $green;
+      border: 1px solid $primary;
     }
     .input:focus::placeholder {
       opacity: 0;
     }
-    .action-btn {
-      padding: 4.5px 10px;
-      background: $green;
+    .input::selection {
       color: $white;
-      border: 1px solid $green;
+      background: $primary;
+    }
+    .action-btn {
+      flex: 1 1 auto;
+      background: $primary;
+      color: $white;
+      border: none;
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px;
+    }
+  }
+}
+
+body.dark {
+  .added-marks {
+    .added-marks__marks {
+      background: $black20;
+      .mark {
+        background: $white15;
+      }
+    }
+    .added-marks__input-wrapper {
+      .input {
+        background: $black20;
+      }
     }
   }
 }

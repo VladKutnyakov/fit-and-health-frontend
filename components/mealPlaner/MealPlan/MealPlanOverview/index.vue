@@ -78,6 +78,7 @@ export default {
       .title-description-marks {
         flex: 1 1 auto;
         display: flex;
+        padding-right: 10px;
         .title-and-description {
           flex: 1 1 auto;
           display: flex;
