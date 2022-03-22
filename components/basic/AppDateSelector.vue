@@ -263,7 +263,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 20px;
+    padding: 15px 20px;
     .target-date__icon-calendar {
       font-size: 20px;
     }
@@ -274,11 +274,14 @@ export default {
   }
   .date-table {
     // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
     border-top: 1px solid $dividerBorder;
     .calendar-settings {
       // border: 1px solid red;
       display: flex;
-      margin: 10px;
+      padding: 10px;
+      // background: $black10;
       .calendar-settings__select-month-or-year {
         display: flex;
         .calendar-settings__select:first-child {
@@ -308,9 +311,13 @@ export default {
     .week-day {
       display: flex;
       align-items: center;
-      padding: 15px 0;
+      margin: 0 10px;
+      padding: 10px 0;
+      background: $primary;
+      color: $white;
       border-top: 1px solid $dividerBorder;
       border-bottom: 1px dashed $dividerBorder;
+      border-radius: 6px;
       .week-day__item {
         // border: 1px solid red;
         margin: 0 auto;
@@ -319,18 +326,26 @@ export default {
         text-align: center;
         font-size: 12px;
         font-weight: 600;
+        // border-right: 1px solid $white;
+      }
+      .week-day__item:last-child {
+        border-right: none;
       }
     }
     .calendar-table {
       display: flex;
       flex-wrap: wrap;
+      margin: 5px 10px 10px 10px;
+      border: 1px solid $dividerBorder;
+      border-radius: 6px;
       .date-table__day-item {
         // border: 1px solid red;
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: auto;
         margin-right: auto;
-        padding: 5px;
+        padding: 5px 7px;
         width: 14.28%;
         height: 50px;
         .day-item__value {
@@ -385,6 +400,9 @@ body.dark {
       .week-day {
         border-top: 1px solid $dividerBorderDarkBG;
         border-bottom: 1px dashed $dividerBorderDarkBG;
+      }
+      .calendar-table {
+        border: 1px solid $dividerBorderDarkBG;
       }
     }
   }

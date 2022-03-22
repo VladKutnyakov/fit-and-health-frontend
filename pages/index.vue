@@ -1,7 +1,6 @@
 <template>
   <div class="index-page">
     <div class="index-page__content">
-      <app-block-title>Авторизация</app-block-title>
       <nuxt-link to="/auth">Войти / Зарегистрировать</nuxt-link>
       <br>
     </div>
@@ -9,7 +8,6 @@
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 
 export default {
   name: 'IndexPage',
@@ -41,9 +39,6 @@ export default {
       ]
     }
   },
-  components: {
-    AppBlockTitle
-  }
 }
 </script>
 
