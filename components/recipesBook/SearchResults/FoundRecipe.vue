@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="`/meal-planer/recipes-book/${recipe.id}`"
+    :to="`/recipes-book/${recipe.id}`"
     class="found-recipe"
   >
 

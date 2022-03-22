@@ -153,6 +153,7 @@ export default {
             'meal-planer',
             'meal-plans',
             'recipes-book',
+            'recipes-book-recipe',
             'food-calorie-table',
           ],
           links: [

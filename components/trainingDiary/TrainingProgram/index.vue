@@ -26,4 +26,8 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
+.training-program-info {
+  flex: 1 1 auto;
+}
+
 </style>
