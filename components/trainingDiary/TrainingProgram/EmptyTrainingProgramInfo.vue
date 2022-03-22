@@ -3,7 +3,17 @@
     <div class="message">
       <p class="message__info">Нет данных о тренировке.</p>
 
-      <p class="message__offer">Начните <router-link to="/training-diary/training-in-progress" class="offer__link">новую тернировку</router-link> с использованием последней тренировочной программы или используйте поиск, чтобы <router-link to="/training-programs" class="offer__link">найти программу</router-link> для тренировок.</p>
+      <div class="meassage__action-cards">
+        <router-link to="/training-diary/training-in-progress" class="action-card">
+          <i class="ti-plus action-card__icon"></i>
+          <p class="action-card__title">Добавить тренировку</p>
+        </router-link>
+
+        <router-link to="/training-programs/training-program-editor" class="action-card">
+          <i class="ti-pencil-alt action-card__icon"></i>
+          <p class="action-card__title">Созадть новую программу тренировок</p>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -28,13 +38,47 @@ export default {}
   .message {
     text-align: center;
     .message__info {
+      padding-bottom: 40px;
       font-size: 20px;
+      border-bottom: 1px solid $dividerBorder;
     }
-    .message__offer {
+    .meassage__action-cards {
+      display: flex;
       margin-top: 40px;
-      .offer__link {
-        color: $primary;
-        font-weight: 500;
+      .action-card {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 20px;
+        padding: 10px;
+        border: 1px solid $dividerBorder;
+        border-radius: 6px;
+        transition: $tr-02;
+        cursor: pointer;
+        .action-card__icon {
+          flex: 1 1 auto;
+          padding: 80px 50px;
+          background: $dividerBorder;
+          font-size: 30px;
+          border-radius: 6px;
+          transition: $tr-02;
+        }
+        .action-card__title {
+          margin: 20px 0 10px 0;
+          text-align: center;
+          font-size: 18px;
+          transition: $tr-02;
+        }
+      }
+      .action-card:hover {
+        background: $primary;
+        .action-card__icon {
+          background: $black20;
+          color: $white;
+        }
+        .action-card__title {
+          color: $white;
+        }
       }
     }
   }
@@ -43,6 +87,25 @@ export default {}
 body.dark {
   .empty-training-program-info {
     background: $cardBackgroundDarkBG;
+    .message {
+      // .message__info {}
+      .meassage__action-cards {
+        .action-card {
+          border: 1px solid $dividerBorderDarkBG;
+          cursor: pointer;
+          .action-card__icon {
+            background: $dividerBorderDarkBG;
+          }
+          // .action-card__title {}
+        }
+        .action-card:hover {
+          .action-card__icon {
+            background: $black40;
+          }
+          // .action-card__title {}
+        }
+      }
+    }
   }
 }
 
