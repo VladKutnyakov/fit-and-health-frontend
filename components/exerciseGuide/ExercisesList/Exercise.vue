@@ -62,9 +62,7 @@ export default {
 .exercises-list__item {
   // border: 1px solid red;
   display: flex;
-  margin: 5px 10px 0px 10px;
-  background: $white;
-  border-radius: 6px;
+  border-bottom: 1px solid $dividerBorder;
   user-select: none;
   transition: $tr-02;
   .item__exercise-title-and-type {
@@ -74,10 +72,10 @@ export default {
     flex-direction: column;
     justify-content: center;
     margin: 0 5px 0 15px;
-    padding: 10px 0;
+    // padding: 10px 0;
     cursor: pointer;
     .exercises-title {
-      font-size: 14px;
+      // font-size: 14px;
       font-weight: 500;
       transition: $tr-02;
     }
@@ -89,7 +87,7 @@ export default {
   }
   .item__exercise-title-and-type:hover {
     .exercises-title {
-      color: $green;
+      color: $primary;
     }
   }
   .item__actions {
@@ -101,7 +99,7 @@ export default {
     margin: 10px 0;
     padding: 0 10px;
     flex-direction: column;
-    border-left: 1px dashed $blockBorder;
+    // border-left: 1px dashed $blockBorder;
     .actions-btn {
       margin: 5px 0px;
       padding: 2.5px;
@@ -110,15 +108,18 @@ export default {
       cursor: pointer;
     }
     .actions-btn:hover {
-      color: $green;
+      color: $primary;
     }
     .actions-btn--active {
-      color: $green;
+      color: $primary;
     }
   }
 }
+.exercises-list__item:first-child {
+  border-top: 1px solid $dividerBorder;;
+}
 .exercises-list__item:last-child {
-  margin-bottom: 10px;
+  border-bottom: none;
 }
 
 </style>

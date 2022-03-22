@@ -10,8 +10,8 @@
             <p class="title__text">{{ muscleGroup.title }}</p>
             <p class="title__exercises-count">Кол-во упражнений {{ muscleGroup.exercises.length }}</p>
           </div>
-          <i v-if="!muscleGroupIsOpened" class="ti-angle-double-down header__icon"></i>
-          <i v-if="muscleGroupIsOpened" class="ti-angle-double-up header__icon"></i>
+          <i v-if="!muscleGroupIsOpened" class="ti-angle-right header__icon"></i>
+          <i v-if="muscleGroupIsOpened" class="ti-angle-down header__icon"></i>
         </div>
       </template>
       <template v-slot:accordionHiddenContent>
@@ -55,13 +55,14 @@ export default {
 .list__item {
   // border: 1px solid red;
   margin-bottom: 10px;
+  background: $white;
+  box-shadow: $btnShadow;
+  border-radius: 6px;
+  transition: $tr-02;
   .item__header {
     display: flex;
     align-items: center;
     padding: 10px;
-    background: $white;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
     .preview-image {
       border: 1px solid $blockBorder;
       border-radius: 6px;
@@ -86,10 +87,6 @@ export default {
   .item__exercises-list {
     display: flex;
     flex-direction: column;
-    margin: 0 5px;
-    background: $black10;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
   }
 }
 .list__item:last-child {
