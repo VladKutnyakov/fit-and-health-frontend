@@ -1,6 +1,5 @@
 <template>
   <div class="additional-info">
-    <app-block-title>Дополнительная информация</app-block-title>
     <div class="additional-info__content">
       <div class="training-focus">
         <div class="chart-and-percents">
@@ -45,13 +44,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 
 export default {
   components: {
-    AppBlockTitle,
     AppButton,
     AppInputCheckbox
   },
@@ -93,13 +90,16 @@ export default {
   max-width: 400px;
   .additional-info__content {
     background: $white;
-    border: 1px solid $blockBorder;
     border-radius: 6px;
+    box-shadow: $btnShadow;
+    transition: $tr-02;
   }
   .actions {
     display: flex;
     padding: 10px;
-    background: $hiddenBlockBG;
+    background: $black10;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
   }
 }
 

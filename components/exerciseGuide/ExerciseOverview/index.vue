@@ -1,6 +1,5 @@
 <template>
   <div class="exercise-overview">
-    <app-block-title>Описание упражения</app-block-title>
     <div class="exercise-overview__content">
       <exercise-title />
       <visual-example />
@@ -10,14 +9,12 @@
 </template>
 
 <script>
-import AppBlockTitle from "@/components/basic/AppBlockTitle"
 import VisualExample from '@/components/exerciseGuide/ExerciseOverview/VisualExample'
 import ExerciseInfo from '@/components/exerciseGuide/ExerciseOverview/ExerciseInfo'
 import ExerciseTitle from '@/components/exerciseGuide/ExerciseOverview/ExerciseTitle'
 
 export default {
   components: {
-    AppBlockTitle,
     VisualExample,
     ExerciseInfo,
     ExerciseTitle
@@ -39,8 +36,9 @@ export default {
     display: flex;
     flex-direction: column;
     background: $white;
-    border: 1px solid $blockBorder;
     border-radius: 6px;
+    box-shadow: $btnShadow;
+    transition: $tr-02;
   }
 }
 

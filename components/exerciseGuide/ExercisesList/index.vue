@@ -1,7 +1,5 @@
 <template>
   <div class="exercises-list">
-    <app-block-title>База упражнений</app-block-title>
-
     <div class="exercises-list__content">
       <div class="search">
         <app-search-block small />
@@ -18,13 +16,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import MuscleGroup from '@/components/exerciseGuide/ExercisesList/MuscleGroup'
 
 export default {
   components: {
-    AppBlockTitle,
     AppSearchBlock,
     MuscleGroup
   },
@@ -51,20 +47,20 @@ export default {
     // border: 1px solid red;
     display: flex;
     flex-direction: column;
-    background: $white;
-    border: 1px solid $blockBorder;
-    border-radius: 6px;
     height: calc(100vh - 300px);
+    background: $white;
+    border-radius: 6px;
+    box-shadow: $btnShadow;
+    transition: $tr-02;
 
     .search {
       padding: 10px;
-      background: $hiddenBlockBG;
     }
 
     .categories {
       position: relative;
       flex: 1 1 auto;
-      margin: 10px;
+      margin: 0 10px 10px 10px;
       // background: $white;
       border: 1px solid $black10;
       border-radius: 6px;

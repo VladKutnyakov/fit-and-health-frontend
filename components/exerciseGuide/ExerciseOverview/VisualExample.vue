@@ -1,6 +1,6 @@
 <template>
   <div class="visual-example">
-    <iframe width="750px" height="420px" src="https://www.youtube.com/embed/FntGgrPurFA"></iframe>
+    <!-- <iframe width="750px" height="420px" src="https://www.youtube.com/embed/FntGgrPurFA"></iframe> -->
   </div>
 </template>
 
@@ -17,8 +17,12 @@ export default {}
   justify-content: center;
   margin: 0 10px;
   padding: 10px;
-  border-top: 1px dashed $blockBorder;
-  border-bottom: 1px dashed $blockBorder;
+  width: calc(100% - 20px);
+  height: 400px;
+  background: $black10;
+  border-radius: 6px;
+  // border-top: 1px dashed $blockBorder;
+  // border-bottom: 1px dashed $blockBorder;
   iframe {
     border-radius: 6px;
   }
