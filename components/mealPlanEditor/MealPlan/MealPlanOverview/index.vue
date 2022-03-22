@@ -1,7 +1,5 @@
 <template>
   <div class="meal-plan-overview">
-    <app-block-title>Рацион на сутки</app-block-title>
-
     <div class="meal-plan-overview__content">
       <div class="preview-image">
         <i class="ti-image"></i>
@@ -24,28 +22,23 @@
         <nutrients-calculations />
       </div>
 
-      <!-- <actions /> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import OverviewTitle from '@/components/mealPlanEditor/MealPlan/MealPlanOverview/OverviewTitle'
 import OverviewDescription from '@/components/mealPlanEditor/MealPlan/MealPlanOverview/OverviewDescription'
 import AddedMarks from '@/components/mealPlanEditor/MealPlan/MealPlanOverview/AddedMarks'
 import NutrientsCalculations from '@/components/mealPlanEditor/MealPlan/MealPlanOverview/NutrientsCalculations'
-import Actions from '@/components/mealPlanEditor/MealPlan/MealPlanOverview/Actions'
 
 export default {
   components: {
-    AppBlockTitle,
     OverviewTitle,
     OverviewDescription,
     AddedMarks,
-    NutrientsCalculations,
-    Actions
+    NutrientsCalculations
   },
   computed: {
     ...mapState({

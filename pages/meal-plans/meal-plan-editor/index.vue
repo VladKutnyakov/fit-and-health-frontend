@@ -1,15 +1,12 @@
 <template>
-  <div class="meal-plan-editor-page">
-    <app-page-title>Редактор рациона</app-page-title>
-    <div class="meal-plan-editor-page__content">
-      <meal-plan />
-      <additional-info />
-    </div>
-  </div>
+  <app-page>
+    <meal-plan />
+    <additional-info />
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import MealPlan from '@/components/mealPlanEditor/MealPlan/index'
 import AdditionalInfo from '@/components/mealPlanEditor/AdditionalInfo/index'
 
@@ -45,7 +42,7 @@ export default {
   },
   middleware: ['userAuth'],
   components: {
-    AppPageTitle,
+    AppPage,
     MealPlan,
     AdditionalInfo
   },
@@ -55,23 +52,3 @@ export default {
   // },
 }
 </script>
-
-<style lang="scss">
-@import '@/assets/styles/vars.scss';
-
-.meal-plan-editor-page {
-  // border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .meal-plan-editor-page__content {
-    // border: 1px solid red;
-    display: flex;
-    width: 100%;
-    max-width: 1700px;
-  }
-}
-
-</style>

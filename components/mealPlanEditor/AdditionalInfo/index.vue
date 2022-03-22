@@ -1,11 +1,6 @@
 <template>
   <div class="additional-info">
-
-    
-
     <div class="settings">
-      <app-block-title>Параметры рациона</app-block-title>
-
       <div class="settings__content">
         <nutrients-settings />
 
@@ -42,24 +37,14 @@
         </div>
       </div>
     </div>
-
-    <!-- <div class="calendar">
-      <app-block-title>Календарь</app-block-title>
-      <meal-planer-calendar />
-    </div> -->
-
-    <useful-pages />
-
   </div>
 </template>
 
 <script>
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
-// import MealPlanerCalendar from '@/components/mealPlaner/MealPlanerCalendar'
 import NutrientsSettings from '@/components/mealPlanEditor/AdditionalInfo/NutrientsSettings'
 import AppButton from '@/components/basic/AppButton'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
-// import UsefulPages from '@/components/mealPlanEditor/AdditionalInfo/UsefulPages'
 
 export default {
   components: {
@@ -68,7 +53,6 @@ export default {
     NutrientsSettings,
     AppButton,
     AppInputCheckbox,
-    // UsefulPages
   },
   data () {
     return {
