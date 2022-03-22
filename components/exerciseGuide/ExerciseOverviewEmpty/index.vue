@@ -1,6 +1,5 @@
 <template>
   <div class="exercise-overview-empty">
-    <app-block-title>Описание упражения</app-block-title>
     <div class="exercise-overview-empty__content">
       <div class="message">
         <i class="ti-search message__icon"></i>
@@ -11,13 +10,7 @@
 </template>
 
 <script>
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
-
-export default {
-  components: {
-    AppBlockTitle
-  }
-}
+export default {}
 </script>
 
 <style lang="scss" scoped>
@@ -34,7 +27,7 @@ export default {
     align-items: center;
     justify-content: center;
     padding: 10px;
-    background: $hiddenBlockBG;
+    background: $black10;
     // border: 1px solid $blockBorder;
     border-radius: 6px;
     .message {

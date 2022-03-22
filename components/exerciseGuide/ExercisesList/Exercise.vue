@@ -72,7 +72,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     margin: 0 5px 0 15px;
-    // padding: 10px 0;
+    padding: 10px 0;
     cursor: pointer;
     .exercises-title {
       // font-size: 14px;
