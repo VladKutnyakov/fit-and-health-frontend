@@ -122,7 +122,7 @@ export default {
               title: 'Дневник тренировок',
               link: '/training-diary',
               icon: 'ti-timer',
-              exact: true,
+              exact: false,
             },
             {
               title: 'Новая тренировка',
