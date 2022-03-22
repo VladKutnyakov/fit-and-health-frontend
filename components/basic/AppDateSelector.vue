@@ -330,7 +330,7 @@ export default {
         margin-right: auto;
         padding: 5px;
         width: 14.28%;
-        height: 55px;
+        height: 50px;
         .day-item__value {
           // border: 1px solid red;
           display: flex;
