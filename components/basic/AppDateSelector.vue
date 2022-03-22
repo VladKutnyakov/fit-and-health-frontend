@@ -281,7 +281,6 @@ export default {
       // border: 1px solid red;
       display: flex;
       padding: 10px;
-      // background: $black10;
       .calendar-settings__select-month-or-year {
         display: flex;
         .calendar-settings__select:first-child {
@@ -316,7 +315,6 @@ export default {
       background: $primary;
       color: $white;
       border-top: 1px solid $dividerBorder;
-      border-bottom: 1px dashed $dividerBorder;
       border-radius: 6px;
       .week-day__item {
         // border: 1px solid red;
@@ -326,7 +324,6 @@ export default {
         text-align: center;
         font-size: 12px;
         font-weight: 600;
-        // border-right: 1px solid $white;
       }
       .week-day__item:last-child {
         border-right: none;
@@ -399,7 +396,6 @@ body.dark {
       }
       .week-day {
         border-top: 1px solid $dividerBorderDarkBG;
-        border-bottom: 1px dashed $dividerBorderDarkBG;
       }
       .calendar-table {
         border: 1px solid $dividerBorderDarkBG;
