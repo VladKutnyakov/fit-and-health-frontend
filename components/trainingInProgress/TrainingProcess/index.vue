@@ -1,18 +1,17 @@
 <template>
   <div class="training-process">
-    <training-video />
+    <!-- <training-video /> -->
 
     <app-info
       v-if="trainingDay.fields.comment"
-      class="ml-10 mr-10 mb-10"
+      class="mt-10 ml-10 mr-10"
       info
       :text="trainingDay.fields.comment"
     />
 
     <exercises :exercisesList="trainingDay.fields.trainingProgramDayExercises" />
 
-    <laps-overview />
-    <!-- <laps-overview v-if="trainingDay.fields.trainingType && trainingDay.fields.trainingType.id === 2" /> -->
+    <laps-overview v-if="trainingDay.fields.trainingType && trainingDay.fields.trainingType.id === 2" />
   </div>
 </template>
 

@@ -11,7 +11,7 @@ export default {}
 
 .video {
   flex: 1 1 auto;
-  margin: 10px;
+  margin: 10px 10px 0 10px;
   padding: 10px;
   height: 550px;
   background: $black10;

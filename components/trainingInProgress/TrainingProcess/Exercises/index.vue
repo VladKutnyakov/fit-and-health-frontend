@@ -32,25 +32,26 @@ export default {
   flex-direction: column;
   .exercises-list {
     flex: 1 1 auto;
-    margin: 0 10px 10px 10px;
+    margin: 10px;
     padding: 10px;
     background: rgba(0,0,0,.025);
     box-shadow: $insetBoxShadow;
     border: 1px solid $dividerBorder;
     border-radius: 6px;
-    height: 600px;
-    overflow-y: scroll;
+    // height: 600px;
+    min-height: calc(100vh - 160px);
+    // overflow-y: scroll;
   }
-  .exercises-list::-webkit-scrollbar {
-    width: 4px;
-  }
-  .exercises-list::-webkit-scrollbar-thumb {
-    background: $primaryLight4;
-    border-radius: 50px;
-  }
-  .exercises-list::-webkit-scrollbar-track {
-    background: $black10;
-  }
+  // .exercises-list::-webkit-scrollbar {
+  //   width: 4px;
+  // }
+  // .exercises-list::-webkit-scrollbar-thumb {
+  //   background: $primaryLight4;
+  //   border-radius: 50px;
+  // }
+  // .exercises-list::-webkit-scrollbar-track {
+  //   background: $black10;
+  // }
 }
 
 body.dark {
