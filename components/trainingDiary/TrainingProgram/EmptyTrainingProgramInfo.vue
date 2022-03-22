@@ -88,7 +88,9 @@ body.dark {
   .empty-training-program-info {
     background: $cardBackgroundDarkBG;
     .message {
-      // .message__info {}
+      .message__info {
+        border-bottom: 1px solid $dividerBorderDarkBG;
+      }
       .meassage__action-cards {
         .action-card {
           border: 1px solid $dividerBorderDarkBG;
