@@ -160,7 +160,7 @@ export default {
               title: 'Дневник питания',
               link: '/meal-planer',
               icon: 'ti-agenda',
-              exact: true,
+              exact: false,
             },
             {
               title: 'Сохраненные рационы',

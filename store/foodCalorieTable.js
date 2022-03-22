@@ -252,17 +252,11 @@ export const actions = {
   },
   async getAllProducts ({ commit }) {
     try {
-      this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
-
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
 
       commit('setProducts', response.data)
-
-      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     } catch (error) {
       console.log(error.response)
-
-      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     }
   },
   async saveProduct ({ state, commit }) {

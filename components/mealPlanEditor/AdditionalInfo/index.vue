@@ -55,20 +55,20 @@
 
 <script>
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
-import MealPlanerCalendar from '@/components/mealPlaner/AdditionalInfo/MealPlanerCalendar'
+// import MealPlanerCalendar from '@/components/mealPlaner/MealPlanerCalendar'
 import NutrientsSettings from '@/components/mealPlanEditor/AdditionalInfo/NutrientsSettings'
 import AppButton from '@/components/basic/AppButton'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
-import UsefulPages from '@/components/mealPlanEditor/AdditionalInfo/UsefulPages'
+// import UsefulPages from '@/components/mealPlanEditor/AdditionalInfo/UsefulPages'
 
 export default {
   components: {
     AppBlockTitle,
-    MealPlanerCalendar,
+    // MealPlanerCalendar,
     NutrientsSettings,
     AppButton,
     AppInputCheckbox,
-    UsefulPages
+    // UsefulPages
   },
   data () {
     return {

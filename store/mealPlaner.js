@@ -257,18 +257,12 @@ export const mutations = {
 export const actions = {
   async fetchMealPlanerInfo ({ commit }, query ) {
     try {
-      this.commit('loaderPreview/updateLoader', {isActive: true, message: 'Загрузка'})
-
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
       // console.log(response)
 
       commit('setMealPlanerInfo', response.data)
-
-      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
     } catch (error) {
       console.log(error)
-
-      this.commit('loaderPreview/updateLoader', {isActive: false, message: ''})
 
       const notice = {
         id: Date.now(),
