@@ -17,7 +17,7 @@
           />
         </div>
 
-        <nutrients-calculations />
+        <!-- <nutrients-calculations /> -->
       </div>
 
       <actions />
@@ -65,12 +65,12 @@ export default {
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  background: $white;
+  box-shadow: $cardShadow;
+  border-radius: 6px;
+  transition: $tr-02;
   .meal-plan-overview__content {
     display: flex;
-    background: $white;
-    box-shadow: $cardShadow;
-    border-radius: 6px;
-    transition: $tr-02;
     .overview {
       flex: 1 1 auto;
       display: flex;
@@ -79,13 +79,21 @@ export default {
         flex: 1 1 auto;
         display: flex;
         padding-right: 10px;
+        padding-bottom: 10px;
         .title-and-description {
           flex: 1 1 auto;
           display: flex;
           flex-direction: column;
         }
       }
-      
+    }
+  }
+}
+
+body.dark {
+  .meal-plan-overview {
+    .meal-plan-overview__content {
+      background: $cardBackgroundDarkBG;
     }
   }
 }
