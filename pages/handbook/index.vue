@@ -1,14 +1,20 @@
 <template>
-  <div class="handbook-page">
+  <app-page>
     handbook page
-  </div>
+  </app-page>
 </template>
 
 <script>
-export default {}
+import AppPage from '@/components/basic/AppPage'
+
+export default {
+  layout: 'default',
+  middleware: ['userAuth'],
+  // async asyncData ({ store }) {
+  //   await store.dispatch('foodCalorieTable/getAllProducts')
+  // },
+  components: {
+    AppPage
+  }
+}
 </script>
-
-<style lang="scss">
-@import '@/assets/styles/vars.scss';
-
-</style>

@@ -1,7 +1,6 @@
 <template>
-  <div class="challenges-book">
-    <app-page-title>Книга вызывов</app-page-title>
-    <div class="callenges-book__content">
+  <app-page>
+    <div class="content">
       <app-page-info
         :infoElements="pageInfo"
         btnTitle="Добавить вызов"
@@ -12,11 +11,11 @@
         <search-results />
       </div>
     </div>
-  </div>
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import AppPageInfo from '@/components/basic/AppPageInfo'
 import SearchFilters from '@/components/challengesBook/SearchFilters'
 import SearchResults from '@/components/challengesBook/SearchResults/index'
@@ -28,7 +27,7 @@ export default {
   //   await store.dispatch('foodCalorieTable/getAllProducts')
   // },
   components: {
-    AppPageTitle,
+    AppPage,
     AppPageInfo,
     SearchFilters,
     SearchResults
@@ -66,22 +65,12 @@ export default {
 <style lang="scss">
 @import '@/assets/styles/vars.scss';
 
-.challenges-book {
+.content {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .callenges-book__content {
-    // border: 1px solid red;
+  .filters-and-results {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 1700px;
-    .filters-and-results {
-      display: flex;
-    }
   }
 }
 

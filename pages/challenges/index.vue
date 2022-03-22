@@ -1,15 +1,12 @@
 <template>
-  <div class="challenges-page">
-    <app-page-title>Вызовы</app-page-title>
-    <div class="callenges-page__content">
-      <week-challenges />
-      <additional-info />
-    </div>
-  </div>
+  <app-page>
+    <week-challenges />
+    <additional-info />
+  </app-page>
 </template>
 
 <script>
-import AppPageTitle from '@/components/basic/AppPageTitle'
+import AppPage from '@/components/basic/AppPage'
 import WeekChallenges from '@/components/challenges/WeekChallenges/index'
 import AdditionalInfo from '@/components/challenges/AdditionalInfo/index'
 
@@ -20,29 +17,9 @@ export default {
   //   await store.dispatch('foodCalorieTable/getAllProducts')
   // },
   components: {
-    AppPageTitle,
+    AppPage,
     WeekChallenges,
     AdditionalInfo,
   }
 }
 </script>
-
-<style lang="scss">
-@import '@/assets/styles/vars.scss';
-
-.challenges-page {
-  // border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .callenges-page__content {
-    // border: 1px solid red;
-    display: flex;
-    width: 100%;
-    max-width: 1700px;
-  }
-}
-
-</style>
