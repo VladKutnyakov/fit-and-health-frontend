@@ -1,15 +1,19 @@
 <template>
   <div class="product-table">
 
-    <app-block-title>Продукты</app-block-title>
+    <div class="product-table__search">
+      <app-block-title>Продукты</app-block-title>
 
-    <app-search-block
-      :filters="false"
-      @searchStringChanged="searchString = $event"
-    />
+      <app-search-block
+        class="mt-10 mr-10 mb-10 ml-10"
+        :filters="false"
+        placeholder="Поиск"
+        @searchStringChanged="searchString = $event"
+      />
+    </div>
 
-    <div class="food-table">
-      <div class="food-table__header">
+    <div class="product-table__products-list">
+      <div class="products-list__header">
         <p class="header__column-title"><i class="ti-pin-alt"></i></p>
         <p class="header__column-title"><i class="ti-heart"></i></p>
         <p class="header__column-title">Название</p>
@@ -25,7 +29,7 @@
       <div v-if="pinnedProducts.length > 0" class="pinned-products">
         <app-block-title>Закрепленные продукты</app-block-title>
 
-        <ul class="food-table__product-list">
+        <ul class="product-list">
           <product
             v-for="(item, index) in pinnedProducts"
             :key="index"
@@ -89,10 +93,18 @@ export default {
   // border: 1px solid red;
   flex: 1 1 auto;
   margin-left: 40px;
-  .food-table {
+  .product-table__search {
+    display: flex;
+    flex-direction: column;
+    background: $white;
+    box-shadow: $cardShadow;
+    border-radius: 6px;
+    transition: $tr-02;
+  }
+  .product-table__products-list {
     position: relative;
     margin-top: 20px;
-    .food-table__header {
+    .products-list__header {
       position: sticky;
       top: 0;
       display: flex;

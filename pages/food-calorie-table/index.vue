@@ -1,8 +1,8 @@
 <template>
-  <app-page pageTitle="Таблица калорийности продуктов" :breadcrumbs="breadcrumbs">
+  <app-page>
     <div class="content">
       <page-info />
-      <div class="food-calorie-table__filters-and-table">
+      <div class="filters-and-table">
         <sorting-filters />
         <product-table />
       </div>
@@ -61,24 +61,6 @@ export default {
     await store.dispatch('foodCalorieTable/getProductCategories')
     await store.dispatch('foodCalorieTable/getAllProducts')
   },
-  data () {
-    return {
-      breadcrumbs: [
-        {
-          title: 'Профиль',
-          icon: 'ti-home',
-          link: '/profile',
-          active: true,
-        },
-        {
-          title: 'Таблица калорийности продуктов',
-          icon: 'ti-view-list-alt',
-          link: '/food-calorie-table',
-          active: false,
-        },
-      ]
-    }
-  },
 }
 </script>
 
@@ -91,7 +73,7 @@ export default {
   flex-direction: column;
   width: 100%;
   max-width: 1700px;
-  .food-calorie-table__filters-and-table {
+  .filters-and-table {
     display: flex;
   }
 }

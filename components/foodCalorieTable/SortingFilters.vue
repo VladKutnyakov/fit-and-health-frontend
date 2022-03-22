@@ -1,10 +1,8 @@
 <template>
   <div class="sorting-filters">
-
     <app-block-title>Фильтры</app-block-title>
 
-    <div class="sorting-filters__elements">
-
+    <div class="sorting-filters__list">
       <filter-radio-group
         :filterGroupOpened="true"
         headerTitle="Сортировать по ..."
@@ -36,9 +34,7 @@
           <app-button size14px uppercase>Выбрать все</app-button>
         </template>
       </filter-checkbox-group>
-
     </div>
-
   </div>
 </template>
 
@@ -115,6 +111,13 @@ export default {
   width: 400px;
   min-width: 400px;
   max-width: 400px;
+  background: $white;
+  box-shadow: $cardShadow;
+  border-radius: 6px;
+  transition: $tr-02;
+  .sorting-filters__list {
+    margin: 10px;
+  }
 }
 
 </style>
