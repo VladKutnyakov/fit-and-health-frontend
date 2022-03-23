@@ -1,6 +1,7 @@
 <template>
   <div class="exercise">
-    <div class="exercise__preview-image"></div>
+    <div class="exercise__preview-image">начало</div>
+    <div class="exercise__preview-image">конец</div>
 
     <div class="exercise__overview">
       <p class="title">Тяга штанги узким хватом стоя</p>
@@ -30,17 +31,13 @@
           <p class="item__title">Оборудование:</p>
           <p class="item__value">{{ exercise.equipment }}</p>
         </div>
-        <div class="exercise-info__item">
-          <p class="item__title mr-10">Сложность выполнения:</p>
-          <p class="item__value">{{ exercise.skill }}</p>
-        </div>
       </div>
     </div>
 
     <div class="exercise__training-accent">
-      <div class="training-accent__chart">
+      <!-- <div class="training-accent__chart">
         График
-      </div>
+      </div> -->
 
       <div class="training-accent__info">
         <div class="info__element">
@@ -88,8 +85,9 @@ export default {
   border-radius: 6px;
   transition: $tr-02;
   .exercise__preview-image {
-    width: 200px;
-    height: 280px;
+    margin-right: 5px;
+    width: 120px;
+    height: 160px;
     background: $black10;
     border-radius: 6px;
   }
@@ -97,7 +95,7 @@ export default {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
+    margin-left: 10px;
     .title {
       font-size: 18px;
       font-weight: 500;
@@ -129,6 +127,7 @@ export default {
       margin-bottom: auto;
     }
     .training-accent__info {
+      flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       .info__element {
@@ -145,10 +144,11 @@ export default {
         }
       }
       .info__element:last-child {
-        margin-top: 5px;
+        margin-top: auto;
+        // margin-top: 5px;
         margin-bottom: 0;
-        padding-top: 10px;
-        border-top: 1px solid $dividerBorder;
+        padding-top: 5px;
+        // border-top: 1px solid $dividerBorder;
       }
     }
   }
