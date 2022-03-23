@@ -4,7 +4,6 @@
 
     <div class="sorting-filters__filters">
       <filter-radio-group
-        class="mb-20"
         :filterGroupOpened="true"
         headerTitle="Сортировать по ..."
         :valueList="sotringOptions"
