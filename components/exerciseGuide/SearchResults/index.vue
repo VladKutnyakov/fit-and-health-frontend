@@ -88,8 +88,37 @@ export default {
         foodOrDrink: 'Все',
         type: 'Все'
       },
-      pinnedExercises: [{}, {}],
-      notPinnedExercises: [{}, {}, {}],
+      pinnedExercises: [
+        {
+          muscleGroup: 1,
+          additionalMuscles: 1,
+          type: 1,
+          sort: 1,
+          exertion: 1,
+          equipment: 1,
+          skill: 1,
+        }
+      ],
+      notPinnedExercises: [
+        {
+          muscleGroup: 1,
+          additionalMuscles: 1,
+          type: 1,
+          sort: 1,
+          exertion: 1,
+          equipment: 1,
+          skill: 1,
+        },
+        {
+          muscleGroup: 1,
+          additionalMuscles: 1,
+          type: 1,
+          sort: 1,
+          exertion: 1,
+          equipment: 1,
+          skill: 1,
+        }
+      ],
     }
   },
 }
@@ -127,8 +156,8 @@ export default {
         padding: 10px 20px;
       }
       .exercises-list {
-        display: flex;
-        flex-wrap: wrap;
+        // display: flex;
+        // flex-wrap: wrap;
       }
     }
     .not-pinned-exercises {
@@ -136,8 +165,8 @@ export default {
         padding: 10px 20px;
       }
       .exercises-list {
-        display: flex;
-        flex-wrap: wrap;
+        // display: flex;
+        // flex-wrap: wrap;
       }
     }
   }
