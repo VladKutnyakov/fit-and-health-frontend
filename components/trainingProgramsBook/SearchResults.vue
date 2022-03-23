@@ -1,32 +1,36 @@
 <template>
   <div class="search-results">
     <div class="search-training-programs">
-      <app-search-block placeholder="Поиск тренировочной программы" />
+      <app-block-title>Поиск тренировочной программы</app-block-title>
 
-      <div class="filter-by">
-        <filter-radio-text-group
-          :valueList="['Все', 'Фото', 'Видео']"
-          :defaultValue="filters.media"
-          uppercase
-          size14px
-          @inputGroupValueChanged="filters.media = $event"
-        />
-        <p class="filter-by__divider">|</p>
-        <filter-radio-text-group
-          :valueList="['Все', 'Домашние', 'Спортзал']"
-          :defaultValue="filters.foodOrDrink"
-          uppercase
-          size14px
-          @inputGroupValueChanged="filters.foodOrDrink = $event"
-        />
-        <p class="filter-by__divider">|</p>
-        <filter-radio-text-group
-          :valueList="['Все', 'Мои программы']"
-          :defaultValue="filters.type"
-          uppercase
-          size14px
-          @inputGroupValueChanged="filters.type = $event"
-        />
+      <div class="search-training-programs__filters">
+        <app-search-block placeholder="Название тренировочной программы" />
+
+        <div class="filter-by">
+          <filter-radio-text-group
+            :valueList="['Все', 'Фото', 'Видео']"
+            :defaultValue="filters.media"
+            uppercase
+            size14px
+            @inputGroupValueChanged="filters.media = $event"
+          />
+          <p class="filter-by__divider">|</p>
+          <filter-radio-text-group
+            :valueList="['Все', 'Домашние', 'Спортзал']"
+            :defaultValue="filters.foodOrDrink"
+            uppercase
+            size14px
+            @inputGroupValueChanged="filters.foodOrDrink = $event"
+          />
+          <p class="filter-by__divider">|</p>
+          <filter-radio-text-group
+            :valueList="['Все', 'Мои программы']"
+            :defaultValue="filters.type"
+            uppercase
+            size14px
+            @inputGroupValueChanged="filters.type = $event"
+          />
+        </div>
       </div>
     </div>
 
@@ -44,6 +48,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
@@ -52,6 +57,7 @@ import AppPagination from '@/components/basic/AppPagination'
 
 export default {
   components: {
+    AppBlockTitle,
     AppButton,
     AppSearchBlock,
     FilterRadioTextGroup,
@@ -83,20 +89,23 @@ export default {
   flex: 1 1 auto;
   margin-left: 40px;
   .search-training-programs {
-    padding: 10px;
+    // padding: 10px;
     background: $white;
     box-shadow: $cardShadow;
     border-radius: 6px;
     transition: $tr-02;
     overflow: hidden;
-    .filter-by {
-      display: flex;
-      margin-top: 20px;
-      margin-bottom: 5px;
-      .filter-by__divider {
-        margin: 0 20px;
-        color: rgba(34,41,47,.1);
-        user-select: none;
+    .search-training-programs__filters {
+      padding: 10px;
+      .filter-by {
+        display: flex;
+        margin-top: 20px;
+        margin-bottom: 5px;
+        .filter-by__divider {
+          margin: 0 20px;
+          color: rgba(34,41,47,.1);
+          user-select: none;
+        }
       }
     }
   }

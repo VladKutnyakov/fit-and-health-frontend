@@ -1,30 +1,36 @@
 <template>
   <div class="sorting-filters">
-    <filter-radio-group
-      class="mb-20"
-      :filterGroupOpened="true"
-      headerTitle="Сортировать по ..."
-      :valueList="sotringOptions"
-      :defaultValue="sotringDefault"
-      @inputGroupValueChanged="filters.sorting = $event"
-    />
+    <app-block-title>Фильтры</app-block-title>
 
-    <filter-checkbox-group
-      :filterGroupOpened="true"
-      headerTitle="Время приема пищи"
-      :valueList="mealtimeOptions"
-      :defaultValue="mealtimeOptions"
-      @inputGroupValueChanged="filters.mealtime = $event"
-    />
+    <div class="sorting-filters__filters">
+      <filter-radio-group
+        class="mb-20"
+        :filterGroupOpened="true"
+        headerTitle="Сортировать по ..."
+        :valueList="sotringOptions"
+        :defaultValue="sotringDefault"
+        @inputGroupValueChanged="filters.sorting = $event"
+      />
+
+      <filter-checkbox-group
+        :filterGroupOpened="true"
+        headerTitle="Время приема пищи"
+        :valueList="mealtimeOptions"
+        :defaultValue="mealtimeOptions"
+        @inputGroupValueChanged="filters.mealtime = $event"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import FilterRadioGroup from '@/components/basic/FilterRadioGroup'
 import FilterCheckboxGroup from '@/components/basic/FilterCheckboxGroup'
 
 export default {
   components: {
+    AppBlockTitle,
     FilterRadioGroup,
     FilterCheckboxGroup
   },
@@ -52,7 +58,6 @@ export default {
 
 .sorting-filters {
   // border: 1px solid red;
-  padding: 10px;
   width: 400px;
   min-width: 400px;
   max-width: 400px;
@@ -60,6 +65,9 @@ export default {
   box-shadow: $cardShadow;
   border-radius: 6px;
   transition: $tr-02;
+  .sorting-filters__filters {
+    padding: 10px;
+  }
 }
 
 body.dark {
