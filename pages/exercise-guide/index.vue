@@ -114,6 +114,7 @@ export default {
   width: 100%;
   .sorting-filters-and-search-results {
     display: flex;
+    align-items: flex-start;
   }
 
   // .exercises-list-and-overview {

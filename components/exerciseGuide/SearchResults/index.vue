@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <div class="exercises-list">
+    <div class="search-results__exercises-list">
       <div v-if="pinnedExercises.length > 0" class="pinned-exercises">
         <p class="pinned-exercises__block-title">Закрепленные упражнения</p>
 
@@ -119,17 +119,25 @@ export default {
       }
     }
   }
-  .exercises-list {
+  .search-results__exercises-list {
     position: relative;
     .pinned-exercises {
       margin: 20px 0;
       .pinned-exercises__block-title {
         padding: 10px 20px;
       }
+      .exercises-list {
+        display: flex;
+        flex-wrap: wrap;
+      }
     }
     .not-pinned-exercises {
       .not-pinned-exercises__block-title {
         padding: 10px 20px;
+      }
+      .exercises-list {
+        display: flex;
+        flex-wrap: wrap;
       }
     }
   }
