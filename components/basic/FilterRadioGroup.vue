@@ -108,7 +108,7 @@ export default {
 body.dark {
   .filter-radio-group {
     .filter-radio-group__footer {
-      border: 1px solid $dividerBorderDarkBG;
+      border-top: 1px solid $dividerBorderDarkBG;
     }
   }
 }
