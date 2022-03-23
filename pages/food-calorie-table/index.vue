@@ -75,6 +75,7 @@ export default {
   max-width: 1700px;
   .filters-and-table {
     display: flex;
+    align-items: flex-start;
   }
 }
 
