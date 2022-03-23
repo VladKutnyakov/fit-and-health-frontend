@@ -55,20 +55,26 @@ export default {
 .app-search-block {
   // border: 1px solid red;
   display: flex;
-  // box-shadow: $cardShadow;
-  border: 1px solid $blockBorder;
   border-radius: 6px;
   .search__input {
     padding: 10px 0px 10px 20px;
     width: 100%;
     font-family: $fontMontserrat;
-    border: none;
+    border: 1px solid $dividerBorder;
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     outline: none;
     transition: $tr-02;
+  }
+  .search__input:focus {
+    border: 1px solid $primary;
+    border-right: 1px solid $dividerBorder;
+  }
+  .search__input:focus + .search__action-btns {
+    border-top: 1px solid $primary;
+    border-bottom: 1px solid $primary;
   }
   .search__action-btns {
     // border: 1px solid red;
@@ -77,9 +83,9 @@ export default {
     justify-content: center;
     background: $white;
     padding: 5px;
-    color: $green;
-    // border-top: 1px solid $blockBorder;
-    // border-bottom: 1px solid $blockBorder;
+    color: $primary;
+    border-top: 1px solid $dividerBorder;
+    border-bottom: 1px solid $dividerBorder;
     transition: $tr-02;
     .search__action-btn-icon {
       // border: 1px solid red;
@@ -122,10 +128,17 @@ body.dark {
     .search__input {
       background: $black20;
       color: $textLight;
+      border: 1px solid $dividerBorderDarkBG;
+    }
+    .search__input:focus {
+      border: 1px solid $primary;
+      border-right: 1px solid $dividerBorderDarkBG;
     }
     .search__action-btns {
       background: $black20;
       color: $textLight;
+      border-top: 1px solid $dividerBorderDarkBG;
+      border-bottom: 1px solid $dividerBorderDarkBG;
     }
   }
 }
