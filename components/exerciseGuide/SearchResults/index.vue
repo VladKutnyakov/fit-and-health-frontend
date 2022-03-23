@@ -39,7 +39,29 @@
     </div>
 
     <div class="exercises-list">
-      exercise
+      <div v-if="pinnedExercises.length > 0" class="pinned-exercises">
+        <p class="pinned-exercises__block-title">Закрепленные упражнения</p>
+
+        <ul class="exercises-list">
+          <exercise
+            v-for="(item, index) in pinnedExercises"
+            :key="index"
+            :exercise="item"
+          />
+        </ul>
+      </div>
+
+      <div v-if="notPinnedExercises.length > 0" class="not-pinned-exercises">
+        <p class="not-pinned-exercises__block-title" v-if="pinnedExercises.length > 0">Не закрепленные упражнения</p>
+
+        <ul class="exercises-list">
+          <exercise
+            v-for="(item, index) in notPinnedExercises"
+            :key="index"
+            :exercise="item"
+          />
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -49,12 +71,14 @@ import { mapState } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
+import Exercise from '@/components/exerciseGuide/SearchResults/Exercise'
 
 export default {
   components: {
     AppBlockTitle,
     AppSearchBlock,
     FilterRadioTextGroup,
+    Exercise,
   },
   data () {
     return {
@@ -64,6 +88,8 @@ export default {
         foodOrDrink: 'Все',
         type: 'Все'
       },
+      pinnedExercises: [{}, {}],
+      notPinnedExercises: [{}, {}, {}],
     }
   },
 }
@@ -95,64 +121,17 @@ export default {
   }
   .exercises-list {
     position: relative;
-    margin-top: 20px;
-    // .products-list__header {
-    //   position: sticky;
-    //   top: 0;
-    //   display: flex;
-    //   align-items: center;
-    //   margin-bottom: 10px;
-    //   padding: 5px 0;
-    //   color: $white;
-    //   background: $primary;
-    //   border: 1px solid transparent;
-    //   border-radius: 6px;
-    //   .header__column-title {
-    //     padding: 7px;
-    //     width: 120px;
-    //     text-transform: uppercase;
-    //     text-align: center;
-    //     font-size: 12px;
-    //     font-weight: 500;
-    //     border-right: 1px solid rgba(255,255,255,.4);
-    //   }
-    //   .header__column-title:nth-child(1) {
-    //     width: 50px;
-    //     min-width: 50px;
-    //     max-width: 50px;
-    //   }
-    //   .header__column-title:nth-child(2) {
-    //     width: 50px;
-    //     min-width: 50px;
-    //     max-width: 50px;
-    //   }
-    //   .header__column-title:nth-child(3) {
-    //     flex: 1 1 auto;
-    //     min-width: 200px;
-    //   }
-    //   .header__column-title:nth-child(9) {
-    //     width: 50px;
-    //     min-width: 50px;
-    //     max-width: 50px;
-    //   }
-    //   .header__column-title:nth-child(10) {
-    //     width: 50px;
-    //     min-width: 50px;
-    //     max-width: 50px;
-    //     border: none;
-    //   }
-    // }
-    // .pinned-products {
-    //   margin: 20px 0;
-    //   .pinned-products__block-title {
-    //     padding: 10px 20px;
-    //   }
-    // }
-    // .not-pinned-products {
-    //   .not-pinned-products__block-title {
-    //     padding: 10px 20px;
-    //   }
-    // }
+    .pinned-exercises {
+      margin: 20px 0;
+      .pinned-exercises__block-title {
+        padding: 10px 20px;
+      }
+    }
+    .not-pinned-exercises {
+      .not-pinned-exercises__block-title {
+        padding: 10px 20px;
+      }
+    }
   }
 }
 
