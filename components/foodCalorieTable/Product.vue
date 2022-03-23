@@ -32,13 +32,12 @@
       <p class="element__value">{{ item.title }}</p>
     </div>
     <div class="item__element">
-      <input
-        class="element__weight-input"
-        type="text"
+      <app-input-text
         :value="item.weight"
+        textCenter
+        selectOnFocus
         @input="changeProductWeight({item, newWeight: $event.target.value})"
-        @focus="setFocus($event)"
-      >
+      />
     </div>
     <div class="item__element">
       <p class="element__value">{{ Math.round( (item.protein / 100 * item.weight) * 100) / 100 }}</p>
@@ -71,10 +70,14 @@
 
 <script>
 import { mapMutations, mapActions } from 'vuex'
+import AppInputText from '@/components/basic/AppInputText'
 
 export default {
   props: {
     item: Object
+  },
+  components: {
+    AppInputText
   },
   methods: {
     ...mapMutations({
@@ -84,9 +87,6 @@ export default {
       changeFavoriteParam: 'foodCalorieTable/changeFavoriteParam',
       changePinnedParam: 'foodCalorieTable/changePinnedParam'
     }),
-    setFocus ($event) {
-      $event.target.select()
-    },
     editProduct (product) {
       if (product.user) {
         // Очистить поля и ошибки формы
@@ -117,11 +117,12 @@ export default {
 
 .product__item {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding: 5px 0px;
   background: $white;
-  border: 1px solid $blockBorder;
+  box-shadow: $cardShadow;
   border-radius: 6px;
+  transition: $tr-02;
   .item__element {
     flex: 0 1 auto;
     display: flex;
@@ -130,7 +131,7 @@ export default {
     padding: 5px;
     width: 120px;
     text-align: center;
-    border-right: 1px solid $inputBorder;
+    border-right: 1px solid $dividerBorder;
     .element__value {
       font-size: 16px;
     }
@@ -142,36 +143,16 @@ export default {
       cursor: pointer;
     }
     .element__action-btn:hover {
-      color: $green;
+      color: $primary;
     }
     .element__action-btn--active {
-      color: $green;
+      color: $primary;
     }
     .element__action-btn--disabled {
       color: $black30;
     }
     .element__action-btn--disabled:hover {
       color: $black30 !important;
-    }
-    .element__weight-input {
-      flex: 1 1 auto;
-      padding: 10px 5px;
-      width: 100%;
-      outline: none;
-      border: 1px solid $inputBorder;
-      border-radius: 6px;
-      text-align: center;
-      color: $green;
-      font-family: $fontMontserrat;
-      font-weight: 500;
-      transition: $tr-02;
-    }
-    .element__weight-input:focus {
-      border: 1px solid $green;
-    }
-    .element__weight-input::selection {
-      color: $white;
-      background: $green;
     }
     .element__weight-scale {
       margin-top: 5px;
@@ -211,6 +192,30 @@ export default {
     border: none;
     .element__action-btn:hover {
       color: $red;
+    }
+  }
+}
+
+body.dark {
+  .product__item {
+    background: $cardBackgroundDarkBG;
+    .item__element {
+      border-right: 1px solid $dividerBorderDarkBG;
+      .element__action-btn {
+        color: $white20;
+      }
+      .element__action-btn:hover {
+        color: $primary;
+      }
+      .element__action-btn--active {
+        color: $primary;
+      }
+      .element__action-btn--disabled {
+        color: $white20;
+      }
+      .element__action-btn--disabled:hover {
+        color: $white20 !important;
+      }
     }
   }
 }

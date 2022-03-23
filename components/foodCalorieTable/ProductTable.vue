@@ -27,7 +27,7 @@
       </div>
 
       <div v-if="pinnedProducts.length > 0" class="pinned-products">
-        <app-block-title>Закрепленные продукты</app-block-title>
+        <p class="pinned-products__block-title">Закрепленные продукты</p>
 
         <ul class="product-list">
           <product
@@ -39,7 +39,7 @@
       </div>
 
       <div v-if="notPinnedProducts.length > 0" class="not-pinned-products">
-        <app-block-title v-if="pinnedProducts.length > 0">Не закрепленные продукты</app-block-title>
+        <p class="not-pinned-products__block-title" v-if="pinnedProducts.length > 0">Не закрепленные продукты</p>
 
         <ul class="food-table__product-list">
           <product
@@ -152,8 +152,15 @@ export default {
     }
     .pinned-products {
       margin: 20px 0;
+      .pinned-products__block-title {
+        padding: 10px 20px;
+      }
     }
-    // .not-pinned-products {}
+    .not-pinned-products {
+      .not-pinned-products__block-title {
+        padding: 10px 20px;
+      }
+    }
   }
 }
 
