@@ -23,7 +23,7 @@
 
       <filter-checkbox-group
         :filterGroupOpened="true"
-        headerTitle="Категории"
+        headerTitle="Мышечные группы"
         :valueList="productCategories"
         :defaultValue="selectedProductCategories"
         @applyFunc="applyFilters()"
