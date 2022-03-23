@@ -3,7 +3,7 @@
 
     <app-accordion :isOpened="filterGroupOpened">
       <template v-slot:accordionHeader>
-        <div class="filter-checkbox-group__header" @click="filterGroupOpened = !filterGroupOpened">
+        <div class="filter-checkbox-group__header" @click="toggleOpened(!filterGroupOpened)">
           <p class="header__title">{{ headerTitle }}</p>
           <i
             class="header__icon"
@@ -66,7 +66,10 @@ export default {
     },
     applyFilter () {
       this.$emit('applyFunc')
-    }
+    },
+    toggleOpened ($event) {
+      this.$emit('toggleOpened', $event)
+    },
   }
 }
 </script>
