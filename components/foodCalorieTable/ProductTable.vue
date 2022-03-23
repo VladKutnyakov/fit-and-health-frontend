@@ -90,7 +90,6 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .product-table {
-  // border: 1px solid red;
   flex: 1 1 auto;
   margin-left: 40px;
   .product-table__search {
