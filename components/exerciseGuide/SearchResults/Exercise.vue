@@ -84,7 +84,6 @@ export default {
   border-radius: 6px;
   transition: $tr-02;
   .exercise__preview-image {
-    margin-right: 5px;
     width: 120px;
     height: 160px;
     background: $black10;
