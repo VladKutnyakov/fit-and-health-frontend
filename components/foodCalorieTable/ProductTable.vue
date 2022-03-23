@@ -7,7 +7,7 @@
       <app-search-block
         class="mt-10 mr-10 mb-10 ml-10"
         :filters="false"
-        placeholder="Поиск продуктов"
+        placeholder="Название продукта"
         @searchStringChanged="searchString = $event"
       />
     </div>
@@ -154,6 +154,14 @@ export default {
       margin: 20px 0;
     }
     // .not-pinned-products {}
+  }
+}
+
+body.dark {
+  .product-table {
+    .product-table__search {
+      background: $cardBackgroundDarkBG;
+    }
   }
 }
 

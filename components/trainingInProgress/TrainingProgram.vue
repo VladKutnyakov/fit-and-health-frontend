@@ -156,12 +156,11 @@ export default {
         }
       }
     }
-    
   }
   .training-program__actions {
     display: flex;
     padding: 10px;
-    background: $hiddenBlockBG;
+    background: $black10;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
   }
@@ -170,6 +169,9 @@ export default {
 body.dark {
   .training-program {
     background: $cardBackgroundDarkBG;
+    .training-program__actions {
+      background: $black20;
+    }
   }
 }
 

@@ -124,12 +124,12 @@ export default {
               icon: 'ti-timer',
               exact: false,
             },
-            {
-              title: 'Новая тренировка',
-              link: '/training-diary/training-in-progress',
-              icon: 'ti-bolt',
-              exact: false
-            },
+            // {
+            //   title: 'Новая тренировка',
+            //   link: '/training-diary/training-in-progress',
+            //   icon: 'ti-bolt',
+            //   exact: false
+            // },
             {
               title: 'Программы тренировок',
               link: '/training-programs',

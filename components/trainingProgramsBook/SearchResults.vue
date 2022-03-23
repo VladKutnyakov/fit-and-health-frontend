@@ -1,7 +1,7 @@
 <template>
   <div class="search-results">
     <div class="search-training-programs">
-      <app-block-title>Поиск тренировочной программы</app-block-title>
+      <app-block-title>Поиск</app-block-title>
 
       <div class="search-training-programs__filters">
         <app-search-block placeholder="Название тренировочной программы" />

@@ -120,4 +120,10 @@ export default {
   }
 }
 
+body.dark {
+  .sorting-filters {
+    background: $cardBackgroundDarkBG;
+  }
+}
+
 </style>
