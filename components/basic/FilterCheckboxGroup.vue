@@ -3,9 +3,15 @@
 
     <app-accordion :isOpened="filterGroupOpened">
       <template v-slot:accordionHeader>
-        <div class="filter-checkbox-group__header">
+        <div class="filter-checkbox-group__header" @click="filterGroupOpened = !filterGroupOpened">
           <p class="header__title">{{ headerTitle }}</p>
-          <i class="ti-angle-double-down header__icon"></i>
+          <i
+            class="header__icon"
+            :class="[
+              { 'ti-angle-right': !filterGroupOpened },
+              { 'ti-angle-down': filterGroupOpened }
+            ]"
+          ></i>
         </div>
       </template>
       <template v-slot:accordionHiddenContent>
@@ -69,30 +75,25 @@ export default {
 @import "@/assets/styles/vars.scss";
 
 .filter-checkbox-group {
+  // border: 1px solid red;
+  margin-bottom: 10px;
   .filter-checkbox-group__header {
+    // border: 1px solid red;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
-    background: $primary;
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    padding: 10px;
     transition: $tr-02;
     .header__title {
-      color: $white;
+      color: $text;
       font-weight: 500;
     }
     .header__icon {
-      color: $white;
-      font-size: 14px;
+      color: $text;
     }
   }
   .filter-checkbox-group__footer {
-    padding: 10px;
-    border: 1px solid $dividerBorder;
-    // border-top: none;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    border-top: 1px solid $dividerBorder;
     .footer__value-list {
       padding: 10px;
       .value-list__item {
@@ -109,7 +110,6 @@ body.dark {
   .filter-checkbox-group {
     .filter-checkbox-group__footer {
       border: 1px solid $dividerBorderDarkBG;
-      // border-top: none;
     }
   }
 }

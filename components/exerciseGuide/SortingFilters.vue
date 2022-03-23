@@ -24,8 +24,8 @@
       <filter-checkbox-group
         :filterGroupOpened="true"
         headerTitle="Мышечные группы"
-        :valueList="productCategories"
-        :defaultValue="selectedProductCategories"
+        :valueList="['1']"
+        :defaultValue="['1']"
         @applyFunc="applyFilters()"
         @inputGroupValueChanged="applyFilters($event, 'productCategory')"
       >
@@ -68,12 +68,6 @@ export default {
         'Избранные'
       ]
     }
-  },
-  computed: {
-    ...mapState({
-      productCategories: state => state.foodCalorieTable.productCategories,
-      selectedProductCategories: state => state.foodCalorieTable.productCategories
-    })
   },
   methods: {
     ...mapMutations({
