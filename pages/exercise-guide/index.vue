@@ -12,10 +12,11 @@
         <exercise-overview v-if="overviewFetched" />
         <exercise-overview-empty v-else />
         <additional-info v-if="overviewFetched" />
-
-        <exercise-form-modal />
       </div> -->
     </div>
+
+    <exercise-form-modal />
+
   </app-page>
 </template>
 
