@@ -1,7 +1,6 @@
 <template>
   <div class="exercise">
-    <div class="exercise__preview-image">начало</div>
-    <div class="exercise__preview-image">конец</div>
+    <div class="exercise__preview-image"></div>
 
     <div class="exercise__overview">
       <p class="title">Тяга штанги узким хватом стоя</p>
