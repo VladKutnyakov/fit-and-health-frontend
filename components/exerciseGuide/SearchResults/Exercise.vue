@@ -1,5 +1,27 @@
 <template>
   <div class="exercise">
+    <div class="exercise__actions">
+      <i
+        class="actions-btn"
+        :class="[
+          { 'ti-pin-alt': !exercise.pinned },
+          { 'ti-pin2': exercise.pinned },
+          { 'actions-btn--active': exercise.pinned }
+        ]"
+        @click="changePinnedParam(exercise)"
+      ></i>
+      <i
+        class="actions-btn"
+        :class="[
+          { 'ti-heart-broken': !exercise.favorite },
+          { 'ti-heart': exercise.favorite },
+          { 'actions-btn--active': exercise.favorite }
+        ]"
+        @click="changeFavoriteParam(exercise)"
+      ></i>
+    </div>
+
+    <div class="exercise__preview-image mr-5"></div>
     <div class="exercise__preview-image"></div>
 
     <div class="exercise__overview">
@@ -34,10 +56,6 @@
     </div>
 
     <div class="exercise__training-accent">
-      <!-- <div class="training-accent__chart">
-        График
-      </div> -->
-
       <div class="training-accent__info">
         <div class="info__element">
           <span class="element__text">Кардио:</span>
@@ -68,6 +86,26 @@
 export default {
   props: {
     exercise: Object,
+  },
+  methods: {
+    // getMuscles (muscleGroup, item) {
+    //   const Muscles = [muscleGroup.title]
+
+    //   for (let i = 0; i < item.additionalMuscles.length; i++) {
+    //     Muscles.push(item.additionalMuscles[i].title)
+    //   }
+
+    //   return Muscles.join(', ')
+    // },
+    // fetchExerciseInfo (exercisesId) {
+    //   this.$store.dispatch('exercises/fetchExerciseInfo', exercisesId)
+    // },
+    changePinnedParam (exercise) {
+      this.$store.dispatch('exercises/changePinnedParam', exercise.id)
+    },
+    changeFavoriteParam (exercise) {
+      this.$store.dispatch('exercises/changeFavoriteParam', exercise.id)
+    }
   }
 }
 </script>
@@ -83,6 +121,25 @@ export default {
   box-shadow: $cardShadow;
   border-radius: 6px;
   transition: $tr-02;
+  .exercise__actions {
+    // border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    .actions-btn {
+      margin: 5px 0px;
+      padding: 2.5px;
+      color: $black30;
+      transition: $tr-02;
+      cursor: pointer;
+    }
+    .actions-btn:hover {
+      color: $primary;
+    }
+    .actions-btn--active {
+      color: $primary;
+    }
+  }
   .exercise__preview-image {
     width: 120px;
     height: 160px;

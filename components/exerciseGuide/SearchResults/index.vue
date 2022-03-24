@@ -97,6 +97,8 @@ export default {
           exertion: 1,
           equipment: 1,
           skill: 1,
+          pinned: true,
+          favorite: true,
         }
       ],
       notPinnedExercises: [
@@ -108,6 +110,8 @@ export default {
           exertion: 1,
           equipment: 1,
           skill: 1,
+          pinned: false,
+          favorite: false,
         },
         {
           muscleGroup: 1,
@@ -117,6 +121,8 @@ export default {
           exertion: 1,
           equipment: 1,
           skill: 1,
+          pinned: false,
+          favorite: false,
         }
       ],
     }
