@@ -212,6 +212,17 @@ export default {
 body.dark {
   .exercise {
     background: $cardBackgroundDarkBG;
+    .exercise__actions {
+      .actions-btn {
+        color: $white30;
+      }
+      .actions-btn:hover {
+        color: $primary;
+      }
+      .actions-btn--active {
+        color: $primary;
+      }
+    }
     .exercise__preview-image {
       background: $black20;
     }
