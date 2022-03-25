@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <div class="user-card__media-and-subscriptions">
+    <!-- <div class="user-card__media-and-subscriptions">
       <nuxt-link to="/profile/media" no-prefetch>
         <app-button size14px>
           <div class="button-content">
@@ -93,7 +93,7 @@
           </div>
         </app-button>
       </nuxt-link>
-    </div>
+    </div> -->
   </div>
 </template>
 
