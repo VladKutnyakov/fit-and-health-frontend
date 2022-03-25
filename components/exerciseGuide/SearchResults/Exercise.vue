@@ -1,6 +1,6 @@
 <template>
   <div class="exercise">
-    <div class="exercise__actions">
+    <div class="exercise__user-params">
       <i
         class="actions-btn"
         :class="[
@@ -79,6 +79,14 @@
         </div>
       </div>
     </div>
+
+    <div class="exercise__actions">
+      <!-- <i class="ti-control-play action-btn"></i> -->
+      <nuxt-link :to="`/`" class="action-btn">
+        <i class="ti-search"></i>
+      </nuxt-link>
+      <i class="ti-trash action-btn"></i>
+    </div>
   </div>
 </template>
 
@@ -121,7 +129,7 @@ export default {
   box-shadow: $cardShadow;
   border-radius: 6px;
   transition: $tr-02;
-  .exercise__actions {
+  .exercise__user-params {
     // border: 1px solid red;
     display: flex;
     flex-direction: column;
@@ -173,11 +181,12 @@ export default {
   .exercise__training-accent {
     display: flex;
     flex-direction: column;
-    padding: 0 10px;
+    padding: 10px;
     width: 100%;
     min-width: 240px;
     max-width: 240px;
-    border-left: 1px solid $dividerBorder;
+    background: $black05;
+    border-radius: 6px;
     .training-accent__chart {
       margin-bottom: auto;
     }
@@ -207,12 +216,38 @@ export default {
       }
     }
   }
+  .exercise__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-left: 1px solid $dividerBorder;
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 35px;
+      height: 35px;
+      background: $primary;
+      color: $white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .action-btn:last-child {
+      margin-top: auto;
+      margin-bottom: 0;
+      background: $danger;
+    }
+  }
 }
 
 body.dark {
   .exercise {
     background: $cardBackgroundDarkBG;
-    .exercise__actions {
+    .exercise__user-params {
       .actions-btn {
         color: $white30;
       }
@@ -227,12 +262,15 @@ body.dark {
       background: $black20;
     }
     .exercise__training-accent {
-      border-left: 1px solid $dividerBorderDarkBG;
+      background: $black10;
       .training-accent__info {
         .info__element:last-child {
           border-top: 1px solid $dividerBorderDarkBG;
         }
       }
+    }
+    .exercise__actions {
+      border-left: 1px solid $dividerBorderDarkBG;
     }
   }
 }

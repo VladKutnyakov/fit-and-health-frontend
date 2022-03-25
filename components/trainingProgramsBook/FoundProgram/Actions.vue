@@ -9,9 +9,14 @@
 </template>
 
 <script>
+import AppButton from '@/components/basic/AppButton'
+
 export default {
   props: {
     program: Object
+  },
+  components: {
+    AppButton
   }
 }
 </script>
@@ -23,26 +28,32 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
-  background: $black15;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid $dividerBorder;
   .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
     padding: 5px;
-    color: $text;
-    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    background: $primary;
+    color: $white;
+    border-radius: 6px;
     cursor: pointer;
   }
   .action-btn:last-child {
     margin-top: auto;
     margin-bottom: 0;
-  }
-  .action-btn:hover {
-    color: $primary;
+    background: $danger;
   }
 }
 
 body.dark {
   .actions {
+    border-left: 1px solid $dividerBorderDarkBG;
     .action-btn {
       color: $textLight;
     }

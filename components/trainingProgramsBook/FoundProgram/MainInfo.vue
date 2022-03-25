@@ -38,7 +38,7 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  padding: 10px 10px 10px 0;
+  margin: 0 10px;
   .title {
     padding: 0 10px 5px 10px;
     text-align: center;
@@ -69,11 +69,21 @@ export default {
       margin-top: 5px;
       margin-right: 5px;
       padding: 5px 10px;
-      background: $hiddenBlockBG;
+      background: $black05;
       border-radius: 6px;
       .mark__text {
         font-size: 14px;
         white-space: nowrap;
+      }
+    }
+  }
+}
+
+body.dark {
+  .main-info {
+    .added-marks {
+      .mark {
+        background: $black10;
       }
     }
   }

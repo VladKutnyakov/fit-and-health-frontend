@@ -19,6 +19,8 @@
         @inputGroupValueChanged="filters.mealtime = $event"
       />
     </div>
+
+    <app-button class="mr-10 mb-10 ml-10" size14px fillArea >Применить фильтры</app-button>
   </div>
 </template>
 
@@ -26,12 +28,14 @@
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import FilterRadioGroup from '@/components/basic/FilterRadioGroup'
 import FilterCheckboxGroup from '@/components/basic/FilterCheckboxGroup'
+import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
     AppBlockTitle,
     FilterRadioGroup,
-    FilterCheckboxGroup
+    FilterCheckboxGroup,
+    AppButton
   },
   data () {
     return {
@@ -57,6 +61,8 @@ export default {
 
 .sorting-filters {
   // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
   width: 400px;
   min-width: 400px;
   max-width: 400px;

@@ -12,7 +12,7 @@ export default {}
 @import "@/assets/styles/vars.scss";
 
 .preview-image {
-  padding: 10px;
+  // padding: 10px;
   .image {
     width: 100%;
     min-width: 240px;

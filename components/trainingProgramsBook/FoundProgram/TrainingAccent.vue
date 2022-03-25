@@ -43,7 +43,8 @@ export default {}
   width: 100%;
   min-width: 240px;
   max-width: 240px;
-  border-left: 1px solid $dividerBorder;
+  background: $black05;
+  border-radius: 6px;
   .training-accent__chart {
     margin-bottom: auto;
   }
@@ -74,7 +75,7 @@ export default {}
 
 body.dark {
   .training-accent {
-    border-left: 1px solid $dividerBorderDarkBG;
+    background: $black10;
     .training-accent__info {
       .info__element:last-child {
         border-top: 1px solid $dividerBorderDarkBG;
