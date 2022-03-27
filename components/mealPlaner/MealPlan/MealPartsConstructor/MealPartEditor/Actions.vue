@@ -74,25 +74,36 @@ export default {
 .actions {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  background: $hiddenBlockBG;
+  margin: 10px 0;
+  padding: 0 10px;
+  // background: $hiddenBlockBG;
+  border-left: 1px solid $dividerBorder;
   .action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 10px;
     padding: 5px;
-    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    background: $primary;
+    color: $white;
+    border-radius: 6px;
+    // font-size: 20px;
     transition: $tr-02;
     cursor: pointer;
   }
   // .action-btn:last-child {
   //   margin-top: auto;
   //   margin-bottom: 0;
+  //   background: $danger;
   // }
-  .action-btn:hover {
-    color: $green;
-  }
-  .action-btn--remove:hover {
-    color: $red;
-  }
+  // .action-btn:hover {
+  //   color: $green;
+  // }
+  // .action-btn--remove:hover {
+  //   color: $red;
+  // }
 }
 
 </style>

@@ -35,6 +35,8 @@
         </template>
       </filter-checkbox-group>
     </div>
+
+    <app-button class="mr-10 mb-10 ml-10" size14px fillArea >Применить фильтры</app-button>
   </div>
 </template>
 
@@ -108,6 +110,8 @@ export default {
 
 .sorting-filters {
   // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
   width: 400px;
   min-width: 400px;
   max-width: 400px;

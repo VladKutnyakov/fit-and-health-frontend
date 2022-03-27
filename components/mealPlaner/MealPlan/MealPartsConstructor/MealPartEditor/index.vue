@@ -56,6 +56,12 @@
           <!-- <added-recipe /> -->
         </div>
       </div>
+
+      <!-- <div class="actions">
+        <app-button>Добавить прием пищи</app-button>
+        <app-button class="ml-10">Добавить продукт</app-button>
+        <app-button class="ml-auto" dangerBtn >Удалить прием пищи</app-button>
+      </div> -->
     </div>
 
     <actions />
@@ -67,6 +73,7 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 import AddedProduct from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedProduct'
 // import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedRecipe'
+import AppButton from '@/components/basic/AppButton'
 import Actions from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/Actions'
 
 export default {
@@ -74,6 +81,7 @@ export default {
     AppInputText,
     AddedProduct,
     // AddedRecipe,
+    AppButton,
     Actions
   },
   data() {
@@ -110,9 +118,9 @@ export default {
   flex: 1 1 auto;
   display: flex;
   min-height: 700px;
-  background: $white;
-  border: 1px solid $blockBorder;
-  border-radius: 6px;
+  // background: $white;
+  border-top: 1px solid $dividerBorder;
+  // border-radius: 6px;
   .settings-and-food {
     // border: 1px solid red;
     flex: 1 1 auto;
@@ -159,6 +167,10 @@ export default {
         overflow: hidden;
       }
     }
+    .actions {
+      display: flex;
+      margin-top: 10px;
+    }
   }
 }
 
@@ -166,8 +178,8 @@ export default {
   display: flex;
   margin-bottom: 5px;
   padding: 10px 0px;
-  background: $green;
-  border: 1px solid $green;
+  background: $primary;
+  border: 1px solid $primary;
   border-radius: 6px;
   .item__element {
     display: flex;

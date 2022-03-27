@@ -46,7 +46,7 @@ export default {
     min-height: 40px;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
-    border: 1px solid $blockBorder;
+    border: 1px solid $dividerBorder;
     border-bottom: none;
     transition: $tr-02;
     cursor: pointer;
@@ -57,8 +57,8 @@ export default {
     }
   }
   .meal-part--active {
-    background: $green;
-    border: 1px solid $green;
+    background: $primary;
+    border: 1px solid $primary;
     border-bottom: none;
     .meal-part__title {
       color: $white;

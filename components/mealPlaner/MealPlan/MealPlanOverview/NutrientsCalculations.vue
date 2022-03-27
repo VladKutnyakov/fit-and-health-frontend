@@ -70,9 +70,10 @@ export default {
 .nutrients-calculations {
   display: flex;
   justify-content: space-around;
-  margin: 10px 10px 0 10px;
+  margin: 10px;
   padding: 10px;
-  border-top: 1px solid $dividerBorder;
+  border: 1px solid $dividerBorder;
+  border-radius: 6px;
   .nutrients-calculations__item {
     flex: 1 1 auto;
     display: flex;
@@ -112,6 +113,18 @@ export default {
   }
   .nutrients-calculations__item:last-child {
     border-right: none;
+  }
+}
+
+body.dark {
+  .nutrients-calculations {
+    background: $black15;
+    .nutrients-calculations__item {
+      border-right: 1px solid $dividerBorderDarkBG;
+    }
+    .nutrients-calculations__item:last-child {
+      border-right: none;
+    }
   }
 }
 

@@ -17,10 +17,10 @@
           />
         </div>
 
-        <!-- <nutrients-calculations /> -->
+        <nutrients-calculations />
       </div>
 
-      <actions />
+      <!-- <actions /> -->
     </div>
   </div>
 </template>
@@ -64,11 +64,8 @@ export default {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
-  background: $white;
-  box-shadow: $cardShadow;
-  border-radius: 6px;
-  transition: $tr-02;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $dividerBorder;
   .meal-plan-overview__content {
     display: flex;
     .overview {
@@ -86,14 +83,6 @@ export default {
           flex-direction: column;
         }
       }
-    }
-  }
-}
-
-body.dark {
-  .meal-plan-overview {
-    .meal-plan-overview__content {
-      background: $cardBackgroundDarkBG;
     }
   }
 }
