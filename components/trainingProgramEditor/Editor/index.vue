@@ -1,18 +1,53 @@
 <template>
   <div class="editor">
     <training-overview />
-    <training-days />
+
+    <app-tabs
+      :tabList="tabList"
+      canBeAddTabs
+      @selectTab="selectTrainingDay($event)"
+      @addTab="addTrainingDay()"
+    />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import TrainingOverview from '@/components/trainingProgramEditor/Editor/TrainingOverview/index'
-import TrainingDays from '@/components/trainingProgramEditor/Editor/TrainingDays/index'
+import AppTabs from '@/components/basic/AppTabs'
+import TabTrainingDay from '@/components/trainingProgramEditor/Editor/TabTrainingDay/index'
 
 export default {
   components: {
     TrainingOverview,
-    TrainingDays
+    AppTabs
+  },
+  computed: {
+    ...mapState({
+      trainingProgramDays: state => state.trainingProgramEditor.trainingProgram.fields.trainingProgramDays,
+      selectedTrainingDay: state => state.trainingProgramEditor.selectedTrainingDay,
+    }),
+    tabList () {
+      const list = []
+
+      this.trainingProgramDays.forEach((element, index) => {
+        list.push({
+          ...element,
+          isActive: index === this.selectedTrainingDay ? true : false,
+          component: TabTrainingDay,
+        })
+      })
+
+      return list
+    }
+  },
+  methods: {
+    selectTrainingDay ($event) {
+      this.$store.commit('trainingProgramEditor/setSelectedTrainingDay', $event)
+    },
+    addTrainingDay () {
+      this.$store.commit('trainingProgramEditor/addTrainingProgramDay')
+    }
   }
 }
 </script>

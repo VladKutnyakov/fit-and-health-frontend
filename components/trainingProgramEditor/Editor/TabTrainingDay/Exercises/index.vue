@@ -26,7 +26,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import Exercise from '@/components/trainingProgramEditor/Editor/TrainingDays/TrainingDaySettings/Settings/Exercises/Exercise'
+import Exercise from '@/components/trainingProgramEditor/Editor/TabTrainingDay/Exercises/Exercise'
 
 export default {
   components: {
@@ -100,6 +100,14 @@ export default {
         max-width: 40px;
         border: none;
       }
+    }
+  }
+}
+
+body.dark {
+  .exercises {
+    .exercises__added-exercises {
+      background: $black15;
     }
   }
 }

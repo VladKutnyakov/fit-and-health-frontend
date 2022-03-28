@@ -54,6 +54,9 @@ export default {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $dividerBorder;
   .training-overview__content {
     display: flex;
     .overview {
