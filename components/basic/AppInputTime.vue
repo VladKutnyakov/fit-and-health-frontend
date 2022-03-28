@@ -33,20 +33,18 @@ export default {
   },
   data () {
     return {
-      inputValue: this.value
+      inputValue: this.value.toString().replace(/[0-9]/, '')
     }
   },
   watch: {
     value (newValue) {
-      this.inputValue = newValue
+      this.inputValue = newValue.toString().replace(/[0-9]/, '')
     },
-    inputValue (newValue) {
-      this.$emit('input', newValue)
-    }
   },
   methods: {
     changeInputValue ($event) {
-      this.inputValue = $event.target.value
+      this.inputValue = $event.target.value.toString().replace(/[0-9]/, '')
+      this.$emit('input', this.inputValue.toString().replace(/[0-9]/, ''))
     },
     onFocuse ($event) {
       if (this.selectOnFocus) {
