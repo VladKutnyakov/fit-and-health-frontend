@@ -154,6 +154,7 @@ export default {
             'meal-plans',
             'recipes-book',
             'recipes-book-recipe',
+            'recipes-book-recipe-editor',
             'food-calorie-table',
           ],
           links: [

@@ -4,7 +4,7 @@
       <app-page-info
         :infoElements="pageInfoElements"
         btnTitle="Добавить рецепт"
-        @btnAction="toggleModal()"
+        @btnAction="openRecipeEditor()"
       />
 
       <div class="filters-and-results">
@@ -51,6 +51,11 @@ export default {
       ]
     }
   },
+  methods: {
+    openRecipeEditor () {
+      this.$router.push('/recipes-book/recipe-editor')
+    }
+  }
 }
 </script>
 

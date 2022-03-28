@@ -1,12 +1,22 @@
 <template>
-  <div class="recipe-editor-page">
-    recipe-editor page
-  </div>
+  <app-page>
+    recipe editor
+  </app-page>
 </template>
 
 <script>
+import AppPage from '@/components/basic/AppPage'
+
 export default {
-  layout: 'default'
+  name: 'RecipeEditor',
+  layout: 'default',
+  middleware: ['userAuth'],
+  async asyncData ({ store }) {
+    // await store.dispatch('recipes/fetchRecipes')
+  },
+  components: {
+    AppPage
+  },
 }
 </script>
 
