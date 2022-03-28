@@ -44,7 +44,7 @@ export default {
   },
   middleware: ['userAuth'],
   async asyncData ({ store }) {
-    await store.dispatch('profile/fetchProfileInfo')
+    // await store.dispatch('profile/fetchProfileInfo')
   },
   data () {
     return {
