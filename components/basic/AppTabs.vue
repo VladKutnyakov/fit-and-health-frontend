@@ -6,8 +6,12 @@
         :key="index"
         class="tab-list__item"
         :class="[{ 'tab-list__item--active': item.isActive }]"
+        @click="selectTab(item)"
       >
-        <p class="item__title">{{ item.title }}</p>
+        <p class="item__title">
+          <i v-if="item.icon" class="item__icon" :class="item.icon"></i>
+          {{ item.title }}
+        </p>
       </li>
 
       <li
@@ -41,6 +45,9 @@ export default {
     }
   },
   methods: {
+    selectTab (tab) {
+      this.$emit('selectTab', tab)
+    },
     addTab () {
       this.$emit('addTab')
     }
@@ -68,6 +75,9 @@ export default {
       border-top-right-radius: 6px;
       transition: $tr-02;
       cursor: pointer;
+      .item__icon {
+        margin-right: 10px;
+      }
       .item__title {
         padding: 10px 15px;
         transition: $tr-02;

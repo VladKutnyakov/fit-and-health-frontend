@@ -56,15 +56,7 @@
           <!-- <added-recipe /> -->
         </div>
       </div>
-
-      <!-- <div class="actions">
-        <app-button>Добавить прием пищи</app-button>
-        <app-button class="ml-10">Добавить продукт</app-button>
-        <app-button class="ml-auto" dangerBtn >Удалить прием пищи</app-button>
-      </div> -->
     </div>
-
-    <actions />
   </div>
 </template>
 
@@ -72,7 +64,7 @@
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 import AddedProduct from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedProduct'
-// import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedRecipe'
+import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedRecipe'
 import AppButton from '@/components/basic/AppButton'
 import Actions from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/Actions'
 
@@ -80,7 +72,7 @@ export default {
   components: {
     AppInputText,
     AddedProduct,
-    // AddedRecipe,
+    AddedRecipe,
     AppButton,
     Actions
   },
@@ -117,14 +109,14 @@ export default {
 .meal-part {
   flex: 1 1 auto;
   display: flex;
-  min-height: 700px;
+  height: 700px;
   border-top: 1px solid $dividerBorder;
   .settings-and-food {
     // border: 1px solid red;
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    margin: 10px 0;
     .settings {
       display: flex;
       .settings__element {

@@ -119,8 +119,8 @@ import AppInfo from '@/components/basic/AppInfo'
 import AppInputRadio from '@/components/basic/AppInputRadio'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
-import Product from '@/components/mealPlaner/Product'
 import AppButton from '@/components/basic/AppButton'
+import Product from '@/components/mealPlaner/modals/SearchRecipesAndProductsModal/Product'
 
 export default {
   components: {

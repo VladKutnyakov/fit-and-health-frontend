@@ -11,7 +11,7 @@
 import AppPage from '@/components/basic/AppPage'
 import MealPlan from '@/components/mealPlaner/MealPlan/index'
 import MealPlanerCalendar from '@/components/mealPlaner/MealPlanerCalendar'
-import SearchRecipesAndProductsModal from '@/components/mealPlaner/SearchRecipesAndProductsModal'
+import SearchRecipesAndProductsModal from '@/components/mealPlaner/modals/SearchRecipesAndProductsModal/index'
 
 export default {
   name: 'MealPlanerPage',
