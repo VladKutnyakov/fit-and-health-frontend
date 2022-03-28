@@ -4,10 +4,11 @@
       <div class="settings">
         <div class="settings__element">
           <p class="element__title">Время приема пищи:</p>
-          <app-input-text
+          <app-input-time
             :value="mealParts[selectedMealPart].mealTime"
             @input="setMealPartTime($event)"
           />
+          {{ mealParts[selectedMealPart].mealTime }}
         </div>
         <div class="settings__element">
           <p class="element__title">Название приема пищи:</p>
@@ -75,6 +76,7 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
+import AppInputTime from '@/components/basic/AppInputTime'
 import AddedProduct from '@/components/mealPlaner/MealPlan/MealParts/AddedProduct'
 import AddedRecipe from '@/components/mealPlaner/MealPlan/MealParts/AddedRecipe'
 import AppButton from '@/components/basic/AppButton'
@@ -82,6 +84,7 @@ import AppButton from '@/components/basic/AppButton'
 export default {
   components: {
     AppInputText,
+    AppInputTime,
     AddedProduct,
     AddedRecipe,
     AppButton
