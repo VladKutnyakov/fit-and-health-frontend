@@ -1,5 +1,5 @@
 <template>
-  <app-page pageTitle="Сохраненные рационы" :breadcrumbs="breadcrumbs">
+  <app-page>
     <div class="content">
       <page-info />
       <div class="filters-and-table">
@@ -24,24 +24,6 @@ export default {
     SortingFilters,
     SearchResults
   },
-  data () {
-    return {
-      breadcrumbs: [
-        {
-          title: 'Профиль',
-          icon: 'ti-home',
-          link: '/profile',
-          active: true,
-        },
-        {
-          title: 'Сохраненные рационы',
-          icon: 'ti-write',
-          link: '/meal-plans',
-          active: false,
-        },
-      ]
-    }
-  },
 }
 </script>
 
@@ -49,10 +31,12 @@ export default {
 @import '@/assets/styles/vars.scss';
 
 .content {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   .filters-and-table {
     display: flex;
+    align-items: flex-start;
   }
 }
 

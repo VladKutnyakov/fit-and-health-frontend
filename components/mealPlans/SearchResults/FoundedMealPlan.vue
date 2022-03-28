@@ -1,52 +1,47 @@
 <template>
   <nuxt-link
-    :to="`/meal-planer/meal-plans/${mealPlan.id}`"
-    class="found-meal-plan"
+    :to="`/recipes-book/${recipe.id}`"
+    class="found-recipe"
   >
 
     <img class="found-recipe__img" src="http://bientasty.ru/wp-content/uploads/2017/04/1491022672_maxresdefault.jpg" alt="">
-    <p class="found-recipe__title">5</p>
-    <p class="found-recipe__desc">5</p>
+    <p class="found-recipe__title">{{ recipe.title }}</p>
+    <p class="found-recipe__desc">{{ recipe.description }}</p>
 
     <div class="found-recipe__info">
       <div class="info__element">
         <i class="ti-timer element__icon"></i>
-        <p class="element__count">5 мин.</p>
+        <p class="element__count">{{ recipe.cookingTimes }} мин.</p>
       </div>
       <div class="info__element">
         <i class="ti-pie-chart element__icon"></i>
-        <p class="element__count">5 продуктов</p>
+        <p class="element__count">{{ recipe.recipeProducts.length }} продуктов</p>
       </div>
     </div>
 
     <div class="found-recipe__nutrients">
       <div class="nutrient">
         <p class="nutrient__text">Белки</p>
-        <p class="nutrient__value">1</p>
+        <p class="nutrient__value">{{ protein }}</p>
       </div>
       <div class="nutrient">
         <p class="nutrient__text">Жиры</p>
-        <p class="nutrient__value">2</p>
+        <p class="nutrient__value">{{ fats }}</p>
       </div>
       <div class="nutrient">
         <p class="nutrient__text">Углеводы</p>
-        <p class="nutrient__value">3</p>
+        <p class="nutrient__value">{{ carb }}</p>
       </div>
       <div class="nutrient">
         <p class="nutrient__text">Ккал</p>
-        <p class="nutrient__value">4</p>
+        <p class="nutrient__value">{{ kkal }}</p>
       </div>
     </div>
 
     <div class="found-recipe__cook-skill">
       <p class="cook-skill__text">Сложность приготовления</p>
-      <app-rating :rating="4" />
+      <app-rating :rating="recipe.cookingSkill" />
     </div>
-
-    <div class="found-recipe__favorite-mark">
-      <p class="ti-flag-alt favorite-mark__icon"></p>
-    </div>
-
   </nuxt-link>
 </template>
 
@@ -55,13 +50,45 @@ import AppRating from '@/components/basic/AppRating'
 
 export default {
   props: {
-    mealPlan: Object
+    recipe: Object
   },
   components: {
     AppRating
   },
   data () {
-    return {}
+    return {
+      recipeTitle: 'some-title'
+    }
+  },
+  computed: {
+    protein () {
+      let amount = 0
+      for (let i = 0; i < this.recipe.recipeProducts.length; i++) {
+        amount += this.recipe.recipeProducts[i].product.protein / 100 * this.recipe.recipeProducts[i].weightInRecipe
+      }
+      return Math.round(amount * 100) / 100
+    },
+    fats () {
+      let amount = 0
+      for (let i = 0; i < this.recipe.recipeProducts.length; i++) {
+        amount += this.recipe.recipeProducts[i].product.fats / 100 * this.recipe.recipeProducts[i].weightInRecipe
+      }
+      return Math.round(amount * 100) / 100
+    },
+    carb () {
+      let amount = 0
+      for (let i = 0; i < this.recipe.recipeProducts.length; i++) {
+        amount += this.recipe.recipeProducts[i].product.carb / 100 * this.recipe.recipeProducts[i].weightInRecipe
+      }
+      return Math.round(amount * 100) / 100
+    },
+    kkal () {
+      let amount = 0
+      for (let i = 0; i < this.recipe.recipeProducts.length; i++) {
+        amount += this.recipe.recipeProducts[i].product.kkal / 100 * this.recipe.recipeProducts[i].weightInRecipe
+      }
+      return Math.round(amount * 100) / 100
+    }
   }
 }
 </script>
@@ -69,7 +96,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/vars.scss';
 
-.found-meal-plan {
+.found-recipe {
   // border: 1px solid red;
   position: relative;
   display: flex;
@@ -78,34 +105,18 @@ export default {
   margin-right: 20px;
   margin-bottom: 20px;
   text-decoration: none;
-  color: $black;
   padding: 10px;
   background: $white;
-  border: 1px solid $blockBorder;
+  box-shadow: $cardShadow;
   border-radius: 6px;
   transition: $tr-02;
   cursor: pointer;
-  .found-recipe__favorite-mark {
-    position: absolute;
-    top: 0;
-    left: 30px;
-    padding: 20px 10px;
-    background: $green;
-    box-shadow: 0px 2px 4px 2px rgba(0,0,0,.4);
-    border: 2px solid $white;
-    border-top: none;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    .favorite-mark__icon {
-      color: $white;
-      transform: scaleX(-1);
-    }
-  }
   .found-recipe__img {
     border-radius: 6px;
   }
   .found-recipe__title {
     margin: 15px 20px 10px 20px;
+    text-align: center;
     font-weight: 500;
   }
   .found-recipe__desc {
@@ -119,12 +130,12 @@ export default {
     justify-content: space-around;
     padding: 10px 0;
     margin-top: auto;
-    border-top: 1px dashed $blockBorder;
+    border-top: 1px solid $dividerBorder;
     .info__element {
       display: flex;
       flex-basis: 50%;
       justify-content: center;
-      border-right: 1px solid $blockBorder;
+      border-right: 1px solid $dividerBorder;
       .element__icon {
         margin-right: 10px;
       }
@@ -142,7 +153,7 @@ export default {
     align-items: center;
     justify-content: space-around;
     padding: 10px;
-    border-top: 1px dashed $blockBorder;
+    border-top: 1px solid $dividerBorder;
     .nutrient {
       text-align: center;
       .nutrient__text {
@@ -151,7 +162,7 @@ export default {
         font-weight: 500;
       }
       .nutrient__value {
-        color: $green;
+        color: $primary;
         font-size: 18px;
         font-weight: 500;
       }
@@ -162,7 +173,7 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 10px 10px 0 10px;
-    border-top: 1px dashed $blockBorder;
+    border-top: 1px solid $dividerBorder;
     .cook-skill__text {
       font-size: 14px;
       font-weight: 500;
@@ -170,10 +181,28 @@ export default {
   }
 }
 .found-recipe:hover {
-  // border: 1px solid $green;
-  // margin-top: -10px;
-  // margin-bottom: 10px;
   box-shadow: $boxShadow;
+}
+
+body.dark {
+  .found-recipe {
+    background: $cardBackgroundDarkBG;
+    .found-recipe__info {
+      border-top: 1px solid $dividerBorderDarkBG;
+      .info__element {
+        border-right: 1px solid $dividerBorderDarkBG;
+      }
+      .info__element:last-child {
+        border: none;
+      }
+    }
+    .found-recipe__nutrients {
+      border-top: 1px solid $dividerBorderDarkBG;
+    }
+    .found-recipe__cook-skill {
+      border-top: 1px solid $dividerBorderDarkBG;
+    }
+  }
 }
 
 </style>

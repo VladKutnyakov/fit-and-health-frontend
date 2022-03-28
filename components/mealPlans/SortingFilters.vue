@@ -1,10 +1,8 @@
 <template>
   <div class="sorting-filters">
-
     <app-block-title>Фильтры</app-block-title>
 
-    <div class="sorting-filters__elements">
-
+    <div class="sorting-filters__list">
       <filter-radio-group
         :filterGroupOpened="true"
         headerTitle="Сортировать по ..."
@@ -33,12 +31,12 @@
       >
         <template v-slot:btnWrapper>
           <app-button size14px uppercase>Очистить</app-button>
-          <app-button size14px uppercase right>Выбрать все</app-button>
+          <app-button size14px uppercase>Выбрать все</app-button>
         </template>
       </filter-checkbox-group>
-
     </div>
 
+    <app-button class="mr-10 mb-10 ml-10" size14px fillArea >Применить фильтры</app-button>
   </div>
 </template>
 
@@ -68,7 +66,8 @@ export default {
       productType: [
         'Все продукты',
         'Мои продукты',
-        'Избранное'
+        'Закрепленные',
+        'Избранные'
       ]
     }
   },
@@ -111,9 +110,24 @@ export default {
 
 .sorting-filters {
   // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
   width: 400px;
   min-width: 400px;
   max-width: 400px;
+  background: $white;
+  box-shadow: $cardShadow;
+  border-radius: 6px;
+  transition: $tr-02;
+  .sorting-filters__list {
+    margin: 10px;
+  }
+}
+
+body.dark {
+  .sorting-filters {
+    background: $cardBackgroundDarkBG;
+  }
 }
 
 </style>
