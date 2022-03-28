@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import maskFormatter from '@/utils/maskFormatter'
-
 export default {
   props: {
     value: [String, Number],
@@ -41,16 +39,6 @@ export default {
   watch: {
     value (newValue) {
       this.inputValue = newValue
-
-      // if (!/^-?\d*\d*$/.test(newValue)) {
-      //   this.InteralValue = prevValue
-      //   return
-      // }
-      // if (prevValue) {
-      //   this.InteralValue = newValue.toString().replace(/^0+/, '')
-      // } else {
-      //   this.InteralValue = newValue
-      // }
     },
     inputValue (newValue) {
       this.$emit('input', newValue)
@@ -58,9 +46,6 @@ export default {
   },
   methods: {
     changeInputValue ($event) {
-      // console.log($event.target.value)
-      // console.log(maskFormatter('xx : xx : xx', 'x', $event.target.value))
-
       this.inputValue = $event.target.value
     },
     onFocuse ($event) {
