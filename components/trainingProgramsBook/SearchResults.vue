@@ -120,9 +120,11 @@ body.dark {
   .search-results {
     .search-training-programs {
       background: $cardBackgroundDarkBG;
-      .filter-by {
-        .filter-by__divider {
-          color: rgba(214,220,225,.2);
+      .search-training-programs__filters {
+        .filter-by {
+          .filter-by__divider {
+            color: $dividerBorderDarkBG;
+          }
         }
       }
     }

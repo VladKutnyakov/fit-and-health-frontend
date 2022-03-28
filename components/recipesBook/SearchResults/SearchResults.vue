@@ -103,10 +103,24 @@ export default {
   }
 
   .founded-recipes {
-    // border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
     margin-top: 40px;
+  }
+}
+
+body.dark {
+  .search-results {
+    .search-recipes {
+      background: $cardBackgroundDarkBG;
+      .search-recipes__filters {
+        .filter-by {
+          .filter-by__divider {
+            color: $dividerBorderDarkBG;
+          }
+        }
+      }
+    }
   }
 }
 
