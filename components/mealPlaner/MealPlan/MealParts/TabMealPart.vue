@@ -19,9 +19,9 @@
       </div>
 
       <div class="products-and-recipes">
-        <p class="products-and-recipes__block-title">Добавленные продкты и рецепты</p>
+        <p class="products-and-recipes__block-title">Добавленные продкты и рецепты:</p>
         <div class="products-and-recipes__content">
-          <div class="column-headers">
+          <div class="table-headers">
             <div class="item__element">
               <i class="ti-exchange-vertical element__icon"></i>
             </div>
@@ -57,6 +57,18 @@
         </div>
       </div>
     </div>
+
+    <div class="meal-part__actions">
+      <app-button
+        @click="setSearchRecipesAndProductsModalActive()"
+      >Добавить продукт или рецепт</app-button>
+
+      <app-button
+        class="ml-auto"
+        dangerBtn
+        @click="removeSelectedMealPart()"
+      >Удалить прием пищи</app-button>
+    </div>
   </div>
 </template>
 
@@ -66,17 +78,15 @@ import AppInputText from '@/components/basic/AppInputText'
 import AddedProduct from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedProduct'
 import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedRecipe'
 import AppButton from '@/components/basic/AppButton'
-import Actions from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/Actions'
 
 export default {
   components: {
     AppInputText,
     AddedProduct,
     AddedRecipe,
-    AppButton,
-    Actions
+    AppButton
   },
-  data() {
+  data () {
     return {
       filterByMarks: ['Все совпадения', 'Добавленные мной', 'Избранное'],
       filterByMarksChecked: 'Все совпадения',
@@ -98,6 +108,8 @@ export default {
     ...mapMutations({
       setMealPartTime: 'mealPlaner/setMealPartTime',
       setMealPartTitle: 'mealPlaner/setMealPartTitle',
+      setSearchRecipesAndProductsModalActive: 'mealPlaner/setSearchRecipesAndProductsModalActive',
+      removeSelectedMealPart: 'mealPlaner/removeSelectedMealPart'
     })
   }
 }
@@ -109,7 +121,8 @@ export default {
 .meal-part {
   flex: 1 1 auto;
   display: flex;
-  height: 700px;
+  flex-direction: column;
+  // height: 700px;
   border-top: 1px solid $dividerBorder;
   .settings-and-food {
     // border: 1px solid red;
@@ -151,10 +164,54 @@ export default {
         position: relative;
         flex: 1 1 auto;
         padding: 10px;
+        height: 600px;
         background: rgba(0, 0, 0, 0.025);
         box-shadow: inset 0 0 5px 0px rgba(0, 0, 0, 0.25);
         border-radius: 6px;
         overflow: hidden;
+        .table-headers {
+          display: flex;
+          margin-bottom: 5px;
+          padding: 10px 0px;
+          background: $primary;
+          border: 1px solid $primary;
+          border-radius: 6px;
+          .item__element {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10px;
+            width: 100%;
+            max-width: 150px;
+            text-align: center;
+            border-right: 1px solid $white;
+            .element__title {
+              text-transform: uppercase;
+              color: $white;
+              font-size: 12px;
+              font-weight: 500;
+            }
+            .element__icon {
+              color: $white;
+              font-size: 14px;
+            }
+          }
+          .item__element:nth-child(1) {
+            max-width: 50px;
+            cursor: pointer;
+          }
+          .item__element:nth-child(2) {
+            min-width: 250px;
+            max-width: 100%;
+          }
+          .item__element:last-child {
+            width: 50px;
+            min-width: 50px;
+            max-width: 50px;
+            border: none;
+            cursor: pointer;
+          }
+        }
       }
     }
     .actions {
@@ -162,49 +219,21 @@ export default {
       margin-top: 10px;
     }
   }
+  .meal-part__actions {
+    display: flex;
+    margin-bottom: 10px;
+  }
 }
 
-.column-headers {
-  display: flex;
-  margin-bottom: 5px;
-  padding: 10px 0px;
-  background: $primary;
-  border: 1px solid $primary;
-  border-radius: 6px;
-  .item__element {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 10px;
-    width: 100%;
-    max-width: 150px;
-    text-align: center;
-    border-right: 1px solid $white;
-    .element__title {
-      text-transform: uppercase;
-      color: $white;
-      font-size: 12px;
-      font-weight: 500;
+body.dark {
+  .meal-part {
+    .settings-and-food {
+      .products-and-recipes {
+        .products-and-recipes__content {
+          background: $black15;
+        }
+      }
     }
-    .element__icon {
-      color: $white;
-      font-size: 14px;
-    }
-  }
-  .item__element:nth-child(1) {
-    max-width: 50px;
-    cursor: pointer;
-  }
-  .item__element:nth-child(2) {
-    min-width: 250px;
-    max-width: 100%;
-  }
-  .item__element:last-child {
-    width: 50px;
-    min-width: 50px;
-    max-width: 50px;
-    border: none;
-    cursor: pointer;
   }
 }
 

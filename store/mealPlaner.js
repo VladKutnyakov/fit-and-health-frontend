@@ -172,7 +172,7 @@ export const mutations = {
     state.selectedMealPart = index
 
     // Скрываем модальное окно со списком продуктов и рецептов для добавления в прием пищи
-    state.searchRecipesAndProductsModalActive = false
+    // state.searchRecipesAndProductsModalActive = false
   },
   addNewMealPart (state) {
     const emptyMealPart = {

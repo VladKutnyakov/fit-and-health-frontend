@@ -6,7 +6,7 @@
         :key="index"
         class="tab-list__item"
         :class="[{ 'tab-list__item--active': item.isActive }]"
-        @click="selectTab(item)"
+        @click="selectTab(index)"
       >
         <p class="item__title">
           <i v-if="item.icon" class="item__icon" :class="item.icon"></i>
