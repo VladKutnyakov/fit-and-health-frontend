@@ -44,6 +44,7 @@ export default {
   methods: {
     changeInputValue ($event) {
       this.inputValue = $event.target.value.toString().replace(/[0-9]/, '')
+      $event.target.value = $event.target.value.toString().replace(/[0-9]/, '')
       this.$emit('input', this.inputValue.toString().replace(/[0-9]/, ''))
     },
     onFocuse ($event) {
