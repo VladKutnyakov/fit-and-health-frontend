@@ -1,10 +1,10 @@
 <template>
   <div ref="rating" class="rating">
-    <i class="ti-crown rating__star" :class="[{'green': activeStars[0]}]"></i>
-    <i class="ti-crown rating__star" :class="[{'green': activeStars[1]}]"></i>
-    <i class="ti-crown rating__star" :class="[{'green': activeStars[2]}]"></i>
-    <i class="ti-crown rating__star" :class="[{'green': activeStars[3]}]"></i>
-    <i class="ti-crown rating__star" :class="[{'green': activeStars[4]}]"></i>
+    <i class="ti-crown rating__star" :class="[{'primary': activeStars[0]}]"></i>
+    <i class="ti-crown rating__star" :class="[{'primary': activeStars[1]}]"></i>
+    <i class="ti-crown rating__star" :class="[{'primary': activeStars[2]}]"></i>
+    <i class="ti-crown rating__star" :class="[{'primary': activeStars[3]}]"></i>
+    <i class="ti-crown rating__star" :class="[{'primary': activeStars[4]}]"></i>
   </div>
 </template>
 
@@ -38,11 +38,24 @@ export default {
 .rating {
   // border: 1px solid red;
   .rating__star {
-    color: $gray;
+    color: $black20;
     font-size: 14px;
+    transition: $tr-02;
   }
-  .green {
-    color: $green;
+  .primary {
+    color: $primary;
+  }
+}
+
+body.dark {
+  .rating {
+    // border: 1px solid red;
+    .rating__star {
+      color: $white20;
+    }
+    .primary {
+      color: $primary;
+    }
   }
 }
 
