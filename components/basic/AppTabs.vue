@@ -5,8 +5,19 @@
         v-for="(item, index) in tabList"
         :key="index"
         class="tab-list__item"
+        :class="[{ 'tab-list__item--active': item.isActive }]"
       >
-        <p>{{ item.title }}</p>
+        <p class="item__title">{{ item.title }}</p>
+      </li>
+
+      <li
+        v-if="canBeAddTabs"
+        class="tab-list__item"
+        @click="addTab()"
+      >
+        <p class="item__title">
+          <i class="ti-plus"></i>
+        </p>
       </li>
     </ul>
 
@@ -20,12 +31,18 @@
 export default {
   props: {
     tabList: Array,
+    canBeAddTabs: Boolean,
   },
   computed: {
     currentTabComponent () {
       const activeTab = this.tabList.find(element => element.isActive)
 
       return activeTab ? activeTab.component : null
+    }
+  },
+  methods: {
+    addTab () {
+      this.$emit('addTab')
     }
   }
 }
@@ -34,6 +51,73 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/vars.scss';
 
-.app-tabs {}
+.app-tabs {
+  // border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  .app-tabs__tab-list {
+    display: flex;
+    padding: 0 10px;
+    border-bottom: 1px solid $dividerBorder;
+    .tab-list__item {
+      display: flex;
+      margin-right: 5px;
+      border: 1px solid $dividerBorder;
+      border-bottom: none;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      transition: $tr-02;
+      cursor: pointer;
+      .item__title {
+        padding: 10px 15px;
+        transition: $tr-02;
+      }
+      .item__title:hover {
+        color: $primary;
+      }
+    }
+    .tab-list__item:hover {
+      background: $primaryLight5;
+      border: 1px solid $primaryLight5;
+      border-bottom: none;
+    }
+    .tab-list__item--active {
+      background: $primary;
+      border: 1px solid $primary;
+      border-bottom: none;
+      .item__title {
+        color: $white;
+      }
+      .item__title:hover {
+        color: $white;
+      }
+    }
+    .tab-list__item--active:hover {
+      background: $primary;
+      border: 1px solid $primary;
+      border-bottom: none;
+    }
+  }
+}
+
+body.dark {
+  .app-tabs {
+    .app-tabs__tab-list {
+      border-bottom: 1px solid $dividerBorderDarkBG;
+      .tab-list__item {
+        border: 1px solid $dividerBorderDarkBG;
+        border-bottom: none;
+      }
+      .tab-list__item:hover {
+        background: $primaryDarkHover;
+      }
+      .tab-list__item--active:hover {
+        background: $primary;
+        border: 1px solid $primary;
+        border-bottom: none;
+      }
+    }
+  }
+}
 
 </style>

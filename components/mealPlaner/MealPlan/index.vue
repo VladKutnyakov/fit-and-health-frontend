@@ -1,26 +1,53 @@
 <template>
   <div class="meal-plan">
     <meal-plan-overview />
-    <meal-parts-constructor />
+    <!-- <meal-parts-constructor /> -->
 
-    <div>
+    <app-tabs
+      class="ml-10 mr-10"
+      :tabList="tabList"
+      canBeAddTabs
+      @addTab="addMealPart()"
+    />
+
+    <!-- <div>
       <app-button>Сохранить рацион</app-button>
       <app-button>Сохранить в книгу рационов</app-button>
       <app-button class="ml-auto" dangerBtn >Очистить данные о рационе</app-button>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import MealPlanOverview from '@/components/mealPlaner/MealPlan/MealPlanOverview/index'
-import MealPartsConstructor from '@/components/mealPlaner/MealPlan/MealPartsConstructor/index'
+// import MealPartsConstructor from '@/components/mealPlaner/MealPlan/MealPartsConstructor/index'
+import AppTabs from '@/components/basic/AppTabs'
 import AppButton from '@/components/basic/AppButton'
+import MealPartTab from '@/components/mealPlaner/MealPlan/MealPartTab'
 
 export default {
   components: {
     MealPlanOverview,
-    MealPartsConstructor,
+    // MealPartsConstructor,
+    AppTabs,
     AppButton
+  },
+  data () {
+    return {
+      tabList: [
+        {
+          isActive: true,
+          title: 'Tab 1',
+          icon: 'ti-more',
+          component: MealPartTab,
+        }
+      ]
+    }
+  },
+  methods: {
+    addMealPart () {
+      console.log('Добавить прием пищи')
+    }
   }
 }
 </script>
