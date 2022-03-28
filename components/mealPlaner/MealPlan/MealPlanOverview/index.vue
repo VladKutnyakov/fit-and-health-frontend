@@ -19,8 +19,6 @@
 
         <nutrients-calculations />
       </div>
-
-      <!-- <actions /> -->
     </div>
   </div>
 </template>
@@ -32,7 +30,6 @@ import NutrientsSettings from '@/components/mealPlaner/MealPlan/MealPlanOverview
 import OverviewDescription from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewDescription'
 import AddedMarks from '@/components/mealPlaner/MealPlan/MealPlanOverview/AddedMarks'
 import NutrientsCalculations from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsCalculations'
-import Actions from '@/components/mealPlaner/MealPlan/MealPlanOverview/Actions'
 
 export default {
   components: {
@@ -41,7 +38,6 @@ export default {
     OverviewDescription,
     AddedMarks,
     NutrientsCalculations,
-    Actions
   },
   computed: {
     ...mapState({
