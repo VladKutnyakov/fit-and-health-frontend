@@ -15,6 +15,7 @@ export const state = () => ({
     share: null,
     mealParts: [
       {
+        id: null,
         title: 'Затрак',
         mealTime: '07:00',
         recipes: [],
@@ -170,9 +171,6 @@ export const mutations = {
   },
   setSelectedMealPart (state, index) {
     state.selectedMealPart = index
-
-    // Скрываем модальное окно со списком продуктов и рецептов для добавления в прием пищи
-    // state.searchRecipesAndProductsModalActive = false
   },
   addNewMealPart (state) {
     const emptyMealPart = {

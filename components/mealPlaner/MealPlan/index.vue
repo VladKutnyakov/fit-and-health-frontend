@@ -9,32 +9,19 @@
       @selectTab="selectMealPart($event)"
       @addTab="addMealPart()"
     />
-
-    <!-- <div>
-      <app-button>Сохранить рацион</app-button>
-      <app-button>Сохранить в книгу рационов</app-button>
-      <app-button class="ml-auto" dangerBtn >Очистить данные о рационе</app-button>
-    </div> -->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import MealPlanOverview from '@/components/mealPlaner/MealPlan/MealPlanOverview/index'
-// import MealPartsConstructor from '@/components/mealPlaner/MealPlan/MealPartsConstructor/index'
 import AppTabs from '@/components/basic/AppTabs'
-import AppButton from '@/components/basic/AppButton'
 import TabMealPart from '@/components/mealPlaner/MealPlan/MealParts/TabMealPart'
 
 export default {
   components: {
     MealPlanOverview,
-    // MealPartsConstructor,
-    AppTabs,
-    AppButton
-  },
-  data () {
-    return {}
+    AppTabs
   },
   computed: {
     ...mapState({

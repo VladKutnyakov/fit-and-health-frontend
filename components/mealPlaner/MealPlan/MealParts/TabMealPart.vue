@@ -75,8 +75,8 @@
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
-import AddedProduct from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedProduct'
-import AddedRecipe from '@/components/mealPlaner/MealPlan/MealPartsConstructor/MealPartEditor/AddedRecipe'
+import AddedProduct from '@/components/mealPlaner/MealPlan/MealParts/AddedProduct'
+import AddedRecipe from '@/components/mealPlaner/MealPlan/MealParts/AddedRecipe'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
