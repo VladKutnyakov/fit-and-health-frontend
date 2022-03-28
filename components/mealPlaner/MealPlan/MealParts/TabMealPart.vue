@@ -4,11 +4,15 @@
       <div class="settings">
         <div class="settings__element">
           <p class="element__title">Время приема пищи:</p>
-          <app-input-time
+          <app-input-text
             :value="mealParts[selectedMealPart].mealTime"
             @input="setMealPartTime($event)"
           />
-          {{ mealParts[selectedMealPart].mealTime }}
+          <!-- <app-input-time
+            :value="mealParts[selectedMealPart].mealTime"
+            @input="setMealPartTime($event)"
+          />
+          {{ mealParts[selectedMealPart].mealTime }} -->
         </div>
         <div class="settings__element">
           <p class="element__title">Название приема пищи:</p>
