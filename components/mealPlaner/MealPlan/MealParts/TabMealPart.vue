@@ -122,8 +122,6 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  // height: 700px;
-  border-top: 1px solid $dividerBorder;
   .settings-and-food {
     // border: 1px solid red;
     flex: 1 1 auto;

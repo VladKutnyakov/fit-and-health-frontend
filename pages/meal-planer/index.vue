@@ -1,7 +1,7 @@
 <template>
   <app-page pageTitle="Дневник питания" :breadcrumbs="breadcrumbs">
     <meal-plan />
-    <meal-planer-calendar />
+    <additional-info />
 
     <search-recipes-and-products-modal />
   </app-page>
@@ -10,7 +10,7 @@
 <script>
 import AppPage from '@/components/basic/AppPage'
 import MealPlan from '@/components/mealPlaner/MealPlan/index'
-import MealPlanerCalendar from '@/components/mealPlaner/MealPlanerCalendar'
+import AdditionalInfo from '@/components/mealPlaner/AdditionalInfo/index'
 import SearchRecipesAndProductsModal from '@/components/mealPlaner/modals/SearchRecipesAndProductsModal/index'
 
 export default {
@@ -47,7 +47,7 @@ export default {
   components: {
     AppPage,
     MealPlan,
-    MealPlanerCalendar,
+    AdditionalInfo,
     SearchRecipesAndProductsModal,
   },
   async asyncData ({ store, route }) {

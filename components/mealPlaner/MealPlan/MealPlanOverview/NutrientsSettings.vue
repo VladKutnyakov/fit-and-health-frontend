@@ -131,7 +131,7 @@ export default {
 .nutrients-settings {
   // border: 1px solid red;
   flex: 1 1 auto;
-  margin: 10px;
+  margin: 10px 0 10px 10px;
   width: 100%;
   min-width: 300px;
   max-width: 300px;

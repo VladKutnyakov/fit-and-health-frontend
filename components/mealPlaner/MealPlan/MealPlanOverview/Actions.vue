@@ -115,6 +115,7 @@ export default {
   flex-direction: column;
   padding: 10px;
   // background: $hiddenBlockBG;
+  border-left: 1px solid $dividerBorder;
   .action-btn {
     display: flex;
     align-items: center;
