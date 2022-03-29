@@ -1,10 +1,17 @@
 import { generateForm, setFormFieldsValue, setFormFieldValue, clearForm } from '@/utils/formManager'
 
 export const state = () => ({
-  trainingProgram: generateForm({
-    program: null,
-    day: null,
-    trainingProgramDays: [],
+  trainingProgramForm: generateForm({
+    trainingProgram: null,
+    previewImage: null,
+    trainingProgramAccent: {
+      power: null,
+      endurance: null,
+      flexibility: null,
+      cardio: null
+    },
+    trainingDay: null,
+    trainingProgramDaysList: []
   }),
   trainingDay: generateForm({
     id: null,
@@ -12,72 +19,72 @@ export const state = () => ({
     trainingType: null,
     comment: null,
     trainingProgramDayExercises: [
-      {
-        isStarted: true,
-        exercise: {
-          id: 1,
-          title: "Отжимания"
-        },
-        approaches: [
-          {
-            isActive: true,
-            title: 'Подход 1',
-            repeats: 10,
-            additionalWeight: 15,
-            implementationTime: null,
-            restTime: null,
-          },
-          {
-            isActive: false,
-            title: 'Подход 2',
-            repeats: 8,
-            additionalWeight: 15,
-            implementationTime: null,
-            restTime: null,
-          }
-        ]
-      },
-      {
-        isStarted: false,
-        exercise: {
-          id: 1,
-          title: "Подтягивания"
-        },
-        approaches: [
-          {
-            isActive: false,
-            title: 'Подход 1',
-            repeats: 10,
-            additionalWeight: 15,
-            implementationTime: null,
-            restTime: null,
-          },
-          {
-            isActive: false,
-            title: 'Подход 2',
-            repeats: 8,
-            additionalWeight: 15,
-            implementationTime: null,
-            restTime: null,
-          },
-          {
-            isActive: false,
-            title: 'Подход 3',
-            repeats: 10,
-            additionalWeight: 15,
-            implementationTime: null,
-            restTime: null,
-          },
-          {
-            isActive: false,
-            title: 'Подход 4',
-            repeats: 8,
-            additionalWeight: 15,
-            implementationTime: null,
-            restTime: null,
-          }
-        ]
-      },
+      // {
+      //   isStarted: true,
+      //   exercise: {
+      //     id: 1,
+      //     title: "Отжимания"
+      //   },
+      //   approaches: [
+      //     {
+      //       isActive: true,
+      //       title: 'Подход 1',
+      //       repeats: 10,
+      //       additionalWeight: 15,
+      //       implementationTime: null,
+      //       restTime: null,
+      //     },
+      //     {
+      //       isActive: false,
+      //       title: 'Подход 2',
+      //       repeats: 8,
+      //       additionalWeight: 15,
+      //       implementationTime: null,
+      //       restTime: null,
+      //     }
+      //   ]
+      // },
+      // {
+      //   isStarted: false,
+      //   exercise: {
+      //     id: 1,
+      //     title: "Подтягивания"
+      //   },
+      //   approaches: [
+      //     {
+      //       isActive: false,
+      //       title: 'Подход 1',
+      //       repeats: 10,
+      //       additionalWeight: 15,
+      //       implementationTime: null,
+      //       restTime: null,
+      //     },
+      //     {
+      //       isActive: false,
+      //       title: 'Подход 2',
+      //       repeats: 8,
+      //       additionalWeight: 15,
+      //       implementationTime: null,
+      //       restTime: null,
+      //     },
+      //     {
+      //       isActive: false,
+      //       title: 'Подход 3',
+      //       repeats: 10,
+      //       additionalWeight: 15,
+      //       implementationTime: null,
+      //       restTime: null,
+      //     },
+      //     {
+      //       isActive: false,
+      //       title: 'Подход 4',
+      //       repeats: 8,
+      //       additionalWeight: 15,
+      //       implementationTime: null,
+      //       restTime: null,
+      //     }
+      //   ]
+      // },
     ]
   }),
   trainingProgramsList: [],
@@ -88,13 +95,13 @@ export const getters = {}
 
 export const mutations = {
   setTrainingProgramFormFieldsValue (state, payload) {
-    setFormFieldsValue(state.trainingProgram, payload)
+    setFormFieldsValue(state.trainingProgramForm, payload)
   },
   setTrainingProgramFormFieldValue (state, ctx) {
-    setFormFieldValue(state.trainingProgram, ctx)
+    setFormFieldValue(state.trainingProgramForm, ctx)
   },
   clearTrainingProgramForm (state) {
-    clearForm(state.trainingProgram)
+    clearForm(state.trainingProgramForm)
   },
 
   setTrainingDayFormFieldsValue (state, payload) {
@@ -156,7 +163,7 @@ export const actions = {
     }
   },
 
-  async fetchTrainingProgramsList ({ commit }, query ) {
+  async fetchTrainingProgramsList ({ commit } ) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-programs`)
 

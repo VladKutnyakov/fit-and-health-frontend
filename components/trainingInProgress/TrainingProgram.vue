@@ -4,25 +4,53 @@
     <div class="training-program__fields">
       <p class="field-title">Программа тренировок:</p>
       <app-picker
-        :value="trainingProgram.fields.program"
+        :value="trainingProgramForm.fields.trainingProgram"
         @openModal="openSelectTrainingProgramModal()"
         @clear="setTrainingProgram($event)"
       />
 
       <div class="preview-image-and-intensity">
-        <img class="preview-image" src="https://cdn.imgbb.ru/community/7/74658/201602/2e5bbfb866325797fc99c79021a9b829.jpg" alt="">
+        <img
+          v-if="trainingProgramForm.fields.previewImage"
+          class="preview-image"
+          :src="trainingProgramForm.fields.previewImage"
+          alt=""
+        >
+        <div class="preview-image--empty">
+          <i class="ti-image icon"></i>
+        </div>
+
         <div class="training-day__accent">
-          <div class="accent" title="Сила">10</div>
-          <div class="accent" title="Выносливость">40</div>
-          <div class="accent" title="Кардио">30</div>
-          <div class="accent" title="Гибкость">20</div>
+          <div
+            class="accent accent--power"
+            :style="{ height: `${trainingProgramForm.fields.trainingProgramAccent.power}%`}"
+            title="Сила"
+          >{{ trainingProgramForm.fields.trainingProgramAccent.power }}</div>
+
+          <div
+            class="accent accent--endurance"
+            :style="{ height: `${trainingProgramForm.fields.trainingProgramAccent.endurance}%`}"
+            title="Выносливость"
+          >{{ trainingProgramForm.fields.trainingProgramAccent.endurance }}</div>
+
+          <div
+            class="accent accent--flexibility"
+            :style="{ height: `${trainingProgramForm.fields.trainingProgramAccent.flexibility}%`}"
+            title="Кардио"
+          >{{ trainingProgramForm.fields.trainingProgramAccent.flexibility }}</div>
+
+          <div
+            class="accent accent--cardio"
+            :style="{ height: `${trainingProgramForm.fields.trainingProgramAccent.cardio}%`}"
+            title="Гибкость"
+          >{{ trainingProgramForm.fields.trainingProgramAccent.cardio }}</div>
         </div>
       </div>
 
       <p class="field-title">Тренировочный день:</p>
       <app-select
-        :value="trainingProgram.fields.day"
-        :selectOptionsList="trainingProgram.fields.trainingProgramDays"
+        :value="trainingProgramForm.fields.trainingDay"
+        :selectOptionsList="trainingProgramForm.fields.trainingProgramDaysList"
         @select="setTrainingDay($event)"
         @clear="setTrainingDay($event)"
       />
@@ -52,7 +80,7 @@ export default {
   },
   computed: {
     ...mapState({
-      trainingProgram: state => state.trainingProcess.trainingProgram,
+      trainingProgramForm: state => state.trainingProcess.trainingProgramForm,
       trainingDay: state => state.trainingProcess.trainingDay,
     })
   },
@@ -73,11 +101,11 @@ export default {
     },
     setTrainingDay($event) {
       if ($event) {
-        this.setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
+        this.setTrainingProgramFormFieldValue({field: 'trainingDay', newValue: $event})
         this.$router.push(`/training-diary/training-in-progress?trainingProgram=${this.$route.query?.trainingProgram}&trainingDay=${$event?.id}`)
         this.$store.dispatch('trainingProcess/fetchTrainingDay', { trainingDay: $event.id })
       } else {
-        this.setTrainingProgramFormFieldValue({field: 'day', newValue: $event})
+        this.setTrainingProgramFormFieldValue({field: 'trainingDay', newValue: $event})
         this.$router.push(`/training-diary/training-in-progress?trainingProgram=${this.$route.query?.trainingProgram || ''}`)
         this.clearTrainingDayForm()
       }
@@ -117,6 +145,20 @@ export default {
         width: 100%;
         border-radius: 6px;
       }
+      .preview-image--empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 10px 10px 0;
+        width: 100%;
+        height: 450px;
+        background: $black05;
+        border-radius: 6px;
+        .icon {
+          color: $black20;
+          font-size: 80px;
+        }
+      }
       .training-day__accent {
         display: flex;
         flex-direction: column;
@@ -129,29 +171,25 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
-          color: $white;
+          color: $black05;
           font-size: 12px;
           font-weight: 500;
           cursor: pointer;
         }
-        .accent:nth-child(1) {
+        .accent--power {
           width: 100%;
-          height: 10%;
           background: $danger;
         }
-        .accent:nth-child(2) {
+        .accent--endurance {
           width: 100%;
-          height: 40%;
           background: $warning;
         }
-        .accent:nth-child(3) {
+        .accent--flexibility {
           width: 100%;
-          height: 30%;
           background: $success;
         }
-        .accent:nth-child(4) {
+        .accent--cardio {
           width: 100%;
-          height: 20%;
           background: $info;
         }
       }

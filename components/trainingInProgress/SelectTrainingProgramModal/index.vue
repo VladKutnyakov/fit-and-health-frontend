@@ -64,8 +64,8 @@ export default {
     }),
     selectTrainingProgram ($event) {
       // console.log($event)
-      this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', { field: 'program', newValue: {id: $event.id, title: $event.title} })
-      this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', { field: 'day', newValue: null })
+      this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', { field: 'trainingProgram', newValue: {id: $event.id, title: $event.title} })
+      this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', { field: 'trainingDay', newValue: null })
 
       this.$router.push(`/training-diary/training-in-progress?trainingProgram=${$event?.id || ''}`)
 
