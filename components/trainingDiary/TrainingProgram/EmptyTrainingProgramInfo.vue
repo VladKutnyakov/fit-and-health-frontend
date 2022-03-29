@@ -5,7 +5,7 @@
     </div>
 
     <div class="action-cards">
-      <router-link to="/training-diary/training-in-progress" class="action-card">
+      <router-link to="/training-diary/training-process" class="action-card">
         <i class="ti-plus action-card__icon"></i>
         <p class="action-card__title">Добавить тренировку</p>
       </router-link>

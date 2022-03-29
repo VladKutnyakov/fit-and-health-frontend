@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import Exercise from '@/components/trainingInProgress/TrainingProcess/Exercises/Exercise'
+import Exercise from '@/components/trainingProcess/TrainingProcess/Exercises/Exercise'
 
 export default {
   props: {

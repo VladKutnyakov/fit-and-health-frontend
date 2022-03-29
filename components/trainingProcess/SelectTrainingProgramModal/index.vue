@@ -67,7 +67,7 @@ export default {
       this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', { field: 'trainingProgram', newValue: {id: $event.id, title: $event.title} })
       this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', { field: 'trainingDay', newValue: null })
 
-      this.$router.push(`/training-diary/training-in-progress?trainingProgram=${$event?.id || ''}`)
+      this.$router.push(`/training-diary/training-process?trainingProgram=${$event?.id || ''}`)
 
       const payload = {
         trainingProgram: $event.id,

@@ -94,7 +94,7 @@ export default {
       this.$store.commit('trainingProcess/toggleModalVisibility', {modal: 'selectTrainingProgramModalActive', condition: true})
     },
     setTrainingProgram($event) {
-      this.$router.push('/training-diary/training-in-progress')
+      this.$router.push('/training-diary/training-process')
 
       this.clearTrainingProgramForm(this.trainingProgram)
       this.clearTrainingDayForm(this.trainingDay)
@@ -102,11 +102,11 @@ export default {
     setTrainingDay($event) {
       if ($event) {
         this.setTrainingProgramFormFieldValue({field: 'trainingDay', newValue: $event})
-        this.$router.push(`/training-diary/training-in-progress?trainingProgram=${this.$route.query?.trainingProgram}&trainingDay=${$event?.id}`)
+        this.$router.push(`/training-diary/training-process?trainingProgram=${this.$route.query?.trainingProgram}&trainingDay=${$event?.id}`)
         this.$store.dispatch('trainingProcess/fetchTrainingDay', { trainingDay: $event.id })
       } else {
         this.setTrainingProgramFormFieldValue({field: 'trainingDay', newValue: $event})
-        this.$router.push(`/training-diary/training-in-progress?trainingProgram=${this.$route.query?.trainingProgram || ''}`)
+        this.$router.push(`/training-diary/training-process?trainingProgram=${this.$route.query?.trainingProgram || ''}`)
         this.clearTrainingDayForm()
       }
     },

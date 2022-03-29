@@ -18,9 +18,9 @@
 <script>
 import { mapState } from 'vuex'
 import AppInfo from '@/components/basic/AppInfo'
-import TrainingVideo from '@/components/trainingInProgress/TrainingProcess/TrainingVideo'
-import LapsOverview from '@/components/trainingInProgress/TrainingProcess/LapsOverview'
-import Exercises from '@/components/trainingInProgress/TrainingProcess/Exercises/index'
+import TrainingVideo from '@/components/trainingProcess/TrainingProcess/TrainingVideo'
+import LapsOverview from '@/components/trainingProcess/TrainingProcess/LapsOverview'
+import Exercises from '@/components/trainingProcess/TrainingProcess/Exercises/index'
 
 export default {
   components: {

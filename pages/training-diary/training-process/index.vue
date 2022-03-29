@@ -1,5 +1,5 @@
 <template>
-  <app-page pageTitle="Новая тренировка" :breadcrumbs="breadcrumbs">
+  <app-page>
     <training-program />
     <training-process />
 
@@ -9,12 +9,12 @@
 
 <script>
 import AppPage from '@/components/basic/AppPage'
-import TrainingProgram from '@/components/trainingInProgress/TrainingProgram'
-import TrainingProcess from '@/components/trainingInProgress/TrainingProcess/index'
-import SelectTrainingProgramModal from '@/components/trainingInProgress/SelectTrainingProgramModal/index'
+import TrainingProgram from '@/components/trainingProcess/TrainingProgram'
+import TrainingProcess from '@/components/trainingProcess/TrainingProcess/index'
+import SelectTrainingProgramModal from '@/components/trainingProcess/SelectTrainingProgramModal/index'
 
 export default {
-  name: 'TrainingInProgressPage',
+  name: 'TrainingProcessPage',
   layout: 'default',
   head () {
     return {
@@ -63,50 +63,5 @@ export default {
       await store.dispatch('trainingProcess/fetchTrainingDay', { trainingDay: query.trainingDay })
     }
   },
-  data () {
-    return {
-      breadcrumbs: [
-        {
-          title: 'Профиль',
-          icon: 'ti-home',
-          link: '/profile',
-          active: true,
-        },
-        {
-          title: 'Дневник тренировок',
-          icon: 'ti-timer',
-          link: '/training-diary',
-          active: true,
-        },
-        {
-          title: 'Новая тренировка',
-          icon: 'ti-bolt',
-          link: '/training-diary/training-in-progress',
-          active: false,
-        },
-      ]
-    }
-  },
 }
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/styles/vars.scss";
-
-.training-in-progress-page {
-  // border: 1px solid red;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  // margin-top: 60px;
-  margin-left: 80px;
-  padding: 40px;
-  .training-in-progress-page__content {
-    // border: 1px solid red;
-    display: flex;
-    width: 100%;
-    max-width: 1700px;
-  }
-}
-
-</style>

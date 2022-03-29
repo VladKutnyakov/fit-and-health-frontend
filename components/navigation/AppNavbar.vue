@@ -111,7 +111,7 @@ export default {
           isActive: false,
           nestedRoutes: [
             'training-diary',
-            'training-diary-training-in-progress',
+            'training-diary-training-process',
             'training-programs',
             'training-programs-training-program-editor',
             'training-programs-program',
@@ -126,7 +126,7 @@ export default {
             },
             // {
             //   title: 'Новая тренировка',
-            //   link: '/training-diary/training-in-progress',
+            //   link: '/training-diary/training-process',
             //   icon: 'ti-bolt',
             //   exact: false
             // },

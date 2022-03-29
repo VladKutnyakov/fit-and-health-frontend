@@ -51,7 +51,7 @@
 <script>
 import AppAccordion from '@/components/basic/AppAccordion'
 import AppButton from '@/components/basic/AppButton'
-import Approach from '@/components/trainingInProgress/TrainingProcess/Exercises/Approach'
+import Approach from '@/components/trainingProcess/TrainingProcess/Exercises/Approach'
 
 export default {
   props: {
