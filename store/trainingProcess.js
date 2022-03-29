@@ -137,6 +137,20 @@ export const mutations = {
       }
     })
   },
+  addAproach (state, exerciseId) {
+    for (let i = 0; i < state.trainingDayForm.fields.trainingProgramDayExercises.length; i++) {
+      if (state.trainingDayForm.fields.trainingProgramDayExercises[i].id === exerciseId) {
+        state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.push({
+          isActive: false,
+          title: `Подход ${state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.length + 1}`,
+          repeats: null,
+          additionalWeight: null,
+          implementationTime: null,
+          restTime: null,
+        })
+      }
+    }
+  },
 
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition

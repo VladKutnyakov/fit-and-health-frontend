@@ -43,6 +43,7 @@
           <app-button
             class="ml-auto"
             size14px
+            @click="addAproach(exercise)"
           >Добавить подход</app-button>
         </div>
       </template>
@@ -75,7 +76,10 @@ export default {
     },
     stopExercise (exercise) {
       this.$store.commit('trainingProcess/stopExercise', exercise.id)
-    }
+    },
+    addAproach (exercise) {
+      this.$store.commit('trainingProcess/addAproach', exercise.id)
+    },
   }
 }
 </script>
