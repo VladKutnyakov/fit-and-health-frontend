@@ -13,9 +13,11 @@ export const state = () => ({
     trainingDay: null,
     trainingProgramDaysList: []
   }),
-  trainingDay: generateForm({
-    id: null,
-    title: null,
+  trainingDayForm: generateForm({
+    trainingDay: {
+      id: null,
+      title: null,
+    },
     trainingType: null,
     comment: null,
     trainingProgramDayExercises: [
@@ -105,13 +107,13 @@ export const mutations = {
   },
 
   setTrainingDayFormFieldsValue (state, payload) {
-    setFormFieldsValue(state.trainingDay, payload)
+    setFormFieldsValue(state.trainingDayForm, payload)
   },
   setTrainingDayFormFieldValue (state, ctx) {
-    setFormFieldValue(state.trainingDay, ctx)
+    setFormFieldValue(state.trainingDayForm, ctx)
   },
   clearTrainingDayForm (state) {
-    clearForm(state.trainingDay)
+    clearForm(state.trainingDayForm)
   },
 
   setTrainingProgramsList (state, payload) {

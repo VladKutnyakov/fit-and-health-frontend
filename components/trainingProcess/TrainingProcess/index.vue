@@ -3,15 +3,15 @@
     <!-- <training-video /> -->
 
     <app-info
-      v-if="trainingDay.fields.comment"
+      v-if="trainingDayForm.fields.comment"
       class="mt-10 ml-10 mr-10"
       info
-      :text="trainingDay.fields.comment"
+      :text="trainingDayForm.fields.comment"
     />
 
-    <exercises :exercisesList="trainingDay.fields.trainingProgramDayExercises" />
+    <exercises :exercisesList="trainingDayForm.fields.trainingProgramDayExercises" />
 
-    <laps-overview v-if="trainingDay.fields.trainingType && trainingDay.fields.trainingType.id === 2" />
+    <laps-overview v-if="trainingDayForm.fields.trainingType && trainingDayForm.fields.trainingType.id === 2" />
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     ...mapState({
-      trainingDay: state => state.trainingProcess.trainingDay
+      trainingDayForm: state => state.trainingProcess.trainingDayForm
     })
   }
 }
