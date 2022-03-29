@@ -17,11 +17,9 @@ export const state = () => ({
     comment: null,
     trainingProgramDayExercises: [
       // {
+      //   id: 1,
+      //   title: "Отжимания"
       //   isStarted: true,
-      //   exercise: {
-      //     id: 1,
-      //     title: "Отжимания"
-      //   },
       //   approaches: [
       //     {
       //       isActive: true,
@@ -31,55 +29,6 @@ export const state = () => ({
       //       implementationTime: null,
       //       restTime: null,
       //     },
-      //     {
-      //       isActive: false,
-      //       title: 'Подход 2',
-      //       repeats: 8,
-      //       additionalWeight: 15,
-      //       implementationTime: null,
-      //       restTime: null,
-      //     }
-      //   ]
-      // },
-      // {
-      //   isStarted: false,
-      //   exercise: {
-      //     id: 1,
-      //     title: "Подтягивания"
-      //   },
-      //   approaches: [
-      //     {
-      //       isActive: false,
-      //       title: 'Подход 1',
-      //       repeats: 10,
-      //       additionalWeight: 15,
-      //       implementationTime: null,
-      //       restTime: null,
-      //     },
-      //     {
-      //       isActive: false,
-      //       title: 'Подход 2',
-      //       repeats: 8,
-      //       additionalWeight: 15,
-      //       implementationTime: null,
-      //       restTime: null,
-      //     },
-      //     {
-      //       isActive: false,
-      //       title: 'Подход 3',
-      //       repeats: 10,
-      //       additionalWeight: 15,
-      //       implementationTime: null,
-      //       restTime: null,
-      //     },
-      //     {
-      //       isActive: false,
-      //       title: 'Подход 4',
-      //       repeats: 8,
-      //       additionalWeight: 15,
-      //       implementationTime: null,
-      //       restTime: null,
-      //     }
       //   ]
       // },
     ]
@@ -116,15 +65,13 @@ export const mutations = {
   },
 
   startExercise (state, exerciseId) {
-    state.trainingDayForm.fields.trainingProgramDayExercises.forEach((element, index) => {
-      if (element.id === exerciseId) {
-        const updatedExercise = {
-          ...element,
-          isStarted: true,
-        }
-        state.trainingDayForm.fields.trainingProgramDayExercises.splice(index, 1, updatedExercise)
+    for (let i = 0; i < state.trainingDayForm.fields.trainingProgramDayExercises.length; i++) {
+      if (state.trainingDayForm.fields.trainingProgramDayExercises[i].id === exerciseId) {
+        state.trainingDayForm.fields.trainingProgramDayExercises.splice(i, 1, { ...state.trainingDayForm.fields.trainingProgramDayExercises[i], isStarted: true })
+
+        state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[0].isActive = true
       }
-    })
+    }
   },
   stopExercise (state, exerciseId) {
     state.trainingDayForm.fields.trainingProgramDayExercises.forEach((element, index) => {

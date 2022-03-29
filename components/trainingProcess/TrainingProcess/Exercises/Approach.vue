@@ -8,22 +8,51 @@
     </div>
     <div class="approach__element">
       <p class="element__text">Повторений</p>
-      <p class="element__value">--</p>
+      <app-input-text
+        class="mt-5"
+        :value="approach.repeats"
+        small
+        textCenter
+        selectOnFocus
+      />
     </div>
     <div class="approach__element">
-      <p class="element__text">Отягощение</p>
-      <p class="element__value">-- кг.</p>
+      <p class="element__text">Отягощение, кг.</p>
+      <app-input-text
+        class="mt-5"
+        :value="approach.additionalWeight"
+        small
+        textCenter
+        selectOnFocus
+      />
     </div>
     <div class="approach__element">
       <p class="element__text">Время выполнения</p>
-      <p class="element__value">{{ exercise.implementationTime ? exercise.implementationTime : '00 : 00 : 00' }}</p>
+      <app-input-text
+        class="mt-5"
+        :value="exercise.implementationTime ? exercise.implementationTime : null"
+        small
+        textCenter
+        selectOnFocus
+        placeholder="00 : 00 : 00"
+      />
     </div>
     <div class="approach__element">
       <p class="element__text">Время отдыха</p>
-      <p class="element__value">{{ exercise.restTime ? exercise.restTime : '00 : 00 : 00' }}</p>
+      <app-input-text
+        class="mt-5"
+        :value="exercise.restTime ? exercise.restTime : null"
+        small
+        textCenter
+        selectOnFocus
+        placeholder="00 : 00 : 00"
+      />
     </div>
     <div class="approach__action-btn">
       <i class="ti-control-play"></i>
+    </div>
+    <div class="approach__action-btn">
+      <i class="ti-control-stop"></i>
     </div>
     <div class="approach__action-btn">
       <i class="ti-trash"></i>
@@ -32,10 +61,15 @@
 </template>
 
 <script>
+import AppInputText from '@/components/basic/AppInputText'
+
 export default {
   props: {
     exercise: Object,
     approach: [Object, Number]
+  },
+  components: {
+    AppInputText
   }
 }
 </script>
