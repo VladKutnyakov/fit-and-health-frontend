@@ -1,7 +1,7 @@
 <template>
   <div class="laps-overview">
     <ul class="laps-overview__laps">
-      <li class="lap" v-for="(item, index) in 3" :key="index">
+      <li class="lap" v-for="(item, index) in 1" :key="index">
         <div class="lap__title">
           <p class="title">Круг</p>
           <p class="value">{{ index + 1 }}</p>
