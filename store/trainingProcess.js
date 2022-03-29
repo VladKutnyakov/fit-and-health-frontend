@@ -99,6 +99,15 @@ export const mutations = {
       }
     }
   },
+  switchApproachExecution (state, { exercise, approach }) {
+    console.log('switchApproachExecution')
+  },
+  completeApproach (state, { exercise, approach }) {
+    console.log('completeApproach')
+  },
+  removeApproach (state, { exercise, approach }) {
+    console.log('removeApproach')
+  },
 
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition

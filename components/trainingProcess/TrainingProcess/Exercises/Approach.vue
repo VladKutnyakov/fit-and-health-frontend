@@ -52,7 +52,7 @@
     <div class="approach__actions">
       <div
         class="approach__action-btn"
-        @click="switchApproachExecution(exercise, approach)"
+        @click="switchApproachExecution({ exercise, approach })"
       >
         <i
           :class="[
@@ -64,14 +64,14 @@
 
       <div
         class="approach__action-btn"
-        @click="completeApproach(exercise, approach)"
+        @click="completeApproach({ exercise, approach })"
       >
         <i class="ti-control-stop"></i>
       </div>
 
       <div
         class="approach__action-btn"
-        @click="removeApproach(exercise, approach)"
+        @click="removeApproach({ exercise, approach} )"
       >
         <i class="ti-close"></i>
       </div>
@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 
 export default {
@@ -89,7 +90,14 @@ export default {
   },
   components: {
     AppInputText
-  }
+  },
+  methods: {
+    ...mapMutations({
+      switchApproachExecution: 'trainingProcess/switchApproachExecution',
+      completeApproach: 'trainingProcess/completeApproach',
+      removeApproach: 'trainingProcess/removeApproach',
+    })
+  },
 }
 </script>
 
