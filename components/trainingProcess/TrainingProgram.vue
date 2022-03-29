@@ -23,27 +23,27 @@
         <div class="training-day__accent">
           <div
             class="accent accent--power"
-            :style="{ height: `${trainingProgramForm.fields.trainingProgramAccent.power}%`}"
+            :style="{ height: `${getAccentValue('power')}%`}"
             title="Сила"
-          >{{ trainingProgramForm.fields.trainingProgramAccent.power }}</div>
+          >{{ getAccentValue('power') }}</div>
 
           <div
             class="accent accent--endurance"
-            :style="{ height: `${trainingProgramForm.fields.trainingProgramAccent.endurance}%`}"
+            :style="{ height: `${getAccentValue('endurance')}%`}"
             title="Выносливость"
-          >{{ trainingProgramForm.fields.trainingProgramAccent.endurance }}</div>
+          >{{ getAccentValue('endurance') }}</div>
 
           <div
             class="accent accent--flexibility"
-            :style="{ height: `${trainingProgramForm.fields.trainingProgramAccent.flexibility}%`}"
+            :style="{ height: `${getAccentValue('cardio')}%`}"
             title="Кардио"
-          >{{ trainingProgramForm.fields.trainingProgramAccent.flexibility }}</div>
+          >{{ getAccentValue('cardio') }}</div>
 
           <div
             class="accent accent--cardio"
-            :style="{ height: `${trainingProgramForm.fields.trainingProgramAccent.cardio}%`}"
+            :style="{ height: `${getAccentValue('cardio')}%`}"
             title="Гибкость"
-          >{{ trainingProgramForm.fields.trainingProgramAccent.cardio }}</div>
+          >{{ getAccentValue('cardio') }}</div>
         </div>
       </div>
 
@@ -82,7 +82,7 @@ export default {
     ...mapState({
       trainingProgramForm: state => state.trainingProcess.trainingProgramForm,
       trainingDay: state => state.trainingProcess.trainingDay,
-    })
+    }),
   },
   methods: {
     ...mapMutations({
@@ -90,6 +90,13 @@ export default {
       clearTrainingProgramForm: 'trainingProcess/clearTrainingProgramForm',
       clearTrainingDayForm: 'trainingProcess/clearTrainingDayForm',
     }),
+    getAccentValue (accentParam) {
+      if (this.trainingProgramForm.fields.trainingProgramAccent) {
+        return this.trainingProgramForm.fields.trainingProgramAccent[accentParam]
+      } else {
+        return null
+      }
+    },
     openSelectTrainingProgramModal () {
       this.$store.commit('trainingProcess/toggleModalVisibility', {modal: 'selectTrainingProgramModalActive', condition: true})
     },
@@ -110,6 +117,9 @@ export default {
         this.clearTrainingDayForm()
       }
     },
+  },
+  beforeDestroy () {
+    this.$store.commit('trainingProcess/clearTrainingProgramForm')
   }
 }
 </script>

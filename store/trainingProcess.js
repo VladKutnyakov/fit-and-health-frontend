@@ -4,12 +4,7 @@ export const state = () => ({
   trainingProgramForm: generateForm({
     trainingProgram: null,
     previewImage: null,
-    trainingProgramAccent: {
-      power: null,
-      endurance: null,
-      flexibility: null,
-      cardio: null
-    },
+    trainingProgramAccent: null,
     trainingDay: null,
     trainingProgramDaysList: []
   }),

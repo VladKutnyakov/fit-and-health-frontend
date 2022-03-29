@@ -33,6 +33,9 @@ export default {
     ...mapState({
       trainingDayForm: state => state.trainingProcess.trainingDayForm
     })
+  },
+  beforeDestroy () {
+    this.$store.commit('trainingProcess/clearTrainingDayForm')
   }
 }
 </script>
