@@ -165,7 +165,7 @@ export default {
         margin: 10px 0;
         width: 30px;
         border-radius: 6px;
-        background: $black10;
+        background: $black05;
         overflow: hidden;
         .accent {
           display: flex;
@@ -207,6 +207,19 @@ export default {
 body.dark {
   .training-program {
     background: $cardBackgroundDarkBG;
+    .training-program__fields {
+      .preview-image-and-intensity {
+        .preview-image--empty {
+          background: $black20;
+        }
+        .training-day__accent {
+          background: $black20;
+          // .accent {
+          //   color: $black05;
+          // }
+        }
+      }
+    }
     .training-program__actions {
       background: $black20;
     }
