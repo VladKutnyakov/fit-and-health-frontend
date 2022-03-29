@@ -119,7 +119,7 @@ export default {
     .status {
       width: 16px;
       height: 16px;
-      background: $success;
+      background: $info;
       border-radius: 50%;
     }
   }
