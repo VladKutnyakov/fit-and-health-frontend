@@ -149,6 +149,7 @@ export default {
   }
   .approach__actions {
     display: flex;
+    margin-left: 10px;
     .approach__action-btn {
       // border: 1px solid red;
       display: flex;
@@ -173,7 +174,6 @@ export default {
 }
 .approach:last-child {
   border-bottom: none;
-  margin-bottom: 5px;
 }
 
 .approach--not-active {
@@ -202,6 +202,12 @@ export default {
 }
 
 body.dark {
+  .approach {
+    border-bottom: 1px dashed $dividerBorderDarkBG;
+  }
+  .approach:last-child {
+    border-bottom: none;
+  }
   .approach--not-active {
     .approach__status {
       .status {
