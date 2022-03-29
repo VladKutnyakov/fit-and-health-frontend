@@ -115,6 +115,29 @@ export const mutations = {
     state.trainingProgramsList = payload
   },
 
+  startExercise (state, exerciseId) {
+    state.trainingDayForm.fields.trainingProgramDayExercises.forEach((element, index) => {
+      if (element.id === exerciseId) {
+        const updatedExercise = {
+          ...element,
+          isStarted: true,
+        }
+        state.trainingDayForm.fields.trainingProgramDayExercises.splice(index, 1, updatedExercise)
+      }
+    })
+  },
+  stopExercise (state, exerciseId) {
+    state.trainingDayForm.fields.trainingProgramDayExercises.forEach((element, index) => {
+      if (element.id === exerciseId) {
+        const updatedExercise = {
+          ...element,
+          isStarted: false,
+        }
+        state.trainingDayForm.fields.trainingProgramDayExercises.splice(index, 1, updatedExercise)
+      }
+    })
+  },
+
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
   },

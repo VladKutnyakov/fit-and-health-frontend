@@ -6,7 +6,7 @@
           <div class="header__drag-drop-btn">
             <i class="ti-exchange-vertical"></i>
           </div>
-          <p class="header__title">{{ exercise.exercise.title ? exercise.exercise.title : '' }}</p>
+          <p class="header__title">{{ exercise.title ? exercise.title : '' }}</p>
           <div class="header__accrodion-btn">
             <i
               :class="[
@@ -30,12 +30,14 @@
           <app-button
             v-if="!exercise.isStarted"
             size14px
+            @click="startExercise(exercise)"
           >Начать выполнение упражнения</app-button>
 
           <app-button
             v-if="exercise.isStarted"
             size14px
             dangerBtn
+            @click="stopExercise(exercise)"
           >Завершить выполнение упражнения</app-button>
 
           <app-button
@@ -65,6 +67,14 @@ export default {
   data () {
     return {
       isOpened: false,
+    }
+  },
+  methods: {
+    startExercise (exercise) {
+      this.$store.commit('trainingProcess/startExercise', exercise.id)
+    },
+    stopExercise (exercise) {
+      this.$store.commit('trainingProcess/stopExercise', exercise.id)
     }
   }
 }
