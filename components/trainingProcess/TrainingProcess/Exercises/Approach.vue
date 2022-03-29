@@ -50,7 +50,10 @@
     </div>
 
     <div class="approach__actions">
-      <div class="approach__action-btn">
+      <div
+        class="approach__action-btn"
+        @click="switchApproachExecution(exercise, approach)"
+      >
         <i
           :class="[
             { 'ti-control-play': !approach.isStarted },
@@ -58,10 +61,18 @@
           ]"
         ></i>
       </div>
-      <div class="approach__action-btn">
+
+      <div
+        class="approach__action-btn"
+        @click="completeApproach(exercise, approach)"
+      >
         <i class="ti-control-stop"></i>
       </div>
-      <div class="approach__action-btn">
+
+      <div
+        class="approach__action-btn"
+        @click="removeApproach(exercise, approach)"
+      >
         <i class="ti-close"></i>
       </div>
     </div>
