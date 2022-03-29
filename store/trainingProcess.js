@@ -23,6 +23,7 @@ export const state = () => ({
       //   approaches: [
       //     {
       //       isActive: true,
+      //       isStarted: true,
       //       title: 'Подход 1',
       //       repeats: 10,
       //       additionalWeight: 15,

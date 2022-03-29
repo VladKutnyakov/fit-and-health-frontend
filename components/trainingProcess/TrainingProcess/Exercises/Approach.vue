@@ -48,14 +48,22 @@
         placeholder="00 : 00 : 00"
       />
     </div>
-    <div class="approach__action-btn">
-      <i class="ti-control-play"></i>
-    </div>
-    <div class="approach__action-btn">
-      <i class="ti-control-stop"></i>
-    </div>
-    <div class="approach__action-btn">
-      <i class="ti-trash"></i>
+
+    <div class="approach__actions">
+      <div class="approach__action-btn">
+        <i
+          :class="[
+            { 'ti-control-play': !approach.isStarted },
+            { 'ti-control-pause': approach.isStarted },
+          ]"
+        ></i>
+      </div>
+      <div class="approach__action-btn">
+        <i class="ti-control-stop"></i>
+      </div>
+      <div class="approach__action-btn">
+        <i class="ti-close"></i>
+      </div>
     </div>
   </li>
 </template>
@@ -120,22 +128,28 @@ export default {
       font-weight: 500;
     }
   }
-  .approach__action-btn {
-    // border: 1px solid red;
+  .approach__actions {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 10px;
-    width: 35px;
-    height: 35px;
-    background: $primary;
-    color: $white;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  .approach__action-btn:last-child {
-    margin-left: 0;
-    background: $danger;
+    .approach__action-btn {
+      // border: 1px solid red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      width: 35px;
+      height: 35px;
+      background: $primary;
+      color: $white;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .approach__action-btn:nth-child(2) {
+      background: $warning;
+    }
+    .approach__action-btn:last-child {
+      margin-left: 0;
+      background: $danger;
+    }
   }
 }
 .approach:last-child {
