@@ -1,6 +1,6 @@
 <template>
   <li class="exercise">
-    <app-accordion :isOpened="isOpened">
+    <app-accordion ref="exerciseAccordion" :isOpened="isOpened">
       <template v-slot:accordionHeader>
         <div class="exercise__header" @click="isOpened = !isOpened">
           <div class="header__drag-drop-btn">
@@ -58,7 +58,8 @@ import Approach from '@/components/trainingProcess/TrainingProcess/Exercises/App
 
 export default {
   props: {
-    exercise: Object
+    exercise: Object,
+    exerciseId: Number
   },
   components: {
     AppAccordion,
@@ -70,6 +71,13 @@ export default {
       isOpened: false,
     }
   },
+  watch: {
+    exerciseId () {
+      this.$nextTick(() => {
+        this.$refs.exerciseAccordion.updateHeight()
+      })
+    },
+  },
   methods: {
     startExercise (exercise) {
       this.$store.commit('trainingProcess/startExercise', exercise.id)
@@ -79,6 +87,9 @@ export default {
     },
     addAproach (exercise) {
       this.$store.commit('trainingProcess/addAproach', exercise.id)
+      this.$nextTick(() => {
+        this.$refs.exerciseAccordion.updateHeight()
+      })
     },
   }
 }
