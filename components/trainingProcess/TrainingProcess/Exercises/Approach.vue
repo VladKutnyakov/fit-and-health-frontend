@@ -10,31 +10,33 @@
       <p class="element__text">Повторений</p>
       <app-input-text
         class="mt-5"
-        :value="approach.repeats"
+        :value="approach.repeats ? approach.repeats.value : null"
         small
         textCenter
         selectOnFocus
+        :placeholder="approach.repeats ? approach.repeats.target : null"
       />
     </div>
     <div class="approach__element">
       <p class="element__text">Отягощение, кг.</p>
       <app-input-text
         class="mt-5"
-        :value="approach.additionalWeight"
+        :value="approach.additionalWeight ? approach.additionalWeight.value : null"
         small
         textCenter
         selectOnFocus
+        :placeholder="approach.additionalWeight ? approach.additionalWeight.target : null"
       />
     </div>
     <div class="approach__element">
       <p class="element__text">Время выполнения</p>
       <app-input-text
         class="mt-5"
-        :value="exercise.implementationTime ? exercise.implementationTime : null"
+        :value="exercise.implementationTime ? exercise.implementationTime.value : null"
         small
         textCenter
         selectOnFocus
-        placeholder="00 : 00 : 00"
+        :placeholder="exercise.implementationTime ? exercise.implementationTime.target : '00 : 00 : 00'"
       />
     </div>
     <div class="approach__element">
@@ -45,7 +47,7 @@
         small
         textCenter
         selectOnFocus
-        placeholder="00 : 00 : 00"
+        :placeholder="exercise.restTime ? exercise.restTime : '00 : 00 : 00'"
       />
     </div>
 

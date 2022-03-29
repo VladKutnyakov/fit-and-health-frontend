@@ -18,17 +18,29 @@ export const state = () => ({
     trainingProgramDayExercises: [
       // {
       //   id: 1,
-      //   title: "Отжимания"
+      //   title: "Отжимания",
       //   isStarted: true,
       //   approaches: [
       //     {
       //       isActive: true,
       //       isStarted: true,
       //       title: 'Подход 1',
-      //       repeats: 10,
-      //       additionalWeight: 15,
-      //       implementationTime: null,
-      //       restTime: null,
+      //       repeats: {
+      //         target: null,
+      //         value: null,
+      //       },
+      //       additionalWeight: {
+      //         target: null,
+      //         value: null,
+      //       },
+      //       implementationTime: {
+      //         target: null,
+      //         value: null,
+      //       },
+      //       restTime: {
+      //         target: null,
+      //         value: null,
+      //       },
       //     },
       //   ]
       // },
