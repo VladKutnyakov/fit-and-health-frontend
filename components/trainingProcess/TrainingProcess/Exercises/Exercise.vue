@@ -73,9 +73,7 @@ export default {
   },
   watch: {
     exerciseId () {
-      this.$nextTick(() => {
-        this.$refs.exerciseAccordion.updateHeight()
-      })
+      this.isOpened = false
     },
   },
   methods: {
@@ -87,6 +85,7 @@ export default {
     },
     addAproach (exercise) {
       this.$store.commit('trainingProcess/addAproach', exercise.id)
+
       this.$nextTick(() => {
         this.$refs.exerciseAccordion.updateHeight()
       })
