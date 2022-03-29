@@ -29,7 +29,7 @@
 export default {
   props: {
     value: [String, Number],
-    placeholder: String,
+    placeholder: [String, Number],
     small: Boolean,
     textLeft: Boolean,
     textRight: Boolean,
