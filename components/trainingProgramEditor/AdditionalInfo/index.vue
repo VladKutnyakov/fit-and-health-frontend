@@ -4,7 +4,7 @@
       <training-focus />
 
       <div class="actions">
-        <app-button >
+        <app-button dangerBtn>
           <i class="ti-trash"></i>
         </app-button>
 
