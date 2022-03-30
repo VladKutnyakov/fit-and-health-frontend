@@ -71,20 +71,6 @@ export default {
       isOpened: false,
     }
   },
-  computed: {
-    ...mapState({
-      trainingDay: state => state.trainingProcess.trainingProgramForm.fields.trainingDay,
-    })
-  },
-  watch: {
-    trainingDay () {
-      this.isOpened = false
-
-      this.$nextTick(() => {
-        this.$refs.exerciseAccordion.close()
-      })
-    }
-  },
   methods: {
     startExercise (exercise) {
       this.$store.commit('trainingProcess/startExercise', exercise.id)

@@ -46,17 +46,6 @@ export default {
         this.$refs.accordion.style.transition = 'all .2s linear'
       }, 0)
     },
-    close () {
-      this.$refs.accordion.style.transition = ''
-
-      const headerHeight = this.$refs.header.getBoundingClientRect().height
-      this.$refs.accordion.style.height = `${headerHeight}px`
-      this.isVisible = false
-
-      setTimeout(() => {
-        this.$refs.accordion.style.transition = 'all .2s linear'
-      }, 0)
-    }
   },
   mounted () {
     if (this.isOpened) {
