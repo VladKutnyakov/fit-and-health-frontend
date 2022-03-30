@@ -54,7 +54,6 @@ export default {
 .added-marks {
   display: flex;
   flex-direction: column;
-  padding-top: 10px;
   width: 100%;
   min-width: 250px;
   max-width: 250px;

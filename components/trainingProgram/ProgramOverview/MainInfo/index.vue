@@ -7,7 +7,7 @@
       <div class="title">
         <p class="title__block-title">Название программы:</p>
         <app-input-text
-          :value="null"
+          value="Тестовое название"
           disabled
         />
       </div>
@@ -28,20 +28,10 @@
       </div>
     </div>
     <div class="added-marks">
-      <div class="added-marks__block-title">
-        Добавленные отметки:
-      </div>
-      <div class="added-marks__marks"></div>
-      <div class="added-marks__input-wrapper">
-        <input
-         
-          type="text"
-          placeholder="Добавьте отметку"
-          class="input"
-        />
-        <button class="action-btn">
-          <i class="ti-plus"></i>
-        </button>
+      <div class="added-marks__block-title">Добавленные отметки:</div>
+      <div class="added-marks__marks">
+        <div class="mark">mark 1</div>
+        <div class="mark">mark 2</div>
       </div>
     </div>
   </div>
@@ -124,6 +114,40 @@ export default {
         margin-bottom: 5px;
         padding: 0 20px;
         font-weight: 500;
+      }
+    }
+  }
+  .added-marks {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 250px;
+    max-width: 250px;
+    .added-marks__block-title {
+      padding: 0 20px;
+      font-weight: 500;
+      padding-bottom: 5px;
+    }
+    .added-marks__marks {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 10px 5px;
+      background: $black05;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      .mark {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        padding: 5px 10px;
+        background: $white;
+        border: 1px solid $dividerBorder;
+        border-radius: 6px;
+      }
+      .mark:last-child {
+        margin-bottom: 0;
       }
     }
   }

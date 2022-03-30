@@ -37,7 +37,7 @@ export default {
 .program-title {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   .program-title__text {
     margin-bottom: 5px;
     padding: 0 20px;
