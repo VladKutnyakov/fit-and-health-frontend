@@ -5,6 +5,7 @@
       <p class="field-title">Программа тренировок:</p>
       <app-picker
         :value="trainingProgramForm.fields.trainingProgram"
+        :disabled="trainingProgramForm.fields.isStarted"
         @openModal="openSelectTrainingProgramModal()"
         @clear="setTrainingProgram($event)"
       />
@@ -51,6 +52,7 @@
       <app-select
         :value="trainingProgramForm.fields.trainingDay"
         :selectOptionsList="trainingProgramForm.fields.trainingProgramDaysList"
+        :disabled="trainingProgramForm.fields.isStarted"
         @select="setTrainingDay($event)"
         @clear="setTrainingDay($event)"
       />

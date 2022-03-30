@@ -1,6 +1,7 @@
 <template>
   <div
     class="app-select"
+    :class="[{ 'app-select--disabled': disabled }]"
     :style="[
       { 'max-width': maxWidth },
       { 'min-width': minWidth },
@@ -16,6 +17,7 @@
           {'app-select__selected-value--center': alignSelectedValueCenter},
         ]"
         :value="typeof selectValue === 'object' && selectValue != null ? selectValue.title : selectValue"
+        :disabled="disabled"
         :placeholder="placeholder || 'Выберите значение'"
          @click="toggleVisibility()"
       />
@@ -63,6 +65,7 @@ export default {
     maxWidth: String,
     value: [String, Number, Object, Array],
     selectOptionsList: Array,
+    disabled: Boolean,
     placeholder: String,
     alignListLeft: Boolean,
     alignListRight: Boolean,
@@ -84,7 +87,7 @@ export default {
   },
   methods: {
     toggleVisibility () {
-      if (!this.listOpened) {
+      if (!this.listOpened && !this.disabled) {
         this.openSelect()
       } else {
         this.closeSelect()
@@ -106,7 +109,10 @@ export default {
     },
     clearSelect () {
       this.closeSelect()
-      this.$emit('clear', null)
+
+      if (!this.disabled) {
+        this.$emit('clear', null)
+      }
     }
   }
 }
@@ -139,6 +145,7 @@ export default {
       border-right: 1px solid $dividerBorder;
       border-top-left-radius: 6px;
       border-bottom-left-radius: 6px;
+      transition: $tr-02;
     }
     .app-select__selected-value::placeholder {
       opacity: .6;
@@ -222,6 +229,14 @@ export default {
   }
 }
 
+.app-select--disabled {
+  .app-select__value {
+    background: $black05;
+    border: 1px solid transparent;
+    cursor: default;
+  }
+}
+
 .app-select__default-value--left {
   text-align: left;
 }
@@ -273,6 +288,13 @@ body.dark {
       opacity: 1;
       visibility: visible;
       transition: $tr-02;
+    }
+  }
+
+  .app-select--disabled {
+    .app-select__value {
+      background: $white05;
+      border: 1px solid transparent;
     }
   }
 }

@@ -53,7 +53,7 @@ export default {
   border: 1px solid transparent;
   border-radius: 6px;
   outline: none;
-  transition: $tr-01;
+  transition: $tr-02;
 }
 .btn:hover {
   box-shadow: $btnHoverShadow;

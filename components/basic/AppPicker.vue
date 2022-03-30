@@ -1,5 +1,8 @@
 <template>
-  <div class="app-picker">
+  <div
+    class="app-picker"
+    :class="[{ 'app-picker--disabled': disabled }]"
+  >
     <div class="app-picker__value">
       <p
         class="app-picker__selected-value"
@@ -22,6 +25,7 @@
 export default {
   props: {
     value: [Object, String],
+    disabled: Boolean,
     placeholder: String
   },
   computed: {
@@ -31,10 +35,14 @@ export default {
   },
   methods: {
     openModal () {
-      this.$emit('openModal')
+      if (!this.disabled) {
+        this.$emit('openModal')
+      }
     },
     clearValue () {
-      this.$emit('clear', null)
+      if (!this.disabled) {
+        this.$emit('clear', null)
+      }
     },
   }
 }
@@ -99,6 +107,17 @@ export default {
   }
 }
 
+.app-picker--disabled {
+  .app-picker__value {
+    background: $black05;
+    border: 1px solid transparent;
+    cursor: default;
+    .app-picker__action {
+      cursor: default;
+    }
+  }
+}
+
 body.dark {
   .app-picker {
     .app-picker__value {
@@ -112,6 +131,17 @@ body.dark {
       }
       .app-picker__action:last-child {
         border-right: none;
+      }
+    }
+  }
+
+  .app-picker--disabled {
+    .app-picker__value {
+      background: $white05;
+      border: 1px solid transparent;
+      cursor: default;
+      .app-picker__action {
+        cursor: default;
       }
     }
   }
