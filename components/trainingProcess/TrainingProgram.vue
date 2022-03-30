@@ -60,7 +60,7 @@
 
     <div class="training-program__actions">
       <app-button
-        :disabled="trainingProgramForm.fields.isStarted"
+        :disabled="!trainingProgramForm.fields.trainingProgram || trainingProgramForm.fields.isStarted"
         @click.native="openEditTrainingProgramPage()"
       >
         <i class="ti-pencil"></i>
