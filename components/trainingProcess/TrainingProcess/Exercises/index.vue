@@ -5,7 +5,6 @@
         v-for="(item, index) in exercisesList"
         :key="index"
         :exercise="item"
-        :exerciseId="item.id"
       />
     </ul>
   </div>

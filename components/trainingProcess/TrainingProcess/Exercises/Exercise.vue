@@ -59,7 +59,6 @@ import Approach from '@/components/trainingProcess/TrainingProcess/Exercises/App
 export default {
   props: {
     exercise: Object,
-    exerciseId: Number
   },
   components: {
     AppAccordion,
@@ -70,11 +69,6 @@ export default {
     return {
       isOpened: false,
     }
-  },
-  watch: {
-    exerciseId () {
-      this.isOpened = false
-    },
   },
   methods: {
     startExercise (exercise) {
