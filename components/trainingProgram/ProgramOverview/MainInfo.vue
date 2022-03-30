@@ -115,7 +115,6 @@ export default {}
   }
 }
 
-
 body.dark {
   .main-info {
     border-bottom: 1px solid $dividerBorderDarkBG;
