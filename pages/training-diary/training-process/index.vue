@@ -89,6 +89,8 @@ export default {
       this.$store.commit('trainingProcess/setTrainingProgramFormFieldValue', {field: 'isStarted', newValue: false})
 
       this.$store.commit('trainingProcess/toggleModalVisibility', {modal: 'confirmCompleteTrainingProgramModalActive', condition: false})
+
+      this.$router.push('/training-diary')
     }
   }
 }
