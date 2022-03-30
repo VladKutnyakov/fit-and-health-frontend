@@ -98,7 +98,7 @@ export default {
     .title {
       display: flex;
       flex-direction: column;
-      padding: 10px;
+      padding: 0 10px 10px 10px;
       .title__block-title {
         margin-bottom: 5px;
         padding: 0 20px;
@@ -119,7 +119,7 @@ export default {
     .skill {
       display: flex;
       flex-direction: column;
-      padding: 10px;
+      padding: 10px 10px 0 10px;
       .skill__block-title {
         margin-bottom: 5px;
         padding: 0 20px;
