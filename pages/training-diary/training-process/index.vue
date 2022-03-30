@@ -9,6 +9,7 @@
       :value="confirmCompleteTrainingProgramModalActive"
       icon="ti-help-alt"
       confirmMessage="Уверены что хотите завершить тренировку?"
+      width="300px"
       warning
       @confirm="confirmCompleteTrainingProgram()"
       @dismiss="toggleModalVisibility({modal: 'confirmCompleteTrainingProgramModalActive', condition: false})"

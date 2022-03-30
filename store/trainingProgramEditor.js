@@ -36,6 +36,7 @@ export const state = () => ({
   notPinnedExercises: [],
   modalCondition: 'create',
   selectExercisesModalActive: false,
+  confirmStartTrainingProcessModalActive: false,
 })
 
 export const getters = {}

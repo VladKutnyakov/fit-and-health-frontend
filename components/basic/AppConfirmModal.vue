@@ -1,7 +1,7 @@
 <template>
   <app-modal
     :isActive="value"
-    width="300px"
+    :width="width"
     @close="dismiss()"
   >
     <template v-slot:modalContent>
@@ -46,6 +46,7 @@ export default {
     value: Boolean,
     icon: String,
     confirmMessage: String,
+    width: String,
     success: Boolean,
     info: Boolean,
     warning: Boolean,

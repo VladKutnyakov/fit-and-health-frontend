@@ -8,7 +8,7 @@
           <i class="ti-trash"></i>
         </app-button>
 
-        <app-button class="ml-5" >
+        <app-button class="ml-5" @click="openConfirmStartTrainingProcessModal()">
           <i class="ti-control-play"></i>
         </app-button>
 
@@ -35,6 +35,9 @@ export default {
       const payload = JSON.parse(JSON.stringify(this.$store.state.trainingProgramEditor.trainingProgram.fields))
 
       this.$store.dispatch('trainingProgramEditor/saveTrainingProgram', payload)
+    },
+    openConfirmStartTrainingProcessModal () {
+      this.$store.commit('trainingProgramEditor/toggleModalVisibility', {modal: 'confirmStartTrainingProcessModalActive', condition: true})
     }
   }
 }

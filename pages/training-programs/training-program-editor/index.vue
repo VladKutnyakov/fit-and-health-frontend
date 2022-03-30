@@ -1,17 +1,29 @@
 <template>
-  <app-page pageTitle="Редактор тренировочных программ" :breadcrumbs="breadcrumbs">
+  <app-page>
     <editor />
     <additional-info />
 
     <select-exercises-modal />
+
+    <app-confirm-modal
+      :value="confirmStartTrainingProcessModalActive"
+      icon="ti-help-alt"
+      confirmMessage="Тренировочная программа не сохранена. Уверены что хотите начать тренировку?"
+      width="400px"
+      warning
+      @confirm="confirmStartTrainingProcess()"
+      @dismiss="toggleModalVisibility({modal: 'confirmStartTrainingProcessModalActive', condition: false})"
+    />
   </app-page>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import AppPage from '@/components/basic/AppPage'
 import Editor from '@/components/trainingProgramEditor/Editor/index'
 import AdditionalInfo from '@/components/trainingProgramEditor/AdditionalInfo/index'
 import SelectExercisesModal from '@/components/trainingProgramEditor/SelectExercisesModal/index'
+import AppConfirmModal from '@/components/basic/AppConfirmModal'
 
 export default {
   name: 'TrainingProgramEditor',
@@ -48,7 +60,8 @@ export default {
     AppPage,
     Editor,
     AdditionalInfo,
-    SelectExercisesModal
+    SelectExercisesModal,
+    AppConfirmModal
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
     if (query.trainingProgramId) {
@@ -57,30 +70,20 @@ export default {
     await store.dispatch('trainingProgramEditor/fetchSkills')
     await store.dispatch('trainingProgramEditor/fetchTrainingTypes')
   },
-  data () {
-    return {
-      breadcrumbs: [
-        {
-          title: 'Профиль',
-          icon: 'ti-home',
-          link: '/profile',
-          active: true,
-        },
-        {
-          title: 'Тренировочные программы',
-          icon: 'ti-clipboard',
-          link: '/training-programs',
-          active: true,
-        },
-        {
-          title: 'Редактор тренировочных программ',
-          icon: 'ti-home',
-          link: '/training-programs/training-program-editor',
-          active: false,
-        },
-      ]
-    }
+  computed: {
+    ...mapState({
+      confirmStartTrainingProcessModalActive: state => state.trainingProgramEditor.confirmStartTrainingProcessModalActive,
+    })
   },
+  methods: {
+    ...mapMutations({
+      toggleModalVisibility: 'trainingProgramEditor/toggleModalVisibility',
+    }),
+    confirmStartTrainingProcess () {
+      console.log('Начать тренировку')
+      this.toggleModalVisibility({modal: 'confirmStartTrainingProcessModalActive', condition: false})
+    }
+  }
 }
 </script>
 
