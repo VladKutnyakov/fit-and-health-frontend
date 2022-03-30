@@ -4,52 +4,27 @@
       <i class="ti-image"></i>
     </div>
     <div class="overview">
-      <div class="program-title">
-        <p class="program-title__text">
-          Название программы:
-        </p>
-        <div class="app-input-text">
-          <input
-            type="text"
-            placeholder="Название программы тренировок"
-            class="input"
-          />
-        </div>
+      <div class="title">
+        <p class="title__block-title">Название программы:</p>
+        <app-input-text
+          :value="null"
+          disabled
+        />
       </div>
-      <div class="training-description">
-        <p class="training-description__text">
-          Описание программы:
-        </p>
-        <textarea
-          placeholder="Описание программы тренировок"
-          class="app-textarea fill-area"
-        ></textarea>
+      <div class="description">
+        <p class="description__block-title">Описание программы:</p>
+        <app-textarea
+          class="fill-area"
+          :value="null"
+          disabled
+        />
       </div>
-      <div class="training-skill">
-        <p class="training-skill__block-title">
-          Сложность тренировочной программы:
-        </p>
-        <div class="app-select">
-          <div class="app-select__value">
-            <input
-              placeholder="Выберите значение"
-              class="app-select__selected-value"
-            />
-            <div class="app-select__action">
-              <i class="ti-angle-down app-select__icon"></i>
-            </div>
-            <div class="app-select__action">
-              <i class="ti-close app-select__icon"></i>
-            </div>
-          </div>
-          <ul class="app-select__list">
-            <li class="app-select__list-item">Низкая</li>
-            <li class="app-select__list-item">Ниже среднего</li>
-            <li class="app-select__list-item">Средняя</li>
-            <li class="app-select__list-item">Выше среднего</li>
-            <li class="app-select__list-item">Высокая</li>
-          </ul>
-        </div>
+      <div class="skill">
+        <p class="skill__block-title">Сложность тренировочной программы:</p>
+        <app-input-text
+          :value="null"
+          disabled
+        />
       </div>
     </div>
     <div class="added-marks">
@@ -73,7 +48,15 @@
 </template>
 
 <script>
-export default {}
+import AppInputText from '@/components/basic/AppInputText'
+import AppTextarea from '@/components/basic/AppTextarea'
+
+export default {
+  components: {
+    AppInputText,
+    AppTextarea
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -112,6 +95,37 @@ export default {}
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+    .title {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      .title__block-title {
+        margin-bottom: 5px;
+        padding: 0 20px;
+        font-weight: 500;
+      }
+    }
+    .description {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      padding: 0 10px;
+      .description__block-title {
+        margin-bottom: 5px;
+        padding: 0 20px;
+        font-weight: 500;
+      }
+    }
+    .skill {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      .skill__block-title {
+        margin-bottom: 5px;
+        padding: 0 20px;
+        font-weight: 500;
+      }
+    }
   }
 }
 

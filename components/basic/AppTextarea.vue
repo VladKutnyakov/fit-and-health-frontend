@@ -1,16 +1,19 @@
 <template>
-    <textarea
-      class="app-textarea"
-      :placeholder="placeholder"
-      @input="changeTextareaValue"
-      v-model="inputValue"
-    ></textarea>
+  <textarea
+    class="app-textarea"
+    :class="[{ 'app-textarea--disabled': disabled }]"
+    v-model="inputValue"
+    :disabled="disabled"
+    :placeholder="placeholder"
+    @input="changeTextareaValue"
+  ></textarea>
 </template>
 
 <script>
 export default {
   props: {
     value: String,
+    disabled: Boolean,
     placeholder: String
   },
   data () {
@@ -62,9 +65,22 @@ export default {
   background: $primary;
 }
 
-body.dark .app-textarea {
-  background: $black20;
-  color: $textLight;
+.app-textarea--disabled {
+  background: $black05;
+  border: 1px solid transparent;
+  cursor: default;
+}
+
+body.dark {
+  .app-textarea {
+    background: $black20;
+    color: $textLight;
+  }
+
+  .app-textarea--disabled {
+    background: $white05;
+    border: 1px solid transparent;
+  }
 }
 
 </style>

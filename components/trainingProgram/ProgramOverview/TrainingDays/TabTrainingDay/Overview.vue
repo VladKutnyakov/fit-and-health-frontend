@@ -2,10 +2,11 @@
   <div class="overview">
     <div class="overview__params">
       <div class="params__element">
-        <p class="element__text">Название тренировочного дня:</p>
-        <app-input-text
-          :value="trainingProgramDays[selectedTrainingDay].title"
-          @input="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'title', index: selectedTrainingDay, newValue: $event})"
+        <p class="element__text">Тип тренировочного дня:</p>
+        <app-select
+          :value="trainingProgramDays[selectedTrainingDay].trainingType"
+          :selectOptionsList="trainingTypesList"
+          @select="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'trainingType', index: selectedTrainingDay, newValue: $event})"
         />
       </div>
 
@@ -16,15 +17,6 @@
           :value="trainingProgramDays[selectedTrainingDay].comment"
           placeholder="Комментарий"
           @input="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'comment', index: selectedTrainingDay, newValue: $event})"
-        />
-      </div>
-
-      <div class="params__element">
-        <p class="element__text">Тип тренировочного дня:</p>
-        <app-select
-          :value="trainingProgramDays[selectedTrainingDay].trainingType"
-          :selectOptionsList="trainingTypesList"
-          @select="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'trainingType', index: selectedTrainingDay, newValue: $event})"
         />
       </div>
     </div>

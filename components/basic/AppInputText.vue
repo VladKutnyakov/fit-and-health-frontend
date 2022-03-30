@@ -1,5 +1,8 @@
 <template>
-  <div class="app-input-text">
+  <div
+    class="app-input-text"
+    :class="[{ 'app-input-text--disabled': disabled }]"
+  >
     <input
       class="input"
       :class="[
@@ -9,12 +12,13 @@
         { 'input--text-center': textCenter },
         { 'input--error': error && error.enabled }
       ]"
-      type="text"
+      v-model="inputValue"
+      :disabled="disabled"
       :placeholder="placeholder"
+      type="text"
       @input="changeInputValue()"
       @focus="onFocuse($event)"
       @keypress.enter="onKeypressEnter($event)"
-      v-model="inputValue"
     >
 
     <pre
@@ -29,6 +33,7 @@
 export default {
   props: {
     value: [String, Number],
+    disabled: Boolean,
     placeholder: [String, Number],
     small: Boolean,
     textLeft: Boolean,
@@ -149,10 +154,27 @@ export default {
   }
 }
 
-body.dark .app-input-text {
+.app-input-text--disabled {
   .input {
-    background: $black20;
-    color: $textLight;
+    background: $black05;
+    border: 1px solid transparent;
+    cursor: default;
+  }
+}
+
+body.dark {
+  .app-input-text {
+    .input {
+      background: $black20;
+      color: $textLight;
+    }
+  }
+
+  .app-input-text--disabled {
+    .input {
+      background: $white05;
+      border: 1px solid transparent;
+    }
   }
 }
 
