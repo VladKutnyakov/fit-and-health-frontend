@@ -6,7 +6,17 @@
   >
     <template v-slot:modalContent>
       <div class="content__confirm">
-        <i class="ti-help-alt confirm__icon"></i>
+        <i
+          class="confirm__icon"
+          :class="[
+            icon,
+            { 'confirm__icon--success': success },
+            { 'confirm__icon--info': info },
+            { 'confirm__icon--warning': warning },
+            { 'confirm__icon--danger': danger },
+          ]"
+        ></i>
+
         <p class="confirm__message">{{ confirmMessage }}</p>
       </div>
     </template>
@@ -34,7 +44,12 @@ import AppButton from "@/components/basic/AppButton"
 export default {
   props: {
     value: Boolean,
+    icon: String,
     confirmMessage: String,
+    success: Boolean,
+    info: Boolean,
+    warning: Boolean,
+    danger: Boolean,
   },
   components: {
     AppModal,
@@ -61,8 +76,19 @@ export default {
   justify-content: center;
   padding: 40px 20px;
   .confirm__icon {
-    color: $warning;
     font-size: 60px;
+  }
+  .confirm__icon--success {
+    color: $success;
+  }
+  .confirm__icon--info {
+    color: $info;
+  }
+  .confirm__icon--warning {
+    color: $warning;
+  }
+  .confirm__icon--danger {
+    color: $danger;
   }
   .confirm__message {
     margin-top: 40px;
