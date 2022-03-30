@@ -75,3 +75,57 @@
 <script>
 export default {}
 </script>
+
+<style lang="scss" scoped>
+@import "@/assets/styles/vars.scss";
+
+.main-info {
+  display: flex;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $dividerBorder;
+  .preview-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%;
+    min-width: 320px;
+    max-width: 320px;
+    height: 450px;
+    background: $black10;
+    border-radius: 6px;
+    i {
+      color: $black20;
+      font-size: 100px;
+    }
+    .image {
+      width: 100%;
+      min-width: 300px;
+      max-width: 300px;
+      object-fit: cover;
+      border: 1px solid $dividerBorder;
+      border-radius: 6px;
+    }
+  }
+  .overview {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+body.dark {
+  .main-info {
+    border-bottom: 1px solid $dividerBorderDarkBG;
+    .preview-image {
+      background: $black20;
+      i {
+        color: $white20;
+      }
+    }
+  }
+}
+
+</style>

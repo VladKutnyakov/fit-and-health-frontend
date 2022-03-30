@@ -25,6 +25,18 @@ export default {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
+  padding: 10px;
+  background: $white;
+  border-radius: 6px;
+  box-shadow: $cardShadow;
+  transition: $tr-02;
+  overflow: hidden;
+}
+
+body.dark {
+  .program-overview {
+    background: $cardBackgroundDarkBG;
+  }
 }
 
 </style>
