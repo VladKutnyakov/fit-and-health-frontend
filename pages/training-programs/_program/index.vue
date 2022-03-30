@@ -1,17 +1,14 @@
 <template>
   <app-page>
-    <editor />
+    <program-overview />
     <additional-info />
-
-    <select-exercises-modal />
   </app-page>
 </template>
 
 <script>
 import AppPage from '@/components/basic/AppPage'
-import Editor from '@/components/trainingProgramEditor/Editor/index'
-import AdditionalInfo from '@/components/trainingProgramEditor/AdditionalInfo/index'
-import SelectExercisesModal from '@/components/trainingProgramEditor/SelectExercisesModal/index'
+import ProgramOverview from '@/components/trainingProgram/ProgramOverview/index'
+import AdditionalInfo from '@/components/trainingProgram/AdditionalInfo/index'
 
 export default {
   name: 'TrainingProgram',
@@ -46,9 +43,8 @@ export default {
   middleware: ['userAuth'],
   components: {
     AppPage,
-    Editor,
+    ProgramOverview,
     AdditionalInfo,
-    SelectExercisesModal
   },
   // async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
   //   if (query.trainingProgramId) {
