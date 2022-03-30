@@ -114,8 +114,9 @@ export default {
       } else {
         this.setTrainingProgramFormFieldValue({field: 'trainingDay', newValue: $event})
         this.$router.push(`/training-diary/training-process?trainingProgram=${this.$route.query?.trainingProgram || ''}`)
-        this.clearTrainingDayForm()
       }
+
+      this.clearTrainingDayForm()
     },
   },
   beforeDestroy () {

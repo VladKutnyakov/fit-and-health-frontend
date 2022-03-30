@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppAccordion from '@/components/basic/AppAccordion'
 import AppButton from '@/components/basic/AppButton'
 import Approach from '@/components/trainingProcess/TrainingProcess/Exercises/Approach'
@@ -68,6 +69,20 @@ export default {
   data () {
     return {
       isOpened: false,
+    }
+  },
+  computed: {
+    ...mapState({
+      trainingDay: state => state.trainingProcess.trainingProgramForm.fields.trainingDay,
+    })
+  },
+  watch: {
+    trainingDay () {
+      this.isOpened = false
+
+      this.$nextTick(() => {
+        this.$refs.exerciseAccordion.close()
+      })
     }
   },
   methods: {
