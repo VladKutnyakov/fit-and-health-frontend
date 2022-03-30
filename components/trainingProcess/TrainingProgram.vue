@@ -136,7 +136,7 @@ export default {
       this.clearTrainingDayForm()
     },
     openEditTrainingProgramPage () {
-      console.log('openEditTrainingProgramPage')
+      this.$router.push(`/training-programs/training-program-editor?trainingProgram=${this.$route.query?.trainingProgram}`)
     },
     startTrainingProgram () {
       this.setTrainingProgramFormFieldValue({field: 'isStarted', newValue: true})
