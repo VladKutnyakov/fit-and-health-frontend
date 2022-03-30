@@ -7,8 +7,8 @@
 
 <script>
 import { mapMutations } from 'vuex'
-import Overview from '@/components/trainingProgram/ProgramOverview/TabTrainingDay/Overview'
-import Exercises from '@/components/trainingProgram/ProgramOverview/TabTrainingDay/Exercises/index'
+import Overview from '@/components/trainingProgram/ProgramOverview/TrainingDays/TabTrainingDay/Overview'
+import Exercises from '@/components/trainingProgram/ProgramOverview/TrainingDays/TabTrainingDay/Exercises/index'
 export default {
   components: {
     Overview,

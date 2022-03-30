@@ -12,7 +12,7 @@
 <script>
 import { mapState } from 'vuex'
 import AppTabs from '@/components/basic/AppTabs'
-import TabTrainingDay from '@/components/trainingProgram/ProgramOverview/TabTrainingDay/index'
+import TabTrainingDay from '@/components/trainingProgram/ProgramOverview/TrainingDays/TabTrainingDay/index'
 
 export default {
   components: {

@@ -26,7 +26,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import Exercise from '@/components/trainingProgram/ProgramOverview/TabTrainingDay/Exercises/Exercise'
+import Exercise from '@/components/trainingProgram/ProgramOverview/TrainingDays/TabTrainingDay/Exercises/Exercise'
 
 export default {
   components: {

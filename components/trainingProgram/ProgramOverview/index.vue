@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import MainInfo from '@/components/trainingProgram/ProgramOverview/MainInfo'
-import TrainingDays from '@/components/trainingProgram/ProgramOverview/TrainingDays'
+import MainInfo from '@/components/trainingProgram/ProgramOverview/MainInfo/index'
+import TrainingDays from '@/components/trainingProgram/ProgramOverview/TrainingDays/index'
 
 export default {
   components: {
