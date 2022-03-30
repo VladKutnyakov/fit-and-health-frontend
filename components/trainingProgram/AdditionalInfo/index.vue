@@ -14,8 +14,8 @@
 
         <app-button
           class="ml-5 fill-area"
-          @click="saveTrainingProgram()"
-        >Сохранить</app-button>
+          @click="editTrainingProgram()"
+        >Редактировать</app-button>
       </div>
     </div>
   </div>
@@ -31,10 +31,8 @@ export default {
     TrainingFocus
   },
   methods: {
-    saveTrainingProgram () {
-      const payload = JSON.parse(JSON.stringify(this.$store.state.trainingProgramEditor.trainingProgram.fields))
-
-      this.$store.dispatch('trainingProgramEditor/saveTrainingProgram', payload)
+    editTrainingProgram () {
+      this.$router.push(`/training-programs/training-program-editor?trainingProgram=${this.$route.params.program || ''}`)
     },
     openConfirmStartTrainingProcessModal () {
       this.$store.commit('trainingProgramEditor/toggleModalVisibility', {modal: 'confirmStartTrainingProcessModalActive', condition: true})
