@@ -2,9 +2,7 @@
   <div class="training-days">
     <app-tabs
       :tabList="tabList"
-      canBeAddTabs
       @selectTab="selectTrainingDay($event)"
-      @addTab="addTrainingDay()"
     />
   </div>
 </template>

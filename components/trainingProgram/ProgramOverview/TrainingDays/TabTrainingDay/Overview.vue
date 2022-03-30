@@ -3,10 +3,9 @@
     <div class="overview__params">
       <div class="params__element">
         <p class="element__text">Тип тренировочного дня:</p>
-        <app-select
-          :value="trainingProgramDays[selectedTrainingDay].trainingType"
-          :selectOptionsList="trainingTypesList"
-          @select="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'trainingType', index: selectedTrainingDay, newValue: $event})"
+        <app-input-text
+          :value="null"
+          disabled
         />
       </div>
 
@@ -14,9 +13,8 @@
         <p class="element__text">Комментарий к тренеровочному дню:</p>
         <app-textarea
           class="fill-area"
-          :value="trainingProgramDays[selectedTrainingDay].comment"
-          placeholder="Комментарий"
-          @input="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'comment', index: selectedTrainingDay, newValue: $event})"
+          :value="null"
+          disabled
         />
       </div>
     </div>
