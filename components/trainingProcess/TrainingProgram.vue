@@ -69,6 +69,7 @@
       <app-button
         v-if="!trainingProgramForm.fields.isStarted"
         class="ml-10 fill-area"
+        :disabled="!trainingProgramForm.fields.trainingProgram || !trainingProgramForm.fields.trainingDay"
         @click.native="startTrainingProgram()"
       >Начать тренироваку</app-button>
       <app-button

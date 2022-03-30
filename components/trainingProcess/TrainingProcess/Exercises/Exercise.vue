@@ -30,6 +30,7 @@
           <app-button
             v-if="!exercise.isStarted"
             size14px
+            :disabled="!trainingProgramForm.fields.isStarted"
             @click="startExercise(exercise)"
           >Начать выполнение упражнения</app-button>
 
@@ -43,6 +44,7 @@
           <app-button
             class="ml-auto"
             size14px
+            :disabled="!trainingProgramForm.fields.isStarted"
             @click="addAproach(exercise)"
           >Добавить подход</app-button>
         </div>
@@ -70,6 +72,11 @@ export default {
     return {
       isOpened: false,
     }
+  },
+  computed: {
+    ...mapState({
+      trainingProgramForm: state => state.trainingProcess.trainingProgramForm,
+    })
   },
   methods: {
     startExercise (exercise) {
