@@ -142,7 +142,7 @@ export default {
       this.setTrainingProgramFormFieldValue({field: 'isStarted', newValue: true})
     },
     completeTrainingProgram () {
-      this.setTrainingProgramFormFieldValue({field: 'isStarted', newValue: false})
+      this.$store.commit('trainingProcess/toggleModalVisibility', {modal: 'confirmCompleteTrainingProgramModalActive', condition: true})
     }
   },
   beforeDestroy () {

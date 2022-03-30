@@ -49,6 +49,7 @@ export const state = () => ({
   }),
   trainingProgramsList: [],
   selectTrainingProgramModalActive: false,
+  confirmCompleteTrainingProgramModalActive: false,
 })
 
 export const getters = {}

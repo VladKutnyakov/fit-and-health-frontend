@@ -6,7 +6,10 @@
   >
     <div
       class="modal__content-wrapper"
-      :style="[{ 'max-width': maxWidth }]"
+      :style="[
+        { 'width': width },
+        { 'max-width': maxWidth },
+      ]"
       @mousedown.stop
     >
 
@@ -14,7 +17,7 @@
         <slot name="modalHeader"></slot>
       </div>
 
-      <div v-if="!haveHeaderTemplate" class="modal__header">
+      <div v-if="!haveHeaderTemplate && (headerTitle || headerDescriptions)" class="modal__header">
         <p class="header__title">{{ headerTitle }}</p>
         <div class="header__description" v-if="headerDescriptions">
           <p
@@ -41,6 +44,7 @@
 export default {
   props: {
     isActive: Boolean,
+    width: String,
     maxWidth: String,
     headerTitle: String,
     headerDescriptions: Array,
@@ -115,7 +119,7 @@ export default {
     display: flex;
     flex-direction: column;
     margin: 0 40px;
-    width: 100%;
+    // width: 100%;
     max-width: 800px;
     max-height: calc(100vh - 80px);
     background: $white;
