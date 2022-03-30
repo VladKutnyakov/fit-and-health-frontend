@@ -57,10 +57,24 @@
     </div>
 
     <div class="training-program__actions">
-      <app-button>
+      <app-button
+        :disabled="trainingProgramForm.fields.isStarted"
+        @click.native="openEditTrainingProgramPage()"
+      >
         <i class="ti-pencil"></i>
       </app-button>
-      <app-button class="ml-10 fill-area">Начать тренироваку</app-button>
+
+      <app-button
+        v-if="!trainingProgramForm.fields.isStarted"
+        class="ml-10 fill-area"
+        @click.native="startTrainingProgram()"
+      >Начать тренироваку</app-button>
+      <app-button
+        v-if="trainingProgramForm.fields.isStarted"
+        class="ml-10 fill-area"
+        successBtn
+        @click.native="completeTrainingProgram()"
+      >Завершить тренироваку</app-button>
     </div>
 
   </div>
@@ -118,6 +132,15 @@ export default {
 
       this.clearTrainingDayForm()
     },
+    openEditTrainingProgramPage () {
+      console.log('openEditTrainingProgramPage')
+    },
+    startTrainingProgram () {
+      this.setTrainingProgramFormFieldValue({field: 'isStarted', newValue: true})
+    },
+    completeTrainingProgram () {
+      this.setTrainingProgramFormFieldValue({field: 'isStarted', newValue: false})
+    }
   },
   beforeDestroy () {
     this.$store.commit('trainingProcess/clearTrainingProgramForm')

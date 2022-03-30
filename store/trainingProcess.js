@@ -2,6 +2,7 @@ import { generateForm, setFormFieldsValue, setFormFieldValue, clearForm } from '
 
 export const state = () => ({
   trainingProgramForm: generateForm({
+    isStarted: false,
     trainingProgram: null,
     previewImage: null,
     trainingProgramAccent: null,

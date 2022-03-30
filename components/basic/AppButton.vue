@@ -97,8 +97,7 @@ export default {
   background: $red;
 }
 .disabled {
-  color: $black60;
-  background: $gray;
+  opacity: 0.5;
 }
 .disabled:hover {
   box-shadow: none;
