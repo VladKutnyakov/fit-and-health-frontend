@@ -84,7 +84,14 @@ export const mutations = {
       if (state.trainingDayForm.fields.trainingProgramDayExercises[i].id === exerciseId) {
         state.trainingDayForm.fields.trainingProgramDayExercises.splice(i, 1, { ...state.trainingDayForm.fields.trainingProgramDayExercises[i], isStarted: true })
 
-        state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[0].isActive = true
+        if (state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.length > 0) {
+          for (let j = 0; j < state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.length; j++) {
+            if (!state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[j].isActive) {
+              state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[j].isActive = true
+              break
+            }
+          }
+        }
       }
     }
   },
@@ -103,7 +110,7 @@ export const mutations = {
     for (let i = 0; i < state.trainingDayForm.fields.trainingProgramDayExercises.length; i++) {
       if (state.trainingDayForm.fields.trainingProgramDayExercises[i].id === exerciseId) {
         state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.push({
-          isActive: false,
+          isActive: state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.length <= 0 ? true : false,
           title: `Подход ${state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.length + 1}`,
           repeats: {
             target: state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[0]?.repeats.target || null,
