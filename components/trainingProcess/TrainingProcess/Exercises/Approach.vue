@@ -11,6 +11,7 @@
       <app-input-text
         class="mt-5"
         :value="approach.repeats ? approach.repeats.value : null"
+        :disabled="!approach.isActive"
         small
         textCenter
         selectOnFocus
@@ -22,6 +23,7 @@
       <app-input-text
         class="mt-5"
         :value="approach.additionalWeight ? approach.additionalWeight.value : null"
+        :disabled="!approach.isActive"
         small
         textCenter
         selectOnFocus
@@ -33,6 +35,7 @@
       <app-input-text
         class="mt-5"
         :value="approach.implementationTime.value ? approach.implementationTime.value : null"
+        :disabled="!approach.isActive"
         small
         textCenter
         selectOnFocus
@@ -44,6 +47,7 @@
       <app-input-text
         class="mt-5"
         :value="approach.restTime.value ? approach.restTime.value : null"
+        :disabled="!approach.isActive"
         small
         textCenter
         selectOnFocus
@@ -52,41 +56,49 @@
     </div>
 
     <div class="approach__actions">
-      <div
+      <button
         v-if="!approach.isStarted"
         class="approach__action-btn"
+        :class="[{ 'approach__action-btn--disabled': !approach.isActive }]"
+        :disabled="!approach.isActive"
         @click="
           switchApproachExecution(approach),
           startImplementationTimer(approach)
         "
       >
         <i class="ti-control-play"></i>
-      </div>
+      </button>
 
-      <div
+      <button
         v-if="approach.isStarted"
         class="approach__action-btn"
+        :class="[{ 'approach__action-btn--disabled': !approach.isActive }]"
+        :disabled="!approach.isActive"
         @click="
           switchApproachExecution(approach),
           stopImplementationTimer()
         "
       >
         <i class="ti-control-pause"></i>
-      </div>
+      </button>
 
-      <div
+      <button
         class="approach__action-btn"
+        :class="[{ 'approach__action-btn--disabled': !approach.isStarted }]"
+        :disabled="!approach.isStarted"
         @click="completeApproach(approach)"
       >
         <i class="ti-control-stop"></i>
-      </div>
+      </button>
 
-      <div
+      <button
         class="approach__action-btn"
+        :class="[{ 'approach__action-btn--disabled': approach.isStarted }]"
+        :disabled="approach.isStarted"
         @click="removeApproach(approach)"
       >
         <i class="ti-close"></i>
-      </div>
+      </button>
     </div>
   </li>
 </template>
@@ -209,6 +221,7 @@ export default {
       height: 35px;
       background: $primary;
       color: $white;
+      border: none;
       border-radius: 50%;
       cursor: pointer;
     }
@@ -218,6 +231,17 @@ export default {
     .approach__action-btn:last-child {
       margin-left: 0;
       background: $danger;
+    }
+    .approach__action-btn:hover {
+      box-shadow: $btnHoverShadow;
+    }
+    .approach__action-btn:active {
+      box-shadow: $btnActiveShadow;
+    }
+    .approach__action-btn--disabled {
+      opacity: .5;
+      box-shadow: none;
+      cursor: default;
     }
   }
 }
