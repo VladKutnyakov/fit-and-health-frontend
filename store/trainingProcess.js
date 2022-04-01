@@ -106,19 +106,19 @@ export const mutations = {
           isActive: false,
           title: `Подход ${state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.length + 1}`,
           repeats: {
-            target: null,
+            target: state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[0]?.repeats.target || null,
             value: null
           },
           additionalWeight: {
-            target: null,
+            target: state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[0]?.additionalWeight.target || null,
             value: null
           },
           implementationTime: {
-            target: null,
+            target: state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[0]?.implementationTime.target || null,
             value: null
           },
           restTime: {
-            target: null,
+            target: state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches[0]?.restTime.target || null,
             value: null
           },
         })

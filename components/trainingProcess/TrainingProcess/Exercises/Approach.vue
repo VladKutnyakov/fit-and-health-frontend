@@ -15,7 +15,7 @@
         small
         textCenter
         selectOnFocus
-        :placeholder="approach.repeats ? approach.repeats.target : null"
+        :placeholder="approach.repeats.target ? approach.repeats.target : '0'"
       />
     </div>
     <div class="approach__element">
@@ -27,7 +27,7 @@
         small
         textCenter
         selectOnFocus
-        :placeholder="approach.additionalWeight ? approach.additionalWeight.target : null"
+        :placeholder="approach.additionalWeight.target ? approach.additionalWeight.target : '0'"
       />
     </div>
     <div class="approach__element">
@@ -93,8 +93,8 @@
 
       <button
         class="approach__action-btn"
-        :class="[{ 'approach__action-btn--disabled': approach.isStarted }]"
-        :disabled="approach.isStarted"
+        :class="[{ 'approach__action-btn--disabled': approach.isStarted || !trainingProgramForm.fields.isStarted }]"
+        :disabled="approach.isStarted || !trainingProgramForm.fields.isStarted"
         @click="remove({ exercise, approach })"
       >
         <i class="ti-close"></i>
@@ -104,7 +104,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 
 export default {
@@ -130,6 +130,11 @@ export default {
   },
   components: {
     AppInputText
+  },
+  computed: {
+    ...mapState({
+      trainingProgramForm: state => state.trainingProcess.trainingProgramForm,
+    })
   },
   methods: {
     ...mapMutations({
