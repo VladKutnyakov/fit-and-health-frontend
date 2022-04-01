@@ -95,7 +95,7 @@
         class="approach__action-btn"
         :class="[{ 'approach__action-btn--disabled': approach.isStarted }]"
         :disabled="approach.isStarted"
-        @click="removeApproach(approach)"
+        @click="remove({ exercise, approach })"
       >
         <i class="ti-close"></i>
       </button>
@@ -109,6 +109,7 @@ import AppInputText from '@/components/basic/AppInputText'
 
 export default {
   props: {
+    exercise: Object,
     approach: [Object, Number]
   },
   data () {
@@ -157,6 +158,11 @@ export default {
     },
     stopImplementationTimer () {
       clearInterval(this.approachImplementationTimer)
+    },
+    remove ({ exercise, approach }) {
+      this.removeApproach({ exercise, approach })
+
+      this.$emit('updateHeight')
     }
   },
 }
@@ -250,7 +256,6 @@ export default {
 }
 
 .approach--not-active {
-  opacity: 0.8;
   .approach__status {
     .status {
       background: $black20;
@@ -268,9 +273,6 @@ export default {
     .element__value {
       opacity: .5;
     }
-  }
-  .approach__action-btn {
-    opacity: .5;
   }
 }
 

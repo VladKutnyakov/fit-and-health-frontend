@@ -105,10 +105,22 @@ export const mutations = {
         state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.push({
           isActive: false,
           title: `Подход ${state.trainingDayForm.fields.trainingProgramDayExercises[i].approaches.length + 1}`,
-          repeats: null,
-          additionalWeight: null,
-          implementationTime: null,
-          restTime: null,
+          repeats: {
+            target: null,
+            value: null
+          },
+          additionalWeight: {
+            target: null,
+            value: null
+          },
+          implementationTime: {
+            target: null,
+            value: null
+          },
+          restTime: {
+            target: null,
+            value: null
+          },
         })
       }
     }
@@ -125,8 +137,16 @@ export const mutations = {
   completeApproach (state, approach) {
     console.log('completeApproach')
   },
-  removeApproach (state, approach) {
-    console.log('removeApproach')
+  removeApproach (state, { exercise, approach }) {
+    for (let i = 0; i < exercise.approaches.length; i++) {
+      if (exercise.approaches[i].title === approach.title) {
+        exercise.approaches.splice(i, 1)
+      }
+    }
+
+    exercise.approaches.forEach((element, index) => {
+      element.title = `Подход ${index + 1}`
+    })
   },
 
   toggleModalVisibility (state, ctx) {

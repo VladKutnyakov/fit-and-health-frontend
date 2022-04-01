@@ -22,7 +22,9 @@
           <approach
             v-for="(approach, index) in exercise.approaches"
             :key="index"
+            :exercise="exercise"
             :approach="approach"
+            @updateHeight="updateHeight()"
           />
         </ul>
         <div class="exercise__controls">
@@ -87,10 +89,13 @@ export default {
     addAproach (exercise) {
       this.$store.commit('trainingProcess/addAproach', exercise.id)
 
+      this.updateHeight()
+    },
+    updateHeight () {
       this.$nextTick(() => {
         this.$refs.exerciseAccordion.updateHeight()
       })
-    },
+    }
   }
 }
 </script>
