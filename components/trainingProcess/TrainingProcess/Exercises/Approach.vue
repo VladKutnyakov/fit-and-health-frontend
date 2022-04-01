@@ -30,9 +30,6 @@
     </div>
     <div class="approach__element">
       <p class="element__text">Время выполнения</p>
-
-      <pre>{{ approach.implementationTime }}</pre>
-
       <app-input-text
         class="mt-5"
         :value="approach.implementationTime.value ? approach.implementationTime.value : null"
@@ -56,15 +53,25 @@
 
     <div class="approach__actions">
       <div
+        v-if="!approach.isStarted"
         class="approach__action-btn"
-        @click="switchApproachExecution(approach)"
+        @click="
+          switchApproachExecution(approach),
+          startImplementationTimer(approach)
+        "
       >
-        <i
-          :class="[
-            { 'ti-control-play': !approach.isStarted },
-            { 'ti-control-pause': approach.isStarted },
-          ]"
-        ></i>
+        <i class="ti-control-play"></i>
+      </div>
+
+      <div
+        v-if="approach.isStarted"
+        class="approach__action-btn"
+        @click="
+          switchApproachExecution(approach),
+          stopImplementationTimer()
+        "
+      >
+        <i class="ti-control-pause"></i>
       </div>
 
       <div
@@ -92,6 +99,22 @@ export default {
   props: {
     approach: [Object, Number]
   },
+  data () {
+    return {
+      implementationTime: {
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      },
+      approachImplementationTimer: null,
+      restTime: {
+        hours: 0,
+        minutes: 0,
+        seconds: 0
+      },
+      approachRestTimer: null,
+    }
+  },
   components: {
     AppInputText
   },
@@ -100,7 +123,29 @@ export default {
       switchApproachExecution: 'trainingProcess/switchApproachExecution',
       completeApproach: 'trainingProcess/completeApproach',
       removeApproach: 'trainingProcess/removeApproach',
-    })
+    }),
+    startImplementationTimer (approach) {
+      this.approachImplementationTimer = setInterval(() => {
+        if (this.implementationTime.seconds < 59) {
+          this.implementationTime.seconds += 1
+        } else if (this.implementationTime.minutes < 59) {
+          this.implementationTime.seconds = 0
+          this.implementationTime.minutes += 1
+        } else {
+          this.implementationTime.seconds = 0
+          this.implementationTime.minutes = 0
+          this.implementationTime.hours += 1
+        }
+
+        const time = (this.implementationTime.hours <= 9 ? `0${this.implementationTime.hours}` : this.implementationTime.hours) + ' : ' + (this.implementationTime.minutes <= 9 ? `0${this.implementationTime.minutes}` : this.implementationTime.minutes) + ' : ' + (this.implementationTime.seconds <= 9 ? `0${this.implementationTime.seconds}` : this.implementationTime.seconds)
+        // console.log(time)
+
+        this.$store.commit('trainingProcess/updateApproachImplementationTime', { approach, time })
+      }, 1000)
+    },
+    stopImplementationTimer () {
+      clearInterval(this.approachImplementationTimer)
+    }
   },
 }
 </script>

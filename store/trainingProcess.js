@@ -115,9 +115,11 @@ export const mutations = {
   },
   switchApproachExecution (state, approach) {
     approach.isStarted = !approach.isStarted
+  },
+  updateApproachImplementationTime (state, { approach, time }) {
     approach.implementationTime = {
       target: null,
-      value: '00 : 00 : 01'
+      value: time
     }
   },
   completeApproach (state, approach) {
