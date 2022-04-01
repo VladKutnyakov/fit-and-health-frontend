@@ -9,7 +9,7 @@
       :text="trainingDayForm.fields.comment"
     />
 
-    <exercises :exercisesList="trainingDayForm.fields.trainingProgramDayExercises" />
+    <exercises />
 
     <laps-overview v-if="trainingDayForm.fields.trainingType && trainingDayForm.fields.trainingType.id === 2" />
   </div>
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     ...mapState({
-      trainingDayForm: state => state.trainingProcess.trainingDayForm
+      trainingDayForm: state => state.trainingProcess.trainingDayForm,
     })
   },
   beforeDestroy () {

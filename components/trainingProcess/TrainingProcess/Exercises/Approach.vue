@@ -30,31 +30,34 @@
     </div>
     <div class="approach__element">
       <p class="element__text">Время выполнения</p>
+
+      <pre>{{ approach.implementationTime }}</pre>
+
       <app-input-text
         class="mt-5"
-        :value="exercise.implementationTime ? exercise.implementationTime.value : null"
+        :value="approach.implementationTime.value ? approach.implementationTime.value : null"
         small
         textCenter
         selectOnFocus
-        :placeholder="exercise.implementationTime ? exercise.implementationTime.target : '00 : 00 : 00'"
+        :placeholder="approach.implementationTime.target ? approach.implementationTime.target : '00 : 00 : 00'"
       />
     </div>
     <div class="approach__element">
       <p class="element__text">Время отдыха</p>
       <app-input-text
         class="mt-5"
-        :value="exercise.restTime ? exercise.restTime : null"
+        :value="approach.restTime.value ? approach.restTime.value : null"
         small
         textCenter
         selectOnFocus
-        :placeholder="exercise.restTime ? exercise.restTime : '00 : 00 : 00'"
+        :placeholder="approach.restTime.target ? approach.restTime.target : '00 : 00 : 00'"
       />
     </div>
 
     <div class="approach__actions">
       <div
         class="approach__action-btn"
-        @click="switchApproachExecution({ exercise, approach })"
+        @click="switchApproachExecution(approach)"
       >
         <i
           :class="[
@@ -66,14 +69,14 @@
 
       <div
         class="approach__action-btn"
-        @click="completeApproach({ exercise, approach })"
+        @click="completeApproach(approach)"
       >
         <i class="ti-control-stop"></i>
       </div>
 
       <div
         class="approach__action-btn"
-        @click="removeApproach({ exercise, approach} )"
+        @click="removeApproach(approach)"
       >
         <i class="ti-close"></i>
       </div>
@@ -87,7 +90,6 @@ import AppInputText from '@/components/basic/AppInputText'
 
 export default {
   props: {
-    exercise: Object,
     approach: [Object, Number]
   },
   components: {

@@ -113,13 +113,17 @@ export const mutations = {
       }
     }
   },
-  switchApproachExecution (state, { exercise, approach }) {
-    console.log('switchApproachExecution')
+  switchApproachExecution (state, approach) {
+    approach.isStarted = !approach.isStarted
+    approach.implementationTime = {
+      target: null,
+      value: '00 : 00 : 01'
+    }
   },
-  completeApproach (state, { exercise, approach }) {
+  completeApproach (state, approach) {
     console.log('completeApproach')
   },
-  removeApproach (state, { exercise, approach }) {
+  removeApproach (state, approach) {
     console.log('removeApproach')
   },
 

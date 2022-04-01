@@ -22,7 +22,6 @@
           <approach
             v-for="(approach, index) in exercise.approaches"
             :key="index"
-            :exercise="exercise"
             :approach="approach"
           />
         </ul>

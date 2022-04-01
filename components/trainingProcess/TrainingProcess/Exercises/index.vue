@@ -2,7 +2,7 @@
   <div class="exercises">
     <ul class="exercises-list">
       <exercise
-        v-for="(item, index) in exercisesList"
+        v-for="(item, index) in trainingProgramDayExercises"
         :key="index"
         :exercise="item"
       />
@@ -11,14 +11,17 @@
 </template>
 
 <script>
+import { mapState} from 'vuex'
 import Exercise from '@/components/trainingProcess/TrainingProcess/Exercises/Exercise'
 
 export default {
-  props: {
-    exercisesList: Array
-  },
   components: {
     Exercise
+  },
+  computed: {
+    ...mapState({
+      trainingProgramDayExercises: state => state.trainingProcess.trainingDayForm.fields.trainingProgramDayExercises,
+    })
   }
 }
 </script>
