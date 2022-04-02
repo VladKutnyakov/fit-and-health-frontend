@@ -72,7 +72,7 @@
       <button
         v-if="approach.isStarted"
         class="approach__action-btn"
-        :class="[{ 'approach__action-btn--disabled': !approach.isActive }]"
+        :class="[{ 'approach__action-btn--disabled': approach.isActive }]"
         :disabled="!approach.isActive"
         @click="
           switchApproachExecution(approach),
