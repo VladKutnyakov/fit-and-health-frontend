@@ -30,7 +30,7 @@
       <div class="exercise-info">
         <div class="exercise-info__item">
           <p class="item__title">Группа мышц:</p>
-          <p class="item__value">{{ exercise.muscleGroup }}</p>
+          <p class="item__value">{{ exercise.muscleGroup ? exercise.muscleGroup.title : 'нет данных' }}</p>
         </div>
         <div class="exercise-info__item">
           <p class="item__title">Дополнительные мышцы:</p>
@@ -38,19 +38,19 @@
         </div>
         <div class="exercise-info__item">
           <p class="item__title">Тип упражнения:</p>
-          <p class="item__value">{{ exercise.type }}</p>
+          <p class="item__value">{{ exercise.type ? exercise.type.title : 'нет данных' }}</p>
         </div>
         <div class="exercise-info__item">
           <p class="item__title">Вид упражнения:</p>
-          <p class="item__value">{{ exercise.sort }}</p>
+          <p class="item__value">{{ exercise.sort ? exercise.sort.title : 'нет данных' }}</p>
         </div>
         <div class="exercise-info__item">
           <p class="item__title">Усилие:</p>
-          <p class="item__value">{{ exercise.exertion }}</p>
+          <p class="item__value">{{ exercise.exertion ? exercise.exertion.title : 'нет данных' }}</p>
         </div>
         <div class="exercise-info__item">
           <p class="item__title">Оборудование:</p>
-          <p class="item__value">{{ exercise.equipment }}</p>
+          <p class="item__value">{{ exercise.equipment ? exercise.equipment.title : 'нет данных' }}</p>
         </div>
       </div>
     </div>
