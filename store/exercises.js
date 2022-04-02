@@ -1,24 +1,8 @@
 import { generateForm } from '../utils/formManager'
 
 export const state = () => ({
-  exercisesList: [],
-  exerciseInfo: {
-    id: null,
-    title: null,
-    techniqueDescription: null,
-    muscleGroup: null,
-    additionalMuscles: [],
-    type: null,
-    sort: null,
-    equipment: null,
-    exertion: null,
-    skill: null,
-    power: null,
-    endurance: null,
-    flexibility: null,
-    cardio: null,
-    user: null
-  },
+  pinnedExercises: [],
+  notPinnedExercises: [],
   exerciseForm: generateForm({
     id: null,
     title: null,
@@ -50,31 +34,36 @@ export const state = () => ({
 
 export const getters = {
   getExercisesCount (state) {
-    let ExercisesCount = 0
-    for (let i = 0; i < state.exercisesList.length; i++) {
-      ExercisesCount += state.exercisesList[i].exercises.length
-    }
-    return ExercisesCount
+    // let ExercisesCount = 0
+    // for (let i = 0; i < state.exercisesList.length; i++) {
+    //   ExercisesCount += state.exercisesList[i].exercises.length
+    // }
+    // return ExercisesCount
+    return 0
   },
   getUserExercisesCount (state) {
-    let UserExercisesCount = 0
-    for (let i = 0; i < state.exercisesList.length; i++) {
-      state.exercisesList[i].exercises.forEach(element => {
-        if (element.user) {
-          UserExercisesCount += 1
-        }
-      })
-    }
-    return UserExercisesCount
+    // let UserExercisesCount = 0
+    // for (let i = 0; i < state.exercisesList.length; i++) {
+    //   state.exercisesList[i].exercises.forEach(element => {
+    //     if (element.user) {
+    //       UserExercisesCount += 1
+    //     }
+    //   })
+    // }
+    // return UserExercisesCount
+    return 0
   },
 }
 
 export const mutations = {
   setExercisesList (state, payload) {
-    state.exercisesList = payload
-  },
-  setExerciseInfo (state, ExerciseInfo) {
-    state.exerciseInfo = ExerciseInfo
+    payload.forEach(element => {
+      if (element.pinned) {
+        state.pinnedExercises.push(element)
+      } else {
+        state.notPinnedExercises.push(element)
+      }
+    })
   },
   addNewExercise (state, createdExercise) {
     for (let i = 0; i < state.exercisesList.length; i++) {
@@ -180,9 +169,9 @@ export const mutations = {
 export const actions = {
   async fetchExercisesList ({ commit }) {
     try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-by-muscles`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-list`)
 
-      commit('setExercisesList', response.data)
+      commit('setExercisesList', response)
     } catch (error) {
       console.log(error.response)
 
@@ -193,15 +182,6 @@ export const actions = {
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
-    }
-  },
-  async fetchExerciseInfo ({ commit }, exercisesId) {
-    try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-info/${exercisesId}`)
-
-      commit('setExerciseInfo', response.data)
-    } catch (err) {
-      console.log(err)
     }
   },
 

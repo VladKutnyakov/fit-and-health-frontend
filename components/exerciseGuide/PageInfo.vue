@@ -22,15 +22,18 @@ export default {
       return [
         {
           title: "Всего упражнений",
-          value: this.$store.getters['exercises/getExercisesCount']
+          // value: this.$store.getters['exercises/getExercisesCount']
+          value: 0
         },
         {
           title: "Категорий",
-          value: this.$store.state.exercises.exercisesList.length
+          // value: this.$store.state.exercises.exercisesList.length
+          value: 0
         },
         {
           title: "Мои упражнения",
-          value: this.$store.getters['exercises/getUserExercisesCount']
+          // value: this.$store.getters['exercises/getUserExercisesCount']
+          value: 0
         }
       ]
     }

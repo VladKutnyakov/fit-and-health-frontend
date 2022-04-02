@@ -88,45 +88,51 @@ export default {
         foodOrDrink: 'Все',
         type: 'Все'
       },
-      pinnedExercises: [
-        {
-          muscleGroup: 1,
-          additionalMuscles: 1,
-          type: 1,
-          sort: 1,
-          exertion: 1,
-          equipment: 1,
-          skill: 1,
-          pinned: true,
-          favorite: true,
-        }
-      ],
-      notPinnedExercises: [
-        {
-          muscleGroup: 1,
-          additionalMuscles: 1,
-          type: 1,
-          sort: 1,
-          exertion: 1,
-          equipment: 1,
-          skill: 1,
-          pinned: false,
-          favorite: false,
-        },
-        {
-          muscleGroup: 1,
-          additionalMuscles: 1,
-          type: 1,
-          sort: 1,
-          exertion: 1,
-          equipment: 1,
-          skill: 1,
-          pinned: false,
-          favorite: false,
-        }
-      ],
+      // pinnedExercises: [
+      //   {
+      //     muscleGroup: 1,
+      //     additionalMuscles: 1,
+      //     type: 1,
+      //     sort: 1,
+      //     exertion: 1,
+      //     equipment: 1,
+      //     skill: 1,
+      //     pinned: true,
+      //     favorite: true,
+      //   }
+      // ],
+      // notPinnedExercises: [
+      //   {
+      //     muscleGroup: 1,
+      //     additionalMuscles: 1,
+      //     type: 1,
+      //     sort: 1,
+      //     exertion: 1,
+      //     equipment: 1,
+      //     skill: 1,
+      //     pinned: false,
+      //     favorite: false,
+      //   },
+      //   {
+      //     muscleGroup: 1,
+      //     additionalMuscles: 1,
+      //     type: 1,
+      //     sort: 1,
+      //     exertion: 1,
+      //     equipment: 1,
+      //     skill: 1,
+      //     pinned: false,
+      //     favorite: false,
+      //   }
+      // ],
     }
   },
+  computed: {
+    ...mapState({
+      pinnedExercises: state => state.exercises.pinnedExercises,
+      notPinnedExercises: state => state.exercises.notPinnedExercises,
+    })
+  }
 }
 </script>
 
