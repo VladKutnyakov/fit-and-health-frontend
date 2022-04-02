@@ -25,7 +25,7 @@
     <div class="exercise__preview-image"></div>
 
     <div class="exercise__overview">
-      <p class="title">Тяга штанги узким хватом стоя</p>
+      <p class="title">{{ exercise.title }}</p>
 
       <div class="exercise-info">
         <div class="exercise-info__item">
