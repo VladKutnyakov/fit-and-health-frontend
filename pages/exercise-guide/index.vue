@@ -60,6 +60,7 @@ export default {
   },
   async asyncData ({ store }) {
     await store.dispatch('exercises/fetchExercisesList')
+    await store.dispatch('exercises/fetchMuscles')
   },
 }
 </script>

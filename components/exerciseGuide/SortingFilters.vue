@@ -7,27 +7,16 @@
         :filterGroupOpened="true"
         headerTitle="Сортировать по ..."
         :valueList="sortingBy"
-        defaultValue="Названию"
-        @applyFunc="applyFilters()"
-        @inputGroupValueChanged="applyFilters($event, 'sortingBy')"
-      />
-
-      <filter-radio-group
-        :filterGroupOpened="true"
-        headerTitle="Продукты"
-        :valueList="productType"
-        defaultValue="Все продукты"
-        @applyFunc="applyFilters()"
-        @inputGroupValueChanged="applyFilters($event, 'productType')"
+        :defaultValue="searchFilters.sortingBy"
+        @change="setSearchFiltersParam({ param: 'sortingBy', newValue: $event })"
       />
 
       <filter-checkbox-group
         :filterGroupOpened="true"
         headerTitle="Мышечные группы"
-        :valueList="['1']"
-        :defaultValue="['1']"
-        @applyFunc="applyFilters()"
-        @inputGroupValueChanged="applyFilters($event, 'productCategory')"
+        :valueList="exerciseMusclesList"
+        :defaultValue="searchFilters.muscleGroup"
+        @change="setSearchFiltersParam({ param: 'muscleGroup', newValue: $event })"
       >
         <template v-slot:btnWrapper>
           <app-button size14px uppercase>Очистить</app-button>
@@ -36,7 +25,12 @@
       </filter-checkbox-group>
     </div>
 
-    <app-button class="mr-10 mb-10 ml-10" size14px fillArea >Применить фильтры</app-button>
+    <app-button
+      class="mr-10 mb-10 ml-10"
+      size14px
+      fillArea
+      @click="fetchExercisesList()"
+    >Применить фильтры</app-button>
   </div>
 </template>
 
@@ -63,39 +57,28 @@ export default {
         'Углеводам',
         'Калорийности'
       ],
-      productType: [
-        'Все продукты',
-        'Мои продукты',
-        'Закрепленные',
-        'Избранные'
-      ]
     }
+  },
+  computed: {
+    ...mapState({
+      exerciseMusclesList: state => state.exercises.exerciseMusclesList,
+      searchFilters: state => state.exercises.searchFilters,
+    })
   },
   methods: {
     ...mapMutations({
-      setSortingByFilter: 'foodCalorieTable/setSortingByFilter',
-      setProductTypeFilter: 'foodCalorieTable/setProductTypeFilter',
-      setProductCategory: 'foodCalorieTable/setProductCategory',
-      sortProducts: 'foodCalorieTable/sortProducts',
+      setSearchFiltersParam: 'exercises/setSearchFiltersParam',
     }),
-    applyFilters ($event, filterGroup) {
-      switch (filterGroup) {
-        case 'sortingBy':
-          this.setSortingByFilter($event)
-          break
-        case 'productType':
-          this.setProductTypeFilter($event)
-          break
-        case 'productCategory':
-          this.setProductCategory($event)
-          break
-        default:
-          break
-      }
-      // отфильтровать продукты в store и перерендорить страницу
-      this.sortProducts()
+    fetchExercisesList () {
+      const payload = this.searchFilters
+
+      this.$store.commit('exercises/cleanExercisesList')
+      this.$store.dispatch('exercises/fetchExercisesList', payload)
     }
-  }
+  },
+  created () {
+    this.$store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroup', newValue: this.exerciseMusclesList })
+  },
 }
 </script>
 

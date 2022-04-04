@@ -6,6 +6,9 @@ export const state = () => ({
     mediaType: 'Все',
     trainingType: 'Все',
     userType: 'Все',
+
+    sortingBy: 'Названию',
+    muscleGroup: [],
   },
 
   pinnedExercises: [],
