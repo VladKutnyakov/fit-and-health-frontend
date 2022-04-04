@@ -96,7 +96,22 @@ export default {
       setSearchFiltersParam: 'exercises/setSearchFiltersParam',
     }),
     fetchExercisesList () {
-      const payload = this.searchFilters
+      const payload = {
+        searchString: this.searchFilters.searchString,
+        mediaType: this.searchFilters.mediaType,
+        trainingType: this.searchFilters.trainingType,
+        userType: this.searchFilters.userType,
+
+        sortingBy: this.searchFilters.sortingBy,
+        muscleGroup: [],
+      }
+
+      const muscleGroupIDs = []
+      this.searchFilters.muscleGroup.forEach(element => {
+        muscleGroupIDs.push(element.id)
+      })
+
+      payload.muscleGroup = muscleGroupIDs.join(', ')
 
       this.$store.commit('exercises/cleanExercisesList')
       this.$store.dispatch('exercises/fetchExercisesList', payload)
