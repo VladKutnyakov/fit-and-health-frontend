@@ -1,4 +1,4 @@
-import { generateForm, setFormFieldValue, setFormFieldError, clearForm } from '../utils/formManager'
+import { generateForm, setFormFieldsValue, setFormFieldValue, setFormFieldError, clearForm } from '../utils/formManager'
 
 export const state = () => ({
   searchFilters: {
@@ -114,6 +114,10 @@ export const mutations = {
     }
     state.skillsList = list
   },
+
+  setExerciseForm (state, payload) {
+    setFormFieldsValue(state.exerciseForm, payload)
+  },
   setExerciseFormFieldValue (state, ctx) {
     setFormFieldValue(state.exerciseForm, ctx)
   },
@@ -123,44 +127,32 @@ export const mutations = {
   clearExerciseForm (state) {
     clearForm(state.exerciseForm)
   },
-  setExerciseForm (state, payload) {
-    // Установить значения полей формы
-    for (const key in state.exerciseForm.fields) {
-      state.exerciseForm.fields[key] = payload[key]
-    }
-    // Очистить ошибки полей формы
-    for (const key in state.exerciseForm.fields) {
-      state.exerciseForm.errors[key] = {
-        enabled: false,
-        errorMessage: null
-      }
-    }
-  },
+
   updatePinnedExercise (state, updatedExercise) {
-    state.exercisesList.forEach(element => {
-      for (let i = 0; i < element.exercises.length; i++) {
-        if (element.exercises[i].id == updatedExercise.exerciseId) {
-          // console.log(element.exercises[i].id)
-          const item = JSON.parse(JSON.stringify(element.exercises[i]))
-          item.pinned = updatedExercise.pinned
-          element.exercises.splice(i, 1, item)
-          break
-        }
-      }
-    })
+    // state.exercisesList.forEach(element => {
+    //   for (let i = 0; i < element.exercises.length; i++) {
+    //     if (element.exercises[i].id == updatedExercise.exerciseId) {
+    //       // console.log(element.exercises[i].id)
+    //       const item = JSON.parse(JSON.stringify(element.exercises[i]))
+    //       item.pinned = updatedExercise.pinned
+    //       element.exercises.splice(i, 1, item)
+    //       break
+    //     }
+    //   }
+    // })
   },
   updateFavoriteExercise (state, updatedExercise) {
-    state.exercisesList.forEach(element => {
-      for (let i = 0; i < element.exercises.length; i++) {
-        if (element.exercises[i].id == updatedExercise.exerciseId) {
-          // console.log(element.exercises[i].id)
-          const item = JSON.parse(JSON.stringify(element.exercises[i]))
-          item.favorite = updatedExercise.favorite
-          element.exercises.splice(i, 1, item)
-          break
-        }
-      }
-    })
+    // state.exercisesList.forEach(element => {
+    //   for (let i = 0; i < element.exercises.length; i++) {
+    //     if (element.exercises[i].id == updatedExercise.exerciseId) {
+    //       // console.log(element.exercises[i].id)
+    //       const item = JSON.parse(JSON.stringify(element.exercises[i]))
+    //       item.favorite = updatedExercise.favorite
+    //       element.exercises.splice(i, 1, item)
+    //       break
+    //     }
+    //   }
+    // })
   },
   setModalCondition (state, condition) {
     state.modalCondition = condition
