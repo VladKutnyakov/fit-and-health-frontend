@@ -53,15 +53,12 @@ export default {
   },
   watch: {
     checkedValue () {
-      this.$emit('inputGroupValueChanged', this.checkedValue)
+      this.$emit('change', this.checkedValue)
     }
   },
   methods: {
     setDefaultValue () {
       this.checkedValue = this.defaultValue
-    },
-    applyFilter () {
-      this.$emit('applyFunc')
     },
     toggleOpened ($event) {
       this.$emit('toggleOpened', $event)

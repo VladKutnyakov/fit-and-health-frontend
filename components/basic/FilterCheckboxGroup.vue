@@ -1,6 +1,5 @@
 <template>
   <div class="filter-checkbox-group">
-
     <app-accordion :isOpened="filterGroupOpened">
       <template v-slot:accordionHeader>
         <div class="filter-checkbox-group__header" @click="toggleOpened(!filterGroupOpened)">
@@ -28,7 +27,6 @@
         </div>
       </template>
     </app-accordion>
-
   </div>
 </template>
 
@@ -54,7 +52,7 @@ export default {
   },
   watch: {
     checkedValue () {
-      this.$emit('inputGroupValueChanged', this.checkedValue)
+      this.$emit('change', this.checkedValue)
     }
   },
   methods: {
@@ -63,9 +61,6 @@ export default {
     },
     selectAllValue () {
       this.checkedValue = this.defaultValue
-    },
-    applyFilter () {
-      this.$emit('applyFunc')
     },
     toggleOpened ($event) {
       this.$emit('toggleOpened', $event)

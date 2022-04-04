@@ -1,6 +1,13 @@
 import { generateForm } from '../utils/formManager'
 
 export const state = () => ({
+  searchFilters: {
+    searchString: null,
+    mediaType: null,
+    trainingType: null,
+    userType: null,
+  },
+
   pinnedExercises: [],
   notPinnedExercises: [],
   exerciseForm: generateForm({

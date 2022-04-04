@@ -8,32 +8,32 @@
         class="mt-10 mr-10 mb-10 ml-10"
         :filters="false"
         placeholder="Название упражнения"
-        @searchStringChanged="searchString = $event"
+        @search="searchString = $event"
       />
 
       <div class="search__filters">
         <filter-radio-text-group
           :valueList="['Все', 'Фото', 'Видео']"
-          :defaultValue="filters.media"
+          :defaultValue="filters.mediaType"
           uppercase
           size14px
-          @inputGroupValueChanged="filters.media = $event"
+          @change="filters.mediaType = $event"
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
           :valueList="['Все', 'Домашние', 'Спортзал']"
-          :defaultValue="filters.foodOrDrink"
+          :defaultValue="filters.trainingType"
           uppercase
           size14px
-          @inputGroupValueChanged="filters.foodOrDrink = $event"
+          @change="filters.trainingType = $event"
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
           :valueList="['Все', 'Мои упражнения']"
-          :defaultValue="filters.type"
+          :defaultValue="filters.userType"
           uppercase
           size14px
-          @inputGroupValueChanged="filters.type = $event"
+          @change="filters.userType = $event"
         />
       </div>
     </div>
@@ -84,51 +84,15 @@ export default {
     return {
       searchString: '',
       filters: {
-        media: 'Все',
-        foodOrDrink: 'Все',
-        type: 'Все'
+        mediaType: 'Все',
+        trainingType: 'Все',
+        userType: 'Все'
       },
-      // pinnedExercises: [
-      //   {
-      //     muscleGroup: 1,
-      //     additionalMuscles: 1,
-      //     type: 1,
-      //     sort: 1,
-      //     exertion: 1,
-      //     equipment: 1,
-      //     skill: 1,
-      //     pinned: true,
-      //     favorite: true,
-      //   }
-      // ],
-      // notPinnedExercises: [
-      //   {
-      //     muscleGroup: 1,
-      //     additionalMuscles: 1,
-      //     type: 1,
-      //     sort: 1,
-      //     exertion: 1,
-      //     equipment: 1,
-      //     skill: 1,
-      //     pinned: false,
-      //     favorite: false,
-      //   },
-      //   {
-      //     muscleGroup: 1,
-      //     additionalMuscles: 1,
-      //     type: 1,
-      //     sort: 1,
-      //     exertion: 1,
-      //     equipment: 1,
-      //     skill: 1,
-      //     pinned: false,
-      //     favorite: false,
-      //   }
-      // ],
     }
   },
   computed: {
     ...mapState({
+      searchFilters: state => state.exercises.searchFilters,
       pinnedExercises: state => state.exercises.pinnedExercises,
       notPinnedExercises: state => state.exercises.notPinnedExercises,
     })

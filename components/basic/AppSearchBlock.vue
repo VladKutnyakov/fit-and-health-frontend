@@ -1,13 +1,13 @@
 <template>
   <div class="app-search-block">
     <input
+      v-model="searchString"
       class="search__input"
       type="text"
       :placeholder="placeholder"
-      v-model="searchString"
     >
     <div class="search__action-btns">
-      <i class="search__action-btn-icon ti-close" @click="resetSearchInputValue()" />
+      <i class="search__action-btn-icon ti-close" @click="cleanSearch()" />
       <i v-if="filters" class="search__action-btn-icon ti-panel" @click="openFilters()"></i>
     </div>
     <div class="search__btn" @click="searchProduct()">
@@ -27,20 +27,16 @@ export default {
   data () {
     return {
       isVisible: false,
-      searchString: ''
-    }
-  },
-  watch: {
-    searchString () {
-      this.$emit('searchStringChanged', this.searchString)
+      searchString: null,
     }
   },
   methods: {
-    resetSearchInputValue () {
-      this.searchString = ''
+    cleanSearch () {
+      this.searchString = null
+      this.$emit('search', null)
     },
     searchProduct () {
-      this.$emit('search')
+      this.$emit('search', this.searchString)
     },
     openFilters () {
       this.$emit('openFilters')
