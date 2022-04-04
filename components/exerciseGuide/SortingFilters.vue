@@ -91,9 +91,9 @@ export default {
       this.$store.dispatch('exercises/fetchExercisesList', payload)
     }
   },
-  created () {
-    this.$store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroup', newValue: this.exerciseMusclesList })
-  },
+  // created () {
+  //   this.$store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroup', newValue: JSON.parse(JSON.stringify(this.exerciseMusclesList)) })
+  // },
 }
 </script>
 
