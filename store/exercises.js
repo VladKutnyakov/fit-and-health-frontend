@@ -1,4 +1,4 @@
-import { generateForm } from '../utils/formManager'
+import { generateForm, setFormFieldValue, setFormFieldError, clearForm } from '../utils/formManager'
 
 export const state = () => ({
   searchFilters: {
@@ -115,26 +115,13 @@ export const mutations = {
     state.skillsList = list
   },
   setExerciseFormFieldValue (state, ctx) {
-    state.exerciseForm.fields[ctx.field] = ctx.newValue
+    setFormFieldValue(state.exerciseForm, ctx)
   },
   setExerciseFormFieldError (state, ctx) {
-    state.exerciseForm.errors[ctx.field] = {
-      enabled: ctx.enabled,
-      errorMessage: ctx.errorMessage
-    }
+    setFormFieldError(state.exerciseForm, ctx)
   },
   clearExerciseForm (state) {
-    // Очистить значения полей формы
-    for (const key in state.exerciseForm.fields) {
-      state.exerciseForm.fields[key] = null
-    }
-    // Очистить ошибки полей формы
-    for (const key in state.exerciseForm.fields) {
-      state.exerciseForm.errors[key] = {
-        enabled: false,
-        errorMessage: null
-      }
-    }
+    clearForm(state.exerciseForm)
   },
   setExerciseForm (state, payload) {
     // Установить значения полей формы
