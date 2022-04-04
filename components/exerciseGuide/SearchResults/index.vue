@@ -8,7 +8,7 @@
         class="mt-10 mr-10 mb-10 ml-10"
         :filters="false"
         placeholder="Название упражнения"
-        @input="searchString = $event"
+        @input="setSearchFiltersParam({ param: 'searchString', newValue: $event })"
         @search="fetchExercisesList()"
       />
 
@@ -68,7 +68,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
@@ -99,6 +99,9 @@ export default {
     })
   },
   methods: {
+    ...mapMutations({
+      setSearchFiltersParam: 'exercises/setSearchFiltersParam',
+    }),
     fetchExercisesList () {
       const payload = this.searchFilters
 

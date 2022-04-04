@@ -63,6 +63,9 @@ export const getters = {
 }
 
 export const mutations = {
+  setSearchFiltersParam (state, ctx) {
+    state.searchFilters[ctx.param] = ctx.newValue
+  },
   setExercisesList (state, payload) {
     payload.forEach(element => {
       if (element.pinned) {
@@ -178,9 +181,9 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchExercisesList ({ commit }) {
+  async fetchExercisesList ({ commit }, payload) {
     try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-list`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-list`, { params: payload })
 
       commit('setExercisesList', response)
     } catch (error) {
