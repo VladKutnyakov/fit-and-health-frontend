@@ -15,26 +15,26 @@
       <div class="search__filters">
         <filter-radio-text-group
           :valueList="['Все', 'Фото', 'Видео']"
-          :defaultValue="filters.mediaType"
+          :defaultValue="searchFilters.mediaType"
           uppercase
           size14px
-          @change="filters.mediaType = $event"
+          @change="setSearchFiltersParam({ param: 'mediaType', newValue: $event })"
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
           :valueList="['Все', 'Домашние', 'Спортзал']"
-          :defaultValue="filters.trainingType"
+          :defaultValue="searchFilters.trainingType"
           uppercase
           size14px
-          @change="filters.trainingType = $event"
+          @change="setSearchFiltersParam({ param: 'trainingType', newValue: $event })"
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
           :valueList="['Все', 'Мои упражнения']"
-          :defaultValue="filters.userType"
+          :defaultValue="searchFilters.userType"
           uppercase
           size14px
-          @change="filters.userType = $event"
+          @change="setSearchFiltersParam({ param: 'userType', newValue: $event })"
         />
       </div>
     </div>
@@ -82,14 +82,7 @@ export default {
     Exercise,
   },
   data () {
-    return {
-      searchString: '',
-      filters: {
-        mediaType: 'Все',
-        trainingType: 'Все',
-        userType: 'Все'
-      },
-    }
+    return {}
   },
   computed: {
     ...mapState({
