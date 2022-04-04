@@ -5,12 +5,13 @@
       class="search__input"
       type="text"
       :placeholder="placeholder"
+      @keypress.enter="search()"
     >
     <div class="search__action-btns">
       <i class="search__action-btn-icon ti-close" @click="cleanSearch()" />
       <i v-if="filters" class="search__action-btn-icon ti-panel" @click="openFilters()"></i>
     </div>
-    <div class="search__btn" @click="searchProduct()">
+    <div class="search__btn" @click="search()">
       <p v-if="!small" class="search__btn-text">Найти</p>
       <i v-if="small" class="search__small-btn-text ti-search" />
     </div>
@@ -30,12 +31,17 @@ export default {
       searchString: null,
     }
   },
+  watch: {
+    searchString (newValue) {
+      this.$emit('input', newValue)
+    }
+  },
   methods: {
     cleanSearch () {
       this.searchString = null
-      this.$emit('search', null)
+      this.$emit('input', null)
     },
-    searchProduct () {
+    search () {
       this.$emit('search', this.searchString)
     },
     openFilters () {

@@ -72,6 +72,10 @@ export const mutations = {
       }
     })
   },
+  cleanExercisesList (state) {
+    state.pinnedExercises = []
+    state.notPinnedExercises = []
+  },
   addNewExercise (state, createdExercise) {
     for (let i = 0; i < state.exercisesList.length; i++) {
       if (state.exercisesList[i].id === createdExercise.muscleGroup.id) {

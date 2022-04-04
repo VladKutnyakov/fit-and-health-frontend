@@ -8,7 +8,8 @@
         class="mt-10 mr-10 mb-10 ml-10"
         :filters="false"
         placeholder="Название упражнения"
-        @search="searchString = $event"
+        @input="searchString = $event"
+        @search="fetchExercisesList()"
       />
 
       <div class="search__filters">
@@ -96,6 +97,14 @@ export default {
       pinnedExercises: state => state.exercises.pinnedExercises,
       notPinnedExercises: state => state.exercises.notPinnedExercises,
     })
+  },
+  methods: {
+    fetchExercisesList () {
+      const payload = this.searchFilters
+
+      this.$store.commit('exercises/cleanExercisesList')
+      this.$store.dispatch('exercises/fetchExercisesList', payload)
+    }
   }
 }
 </script>
