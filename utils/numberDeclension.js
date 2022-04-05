@@ -1,13 +1,13 @@
 export function numberDeclension (number, wordVariants) {
   number = Math.abs(number) % 100
 
-  const n1 = number % 10
+  const modulo = number % 10
 
   if (number > 10 && number < 20) {
     return wordVariants[2]
-  } else if (n1 > 1 && n1 < 5) {
+  } else if (modulo > 1 && modulo < 5) {
     return wordVariants[1]
-  } else if (n1 == 1) {
+  } else if (modulo == 1) {
     return wordVariants[0]
   }
 
