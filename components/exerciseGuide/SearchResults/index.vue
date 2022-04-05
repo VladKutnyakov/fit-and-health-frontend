@@ -40,6 +40,9 @@
     </div>
 
     <div class="search-results__exercises-list">
+
+      <app-spinner />
+
       <div v-if="pinnedExercises.length > 0" class="pinned-exercises">
         <p class="pinned-exercises__block-title">Закрепленные упражнения</p>
 
@@ -74,12 +77,15 @@ import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
 import Exercise from '@/components/exerciseGuide/SearchResults/Exercise'
 
+import AppSpinner from '@/components/basic/AppSpinner'
+
 export default {
   components: {
     AppBlockTitle,
     AppSearchBlock,
     FilterRadioTextGroup,
     Exercise,
+    AppSpinner,
   },
   data () {
     return {}
