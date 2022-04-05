@@ -1,4 +1,4 @@
-export function numberDeclension (number, text_arr) {
+export function numberDeclension (n, text_arr) {
   n = Math.abs(n) % 100
   var n1 = n % 10
   if (n > 10 && n < 20) {
@@ -14,5 +14,5 @@ export function numberDeclension (number, text_arr) {
 }
 
 export function dayDeclension (num) {
-  return numberDeclension(num, ['День', 'Дня', 'Дней'])
+  return numberDeclension(num, ['день', 'дня', 'дней'])
 }
