@@ -9,6 +9,7 @@ export const state = () => ({
 
     sortingBy: 'Названию',
     muscleGroup: [],
+    muscleGroupList: [],
   },
 
   pinnedExercises: [],

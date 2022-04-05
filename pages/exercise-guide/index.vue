@@ -60,17 +60,18 @@ export default {
   },
   async asyncData ({ store }) {
     await store.dispatch('exercises/fetchExercisesList')
-    await store.dispatch('exercises/fetchMuscles')
-      // .then((response) => {
-      //   const groupList = []
+    await store.dispatch('exercises/fetchMuscles').then((response) => {
+      // Установить значение фильтров по мышечной группе (все выбраны)
+      const groupList = []
 
-      //   for (let i = 0; i < response.data.length; i++) {
-      //     groupList.push(response.data[i])
-      //   }
+      for (let i = 0; i < response.data.length; i++) {
+        groupList.push(response.data[i])
+      }
 
-      //   // Установить значение фильтров по мышечной группе (все выбраны)
-      //   store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroup', newValue: groupList })
-      // })
+      
+      store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroup', newValue: groupList })
+      store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroupList', newValue: groupList })
+    })
   },
 }
 </script>

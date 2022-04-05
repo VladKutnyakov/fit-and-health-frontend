@@ -14,7 +14,7 @@
       <filter-checkbox-group
         :filterGroupOpened="true"
         headerTitle="Мышечные группы"
-        :valueList="exerciseMusclesList"
+        :valueList="searchFilters.muscleGroupList"
         :defaultValue="searchFilters.muscleGroup"
         @change="setSearchFiltersParam({ param: 'muscleGroup', newValue: $event })"
       >
@@ -63,7 +63,6 @@ export default {
   },
   computed: {
     ...mapState({
-      exerciseMusclesList: state => state.exercises.exerciseMusclesList,
       searchFilters: state => state.exercises.searchFilters,
     })
   },
