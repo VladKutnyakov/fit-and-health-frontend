@@ -52,10 +52,12 @@ export default {
     return {
       sortingBy: [
         'Названию',
-        'Белкам',
-        'Жирам',
-        'Углеводам',
-        'Калорийности'
+        'Мышечной группе',
+        'Кардио',
+        'Сила',
+        'Выносливость',
+        'Гибкость',
+        'Сложности'
       ],
     }
   },
@@ -91,9 +93,6 @@ export default {
       this.$store.dispatch('exercises/fetchExercisesList', payload)
     }
   },
-  // created () {
-  //   this.$store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroup', newValue: JSON.parse(JSON.stringify(this.exerciseMusclesList)) })
-  // },
 }
 </script>
 

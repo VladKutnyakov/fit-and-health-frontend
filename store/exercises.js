@@ -289,6 +289,8 @@ export const actions = {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/muscles`)
 
       commit('setExerciseMusclesList', response.data)
+
+      return response
     } catch (error) {
       console.log(error.response)
 
@@ -299,6 +301,8 @@ export const actions = {
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
+
+      throw reason.response.data.details
     }
   },
   async fethExerciseTypes ({ commit }) {
