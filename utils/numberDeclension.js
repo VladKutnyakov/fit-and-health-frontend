@@ -1,18 +1,38 @@
-export function numberDeclension (n, text_arr) {
-  n = Math.abs(n) % 100
-  var n1 = n % 10
-  if (n > 10 && n < 20) {
-    return text_arr[2]
+export function numberDeclension (number, wordVariants) {
+  number = Math.abs(number) % 100
+
+  const n1 = number % 10
+
+  if (number > 10 && number < 20) {
+    return wordVariants[2]
+  } else if (n1 > 1 && n1 < 5) {
+    return wordVariants[1]
+  } else if (n1 == 1) {
+    return wordVariants[0]
   }
-  if (n1 > 1 && n1 < 5) {
-    return text_arr[1]
-  }
-  if (n1 == 1) {
-    return text_arr[0]
-  }
-  return text_arr[2]
+
+  return wordVariants[2]
 }
 
-export function dayDeclension (num) {
-  return numberDeclension(num, ['день', 'дня', 'дней'])
+export function daysDeclension (number) {
+  return numberDeclension(number, ['день', 'дня', 'дней'])
 }
+
+export function hoursDeclension (number) {
+  return numberDeclension(number, ['час', 'часа', 'часов'])
+}
+
+export function minutesDeclension (number) {
+  return numberDeclension(number, ['минута', 'минуты', 'минут'])
+}
+
+export function secondsDeclension (number) {
+  return numberDeclension(number, ['секунда', 'секунды', 'секунд'])
+}
+
+// Пример
+// methods: {
+//   day (number) {
+//     return `${number} ${daysDeclension(number)}`
+//   }
+// }
