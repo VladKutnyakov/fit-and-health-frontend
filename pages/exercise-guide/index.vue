@@ -68,7 +68,6 @@ export default {
         groupList.push(response.data[i])
       }
 
-      
       store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroup', newValue: groupList })
       store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroupList', newValue: groupList })
     })
