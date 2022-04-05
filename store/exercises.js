@@ -286,6 +286,7 @@ export const actions = {
   },
 
   async fetchMuscles ({ commit }) {
+    // При вызове метода в asyncData использеутся then для установки данных в фильтрах (корневой файл страницы). Для фильтров значения устанавливаются при открытие старницы. Последующие вызовы метода не изменяют состояния фильтров и массива с мышечными группами
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/muscles`)
 
