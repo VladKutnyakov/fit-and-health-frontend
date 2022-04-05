@@ -1,36 +1,59 @@
 <template>
-  <div>
-    <div class="loading">
+  <div class="app-spinner">
+    <div v-if="loading" class="loading">
       <div></div>
       <div></div>
       <div></div>
     </div>
 
-    <div class="donut"></div>
+    <div v-if="donut" class="donut"></div>
 
-    <div class="donut multi"></div>
+    <div v-if="donutDouble" class="donut multi"></div>
 
-    <div class="ripple"></div>
+    <div v-if="ripple" class="ripple"></div>
 
-    <div class="multi-ripple">
+    <div v-if="rippleDouble" class="multi-ripple">
       <div></div>
       <div></div>
-    </div>
-
-    <div class="fancy-spinner">
-      <div class="ring"></div>
-      <div class="ring"></div>
-      <div class="dot"></div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    loading: Boolean,
+    donut: Boolean,
+    donutDouble: Boolean,
+    ripple: Boolean,
+    rippleDouble: Boolean,
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
+
+.app-spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  flex: 1 1 auto;
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  background: $white50;
+  z-index: 1000;
+}
+
+body.dark {
+  .app-spinner {
+  background: $black50;
+}
+}
 
 $charade: #282a37;
 $bluebell: #979fd0;
@@ -122,50 +145,6 @@ $bluebell: #979fd0;
     &:nth-child(2) {
       animation-delay: 0.5s;
     }
-  }
-}
-
-.fancy-spinner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 5rem;
-  height: 5rem;
-
-  div {
-    position: absolute;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-
-    &.ring {
-      border-width: 0.5rem;
-      border-style: solid;
-      border-color: transparent;
-      animation: 2s fancy infinite alternate;
-      
-      &:nth-child(1) {
-        border-left-color: $bluebell;
-        border-right-color: $bluebell;
-      }
-      &:nth-child(2) {
-        border-top-color: $bluebell;
-        border-bottom-color: $bluebell;
-        animation-delay: 1s;
-      }
-    }
-
-    &.dot {
-      width: 1rem;
-      height: 1rem;
-      background: $bluebell;
-    }
-  }
-}
-
-@keyframes fancy {
-  to {
-    transform: rotate(360deg) scale(0.5);
   }
 }
 

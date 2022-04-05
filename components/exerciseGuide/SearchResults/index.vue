@@ -41,7 +41,7 @@
 
     <div class="search-results__exercises-list">
 
-      <app-spinner />
+      <app-spinner donutDouble />
 
       <div v-if="pinnedExercises.length > 0" class="pinned-exercises">
         <p class="pinned-exercises__block-title">Закрепленные упражнения</p>
