@@ -3,9 +3,9 @@ import { generateForm, setFormFieldsValue, setFormFieldValue, setFormFieldError,
 export const state = () => ({
   searchFilters: {
     searchString: null,
-    mediaType: 'Все',
-    trainingType: 'Все',
-    userType: 'Все',
+    mediaType: 'Все', // ALL, FOTO, VIDEO
+    trainingType: 'Все', // ALL, HOME_WORKOUTS, GYM
+    userType: 'Все', // ALL, MY
 
     sortingBy: 'Названию',
     muscleGroup: [],
