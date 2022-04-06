@@ -88,8 +88,10 @@ export default {
 
       payload.muscleGroup = muscleGroupIDs.join(', ')
 
-      this.$store.commit('exercises/cleanExercisesList')
-      this.$store.dispatch('exercises/fetchExercisesList', payload)
+      this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+      this.$store.dispatch('exercises/fetchExercisesList', payload).finally(() => {
+        this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+      })
     }
   },
 }

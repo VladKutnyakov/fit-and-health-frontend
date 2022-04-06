@@ -41,7 +41,11 @@
 
     <div class="search-results__exercises-list">
 
-      <app-spinner donutDouble rounded />
+      <app-spinner
+        v-if="waiteExerciseListUpdate"
+        donutDouble
+        rounded
+      />
 
       <div v-if="pinnedExercises.length > 0" class="pinned-exercises">
         <p class="pinned-exercises__block-title">Закрепленные упражнения</p>
@@ -95,6 +99,7 @@ export default {
       searchFilters: state => state.exercises.searchFilters,
       pinnedExercises: state => state.exercises.pinnedExercises,
       notPinnedExercises: state => state.exercises.notPinnedExercises,
+      waiteExerciseListUpdate: state => state.exercises.waiteExerciseListUpdate,
     })
   },
   methods: {
@@ -119,8 +124,10 @@ export default {
 
       payload.muscleGroup = muscleGroupIDs.join(', ')
 
-      this.$store.commit('exercises/cleanExercisesList')
-      this.$store.dispatch('exercises/fetchExercisesList', payload)
+      this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+      this.$store.dispatch('exercises/fetchExercisesList', payload).finally(() => {
+        this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+      })
     }
   }
 }

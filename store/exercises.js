@@ -40,7 +40,9 @@ export const state = () => ({
   exerciseEquipmentsList: [],
   skillsList: [],
   modalCondition: 'create',
-  exerciseFormModalActive: false
+  exerciseFormModalActive: false,
+
+  waiteExerciseListUpdate: false,
 })
 
 export const getters = {
@@ -160,7 +162,10 @@ export const mutations = {
   },
   setModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
-  }
+  },
+  setWaiteExerciseListUpdate (state, condition) {
+    state.waiteExerciseListUpdate = condition
+  },
 }
 
 export const actions = {
@@ -168,6 +173,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-list`, { params: payload })
 
+      commit('cleanExercisesList')
       commit('setExercisesList', response)
     } catch (error) {
       console.log(error.response)
