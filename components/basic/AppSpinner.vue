@@ -1,5 +1,11 @@
 <template>
-  <div class="app-spinner">
+  <div
+    class="app-spinner"
+    :class="[
+      { 'app-spinner--center': center },
+      { 'app-spinner--rounded': rounded },
+    ]"
+  >
     <div v-if="loading" class="loading">
       <div></div>
       <div></div>
@@ -8,7 +14,7 @@
 
     <div v-if="donut" class="donut"></div>
 
-    <div v-if="donutDouble" class="donut multi"></div>
+    <div v-if="donutDouble" class="donut-multi"></div>
 
     <div v-if="ripple" class="ripple"></div>
 
@@ -27,6 +33,8 @@ export default {
     donutDouble: Boolean,
     ripple: Boolean,
     rippleDouble: Boolean,
+    center: Boolean,
+    rounded: Boolean,
   }
 }
 </script>
@@ -40,111 +48,107 @@ export default {
   left: 0;
   flex: 1 1 auto;
   display: flex;
-  // align-items: center;
   justify-content: center;
-  padding: 10px;
   width: 100%;
   height: 100%;
   background: $white50;
   z-index: 1000;
+
+  .loading {
+    display: flex;
+    div {
+      width: 15px;
+      height: 15px;
+      margin: 20px 5px;
+      background: $primaryLight1;
+      border-radius: 50%;
+      animation: 0.9s bounce infinite alternate;
+    }
+    div:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+    div:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+  }
+  @keyframes bounce {
+    to {
+      opacity: 0.3;
+      transform: translate3d(0, -1rem, 0);
+    }
+  }
+
+  .donut {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid rgba($primary, 0.2);
+    border-top-color: $primaryLight1;
+    animation: 1.5s spin infinite linear;
+  }
+  .donut-multi {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid rgba($primary, 0.2);
+    border-top-color: $primaryLight1;
+    border-bottom-color: $primaryLight1;
+    animation: 1.5s spin infinite linear;
+  }
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .ripple {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 4px solid $primaryLight1;
+    transform: translate(50%);
+    animation: 1s ripple ease-out infinite;
+  }
+  .multi-ripple {
+    width: 45px;
+    height: 45px;
+    div {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 4px solid $primaryLight1;
+      animation: 1.5s ripple infinite;
+    }
+    div:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+  }
+  @keyframes ripple {
+    from {
+      transform: scale(0);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+}
+
+.app-spinner--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.app-spinner--rounded {
+  border-radius: 6px;
 }
 
 body.dark {
   .app-spinner {
-  background: $black50;
-}
-}
-
-$charade: #282a37;
-$bluebell: #979fd0;
-
-.loading {
-  display: flex;
-  justify-content: center;
-
-  div {
-    width: 1rem;
-    height: 1rem;
-    margin: 2rem 0.3rem;
-    background: $bluebell;
-    border-radius: 50%;
-    animation: 0.9s bounce infinite alternate;
-
-    &:nth-child(2) {
-      animation-delay: 0.3s;
-    }
-
-    &:nth-child(3) {
-      animation-delay: 0.6s;
-    }
-  }
-}
-
-@keyframes bounce {
-  to {
-    opacity: 0.3;
-    transform: translate3d(0, -1rem, 0);
-  }
-}
-
-.donut {
-  width: 2rem;
-  height: 2rem;
-  margin: 2rem;
-  border-radius: 50%;
-  border: 0.3rem solid rgba($bluebell, 0.3);
-  border-top-color: $bluebell;
-  animation: 1.5s spin infinite linear;
-
-  &.multi {
-    border-bottom-color: $bluebell;
-  }
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.ripple {
-  width: 2rem;
-  height: 2rem;
-  margin: 2rem;
-  border-radius: 50%;
-  border: 0.3rem solid $bluebell;
-  transform: translate(50%);
-  animation: 1s ripple ease-out infinite;
-}
-
-@keyframes ripple {
-  from {
-    transform: scale(0);
-    opacity: 1;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 0;
-  }
-}
-
-.multi-ripple {
-  width: 2.6rem;
-  height: 2.6rem;
-  margin: 2rem;
-
-  div {
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    border: 0.3rem solid $bluebell;
-    animation: 1.5s ripple infinite;
-
-    &:nth-child(2) {
-      animation-delay: 0.5s;
-    }
+    background: $black50;
   }
 }
 
