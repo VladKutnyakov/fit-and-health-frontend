@@ -4,6 +4,7 @@
     :class="[
       { 'app-spinner--center': center },
       { 'app-spinner--rounded': rounded },
+      { 'app-spinner--small': small },
     ]"
   >
     <div v-if="loading" class="loading">
@@ -35,6 +36,7 @@ export default {
     rippleDouble: Boolean,
     center: Boolean,
     rounded: Boolean,
+    small: Boolean
   }
 }
 </script>
@@ -51,7 +53,7 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: $white50;
+  background: $white60;
   z-index: 1000;
 
   .loading {
@@ -146,9 +148,42 @@ export default {
   border-radius: 6px;
 }
 
+.app-spinner--small {
+  .loading {
+    div {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .donut {
+    width: 20px;
+    height: 20px;
+    border: 4px solid rgba($primary, 0.2);
+    border-top-color: $primary;
+  }
+  .donut-multi {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ripple {
+    width: 20px;
+    height: 20px;
+  }
+  .multi-ripple {
+    width: 25px;
+    height: 25px;
+    div {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
 body.dark {
   .app-spinner {
-    background: $black50;
+    background: $black60;
   }
 }
 

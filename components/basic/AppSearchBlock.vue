@@ -14,16 +14,29 @@
     <div class="search__btn" @click="search()">
       <p v-if="!small" class="search__btn-text">Найти</p>
       <i v-if="small" class="search__small-btn-text ti-search" />
+
+      <app-spinner
+        v-if="wait"
+        donut
+        center
+        small
+      />
     </div>
   </div>
 </template>
 
 <script>
+import AppSpinner from '@/components/basic/AppSpinner'
+
 export default {
   props: {
     placeholder: String,
     small: Boolean,
-    filters: Boolean
+    filters: Boolean,
+    wait: Boolean,
+  },
+  components: {
+    AppSpinner,
   },
   data () {
     return {
@@ -102,6 +115,7 @@ export default {
     }
   }
   .search__btn {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,8 +126,9 @@ export default {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     user-select: none;
-    cursor: pointer;
     transition: $tr-02;
+    cursor: pointer;
+    overflow: hidden;
     .search__btn-text {
       padding: 0 20px;
       color: $white;
