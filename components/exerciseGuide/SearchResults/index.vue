@@ -157,19 +157,19 @@ export default {
       .pinned-exercises__block-title {
         padding: 10px 20px;
       }
-      .exercises-list {
-        // display: flex;
-        // flex-wrap: wrap;
-      }
+      // .exercises-list {
+      //   display: flex;
+      //   flex-wrap: wrap;
+      // }
     }
     .not-pinned-exercises {
       .not-pinned-exercises__block-title {
         padding: 10px 20px;
       }
-      .exercises-list {
-        // display: flex;
-        // flex-wrap: wrap;
-      }
+      // .exercises-list {
+      //   display: flex;
+      //   flex-wrap: wrap;
+      // }
     }
   }
 }
