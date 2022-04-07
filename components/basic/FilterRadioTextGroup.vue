@@ -3,8 +3,12 @@
     <ul class="filter-radio-text-group__value-list">
       <li v-for="(item, index) in valueList" :key="index" class="value-list__item">
         <label class="input__label">
-          <input class="input__value-field" type="radio" :value="item" v-model="checkedValue">
-          <p 
+          <input
+            class="input__value-field"
+            :value="item"
+            type="radio"
+          >
+          <p
             class="input__text"
             :class="[
               {'text-transform-uppercase': uppercase},
@@ -22,7 +26,7 @@
 export default {
   props: {
     valueList: Array,
-    defaultValue: String,
+    defaultValue: [String, Object],
     uppercase: Boolean,
     size14px: Boolean,
     size18px: Boolean
@@ -34,12 +38,7 @@ export default {
   },
   watch: {
     checkedValue () {
-      this.$emit('inputGroupValueChanged', this.checkedValue)
-    }
-  },
-  methods: {
-    setDefaultValue () {
-      this.checkedValue = this.defaultValue
+      this.$emit('change', this.checkedValue)
     }
   }
 }
