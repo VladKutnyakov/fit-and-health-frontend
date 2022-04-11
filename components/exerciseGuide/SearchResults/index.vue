@@ -62,7 +62,7 @@
       <div v-if="notPinnedExercises.length > 0" class="not-pinned-exercises">
         <p class="not-pinned-exercises__block-title" v-if="pinnedExercises.length > 0">Не закрепленные упражнения</p>
 
-        <ul class="exercises-list" :class="[{ 'mt-20': notPinnedExercises.length <= 0 }]">
+        <ul class="exercises-list" :class="[{ 'mt-20': pinnedExercises.length <= 0 }]">
           <exercise
             v-for="(item, index) in notPinnedExercises"
             :key="index"
