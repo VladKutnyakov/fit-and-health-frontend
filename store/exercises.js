@@ -7,8 +7,14 @@ export const state = () => ({
       id: 'ALL',
       title: 'Все'
     }, // ALL, FOTO, VIDEO
-    trainingType: 'Все', // ALL, HOME_WORKOUTS, GYM
-    userType: 'Все', // ALL, MY
+    trainingType: {
+      id: 'ALL',
+      title: 'Все'
+    }, // ALL, HOME_WORKOUTS, GYM
+    userType: {
+      id: 'ALL',
+      title: 'Все'
+    }, // ALL, MY
 
     sortingBy: 'Названию',
     muscleGroup: [],

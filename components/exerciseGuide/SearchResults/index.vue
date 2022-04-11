@@ -15,7 +15,7 @@
       <div class="search__filters">
         <filter-radio-text-group
           :value="searchFilters.mediaType"
-          :valueList="mediaTypes"
+          :valueList="mediaTypesList"
           uppercase
           size14px
           @change="setSearchFiltersParam({ param: 'mediaType', newValue: $event })"
@@ -23,7 +23,7 @@
         <p class="filters__divider">|</p>
         <filter-radio-text-group
           :value="searchFilters.trainingType"
-          :valueList="['Все', 'Домашние', 'Спортзал']"
+          :valueList="trainingTypesList"
           uppercase
           size14px
           @change="setSearchFiltersParam({ param: 'trainingType', newValue: $event })"
@@ -31,7 +31,7 @@
         <p class="filters__divider">|</p>
         <filter-radio-text-group
           :value="searchFilters.userType"
-          :valueList="['Все', 'Мои упражнения']"
+          :valueList="userTypesList"
           uppercase
           size14px
           @change="setSearchFiltersParam({ param: 'userType', newValue: $event })"
@@ -93,7 +93,7 @@ export default {
   },
   data () {
     return {
-      mediaTypes: [
+      mediaTypesList: [
         {
           id: 'ALL',
           title: 'Все'
@@ -105,6 +105,30 @@ export default {
         {
           id: 'VIDEO',
           title: 'Видео'
+        },
+      ],
+      trainingTypesList: [
+        {
+          id: 'ALL',
+          title: 'Все'
+        },
+        {
+          id: 'HOME_WORKOUTS',
+          title: 'Домашние'
+        },
+        {
+          id: 'GYM',
+          title: 'Спортзал'
+        },
+      ],
+      userTypesList: [
+        {
+          id: 'ALL',
+          title: 'Все'
+        },
+        {
+          id: 'MY',
+          title: 'Мои упражнения'
         },
       ]
     }
