@@ -1,22 +1,21 @@
 <template>
   <div class="filter-radio-text-group">
     <ul class="filter-radio-text-group__value-list">
-      <li v-for="(item, index) in valueList" :key="index" class="value-list__item">
-        <label class="input__label">
-          <input
-            class="input__value-field"
-            :value="item"
-            type="radio"
-          >
-          <p
-            class="input__text"
-            :class="[
-              {'text-transform-uppercase': uppercase},
-              {'size14px': size14px},
-              {'size18px': size18px}
-            ]"
-          >{{ item }}</p>
-        </label>
+      <li
+        v-for="(item, index) in valueList"
+        :key="index"
+        class="value-list__item"
+        :class="[{ 'value-list__item--active': item === value }]"
+        @click="changeValue(item)"
+      >
+        <p
+          class="item__text"
+          :class="[
+            {'text-transform-uppercase': uppercase},
+            {'size14px': size14px},
+            {'size18px': size18px}
+          ]"
+        >{{ item && typeof item === 'object' ? item.title : item }}</p>
       </li>
     </ul>
   </div>
@@ -26,19 +25,14 @@
 export default {
   props: {
     valueList: Array,
-    defaultValue: [String, Object],
+    value: [String, Object],
     uppercase: Boolean,
     size14px: Boolean,
     size18px: Boolean
   },
-  data () {
-    return {
-      checkedValue: this.defaultValue
-    }
-  },
-  watch: {
-    checkedValue () {
-      this.$emit('change', this.checkedValue)
+  methods: {
+    changeValue (item) {
+      this.$emit('change', item)
     }
   }
 }
@@ -53,19 +47,21 @@ export default {
   .filter-radio-text-group__value-list {
     display: flex;
     .value-list__item {
-      .input__label {
-        display: flex;
-        .input__value-field {
-          display: none;
-        }
-        .input__value-field:checked + .input__text {
-          color: $primary;
-        }
-        .input__text {
-          margin: 0 5px;
-          padding: 0 5px;
-          color: $text;
-        }
+      cursor: pointer;
+      .item__text {
+        margin: 0 5px;
+        padding: 0 5px;
+        color: $text;
+      }
+    }
+    .value-list__item:hover {
+      .item__text {
+        color: $primary;
+      }
+    }
+    .value-list__item--active {
+      .item__text {
+        color: $primary;
       }
     }
   }
@@ -80,7 +76,5 @@ export default {
 .size18px {
   font-size: 18px;
 }
-
-
 
 </style>

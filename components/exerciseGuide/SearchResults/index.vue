@@ -14,24 +14,24 @@
 
       <div class="search__filters">
         <filter-radio-text-group
-          :valueList="['Все', 'Фото', 'Видео']"
-          :defaultValue="searchFilters.mediaType"
+          :value="searchFilters.mediaType"
+          :valueList="mediaTypes"
           uppercase
           size14px
           @change="setSearchFiltersParam({ param: 'mediaType', newValue: $event })"
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
+          :value="searchFilters.trainingType"
           :valueList="['Все', 'Домашние', 'Спортзал']"
-          :defaultValue="searchFilters.trainingType"
           uppercase
           size14px
           @change="setSearchFiltersParam({ param: 'trainingType', newValue: $event })"
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
+          :value="searchFilters.userType"
           :valueList="['Все', 'Мои упражнения']"
-          :defaultValue="searchFilters.userType"
           uppercase
           size14px
           @change="setSearchFiltersParam({ param: 'userType', newValue: $event })"
@@ -92,7 +92,22 @@ export default {
     AppSpinner,
   },
   data () {
-    return {}
+    return {
+      mediaTypes: [
+        {
+          id: 'ALL',
+          title: 'Все'
+        },
+        {
+          id: 'FOTO',
+          title: 'Фото'
+        },
+        {
+          id: 'VIDEO',
+          title: 'Видео'
+        },
+      ]
+    }
   },
   computed: {
     ...mapState({
@@ -151,7 +166,7 @@ export default {
       display: flex;
       margin: 10px 10px 15px 10px;
       .filters__divider {
-        margin: 0 20px;
+        margin: 0 10px;
         color: $dividerBorder;
         user-select: none;
       }

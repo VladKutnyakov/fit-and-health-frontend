@@ -3,7 +3,10 @@ import { generateForm, setFormFieldsValue, setFormFieldValue, setFormFieldError,
 export const state = () => ({
   searchFilters: {
     searchString: null,
-    mediaType: 'Все', // ALL, FOTO, VIDEO
+    mediaType: {
+      id: 'ALL',
+      title: 'Все'
+    }, // ALL, FOTO, VIDEO
     trainingType: 'Все', // ALL, HOME_WORKOUTS, GYM
     userType: 'Все', // ALL, MY
 
