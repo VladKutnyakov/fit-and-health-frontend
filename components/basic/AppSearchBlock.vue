@@ -14,20 +14,11 @@
     <div class="search__btn" @click="search()">
       <p v-if="!small" class="search__btn-text">Найти</p>
       <i v-if="small" class="search__small-btn-text ti-search" />
-
-      <app-spinner
-        v-if="wait"
-        donut
-        center
-        small
-      />
     </div>
   </div>
 </template>
 
 <script>
-import AppSpinner from '@/components/basic/AppSpinner'
-
 export default {
   props: {
     placeholder: String,
@@ -35,12 +26,8 @@ export default {
     filters: Boolean,
     wait: Boolean,
   },
-  components: {
-    AppSpinner,
-  },
   data () {
     return {
-      isVisible: false,
       searchString: null,
     }
   },
