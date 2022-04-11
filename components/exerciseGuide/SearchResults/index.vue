@@ -18,7 +18,10 @@
           :valueList="mediaTypesList"
           uppercase
           size14px
-          @change="setSearchFiltersParam({ param: 'mediaType', newValue: $event })"
+          @change="
+            setSearchFiltersParam({ param: 'mediaType', newValue: $event }),
+            fetchExercisesList()
+          "
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
@@ -26,7 +29,10 @@
           :valueList="trainingTypesList"
           uppercase
           size14px
-          @change="setSearchFiltersParam({ param: 'trainingType', newValue: $event })"
+          @change="
+            setSearchFiltersParam({ param: 'trainingType', newValue: $event }),
+            fetchExercisesList()
+          "
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
@@ -34,7 +40,10 @@
           :valueList="userTypesList"
           uppercase
           size14px
-          @change="setSearchFiltersParam({ param: 'userType', newValue: $event })"
+          @change="
+            setSearchFiltersParam({ param: 'userType', newValue: $event }),
+            fetchExercisesList()
+          "
         />
       </div>
     </div>
