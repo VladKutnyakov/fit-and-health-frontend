@@ -73,9 +73,9 @@ export default {
     fetchExercisesList () {
       const payload = {
         searchString: this.searchFilters.searchString,
-        mediaType: this.searchFilters.mediaType,
-        trainingType: this.searchFilters.trainingType,
-        userType: this.searchFilters.userType,
+        mediaType: this.searchFilters.mediaType?.id || null,
+        trainingType: this.searchFilters.trainingType?.id || null,
+        userType: this.searchFilters.userType?.id || null,
 
         sortingBy: this.searchFilters.sortingBy,
         muscleGroup: [],
