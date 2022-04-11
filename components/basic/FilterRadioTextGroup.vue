@@ -5,7 +5,7 @@
         v-for="(item, index) in valueList"
         :key="index"
         class="value-list__item"
-        :class="[{ 'value-list__item--active': item === value }]"
+        :class="[{ 'value-list__item--active': isCheckedValue(item) }]"
         @click="changeValue(item)"
       >
         <p
@@ -31,9 +31,16 @@ export default {
     size18px: Boolean
   },
   methods: {
+    isCheckedValue (item) {
+      if (item && typeof item === 'object') {
+        return !!(item.id === this.value.id)
+      } else {
+        return item === this.value
+      }
+    },
     changeValue (item) {
       this.$emit('change', item)
-    }
+    },
   }
 }
 </script>
@@ -49,9 +56,8 @@ export default {
     .value-list__item {
       cursor: pointer;
       .item__text {
-        margin: 0 5px;
-        padding: 0 5px;
-        color: $text;
+        margin: 0 10px;
+        border-bottom: 1px solid transparent;
       }
     }
     .value-list__item:hover {
@@ -62,6 +68,7 @@ export default {
     .value-list__item--active {
       .item__text {
         color: $primary;
+        border-bottom: 1px solid $primary;
       }
     }
   }

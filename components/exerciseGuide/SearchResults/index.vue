@@ -191,7 +191,7 @@ export default {
       margin: 10px 10px 15px 10px;
       .filters__divider {
         margin: 0 10px;
-        color: $dividerBorder;
+        color: $black20;
         user-select: none;
       }
     }
