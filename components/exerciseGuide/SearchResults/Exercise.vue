@@ -244,6 +244,10 @@ export default {
   }
 }
 
+.exercise:last-child {
+  margin-bottom: 0;
+}
+
 body.dark {
   .exercise {
     background: $cardBackgroundDarkBG;

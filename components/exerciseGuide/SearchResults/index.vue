@@ -62,7 +62,7 @@
       <div v-if="notPinnedExercises.length > 0" class="not-pinned-exercises">
         <p class="not-pinned-exercises__block-title" v-if="pinnedExercises.length > 0">Не закрепленные упражнения</p>
 
-        <ul class="exercises-list">
+        <ul class="exercises-list" :class="[{ 'mt-20': notPinnedExercises.length <= 0 }]">
           <exercise
             v-for="(item, index) in notPinnedExercises"
             :key="index"
@@ -199,9 +199,11 @@ export default {
   .search-results__exercises-list {
     position: relative;
     .pinned-exercises {
-      margin: 20px 0;
+      display: flex;
+      flex-direction:  column;
+      margin-top: 20px;
       .pinned-exercises__block-title {
-        padding: 10px 20px;
+        padding: 0 20px 10px 20px;
       }
       // .exercises-list {
       //   display: flex;
@@ -209,8 +211,11 @@ export default {
       // }
     }
     .not-pinned-exercises {
+      display: flex;
+      flex-direction:  column;
+      margin-top: 20px;
       .not-pinned-exercises__block-title {
-        padding: 10px 20px;
+        padding: 0 20px 10px 20px;
       }
       // .exercises-list {
       //   display: flex;
