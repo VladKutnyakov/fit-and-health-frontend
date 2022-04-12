@@ -25,28 +25,16 @@
     <div class="exercise__preview-image"></div>
 
     <div class="exercise__overview">
-      <p class="title">{{ exercise.title }}</p>
+      <p class="title" :title="exercise.title">{{ exercise.title }}</p>
 
       <div class="exercise-info">
         <div class="exercise-info__item">
-          <p class="item__title">Группа мышц:</p>
+          <p class="item__title">Мышечная группа:</p>
           <p class="item__value">{{ exercise.muscleGroup ? exercise.muscleGroup.title : 'нет данных' }}</p>
         </div>
         <div class="exercise-info__item">
           <p class="item__title">Дополнительные мышцы:</p>
-          <p class="item__value">{{ exercise.additionalMuscles }}</p>
-        </div>
-        <div class="exercise-info__item">
-          <p class="item__title">Тип упражнения:</p>
-          <p class="item__value">{{ exercise.type ? exercise.type.title : 'нет данных' }}</p>
-        </div>
-        <div class="exercise-info__item">
-          <p class="item__title">Вид упражнения:</p>
-          <p class="item__value">{{ exercise.sort ? exercise.sort.title : 'нет данных' }}</p>
-        </div>
-        <div class="exercise-info__item">
-          <p class="item__title">Усилие:</p>
-          <p class="item__value">{{ exercise.exertion ? exercise.exertion.title : 'нет данных' }}</p>
+          <p class="item__value">{{ exercise.additionalMuscles.map(item => item.title).join(', ') }}</p>
         </div>
         <div class="exercise-info__item">
           <p class="item__title">Оборудование:</p>
@@ -81,10 +69,8 @@
     </div>
 
     <div class="exercise__actions">
-      <!-- <i class="ti-control-play action-btn"></i> -->
-      <nuxt-link :to="`/`" class="action-btn">
-        <i class="ti-search"></i>
-      </nuxt-link>
+      <i class="ti-search action-btn"></i>
+      <i v-if=" exercise.user" class="ti-pencil action-btn"></i>
       <i class="ti-trash action-btn"></i>
     </div>
   </div>
@@ -96,18 +82,9 @@ export default {
     exercise: Object,
   },
   methods: {
-    // getMuscles (muscleGroup, item) {
-    //   const Muscles = [muscleGroup.title]
-
-    //   for (let i = 0; i < item.additionalMuscles.length; i++) {
-    //     Muscles.push(item.additionalMuscles[i].title)
-    //   }
-
-    //   return Muscles.join(', ')
-    // },
-    // fetchExerciseInfo (exercisesId) {
-    //   this.$store.dispatch('exercises/fetchExerciseInfo', exercisesId)
-    // },
+    fetchExerciseInfo (exercisesId) {
+      this.$store.dispatch('exercises/fetchExerciseInfo', exercisesId)
+    },
     changePinnedParam (exercise) {
       this.$store.dispatch('exercises/changePinnedParam', exercise.id)
     },
@@ -150,6 +127,8 @@ export default {
   }
   .exercise__preview-image {
     width: 120px;
+    min-width: 120px;
+    max-width: 120px;
     height: 160px;
     background: $black10;
     border-radius: 6px;
@@ -159,17 +138,26 @@ export default {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
+    padding: 10px;
     .title {
-      font-size: 18px;
+      // padding: 0 10px;
+      // text-align: center;
+      // font-size: 18px;
       font-weight: 500;
+    }
+    .description {
+      margin-top: 10px;
+      // padding: 0 10px;
+      font-size: 14px;
     }
     .exercise-info {
       margin-top: auto;
       .exercise-info__item {
         display: flex;
-        align-items: center;
+        // align-items: center;
         .item__title {
           font-size: 14px;
+          white-space: nowrap;
         }
         .item__value {
           margin-left: 10px;
