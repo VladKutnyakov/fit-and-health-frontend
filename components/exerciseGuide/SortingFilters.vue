@@ -13,10 +13,10 @@
       />
 
       <filter-checkbox-group
+        :value="searchFilters.muscleGroup"
+        :valueList="searchFilters.muscleGroupList"
         :filterGroupOpened="muscleGroupIsOpened"
         headerTitle="Мышечные группы"
-        :valueList="searchFilters.muscleGroupList"
-        :defaultValue="searchFilters.muscleGroup"
         @toggleOpened="muscleGroupIsOpened = $event"
         @change="setSearchFiltersParam({ param: 'muscleGroup', newValue: $event })"
       >

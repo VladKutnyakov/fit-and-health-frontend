@@ -40,14 +40,14 @@ export default {
     AppInputCheckbox,
   },
   props: {
-    headerTitle: String,
+    value: Array,
     valueList: Array,
-    defaultValue: Array,
+    headerTitle: String,
     filterGroupOpened: Boolean
   },
   data () {
     return {
-      checkedValue: this.defaultValue
+      checkedValue: this.value
     }
   },
   watch: {
@@ -60,7 +60,7 @@ export default {
       this.checkedValue = []
     },
     selectAllValue () {
-      this.checkedValue = this.defaultValue
+      this.checkedValue = this.value
     },
     toggleOpened ($event) {
       this.$emit('toggleOpened', $event)
