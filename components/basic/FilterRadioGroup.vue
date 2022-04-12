@@ -87,14 +87,6 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    transition: $tr-02;
-    .header__title {
-      color: $text;
-      font-weight: 500;
-    }
-    .header__icon {
-      color: $text;
-    }
   }
   .filter-radio-group__footer {
     border-top: 1px solid $dividerBorder;

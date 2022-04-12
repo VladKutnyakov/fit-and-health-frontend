@@ -6,16 +6,18 @@
       <filter-radio-group
         :value="searchFilters.sortingBy"
         :valueList="sortingBy"
-        :filterGroupOpened="true"
+        :filterGroupOpened="sortingByIsOpened"
         headerTitle="Сортировать по ..."
+        @toggleOpened="sortingByIsOpened = $event"
         @change="setSearchFiltersParam({ param: 'sortingBy', newValue: $event })"
       />
 
       <filter-checkbox-group
-        :filterGroupOpened="true"
+        :filterGroupOpened="muscleGroupIsOpened"
         headerTitle="Мышечные группы"
         :valueList="searchFilters.muscleGroupList"
         :defaultValue="searchFilters.muscleGroup"
+        @toggleOpened="muscleGroupIsOpened = $event"
         @change="setSearchFiltersParam({ param: 'muscleGroup', newValue: $event })"
       >
         <template v-slot:btnWrapper>
@@ -50,6 +52,8 @@ export default {
   },
   data () {
     return {
+      sortingByIsOpened: true,
+      muscleGroupIsOpened: true,
       sortingBy: [
         {
           id: 'TITLE',
