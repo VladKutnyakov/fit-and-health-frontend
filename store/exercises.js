@@ -16,10 +16,10 @@ export const state = () => ({
       title: 'Все'
     }, // ALL, MY
 
-    sortingBy: {
-      id: 'TITLE',
+    orderBy: {
+      id: 'title',
       title: 'Названию'
-    }, // TITLE, MUSCLE_GROUP, CARDIO, POWER, ENDURANCE, FLEXIBILITY, SKILL
+    }, // title, muscleGroup, cardio, power, endurance, flexibility, skill
     muscleGroup: [],
     muscleGroupList: [],
   },

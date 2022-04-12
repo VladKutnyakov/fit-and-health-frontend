@@ -4,12 +4,12 @@
 
     <div class="sorting-filters__list">
       <filter-radio-group
-        :value="searchFilters.sortingBy"
-        :valueList="sortingBy"
-        :filterGroupOpened="sortingByIsOpened"
+        :value="searchFilters.orderBy"
+        :valueList="orderBy"
+        :filterGroupOpened="orderByIsOpened"
         headerTitle="Сортировать по ..."
-        @toggleOpened="sortingByIsOpened = $event"
-        @change="setSearchFiltersParam({ param: 'sortingBy', newValue: $event })"
+        @toggleOpened="orderByIsOpened = $event"
+        @change="setSearchFiltersParam({ param: 'orderBy', newValue: $event })"
       />
 
       <filter-checkbox-group
@@ -52,35 +52,35 @@ export default {
   },
   data () {
     return {
-      sortingByIsOpened: true,
+      orderByIsOpened: true,
       muscleGroupIsOpened: true,
-      sortingBy: [
+      orderBy: [
         {
-          id: 'TITLE',
+          id: 'title',
           title: 'Названию'
         },
         {
-          id: 'MUSCLE_GROUP',
+          id: 'muscleGroup',
           title: 'Мышечной группе'
         },
         {
-          id: 'CARDIO',
+          id: 'cardio',
           title: 'Кардио'
         },
         {
-          id: 'POWER',
+          id: 'power',
           title: 'Силе'
         },
         {
-          id: 'ENDURANCE',
+          id: 'endurance',
           title: 'Выносливости'
         },
         {
-          id: 'FLEXIBILITY',
+          id: 'flexibility',
           title: 'Гибкости'
         },
         {
-          id: 'SKILL',
+          id: 'skill',
           title: 'Сложности'
         },
       ],
@@ -102,7 +102,7 @@ export default {
         trainingType: this.searchFilters.trainingType?.id || null,
         userType: this.searchFilters.userType?.id || null,
 
-        sortingBy: this.searchFilters.sortingBy?.id || null,
+        orderBy: this.searchFilters.orderBy?.id || null,
         muscleGroup: [],
       }
 

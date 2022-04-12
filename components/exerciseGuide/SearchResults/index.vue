@@ -161,7 +161,7 @@ export default {
         trainingType: this.searchFilters.trainingType?.id || null,
         userType: this.searchFilters.userType?.id || null,
 
-        sortingBy: this.searchFilters.sortingBy?.id || null,
+        orderBy: this.searchFilters.orderBy?.id || null,
         muscleGroup: [],
       }
 
