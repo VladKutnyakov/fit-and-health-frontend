@@ -122,7 +122,7 @@ export default {
           title: 'Все'
         },
         {
-          id: 'HOME_WORKOUTS',
+          id: 'HOME',
           title: 'Домашние'
         },
         {

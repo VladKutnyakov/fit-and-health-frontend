@@ -10,7 +10,7 @@ export const state = () => ({
     trainingType: {
       id: 'ALL',
       title: 'Все'
-    }, // ALL, HOME_WORKOUTS, GYM
+    }, // ALL, HOME, GYM
     userType: {
       id: 'ALL',
       title: 'Все'
