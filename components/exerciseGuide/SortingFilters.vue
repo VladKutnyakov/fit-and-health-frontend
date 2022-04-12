@@ -4,10 +4,10 @@
 
     <div class="sorting-filters__list">
       <filter-radio-group
+        :value="searchFilters.sortingBy"
+        :valueList="sortingBy"
         :filterGroupOpened="true"
         headerTitle="Сортировать по ..."
-        :valueList="sortingBy"
-        :defaultValue="searchFilters.sortingBy"
         @change="setSearchFiltersParam({ param: 'sortingBy', newValue: $event })"
       />
 
@@ -51,13 +51,34 @@ export default {
   data () {
     return {
       sortingBy: [
-        'Названию',
-        'Мышечной группе',
-        'Кардио',
-        'Силе',
-        'Выносливости',
-        'Гибкости',
-        'Сложности'
+        {
+          id: 'TITLE',
+          title: 'Названию'
+        },
+        {
+          id: 'MUSCLE_GROUP',
+          title: 'Мышечной группе'
+        },
+        {
+          id: 'CARDIO',
+          title: 'Кардио'
+        },
+        {
+          id: 'POWER',
+          title: 'Силе'
+        },
+        {
+          id: 'ENDURANCE',
+          title: 'Выносливости'
+        },
+        {
+          id: 'FLEXIBILITY',
+          title: 'Гибкости'
+        },
+        {
+          id: 'SKILL',
+          title: 'Сложности'
+        },
       ],
     }
   },
@@ -77,7 +98,7 @@ export default {
         trainingType: this.searchFilters.trainingType?.id || null,
         userType: this.searchFilters.userType?.id || null,
 
-        sortingBy: this.searchFilters.sortingBy,
+        sortingBy: this.searchFilters.sortingBy?.id || null,
         muscleGroup: [],
       }
 

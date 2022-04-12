@@ -16,12 +16,15 @@
       <template v-slot:accordionHiddenContent>
         <div class="filter-radio-group__footer">
           <ul class="filter-radio-group__value-list">
-            <li v-for="(item, index) in valueList" :key="index" class="value-list__item">
-              <app-input-radio
-                v-model="checkedValue"
-                :label="item"
-                :value="item"
-              />
+            <li
+              v-for="(item, index) in valueList"
+              :key="index"
+              class="value-list__item"
+              :class="[{ 'value-list__item--active': isCheckedValue(item) }]"
+              @click="changeValue(item)"
+            >
+              <p class="item__visible-switch"></p>
+              <p class="item__text">{{ item && typeof item === 'object' ? item.title : item }}</p>
             </li>
           </ul>
         </div>
@@ -32,33 +35,38 @@
 
 <script>
 import AppAccordion from '@/components/basic/AppAccordion'
-import AppInputRadio from '@/components/basic/AppInputRadio'
 
 export default {
   components: {
     AppAccordion,
-    AppInputRadio,
   },
   props: {
-    headerTitle: String,
+    value: [String, Object],
     valueList: Array,
-    defaultValue: String,
+    headerTitle: String,
     filterGroupOpened: Boolean
   },
   data () {
     return {
       isOpened: false,
-      checkedValue: this.defaultValue
+      checkedValue: this.value
     }
   },
   watch: {
     checkedValue () {
-      this.$emit('change', this.checkedValue)
+      this.$emit('change', this.value)
     }
   },
   methods: {
-    setDefaultValue () {
-      this.checkedValue = this.defaultValue
+    isCheckedValue (item) {
+      if (item && typeof item === 'object') {
+        return !!(item.id === this.value.id)
+      } else {
+        return item === this.value
+      }
+    },
+    changeValue (item) {
+      this.$emit('change', item)
     },
     toggleOpened ($event) {
       this.$emit('toggleOpened', $event)
@@ -93,10 +101,44 @@ export default {
     .filter-radio-group__value-list {
       padding: 10px;
       .value-list__item {
+        display: flex;
+        align-items: center;
         margin-bottom: 10px;
+        cursor: pointer;
+        .item__visible-switch {
+          // border: 1px solid red;
+          position: relative;
+          height: 20px;
+          width: 20px;
+          border: 2px solid $primary;
+          border-radius: 10px;
+        }
+        .item__visible-switch:after {
+          // border: 1px solid red;
+          position: absolute;
+          top: 0;
+          left: 2px;
+          transform: translateY(calc(-50% + 8px));
+          content: '';
+          height: 12px;
+          width: 12px;
+          border-radius: 50%;
+          transition: $tr-01;
+        }
+        .item__text {
+          margin-left: 12px;
+        }
       }
       .value-list__item:last-child {
         margin-bottom: 0;
+      }
+      .value-list__item--active {
+        .item__visible-switch:after {
+          background: $primary;
+        }
+        .item__text {
+          color: $primary;
+        }
       }
     }
   }
