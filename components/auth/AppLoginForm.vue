@@ -52,9 +52,9 @@ export default {
   },
   data () {
     return {
-      email: 'test',
-      phone: '71234567890',
-      password: 'test'
+      email: 'string',
+      phone: 'string',
+      password: 'string'
     }
   },
   computed: {
