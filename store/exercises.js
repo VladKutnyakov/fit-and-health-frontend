@@ -174,8 +174,6 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-page-info`)
 
-      console.log(response)
-
       commit('setPageInfo', response)
     } catch (error) {
       console.log(error.response)
