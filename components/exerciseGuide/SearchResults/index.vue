@@ -116,10 +116,6 @@ export default {
           id: 'FOTO',
           title: 'Фото'
         },
-        {
-          id: 'VIDEO',
-          title: 'Видео'
-        },
       ],
       trainingPlacesList: [
         {

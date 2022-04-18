@@ -6,7 +6,7 @@ export const state = () => ({
     mediaType: {
       id: 'ALL',
       title: 'Все'
-    }, // ALL, FOTO, VIDEO
+    }, // ALL, FOTO
     trainingPlace: {
       id: 'ALL',
       title: 'Все'
