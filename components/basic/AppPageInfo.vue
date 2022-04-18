@@ -4,7 +4,7 @@
     <ul class="page-info__elements">
       <li v-for="(element, index) in infoElements" :key="index" class="element">
         <p class="element__text">{{ element.title }}</p>
-        <p class="element__value">{{ element.value.toLocaleString() }}</p>
+        <p class="element__value">{{ element.value ? element.value.toLocaleString() : null }}</p>
       </li>
     </ul>
 
@@ -51,7 +51,7 @@ export default {
     .element {
       // border: 1px solid red;
       padding: 0 40px;
-      border-right: 1px solid rgba(0,0,0,.1);
+      border-right: 1px solid $dividerBorder;
       .element__text {
         font-size: 18px;
       }
@@ -72,6 +72,20 @@ export default {
   .page-info__btn {
     align-self: center;
     margin-left: auto;
+  }
+}
+
+body.dark {
+  .page-info {
+    .page-info__elements {
+      .element {
+        border-right: 1px solid $dividerBorderDarkBG;
+      }
+      .element:last-child {
+        margin-right: auto;
+        border-right: none;
+      }
+    }
   }
 }
 

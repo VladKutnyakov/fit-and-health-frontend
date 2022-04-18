@@ -3,8 +3,9 @@ import { generateForm, setFormFieldsValue, setFormFieldValue, setFormFieldError,
 export const state = () => ({
   pageInfo: {
     exercises: null,
-    muscleGroups: null,
     userExercises: null,
+    pinnedExercises: null,
+    favoriteExercises: null,
   },
 
   searchFilters: {
@@ -63,28 +64,7 @@ export const state = () => ({
   waiteExerciseListUpdate: false,
 })
 
-export const getters = {
-  getExercisesCount (state) {
-    // let ExercisesCount = 0
-    // for (let i = 0; i < state.exercisesList.length; i++) {
-    //   ExercisesCount += state.exercisesList[i].exercises.length
-    // }
-    // return ExercisesCount
-    return 0
-  },
-  getUserExercisesCount (state) {
-    // let UserExercisesCount = 0
-    // for (let i = 0; i < state.exercisesList.length; i++) {
-    //   state.exercisesList[i].exercises.forEach(element => {
-    //     if (element.user) {
-    //       UserExercisesCount += 1
-    //     }
-    //   })
-    // }
-    // return UserExercisesCount
-    return 0
-  },
-}
+export const getters = {}
 
 export const mutations = {
   setPageInfo (state, payload) {
@@ -193,6 +173,8 @@ export const actions = {
   async fetchPageInfo ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-page-info`)
+
+      console.log(response)
 
       commit('setPageInfo', response)
     } catch (error) {
@@ -349,7 +331,7 @@ export const actions = {
       }
       this.commit('notifications/addNewNotice', notice)
 
-      throw reason.response.data.details
+      throw error.response.data.details
     }
   },
   async fethExerciseTypes ({ commit }) {

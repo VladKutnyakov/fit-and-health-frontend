@@ -25,12 +25,16 @@ export default {
           value: this.$store.state.exercises.pageInfo.exercises
         },
         {
-          title: "Категорий",
-          value: this.$store.state.exercises.pageInfo.muscleGroups
-        },
-        {
           title: "Мои упражнения",
           value: this.$store.state.exercises.pageInfo.userExercises
+        },
+        {
+          title: "Закрепленные",
+          value: this.$store.state.exercises.pageInfo.pinnedExercises
+        },
+        {
+          title: "Избранные",
+          value: this.$store.state.exercises.pageInfo.favoriteExercises
         }
       ]
     }
