@@ -1,9 +1,10 @@
 <template>
-  <div class="app-search-block">
+  <div class="app-search-block" :class="[{ 'app-search-block--disabled': disabled }]">
     <input
       v-model="searchString"
       class="search__input"
       type="text"
+      :disabled="disabled"
       :placeholder="placeholder"
       @keypress.enter="search()"
     >
@@ -24,7 +25,7 @@ export default {
     placeholder: String,
     small: Boolean,
     filters: Boolean,
-    wait: Boolean,
+    disabled: Boolean,
   },
   data () {
     return {
@@ -38,14 +39,20 @@ export default {
   },
   methods: {
     cleanSearch () {
-      this.searchString = null
-      this.$emit('input', null)
+      if (!this.disabled) {
+        this.searchString = null
+        this.$emit('input', null)
+      }
     },
     search () {
-      this.$emit('search', this.searchString)
+      if (!this.disabled) {
+        this.$emit('search', this.searchString)
+      }
     },
     openFilters () {
-      this.$emit('openFilters')
+      if (!this.disabled) {
+        this.$emit('openFilters')
+      }
     }
   }
 }
@@ -124,6 +131,12 @@ export default {
       padding: 0 15px;
       color: $white;
     }
+  }
+}
+
+.app-search-block--disabled {
+  .search__btn {
+    opacity: 0.5;
   }
 }
 

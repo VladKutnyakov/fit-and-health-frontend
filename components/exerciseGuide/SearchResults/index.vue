@@ -7,6 +7,7 @@
       <app-search-block
         class="mt-10 mr-10 mb-10 ml-10"
         :filters="false"
+        :disabled="waiteExerciseListUpdate"
         placeholder="Название упражнения"
         @input="setSearchFiltersParam({ param: 'searchString', newValue: $event })"
         @search="fetchExercisesList()"

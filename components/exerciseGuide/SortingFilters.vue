@@ -31,6 +31,7 @@
       class="mr-10 mb-10 ml-10"
       size14px
       fillArea
+      :disabled="waiteExerciseListUpdate"
       @click="fetchExercisesList()"
     >Применить фильтры</app-button>
   </div>
@@ -89,6 +90,7 @@ export default {
   computed: {
     ...mapState({
       searchFilters: state => state.exercises.searchFilters,
+      waiteExerciseListUpdate: state => state.exercises.waiteExerciseListUpdate,
     })
   },
   methods: {
