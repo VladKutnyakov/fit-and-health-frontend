@@ -10,6 +10,10 @@
         :disabled="waiteExerciseListUpdate"
         placeholder="Название упражнения"
         @input="setSearchFiltersParam({ param: 'searchString', newValue: $event })"
+        @clear="
+          setSearchFiltersParam({ param: 'searchString', newValue: $event }),
+          fetchExercisesList()
+        "
         @search="fetchExercisesList()"
       />
 

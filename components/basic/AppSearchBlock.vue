@@ -9,7 +9,7 @@
       @keypress.enter="search()"
     >
     <div class="search__action-btns">
-      <i class="search__action-btn-icon ti-close" @click="cleanSearch()" />
+      <i class="search__action-btn-icon ti-close" @click="clearSearch()" />
       <i v-if="filters" class="search__action-btn-icon ti-panel" @click="openFilters()"></i>
     </div>
     <div class="search__btn" @click="search()">
@@ -38,10 +38,10 @@ export default {
     }
   },
   methods: {
-    cleanSearch () {
+    clearSearch () {
       if (!this.disabled) {
         this.searchString = null
-        this.$emit('input', null)
+        this.$emit('clear', null)
       }
     },
     search () {
