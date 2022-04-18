@@ -7,7 +7,7 @@ export const state = () => ({
       id: 'ALL',
       title: 'Все'
     }, // ALL, FOTO, VIDEO
-    trainingType: {
+    trainingPlace: {
       id: 'ALL',
       title: 'Все'
     }, // ALL, HOME, GYM

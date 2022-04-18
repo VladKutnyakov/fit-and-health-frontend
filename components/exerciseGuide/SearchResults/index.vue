@@ -26,12 +26,12 @@
         />
         <p class="filters__divider">|</p>
         <filter-radio-text-group
-          :value="searchFilters.trainingType"
-          :valueList="trainingTypesList"
+          :value="searchFilters.trainingPlace"
+          :valueList="trainingPlacesList"
           uppercase
           size14px
           @change="
-            setSearchFiltersParam({ param: 'trainingType', newValue: $event }),
+            setSearchFiltersParam({ param: 'trainingPlace', newValue: $event }),
             fetchExercisesList()
           "
         />
@@ -117,7 +117,7 @@ export default {
           title: 'Видео'
         },
       ],
-      trainingTypesList: [
+      trainingPlacesList: [
         {
           id: 'ALL',
           title: 'Все'
@@ -159,7 +159,7 @@ export default {
       const payload = {
         searchString: this.searchFilters.searchString,
         mediaType: this.searchFilters.mediaType?.id || null,
-        trainingType: this.searchFilters.trainingType?.id || null,
+        trainingPlace: this.searchFilters.trainingPlace?.id || null,
         userType: this.searchFilters.userType?.id || null,
 
         orderBy: this.searchFilters.orderBy?.id || null,

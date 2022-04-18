@@ -101,7 +101,7 @@ export default {
       const payload = {
         searchString: this.searchFilters.searchString,
         mediaType: this.searchFilters.mediaType?.id || null,
-        trainingType: this.searchFilters.trainingType?.id || null,
+        trainingPlace: this.searchFilters.trainingPlace?.id || null,
         userType: this.searchFilters.userType?.id || null,
 
         orderBy: this.searchFilters.orderBy?.id || null,
