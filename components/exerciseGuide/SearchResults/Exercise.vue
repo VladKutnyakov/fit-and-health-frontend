@@ -40,30 +40,35 @@
           <p class="item__title">Оборудование:</p>
           <p class="item__value">{{ exercise.equipment ? exercise.equipment.title : 'нет данных' }}</p>
         </div>
+        <div class="exercise-info__item">
+          <p class="item__title">Разновидность:</p>
+          <p class="item__value">{{ exercise.trainingPlace ? exercise.trainingPlace.title : null }}</p>
+        </div>
       </div>
     </div>
 
     <div class="exercise__training-accent">
       <div class="training-accent__info">
-        <div class="info__element">
-          <span class="element__text">Кардио:</span>
-          <span class="element__value">30%</span>
-        </div>
+        
         <div class="info__element">
           <span class="element__text">Сила:</span>
-          <span class="element__value">20%</span>
+          <span class="element__value">{{ exercise.power }}%</span>
         </div>
         <div class="info__element">
           <span class="element__text">Выносливость:</span>
-          <span class="element__value">38%</span>
+          <span class="element__value">{{ exercise.endurance }}%</span>
         </div>
         <div class="info__element">
           <span class="element__text">Гибкость:</span>
-          <span class="element__value">12%</span>
+          <span class="element__value">{{ exercise.flexibility }}%</span>
+        </div>
+        <div class="info__element">
+          <span class="element__text">Кардио:</span>
+          <span class="element__value">{{ exercise.cardio }}%</span>
         </div>
         <div class="info__element">
           <span class="element__text">Сложность:</span>
-          <span class="element__value">Выше среднего</span>
+          <span class="element__value">{{ exercise.skill ? exercise.skill.complexityTitle : null }}</span>
         </div>
       </div>
     </div>
