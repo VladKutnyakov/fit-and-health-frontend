@@ -145,7 +145,6 @@
             <p class="section__title">Техника выполнения</p>
 
             <div class="section__fields">
-              <div class="video">video</div>
               <app-textarea
                 :value="exerciseForm.fields.techniqueDescription"
                 class="description"
@@ -155,6 +154,7 @@
                   setExerciseFormFieldError({field: 'techniqueDescription', enabled: false, errorMessage: null})
                 "
               />
+              <div class="video">video</div>
             </div>
           </div>
 
@@ -378,7 +378,7 @@ export default {
       flex-direction: column;
       margin-bottom: 10px;
       padding-bottom: 10px;
-      border-bottom: 1px dashed $blockBorder;
+      border-bottom: 1px dashed $dividerBorder;
       .section__title {
         padding: 0 10px;
         font-weight: 500;
@@ -398,21 +398,22 @@ export default {
             transition: $tr-02;
           }
           .field__title--active {
-            color: $green;
+            color: $primary;
           }
         }
         .field:nth-child(4n) {
           margin-right: 0;
         }
         .video {
-          margin-right: 5px;
+          margin-left: 5px;
           margin-bottom: 10px;
           width: calc(50% - 5px);
           height: 300px;
-          background: $hiddenBlockBG;
+          background: $black05;
+          border-radius: 6px;
         }
         .description {
-          margin-left: 5px;
+          margin-right: 5px;
           margin-bottom: 10px;
           width: calc(50% - 5px);
         }
