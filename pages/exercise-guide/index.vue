@@ -59,6 +59,7 @@ export default {
     ExerciseFormModal,
   },
   async asyncData ({ store }) {
+    await store.dispatch('exercises/fetchPageInfo')
     await store.dispatch('exercises/fetchExercisesList')
     await store.dispatch('exercises/fetchMuscles').then((response) => {
       // Установить значение фильтров по мышечной группе (все выбраны)

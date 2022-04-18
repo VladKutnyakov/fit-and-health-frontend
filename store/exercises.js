@@ -1,6 +1,12 @@
 import { generateForm, setFormFieldsValue, setFormFieldValue, setFormFieldError, clearForm } from '../utils/formManager'
 
 export const state = () => ({
+  pageInfo: {
+    exercises: null,
+    muscleGroups: null,
+    userExercises: null,
+  },
+
   searchFilters: {
     searchString: null,
     mediaType: {
@@ -81,6 +87,9 @@ export const getters = {
 }
 
 export const mutations = {
+  setPageInfo (state, payload) {
+    state.pageInfo = payload
+  },
   setSearchFiltersParam (state, ctx) {
     state.searchFilters[ctx.param] = ctx.newValue
   },
@@ -181,6 +190,24 @@ export const mutations = {
 }
 
 export const actions = {
+  async fetchPageInfo ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-page-info`)
+
+      commit('setPageInfo', response)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+
   async fetchExercisesList ({ commit }, payload) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-list`, { params: payload })
