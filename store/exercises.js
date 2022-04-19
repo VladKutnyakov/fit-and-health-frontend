@@ -88,16 +88,6 @@ export const mutations = {
     state.pinnedExercises = []
     state.notPinnedExercises = []
   },
-  addNewExercise (state, createdExercise) {
-    for (let i = 0; i < state.exercisesList.length; i++) {
-      if (state.exercisesList[i].id === createdExercise.muscleGroup.id) {
-        state.exercisesList[i].exercises.push(createdExercise)
-      }
-    }
-  },
-  updateExercise (state, payload) {
-    console.log(payload)
-  },
   setExerciseMusclesList (state, payload) {
     state.exerciseMusclesList = payload
   },
@@ -217,7 +207,6 @@ export const actions = {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/save-new-exercise`, { exercise: newExercise })
 
-      commit('addNewExercise', response.data)
       commit('setModalVisibility', { modal: 'exerciseFormModalActive', condition: false })
 
       const notice = {
@@ -243,7 +232,6 @@ export const actions = {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/exercises/update-exercise`, { exercise: exercise })
 
-      commit('updateExercise',  response.data)
       commit('setModalVisibility', { modal: 'exerciseFormModalActive', condition: false })
 
       const notice = {
