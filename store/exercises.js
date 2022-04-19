@@ -1,4 +1,4 @@
-import { generateForm, setFormFieldsValue, setFormFieldValue, setFormFieldError, clearForm } from '../utils/formManager'
+import { generateForm, setForm, setFormFieldValue, setFormFieldError, clearForm } from '../utils/formManager'
 
 export const state = () => ({
   pageInfo: {
@@ -59,6 +59,7 @@ export const state = () => ({
   exerciseExertionsList: [],
   exerciseEquipmentsList: [],
   skillsList: [],
+  trainingPlacesList: [],
   modalCondition: 'create',
   exerciseFormModalActive: false,
 
@@ -119,18 +120,22 @@ export const mutations = {
     }
     state.skillsList = list
   },
+  setTrainingPlaces (state, payload) {
+    state.trainingPlacesList = payload
+    console.log(state.trainingPlacesList)
+  },
 
   setExerciseForm (state, payload) {
-    setFormFieldsValue(state.exerciseForm, payload)
+    setForm(state.exerciseForm, payload)
+  },
+  clearExerciseForm (state) {
+    clearForm(state.exerciseForm)
   },
   setExerciseFormFieldValue (state, ctx) {
     setFormFieldValue(state.exerciseForm, ctx)
   },
   setExerciseFormFieldError (state, ctx) {
     setFormFieldError(state.exerciseForm, ctx)
-  },
-  clearExerciseForm (state) {
-    clearForm(state.exerciseForm)
   },
 
   updatePinnedExercise (state, updatedExercise) {
@@ -406,6 +411,23 @@ export const actions = {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/skill-types`)
 
       commit('setSkillsList', response.data)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+  async fethTrainingPlaces ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/training-places`)
+
+      commit('setTrainingPlaces', response)
     } catch (error) {
       console.log(error.response)
 

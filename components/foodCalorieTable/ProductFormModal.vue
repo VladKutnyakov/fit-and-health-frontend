@@ -189,23 +189,10 @@ export default {
       setProductFormFieldError: 'foodCalorieTable/setProductFormFieldError'
     }),
     saveOrUpdateProduct() {
-      // $requiredFieldsValidation --> custom pluguin в папке pluguins
-      const isValid = this.$requiredFieldsValidation(this.productForm, ['title', 'protein', 'fats', 'carb', 'kkal', 'category'], 'foodCalorieTable/setProductFormFieldError', null)
-
-      if (isValid) {
-        if (this.modalCondition === 'create') {
-          this.$store.dispatch('foodCalorieTable/saveProduct')
-        } else if (this.modalCondition === 'edit') {
-          this.$store.dispatch('foodCalorieTable/updateProduct')
-        }
-      } else {
-        const notice = {
-          id: Date.now(),
-          type: 'alert',
-          message: 'Заполните обязательные поля.',
-          timeToShow: 5000,
-        }
-        this.$store.commit('notifications/addNewNotice', notice)
+      if (this.modalCondition === 'create') {
+        this.$store.dispatch('foodCalorieTable/saveProduct')
+      } else if (this.modalCondition === 'edit') {
+        this.$store.dispatch('foodCalorieTable/updateProduct')
       }
     }
   }

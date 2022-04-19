@@ -126,7 +126,7 @@
                 <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.trainingPlace }]">Предпочительное место выполнения</p>
                 <app-select
                   :value="exerciseForm.fields.trainingPlace"
-                  :selectOptionsList="[]"
+                  :selectOptionsList="trainingPlacesList"
                   :error="exerciseForm.errors.trainingPlace"
                   alignListLeft
                   alignSelectedValueLeft
@@ -276,6 +276,7 @@ export default {
       exerciseExertionsList: state => state.exercises.exerciseExertionsList,
       exerciseEquipmentsList: state => state.exercises.exerciseEquipmentsList,
       skillsList: state => state.exercises.skillsList,
+      trainingPlacesList: state => state.exercises.trainingPlacesList,
       modalCondition: state => state.exercises.modalCondition,
       exerciseFormModalActive: state => state.exercises.exerciseFormModalActive
     }),
@@ -303,6 +304,7 @@ export default {
         await this.$store.dispatch('exercises/fethExerciseEquipments')
         await this.$store.dispatch('exercises/fethExerciseExertions')
         await this.$store.dispatch('exercises/fethSkills')
+        await this.$store.dispatch('exercises/fethTrainingPlaces')
       }
     }
   },
@@ -313,25 +315,12 @@ export default {
       setExerciseFormFieldError: 'exercises/setExerciseFormFieldError'
     }),
     confirmAction () {
-      // $requiredFieldsValidation --> custom pluguin в папке pluguins
-      const isValid = this.$requiredFieldsValidation(this.exerciseForm, ['title', 'muscleGroup'], 'exercises/setExerciseFormFieldError', 'Поле обязательно для заполнения')
+      const payload = JSON.parse(JSON.stringify(this.exerciseForm.fields))
 
-      if (isValid) {
-        const payload = JSON.parse(JSON.stringify(this.exerciseForm.fields))
-
-        if (this.modalCondition === 'create') {
-          this.$store.dispatch('exercises/saveNewExercise', payload)
-        } else if (this.modalCondition === 'edit') {
-          this.$store.dispatch('exercises/updateExercise', payload)
-        }
-      } else {
-        const notice = {
-          id: Date.now(),
-          type: 'alert',
-          message: 'Заполните обязательные поля.',
-          timeToShow: 5000,
-        }
-        this.$store.commit('notifications/addNewNotice', notice)
+      if (this.modalCondition === 'create') {
+        this.$store.dispatch('exercises/saveNewExercise', payload)
+      } else if (this.modalCondition === 'edit') {
+        this.$store.dispatch('exercises/updateExercise', payload)
       }
     }
   }

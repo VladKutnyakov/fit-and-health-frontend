@@ -14,7 +14,7 @@ const generateForm = (fields) => {
   }
 }
 
-const setFormFieldsValue = (form, payload) => {
+const setForm = (form, payload) => {
   for (const key in form.fields) {
     form.fields[key] = payload[key]
     form.errors[key] = {
@@ -57,7 +57,7 @@ const clearForm = (form) => {
 
 export {
   generateForm,
-  setFormFieldsValue,
+  setForm,
   setFormFieldValue,
   setFormFieldError,
   clearForm,
