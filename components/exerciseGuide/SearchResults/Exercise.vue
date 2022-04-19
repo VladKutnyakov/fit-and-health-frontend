@@ -41,7 +41,7 @@
           <p class="item__value">{{ exercise.equipment ? exercise.equipment.title : 'нет данных' }}</p>
         </div>
         <div class="exercise-info__item">
-          <p class="item__title">Разновидность:</p>
+          <p class="item__title">Подходит для занятий:</p>
           <p class="item__value">{{ exercise.trainingPlace ? exercise.trainingPlace.title : null }}</p>
         </div>
       </div>
@@ -49,7 +49,6 @@
 
     <div class="exercise__training-accent">
       <div class="training-accent__info">
-        
         <div class="info__element">
           <span class="element__text">Сила:</span>
           <span class="element__value">{{ exercise.power }}%</span>
@@ -68,7 +67,7 @@
         </div>
         <div class="info__element">
           <span class="element__text">Сложность:</span>
-          <span class="element__value">{{ exercise.skill ? exercise.skill.complexityTitle : null }}</span>
+          <span class="element__value">{{ exercise.skill ? exercise.skill.complexityTitle : 'Не указано' }}</span>
         </div>
       </div>
     </div>

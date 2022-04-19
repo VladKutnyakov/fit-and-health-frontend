@@ -1,7 +1,7 @@
 <template>
   <app-modal
     :isActive="exerciseFormModalActive"
-    maxWidth="1200px"
+    maxWidth="1000px"
     :headerTitle="headerTitle"
     :headerDescriptions="headerDescriptions"
     @close="toggleModalVisibility({modal: 'exerciseFormModalActive', condition: false})"
@@ -20,10 +20,7 @@
                   :value="exerciseForm.fields.title"
                   :error="exerciseForm.errors.title"
                   placeholder="Введите значение"
-                  @input="
-                    setExerciseFormFieldValue({field: 'title', newValue: $event}),
-                    setExerciseFormFieldError({field: 'title', enabled: false, errorMessage: null})
-                  "
+                  @input="setExerciseFormFieldValue({field: 'title', newValue: $event})"
                 />
               </div>
 
@@ -36,10 +33,8 @@
                   alignListLeft
                   alignSelectedValueLeft
                   placeholder="Введите значение"
-                  @select="
-                    setExerciseFormFieldValue({field: 'muscleGroup', newValue: $event}),
-                    setExerciseFormFieldError({field: 'muscleGroup', enabled: false, errorMessage: null})
-                  "
+                  @select="setExerciseFormFieldValue({field: 'muscleGroup', newValue: $event})"
+                  @clear="setExerciseFormFieldValue({field: 'muscleGroup', newValue: $event})"
                 />
               </div>
 
@@ -52,10 +47,8 @@
                   alignListLeft
                   alignSelectedValueLeft
                   placeholder="Введите значение"
-                  @select="
-                    setExerciseFormFieldValue({field: 'additionalMuscles', newValue: $event}),
-                    setExerciseFormFieldError({field: 'additionalMuscles', enabled: false, errorMessage: null})
-                  "
+                  @select="setExerciseFormFieldValue({field: 'additionalMuscles', newValue: $event})"
+                  @clear="setExerciseFormFieldValue({field: 'additionalMuscles', newValue: $event})"
                 />
               </div>
 
@@ -68,10 +61,8 @@
                   alignListLeft
                   alignSelectedValueLeft
                   placeholder="Введите значение"
-                  @select="
-                    setExerciseFormFieldValue({field: 'type', newValue: $event}),
-                    setExerciseFormFieldError({field: 'type', enabled: false, errorMessage: null})
-                  "
+                  @select="setExerciseFormFieldValue({field: 'type', newValue: $event})"
+                  @clear="setExerciseFormFieldValue({field: 'type', newValue: $event})"
                 />
               </div>
 
@@ -84,10 +75,8 @@
                   alignListLeft
                   alignSelectedValueLeft
                   placeholder="Введите значение"
-                  @select="
-                    setExerciseFormFieldValue({field: 'sort', newValue: $event}),
-                    setExerciseFormFieldError({field: 'sort', enabled: false, errorMessage: null})
-                  "
+                  @select="setExerciseFormFieldValue({field: 'sort', newValue: $event})"
+                  @clear="setExerciseFormFieldValue({field: 'sort', newValue: $event})"
                 />
               </div>
 
@@ -100,10 +89,8 @@
                   alignListLeft
                   alignSelectedValueLeft
                   placeholder="Введите значение"
-                  @select="
-                    setExerciseFormFieldValue({field: 'exertion', newValue: $event}),
-                    setExerciseFormFieldError({field: 'exertion', enabled: false, errorMessage: null})
-                  "
+                  @select="setExerciseFormFieldValue({field: 'exertion', newValue: $event})"
+                  @clear="setExerciseFormFieldValue({field: 'exertion', newValue: $event})"
                 />
               </div>
 
@@ -116,10 +103,8 @@
                   alignListLeft
                   alignSelectedValueLeft
                   placeholder="Введите значение"
-                  @select="
-                    setExerciseFormFieldValue({field: 'equipment', newValue: $event}),
-                    setExerciseFormFieldError({field: 'equipment', enabled: false, errorMessage: null})
-                  "
+                  @select="setExerciseFormFieldValue({field: 'equipment', newValue: $event})"
+                  @clear="setExerciseFormFieldValue({field: 'equipment', newValue: $event})"
                 />
               </div>
 
@@ -132,29 +117,24 @@
                   alignListLeft
                   alignSelectedValueLeft
                   placeholder="Введите значение"
-                  @select="
-                    setExerciseFormFieldValue({field: 'skill', newValue: $event}),
-                    setExerciseFormFieldError({field: 'skill', enabled: false, errorMessage: null})
-                  "
+                  @select="setExerciseFormFieldValue({field: 'skill', newValue: $event})"
+                  @clear="setExerciseFormFieldValue({field: 'skill', newValue: $event})"
                 />
               </div>
-            </div>
-          </div>
 
-          <div class="fields-group__section">
-            <p class="section__title">Техника выполнения</p>
-
-            <div class="section__fields">
-              <app-textarea
-                :value="exerciseForm.fields.techniqueDescription"
-                class="description"
-                placeholder="Описнаие техники выполнения упражнения"
-                @input="
-                  setExerciseFormFieldValue({field: 'techniqueDescription', newValue: $event}),
-                  setExerciseFormFieldError({field: 'techniqueDescription', enabled: false, errorMessage: null})
-                "
-              />
-              <div class="video">video</div>
+              <div class="field">
+                <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.trainingPlace }]">Предпочительное место выполнения</p>
+                <app-select
+                  :value="exerciseForm.fields.trainingPlace"
+                  :selectOptionsList="[]"
+                  :error="exerciseForm.errors.trainingPlace"
+                  alignListLeft
+                  alignSelectedValueLeft
+                  placeholder="Введите значение"
+                  @select="setExerciseFormFieldValue({field: 'trainingPlace', newValue: $event})"
+                  @clear="setExerciseFormFieldValue({field: 'trainingPlace', newValue: $event})"
+                />
+              </div>
             </div>
           </div>
 
@@ -168,10 +148,7 @@
                   :value="exerciseForm.fields.power"
                   :error="exerciseForm.errors.power"
                   placeholder="Введите значение"
-                  @input="
-                    setExerciseFormFieldValue({field: 'power', newValue: $event}),
-                    setExerciseFormFieldError({field: 'power', enabled: false, errorMessage: null})
-                  "
+                  @input="setExerciseFormFieldValue({field: 'power', newValue: $event})"
                 />
               </div>
 
@@ -181,10 +158,7 @@
                   :value="exerciseForm.fields.endurance"
                   :error="exerciseForm.errors.endurance"
                   placeholder="Введите значение"
-                  @input="
-                    setExerciseFormFieldValue({field: 'endurance', newValue: $event}),
-                    setExerciseFormFieldError({field: 'endurance', enabled: false, errorMessage: null})
-                  "
+                  @input="setExerciseFormFieldValue({field: 'endurance', newValue: $event})"
                 />
               </div>
 
@@ -194,10 +168,7 @@
                   :value="exerciseForm.fields.flexibility"
                   :error="exerciseForm.errors.flexibility"
                   placeholder="Введите значение"
-                  @input="
-                    setExerciseFormFieldValue({field: 'flexibility', newValue: $event}),
-                    setExerciseFormFieldError({field: 'flexibility', enabled: false, errorMessage: null})
-                  "
+                  @input="setExerciseFormFieldValue({field: 'flexibility', newValue: $event})"
                 />
               </div>
 
@@ -207,17 +178,28 @@
                   :value="exerciseForm.fields.cardio"
                   :error="exerciseForm.errors.cardio"
                   placeholder="Введите значение"
-                  @input="
-                    setExerciseFormFieldValue({field: 'cardio', newValue: $event}),
-                    setExerciseFormFieldError({field: 'cardio', enabled: false, errorMessage: null})
-                  "
+                  @input="setExerciseFormFieldValue({field: 'cardio', newValue: $event})"
                 />
               </div>
             </div>
           </div>
 
           <div class="fields-group__section">
-            <p class="section__title">Пользовательские параметры</p>
+            <p class="section__title">Техника выполнения</p>
+
+            <div class="section__fields">
+              <div class="video">video</div>
+              <app-textarea
+                class="description"
+                :value="exerciseForm.fields.techniqueDescription"
+                placeholder="Описнаие техники выполнения упражнения"
+                @input="setExerciseFormFieldValue({field: 'techniqueDescription', newValue: $event})"
+              />
+            </div>
+          </div>
+
+          <div class="fields-group__section">
+            <p class="section__title mb-10">Пользовательские параметры</p>
 
             <div class="section__fields">
               <div class="field">
@@ -225,10 +207,7 @@
                   :value="exerciseForm.fields.favorite"
                   :error="exerciseForm.errors.favorite"
                   label="Добавить в избранное"
-                  @change="
-                    setExerciseFormFieldValue({field: 'favorite', newValue: $event}),
-                    setExerciseFormFieldError({field: 'favorite', enabled: false, errorMessage: null})
-                  "
+                  @change="setExerciseFormFieldValue({field: 'favorite', newValue: $event})"
                 />
               </div>
             </div>
@@ -239,10 +218,7 @@
                   :value="exerciseForm.fields.pinned"
                   :error="exerciseForm.errors.pinned"
                   label="Добавить в закрепленное"
-                  @change="
-                    setExerciseFormFieldValue({field: 'pinned', newValue: $event}),
-                    setExerciseFormFieldError({field: 'pinned', enabled: false, errorMessage: null})
-                  "
+                  @change="setExerciseFormFieldValue({field: 'pinned', newValue: $event})"
                 />
               </div>
             </div>
@@ -376,11 +352,11 @@ export default {
     .fields-group__section {
       display: flex;
       flex-direction: column;
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px dashed $dividerBorder;
+      margin-bottom: 20px;
+      padding: 0 10px 10px 10px;
+      border-bottom: 1px solid $dividerBorder;
       .section__title {
-        padding: 0 10px;
+        padding: 0 20px;
         font-weight: 500;
       }
       .section__fields {
@@ -392,7 +368,7 @@ export default {
           margin-right: 10px;
           margin-bottom: 10px;
           width: 100%;
-          max-width: calc(100% / 4 - 8px);
+          max-width: calc(100% / 2 - 5px);
           .field__title {
             padding: 0 10px 5px 10px;
             transition: $tr-02;
@@ -401,21 +377,23 @@ export default {
             color: $primary;
           }
         }
-        .field:nth-child(4n) {
+        .field:nth-child(2n) {
           margin-right: 0;
         }
         .video {
-          margin-left: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           margin-bottom: 10px;
-          width: calc(50% - 5px);
-          height: 300px;
+          width: 100%;
+          height: 500px;
           background: $black05;
           border-radius: 6px;
         }
         .description {
-          margin-right: 5px;
           margin-bottom: 10px;
-          width: calc(50% - 5px);
+          width: 100%;
+          height: 300px;
         }
       }
     }

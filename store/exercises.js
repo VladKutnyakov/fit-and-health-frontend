@@ -42,6 +42,7 @@ export const state = () => ({
     exertion: null,
     equipment: null,
     skill: null,
+    trainingPlace: null,
     muscleGroup: null,
     additionalMuscles: null,
     power: null,
