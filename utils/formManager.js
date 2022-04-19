@@ -18,15 +18,6 @@ const setForm = (form, payload) => {
   }
 }
 
-const setFormFieldValue = (form, ctx) => {
-  form.fields[ctx.field] = ctx.newValue
-  form.errors[ctx.field] = null
-}
-
-const setFormFieldError = (form, ctx) => {
-  form.errors[ctx.field] = ctx.errorMessage
-}
-
 const clearForm = (form) => {
   for (const key in form.fields) {
     if (Array.isArray(form.fields[key])) {
@@ -43,10 +34,19 @@ const clearForm = (form) => {
   }
 }
 
+const setFormFieldValue = (form, ctx) => {
+  form.fields[ctx.field] = ctx.newValue
+  form.errors[ctx.field] = null
+}
+
+const setFormFieldError = (form, ctx) => {
+  form.errors[ctx.field] = ctx.errorMessage
+}
+
 export {
   generateForm,
   setForm,
+  clearForm,
   setFormFieldValue,
   setFormFieldError,
-  clearForm,
 }
