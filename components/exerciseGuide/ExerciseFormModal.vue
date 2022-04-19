@@ -229,13 +229,15 @@
     </template>
     <template v-slot:modalFooter>
       <app-button
+        class="modal-action-btn mr-auto"
+        :disabled="waiteExerciseListUpdate"
         uppercase
         size14px
-        class="modal-action-btn mr-auto"
         @click="confirmAction()"
       >{{ modalCondition === 'create' ? 'Сохранить' : 'Редактировать' }}</app-button>
 
       <app-button
+        :disabled="waiteExerciseListUpdate"
         uppercase
         size14px
         @click="toggleModalVisibility({modal: 'exerciseFormModalActive', condition: false})"
@@ -277,8 +279,10 @@ export default {
       exerciseEquipmentsList: state => state.exercises.exerciseEquipmentsList,
       skillsList: state => state.exercises.skillsList,
       trainingPlacesList: state => state.exercises.trainingPlacesList,
+      searchFilters: state => state.exercises.searchFilters,
       modalCondition: state => state.exercises.modalCondition,
-      exerciseFormModalActive: state => state.exercises.exerciseFormModalActive
+      exerciseFormModalActive: state => state.exercises.exerciseFormModalActive,
+      waiteExerciseListUpdate: state => state.exercises.waiteExerciseListUpdate,
     }),
     headerTitle () {
       if (this.modalCondition === 'create') {
@@ -318,9 +322,53 @@ export default {
       const payload = JSON.parse(JSON.stringify(this.exerciseForm.fields))
 
       if (this.modalCondition === 'create') {
+        // Снять активность для кнопок
+        this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+
+        // Сохранить упражнение
         this.$store.dispatch('exercises/saveNewExercise', payload)
+          .then(() => {
+            // Обновить общую информацио о разделе для старницы
+            this.$store.dispatch('exercises/fetchPageInfo')
+
+            // Обновить список упражнений
+            const payload = {
+              searchString: this.searchFilters.searchString,
+              mediaType: this.searchFilters.mediaType?.id || null,
+              trainingPlace: this.searchFilters.trainingPlace?.id || null,
+              userType: this.searchFilters.userType?.id || null,
+
+              orderBy: this.searchFilters.orderBy?.id || null,
+              muscleGroup: [],
+            }
+
+            const muscleGroupIDs = []
+            this.searchFilters.muscleGroup.forEach(element => {
+              muscleGroupIDs.push(element.id)
+            })
+
+            payload.muscleGroup = muscleGroupIDs.join(', ')
+
+            this.$store.dispatch('exercises/fetchExercisesList', payload)
+          })
+          .finally(() => {
+            // Вернуть активность для кнопок
+            this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+          })
       } else if (this.modalCondition === 'edit') {
+        // Снять активность для кнопок
+        this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+
+        // Редактировать упражнение
         this.$store.dispatch('exercises/updateExercise', payload)
+          .then(() => {
+            // Обновить общую информацио о разделе для старницы
+            this.$store.dispatch('exercises/fetchPageInfo')
+          })
+          .finally(() => {
+            // Вернуть активность для кнопок
+            this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+          })
       }
     }
   }
