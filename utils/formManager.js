@@ -2,10 +2,7 @@ const generateForm = (fields) => {
   const errors = {}
 
   for (const key in fields) {
-    errors[key] = {
-      enabled: false,
-      errorMessage: null
-    }
+    errors[key] = null
   }
 
   return {
@@ -17,19 +14,13 @@ const generateForm = (fields) => {
 const setForm = (form, payload) => {
   for (const key in form.fields) {
     form.fields[key] = payload[key]
-    form.errors[key] = {
-      enabled: false,
-      errorMessage: null
-    }
+    form.errors[key] = null
   }
 }
 
 const setFormFieldValue = (form, ctx) => {
   form.fields[ctx.field] = ctx.newValue
-  form.errors[ctx.field] = {
-    enabled: false,
-    errorMessage: null
-  }
+  form.errors[ctx.field] = null
 }
 
 const setFormFieldError = (form, ctx) => {
@@ -48,10 +39,7 @@ const clearForm = (form) => {
   }
 
   for (const key in form.errors) {
-    form.errors[key] = {
-      enabled: false,
-      errorMessage: null
-    }
+    form.errors[key] = null
   }
 }
 

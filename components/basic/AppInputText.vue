@@ -10,7 +10,7 @@
         { 'input--text-left': textLeft },
         { 'input--text-right': textRight },
         { 'input--text-center': textCenter },
-        { 'input--error': error && error.enabled }
+        { 'input--error': error }
       ]"
       v-model="inputValue"
       :disabled="disabled"
@@ -22,10 +22,10 @@
     >
 
     <pre
-      v-if="error && error.errorMessage"
+      v-if="error"
       class="error-message"
-      :class="[{ 'error-message--active': error && error.enabled }]"
-    >{{ error.errorMessage }}</pre>
+      :class="[{ 'error-message--active': error }]"
+    >{{ error }}</pre>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
     textLeft: Boolean,
     textRight: Boolean,
     textCenter: Boolean,
-    error: Object,
+    error: String,
     selectOnFocus: Boolean
   },
   data () {

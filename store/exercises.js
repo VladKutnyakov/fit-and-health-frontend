@@ -112,7 +112,6 @@ export const mutations = {
   },
   setTrainingPlaces (state, payload) {
     state.trainingPlacesList = payload
-    console.log(state.trainingPlacesList)
   },
 
   setExerciseForm (state, payload) {
@@ -123,6 +122,7 @@ export const mutations = {
   },
   setExerciseFormFieldValue (state, ctx) {
     setFormFieldValue(state.exerciseForm, ctx)
+    setFormFieldError(state.exerciseForm, {field: ctx.field, errorMessage: null})
   },
   setExerciseFormFieldError (state, ctx) {
     setFormFieldError(state.exerciseForm, ctx)
@@ -217,15 +217,22 @@ export const actions = {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      console.log(error)
+      // console.log(error.response.data)
 
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: 'Ошибка при сохранении.',
-        timeToShow: 5000,
+      for (let i = 0; i < error.response.data.errors.length; i++) {
+        if (error.response.data.errors[i].field) {
+          // console.log(error.response.data.errors[i])
+          commit('setExerciseFormFieldError', error.response.data.errors[i])
+        } else {
+          const notice = {
+            id: Date.now(),
+            type: 'alert',
+            message: 'Ошибка при сохранении.',
+            timeToShow: 5000,
+          }
+          this.commit('notifications/addNewNotice', notice)
+        }
       }
-      this.commit('notifications/addNewNotice', notice)
     }
   },
   async updateExercise ({ commit }, exercise) {
