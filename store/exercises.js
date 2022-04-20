@@ -264,7 +264,7 @@ export const actions = {
       const notice = {
         id: Date.now(),
         type: 'info',
-        message: response.data.pinned ? 'Упражнение добавлено в закрепленные.' : 'Упражнение удалено из закрепленных.',
+        message: response.pinned ? 'Упражнение добавлено в закрепленные.' : 'Упражнение удалено из закрепленных.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
@@ -287,7 +287,7 @@ export const actions = {
       const notice = {
         id: Date.now(),
         type: 'info',
-        message: response.data.favorite ? 'Упражнение добавлено в избранное.' : 'Упражнение удалено из избранного.',
+        message: response.favorite ? 'Упражнение добавлено в избранное.' : 'Упражнение удалено из избранного.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
