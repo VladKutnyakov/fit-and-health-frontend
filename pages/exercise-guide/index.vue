@@ -65,8 +65,8 @@ export default {
       // Установить значение фильтров по мышечной группе (все выбраны)
       const groupList = []
 
-      for (let i = 0; i < response.data.length; i++) {
-        groupList.push(response.data[i])
+      for (let i = 0; i < response.length; i++) {
+        groupList.push(response[i])
       }
 
       store.commit('exercises/setSearchFiltersParam', { param: 'muscleGroup', newValue: groupList })

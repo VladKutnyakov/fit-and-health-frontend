@@ -309,7 +309,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/muscles`)
 
-      commit('setExerciseMusclesList', response.data)
+      commit('setExerciseMusclesList', response)
 
       return response
     } catch (error) {
@@ -330,7 +330,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-types`)
 
-      commit('setExerciseTypesList', response.data)
+      commit('setExerciseTypesList', response)
     } catch (error) {
       console.log(error.response)
 
@@ -347,7 +347,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-sorts`)
 
-      commit('setExerciseSortsList', response.data)
+      commit('setExerciseSortsList', response)
     } catch (error) {
       console.log(error.response)
 
@@ -364,7 +364,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-exertions`)
 
-      commit('setExerciseExertionsList', response.data)
+      commit('setExerciseExertionsList', response)
     } catch (error) {
       console.log(error.response)
 
@@ -381,7 +381,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-equipments`)
 
-      commit('setExerciseEquipmentsList', response.data)
+      commit('setExerciseEquipmentsList', response)
     } catch (error) {
       console.log(error.response)
 
@@ -398,7 +398,7 @@ export const actions = {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/skill-types`)
 
-      commit('setSkillsList', response.data)
+      commit('setSkillsList', response)
     } catch (error) {
       console.log(error.response)
 
