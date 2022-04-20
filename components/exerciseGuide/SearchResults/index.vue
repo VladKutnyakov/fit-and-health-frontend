@@ -189,6 +189,7 @@ export default {
   // border: 1px solid red;
   flex: 1 1 auto;
   margin-left: 40px;
+  margin-bottom: 80px;
   .search-results__search {
     display: flex;
     flex-direction: column;
