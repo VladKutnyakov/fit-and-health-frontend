@@ -264,12 +264,10 @@ export const actions = {
     try {
       const response = await this.$axios.$delete(`${process.env.BASE_URL}/api/exercises/remove-exercise/${exerciseId}`)
 
-      // commit('updateFavoriteExercise', response.data)
-
       const notice = {
         id: Date.now(),
-        type: 'info',
-        message: response.data.favorite ? 'Упражнение добавлено в избранное.' : 'Упражнение удалено из избранного.',
+        type: 'success',
+        message: 'Упражнение успешно удалено, но все еще доступно для пользователей в тренировочных программах.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
@@ -279,7 +277,7 @@ export const actions = {
       const notice = {
         id: Date.now(),
         type: 'alert',
-        message: 'Ошибка при сохранении.',
+        message: 'Ошибка при удалении.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)

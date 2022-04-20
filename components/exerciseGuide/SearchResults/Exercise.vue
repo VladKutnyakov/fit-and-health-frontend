@@ -93,9 +93,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   props: {
     exercise: Object,
+  },
+  computed: {
+    ...mapState({
+      searchFilters: state => state.exercises.searchFilters,
+    })
   },
   methods: {
     fetchExerciseInfo (exercisesId) {
@@ -111,39 +118,41 @@ export default {
       console.log('detainling', exercise.id)
     },
     removeExercise (exercise) {
-      // Снять активность для кнопок
-      this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+      if (exercise.user) {
+        // Снять активность для кнопок
+        this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
 
-      // Удалить упражнение
-      this.$store.dispatch('exercise/removeExercise', exercise.id)
-        .then(() => {
-          // Обновить общую информацио о разделе для старницы
-          this.$store.dispatch('exercises/fetchPageInfo')
+        // Удалить упражнение
+        this.$store.dispatch('exercises/removeExercise', exercise.id)
+          .then(() => {
+            // Обновить общую информацио о разделе для старницы
+            this.$store.dispatch('exercises/fetchPageInfo')
 
-          // Обновить список упражнений
-            const payload = {
-              searchString: this.searchFilters.searchString,
-              mediaType: this.searchFilters.mediaType?.id || null,
-              trainingPlace: this.searchFilters.trainingPlace?.id || null,
-              userType: this.searchFilters.userType?.id || null,
+            // Обновить список упражнений
+              const payload = {
+                searchString: this.searchFilters.searchString,
+                mediaType: this.searchFilters.mediaType?.id || null,
+                trainingPlace: this.searchFilters.trainingPlace?.id || null,
+                userType: this.searchFilters.userType?.id || null,
 
-              orderBy: this.searchFilters.orderBy?.id || null,
-              muscleGroup: [],
-            }
+                orderBy: this.searchFilters.orderBy?.id || null,
+                muscleGroup: [],
+              }
 
-            const muscleGroupIDs = []
-            this.searchFilters.muscleGroup.forEach(element => {
-              muscleGroupIDs.push(element.id)
-            })
+              const muscleGroupIDs = []
+              this.searchFilters.muscleGroup.forEach(element => {
+                muscleGroupIDs.push(element.id)
+              })
 
-            payload.muscleGroup = muscleGroupIDs.join(', ')
+              payload.muscleGroup = muscleGroupIDs.join(', ')
 
-            this.$store.dispatch('exercises/fetchExercisesList', payload)
-        })
-        .finally(() => {
-          // Вернуть активность для кнопок
-          this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
-        })
+              this.$store.dispatch('exercises/fetchExercisesList', payload)
+          })
+          .finally(() => {
+            // Вернуть активность для кнопок
+            this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+          })
+      }
     },
   }
 }
