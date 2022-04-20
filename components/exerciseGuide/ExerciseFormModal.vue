@@ -462,4 +462,24 @@ export default {
   }
 }
 
+body.dark {
+  .content__add-exercise-form {
+    .add-exercise-form__fields-group {
+      .fields-group__section {
+        border-bottom: 1px solid $dividerBorderDarkBG;
+        .section__fields {
+          .video {
+            background: $black20;
+          }
+        }
+      }
+      .fields-group__section:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+  }
+}
+
 </style>
