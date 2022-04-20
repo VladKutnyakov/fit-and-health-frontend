@@ -73,9 +73,21 @@
     </div>
 
     <div class="exercise__actions">
-      <i class="ti-search action-btn"></i>
-      <i v-if=" exercise.user" class="ti-pencil action-btn"></i>
-      <i class="ti-trash action-btn" @click="removeExercise(exercise)"></i>
+      <i
+        class="ti-search action-btn"
+        @click="openDetailingModal(exercise)"
+      ></i>
+
+      <i
+        v-if="exercise.user"
+        class="ti-pencil action-btn"
+      ></i>
+
+      <i
+        class="ti-trash action-btn"
+        :class="[{ 'action-btn--disabled': !exercise.user }]"
+        @click="removeExercise(exercise)"
+      ></i>
     </div>
   </div>
 </template>
@@ -94,6 +106,9 @@ export default {
     },
     changeFavoriteParam (exercise) {
       this.$store.dispatch('exercises/changeFavoriteParam', exercise.id)
+    },
+    openDetailingModal (exercise) {
+      console.log('detainling', exercise.id)
     },
     removeExercise (exercise) {
       // Снять активность для кнопок
@@ -267,6 +282,10 @@ export default {
       margin-top: auto;
       margin-bottom: 0;
       background: $danger;
+    }
+    .action-btn--disabled {
+      opacity: .5;
+      cursor: default;
     }
   }
 }
