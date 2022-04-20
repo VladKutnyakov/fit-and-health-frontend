@@ -110,9 +110,15 @@ export default {
     },
     changePinnedParam (exercise) {
       this.$store.dispatch('exercises/changePinnedParam', exercise.id)
+        .then(() => {
+          this.updatePageContent()
+        })
     },
     changeFavoriteParam (exercise) {
       this.$store.dispatch('exercises/changeFavoriteParam', exercise.id)
+        .then(() => {
+          this.updatePageContent()
+        })
     },
     openDetailingModal (exercise) {
       console.log('detainling', exercise.id)
@@ -125,28 +131,7 @@ export default {
         // Удалить упражнение
         this.$store.dispatch('exercises/removeExercise', exercise.id)
           .then(() => {
-            // Обновить общую информацио о разделе для старницы
-            this.$store.dispatch('exercises/fetchPageInfo')
-
-            // Обновить список упражнений
-              const payload = {
-                searchString: this.searchFilters.searchString,
-                mediaType: this.searchFilters.mediaType?.id || null,
-                trainingPlace: this.searchFilters.trainingPlace?.id || null,
-                userType: this.searchFilters.userType?.id || null,
-
-                orderBy: this.searchFilters.orderBy?.id || null,
-                muscleGroup: [],
-              }
-
-              const muscleGroupIDs = []
-              this.searchFilters.muscleGroup.forEach(element => {
-                muscleGroupIDs.push(element.id)
-              })
-
-              payload.muscleGroup = muscleGroupIDs.join(', ')
-
-              this.$store.dispatch('exercises/fetchExercisesList', payload)
+            this.updatePageContent()
           })
           .finally(() => {
             // Вернуть активность для кнопок
@@ -154,6 +139,30 @@ export default {
           })
       }
     },
+    updatePageContent () {
+      // Обновить общую информацио о разделе для старницы
+      this.$store.dispatch('exercises/fetchPageInfo')
+
+      // Обновить список упражнений
+      const payload = {
+        searchString: this.searchFilters.searchString,
+        mediaType: this.searchFilters.mediaType?.id || null,
+        trainingPlace: this.searchFilters.trainingPlace?.id || null,
+        userType: this.searchFilters.userType?.id || null,
+
+        orderBy: this.searchFilters.orderBy?.id || null,
+        muscleGroup: [],
+      }
+
+      const muscleGroupIDs = []
+      this.searchFilters.muscleGroup.forEach(element => {
+        muscleGroupIDs.push(element.id)
+      })
+
+      payload.muscleGroup = muscleGroupIDs.join(', ')
+
+      this.$store.dispatch('exercises/fetchExercisesList', payload)
+    }
   }
 }
 </script>

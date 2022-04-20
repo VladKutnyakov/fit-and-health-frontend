@@ -128,32 +128,6 @@ export const mutations = {
     setFormFieldError(state.exerciseForm, ctx)
   },
 
-  updatePinnedExercise (state, updatedExercise) {
-    // state.exercisesList.forEach(element => {
-    //   for (let i = 0; i < element.exercises.length; i++) {
-    //     if (element.exercises[i].id == updatedExercise.exerciseId) {
-    //       // console.log(element.exercises[i].id)
-    //       const item = JSON.parse(JSON.stringify(element.exercises[i]))
-    //       item.pinned = updatedExercise.pinned
-    //       element.exercises.splice(i, 1, item)
-    //       break
-    //     }
-    //   }
-    // })
-  },
-  updateFavoriteExercise (state, updatedExercise) {
-    // state.exercisesList.forEach(element => {
-    //   for (let i = 0; i < element.exercises.length; i++) {
-    //     if (element.exercises[i].id == updatedExercise.exerciseId) {
-    //       // console.log(element.exercises[i].id)
-    //       const item = JSON.parse(JSON.stringify(element.exercises[i]))
-    //       item.favorite = updatedExercise.favorite
-    //       element.exercises.splice(i, 1, item)
-    //       break
-    //     }
-    //   }
-    // })
-  },
   setModalCondition (state, condition) {
     state.modalCondition = condition
   },
@@ -287,8 +261,6 @@ export const actions = {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/exercises/change-pinned-param/${exerciseId}`)
 
-      commit('updatePinnedExercise', response.data)
-
       const notice = {
         id: Date.now(),
         type: 'info',
@@ -311,8 +283,6 @@ export const actions = {
   async changeFavoriteParam ({ commit }, exerciseId) {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/exercises/change-favorite-param/${exerciseId}`)
-
-      commit('updateFavoriteExercise', response.data)
 
       const notice = {
         id: Date.now(),
