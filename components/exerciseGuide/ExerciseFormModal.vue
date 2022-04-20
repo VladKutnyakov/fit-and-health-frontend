@@ -364,6 +364,26 @@ export default {
           .then(() => {
             // Обновить общую информацио о разделе для старницы
             this.$store.dispatch('exercises/fetchPageInfo')
+
+            // Обновить список упражнений
+            const payload = {
+              searchString: this.searchFilters.searchString,
+              mediaType: this.searchFilters.mediaType?.id || null,
+              trainingPlace: this.searchFilters.trainingPlace?.id || null,
+              userType: this.searchFilters.userType?.id || null,
+
+              orderBy: this.searchFilters.orderBy?.id || null,
+              muscleGroup: [],
+            }
+
+            const muscleGroupIDs = []
+            this.searchFilters.muscleGroup.forEach(element => {
+              muscleGroupIDs.push(element.id)
+            })
+
+            payload.muscleGroup = muscleGroupIDs.join(', ')
+
+            this.$store.dispatch('exercises/fetchExercisesList', payload)
           })
           .finally(() => {
             // Вернуть активность для кнопок

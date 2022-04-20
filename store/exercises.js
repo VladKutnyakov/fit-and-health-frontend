@@ -260,6 +260,31 @@ export const actions = {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+  async removeExercise ({ commit }, exerciseId) {
+    try {
+      const response = await this.$axios.$delete(`${process.env.BASE_URL}/api/exercises/remove-exercise/${exerciseId}`)
+
+      // commit('updateFavoriteExercise', response.data)
+
+      const notice = {
+        id: Date.now(),
+        type: 'info',
+        message: response.data.favorite ? 'Упражнение добавлено в избранное.' : 'Упражнение удалено из избранного.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при сохранении.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
   async changePinnedParam ({ commit }, exerciseId) {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/exercises/change-pinned-param/${exerciseId}`)

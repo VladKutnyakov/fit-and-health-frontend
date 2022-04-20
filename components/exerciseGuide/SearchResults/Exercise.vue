@@ -75,7 +75,7 @@
     <div class="exercise__actions">
       <i class="ti-search action-btn"></i>
       <i v-if=" exercise.user" class="ti-pencil action-btn"></i>
-      <i class="ti-trash action-btn"></i>
+      <i class="ti-trash action-btn" @click="removeExercise(exercise)"></i>
     </div>
   </div>
 </template>
@@ -94,7 +94,42 @@ export default {
     },
     changeFavoriteParam (exercise) {
       this.$store.dispatch('exercises/changeFavoriteParam', exercise.id)
-    }
+    },
+    removeExercise (exercise) {
+      // Снять активность для кнопок
+      this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+
+      // Удалить упражнение
+      this.$store.dispatch('exercise/removeExercise', exercise.id)
+        .then(() => {
+          // Обновить общую информацио о разделе для старницы
+          this.$store.dispatch('exercises/fetchPageInfo')
+
+          // Обновить список упражнений
+            const payload = {
+              searchString: this.searchFilters.searchString,
+              mediaType: this.searchFilters.mediaType?.id || null,
+              trainingPlace: this.searchFilters.trainingPlace?.id || null,
+              userType: this.searchFilters.userType?.id || null,
+
+              orderBy: this.searchFilters.orderBy?.id || null,
+              muscleGroup: [],
+            }
+
+            const muscleGroupIDs = []
+            this.searchFilters.muscleGroup.forEach(element => {
+              muscleGroupIDs.push(element.id)
+            })
+
+            payload.muscleGroup = muscleGroupIDs.join(', ')
+
+            this.$store.dispatch('exercises/fetchExercisesList', payload)
+        })
+        .finally(() => {
+          // Вернуть активность для кнопок
+          this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+        })
+    },
   }
 }
 </script>
