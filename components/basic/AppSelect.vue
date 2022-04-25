@@ -16,12 +16,12 @@
           {'app-select__selected-value--right': alignSelectedValueRight},
           {'app-select__selected-value--center': alignSelectedValueCenter},
         ]"
-        :value="typeof selectValue === 'object' && selectValue != null ? selectValue.title : selectValue"
+        :value="selectValue"
         :disabled="disabled"
         :placeholder="placeholder || 'Выберите значение'"
-         @click="toggleVisibility()"
+        @click="toggleVisibility()"
       />
-      <div class="app-select__action"  @click="toggleVisibility()">
+      <div class="app-select__action" @click="toggleVisibility()">
         <i class="ti-angle-down app-select__icon"></i>
       </div>
       <div v-if="canBeClear" class="app-select__action" @click="clearSelect()">
@@ -34,10 +34,10 @@
       v-if="selectOptionsList"
       class="app-select__list"
       :class="[
-        {'app-select__list-opened': listOpened},
-        {'app-select__list-left': alignListLeft},
-        {'app-select__list-right': alignListRight},
-        {'app-select__list-center': alignListCenter}
+        { 'app-select__list-opened': listOpened },
+        { 'app-select__list-left': alignListLeft },
+        { 'app-select__list-right': alignListRight },
+        { 'app-select__list-center': alignListCenter }
       ]"
     >
       <li
@@ -48,13 +48,30 @@
         v-for="(item, index) in selectOptionsList"
         :key="index"
         class="app-select__list-item"
-        @click="selectItem(item)"
-      >{{ typeof item === 'object' && item != null ? item.title : item }}</li>
+        @click.stop
+      >
+        <app-input-checkbox
+          v-if="multiselect"
+          class="list-item__checkbox fill-area"
+          :value="item.active"
+          :label="item.title"
+          @click.native="selectItem(item)"
+        />
+
+        <p
+          v-if="!multiselect"
+          class="list-item__text"
+          @click="selectItem(item)"
+        >{{ typeof item === 'object' && item != null ? item.title : item }}</p>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
+import jsCookie from 'js-cookie'
+
 export default {
   props: {
     canBeClear: {
@@ -65,6 +82,7 @@ export default {
     maxWidth: String,
     value: [String, Number, Object, Array],
     selectOptionsList: Array,
+    multiselect: Boolean,
     disabled: Boolean,
     placeholder: String,
     alignListLeft: Boolean,
@@ -74,6 +92,9 @@ export default {
     alignSelectedValueRight: Boolean,
     alignSelectedValueCenter: Boolean
   },
+  components: {
+    AppInputCheckbox,
+  },
   data () {
     return {
       selectValue: this.value,
@@ -82,7 +103,13 @@ export default {
   },
   watch: {
     value () {
-      this.selectValue = this.value
+      if (typeof this.value === 'object' && this.value != null) {
+        this.selectValue = this.value.title
+      } else if (Array.isArray(this.value)) {
+        return this.selectValue = this.value.map(element => (element.title)).join(', ')
+      } else {
+        return this.selectValue = this.value
+      }
     }
   },
   methods: {
@@ -104,12 +131,30 @@ export default {
       document.removeEventListener('click', this.closeSelect)
     },
     selectItem (item) {
-      this.closeSelect()
-      this.$emit('select', item)
+      if (this.multiselect) {
+        console.log(this.selectValue)
+        // const newValue = JSON.parse(JSON.stringify(this.selectValue))
+
+        // let mustPush = true
+
+        // for (let i = 0; i < newValue.length; i++) {
+        //   if (newValue[i].id === item.id) {
+        //     mustPush = false
+        //     newValue.splice(i, 1)
+        //   }
+        // }
+
+        // if (mustPush) {
+        //   newValue.push(item)
+        // }
+
+        // this.$emit('select', newValue)
+      } else {
+        this.closeSelect()
+        this.$emit('select', item)
+      }
     },
     clearSelect () {
-      this.closeSelect()
-
       if (!this.disabled) {
         this.$emit('clear', null)
       }
@@ -196,12 +241,21 @@ export default {
     overflow: auto;
     .app-select__list-item {
       // border: 1px solid red;
+      display: flex;
+      align-items: flex-start;
       margin: 0 5px;
-      padding: 8px 10px;
+      
       border-radius: 6px;
       white-space: nowrap;
       user-select: none;
       cursor: pointer;
+      .list-item__text {
+        flex: 1 1 auto;
+        padding: 8px 10px;
+      }
+      .list-item__checkbox {
+        padding: 8px 10px;
+      }
     }
     .app-select__list-item:hover {
       background: $primaryLight5;
