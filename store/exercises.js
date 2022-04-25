@@ -64,6 +64,7 @@ export const state = () => ({
   exerciseFormModalActive: false,
 
   waiteExerciseListUpdate: false,
+  waiteExerciseInfoLoading: false,
 })
 
 export const getters = {}
@@ -136,6 +137,9 @@ export const mutations = {
   },
   setWaiteExerciseListUpdate (state, condition) {
     state.waiteExerciseListUpdate = condition
+  },
+  setWaiteExerciseInfoLoading (state, condition) {
+    state.waiteExerciseInfoLoading = condition
   },
 }
 

@@ -225,6 +225,12 @@
           </div>
         </div>
       </div>
+
+      <app-spinner
+        v-if="waiteExerciseInfoLoading"
+        donut
+        center
+      />
     </template>
     <template v-slot:modalFooter>
       <app-button
@@ -254,6 +260,7 @@ import AppInputCheckbox from "@/components/basic/AppInputCheckbox"
 import AppSelect from "@/components/basic/AppSelect"
 import AppTextarea from '@/components/basic/AppTextarea'
 import AppButton from "@/components/basic/AppButton"
+import AppSpinner from '@/components/basic/AppSpinner'
 
 export default {
   components: {
@@ -263,7 +270,8 @@ export default {
     AppInputCheckbox,
     AppSelect,
     AppTextarea,
-    AppButton
+    AppButton,
+    AppSpinner,
   },
   computed: {
     ...mapState({
@@ -279,6 +287,7 @@ export default {
       modalCondition: state => state.exercises.modalCondition,
       exerciseFormModalActive: state => state.exercises.exerciseFormModalActive,
       waiteExerciseListUpdate: state => state.exercises.waiteExerciseListUpdate,
+      waiteExerciseInfoLoading: state => state.exercises.waiteExerciseInfoLoading,
     }),
     headerTitle () {
       if (this.modalCondition === 'create') {

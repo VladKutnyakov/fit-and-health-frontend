@@ -116,6 +116,7 @@ export default {
   z-index: 9999;
   .modal__content-wrapper {
     // border: 1px solid red;
+    position: relative;
     display: flex;
     flex-direction: column;
     margin: 0 40px;

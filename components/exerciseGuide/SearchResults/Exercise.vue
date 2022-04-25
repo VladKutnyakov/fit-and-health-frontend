@@ -117,7 +117,10 @@ export default {
       this.$store.commit('exercises/setModalCondition', 'edit')
       this.$store.commit('exercises/clearExerciseForm')
 
-      this.$store.dispatch('exercises/fetchExerciseInfo', exercise.id)
+      this.$store.commit('exercises/setWaiteExerciseInfoLoading', true)
+      this.$store.dispatch('exercises/fetchExerciseInfo', exercise.id).finally(() => {
+        this.$store.commit('exercises/setWaiteExerciseInfoLoading', false)
+      })
 
       this.$store.commit('exercises/setModalVisibility', { modal: 'exerciseFormModalActive', condition: true })
     },
