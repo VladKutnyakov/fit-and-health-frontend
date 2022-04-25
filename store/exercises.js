@@ -177,6 +177,23 @@ export const actions = {
     }
   },
 
+  async fetchExerciseInfo ({ commit }, payload) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercise-info/${payload}`)
+
+      commit('setExerciseForm', response)
+    } catch (error) {
+      console.log(error.response)
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при загрузке данных.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
   async saveNewExercise ({ commit }, newExercise) {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/exercises/save-new-exercise`, { exercise: newExercise })

@@ -224,7 +224,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </template>
     <template v-slot:modalFooter>
@@ -233,11 +232,11 @@
         :disabled="waiteExerciseListUpdate"
         uppercase
         size14px
+        successBtn
         @click="confirmAction()"
       >{{ modalCondition === 'create' ? 'Сохранить' : 'Редактировать' }}</app-button>
 
       <app-button
-        :disabled="waiteExerciseListUpdate"
         uppercase
         size14px
         @click="toggleModalVisibility({modal: 'exerciseFormModalActive', condition: false})"
@@ -266,9 +265,6 @@ export default {
     AppTextarea,
     AppButton
   },
-  data () {
-    return {}
-  },
   computed: {
     ...mapState({
       exerciseForm: state => state.exercises.exerciseForm,
@@ -287,15 +283,15 @@ export default {
     headerTitle () {
       if (this.modalCondition === 'create') {
         return 'Добавить упражнение'
-      } else {
-        return 'Редактировать упражнение'
+      } else if (this.modalCondition === 'edit') {
+        return 'Информация об упражнение'
       }
     },
     headerDescriptions () {
       if (this.modalCondition === 'create') {
         return ['Заполните форму и нажмите "Cохранить", чтобы добавить новое упражнение в общую базу.', 'Новое упражнение будет доступен только для вас.']
-      } else {
-        return ['Отредактируйте информацию и нажмите "Редактировать", чтобы обновить данные об упражнение.']
+      } else if (this.modalCondition === 'edit') {
+        return ['Отредактируйте информацию и нажмите "Редактировать", чтобы обновить данные об упражнение. Отредактировать можно только упражения, добавленные пользователем.']
       }
     }
   },

@@ -79,11 +79,6 @@
       ></i>
 
       <i
-        v-if="exercise.user"
-        class="ti-pencil action-btn"
-      ></i>
-
-      <i
         class="ti-trash action-btn"
         :class="[{ 'action-btn--disabled': !exercise.user }]"
         @click="removeExercise(exercise)"
@@ -105,9 +100,6 @@ export default {
     })
   },
   methods: {
-    fetchExerciseInfo (exercisesId) {
-      this.$store.dispatch('exercises/fetchExerciseInfo', exercisesId)
-    },
     changePinnedParam (exercise) {
       this.$store.dispatch('exercises/changePinnedParam', exercise.id)
         .then(() => {
@@ -121,7 +113,13 @@ export default {
         })
     },
     openDetailingModal (exercise) {
-      console.log('detainling', exercise.id)
+      // console.log('detainling', exercise.id)
+      this.$store.commit('exercises/setModalCondition', 'edit')
+      this.$store.commit('exercises/clearExerciseForm')
+
+      this.$store.dispatch('exercises/fetchExerciseInfo', exercise.id)
+
+      this.$store.commit('exercises/setModalVisibility', { modal: 'exerciseFormModalActive', condition: true })
     },
     removeExercise (exercise) {
       if (exercise.user) {
