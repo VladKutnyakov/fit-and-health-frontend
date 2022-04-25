@@ -41,8 +41,8 @@
           <p class="item__value">{{ exercise.equipment ? exercise.equipment.title : 'нет данных' }}</p>
         </div>
         <div class="exercise-info__item">
-          <p class="item__title">Подходит для занятий:</p>
-          <p class="item__value">{{ exercise.trainingPlace ? exercise.trainingPlace.title : null }}</p>
+          <p class="item__title">Место для занятий:</p>
+          <p class="item__value">{{ exercise.trainingPlace ? exercise.trainingPlace.title : 'не указано' }}</p>
         </div>
       </div>
     </div>
