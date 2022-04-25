@@ -213,21 +213,24 @@ export const actions = {
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
       // console.log(error.response.data)
+      let errorMessage = ''
 
       for (let i = 0; i < error.response.data.errors.length; i++) {
         if (error.response.data.errors[i].field) {
           // console.log(error.response.data.errors[i])
           commit('setExerciseFormFieldError', error.response.data.errors[i])
-        } else {
-          const notice = {
-            id: Date.now(),
-            type: 'alert',
-            message: 'Ошибка при сохранении.',
-            timeToShow: 5000,
-          }
-          this.commit('notifications/addNewNotice', notice)
         }
+
+        errorMessage += error.response.data.errors[i].errorMessage + ' '
       }
+
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: errorMessage.length > 0 ? errorMessage : 'Ошибка при сохранении.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
   async updateExercise ({ commit }, exercise) {

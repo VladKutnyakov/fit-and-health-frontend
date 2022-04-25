@@ -235,7 +235,7 @@
     <template v-slot:modalFooter>
       <app-button
         class="modal-action-btn mr-auto"
-        :disabled="waiteExerciseListUpdate"
+        :disabled="!canBeEdit"
         uppercase
         size14px
         successBtn
@@ -301,6 +301,13 @@ export default {
         return ['Заполните форму и нажмите "Cохранить", чтобы добавить новое упражнение в общую базу.', 'Новое упражнение будет доступен только для вас.']
       } else if (this.modalCondition === 'edit') {
         return ['Отредактируйте информацию и нажмите "Редактировать", чтобы обновить данные об упражнение. Отредактировать можно только упражения, добавленные пользователем.']
+      }
+    },
+    canBeEdit () {
+      if (this.modalCondition === 'create') {
+        return !this.waiteExerciseListUpdate
+      } else if (this.modalCondition === 'edit') {
+        return !!(this.exerciseForm.fields.user)
       }
     }
   },
