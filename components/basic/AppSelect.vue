@@ -41,11 +41,11 @@
       ]"
     >
       <li
-        v-if="selectOptionsList.length == 0"
+        v-if="optionsList.length == 0"
         class="app-select__list-item--empty"
       >Нет данных</li>
       <li
-        v-for="(item, index) in selectOptionsList"
+        v-for="(item, index) in optionsList"
         :key="index"
         class="app-select__list-item"
         @click.stop
@@ -55,8 +55,8 @@
           class="list-item__checkbox fill-area"
           :value="item.active"
           :label="item.title"
-          @click.native="selectItem(item)"
-        />
+          @change="selectItem(item)"
+        />{{ item.active }}
 
         <p
           v-if="!multiselect"
@@ -70,7 +70,6 @@
 
 <script>
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
-import jsCookie from 'js-cookie'
 
 export default {
   props: {
@@ -98,23 +97,47 @@ export default {
   data () {
     return {
       selectValue: this.value,
+      optionsList: [],
       listOpened: false
     }
   },
   watch: {
-    value () {
-      if (typeof this.value === 'object' && this.value != null) {
-        this.selectValue = this.value.title
-      } else if (Array.isArray(this.value)) {
-        return this.selectValue = this.value.map(element => (element.title)).join(', ')
+    value (newValue) {
+      if (Array.isArray(newValue)) {
+        // sort by id
+        this.selectValue = newValue.map(element => (element.title)).join(', ')
+      } else if (typeof newValue === 'object' && newValue != null) {
+        this.selectValue = newValue.title
       } else {
-        return this.selectValue = this.value
+        this.selectValue = newValue
       }
     }
   },
   methods: {
+    getOptionsList () {
+      if (this.multiselect) {
+        const list = JSON.parse(JSON.stringify(this.selectOptionsList))
+
+        const listWithSelectedElements = []
+
+        for (let i = 0; i < list.length; i++) {
+          const isSelect = false
+
+          listWithSelectedElements.push({
+            id: list[i].id,
+            title: list[i].title,
+            active: isSelect,
+          })
+        }
+
+        this.optionsList = listWithSelectedElements
+      } else {
+        this.optionsList = this.selectOptionsList
+      }
+    },
     toggleVisibility () {
       if (!this.listOpened && !this.disabled) {
+        this.getOptionsList()
         this.openSelect()
       } else {
         this.closeSelect()
@@ -132,23 +155,23 @@ export default {
     },
     selectItem (item) {
       if (this.multiselect) {
-        console.log(this.selectValue)
-        // const newValue = JSON.parse(JSON.stringify(this.selectValue))
+        const newValue = this.value ? JSON.parse(JSON.stringify(this.value)) : []
 
-        // let mustPush = true
+        let mustPush = true
 
-        // for (let i = 0; i < newValue.length; i++) {
-        //   if (newValue[i].id === item.id) {
-        //     mustPush = false
-        //     newValue.splice(i, 1)
-        //   }
-        // }
+        for (let i = 0; i < newValue.length; i++) {
+          if (newValue[i].id === item.id) {
+            mustPush = false
+            newValue.splice(i, 1)
+            break
+          }
+        }
 
-        // if (mustPush) {
-        //   newValue.push(item)
-        // }
+        if (mustPush) {
+          newValue.push(item)
+        }
 
-        // this.$emit('select', newValue)
+        this.$emit('select', newValue)
       } else {
         this.closeSelect()
         this.$emit('select', item)

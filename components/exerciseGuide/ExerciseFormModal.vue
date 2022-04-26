@@ -42,7 +42,7 @@
                 <p class="field__title" :class="[{ 'field__title--active': exerciseForm.fields.additionalMuscles && exerciseForm.fields.additionalMuscles.length > 0 }]">Дополнительные мышцы</p>
                 <app-select
                   :value="exerciseForm.fields.additionalMuscles"
-                  :selectOptionsList="additionalExerciseMusclesList"
+                  :selectOptionsList="exerciseMusclesList"
                   :error="exerciseForm.errors.additionalMuscles"
                   multiselect
                   alignListLeft
@@ -290,15 +290,6 @@ export default {
       waiteExerciseListUpdate: state => state.exercises.waiteExerciseListUpdate,
       waiteExerciseInfoLoading: state => state.exercises.waiteExerciseInfoLoading,
     }),
-    additionalExerciseMusclesList () {
-      return [
-        {
-          id: 1,
-          title: 'title',
-          active: false,
-        }
-      ]
-    },
     headerTitle () {
       if (this.modalCondition === 'create') {
         return 'Добавить упражнение'
