@@ -111,7 +111,7 @@ export const mutations = {
   setSkillsList (state, payload) {
     const list = []
     for (let i = 0; i < payload.length; i++) {
-      list.push({id: payload[i].id, title: payload[i].excellenceTitle})
+      list.push({id: payload[i].id, title: payload[i].complexityTitle})
     }
     state.skillsList = list
   },
