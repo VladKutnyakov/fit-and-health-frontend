@@ -193,7 +193,11 @@ export default {
         }
 
         if (mustPush) {
-          newValue.push(item)
+          newValue.push({
+            id: item.id,
+            title: item.title,
+            active: true
+          })
         }
 
         this.$emit('select', newValue)
