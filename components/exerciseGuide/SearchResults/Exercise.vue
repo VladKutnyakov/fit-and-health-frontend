@@ -125,20 +125,8 @@ export default {
       this.$store.commit('exercises/setModalVisibility', { modal: 'exerciseFormModalActive', condition: true })
     },
     removeExercise (exercise) {
-      if (exercise.user) {
-        // Снять активность для кнопок
-        this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
-
-        // Удалить упражнение
-        this.$store.dispatch('exercises/removeExercise', exercise.id)
-          .then(() => {
-            this.updatePageContent()
-          })
-          .finally(() => {
-            // Вернуть активность для кнопок
-            this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
-          })
-      }
+      this.$store.commit('exercises/setExerciseToRemove', exercise)
+      this.$store.commit('exercises/setModalVisibility', { modal: 'confirmRemoveExerciseModalActive', condition: true })
     },
     updatePageContent () {
       // Обновить общую информацио о разделе для старницы

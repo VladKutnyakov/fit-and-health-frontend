@@ -60,8 +60,12 @@ export const state = () => ({
   exerciseEquipmentsList: [],
   skillsList: [],
   trainingPlacesList: [],
+
+  exerciseToRemove: null,
+
   modalCondition: 'create',
   exerciseFormModalActive: false,
+  confirmRemoveExerciseModalActive: false,
 
   waiteExerciseListUpdate: false,
   waiteExerciseInfoLoading: false,
@@ -127,6 +131,10 @@ export const mutations = {
   },
   setExerciseFormFieldError (state, ctx) {
     setFormFieldError(state.exerciseForm, ctx)
+  },
+
+  setExerciseToRemove (state, payload) {
+    state.exerciseToRemove = payload
   },
 
   setModalCondition (state, condition) {
@@ -269,6 +277,8 @@ export const actions = {
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
+
+      return response
     } catch (error) {
       console.log(error.response)
 
@@ -279,6 +289,8 @@ export const actions = {
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
+
+      throw error.response.data.details
     }
   },
   async changePinnedParam ({ commit }, exerciseId) {
