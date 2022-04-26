@@ -58,8 +58,6 @@
           @change="selectItem(item)"
         />
 
-        {{ item.active }}
-
         <p
           v-if="!multiselect"
           class="list-item__text"
@@ -106,8 +104,23 @@ export default {
   watch: {
     value (newValue) {
       if (Array.isArray(newValue)) {
-        // sort by id
-        this.selectValue = newValue.map(element => (element.title)).join(', ')
+        // Сортировка по очередности в списке возможных значений
+        const sortedNewValue = []
+
+        if (this.selectOptionsList) {
+          for (let i = 0; i < this.selectOptionsList.length; i++) {
+            newValue.forEach(element => {
+              if (this.selectOptionsList[i].id === element.id) {
+                sortedNewValue.push(element)
+              }
+            })
+          }
+        } else {
+          sortedNewValue = newValue
+        }
+
+        // Форматирование массива выбранных значений в строку
+        this.selectValue = sortedNewValue.map(element => (element.title)).join(', ')
       } else if (typeof newValue === 'object' && newValue != null) {
         this.selectValue = newValue.title
       } else {
