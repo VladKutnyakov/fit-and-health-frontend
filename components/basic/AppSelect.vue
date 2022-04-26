@@ -56,7 +56,9 @@
           :value="item.active"
           :label="item.title"
           @change="selectItem(item)"
-        />{{ item.active }}
+        />
+
+        {{ item.active }}
 
         <p
           v-if="!multiselect"
@@ -111,6 +113,8 @@ export default {
       } else {
         this.selectValue = newValue
       }
+
+      this.getOptionsList()
     }
   },
   methods: {
@@ -123,6 +127,14 @@ export default {
         for (let i = 0; i < list.length; i++) {
           const isSelect = false
 
+          if (this.value) {
+            this.value.forEach(element => {
+              if (element.id === list[i].id) {
+                isSelect = true
+              }
+            })
+          }
+
           listWithSelectedElements.push({
             id: list[i].id,
             title: list[i].title,
@@ -130,9 +142,9 @@ export default {
           })
         }
 
-        this.optionsList = listWithSelectedElements
+        this.optionsList = JSON.parse(JSON.stringify(listWithSelectedElements))
       } else {
-        this.optionsList = this.selectOptionsList
+        this.optionsList = JSON.parse(JSON.stringify(this.selectOptionsList))
       }
     },
     toggleVisibility () {
