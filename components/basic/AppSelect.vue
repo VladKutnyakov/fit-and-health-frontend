@@ -16,7 +16,7 @@
           {'app-select__selected-value--right': alignSelectedValueRight},
           {'app-select__selected-value--center': alignSelectedValueCenter},
         ]"
-        :value="selectValue"
+        :value="typeof selectValue === 'object' && selectValue != null ? selectValue.title : selectValue"
         :disabled="disabled"
         :placeholder="placeholder || 'Выберите значение'"
         @click="toggleVisibility()"
