@@ -5,8 +5,9 @@ export const getters = {}
 export const mutations = {}
 
 export const actions = {
+
   // этот action вызывается на стороне сервера при запуске SSR
-  nuxtServerInit () {
+  async nuxtServerInit () {
     const getCookie = (name) => {
       const headerCookie = process.browser ? document.cookie : this.app.context.req.headers.cookie
 
@@ -25,6 +26,7 @@ export const actions = {
     this.commit('auth/setToken', getCookie('authorization'))
 
     // Устанавливаем визуальную тему для сайта
-    this.dispatch('appSettings/fetchAppTheme')
-  }
+    await this.dispatch('appSettings/fetchAppTheme')
+  },
+
 }
