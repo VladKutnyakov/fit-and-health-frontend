@@ -14,7 +14,7 @@
 import AppPage from '@/components/basic/AppPage'
 import PageInfo from '@/components/trainingPrograms/PageInfo'
 import SortingFilters from '@/components/trainingPrograms/SortingFilters'
-import SearchResults from '@/components/trainingPrograms/SearchResults'
+import SearchResults from '@/components/trainingPrograms/SearchResults/index'
 
 export default {
   name: 'TrainingPrograms',
