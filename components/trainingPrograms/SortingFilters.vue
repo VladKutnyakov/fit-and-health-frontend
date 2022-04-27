@@ -4,27 +4,27 @@
 
     <div class="sorting-filters__filters">
       <filter-radio-group
-        :filterGroupOpened="true"
+        :value="searchFilters.orderBy"
+        :valueList="orderBy"
+        :filterGroupOpened="orderByIsOpened"
         headerTitle="Сортировать по ..."
-        :valueList="sotringOptions"
-        :defaultValue="sotringDefault"
-        @inputGroupValueChanged="filters.sorting = $event"
-      />
-
-      <filter-checkbox-group
-        :filterGroupOpened="true"
-        headerTitle="Время приема пищи"
-        :valueList="mealtimeOptions"
-        :defaultValue="mealtimeOptions"
-        @inputGroupValueChanged="filters.mealtime = $event"
+        @toggleOpened="orderByIsOpened = $event"
+        @change="setSearchFiltersParam({ param: 'orderBy', newValue: $event })"
       />
     </div>
 
-    <app-button class="mr-10 mb-10 ml-10" size14px fillArea >Применить фильтры</app-button>
+    <app-button
+      class="mr-10 mb-10 ml-10"
+      size14px
+      fillArea
+      :disabled="waiteExerciseListUpdate"
+      @click="fetchTrainingProgramsList()"
+    >Применить фильтры</app-button>
   </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import FilterRadioGroup from '@/components/basic/FilterRadioGroup'
 import FilterCheckboxGroup from '@/components/basic/FilterCheckboxGroup'
@@ -39,20 +39,69 @@ export default {
   },
   data () {
     return {
-      filters: {
-        sorting: '',
-        mealtime: [],
-        cookingTimeLimit: {},
-        kkalLimit: {}
-      },
-      sotringOptions: ['Названию (от А до Я)', 'Названию (от Я до А)', 'Просмотрам', 'Времени приготовления', 'Лайкам', 'Калорийности'],
-      sotringDefault: 'Названию (от А до Я)',
-      mealtimeOptions: ['Завтрак', 'Обед', 'Ланч', 'Ужин', 'Перекус'],
-      cookingDifficultyOptions: ['Легкая', 'Средняя', 'Высокая', 'Очень высокая'],
-      preferenceOptions: ['Низкокалорийние', 'Веганские', 'Вегетариантские'],
-      productsOptions: ['Рыба', 'Гречка', 'Курица', 'Яйцо', 'Свинина', 'Фрукты']
+      orderByIsOpened: true,
+      orderBy: [
+        {
+          id: 'title',
+          title: 'Названию'
+        },
+        {
+          id: 'cardio',
+          title: 'Кардио'
+        },
+        {
+          id: 'power',
+          title: 'Силе'
+        },
+        {
+          id: 'endurance',
+          title: 'Выносливости'
+        },
+        {
+          id: 'flexibility',
+          title: 'Гибкости'
+        },
+        {
+          id: 'skill',
+          title: 'Сложности'
+        },
+      ],
     }
-  }
+  },
+  computed: {
+    ...mapState({
+      searchFilters: state => state.trainingPrograms.searchFilters,
+      waiteExerciseListUpdate: state => state.trainingPrograms.waiteExerciseListUpdate,
+    })
+  },
+  methods: {
+    ...mapMutations({
+      setSearchFiltersParam: 'trainingPrograms/setSearchFiltersParam',
+    }),
+    fetchTrainingProgramsList () {
+      // const payload = {
+      //   searchString: this.searchFilters.searchString,
+      //   mediaType: this.searchFilters.mediaType?.id || null,
+      //   trainingPlace: this.searchFilters.trainingPlace?.id || null,
+      //   userType: this.searchFilters.userType?.id || null,
+
+      //   orderBy: this.searchFilters.orderBy?.id || null,
+      //   muscleGroup: [],
+      // }
+
+      // const muscleGroupIDs = []
+      // this.searchFilters.muscleGroup.forEach(element => {
+      //   muscleGroupIDs.push(element.id)
+      // })
+
+      // payload.muscleGroup = muscleGroupIDs.join(', ')
+
+      // this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+      // this.$store.dispatch('exercises/fetchExercisesList', payload).finally(() => {
+      //   this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+      // })
+    }
+  },
 }
 </script>
 

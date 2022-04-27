@@ -19,12 +19,7 @@
         headerTitle="Мышечные группы"
         @toggleOpened="muscleGroupIsOpened = $event"
         @change="setSearchFiltersParam({ param: 'muscleGroup', newValue: $event })"
-      >
-        <template v-slot:btnWrapper>
-          <app-button size14px uppercase>Очистить</app-button>
-          <app-button size14px uppercase>Выбрать все</app-button>
-        </template>
-      </filter-checkbox-group>
+      />
     </div>
 
     <app-button
