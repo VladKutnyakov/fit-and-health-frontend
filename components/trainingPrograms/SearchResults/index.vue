@@ -42,13 +42,38 @@
       </div>
     </div>
 
-    <!-- <div class="found-programs">
-      <found-program
-        v-for="(item, index) in trainingProgramsList"
-        :key="index"
-        :item="item"
+    <div class="search-results__training-programs-list">
+
+      <app-spinner
+        v-if="waiteTrainingProgramsListUpdate"
+        donutDouble
+        rounded
       />
-    </div> -->
+
+      <div v-if="pinnedTrainingPrograms.length > 0" class="pinned-training-programs">
+        <p class="pinned-training-programs__block-title">Закрепленные тренировочные программы</p>
+
+        <ul class="training-programs-list">
+          <found-program
+            v-for="(item, index) in pinnedTrainingPrograms"
+            :key="index"
+            :item="item"
+          />
+        </ul>
+      </div>
+
+      <div v-if="notPinnedTrainingPrograms.length > 0" class="not-pinned-training-programs">
+        <p class="not-pinned-training-programs__block-title" v-if="pinnedTrainingPrograms.length > 0">Не закрепленные тренировочные программы</p>
+
+        <ul class="training-programs-list" :class="[{ 'mt-20': pinnedTrainingPrograms.length <= 0 }]">
+          <found-program
+            v-for="(item, index) in notPinnedTrainingPrograms"
+            :key="index"
+            :item="item"
+          />
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -96,6 +121,8 @@ export default {
           title: 'Мои упражнения'
         },
       ],
+      pinnedTrainingPrograms: [{}],
+      notPinnedTrainingPrograms: [{}],
     }
   },
   computed: {
@@ -141,28 +168,28 @@ export default {
       }
     }
   }
-  .search-results__exercises-list {
+  .search-results__training-programs-list {
     position: relative;
-    .pinned-exercises {
+    .pinned-training-programs {
       display: flex;
       flex-direction:  column;
       margin-top: 20px;
-      .pinned-exercises__block-title {
+      .pinned-training-programs__block-title {
         padding: 0 20px 10px 20px;
       }
-      // .exercises-list {
+      // .training-programs-list {
       //   display: flex;
       //   flex-wrap: wrap;
       // }
     }
-    .not-pinned-exercises {
+    .not-pinned-training-programs {
       display: flex;
       flex-direction:  column;
       margin-top: 20px;
-      .not-pinned-exercises__block-title {
+      .not-pinned-training-programs__block-title {
         padding: 0 20px 10px 20px;
       }
-      // .exercises-list {
+      // .training-programs-list {
       //   display: flex;
       //   flex-wrap: wrap;
       // }
