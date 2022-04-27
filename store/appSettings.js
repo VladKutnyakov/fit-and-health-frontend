@@ -32,7 +32,7 @@ export const actions = {
 
       commit('setAppTheme', response)
     } catch (error) {
-      commit('setAppTheme', { theme: null })
+      commit('setAppTheme', { browserTheme: null })
     }
   },
 
