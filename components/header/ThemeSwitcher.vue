@@ -1,7 +1,7 @@
 <template>
   <div
     class="theme-switcher"
-    @click="toggleAppTheme()"
+    @click="setAppTheme()"
   >
     <i
       class="ti-shine theme-switcher__icon"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   computed: {
@@ -20,9 +20,13 @@ export default {
     })
   },
   methods: {
-    ...mapMutations({
-      toggleAppTheme: 'appSettings/toggleAppTheme',
-    })
+    setAppTheme () {
+      const payload = {
+        browserTheme: this.appTheme === 'LIGHT' ? 'DARK' : 'LIGHT',
+      }
+
+      this.$store.dispatch('appSettings/setAppTheme', payload)
+    }
   }
 }
 </script>
