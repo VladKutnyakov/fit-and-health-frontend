@@ -19,16 +19,20 @@ export default {
     return {
       pageInfoElements: [
         {
-          title: 'Всего программ',
-          value: 12
+          title: "Всего программ",
+          value: this.$store.state.trainingPrograms.pageInfo.programs
         },
         {
-          title: 'Избранное',
-          value: 5
+          title: "Мои программы",
+          value: this.$store.state.trainingPrograms.pageInfo.userPrograms
         },
         {
-          title: 'Мои программы',
-          value: 3
+          title: "Закрепленные",
+          value: this.$store.state.trainingPrograms.pageInfo.pinnedPrograms
+        },
+        {
+          title: "Избранные",
+          value: this.$store.state.trainingPrograms.pageInfo.favoritePrograms
         }
       ]
     }

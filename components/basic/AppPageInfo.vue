@@ -4,7 +4,7 @@
     <ul class="page-info__elements">
       <li v-for="(element, index) in infoElements" :key="index" class="element">
         <p class="element__text">{{ element.title }}</p>
-        <p class="element__value">{{ element.value !== 'null' ? element.value.toLocaleString() : null }}</p>
+        <p class="element__value">{{ element.value === null ? 0 : element.value.toLocaleString() }}</p>
       </li>
     </ul>
 

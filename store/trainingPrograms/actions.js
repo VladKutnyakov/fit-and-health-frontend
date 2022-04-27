@@ -1,16 +1,4 @@
-export const state = () => ({
-  trainingProgramsList: [],
-})
-
-export const getters = {}
-
-export const mutations = {
-  setTrainingProgramsList (state, payload) {
-    state.trainingProgramsList = payload
-  },
-}
-
-export const actions = {
+export default {
 
   async fetchTrainingProgramsList ({ commit }, query ) {
     try {
