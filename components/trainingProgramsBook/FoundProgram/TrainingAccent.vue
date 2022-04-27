@@ -73,7 +73,7 @@ export default {}
   }
 }
 
-body.dark {
+.dark-theme {
   .training-accent {
     background: $black10;
     .training-accent__info {

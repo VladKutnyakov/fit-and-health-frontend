@@ -164,7 +164,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .product-table {
     .product-table__search {
       background: $cardBackgroundDarkBG;

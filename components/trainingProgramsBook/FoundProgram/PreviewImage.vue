@@ -24,7 +24,7 @@ export default {}
   }
 }
 
-body.dark {
+.dark-theme {
   .preview-image {
     .image {
       border: 1px solid $dividerBorderDarkBG;

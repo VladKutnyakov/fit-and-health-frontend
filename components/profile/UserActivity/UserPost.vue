@@ -217,7 +217,7 @@ export default {
   }
 }
 
-body.dark .user-post {
+.dark-theme .user-post {
   background: $cardBackgroundDarkBG;
 }
 

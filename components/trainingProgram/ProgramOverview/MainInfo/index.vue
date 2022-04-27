@@ -30,7 +30,7 @@ export default {
   border-bottom: 1px solid $dividerBorder;
 }
 
-body.dark {
+.dark-theme {
   .main-info {
     border-bottom: 1px solid $dividerBorderDarkBG;
   }

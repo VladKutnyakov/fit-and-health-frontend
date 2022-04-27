@@ -136,7 +136,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .filter-radio-group {
     .filter-radio-group__footer {
       border-top: 1px solid $dividerBorderDarkBG;

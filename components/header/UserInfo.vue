@@ -203,7 +203,7 @@ export default {
   }
 }
 
-body.dark .user-info {
+.dark-theme .user-info {
   .user-info__actions {
     background: $cardBackgroundDarkBG;
     .actions__links {

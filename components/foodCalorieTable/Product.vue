@@ -196,7 +196,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .product__item {
     background: $cardBackgroundDarkBG;
     .item__element {

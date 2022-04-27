@@ -116,7 +116,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .nutrients-calculations {
     background: $black15;
     .nutrients-calculations__item {

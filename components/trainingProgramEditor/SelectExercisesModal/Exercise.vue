@@ -170,7 +170,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .exercise {
     background: $cardBackgroundDarkBG;
     border: 1px solid $dividerBorderDarkBG;

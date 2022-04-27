@@ -63,7 +63,7 @@ export default {}
   }
 }
 
-body.dark {
+.dark-theme {
   .training-focus {
     .percents {
       border-top: 1px solid $dividerBorderDarkBG;

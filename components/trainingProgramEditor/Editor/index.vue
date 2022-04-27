@@ -66,7 +66,7 @@ export default {
   overflow: hidden;
 }
 
-body.dark {
+.dark-theme {
   .editor {
     background: $cardBackgroundDarkBG;
   }

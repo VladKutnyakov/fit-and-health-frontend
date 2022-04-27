@@ -271,7 +271,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .user-card {
     background: $cardBackgroundDarkBG;
     .user-card__main-info {

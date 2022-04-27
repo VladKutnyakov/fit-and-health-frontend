@@ -162,7 +162,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .app-input-text {
     .input {
       background: $black20;

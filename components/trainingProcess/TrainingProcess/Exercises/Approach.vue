@@ -281,7 +281,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .approach {
     border-bottom: 1px dashed $dividerBorderDarkBG;
   }

@@ -70,7 +70,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .new-post {
     background: $cardBackgroundDarkBG;
     .new-post__user-message-wrapper {

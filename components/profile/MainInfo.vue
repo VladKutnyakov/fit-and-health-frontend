@@ -252,7 +252,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .main-info {
     .trainings-stats {
       background: $cardBackgroundDarkBG;

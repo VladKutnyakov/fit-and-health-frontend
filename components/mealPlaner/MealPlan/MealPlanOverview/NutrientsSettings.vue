@@ -230,7 +230,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .nutrients-settings {
     .nutrients-settings__content {
       background: $black15;

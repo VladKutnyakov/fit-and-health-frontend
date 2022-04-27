@@ -104,7 +104,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .exercises {
     .exercises__added-exercises {
       background: $black15;

@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-default">
+  <div class="layout-default" :class="[{ 'dark-theme': appTheme === 'DARK' }]">
     <app-header />
     <app-navbar />
     <Nuxt />
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Cookies from 'js-cookie'
 import AppHeader from '@/components/header/AppHeader'
 import AppNavbar from '@/components/navigation/AppNavbar'
@@ -22,6 +23,11 @@ export default {
     AppNotifications,
     AppScrollToTop
   },
+  computed: {
+    ...mapState({
+      appTheme: state => state.appSettings.appTheme,
+    })
+  },
   mounted () {
     // Если при серверном рендеринге был выдан новый токен, необходимо обновить куки с устаревшим токеном
     const browserToken = Cookies.get('authorization')
@@ -33,3 +39,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+
+.layout-default {
+  min-height: 100vh;
+}
+
+</style>

@@ -67,7 +67,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .additional-info {
     .additional-info__content {
       background: $cardBackgroundDarkBG;

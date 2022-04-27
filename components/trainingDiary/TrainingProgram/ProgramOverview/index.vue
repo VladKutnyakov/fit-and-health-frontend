@@ -41,7 +41,7 @@ export default {
   overflow: hidden;
 }
 
-body.dark {
+.dark-theme {
   .program-overview {
     background: $cardBackgroundDarkBG;
   }

@@ -169,7 +169,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .chat-history {
     .chat-history__content {
       background: $cardBackgroundDarkBG;

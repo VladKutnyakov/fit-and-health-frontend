@@ -110,7 +110,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .app-tabs {
     .app-tabs__tab-list {
       border-bottom: 1px solid $dividerBorderDarkBG;

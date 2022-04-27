@@ -86,7 +86,7 @@ export default {}
   }
 }
 
-body.dark {
+.dark-theme {
   .empty-training-program-info {
     .message {
       background: $cardBackgroundDarkBG;

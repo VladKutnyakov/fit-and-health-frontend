@@ -116,7 +116,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .search-results {
     .search-training-programs {
       background: $cardBackgroundDarkBG;

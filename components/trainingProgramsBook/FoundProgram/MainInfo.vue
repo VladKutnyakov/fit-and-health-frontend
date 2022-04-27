@@ -79,7 +79,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .main-info {
     .added-marks {
       .mark {

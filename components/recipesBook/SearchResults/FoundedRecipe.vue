@@ -184,7 +184,7 @@ export default {
   box-shadow: $boxShadow;
 }
 
-body.dark {
+.dark-theme {
   .found-recipe {
     background: $cardBackgroundDarkBG;
     .found-recipe__info {

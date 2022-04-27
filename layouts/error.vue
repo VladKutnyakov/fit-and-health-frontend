@@ -1,5 +1,5 @@
 <template>
-  <div class="layout-error">
+  <div class="layout-error" :class="[{ 'dark-theme': appTheme === 'DARK' }]">
     <h1 v-if="error.statusCode === 404">Page not found --- 404</h1>
     <h1 v-else>An error occurred ---> {{ error.statusCode }}</h1>
     <hr>
@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   head () {
     return {
@@ -38,6 +40,19 @@ export default {
     }
   },
   layout: 'empty',
-  props: ['error']
+  props: ['error'],
+  computed: {
+    ...mapState({
+      appTheme: state => state.appSettings.appTheme,
+    })
+  },
 }
 </script>
+
+<style lang="scss">
+
+.layout-error {
+  min-height: 100vh;
+}
+
+</style>

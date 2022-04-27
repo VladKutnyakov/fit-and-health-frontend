@@ -169,7 +169,7 @@ export default {
   }
 }
 
-body.dark .user-chats {
+.dark-theme .user-chats {
   .user-chats__content {
     background: $cardBackgroundDarkBG;
   }

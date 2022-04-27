@@ -18,7 +18,7 @@ export default {}
   border-radius: 6px;
 }
 
-body.dark {
+.dark-theme {
   .video {
     background: $black20;
   }

@@ -270,7 +270,7 @@ export default {
   justify-content: flex-end;
 }
 
-body.dark {
+.dark-theme {
   .search-recipes-and-products {
     .filters {}
     .founding__results {

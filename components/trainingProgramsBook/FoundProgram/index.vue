@@ -83,7 +83,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .found-program {
     background: $cardBackgroundDarkBG;
   }

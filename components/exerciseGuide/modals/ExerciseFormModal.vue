@@ -475,7 +475,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .content__add-exercise-form {
     .add-exercise-form__fields-group {
       .fields-group__section {

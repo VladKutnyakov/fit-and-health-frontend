@@ -44,11 +44,9 @@ b {
   font-weight: 600;
 }
 
-body.dark {
+.dark-theme {
   background: $appBackgroundDark;
-  #__nuxt {
-    color: $textLight;
-  }
+  color: $textLight;
   input, textarea, a, button, pre {
     color: $textLight;
   }

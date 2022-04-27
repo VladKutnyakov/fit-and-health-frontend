@@ -118,7 +118,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .app-picker {
     .app-picker__value {
       background: $black20;

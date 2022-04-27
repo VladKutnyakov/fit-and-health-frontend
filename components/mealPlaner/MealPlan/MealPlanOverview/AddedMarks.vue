@@ -140,7 +140,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .added-marks {
     .added-marks__marks {
       background: $black20;

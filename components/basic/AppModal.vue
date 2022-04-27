@@ -166,7 +166,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .modal__wrapper {
     background: $black60;
     .modal__content-wrapper {

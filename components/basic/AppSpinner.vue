@@ -181,7 +181,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .app-spinner {
     background: $black60;
   }

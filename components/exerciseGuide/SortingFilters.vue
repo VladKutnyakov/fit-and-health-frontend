@@ -143,7 +143,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .sorting-filters {
     background: $cardBackgroundDarkBG;
   }

@@ -140,7 +140,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .app-search-block {
     .search__input {
       background: $black20;

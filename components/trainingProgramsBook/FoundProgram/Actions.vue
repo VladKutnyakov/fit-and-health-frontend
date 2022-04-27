@@ -51,7 +51,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .actions {
     border-left: 1px solid $dividerBorderDarkBG;
     .action-btn {

@@ -96,7 +96,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .filter-checkbox-group {
     .filter-checkbox-group__footer {
       border-top: 1px solid $dividerBorderDarkBG;

@@ -230,7 +230,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .notifications {
     .notifications__notice-list {
       border: 1px solid $dividerBorderDarkBG;

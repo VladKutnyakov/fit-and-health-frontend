@@ -109,7 +109,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .search-results {
     .search-recipes {
       background: $cardBackgroundDarkBG;

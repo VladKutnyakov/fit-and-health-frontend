@@ -70,7 +70,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .user-stories {
     background: $cardBackgroundDarkBG;
   }

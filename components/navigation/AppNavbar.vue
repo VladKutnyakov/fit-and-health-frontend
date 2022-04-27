@@ -420,7 +420,7 @@ export default {
   background: $black10;
 }
 
-body.dark {
+.dark-theme {
   .navbar {
     background: $cardBackgroundDarkBG;
     .navbar__group {

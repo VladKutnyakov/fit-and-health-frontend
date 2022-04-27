@@ -75,7 +75,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .page-info {
     .page-info__elements {
       .element {

@@ -41,7 +41,7 @@ export default {
   z-index: 9000;
 }
 
-body.dark .app-header {
+.dark-theme .app-header {
   background: $cardBackgroundDarkBG;
 }
 

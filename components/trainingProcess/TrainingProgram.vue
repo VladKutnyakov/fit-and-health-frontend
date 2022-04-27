@@ -241,7 +241,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .training-program {
     background: $cardBackgroundDarkBG;
     .training-program__fields {

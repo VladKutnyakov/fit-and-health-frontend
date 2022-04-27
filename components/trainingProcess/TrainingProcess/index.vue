@@ -55,7 +55,7 @@ export default {
   transition: $tr-02;
 }
 
-body.dark {
+.dark-theme {
   .training-process {
     background: $cardBackgroundDarkBG;
   }

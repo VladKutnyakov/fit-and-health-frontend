@@ -13,7 +13,7 @@
   border-bottom: 1px solid $dividerBorder;
 }
 
-body.dark .block-title {
+.dark-theme .block-title {
   border-bottom: 1px solid $dividerBorderDarkBG;
 }
 

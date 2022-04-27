@@ -71,7 +71,7 @@ export default {
   cursor: default;
 }
 
-body.dark {
+.dark-theme {
   .app-textarea {
     background: $black20;
     color: $textLight;

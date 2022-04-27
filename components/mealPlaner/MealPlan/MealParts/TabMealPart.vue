@@ -230,7 +230,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .meal-part {
     .settings-and-food {
       .products-and-recipes {

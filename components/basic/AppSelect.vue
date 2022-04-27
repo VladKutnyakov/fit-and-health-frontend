@@ -363,7 +363,7 @@ export default {
   text-align: center;
 }
 
-body.dark {
+.dark-theme {
   .app-select {
     .app-select__value {
       background: $black20;

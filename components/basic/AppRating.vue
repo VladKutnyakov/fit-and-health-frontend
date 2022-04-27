@@ -47,7 +47,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .rating {
     // border: 1px solid red;
     .rating__star {

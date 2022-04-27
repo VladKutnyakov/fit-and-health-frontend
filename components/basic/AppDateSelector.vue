@@ -378,7 +378,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .app-date-selector {
     background: $cardBackgroundDarkBG;
     .date-table {

@@ -37,7 +37,7 @@ export default {}
   }
 }
 
-body.dark {
+.dark-theme {
   .preview-image {
     background: $black20;
     i {

@@ -236,7 +236,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .search-results {
     .search-results__search {
       background: $cardBackgroundDarkBG;

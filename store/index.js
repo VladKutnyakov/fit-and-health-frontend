@@ -23,5 +23,8 @@ export const actions = {
 
     // Устанавливаем token, который пришел с запросом из headers cookie
     this.commit('auth/setToken', getCookie('authorization'))
+
+    // Устанавливаем визуальную тему для сайта
+    this.dispatch('appSettings/fetchAppTheme')
   }
 }

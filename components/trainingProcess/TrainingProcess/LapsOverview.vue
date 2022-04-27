@@ -169,7 +169,7 @@ export default {
   }
 }
 
-body.dark {
+.dark-theme {
   .laps-overview {
     .laps-overview__laps {
       background: $black20;

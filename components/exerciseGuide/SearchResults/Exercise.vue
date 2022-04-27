@@ -301,7 +301,7 @@ export default {
   margin-bottom: 0;
 }
 
-body.dark {
+.dark-theme {
   .exercise {
     background: $cardBackgroundDarkBG;
     .exercise__user-params {
