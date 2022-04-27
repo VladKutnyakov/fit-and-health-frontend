@@ -1,13 +1,9 @@
-export const state = () => ({
-  notices: []
-})
+export default {
 
-export const getters = {}
-
-export const mutations = {
   addNewNotice (state, notice) {
     state.notices.push(notice)
   },
+
   removeNotice (state, noticeId) {
     for (let i = 0; i < state.notices.length; i++) {
       if (state.notices[i].id === noticeId) {
@@ -15,7 +11,6 @@ export const mutations = {
         break
       }
     }
-  }
-}
+  },
 
-export const actions = {}
+}

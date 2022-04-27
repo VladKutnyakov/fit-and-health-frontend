@@ -69,7 +69,7 @@ export default {
   },
   computed: {
     ...mapState({
-      recipes: state => state.recipes.recipes
+      recipes: state => state.recipesBook.recipes
     })
   }
 }

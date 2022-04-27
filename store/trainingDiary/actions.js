@@ -1,32 +1,5 @@
-export const state = () => ({
-  trainingDiaryInfo: null,
-  // trainingDiaryInfo: {
-  //   id: null,
-  //   date: null,
-  //   trainingProgram: {
-  //     id: null,
-  //     title: null,
-  //     description: null,
-  //     trainingSkill: null,
-  //     marks: [],
-  //     trainingProgramDays: [],
-  //     trainingProcess: {}
-  //   },
-  //   user: {
-  //     id: null
-  //   }
-  // }
-})
+export default {
 
-export const getters = {}
-
-export const mutations = {
-  setTrainingDiaryInfo (state, payload) {
-    state.trainingDiaryInfo = payload
-  }
-}
-
-export const actions = {
   async fetchTrainingDiaryInfo ({ commit }, query ) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-diary?date=${query.date ? query.date : ''}`)
@@ -43,5 +16,6 @@ export const actions = {
       }
       this.commit('notifications/addNewNotice', notice)
     }
-  }
+  },
+
 }

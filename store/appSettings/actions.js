@@ -1,20 +1,4 @@
-export const state = () => ({
-  menuIsOpen: true,
-  appTheme: null, // DARK, null
-})
-
-export const getters = {}
-
-export const mutations = {
-  toggleMenuVisibility (state, condition) {
-    state.menuIsOpen = condition
-  },
-  setAppTheme (state, payload) {
-    state.appTheme = payload.browserTheme
-  },
-}
-
-export const actions = {
+export default {
 
   async fetchAppTheme ({ commit }) {
     try {

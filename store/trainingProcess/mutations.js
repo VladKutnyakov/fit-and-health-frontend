@@ -1,60 +1,7 @@
-import { generateForm, setForm, setFormFieldValue, clearForm } from '@/utils/formManager'
+import { setForm, setFormFieldValue, clearForm } from '@/utils/formManager'
 
-export const state = () => ({
-  trainingProgramForm: generateForm({
-    isStarted: false,
-    trainingProgram: null,
-    previewImage: null,
-    trainingProgramAccent: null,
-    trainingDay: null,
-    trainingProgramDaysList: []
-  }),
-  trainingDayForm: generateForm({
-    trainingDay: {
-      id: null,
-      title: null,
-    },
-    trainingType: null,
-    comment: null,
-    trainingProgramDayExercises: [
-      // {
-      //   id: 1,
-      //   title: "Отжимания",
-      //   isStarted: true,
-      //   approaches: [
-      //     {
-      //       isActive: true,
-      //       isStarted: true,
-      //       title: 'Подход 1',
-      //       repeats: {
-      //         target: null,
-      //         value: null,
-      //       },
-      //       additionalWeight: {
-      //         target: null,
-      //         value: null,
-      //       },
-      //       implementationTime: {
-      //         target: null,
-      //         value: null,
-      //       },
-      //       restTime: {
-      //         target: null,
-      //         value: null,
-      //       },
-      //     },
-      //   ]
-      // },
-    ]
-  }),
-  trainingProgramsList: [],
-  selectTrainingProgramModalActive: false,
-  confirmCompleteTrainingProgramModalActive: false,
-})
+export default {
 
-export const getters = {}
-
-export const mutations = {
   setTrainingProgramFormFieldsValue (state, payload) {
     setForm(state.trainingProgramForm, payload)
   },
@@ -158,65 +105,6 @@ export const mutations = {
 
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
-  },
-}
-
-export const actions = {
-
-  async fetchTrainingProgram ({ commit }, payload ) {
-    try {
-      const response = await this.$axios.get(`${process.env.BASE_URL}/api/training-process/training-program-info`, { params: payload })
-      // console.log(response.data)
-
-      commit('setTrainingProgramFormFieldsValue', response.data)
-    } catch (error) {
-      console.log(error.response)
-
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: error.response.data.errorMessage || 'Неизвестная ошибка.',
-        timeToShow: 5000,
-      }
-      this.commit('notifications/addNewNotice', notice)
-    }
-  },
-
-  async fetchTrainingDay ({ commit }, payload ) {
-    try {
-      const response = await this.$axios.get(`${process.env.BASE_URL}/api/training-process/training-day-info`, { params: payload })
-      // console.log(response)
-
-      commit('setTrainingDayFormFieldsValue', response.data)
-    } catch (err) {
-      console.log(err)
-
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: 'Ошибка при загрузке данных для дневника тренировок. Обновите страницу или зайдите позже.',
-        timeToShow: 5000,
-      }
-      this.commit('notifications/addNewNotice', notice)
-    }
-  },
-
-  async fetchTrainingProgramsList ({ commit } ) {
-    try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-programs`)
-
-      commit('setTrainingProgramsList', response.data)
-    } catch (err) {
-      console.log(err)
-
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: 'Ошибка при загрузке данных. Обновите страницу или зайдите позже.',
-        timeToShow: 5000,
-      }
-      this.commit('notifications/addNewNotice', notice)
-    }
   },
 
 }

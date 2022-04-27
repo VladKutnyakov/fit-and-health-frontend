@@ -1,33 +1,5 @@
-import Cookies from 'js-cookie'
+export default {
 
-export const state = () => ({
-  token: null,
-})
-
-export const getters = {
-  isAuthenticated (state) {
-    return state.token ? true : false
-  }
-}
-
-export const mutations = {
-  setToken (state, token) {
-    // Устанавливаем token в state
-    state.token = token
-    // сохраняем cookie на 30 дней (пользователь сможет обновить протухший токен в течении 30 дней)
-    Cookies.set('authorization', token, { expires: 30 })
-  },
-  logout (state) {
-    // удаляем из state значение токена
-    state.token = null
-    // убираем токен из запросов axios
-    this.$axios.setToken(null)
-    // удаляем куки
-    Cookies.remove('authorization')
-  }
-}
-
-export const actions = {
   async login ({ commit }, formData) {
     try {
       const fetchedToken = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/login/`, formData)
@@ -69,4 +41,5 @@ export const actions = {
       console.log(err.response)
     }
   },
+
 }
