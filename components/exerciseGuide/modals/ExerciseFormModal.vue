@@ -237,15 +237,12 @@
       <app-button
         class="modal-action-btn mr-auto"
         :disabled="!canBeEdit"
-        uppercase
-        size14px
         successBtn
         @click="confirmAction()"
       >{{ modalCondition === 'create' ? 'Сохранить' : 'Редактировать' }}</app-button>
 
       <app-button
-        uppercase
-        size14px
+        secondaryBtn
         @click="toggleModalVisibility({modal: 'exerciseFormModalActive', condition: false})"
       >Отмена</app-button>
     </template>

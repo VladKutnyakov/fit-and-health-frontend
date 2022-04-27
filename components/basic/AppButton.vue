@@ -12,6 +12,7 @@
       {'info-btn': infoBtn},
       {'warning-btn': warningBtn},
       {'danger-btn': dangerBtn},
+      {'secondary-btn': secondaryBtn},
       {'disabled': disabled}
     ]"
     @click="clickHandler()"
@@ -32,6 +33,7 @@ export default {
     infoBtn: Boolean,
     warningBtn: Boolean,
     dangerBtn: Boolean,
+    secondaryBtn: Boolean,
     disabled: Boolean
   },
   methods: {
@@ -95,6 +97,9 @@ export default {
 }
 .danger-btn {
   background: $red;
+}
+.secondary-btn {
+  background: $secondary;
 }
 .disabled {
   opacity: 0.5;
