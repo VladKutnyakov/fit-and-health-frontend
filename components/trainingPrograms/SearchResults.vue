@@ -8,14 +8,6 @@
 
         <div class="filter-by">
           <filter-radio-text-group
-            :valueList="['Все', 'Фото', 'Видео']"
-            :defaultValue="filters.media"
-            uppercase
-            size14px
-            @inputGroupValueChanged="filters.media = $event"
-          />
-          <p class="filter-by__divider">|</p>
-          <filter-radio-text-group
             :valueList="['Все', 'Домашние', 'Спортзал']"
             :defaultValue="filters.foodOrDrink"
             uppercase
@@ -41,8 +33,6 @@
         :item="item"
       />
     </div>
-
-    <app-pagination />
   </div>
 </template>
 
@@ -52,7 +42,7 @@ import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
-import FoundProgram from '@/components/trainingProgramsBook/FoundProgram/index'
+import FoundProgram from '@/components/trainingPrograms/FoundProgram/index'
 import AppPagination from '@/components/basic/AppPagination'
 
 export default {
@@ -67,7 +57,6 @@ export default {
   data () {
     return {
       filters: {
-        media: 'Все',
         foodOrDrink: 'Все',
         type: 'Все'
       }

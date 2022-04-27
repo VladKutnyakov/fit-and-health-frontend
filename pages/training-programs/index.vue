@@ -1,12 +1,20 @@
 <template>
   <app-page pageTitle="Тренировочные программы" :breadcrumbs="breadcrumbs">
-    <training-programs-book />
+    <div class="content">
+      <page-info/>
+      <div class="filters-and-results">
+        <sorting-filters />
+        <search-results />
+      </div>
+    </div>
   </app-page>
 </template>
 
 <script>
-import AppPage from "@/components/basic/AppPage"
-import TrainingProgramsBook from "@/components/trainingProgramsBook/index"
+import AppPage from '@/components/basic/AppPage'
+import PageInfo from '@/components/trainingPrograms/PageInfo'
+import SortingFilters from '@/components/trainingPrograms/SortingFilters'
+import SearchResults from '@/components/trainingPrograms/SearchResults'
 
 export default {
   name: 'TrainingPrograms',
@@ -41,9 +49,11 @@ export default {
   middleware: ['userAuth'],
   components: {
     AppPage,
-    TrainingProgramsBook,
+    PageInfo,
+    SortingFilters,
+    SearchResults,
   },
-  async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
+  async asyncData({ isDev, route, store, env, params, query, req, res, redirect, error }) {
     await store.dispatch('trainingPrograms/fetchTrainingProgramsList')
   },
   data () {
@@ -70,19 +80,14 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.training-programs-page {
+.content {
   // border: 1px solid red;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-left: 80px;
-  padding: 40px;
-  .training-programs-page__content {
-    // border: 1px solid red;
+  width: 100%;
+  .filters-and-results {
     display: flex;
     align-items: flex-start;
-    width: 100%;
-    max-width: 1700px;
   }
 }
 

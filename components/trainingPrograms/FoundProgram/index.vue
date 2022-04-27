@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import PreviewImage from '@/components/trainingProgramsBook/FoundProgram/PreviewImage'
-import MainInfo from '@/components/trainingProgramsBook/FoundProgram/MainInfo'
-import TrainingAccent from '@/components/trainingProgramsBook/FoundProgram/TrainingAccent'
-import Actions from '@/components/trainingProgramsBook/FoundProgram/Actions'
+import PreviewImage from '@/components/trainingPrograms/FoundProgram/PreviewImage'
+import MainInfo from '@/components/trainingPrograms/FoundProgram/MainInfo'
+import TrainingAccent from '@/components/trainingPrograms/FoundProgram/TrainingAccent'
+import Actions from '@/components/trainingPrograms/FoundProgram/Actions'
 
 export default {
   props: {
