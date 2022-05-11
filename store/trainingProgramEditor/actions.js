@@ -22,9 +22,16 @@ export default {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/training-programs/save-training-program`, { trainingProgram: payload })
 
-      // console.log(response)
+      const notice = {
+        id: Date.now(),
+        type: 'success',
+        message: 'Успешно сохранено',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
 
       commit('setTrainingDiaryInfo', response)
+
     } catch (error) {
       console.log(error.response.data.errorMessage)
 
