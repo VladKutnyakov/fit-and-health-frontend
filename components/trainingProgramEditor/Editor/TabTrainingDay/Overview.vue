@@ -25,6 +25,7 @@
           :value="trainingProgramDays[selectedTrainingDay].trainingType"
           :selectOptionsList="trainingTypesList"
           @select="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'trainingType', index: selectedTrainingDay, newValue: $event})"
+          @clear="setTrainingProgramFormFieldValue({field: 'trainingProgramDays', subfield: 'trainingType', index: selectedTrainingDay, newValue: $event})"
         />
       </div>
     </div>

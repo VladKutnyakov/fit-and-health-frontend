@@ -4,7 +4,7 @@ export default {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-programs/${trainingProgramId}`)
 
-      commit('setTrainingProgram', response.data)
+      commit('setTrainingProgram', response)
     } catch (err) {
       console.log(err)
 
@@ -17,13 +17,14 @@ export default {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+
   async saveTrainingProgram ({ commit }, payload ) {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/training-programs/save-training-program`, { trainingProgram: payload })
 
-      console.log(response.data)
+      // console.log(response)
 
-      // commit('setTrainingDiaryInfo', response.data)
+      commit('setTrainingDiaryInfo', response)
     } catch (error) {
       console.log(error.response.data.errorMessage)
 
@@ -36,11 +37,12 @@ export default {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+
   async fetchExercisesList ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/exercises/exercises-list`)
 
-      commit('setExercisesList', response.data)
+      commit('setExercisesList', response)
     } catch (error) {
       console.log(error.response)
 
@@ -53,11 +55,12 @@ export default {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+
   async fetchSkills ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/skill-types`)
 
-      commit('setSkillsList', response.data)
+      commit('setSkillsList', response)
     } catch (error) {
       console.log(error.response)
 
@@ -70,11 +73,12 @@ export default {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+
   async fetchTrainingTypes ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/directory/training-types`)
 
-      commit('setTrainingTypesList', response.data)
+      commit('setTrainingTypesList', response)
     } catch (error) {
       console.log(error.response)
 

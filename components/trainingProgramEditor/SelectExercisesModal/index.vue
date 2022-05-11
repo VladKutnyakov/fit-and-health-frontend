@@ -1,6 +1,7 @@
 <template>
   <app-modal
     :isActive="selectExercisesModalActive"
+    width="100%"
     maxWidth="1200px"
     headerTitle="Добавить упражнение"
     :headerDescriptions="['Нажмите добавить, чтобы выбранные упраженния добавились в список.']"
