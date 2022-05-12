@@ -54,7 +54,7 @@ export default {
     SearchResults,
   },
   async asyncData({ isDev, route, store, env, params, query, req, res, redirect, error }) {
-    await store.dispatch('trainingPrograms/fetchTrainingProgramsPageInfo')
+    await store.dispatch('trainingPrograms/fetchPageInfo')
     await store.dispatch('trainingPrograms/fetchTrainingProgramsList')
   },
   data () {

@@ -1,6 +1,6 @@
 export default {
 
-  async fetchTrainingProgramsPageInfo ({ commit }, query ) {
+  async fetchPageInfo ({ commit }, query ) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-programs/page-info`)
 
