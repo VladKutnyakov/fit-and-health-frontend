@@ -4,6 +4,7 @@
     <theme-switcher />
     <notifications />
     <user-info />
+    <!-- <app-button class="ml-20" @click="openAuthModal()">Вход</app-button> -->
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import LogoAndBurger from '@/components/header/LogoAndBurger'
 import ThemeSwitcher from '@/components/header/ThemeSwitcher'
 import Notifications from '@/components/header/Notifications'
 import UserInfo from '@/components/header/UserInfo'
+import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
@@ -19,6 +21,12 @@ export default {
     ThemeSwitcher,
     Notifications,
     UserInfo,
+    AppButton,
+  },
+  methods: {
+    openAuthModal () {
+      this.$store.commit('auth/setModalVisibility', { modal: 'authModalActive', condition: true })
+    },
   },
 }
 </script>

@@ -16,6 +16,10 @@ export default {
     this.$axios.setToken(null)
     // удаляем куки
     Cookies.remove('authorization')
-  }
+  },
+
+  setModalVisibility (state, ctx) {
+    state[ctx.modal] = ctx.condition
+  },
 
 }

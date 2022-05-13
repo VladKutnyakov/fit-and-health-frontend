@@ -1,5 +1,9 @@
 export default () => ({
 
+  userinfo: {
+    id: null,
+  },
+
   profileInfo: {
     id: null,
     firstName: null,
@@ -19,5 +23,7 @@ export default () => ({
     twitter: null,
     skype: null
   },
+
+  
 
 })

@@ -20,6 +20,7 @@ export default {
       console.log(err.response)
     }
   },
+
   async createUser ({ commit }, formData) {
     try {
       const newUserToken = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/register/`, formData)
@@ -39,6 +40,21 @@ export default {
 
       // Вывод полного варианта ошибки
       console.log(err.response)
+    }
+  },
+
+  async fetchUserInfo ({ commit }, formData) {
+    try {
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/user-info`)
+
+    } catch (err) {
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: err.response.data.message,
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
 
