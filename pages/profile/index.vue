@@ -1,5 +1,5 @@
 <template>
-  <app-page pageTitle="Профиль" :breadcrumbs="breadcrumbs">
+  <app-page>
     <user-card />
     <user-activity />
     <main-info />
@@ -45,23 +45,11 @@ export default {
   async asyncData ({ store }) {
     await store.dispatch('profile/fetchProfileInfo')
   },
-  data () {
-    return {
-      breadcrumbs: [
-        {
-          title: 'Профиль',
-          icon: 'ti-home',
-          link: '/profile',
-          active: false,
-        }
-      ]
-    }
-  },
   components: {
     AppPage,
     UserCard,
     UserActivity,
-    MainInfo
+    MainInfo,
   },
 }
 </script>
