@@ -43,7 +43,7 @@ export default {
     }
   },
   async asyncData ({ store }) {
-    await store.dispatch('profile/fetchProfileInfo')
+    // await store.dispatch('profile/fetchProfileInfo')
   },
   components: {
     AppPage,
