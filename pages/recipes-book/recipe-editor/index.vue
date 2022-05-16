@@ -10,7 +10,6 @@ import AppPage from '@/components/basic/AppPage'
 export default {
   name: 'RecipeEditor',
   layout: 'default',
-  middleware: ['userAuth'],
   async asyncData ({ store }) {
     // await store.dispatch('recipes/fetchRecipes')
   },

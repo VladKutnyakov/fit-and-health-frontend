@@ -18,8 +18,8 @@ import AlbumContent from '@/components/album/AlbumContent/index'
 import AlbumInfo from '@/components/album/AlbumInfo'
 
 export default {
-  name: "AlbumPage",
   layout: "default",
+  middleware: ['userAuth'],
   head() {
     return {
       title: "Fit and Health - Альбом",
@@ -48,7 +48,6 @@ export default {
       ],
     };
   },
-  middleware: ['userAuth'],
   components: {
     AppPageTitle,
     PageInfo,

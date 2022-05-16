@@ -22,7 +22,6 @@ import ProductFormModal from '@/components/foodCalorieTable/ProductFormModal'
 export default {
   name: 'FoodCalorieTablePage',
   layout: 'default',
-  middleware: ['userAuth'],
   head () {
     return {
       title: 'Fit and Health - Таблица калорийности продуктов',

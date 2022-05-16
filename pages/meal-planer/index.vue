@@ -43,7 +43,6 @@ export default {
       ]
     }
   },
-  middleware: ['userAuth'],
   components: {
     AppPage,
     MealPlan,

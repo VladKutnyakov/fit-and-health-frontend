@@ -16,7 +16,6 @@ import Exercises from '@/components/challengeEditor/Exercises/index'
 
 export default {
   layout: 'default',
-  middleware: ['userAuth'],
   // async asyncData ({ store }) {
   //   await store.dispatch('foodCalorieTable/getAllProducts')
   // },

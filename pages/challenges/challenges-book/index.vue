@@ -22,7 +22,6 @@ import SearchResults from '@/components/challengesBook/SearchResults/index'
 
 export default {
   layout: 'default',
-  middleware: ['userAuth'],
   // async asyncData ({ store }) {
   //   await store.dispatch('foodCalorieTable/getAllProducts')
   // },

@@ -23,7 +23,6 @@ import SearchResults from '@/components/recipesBook/SearchResults/SearchResults'
 
 export default {
   layout: 'default',
-  middleware: ['userAuth'],
   async asyncData ({ store }) {
     await store.dispatch('recipes/fetchRecipes')
   },

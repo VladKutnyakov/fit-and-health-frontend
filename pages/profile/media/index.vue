@@ -21,8 +21,8 @@ import FiltersAndActions from '@/components/media/FiltersAndActions'
 import MediaAlbums from '@/components/media/MediaAlbums'
 
 export default {
-  name: 'MediaPage',
   layout: 'default',
+  middleware: ['userAuth'],
   head () {
     return {
       title: 'Fit and Health - Медиа',
@@ -50,7 +50,6 @@ export default {
       ]
     }
   },
-  middleware: ['userAuth'],
   components: {
     AppPage,
     PageInfo,

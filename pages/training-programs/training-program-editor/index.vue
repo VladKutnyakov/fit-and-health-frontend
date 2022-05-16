@@ -55,7 +55,6 @@ export default {
       ]
     }
   },
-  middleware: ['userAuth'],
   components: {
     AppPage,
     Editor,
