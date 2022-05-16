@@ -43,7 +43,7 @@ export default {
   props: ['error'],
   computed: {
     ...mapState({
-      appTheme: state => state.appSettings.appTheme,
+      appTheme: state => state.settings.appTheme,
     })
   },
 }

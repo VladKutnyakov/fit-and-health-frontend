@@ -16,7 +16,7 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      appTheme: state => state.appSettings.appTheme,
+      appTheme: state => state.settings.appTheme,
     })
   },
   methods: {
@@ -25,7 +25,7 @@ export default {
         browserTheme: this.appTheme === 'LIGHT' ? 'DARK' : 'LIGHT',
       }
 
-      this.$store.dispatch('appSettings/setAppTheme', payload)
+      this.$store.dispatch('settings/setAppTheme', payload)
     }
   }
 }

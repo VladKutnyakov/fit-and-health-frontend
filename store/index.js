@@ -26,7 +26,7 @@ export const actions = {
     this.commit('auth/setToken', getCookie('authorization'))
 
     // Устанавливаем визуальную тему для сайта
-    await this.dispatch('appSettings/fetchAppTheme')
+    await this.dispatch('settings/fetchAppTheme')
   },
 
 }

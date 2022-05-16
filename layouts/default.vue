@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     ...mapState({
-      appTheme: state => state.appSettings.appTheme,
+      appTheme: state => state.settings.appTheme,
     })
   },
   mounted () {

@@ -27,7 +27,7 @@ export default function ({ $axios, error: nuxtError, redirect, store }) {
     // console.log(error.response.status);
     if(error.response.status === 401) {
       store.commit('auth/logout')
-      redirect('/auth')
+      // redirect('/auth')
     }
   })
 

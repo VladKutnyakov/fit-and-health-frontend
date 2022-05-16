@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     ...mapState({
-      menuIsOpen: state => state.appSettings.menuIsOpen,
+      menuIsOpen: state => state.settings.menuIsOpen,
     })
   },
 }
