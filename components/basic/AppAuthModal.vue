@@ -1,6 +1,6 @@
 <template>
   <app-modal
-    :isActive="value"
+    :isActive="true"
     width="400px"
     @close="close()"
   >
@@ -72,9 +72,6 @@ import AppInputText from '@/components/basic/AppInputText'
 import AppButton from "@/components/basic/AppButton"
 
 export default {
-  props: {
-    value: Boolean,
-  },
   components: {
     AppModal,
     AppInputText,
@@ -100,7 +97,7 @@ export default {
       // Авторизовать пользователя
     },
     close () {
-      this.$emit('close')
+      // закрыть модалку
     },
   }
 }

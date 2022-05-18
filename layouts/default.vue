@@ -6,10 +6,7 @@
     <app-notifications />
     <app-scroll-to-top />
 
-    <app-auth-modal
-      :value="authModalActive"
-      @close="authModalActive = !authModalActive"
-    />
+    <app-auth-modal />
   </div>
 </template>
 
@@ -29,11 +26,6 @@ export default {
     AppNotifications,
     AppScrollToTop,
     AppAuthModal,
-  },
-  data () {
-    return {
-      authModalActive: true,
-    }
   },
   computed: {
     ...mapState({
