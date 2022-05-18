@@ -1,6 +1,6 @@
 <template>
   <app-modal
-    :isActive="true"
+    :isActive="authModalActive"
     width="400px"
     @close="close()"
   >
@@ -84,6 +84,11 @@ export default {
       phone: null,
       password: null,
     }
+  },
+  computed: {
+    ...mapState({
+      authModalActive: state => state.auth.authModalActive,
+    })
   },
   methods: {
     changeForm () {
