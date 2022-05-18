@@ -28,15 +28,15 @@ export default {
       appTheme: state => state.settings.appTheme,
     })
   },
-  mounted () {
-    // Если при серверном рендеринге был выдан новый токен, необходимо обновить куки с устаревшим токеном
-    const browserToken = Cookies.get('authorization')
-    const currentToken = this.$store.state.auth.token
+  // mounted () {
+  //   // Если при серверном рендеринге был выдан новый токен, необходимо обновить куки с устаревшим токеном
+  //   const browserToken = Cookies.get('authorization')
+  //   const currentToken = this.$store.state.auth.token
 
-    if (browserToken !== currentToken) {
-      Cookies.set('authorization', currentToken, { expires: 30 })
-    }
-  }
+  //   if (browserToken !== currentToken) {
+  //     Cookies.set('authorization', currentToken, { expires: 30 })
+  //   }
+  // }
 }
 </script>
 
