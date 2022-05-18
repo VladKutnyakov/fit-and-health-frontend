@@ -1,8 +1,10 @@
 <template>
   <div class="index-page">
     <div class="index-page__content">
-      <nuxt-link to="/auth">Войти / Зарегистрировать</nuxt-link>
-      <br>
+      <div class="links">
+        <nuxt-link to="/profile">Профиль</nuxt-link>
+        <nuxt-link to="/auth">Войти / Зарегистрировать</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -57,6 +59,10 @@ export default {
     flex-direction: column;
     width: 100%;
     max-width: 1700px;
+    .links {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }
 
