@@ -2,18 +2,18 @@
   <app-modal
     :isActive="value"
     width="400px"
-    @close="dismiss()"
+    @close="close()"
   >
     <template v-slot:modalContent>
       <div class="auth__form">
-        <p v-if="condition === 'login'" class="form__title">Авторизация</p>
-        <p v-if="condition === 'register'" class="form__title">Регистрация</p>
+        <p v-if="modalCondition === 'LOGIN'" class="form__title">Авторизация</p>
+        <p v-if="modalCondition === 'REGISTER'" class="form__title">Регистрация</p>
 
         <i
           class="form__icon"
           :class="[
-            { 'ti-unlock': condition === 'login' },
-            { 'ti-user': condition === 'register' }
+            { 'ti-unlock': modalCondition === 'LOGIN' },
+            { 'ti-user': modalCondition === 'REGISTER' }
           ]"
         />
 
@@ -24,9 +24,9 @@
             @input="email = $event"
           />
 
-          <p v-if="condition === 'register'" class="form__input-title">Телефон</p>
+          <p v-if="modalCondition === 'REGISTER'" class="form__input-title">Телефон</p>
           <app-input-text
-            v-if="condition === 'register'"
+            v-if="modalCondition === 'REGISTER'"
             :value="phone"
             @input="phone = $event"
           />
@@ -39,43 +39,30 @@
         </form>
 
         <app-button
-          size16px
+          class="mt-20"
           uppercase
           center
           @click.native.prevent="login()"
-        >Войти</app-button>
+        >{{ modalCondition === 'LOGIN' ? 'Войти' : 'Создать аккаунт' }}</app-button>
 
-        <p class="question">
-          Забыли пароль?
-          <span
-            class="question__action-btn"
-            @click="forgotPassword()"
-          >Восстановить.</span>
-        </p>
+        <div class="questions">
+          <div v-if="modalCondition === 'LOGIN'" class="question">
+            <p class="question__text">Забыли пароль?</p>
+            <p class="question__action-btn" @click="forgotPassword()">Восстановить.</p>
+          </div>
 
-        <p class="question">
-          Нет аккаунта?
-          <span
-            class="question__action-btn"
-            @click="changeForm()"
-          >Зарегистрироваться.</span>
-        </p>
+          <div v-if="modalCondition === 'LOGIN'" class="question">
+            <p class="question__text">Нет аккаунта?</p>
+            <p class="question__action-btn" @click="changeForm()">Зарегистрироваться.</p>
+          </div>
+
+          <div v-if="modalCondition === 'REGISTER'" class="question">
+            <p class="question__text">Уже есть аккаунт?</p>
+            <p class="question__action-btn" @click="changeForm()">Войти.</p>
+          </div>
+        </div>
       </div>
     </template>
-    <!-- <template v-slot:modalFooter>
-      <app-button
-        successBtn
-        uppercase
-        class="modal-action-btn mr-auto"
-        @click.native="confirm()"
-      >Да</app-button>
-
-      <app-button
-        dangerBtn
-        uppercase
-        @click.native="dismiss()"
-      >Нет</app-button>
-    </template> -->
   </app-modal>
 </template>
 
@@ -87,7 +74,6 @@ import AppButton from "@/components/basic/AppButton"
 export default {
   props: {
     value: Boolean,
-    condition: String,
   },
   components: {
     AppModal,
@@ -96,17 +82,25 @@ export default {
   },
   data () {
     return {
-      email: 'string',
-      phone: 'string',
-      password: 'string'
+      modalCondition: 'LOGIN',
+      email: null,
+      phone: null,
+      password: null,
     }
   },
   methods: {
-    confirm () {
-      this.$emit('confirm')
+    changeForm () {
+      this.email = null,
+      this.phone = null,
+      this.password = null,
+
+      this.modalCondition === 'LOGIN' ? this.modalCondition = 'REGISTER' : this.modalCondition = 'LOGIN'
     },
-    dismiss () {
-      this.$emit('dismiss')
+    confirm () {
+      // Авторизовать пользователя
+    },
+    close () {
+      this.$emit('close')
     },
   }
 }
@@ -123,33 +117,36 @@ export default {
   width: 100%;
   max-width: 400px;
   .form__title {
-    // border: 1px solid red;
     text-align: center;
-    font-size: 26px;
+    font-size: 28px;
   }
   .form__icon {
     margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 60px;
+    margin-bottom: 10px;
+    font-size: 50px;
   }
   .form {
-    // border: 1px solid red;
     padding: 0 10px;
     width: 100%;
     .form__input-title {
-      padding: 10px 10px 5px 10px;
-      font-size: 14px;
+      padding: 10px 10px 5px 15px;
     }
   }
-  .question {
+  .questions {
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
-    align-self: center;
-    font-size: 14px;
-    user-select: none;
-    .question__action-btn {
-      margin-left: 10px;
-      color: $green;
-      cursor: pointer;
+    .question {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      align-self: center;
+      user-select: none;
+      .question__action-btn {
+        margin-left: 5px;
+        color: $primary;
+        cursor: pointer;
+      }
     }
   }
 }
