@@ -18,6 +18,10 @@ export default {
     Cookies.remove('authorization')
   },
 
+  setCanBeShowAuthModal (state, condition) {
+    state.canBeShowAuthModal = condition
+  },
+
   setModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
   },

@@ -30,9 +30,15 @@ export default {
   computed: {
     ...mapState({
       appTheme: state => state.settings.appTheme,
+      canBeShowAuthModal: state => state.auth.canBeShowAuthModal,
     })
   },
-  // mounted () {
+  mounted () {
+    // Если пользователь не авторизован, показать модалку авторизации и регистрации
+    if (this.canBeShowAuthModal) {
+      this.$store.commit('auth/setModalVisibility', { modal: 'authModalActive', condition: true })
+    }
+
   //   // Если при серверном рендеринге был выдан новый токен, необходимо обновить куки с устаревшим токеном
   //   const browserToken = Cookies.get('authorization')
   //   const currentToken = this.$store.state.auth.token
@@ -40,7 +46,7 @@ export default {
   //   if (browserToken !== currentToken) {
   //     Cookies.set('authorization', currentToken, { expires: 30 })
   //   }
-  // }
+  }
 }
 </script>
 

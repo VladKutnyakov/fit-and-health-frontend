@@ -4,7 +4,7 @@
     <theme-switcher />
     <notifications />
     <user-info />
-    <!-- <app-button class="ml-20" @click="openAuthModal()">Вход</app-button> -->
+    <app-button class="ml-20" @click="openAuthModal()">Вход</app-button>
   </div>
 </template>
 

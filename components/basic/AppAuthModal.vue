@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppModal from '@/components/basic/AppModal'
 import AppInputText from '@/components/basic/AppInputText'
 import AppButton from "@/components/basic/AppButton"
@@ -102,7 +103,8 @@ export default {
       // Авторизовать пользователя
     },
     close () {
-      // закрыть модалку
+      this.$store.commit('auth/setCanBeShowAuthModal', false)
+      this.$store.commit('auth/setModalVisibility', { modal: 'authModalActive', condition: false })
     },
   }
 }
