@@ -5,6 +5,11 @@
     <Nuxt />
     <app-notifications />
     <app-scroll-to-top />
+
+    <app-auth-modal
+      :value="true"
+      condition="login"
+    />
   </div>
 </template>
 
@@ -15,13 +20,15 @@ import AppHeader from '@/components/header/AppHeader'
 import AppNavbar from '@/components/navigation/AppNavbar'
 import AppNotifications from '@/components/basic/AppNotifications'
 import AppScrollToTop from '@/components/basic/AppScrollToTop'
+import AppAuthModal from '@/components/basic/AppAuthModal'
 
 export default {
   components: {
     AppHeader,
     AppNavbar,
     AppNotifications,
-    AppScrollToTop
+    AppScrollToTop,
+    AppAuthModal,
   },
   computed: {
     ...mapState({
