@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppPage from '@/components/basic/AppPage'
 import UserCard from '@/components/profile/UserCard'
 import MainInfo from '@/components/profile/MainInfo'
@@ -51,5 +52,16 @@ export default {
     UserActivity,
     MainInfo,
   },
+  computed: {
+    ...mapState({
+      canBeShowAuthModal: state => state.auth.canBeShowAuthModal,
+    })
+  },
+  mounted () {
+    // Если пользователь не авторизован, показать модалку авторизации и регистрации
+    if (this.canBeShowAuthModal) {
+      this.$store.commit('auth/setModalVisibility', { modal: 'authModalActive', condition: true })
+    }
+  }
 }
 </script>

@@ -34,11 +34,6 @@ export default {
     })
   },
   mounted () {
-    // Если пользователь не авторизован, показать модалку авторизации и регистрации
-    if (this.canBeShowAuthModal) {
-      this.$store.commit('auth/setModalVisibility', { modal: 'authModalActive', condition: true })
-    }
-
   //   // Если при серверном рендеринге был выдан новый токен, необходимо обновить куки с устаревшим токеном
   //   const browserToken = Cookies.get('authorization')
   //   const currentToken = this.$store.state.auth.token
