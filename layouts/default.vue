@@ -6,7 +6,7 @@
     <app-notifications />
     <app-scroll-to-top />
 
-    <app-auth-modal />
+    <auth-modal />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import AppHeader from '@/components/header/AppHeader'
 import AppNavbar from '@/components/navigation/AppNavbar'
 import AppNotifications from '@/components/basic/AppNotifications'
 import AppScrollToTop from '@/components/basic/AppScrollToTop'
-import AppAuthModal from '@/components/basic/AppAuthModal'
+import AuthModal from '@/components/basic/AuthModal'
 
 export default {
   components: {
@@ -25,7 +25,7 @@ export default {
     AppNavbar,
     AppNotifications,
     AppScrollToTop,
-    AppAuthModal,
+    AuthModal,
   },
   computed: {
     ...mapState({
