@@ -2,7 +2,7 @@
   <div ref="userCard" class="user-card">
 
     <div class="user-card__avatar-wrapper">
-      <img class="avatar" src="https://pic.sport.ua/media/images/Foto%202.jpg" alt="user-avatar">
+      <img class="avatar" src="/images/user-avatar.jpg" alt="user-avatar">
 
       <div class="user-status"></div>
 
