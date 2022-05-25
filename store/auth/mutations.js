@@ -4,11 +4,12 @@ export default {
 
   setAccessToken (state, token) {
     state.accessToken = token
+    Cookies.set('authorization', token, { expires: 30 })
   },
 
-  setRefreshToken (state, token) {
-    state.accessToken = token
-  },
+  // setRefreshToken (state, token) {
+  //   state.accessToken = token
+  // },
 
   // setToken (state, token) {
   //   // Устанавливаем token в state
