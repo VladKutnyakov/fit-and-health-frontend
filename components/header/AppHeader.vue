@@ -3,12 +3,18 @@
     <logo-and-burger />
     <theme-switcher />
     <notifications />
-    <user-info />
-    <app-button class="ml-20" @click="openAuthModal()">Вход</app-button>
+    <user-info v-if="accessToken" />
+
+    <app-button
+      v-if="!accessToken"
+      class="ml-20"
+      @click="openAuthModal()"
+    >Вход</app-button>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import LogoAndBurger from '@/components/header/LogoAndBurger'
 import ThemeSwitcher from '@/components/header/ThemeSwitcher'
 import Notifications from '@/components/header/Notifications'
@@ -22,6 +28,11 @@ export default {
     Notifications,
     UserInfo,
     AppButton,
+  },
+  computed: {
+    ...mapState({
+      accessToken: state => state.auth.accessToken,
+    })
   },
   methods: {
     openAuthModal () {

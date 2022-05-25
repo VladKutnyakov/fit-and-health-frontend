@@ -43,9 +43,9 @@ export default {
     }
   },
 
-  async fetchUserInfo ({ commit }, formData) {
+  async fetchAuthUserInfo ({ commit }, formData) {
     try {
-      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/user-info`)
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/auth-user-info`)
 
     } catch (err) {
       const notice = {

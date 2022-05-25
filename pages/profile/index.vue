@@ -54,12 +54,12 @@ export default {
   },
   computed: {
     ...mapState({
-      canBeShowAuthModal: state => state.auth.canBeShowAuthModal,
+      accessToken: state => state.auth.accessToken,
     })
   },
   mounted () {
     // Если пользователь не авторизован, показать модалку авторизации и регистрации
-    if (this.canBeShowAuthModal) {
+    if (!this.accessToken) {
       this.$store.commit('auth/setModalVisibility', { modal: 'authModalActive', condition: true })
     }
   }

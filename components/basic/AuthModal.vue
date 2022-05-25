@@ -42,7 +42,7 @@
           class="mt-20"
           uppercase
           center
-          @click.native.prevent="login()"
+          @click.native.prevent="sendForm()"
         >{{ modalCondition === 'LOGIN' ? 'Войти' : 'Создать аккаунт' }}</app-button>
 
         <div class="questions">
@@ -99,8 +99,12 @@ export default {
 
       this.modalCondition === 'LOGIN' ? this.modalCondition = 'REGISTER' : this.modalCondition = 'LOGIN'
     },
-    confirm () {
-      // Авторизовать пользователя
+    sendForm () {
+      if (this.modalCondition === 'LOGIN') {
+        this.$store.commit('auth/setAccessToken', 'test')
+      } else if (this.modalCondition === 'REGISTER') {
+        this.$store.commit('auth/setAccessToken', 'test')
+      }
     },
     close () {
       this.$store.commit('auth/setCanBeShowAuthModal', false)

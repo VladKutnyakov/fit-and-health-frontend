@@ -1,9 +1,7 @@
 export default () => ({
 
-  token: null,
+  accessToken: null,
   refreshToken: null,
-
-  canBeShowAuthModal: true,
 
   authModalActive: false,
 
