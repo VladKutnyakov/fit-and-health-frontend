@@ -2,11 +2,14 @@
   <div class="layout-default" :class="[{ 'dark-theme': appTheme === 'DARK' }]">
     <app-header />
     <app-navbar />
+
     <Nuxt />
-    <app-notifications />
+
     <app-scroll-to-top />
 
     <auth-modal />
+
+    <app-notifications />
   </div>
 </template>
 

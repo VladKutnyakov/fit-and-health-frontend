@@ -1,13 +1,12 @@
 export default {
 
-  async login ({ commit }, formData) {
+  async login ({ commit }, payload) {
     try {
-      const fetchedToken = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/login/`, formData)
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/login/`, payload)
 
-      // сохроняем в state токен полученный из action login
-      commit('setToken', fetchedToken)
+      commit('setAccessToken', response)
+      commit('setModalVisibility', { modal: 'authModalActive', condition: false })
     } catch (err) {
-      // выводим сообщение об ошибке для пользователя
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -15,21 +14,17 @@ export default {
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
-
-      // Вывод полного варианта ошибки
-      console.log(err.response)
     }
   },
 
-  async createUser ({ commit }, formData) {
+  async register ({ commit }, payload) {
     try {
-      const newUserToken = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/register/`, formData)
-      // добавляем токен к запросам axios
-      this.$axios.setToken(newUserToken, 'Bearer ')
-      // сохроняем в state токен полученный из action login
-      commit('setToken', newUserToken)
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/register/`, payload)
+
+      this.$axios.setToken(response, 'Bearer ')
+
+      commit('setToken', response)
     } catch (err) {
-      // выводим сообщение об ошибке для пользователя
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -37,16 +32,14 @@ export default {
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
-
-      // Вывод полного варианта ошибки
-      console.log(err.response)
     }
   },
 
-  async fetchAuthUserInfo ({ commit }, formData) {
+  async fetchAuthUserInfo ({ commit }) {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/auth/auth-user-info`)
 
+      commit('setAuthUserInfo', response)
     } catch (err) {
       const notice = {
         id: Date.now(),

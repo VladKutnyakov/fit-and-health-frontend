@@ -40,6 +40,7 @@
 
         <app-button
           class="mt-20"
+          :disabled="!canBeSendForm"
           uppercase
           center
           @click.native.prevent="sendForm()"
@@ -89,7 +90,10 @@ export default {
   computed: {
     ...mapState({
       authModalActive: state => state.auth.authModalActive,
-    })
+    }),
+    canBeSendForm () {
+      return !!(this.email && this.password)
+    },
   },
   methods: {
     changeForm () {
@@ -101,7 +105,13 @@ export default {
     },
     sendForm () {
       if (this.modalCondition === 'LOGIN') {
-        this.$store.commit('auth/setAccessToken', 'test')
+        const payload = {
+          email: this.email,
+          password: this.password
+        }
+
+        this.$store.dispatch('auth/login', payload)
+        // this.$store.commit('auth/setAccessToken', 'test')
       } else if (this.modalCondition === 'REGISTER') {
         this.$store.commit('auth/setAccessToken', 'test')
       }
