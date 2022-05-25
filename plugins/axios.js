@@ -18,16 +18,15 @@ export default function ({ $axios, error: nuxtError, redirect, store }) {
   // })
 
   // Обработка ошибок, приходящих с сервера (для 401 и 500)
-  // $axios.onError(error => {
-  //   // Проверяем есть ли в ответе на запрос обновленный token авторизации. Если token есть -> обновляем его в store
-  //   if (error.response.headers['updated-token']) {
-  //     store.commit('auth/setToken', error.response.headers['updated-token'])
-  //   }
-  //   // console.log(error.response.status);
-  //   if(error.response.status === 401) {
-  //     store.commit('auth/logout')
-  //     redirect('/auth')
-  //   }
-  // })
+  $axios.onError(error => {
+    if(error.response.status === 401) {
+      store.commit('auth/clearAccessToken')
+    }
+
+    // Проверяем есть ли в ответе на запрос обновленный token авторизации. Если token есть -> обновляем его в store
+    // if (error.response.headers['updated-token']) {
+    //   store.commit('auth/setToken', error.response.headers['updated-token'])
+    // }
+  })
 
 }
