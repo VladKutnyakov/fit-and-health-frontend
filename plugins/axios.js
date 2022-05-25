@@ -3,7 +3,7 @@ export default function ({ $axios, error: nuxtError, redirect, store }) {
   // Добавление токена в headers (требуется для работы метода vuex nuxtServerInit при первом заходе на страницу сайта)
   $axios.interceptors.request.use(request => {
     if (store.state.auth.accessToken) {
-      request.headers.common.authorization = `Bearer ${store.state.auth.token}`
+      request.headers.common.authorization = `Bearer ${store.state.auth.accessToken}`
     }
 
     return request
