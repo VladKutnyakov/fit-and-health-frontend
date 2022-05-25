@@ -19,7 +19,7 @@ export default function ({ $axios, error: nuxtError, redirect, store }) {
 
   // Обработка ошибок, приходящих с сервера (для 401 и 500)
   $axios.onError(error => {
-    if(error.response.status === 401) {
+    if (error.response.status === 401) {
       store.commit('auth/clearAccessToken')
     }
 
