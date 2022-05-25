@@ -6,8 +6,6 @@ export default {
 
       commit('setPageInfo', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -25,8 +23,6 @@ export default {
       commit('cleanExercisesList')
       commit('setExercisesList', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -43,8 +39,6 @@ export default {
 
       commit('setExerciseForm', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -68,7 +62,6 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      // console.log(error.response.data)
       let errorMessage = ''
 
       for (let i = 0; i < error.response.data.errors.length; i++) {
@@ -103,8 +96,6 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      console.log(error)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -128,8 +119,6 @@ export default {
 
       return response
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -153,8 +142,6 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -176,8 +163,6 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -197,8 +182,6 @@ export default {
 
       return response
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -216,8 +199,6 @@ export default {
 
       commit('setExerciseTypesList', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -233,8 +214,6 @@ export default {
 
       commit('setExerciseSortsList', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -250,8 +229,6 @@ export default {
 
       commit('setExerciseExertionsList', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -267,8 +244,6 @@ export default {
 
       commit('setExerciseEquipmentsList', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -284,8 +259,6 @@ export default {
 
       commit('setSkillsList', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -301,8 +274,6 @@ export default {
 
       commit('setTrainingPlaces', response)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
