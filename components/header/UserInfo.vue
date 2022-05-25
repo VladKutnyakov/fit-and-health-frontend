@@ -36,7 +36,7 @@
         </li>
       </ul>
 
-      <div class="logout">
+      <div class="logout" @click="logout()">
         <div class="logout__btn">
           <i class="ti-export btn__icon"></i>
           <p class="btn__text">Выйти</p>
@@ -70,6 +70,9 @@ export default {
     closeList () {
       this.listIsVisible = false
       document.removeEventListener('click', this.closeList)
+    },
+    logout () {
+      this.$store.dispatch('auth/logout')
     },
   }
 }
