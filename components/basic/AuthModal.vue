@@ -111,9 +111,14 @@ export default {
         }
 
         this.$store.dispatch('auth/login', payload)
-        // this.$store.commit('auth/setAccessToken', 'test')
       } else if (this.modalCondition === 'REGISTER') {
-        this.$store.commit('auth/setAccessToken', 'test')
+        const payload = {
+          email: this.email,
+          phone: this.phone,
+          password: this.password
+        }
+
+        this.$store.dispatch('auth/register', payload)
       }
     },
     close () {
