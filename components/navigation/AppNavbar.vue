@@ -97,6 +97,12 @@ export default {
               exact: true
             },
             {
+              title: 'Сообщества',
+              link: '/profile/communities',
+              icon: 'ti-thought',
+              exact: true
+            },
+            {
               title: 'Статистика и замеры',
               link: '/profile/measurements',
               icon: 'ti-bar-chart',
