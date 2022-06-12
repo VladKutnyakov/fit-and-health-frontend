@@ -1,5 +1,5 @@
 <template>
-  <app-page pageTitle="Дневник тренировок" :breadcrumbs="breadcrumbs">
+  <app-page>
     <training-program />
     <training-diary-calendar />
   </app-page>
@@ -47,24 +47,6 @@ export default {
   },
   async asyncData({isDev, route, store, env, params, query, req, res, redirect, error}) {
     await store.dispatch('trainingDiary/fetchTrainingDiaryInfo', query)
-  },
-  data () {
-    return {
-      breadcrumbs: [
-        {
-          title: 'Профиль',
-          icon: 'ti-home',
-          link: '/profile',
-          active: true,
-        },
-        {
-          title: 'Дневник тренировок',
-          icon: 'ti-timer',
-          link: '/training-diary',
-          active: false,
-        },
-      ]
-    }
   },
 }
 </script>

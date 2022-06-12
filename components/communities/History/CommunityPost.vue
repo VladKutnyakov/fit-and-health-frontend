@@ -2,10 +2,10 @@
   <div class="user-post">
 
     <div class="user-post__info">
-      <img class="user-avatar" src="/images/user-avatar.jpg" alt="user-avatar">
+      <img class="user-avatar" src="/images/community-image.jpg" alt="user-avatar">
 
       <div class="info__data">
-        <p class="info__user-name">Дмитрий Коробов</p>
+        <p class="info__user-name">CrossFit World</p>
         <p class="info__creating-date">21.04.2019 - 12:54</p>
       </div>
       <app-button-with-actions
@@ -49,9 +49,9 @@
 
     <div class="user-post__comments">
       <div class="comment" v-for="(item, index) in 5" :key="index">
-        <img src="/images/user-avatar.jpg" class="comment__autor-image">
+        <img src="/images/community-image.jpg" class="comment__autor-image">
         <div class="comment__autor-post">
-          <p class="autor-post__author-name">Дмитрий Коробов</p>
+          <p class="autor-post__author-name">CrossFit World</p>
           <p class="autor-post__creating-date">21.04.2019 - 12:54</p>
           <p class="autor-post__text">Далеко-далеко за словесными горами в стране гласных, и согласных живут рыбные тексты. По всей рукописи до своих гор, домах деревни взобравшись дорогу собрал не которой безорфографичный? Однажды текста, взобравшись одна, власти безопасную сбить рукописи подпоясал сих ему до буквоград буквенных!</p>
           <p class="autor-post__add-subcomment">Комментировать</p>

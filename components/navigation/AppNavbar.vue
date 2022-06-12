@@ -69,6 +69,7 @@ export default {
             'profile-messages',
             'profile-media',
             'profile-subscriptions',
+            'profile-communities',
             'profile-measurements'
           ],
           links: [
