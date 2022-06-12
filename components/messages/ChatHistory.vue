@@ -3,7 +3,7 @@
     <div class="chat-history__content">
       <div class="messages">
         <div class="incomming-message">
-          <img class="incomming-message__user-image" src="https://pic.sport.ua/media/images/Foto%202.jpg">
+          <img class="incomming-message__user-image" src="/images/user-avatar.jpg">
           <div class="incomming-message__text-and-info">
             <p class="text">ответ на сообщение пользователя в несколько строк</p>
             <div class="info">12.03.2021 - 10:31</div>
@@ -15,7 +15,7 @@
             <p class="text">ответ на сообщение пользователя в несколько строк</p>
             <div class="info">12.03.2021 - 10:31</div>
           </div>
-          <img class="user-message__user-image" src="https://pic.sport.ua/media/images/Foto%202.jpg">
+          <img class="user-message__user-image" src="/images/user-avatar.jpg">
         </div>
       </div>
 

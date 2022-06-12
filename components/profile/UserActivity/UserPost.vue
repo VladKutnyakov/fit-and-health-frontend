@@ -2,7 +2,7 @@
   <div class="user-post">
 
     <div class="user-post__info">
-      <img class="user-avatar" src="https://pic.sport.ua/media/images/Foto%202.jpg" alt="user-avatar">
+      <img class="user-avatar" src="/images/user-avatar.jpg" alt="user-avatar">
 
       <div class="info__data">
         <p class="info__user-name">Дмитрий Коробов</p>
@@ -49,7 +49,7 @@
 
     <div class="user-post__comments">
       <div class="comment" v-for="(item, index) in 5" :key="index">
-        <img src="https://pic.sport.ua/media/images/Foto%202.jpg" class="comment__autor-image">
+        <img src="/images/user-avatar.jpg" class="comment__autor-image">
         <div class="comment__autor-post">
           <p class="autor-post__author-name">Дмитрий Коробов</p>
           <p class="autor-post__creating-date">21.04.2019 - 12:54</p>

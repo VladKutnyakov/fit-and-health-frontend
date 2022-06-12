@@ -6,7 +6,7 @@
 
         <ul class="members__users-list">
           <li class="users-list__item" v-for="(item, index) in 2" :key="index">
-            <img class="item__image" src="https://pic.sport.ua/media/images/Foto%202.jpg">
+            <img class="item__image" src="/images/user-avatar.jpg">
             <div class="item__user-info">
               <p class="user-info__name">Дмитрий Коробов</p>
               <p class="user-info__status">online</p>

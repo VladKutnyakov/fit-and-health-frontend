@@ -1,6 +1,6 @@
 <template>
   <nuxt-link to="/" class="user-card">
-    <img src="https://pic.sport.ua/media/images/Foto%202.jpg" class="user-card__image">
+    <img src="/images/user-avatar.jpg" class="user-card__image">
     <div class="user-card__info">
       <p class="info__name">Имя Фамилия</p>
       <div class="info__challenges-info">

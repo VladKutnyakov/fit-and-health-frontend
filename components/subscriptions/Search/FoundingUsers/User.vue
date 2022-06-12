@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <img src="https://pic.sport.ua/media/images/Foto%202.jpg" class="user__image">
+    <img src="/images/user-avatar.jpg" class="user__image">
 
     <p class="user__name">Дмитрий Коробов</p>
     <div class="user__subcriptions">

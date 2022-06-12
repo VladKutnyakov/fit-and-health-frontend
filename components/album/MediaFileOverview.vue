@@ -29,7 +29,7 @@
       <ul class="comments">
         <li class="comment" v-for="(item, index) in 5" :key="index">
           <img
-            src="https://pic.sport.ua/media/images/Foto%202.jpg"
+            src="/images/user-avatar.jpg"
             class="comment__autor-image"
           />
           <div class="comment__autor-post">

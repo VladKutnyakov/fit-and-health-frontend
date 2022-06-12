@@ -15,7 +15,7 @@
 
       <div class="chat-list">
         <div class="chat-ticket" v-for="(item, index) in 4" :key="index">
-          <img class="chat-ticket__image" src="https://pic.sport.ua/media/images/Foto%202.jpg" alt="">
+          <img class="chat-ticket__image" src="/images/user-avatar.jpg" alt="">
           <div class="chat-ticket__info">
             <p class="title" title="Совместые тренировки CrossFit">Совместые тренировки CrossFit</p>
             <div class="new-message">

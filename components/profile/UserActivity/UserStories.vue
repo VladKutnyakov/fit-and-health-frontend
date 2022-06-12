@@ -3,7 +3,7 @@
     <app-block-title>Истории</app-block-title>
     <div class="user-stories__story-block">
       <div class="story-block__element">
-        <img class="element__user-avatar" src="https://pic.sport.ua/media/images/Foto%202.jpg" alt="user-avatar">
+        <img class="element__user-avatar" src="/images/user-avatar.jpg" alt="user-avatar">
         <i class="ti-plus element__add-icon"></i>
       </div>
     </div>

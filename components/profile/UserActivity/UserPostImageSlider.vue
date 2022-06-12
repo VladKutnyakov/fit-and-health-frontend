@@ -4,7 +4,7 @@
       <div class="info__user-avatar-wrapper">
         <img
           class="user-avatar"
-          src="https://pic.sport.ua/media/images/Foto%202.jpg"
+          src="/images/user-avatar.jpg"
           alt="user-avatar"
         />
       </div>
