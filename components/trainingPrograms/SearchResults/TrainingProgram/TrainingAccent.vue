@@ -23,7 +23,7 @@
       </div>
       <div class="info__element">
         <span class="element__text">Сложность:</span>
-        <span class="element__value">{{ program.skill ? program.skill : 'Нет данных' }}</span>
+        <span class="element__value">{{ program.skill ? program.skill.complexityTitle : 'Нет данных' }}</span>
       </div>
     </div>
   </div>
