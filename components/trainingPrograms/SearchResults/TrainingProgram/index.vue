@@ -4,34 +4,34 @@
       <i
         class="actions-btn"
         :class="[
-          { 'ti-pin-alt': !true },
-          { 'ti-pin2': true },
-          { 'actions-btn--active': true }
+          { 'ti-pin-alt': !item.pinned },
+          { 'ti-pin2': item.pinned },
+          { 'actions-btn--active': item.pinned }
         ]"
         @click="changePinnedParam(exercise)"
       ></i>
       <i
         class="actions-btn"
         :class="[
-          { 'ti-heart-broken': !true },
-          { 'ti-heart': true },
-          { 'actions-btn--active': true }
+          { 'ti-heart-broken': !item.favorite },
+          { 'ti-heart': item.favorite },
+          { 'actions-btn--active': item.favorite }
         ]"
         @click="changeFavoriteParam(exercise)"
       ></i>
     </div>
-    <preview-image />
+    <preview-image :program="item" />
     <main-info :program="item" />
-    <training-accent />
+    <training-accent :program="item" />
     <actions :program="item" />
   </div>
 </template>
 
 <script>
-import PreviewImage from '@/components/trainingPrograms/FoundProgram/PreviewImage'
-import MainInfo from '@/components/trainingPrograms/FoundProgram/MainInfo'
-import TrainingAccent from '@/components/trainingPrograms/FoundProgram/TrainingAccent'
-import Actions from '@/components/trainingPrograms/FoundProgram/Actions'
+import PreviewImage from '@/components/trainingPrograms/SearchResults/TrainingProgram/PreviewImage'
+import MainInfo from '@/components/trainingPrograms/SearchResults/TrainingProgram/MainInfo'
+import TrainingAccent from '@/components/trainingPrograms/SearchResults/TrainingProgram/TrainingAccent'
+import Actions from '@/components/trainingPrograms/SearchResults/TrainingProgram/Actions'
 
 export default {
   props: {

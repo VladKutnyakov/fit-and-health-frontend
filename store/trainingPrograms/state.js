@@ -25,7 +25,8 @@ export default () => ({
     muscleGroupList: [],
   },
 
-  trainingProgramsList: [],
+  pinnedTrainingPrograms: [],
+  notPinnedTrainingPrograms: [],
 
   waiteTrainingProgramsListUpdate: false,
 

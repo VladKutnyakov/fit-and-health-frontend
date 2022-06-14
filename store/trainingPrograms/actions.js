@@ -20,10 +20,9 @@ export default {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-programs`)
 
-      commit('setTrainingProgramsList', response.data)
-    } catch (err) {
-      console.log(err)
-
+      commit('cleanTrainingProgramsList')
+      commit('setTrainingProgramsList', response)
+    } catch (error) {
       const notice = {
         id: Date.now(),
         type: 'alert',

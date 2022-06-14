@@ -43,18 +43,11 @@
     </div>
 
     <div class="search-results__training-programs-list">
-
-      <app-spinner
-        v-if="waiteTrainingProgramsListUpdate"
-        donutDouble
-        rounded
-      />
-
       <div v-if="pinnedTrainingPrograms.length > 0" class="pinned-training-programs">
         <p class="pinned-training-programs__block-title">Закрепленные тренировочные программы</p>
 
         <ul class="training-programs-list">
-          <found-program
+          <training-program
             v-for="(item, index) in pinnedTrainingPrograms"
             :key="index"
             :item="item"
@@ -66,13 +59,19 @@
         <p class="not-pinned-training-programs__block-title" v-if="pinnedTrainingPrograms.length > 0">Не закрепленные тренировочные программы</p>
 
         <ul class="training-programs-list" :class="[{ 'mt-20': pinnedTrainingPrograms.length <= 0 }]">
-          <found-program
+          <training-program
             v-for="(item, index) in notPinnedTrainingPrograms"
             :key="index"
             :item="item"
           />
         </ul>
       </div>
+
+      <app-spinner
+        v-if="waiteTrainingProgramsListUpdate"
+        donutDouble
+        rounded
+      />
     </div>
   </div>
 </template>
@@ -83,8 +82,8 @@ import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
-import FoundProgram from '@/components/trainingPrograms/FoundProgram/index'
-// import AppSpinner from '@/components/basic/AppSpinner'
+import TrainingProgram from '@/components/trainingPrograms/SearchResults/TrainingProgram/index'
+import AppSpinner from '@/components/basic/AppSpinner'
 
 export default {
   components: {
@@ -92,8 +91,8 @@ export default {
     AppButton,
     AppSearchBlock,
     FilterRadioTextGroup,
-    FoundProgram,
-    // AppSpinner,
+    TrainingProgram,
+    AppSpinner,
   },
   data () {
     return {
@@ -121,14 +120,13 @@ export default {
           title: 'Мои упражнения'
         },
       ],
-      pinnedTrainingPrograms: [{}],
-      notPinnedTrainingPrograms: [{}],
     }
   },
   computed: {
     ...mapState({
       searchFilters: state => state.trainingPrograms.searchFilters,
-      trainingProgramsList: state => state.trainingPrograms.trainingProgramsList,
+      pinnedTrainingPrograms: state => state.trainingPrograms.pinnedTrainingPrograms,
+      notPinnedTrainingPrograms: state => state.trainingPrograms.notPinnedTrainingPrograms,
       waiteTrainingProgramsListUpdate: state => state.trainingPrograms.waiteTrainingProgramsListUpdate,
     })
   },

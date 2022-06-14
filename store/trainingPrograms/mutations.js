@@ -9,7 +9,17 @@ export default {
   },
 
   setTrainingProgramsList (state, payload) {
-    state.trainingProgramsList = payload
+    payload.forEach(element => {
+      if (element.pinned) {
+        state.pinnedTrainingPrograms.push(element)
+      } else {
+        state.notPinnedTrainingPrograms.push(element)
+      }
+    })
+  },
+  cleanTrainingProgramsList (state) {
+    state.pinnedTrainingPrograms = []
+    state.notPinnedTrainingPrograms = []
   },
 
 }

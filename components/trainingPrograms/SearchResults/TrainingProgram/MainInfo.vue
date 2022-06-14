@@ -3,7 +3,7 @@
     <p class="title">{{ program.title }}</p>
 
     <div class="description">
-      <p class="description__text">Короткое описание тренировочной программы</p>
+      <p class="description__text">{{ program.description }}</p>
     </div>
 
     <div class="added-marks">

@@ -6,31 +6,35 @@
 
     <div class="training-accent__info">
       <div class="info__element">
-        <span class="element__text">Кардио:</span>
-        <span class="element__value">30%</span>
-      </div>
-      <div class="info__element">
         <span class="element__text">Сила:</span>
-        <span class="element__value">20%</span>
+        <span class="element__value">{{ program.power ? program.power : 0 }}%</span>
       </div>
       <div class="info__element">
         <span class="element__text">Выносливость:</span>
-        <span class="element__value">38%</span>
+        <span class="element__value">{{ program.endurance ? program.endurance : 0 }}%</span>
       </div>
       <div class="info__element">
         <span class="element__text">Гибкость:</span>
-        <span class="element__value">12%</span>
+        <span class="element__value">{{ program.flexibility ? program.flexibility : 0 }}%</span>
+      </div>
+      <div class="info__element">
+        <span class="element__text">Кардио:</span>
+        <span class="element__value">{{ program.cardio ? program.cardio : 0 }}%</span>
       </div>
       <div class="info__element">
         <span class="element__text">Сложность:</span>
-        <span class="element__value">Выше среднего</span>
+        <span class="element__value">{{ program.skill ? program.skill : 'Нет данных' }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    program: Object
+  }
+}
 </script>
 
 <style lang="scss" scoped>

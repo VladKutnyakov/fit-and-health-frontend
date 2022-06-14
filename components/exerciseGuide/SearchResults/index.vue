@@ -54,13 +54,6 @@
     </div>
 
     <div class="search-results__exercises-list">
-
-      <app-spinner
-        v-if="waiteExerciseListUpdate"
-        donutDouble
-        rounded
-      />
-
       <div v-if="pinnedExercises.length > 0" class="pinned-exercises">
         <p class="pinned-exercises__block-title">Закрепленные упражнения</p>
 
@@ -84,6 +77,12 @@
           />
         </ul>
       </div>
+
+      <app-spinner
+        v-if="waiteExerciseListUpdate"
+        donutDouble
+        rounded
+      />
     </div>
   </div>
 </template>
