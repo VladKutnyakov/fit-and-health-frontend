@@ -31,17 +31,20 @@ export default {
       this.commit('notifications/addNewNotice', notice)
 
       commit('setTrainingDiaryInfo', response)
-
     } catch (error) {
-      console.log(error.response.data.errorMessage)
-
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: error.response.data.errorMessage,
-        timeToShow: 5000,
+      for (let i = 0; i < error.response.data.errors.length; i++) {
+        if (error.response.data.errors[i].field) {
+          // установить ошибку для формы
+        } else {
+          const notice = {
+            id: Date.now(),
+            type: 'alert',
+            message: error.response.data.errors[i].errorMessage,
+            timeToShow: 5000,
+          }
+          this.commit('notifications/addNewNotice', notice)
+        }
       }
-      this.commit('notifications/addNewNotice', notice)
     }
   },
 
