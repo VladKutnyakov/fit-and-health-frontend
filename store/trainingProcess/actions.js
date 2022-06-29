@@ -3,12 +3,9 @@ export default {
   async fetchTrainingProgram ({ commit }, payload ) {
     try {
       const response = await this.$axios.get(`${process.env.BASE_URL}/api/training-process/training-program-info`, { params: payload })
-      // console.log(response.data)
 
       commit('setTrainingProgramFormFieldsValue', response.data)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -19,15 +16,12 @@ export default {
     }
   },
 
-  async fetchTrainingDay ({ commit }, payload ) {
+  async fetchTrainingDay ({ commit }, payload) {
     try {
       const response = await this.$axios.get(`${process.env.BASE_URL}/api/training-process/training-day-info`, { params: payload })
-      // console.log(response)
 
-      commit('setTrainingDayFormFieldsValue', response.data)
-    } catch (err) {
-      console.log(err)
-
+      commit('setTrainingDayFormFieldsValue', response)
+    } catch (error) {
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -42,10 +36,8 @@ export default {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/training-programs`)
 
-      commit('setTrainingProgramsList', response.data)
-    } catch (err) {
-      console.log(err)
-
+      commit('setTrainingProgramsList', response)
+    } catch (error) {
       const notice = {
         id: Date.now(),
         type: 'alert',
