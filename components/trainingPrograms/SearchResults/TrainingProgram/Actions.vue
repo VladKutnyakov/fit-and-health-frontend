@@ -1,10 +1,14 @@
 <template>
   <div class="actions">
-    <i class="ti-control-play action-btn"></i>
+    <nuxt-link :to="`/training-diary/training-process?trainingProgram=${program.id}`" class="action-btn">
+      <i class="ti-control-play"></i>
+    </nuxt-link>
+
     <nuxt-link :to="`training-programs/${program.id}`" class="action-btn">
       <i class="ti-search"></i>
     </nuxt-link>
-    <i class="ti-trash action-btn"></i>
+
+    <i class="ti-trash action-btn" @click="removeTrainingProgram()"></i>
   </div>
 </template>
 
@@ -17,7 +21,12 @@ export default {
   },
   components: {
     AppButton
-  }
+  },
+  methods: {
+    removeTrainingProgram () {
+      console.log('remove Training Program')
+    },
+  },
 }
 </script>
 

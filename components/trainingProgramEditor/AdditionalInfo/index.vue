@@ -63,7 +63,8 @@ export default {
   .actions {
     display: flex;
     padding: 10px;
-    background: $black10;
+    border-top: 1px solid $dividerBorder;
+    // background: $black10;
   }
 }
 
