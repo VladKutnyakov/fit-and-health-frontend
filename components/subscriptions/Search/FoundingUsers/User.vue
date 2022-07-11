@@ -2,7 +2,7 @@
   <div class="user">
     <img src="/images/user-avatar.jpg" class="user__image">
 
-    <p class="user__name">Дмитрий Коробов</p>
+    <p class="user__name">Дмитрий К</p>
     <div class="user__subcriptions">
       <p class="subcriptions__value">3 256</p>
       <p class="subcriptions__title">подписчиков</p>

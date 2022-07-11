@@ -3,7 +3,7 @@
     <div class="user-info__overview" @click="toggleListVisibility()">
       <div class="overview__name">
         <p class="name__first">Дмитрий</p>
-        <p class="name__last">Коробов</p>
+        <p class="name__last">К</p>
       </div>
       <div class="overview__preview">ДК</div>
     </div>

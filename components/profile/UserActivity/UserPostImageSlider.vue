@@ -9,7 +9,7 @@
         />
       </div>
       <div class="info__data">
-        <p class="info__user-name">Дмитрий Коробов</p>
+        <p class="info__user-name">Дмитрий К</p>
         <p class="info__creating-date">21.04.2019</p>
       </div>
       <div class="info__edit-btn">

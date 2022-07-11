@@ -33,7 +33,7 @@
             class="comment__autor-image"
           />
           <div class="comment__autor-post">
-            <p class="autor-post__author-name">Дмитрий Коробов</p>
+            <p class="autor-post__author-name">Дмитрий К</p>
             <p class="autor-post__creating-date">21.04.2019 - 12:54</p>
             <p class="autor-post__text">
               Далеко-далеко за словесными горами в стране гласных, и согласных
