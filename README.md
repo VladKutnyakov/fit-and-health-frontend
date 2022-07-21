@@ -1,5 +1,9 @@
 # fit-and-health
 
+## Enviroment
+
+Для запуска проекта требуется nodejs >= 12
+
 ## Build Setup
 
 ```bash
