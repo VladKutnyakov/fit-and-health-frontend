@@ -99,7 +99,7 @@ export default {
   background: $red;
 }
 .secondary-btn {
-  background: $secondary;
+  background: $secondaryLight2;
 }
 .disabled {
   opacity: 0.5;
