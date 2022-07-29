@@ -1,6 +1,8 @@
 <template>
   <app-page>
-    handbook page
+    <div class="content">
+      <p>handbook page</p>
+    </div>
   </app-page>
 </template>
 
@@ -13,7 +15,7 @@ export default {
   //   await store.dispatch('foodCalorieTable/getAllProducts')
   // },
   components: {
-    AppPage
-  }
+    AppPage,
+  },
 }
 </script>
