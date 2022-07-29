@@ -4,20 +4,14 @@
       :value="appTheme === 'DARK' ? true: false"
       iconLeft="ti-light-bulb"
       iconRight="ti-shine"
-      
       @change="setAppTheme()"
     />
-    <!-- <i
-      class="ti-shine theme-switcher__icon"
-      :class="[{ 'ti-light-bulb': appTheme !== 'DARK' }]"
-      @click="setAppTheme()"
-    ></i> -->
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import AppSwitch from '@/components/basic/AppSwitch.vue'
+import AppSwitch from '@/components/basic/AppSwitch'
 
 export default {
   components: {
@@ -48,9 +42,6 @@ export default {
   margin-right: auto;
   padding: 5px;
   cursor: pointer;
-  .theme-switcher__icon {
-    font-size: 20px;
-  }
 }
 
 </style>
