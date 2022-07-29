@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 export default {
 
   toggleMenuVisibility (state, condition) {
@@ -5,7 +7,8 @@ export default {
   },
 
   setAppTheme (state, payload) {
-    state.appTheme = payload.browserTheme
+    state.appTheme = payload
+    Cookies.set('appTheme', payload, { expires: 365 * 10 })
   },
 
 }

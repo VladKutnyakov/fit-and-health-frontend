@@ -1,7 +1,7 @@
 <template>
   <div class="theme-switcher" title="Переключение темы приложения">
     <app-switch
-      :value="appTheme === 'DARK' ? true: false"
+      :value="appTheme === 'LIGHT' ? true : false"
       iconLeft="ti-light-bulb"
       iconRight="ti-shine"
       @change="setAppTheme()"
@@ -24,11 +24,7 @@ export default {
   },
   methods: {
     setAppTheme () {
-      const payload = {
-        browserTheme: this.appTheme === 'LIGHT' ? 'DARK' : 'LIGHT',
-      }
-
-      this.$store.dispatch('settings/setAppTheme', payload)
+      this.$store.commit('settings/setAppTheme', this.appTheme === 'LIGHT' ? 'DARK' : 'LIGHT')
     }
   }
 }

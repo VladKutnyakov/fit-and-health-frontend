@@ -11,8 +11,9 @@
     <input
       class="app-switch__input"
       type="checkbox"
+      :checked="value"
       :value="value"
-      @change="updateInput($event)"
+      @change="change($event)"
     >
 
     <p class="app-switch__item">
@@ -46,22 +47,8 @@ export default {
     sm: Boolean,
   },
   methods: {
-    updateInput ($event) {
-      let isChecked = event.target.checked
-
-      if (this.modelValue instanceof Array) {
-        let newValue = [...this.modelValue]
-
-        if (isChecked) {
-          newValue.push(this.value)
-        } else {
-          newValue.splice(newValue.indexOf(this.value), 1)
-        }
-
-        this.$emit('change', newValue)
-      } else {
-        this.$emit('change', isChecked ? this.trueValue : this.falseValue)
-      }
+    change ($event) {
+      this.$emit('change', $event)
     }
   }
 }
