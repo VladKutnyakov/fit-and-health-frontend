@@ -10,6 +10,7 @@ export default {
       console.log(error.response)
     }
   },
+
   async getAllProducts ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
@@ -19,6 +20,7 @@ export default {
       console.log(error.response)
     }
   },
+
   async saveProduct ({ state, commit }) {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/save-product`, {product: state.productForm.fields})
@@ -45,6 +47,7 @@ export default {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+
   async updateProduct ({ state, commit }) {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/update-product`, {product: state.productForm.fields})
@@ -81,6 +84,7 @@ export default {
       this.commit('notifications/addNewNotice', notice)
     }
   },
+
   async removeProduct ({ commit }, product) {
     try {
       const response = await this.$axios.$delete(`${process.env.BASE_URL}/api/food-calorie-table/remove-product/${product.id}`)
@@ -116,23 +120,7 @@ export default {
       this.commit('notifications/addNewNotice', notice)
     }
   },
-  async changeFavoriteParam ({ commit }, productId) {
-    try {
-      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-favorite-param/${productId}`)
 
-      commit('updateFavoriteProduct', response.data)
-
-      const notice = {
-        id: Date.now(),
-        type: 'info',
-        message: response.data.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
-        timeToShow: 5000,
-      }
-      this.commit('notifications/addNewNotice', notice)
-    } catch (error) {
-      console.log(error.response)
-    }
-  },
   async changePinnedParam ({ commit }, productId) {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-pinned-param/${productId}`)
@@ -147,7 +135,37 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      console.log(error.response)
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+
+  async changeFavoriteParam ({ commit }, productId) {
+    try {
+      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-favorite-param/${productId}`)
+
+      commit('updateFavoriteProduct', response.data)
+
+      const notice = {
+        id: Date.now(),
+        type: 'info',
+        message: response.data.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    } catch (error) {
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
 
