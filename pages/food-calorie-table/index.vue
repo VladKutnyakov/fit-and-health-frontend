@@ -4,7 +4,7 @@
       <page-info />
       <div class="filters-and-table">
         <sorting-filters />
-        <product-table />
+        <search-results />
       </div>
     </div>
 
@@ -16,8 +16,8 @@
 import AppPage from '@/components/basic/AppPage'
 import PageInfo from '@/components/foodCalorieTable/PageInfo'
 import SortingFilters from '@/components/foodCalorieTable/SortingFilters'
-import ProductTable from '@/components/foodCalorieTable/ProductTable'
-import ProductFormModal from '@/components/foodCalorieTable/ProductFormModal'
+import SearchResults from '@/components/foodCalorieTable/SearchResults/index'
+import ProductFormModal from '@/components/foodCalorieTable/modals/ProductFormModal'
 
 export default {
   name: 'FoodCalorieTablePage',
@@ -53,7 +53,7 @@ export default {
     AppPage,
     PageInfo,
     SortingFilters,
-    ProductTable,
+    SearchResults,
     ProductFormModal
   },
   async asyncData ({ store }) {

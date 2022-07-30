@@ -1,7 +1,7 @@
 <template>
-  <div class="product-table">
+  <div class="search-results">
 
-    <div class="product-table__search">
+    <div class="search-results__search">
       <app-block-title>Поиск</app-block-title>
 
       <app-search-block
@@ -10,6 +10,32 @@
         placeholder="Название продукта"
         @searchStringChanged="searchString = $event"
       />
+
+      <div class="search__filters">
+        <filter-radio-text-group
+          :value="searchFilters.userType"
+          :valueList="userTypesList"
+          uppercase
+          size14px
+          @change="
+            setSearchFiltersParam({ param: 'productType', newValue: $event }),
+            fetchExercisesList()
+          "
+        />
+
+        <p class="filters__divider">|</p>
+
+        <filter-radio-text-group
+          :value="searchFilters.userRelation"
+          :valueList="userRelationsList"
+          uppercase
+          size14px
+          @change="
+            setSearchFiltersParam({ param: 'userRelation', newValue: $event }),
+            fetchExercisesList()
+          "
+        />
+      </div>
     </div>
 
     <div class="product-table__products-list">
@@ -58,18 +84,51 @@
 import { mapState } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
-import Product from '@/components/foodCalorieTable/Product'
+import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
+import Product from '@/components/foodCalorieTable/SearchResults/Product'
 
 export default {
   components: {
     AppBlockTitle,
     AppSearchBlock,
+    FilterRadioTextGroup,
     Product,
   },
   data () {
     return {
-      searchString: ''
+      searchString: '',
+      userTypesList: [
+        {
+          id: 'ALL',
+          title: 'Все'
+        },
+        {
+          id: 'MY',
+          title: 'Мои продукты'
+        },
+      ],
+      userRelationsList: [
+        {
+          id: 'ALL',
+          title: 'Все'
+        },
+        {
+          id: 'PINNED',
+          title: 'Закрепленные'
+        },
+        {
+          id: 'FAVORITE',
+          title: 'Избранные'
+        },
+      ],
     }
+  },
+  computed: {
+    ...mapState({
+      searchFilters: state => state.foodCalorieTable.searchFilters,
+      pinnedProducts: state => state.foodCalorieTable.pinnedProducts,
+      notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts
+    })
   },
   watch: {
     searchString () {
@@ -77,29 +136,33 @@ export default {
       this.$store.commit('foodCalorieTable/sortProducts')
     }
   },
-  computed: {
-    ...mapState({
-      pinnedProducts: state => state.foodCalorieTable.pinnedProducts,
-      notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts
-    })
-  }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.product-table {
+.search-results {
   // border: 1px solid red;
   flex: 1 1 auto;
   margin-left: 40px;
-  .product-table__search {
+  margin-bottom: 80px;
+  .search-results__search {
     display: flex;
     flex-direction: column;
     background: $white;
     box-shadow: $cardShadow;
     border-radius: 6px;
     transition: $tr-02;
+    .search__filters {
+      display: flex;
+      margin: 10px 10px 15px 10px;
+      .filters__divider {
+        margin: 0 10px;
+        color: $black20;
+        user-select: none;
+      }
+    }
   }
   .product-table__products-list {
     position: relative;
@@ -165,9 +228,14 @@ export default {
 }
 
 .dark-theme {
-  .product-table {
-    .product-table__search {
+  .search-results {
+    .search-results__search {
       background: $cardBackgroundDarkBG;
+      .search__filters {
+        .filters__divider {
+          color: $dividerBorderDarkBG;
+        }
+      }
     }
   }
 }

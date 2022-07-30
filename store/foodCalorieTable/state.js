@@ -2,6 +2,18 @@ import { generateForm } from '@/utils/formManager'
 
 export default () => ({
 
+  searchFilters: {
+    searchString: null,
+    userType: {
+      id: 'ALL',
+      title: 'Все'
+    }, // ALL, MY
+    userRelation: {
+      id: 'ALL',
+      title: 'Все'
+    }, // ALL, PINNED, FAVORITE
+  },
+
   productCategories: [],
   // productCategories: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
   products: [],

@@ -12,15 +12,6 @@
         @inputGroupValueChanged="applyFilters($event, 'sortingBy')"
       />
 
-      <filter-radio-group
-        :filterGroupOpened="true"
-        headerTitle="Продукты"
-        :valueList="productType"
-        defaultValue="Все продукты"
-        @applyFunc="applyFilters()"
-        @inputGroupValueChanged="applyFilters($event, 'productType')"
-      />
-
       <filter-checkbox-group
         :filterGroupOpened="true"
         headerTitle="Категории"
@@ -63,12 +54,6 @@ export default {
         'Углеводам',
         'Калорийности'
       ],
-      productType: [
-        'Все продукты',
-        'Мои продукты',
-        'Закрепленные',
-        'Избранные'
-      ]
     }
   },
   computed: {
