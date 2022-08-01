@@ -251,6 +251,9 @@ export default {
       .element__action-btn--active {
         color: $primary;
       }
+      .element__action-btn--remove {
+        color: $red;
+      }
       .element__action-btn--disabled {
         color: $white20;
       }
