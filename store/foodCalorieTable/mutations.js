@@ -1,3 +1,5 @@
+import { setForm, clearForm, setFormFieldValue, setFormFieldError } from '@/utils/formManager'
+
 export default {
 
   setPageInfo (state, payload) {
@@ -44,27 +46,18 @@ export default {
     }
   },
 
-  setProductFormFieldValue (state, ctx) {
-    // state.productForm.fields[ctx.field] = ctx.newValue
-  },
-  setProductFormFieldError (state, ctx) {
-    // state.productForm.errors[ctx.field] = {
-    //   enabled: ctx.enabled,
-    //   errorMessage: ctx.errorMessage
-    // }
+  setProductForm (state, payload) {
+    setForm(state.productForm, payload)
   },
   clearProductForm (state) {
-    // Очистить значения полей формы
-    // for (const key in state.productForm.fields) {
-    //   state.productForm.fields[key] = null
-    // }
-    // Очистить ошибки полей формы
-    // for (const key in state.productForm.fields) {
-    //   state.productForm.errors[key] = {
-    //     enabled: false,
-    //     errorMessage: null
-    //   }
-    // }
+    clearForm(state.productForm)
+  },
+
+  setProductFormFieldValue (state, ctx) {
+    setFormFieldValue(state.productForm, ctx)
+  },
+  setProductFormFieldError (state, ctx) {
+    setFormFieldError(state.productForm, ctx)
   },
 
   setModalCondition (state, condition) {

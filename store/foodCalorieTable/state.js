@@ -33,6 +33,7 @@ export default () => ({
   productCategories: [],
 
   productForm: generateForm({
+    id: null,
     title: null,
     protein: null,
     fats: null,

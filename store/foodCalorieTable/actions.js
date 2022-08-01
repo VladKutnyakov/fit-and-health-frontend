@@ -52,11 +52,10 @@ export default {
     }
   },
 
-  async saveProduct ({ state, commit }) {
+  async saveProduct ({ state, commit }, payload) {
     try {
-      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/save-product`, {product: state.productForm.fields})
+      const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/save-product`, { product: payload })
 
-      commit('addNewProduct', response.data.product)
       commit('toggleModalVisibility', {modal: 'productModalActive', condition: false})
 
       const notice = {
@@ -67,8 +66,6 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -79,37 +76,27 @@ export default {
     }
   },
 
-  async updateProduct ({ state, commit }) {
+  async updateProduct ({ state, commit }, payload) {
     try {
-      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/update-product`, {product: state.productForm.fields})
+      const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/update-product`, { product: payload })
 
-      if (response.data.product) {
-        commit('updateProduct', response.data.product)
-        commit('toggleModalVisibility', {modal: 'productModalActive', condition: false})
-
-        const notice = {
-          id: Date.now(),
-          type: 'success',
-          message: 'Продукт успешно обновлен.',
-          timeToShow: 5000,
-        }
-        this.commit('notifications/addNewNotice', notice)
-      } else {
-        const notice = {
-          id: Date.now(),
-          type: 'alert',
-          message: 'Неизвестная ошибка. Попробуйте еще раз или обратитесь в службу поддержки.',
-          timeToShow: 5000,
-        }
-        this.commit('notifications/addNewNotice', notice)
-      }
-    } catch (error) {
-      console.log(error.response)
+      commit('toggleModalVisibility', {
+        modal: 'productModalActive',
+        condition: false,
+      })
 
       const notice = {
         id: Date.now(),
+        type: 'success',
+        message: 'Продукт успешно обновлен.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    } catch (error) {
+      const notice = {
+        id: Date.now(),
         type: 'alert',
-        message: 'Ошибка при обновлении.',
+        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)

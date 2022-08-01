@@ -123,13 +123,15 @@
     </template>
     <template v-slot:modalFooter>
       <app-button
+        class="modal-action-btn mr-auto"
+        successBtn
         uppercase
         size14px
-        class="modal-action-btn mr-auto"
         @click.native="saveOrUpdateProduct()"
       >{{ modalCondition === 'create' ? 'Сохранить' : 'Редактировать' }}</app-button>
 
       <app-button
+      secondaryBtn
         uppercase
         size14px
         @click.native="toggleModalVisibility({modal: 'productModalActive', condition: false})"
@@ -190,9 +192,9 @@ export default {
     }),
     saveOrUpdateProduct() {
       if (this.modalCondition === 'create') {
-        this.$store.dispatch('foodCalorieTable/saveProduct')
+        this.$store.dispatch('foodCalorieTable/saveProduct', this.productForm.fields)
       } else if (this.modalCondition === 'edit') {
-        this.$store.dispatch('foodCalorieTable/updateProduct')
+        this.$store.dispatch('foodCalorieTable/updateProduct', this.productForm.fields)
       }
     }
   }

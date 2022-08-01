@@ -100,21 +100,13 @@ export default {
         this.fetchProductsList()
       })
     },
-    editProduct (product) {
-      // if (product.user) {
-      //   // Очистить поля и ошибки формы
-      //   this.$store.commit('foodCalorieTable/clearProductForm', 'edit')
-
-      //   // Установить значение для полей на основе редактируемого продукта
-      //   for (const key in product) {
-      //     this.$store.commit('foodCalorieTable/setProductFormFieldValue', {field: key, newValue: product[key]})
-      //   }
-
-      //   // Установить режим редактирования для модального окна
-      //   this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
-      //   // Открыть модальное окно
-      //   this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
-      // }
+    editProduct (item) {
+      if (item.user) {
+        this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
+        this.$store.commit('foodCalorieTable/clearProductForm')
+        this.$store.commit('foodCalorieTable/setProductForm', JSON.parse(JSON.stringify(item)))
+        this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
+      }
     },
     removeProduct (product) {
       // if (product.user) {
@@ -185,9 +177,11 @@ export default {
     }
     .element__action-btn--disabled {
       color: $black30;
+      cursor: default;
     }
     .element__action-btn--disabled:hover {
       color: $black30 !important;
+      cursor: default;
     }
     .element__weight-scale {
       margin-top: 5px;
