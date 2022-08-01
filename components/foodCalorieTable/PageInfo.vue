@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 import AppPageInfo from "@/components/basic/AppPageInfo"
 
 export default {
@@ -22,10 +22,6 @@ export default {
   computed: {
     ...mapState({
       pageInfo: state => state.foodCalorieTable.pageInfo,
-    }),
-    ...mapGetters({
-      // favoriteAmount: 'foodCalorieTable/getFavoriteAmount',
-      // userProductsAmount: 'foodCalorieTable/getUserProductsAmount'
     }),
     pageInfoElements () {
       return [
