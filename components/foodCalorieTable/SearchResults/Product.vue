@@ -112,7 +112,7 @@ export default {
         this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
         this.$store.commit('foodCalorieTable/clearProductForm')
         this.$store.commit('foodCalorieTable/setProductForm', JSON.parse(JSON.stringify(item)))
-        this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
+        this.$store.commit('foodCalorieTable/setModalVisibility', { modal: 'productModalActive', condition: true })
       }
     },
     removeProduct (item) {

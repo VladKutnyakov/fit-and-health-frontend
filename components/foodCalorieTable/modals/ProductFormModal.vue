@@ -3,7 +3,7 @@
     :isActive="productModalActive"
     :headerTitle="headerTitle"
     :headerDescriptions="headerDescriptions"
-    @close="toggleModalVisibility({modal: 'productModalActive', condition: false})"
+    @close="setModalVisibility({modal: 'productModalActive', condition: false})"
   >
     <template v-slot:modalContent>
       <div class="content__add-product-form">
@@ -134,7 +134,7 @@
       secondaryBtn
         uppercase
         size14px
-        @click.native="toggleModalVisibility({modal: 'productModalActive', condition: false})"
+        @click.native="setModalVisibility({modal: 'productModalActive', condition: false})"
       >Отмена</app-button>
     </template>
   </app-modal>
@@ -186,7 +186,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      toggleModalVisibility: 'foodCalorieTable/toggleModalVisibility',
+      setModalVisibility: 'foodCalorieTable/setModalVisibility',
       setProductFormFieldValue: 'foodCalorieTable/setProductFormFieldValue',
       setProductFormFieldError: 'foodCalorieTable/setProductFormFieldError'
     }),
