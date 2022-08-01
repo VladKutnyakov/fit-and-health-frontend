@@ -27,7 +27,7 @@
       size14px
       fillArea
       :disabled="waiteProductsListUpdate"
-      @click="fetchExercisesList()"
+      @click="fetchProductsList()"
     >Применить фильтры</app-button>
   </div>
 </template>
@@ -91,19 +91,19 @@ export default {
         userRelation: this.searchFilters.userRelation?.id || null,
 
         orderBy: this.searchFilters.orderBy?.id || null,
-        muscleGroup: [],
+        categories: [],
       }
 
-      const muscleGroupIDs = []
-      this.searchFilters.muscleGroup.forEach(element => {
-        muscleGroupIDs.push(element.id)
+      const categoriesIDs = []
+      this.searchFilters.categories.forEach(element => {
+        categoriesIDs.push(element.id)
       })
 
-      payload.muscleGroup = muscleGroupIDs.join(', ')
+      payload.categories = categoriesIDs.join(', ')
 
-      this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
-      this.$store.dispatch('exercises/fetchExercisesList', payload).finally(() => {
-        this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+      this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', true)
+      this.$store.dispatch('foodCalorieTable/fetchProductsList', payload).finally(() => {
+        this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', false)
       })
     },
   },

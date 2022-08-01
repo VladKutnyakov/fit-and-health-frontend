@@ -36,9 +36,9 @@ export default {
     }
   },
 
-  async fetchProductsList ({ commit }) {
+  async fetchProductsList ({ commit }, payload) {
     try {
-      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`, { params: payload })
 
       commit('cleanProductsList')
       commit('setProductsList', response)

@@ -11,9 +11,9 @@
         @input="setSearchFiltersParam({ param: 'searchString', newValue: $event })"
         @clear="
           setSearchFiltersParam({ param: 'searchString', newValue: $event }),
-          fetchExercisesList()
+          fetchProductsList()
         "
-        @search="fetchExercisesList()"
+        @search="fetchProductsList()"
       />
 
       <div class="search__filters">
@@ -23,8 +23,8 @@
           uppercase
           size14px
           @change="
-            setSearchFiltersParam({ param: 'productType', newValue: $event }),
-            fetchExercisesList()
+            setSearchFiltersParam({ param: 'userType', newValue: $event }),
+            fetchProductsList()
           "
         />
 
@@ -37,7 +37,7 @@
           size14px
           @change="
             setSearchFiltersParam({ param: 'userRelation', newValue: $event }),
-            fetchExercisesList()
+            fetchProductsList()
           "
         />
       </div>
@@ -146,19 +146,19 @@ export default {
         userRelation: this.searchFilters.userRelation?.id || null,
 
         orderBy: this.searchFilters.orderBy?.id || null,
-        muscleGroup: [],
+        categories: [],
       }
 
-      const muscleGroupIDs = []
-      this.searchFilters.muscleGroup.forEach(element => {
-        muscleGroupIDs.push(element.id)
+      const categoriesIDs = []
+      this.searchFilters.categories.forEach(element => {
+        categoriesIDs.push(element.id)
       })
 
-      payload.muscleGroup = muscleGroupIDs.join(', ')
+      payload.categories = categoriesIDs.join(', ')
 
-      this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
-      this.$store.dispatch('exercises/fetchExercisesList', payload).finally(() => {
-        this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+      this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', true)
+      this.$store.dispatch('foodCalorieTable/fetchProductsList', payload).finally(() => {
+        this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', false)
       })
     },
   },

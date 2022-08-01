@@ -198,6 +198,11 @@ export default {
   setModalCondition (state, condition) {
     state.modalCondition = condition
   },
+
+  setWaiteProductsListUpdate (state, condition) {
+    state.waiteProductsListUpdate = condition
+  },
+
   toggleModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
   },
