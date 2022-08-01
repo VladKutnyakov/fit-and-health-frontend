@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 
 export default {
@@ -79,14 +79,27 @@ export default {
   components: {
     AppInputText
   },
+  computed: {
+    ...mapState({
+      searchFilters: state => state.foodCalorieTable.searchFilters,
+    }),
+  },
   methods: {
     ...mapMutations({
       changeProductWeight: 'foodCalorieTable/changeProductWeight'
     }),
-    ...mapActions({
-      changeFavoriteParam: 'foodCalorieTable/changeFavoriteParam',
-      changePinnedParam: 'foodCalorieTable/changePinnedParam'
-    }),
+    changePinnedParam (id) {
+      this.$store.dispatch('foodCalorieTable/changePinnedParam', id).then(() => {
+        this.$store.dispatch('foodCalorieTable/fetchPageInfo')
+        this.fetchProductsList()
+      })
+    },
+    changeFavoriteParam (id) {
+      this.$store.dispatch('foodCalorieTable/changeFavoriteParam', id).then(() => {
+        this.$store.dispatch('foodCalorieTable/fetchPageInfo')
+        this.fetchProductsList()
+      })
+    },
     editProduct (product) {
       // if (product.user) {
       //   // Очистить поля и ошибки формы
@@ -107,7 +120,29 @@ export default {
       // if (product.user) {
       //   this.$store.dispatch('foodCalorieTable/removeProduct', product)
       // }
-    }
+    },
+    fetchProductsList () {
+      const payload = {
+        searchString: this.searchFilters.searchString,
+        userType: this.searchFilters.userType?.id || null,
+        userRelation: this.searchFilters.userRelation?.id || null,
+
+        orderBy: this.searchFilters.orderBy?.id || null,
+        categories: [],
+      }
+
+      const categoriesIDs = []
+      this.searchFilters.categories.forEach(element => {
+        categoriesIDs.push(element.id)
+      })
+
+      payload.categories = categoriesIDs.join(', ')
+
+      this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', true)
+      this.$store.dispatch('foodCalorieTable/fetchProductsList', payload).finally(() => {
+        this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', false)
+      })
+    },
   }
 }
 </script>
