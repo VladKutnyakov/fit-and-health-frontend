@@ -21,30 +21,30 @@ export default {
   },
   computed: {
     ...mapState({
-      productsAmount: state => state.foodCalorieTable.products.length,
-      categoriesAmount: state => state.foodCalorieTable.productCategories.length
+      // productsAmount: state => state.foodCalorieTable.products.length,
+      // categoriesAmount: state => state.foodCalorieTable.productCategories.length
     }),
     ...mapGetters({
-      favoriteAmount: 'foodCalorieTable/getFavoriteAmount',
-      userProductsAmount: 'foodCalorieTable/getUserProductsAmount'
+      // favoriteAmount: 'foodCalorieTable/getFavoriteAmount',
+      // userProductsAmount: 'foodCalorieTable/getUserProductsAmount'
     }),
     pageInfoElements () {
       return [
         {
           title: "Всего продуктов",
-          value: this.productsAmount
+          value: 0
         },
         {
           title: "Категорий",
-          value: this.categoriesAmount
+          value: 0
         },
         {
           title: "Избранное",
-          value: this.favoriteAmount
+          value: 0
         },
         {
           title: "Мои продукты",
-          value: this.userProductsAmount
+          value: 0
         }
       ]
     }

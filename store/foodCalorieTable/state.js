@@ -2,6 +2,13 @@ import { generateForm } from '@/utils/formManager'
 
 export default () => ({
 
+  pageInfo: {
+    // exercises: null,
+    // userExercises: null,
+    // pinnedExercises: null,
+    // favoriteExercises: null,
+  },
+
   searchFilters: {
     searchString: null,
     userType: {
@@ -12,21 +19,18 @@ export default () => ({
       id: 'ALL',
       title: 'Все'
     }, // ALL, PINNED, FAVORITE
+    orderBy: {
+      id: 'title',
+      title: 'Названию'
+    }, // title, protein, fats, carb, kkal
+    categories: [],
+    categoriesList: [],
   },
 
-  productCategories: [],
-  // productCategories: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
-  products: [],
-  sortedProducts: [],
   pinnedProducts: [],
   notPinnedProducts: [],
-  selectedFilters: {
-    sortingBy: 'Названию',
-    productType: 'Все продукты',
-    productCategory: [],
-    // productCategory: ['Мясо', 'Морепродукты', 'Яйца, яичные продукты', 'Молоко, молочные продукты', 'Соя, соевые продукты', 'Овощи, овощные продукты', 'Зелень, травы, листья, салаты', 'Фрукты, ягоды, сухофрукты', 'Грибы', 'Жиры, масла', 'Орехи', 'Крупы, злаки', 'Семена', 'Специи, пряности', 'Мука, продукты из муки', 'Напитки, соки'],
-    searchString: ''
-  },
+
+  productCategories: [],
 
   productForm: generateForm({
     title: null,
@@ -41,5 +45,8 @@ export default () => ({
 
   modalCondition: 'create',
   productModalActive: false,
+
+  waiteProductsListUpdate: false,
+  waiteProductInfoLoading: false,
 
 })

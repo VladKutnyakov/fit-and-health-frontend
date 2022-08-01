@@ -1,17 +1,41 @@
 export default {
 
-  async getProductCategories ({ commit }) {
+  async fetchPageInfo ({ commit }) {
+    try {
+      // const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table/product-categories`)
+      // console.log(response);
+
+      // commit('setProductCategories', response.data)
+    } catch (error) {
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при получении данных.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
+    }
+  },
+
+  async fetchProductCategories ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table/product-categories`)
       // console.log(response);
 
-      commit('setProductCategories', response.data)
+      commit('setProductCategories', response)
+      return response
     } catch (error) {
-      console.log(error.response)
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при получении данных.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
 
-  async getAllProducts ({ commit }) {
+  async fetchProductsList ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
 

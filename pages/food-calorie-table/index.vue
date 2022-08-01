@@ -57,8 +57,22 @@ export default {
     ProductFormModal
   },
   async asyncData ({ store }) {
-    await store.dispatch('foodCalorieTable/getProductCategories')
-    await store.dispatch('foodCalorieTable/getAllProducts')
+    await store.dispatch('foodCalorieTable/fetchPageInfo')
+    await store.dispatch('foodCalorieTable/fetchProductsList')
+    await store.dispatch('foodCalorieTable/fetchProductCategories').then((response) => {
+      // Установить значение фильтров по категориям продуктов (все выбраны)
+      const categoriesList = []
+
+      for (let i = 0; i < response.length; i++) {
+        categoriesList.push(response[i])
+      }
+
+      store.commit('exercises/setSearchFiltersParam', { param: 'categories', newValue: categoriesList })
+      store.commit('exercises/setSearchFiltersParam', { param: 'categoriesList', newValue: categoriesList })
+    })
+
+    // await store.dispatch('foodCalorieTable/getProductCategories')
+    // await store.dispatch('foodCalorieTable/getAllProducts')
   },
 }
 </script>

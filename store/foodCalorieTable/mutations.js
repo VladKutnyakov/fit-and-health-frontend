@@ -1,8 +1,11 @@
 export default {
 
-  setProductCategories (state, categories) {
-    state.productCategories = categories
-    state.selectedFilters.productCategory = categories
+  setSearchFiltersParam (state, ctx) {
+    state.searchFilters[ctx.param] = ctx.newValue
+  },
+
+  setProductCategories (state, payload) {
+    state.productCategories = payload
   },
   setProductsList (state, payload) {
     payload.forEach(element => {
@@ -17,6 +20,7 @@ export default {
     state.pinnedProducts = []
     state.notPinnedProducts = []
   },
+
   addNewProduct (state, payload) {
     state.products.push(payload)
     this.commit('foodCalorieTable/sortProducts')

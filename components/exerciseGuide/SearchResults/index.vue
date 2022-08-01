@@ -6,7 +6,6 @@
 
       <app-search-block
         class="mt-10 mr-10 mb-10 ml-10"
-        :filters="false"
         :disabled="waiteExerciseListUpdate"
         placeholder="Название упражнения"
         @input="setSearchFiltersParam({ param: 'searchString', newValue: $event })"
@@ -93,7 +92,6 @@ import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
 import Exercise from '@/components/exerciseGuide/SearchResults/Exercise'
-
 import AppSpinner from '@/components/basic/AppSpinner'
 
 export default {

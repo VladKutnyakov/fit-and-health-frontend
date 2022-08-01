@@ -6,9 +6,14 @@
 
       <app-search-block
         class="mt-10 mr-10 mb-10 ml-10"
-        :filters="false"
+        :disabled="waiteProductsListUpdate"
         placeholder="Название продукта"
-        @searchStringChanged="searchString = $event"
+        @input="setSearchFiltersParam({ param: 'searchString', newValue: $event })"
+        @clear="
+          setSearchFiltersParam({ param: 'searchString', newValue: $event }),
+          fetchExercisesList()
+        "
+        @search="fetchExercisesList()"
       />
 
       <div class="search__filters">
@@ -81,7 +86,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import FilterRadioTextGroup from '@/components/basic/FilterRadioTextGroup'
@@ -96,7 +101,6 @@ export default {
   },
   data () {
     return {
-      searchString: '',
       userTypesList: [
         {
           id: 'ALL',
@@ -127,13 +131,35 @@ export default {
     ...mapState({
       searchFilters: state => state.foodCalorieTable.searchFilters,
       pinnedProducts: state => state.foodCalorieTable.pinnedProducts,
-      notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts
+      notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts,
+      waiteProductsListUpdate: state => state.foodCalorieTable.waiteProductsListUpdate,
     })
   },
-  watch: {
-    searchString () {
-      this.$store.commit('foodCalorieTable/setSearchString', this.searchString)
-      this.$store.commit('foodCalorieTable/sortProducts')
+  methods: {
+    ...mapMutations({
+      setSearchFiltersParam: 'foodCalorieTable/setSearchFiltersParam',
+    }),
+    fetchProductsList () {
+      const payload = {
+        searchString: this.searchFilters.searchString,
+        userType: this.searchFilters.userType?.id || null,
+        userRelation: this.searchFilters.userRelation?.id || null,
+
+        orderBy: this.searchFilters.orderBy?.id || null,
+        muscleGroup: [],
+      }
+
+      const muscleGroupIDs = []
+      this.searchFilters.muscleGroup.forEach(element => {
+        muscleGroupIDs.push(element.id)
+      })
+
+      payload.muscleGroup = muscleGroupIDs.join(', ')
+
+      this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+      this.$store.dispatch('exercises/fetchExercisesList', payload).finally(() => {
+        this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+      })
     }
   },
 }
