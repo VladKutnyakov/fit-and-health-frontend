@@ -56,7 +56,10 @@ export default {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/save-product`, { product: payload })
 
-      commit('toggleModalVisibility', {modal: 'productModalActive', condition: false})
+      commit('toggleModalVisibility', {
+        modal: 'productModalActive',
+        condition: false,
+      })
 
       const notice = {
         id: Date.now(),
@@ -69,7 +72,7 @@ export default {
       const notice = {
         id: Date.now(),
         type: 'alert',
-        message: 'Ошибка при сохранении.',
+        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)

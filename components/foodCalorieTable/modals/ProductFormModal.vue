@@ -163,11 +163,11 @@ export default {
   },
   computed: {
     ...mapState({
+      searchFilters: state => state.foodCalorieTable.searchFilters,
       productForm: state => state.foodCalorieTable.productForm,
       productCategories: state => state.foodCalorieTable.productCategories,
       modalCondition: state => state.foodCalorieTable.modalCondition,
-      modalCondition: state => state.foodCalorieTable.modalCondition,
-      productModalActive: state => state.foodCalorieTable.productModalActive
+      productModalActive: state => state.foodCalorieTable.productModalActive,
     }),
     headerTitle () {
       if (this.modalCondition === 'create') {
@@ -192,11 +192,37 @@ export default {
     }),
     saveOrUpdateProduct() {
       if (this.modalCondition === 'create') {
-        this.$store.dispatch('foodCalorieTable/saveProduct', this.productForm.fields)
+        this.$store.dispatch('foodCalorieTable/saveProduct', this.productForm.fields).then(() => {
+          this.fetchProductsList()
+        })
       } else if (this.modalCondition === 'edit') {
-        this.$store.dispatch('foodCalorieTable/updateProduct', this.productForm.fields)
+        this.$store.dispatch('foodCalorieTable/updateProduct', this.productForm.fields).then(() => {
+          this.fetchProductsList()
+        })
       }
-    }
+    },
+    fetchProductsList () {
+      const payload = {
+        searchString: this.searchFilters.searchString,
+        userType: this.searchFilters.userType?.id || null,
+        userRelation: this.searchFilters.userRelation?.id || null,
+
+        orderBy: this.searchFilters.orderBy?.id || null,
+        categories: [],
+      }
+
+      const categoriesIDs = []
+      this.searchFilters.categories.forEach(element => {
+        categoriesIDs.push(element.id)
+      })
+
+      payload.categories = categoriesIDs.join(', ')
+
+      this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', true)
+      this.$store.dispatch('foodCalorieTable/fetchProductsList', payload).finally(() => {
+        this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', false)
+      })
+    },
   }
 }
 </script>
