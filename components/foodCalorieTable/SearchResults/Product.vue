@@ -88,25 +88,25 @@ export default {
       changePinnedParam: 'foodCalorieTable/changePinnedParam'
     }),
     editProduct (product) {
-      if (product.user) {
-        // Очистить поля и ошибки формы
-        this.$store.commit('foodCalorieTable/clearProductForm', 'edit')
+      // if (product.user) {
+      //   // Очистить поля и ошибки формы
+      //   this.$store.commit('foodCalorieTable/clearProductForm', 'edit')
 
-        // Установить значение для полей на основе редактируемого продукта
-        for (const key in product) {
-          this.$store.commit('foodCalorieTable/setProductFormFieldValue', {field: key, newValue: product[key]})
-        }
+      //   // Установить значение для полей на основе редактируемого продукта
+      //   for (const key in product) {
+      //     this.$store.commit('foodCalorieTable/setProductFormFieldValue', {field: key, newValue: product[key]})
+      //   }
 
-        // Установить режим редактирования для модального окна
-        this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
-        // Открыть модальное окно
-        this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
-      }
+      //   // Установить режим редактирования для модального окна
+      //   this.$store.commit('foodCalorieTable/setModalCondition', 'edit')
+      //   // Открыть модальное окно
+      //   this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
+      // }
     },
     removeProduct (product) {
-      if (product.user) {
-        this.$store.dispatch('foodCalorieTable/removeProduct', product)
-      }
+      // if (product.user) {
+      //   this.$store.dispatch('foodCalorieTable/removeProduct', product)
+      // }
     }
   }
 }
