@@ -66,6 +66,7 @@
         class="ti-trash element__action-btn"
         :class="[
           { 'element__action-btn--active': item.user },
+          { 'element__action-btn--remove': item.user },
           { 'element__action-btn--disabled': !item.user },
         ]"
         @click="removeProduct(item)"
@@ -182,6 +183,9 @@ export default {
     }
     .element__action-btn--active {
       color: $primary;
+    }
+    .element__action-btn--remove {
+      color: $red;
     }
     .element__action-btn--disabled {
       color: $black30;
