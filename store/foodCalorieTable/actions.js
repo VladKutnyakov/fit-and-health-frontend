@@ -15,9 +15,15 @@ export default {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
 
-      commit('setProducts', response.data)
+      commit('setProductsList', response)
     } catch (error) {
-      console.log(error.response)
+      const notice = {
+        id: Date.now(),
+        type: 'alert',
+        message: 'Ошибка при получении данных.',
+        timeToShow: 5000,
+      }
+      this.commit('notifications/addNewNotice', notice)
     }
   },
 

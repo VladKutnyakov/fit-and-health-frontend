@@ -4,9 +4,18 @@ export default {
     state.productCategories = categories
     state.selectedFilters.productCategory = categories
   },
-  setProducts (state, products) {
-    state.products = products
-    this.commit('foodCalorieTable/sortProducts')
+  setProductsList (state, payload) {
+    payload.forEach(element => {
+      if (element.pinned) {
+        state.pinnedProducts.push(element)
+      } else {
+        state.notPinnedProducts.push(element)
+      }
+    })
+  },
+  cleanProductsList (state) {
+    state.pinnedProducts = []
+    state.notPinnedProducts = []
   },
   addNewProduct (state, payload) {
     state.products.push(payload)
@@ -65,6 +74,8 @@ export default {
     state.selectedFilters.productCategory = ProductCategory
   },
   sortProducts (state) {
+    console.log(1);
+
     // Фильтрация по типу продуктов (все, мои, избранное)
     if (state.selectedFilters.productType === 'Мои продукты') {
       // console.log('Мои продукты')
