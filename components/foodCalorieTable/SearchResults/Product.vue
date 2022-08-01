@@ -54,14 +54,20 @@
     <div class="item__element">
       <i
         class="ti-pencil element__action-btn"
-        :class="[{ 'element__action-btn--disabled': !item.user }]"
+        :class="[
+          { 'element__action-btn--active': item.user },
+          { 'element__action-btn--disabled': !item.user },
+        ]"
         @click="editProduct(item)"
       ></i>
     </div>
     <div class="item__element">
       <i
         class="ti-trash element__action-btn"
-        :class="[{ 'element__action-btn--disabled': !item.user }]"
+        :class="[
+          { 'element__action-btn--active': item.user },
+          { 'element__action-btn--disabled': !item.user },
+        ]"
         @click="removeProduct(item)"
       ></i>
     </div>
@@ -108,10 +114,12 @@ export default {
         this.$store.commit('foodCalorieTable/toggleModalVisibility', {modal: 'productModalActive', condition: true})
       }
     },
-    removeProduct (product) {
-      // if (product.user) {
-      //   this.$store.dispatch('foodCalorieTable/removeProduct', product)
-      // }
+    removeProduct (item) {
+      if (item.user) {
+        this.$store.commit('foodCalorieTable/setProductToRemove', item)
+
+        this.$store.commit('foodCalorieTable/setModalVisibility', { modal: 'confirmRemoveProductModalActive', condition: true })
+      }
     },
     fetchProductsList () {
       const payload = {

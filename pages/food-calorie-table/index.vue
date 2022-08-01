@@ -9,15 +9,28 @@
     </div>
 
     <product-form-modal />
+
+    <app-confirm-modal
+      :value="confirmRemoveProductModalActive"
+      icon="ti-help-alt"
+      confirmMessage="Уверены что хотите удалить продукт?"
+      width="400px"
+      danger
+      @confirm="confirmRemoveExercise()"
+      @dismiss="setModalVisibility({ modal: 'confirmRemoveProductModalActive', condition: false })"
+    />
+
   </app-page>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import AppPage from '@/components/basic/AppPage'
 import PageInfo from '@/components/foodCalorieTable/PageInfo'
 import SortingFilters from '@/components/foodCalorieTable/SortingFilters'
 import SearchResults from '@/components/foodCalorieTable/SearchResults/index'
 import ProductFormModal from '@/components/foodCalorieTable/modals/ProductFormModal'
+import AppConfirmModal from '@/components/basic/AppConfirmModal'
 
 export default {
   name: 'FoodCalorieTablePage',
@@ -54,7 +67,8 @@ export default {
     PageInfo,
     SortingFilters,
     SearchResults,
-    ProductFormModal
+    ProductFormModal,
+    AppConfirmModal,
   },
   async asyncData ({ store }) {
     await store.dispatch('foodCalorieTable/fetchPageInfo')
@@ -64,6 +78,48 @@ export default {
       store.commit('foodCalorieTable/setSearchFiltersParam', { param: 'categories', newValue: response })
       store.commit('foodCalorieTable/setSearchFiltersParam', { param: 'categoriesList', newValue: response })
     })
+  },
+  computed: {
+    ...mapState({
+      searchFilters: state => state.foodCalorieTable.searchFilters,
+      productToRemove: state => state.foodCalorieTable.productToRemove,
+      confirmRemoveProductModalActive: state => state.foodCalorieTable.confirmRemoveProductModalActive,
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      setModalVisibility: 'foodCalorieTable/setModalVisibility',
+    }),
+    confirmRemoveExercise () {
+      this.$store.dispatch('foodCalorieTable/removeProduct', this.productToRemove).then(() => {
+        this.$store.commit('foodCalorieTable/setModalVisibility', { modal: 'confirmRemoveProductModalActive', condition: false })
+
+        this.$store.dispatch('foodCalorieTable/fetchPageInfo')
+        this.fetchProductsList()
+      })
+    },
+    fetchProductsList () {
+      const payload = {
+        searchString: this.searchFilters.searchString,
+        userType: this.searchFilters.userType?.id || null,
+        userRelation: this.searchFilters.userRelation?.id || null,
+
+        orderBy: this.searchFilters.orderBy?.id || null,
+        categories: [],
+      }
+
+      const categoriesIDs = []
+      this.searchFilters.categories.forEach(element => {
+        categoriesIDs.push(element.id)
+      })
+
+      payload.categories = categoriesIDs.join(', ')
+
+      this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', true)
+      this.$store.dispatch('foodCalorieTable/fetchProductsList', payload).finally(() => {
+        this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', false)
+      })
+    },
   },
 }
 </script>

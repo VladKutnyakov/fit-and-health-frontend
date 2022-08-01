@@ -52,12 +52,15 @@ export default {
   clearProductForm (state) {
     clearForm(state.productForm)
   },
-
   setProductFormFieldValue (state, ctx) {
     setFormFieldValue(state.productForm, ctx)
   },
   setProductFormFieldError (state, ctx) {
     setFormFieldError(state.productForm, ctx)
+  },
+
+  setProductToRemove (state, payload) {
+    state.productToRemove = payload
   },
 
   setModalCondition (state, condition) {
@@ -68,7 +71,7 @@ export default {
     state.waiteProductsListUpdate = condition
   },
 
-  toggleModalVisibility (state, ctx) {
+  setModalVisibility (state, ctx) {
     state[ctx.modal] = ctx.condition
   },
 

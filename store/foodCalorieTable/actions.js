@@ -111,8 +111,6 @@ export default {
       const response = await this.$axios.$delete(`${process.env.BASE_URL}/api/food-calorie-table/remove-product/${payload.id}`)
 
       if (response.removed) {
-        await commit('deleteProduct', response.productId)
-
         const notice = {
           id: Date.now(),
           type: 'info',
@@ -130,12 +128,10 @@ export default {
         this.commit('notifications/addNewNotice', notice)
       }
     } catch (error) {
-      console.log(error.response)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
-        message: 'Неизвестная ошибка. Попробуйте еще раз или обратитесь в службу поддержки.',
+        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при удалении.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)

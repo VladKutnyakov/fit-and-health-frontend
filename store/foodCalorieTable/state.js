@@ -44,10 +44,14 @@ export default () => ({
     pinned: false
   }),
 
+  productToRemove: null,
+
   modalCondition: 'create',
   productModalActive: false,
 
   waiteProductsListUpdate: false,
   waiteProductInfoLoading: false,
+
+  confirmRemoveProductModalActive: false,
 
 })
