@@ -36,7 +36,7 @@
         :value="item.weight"
         textCenter
         selectOnFocus
-        @input="changeProductWeight({item, newWeight: $event.target.value})"
+        @input="changeProductWeight({item, newWeight: $event})"
       />
     </div>
     <div class="item__element">
