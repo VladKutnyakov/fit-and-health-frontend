@@ -106,12 +106,12 @@ export default {
     }
   },
 
-  async removeProduct ({ commit }, product) {
+  async removeProduct ({ commit }, payload) {
     try {
-      const response = await this.$axios.$delete(`${process.env.BASE_URL}/api/food-calorie-table/remove-product/${product.id}`)
+      const response = await this.$axios.$delete(`${process.env.BASE_URL}/api/food-calorie-table/remove-product/${payload.id}`)
 
-      if (response.data.removed) {
-        await commit('deleteProduct', response.data.productId)
+      if (response.removed) {
+        await commit('deleteProduct', response.productId)
 
         const notice = {
           id: Date.now(),
