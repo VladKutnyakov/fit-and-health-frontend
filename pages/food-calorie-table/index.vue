@@ -61,18 +61,9 @@ export default {
     await store.dispatch('foodCalorieTable/fetchProductsList')
     await store.dispatch('foodCalorieTable/fetchProductCategories').then((response) => {
       // Установить значение фильтров по категориям продуктов (все выбраны)
-      const categoriesList = []
-
-      for (let i = 0; i < response.length; i++) {
-        categoriesList.push(response[i])
-      }
-
-      store.commit('exercises/setSearchFiltersParam', { param: 'categories', newValue: categoriesList })
-      store.commit('exercises/setSearchFiltersParam', { param: 'categoriesList', newValue: categoriesList })
+      store.commit('foodCalorieTable/setSearchFiltersParam', { param: 'categories', newValue: response })
+      store.commit('foodCalorieTable/setSearchFiltersParam', { param: 'categoriesList', newValue: response })
     })
-
-    // await store.dispatch('foodCalorieTable/getProductCategories')
-    // await store.dispatch('foodCalorieTable/getAllProducts')
   },
 }
 </script>

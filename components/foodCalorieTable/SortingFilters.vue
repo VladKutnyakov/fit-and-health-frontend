@@ -4,30 +4,31 @@
 
     <div class="sorting-filters__list">
       <filter-radio-group
-        :filterGroupOpened="true"
+        :value="searchFilters.orderBy"
+        :valueList="orderByList"
+        :filterGroupOpened="orderByIsOpened"
         headerTitle="Сортировать по ..."
-        :valueList="sortingBy"
-        defaultValue="Названию"
-        @applyFunc="applyFilters()"
-        @inputGroupValueChanged="applyFilters($event, 'sortingBy')"
+        @toggleOpened="orderByIsOpened = $event"
+        @change="setSearchFiltersParam({ param: 'orderBy', newValue: $event })"
       />
 
       <filter-checkbox-group
-        :filterGroupOpened="true"
-        headerTitle="Категории"
-        :valueList="productCategories"
-        :defaultValue="selectedProductCategories"
-        @applyFunc="applyFilters()"
-        @inputGroupValueChanged="applyFilters($event, 'productCategory')"
-      >
-        <template v-slot:btnWrapper>
-          <app-button size14px uppercase>Очистить</app-button>
-          <app-button size14px uppercase>Выбрать все</app-button>
-        </template>
-      </filter-checkbox-group>
+        :value="searchFilters.categories"
+        :valueList="searchFilters.categoriesList"
+        :filterGroupOpened="cateroriesListIsOpened"
+        headerTitle="Категории продуктов"
+        @toggleOpened="cateroriesListIsOpened = $event"
+        @change="setSearchFiltersParam({ param: 'categories', newValue: $event })"
+      />
     </div>
 
-    <app-button class="mr-10 mb-10 ml-10" size14px fillArea >Применить фильтры</app-button>
+    <app-button
+      class="mr-10 mb-10 ml-10"
+      size14px
+      fillArea
+      :disabled="waiteProductsListUpdate"
+      @click="fetchExercisesList()"
+    >Применить фильтры</app-button>
   </div>
 </template>
 
@@ -47,46 +48,65 @@ export default {
   },
   data () {
     return {
-      sortingBy: [
-        'Названию',
-        'Белкам',
-        'Жирам',
-        'Углеводам',
-        'Калорийности'
+      orderByIsOpened: true,
+      cateroriesListIsOpened: true,
+      orderByList: [
+        {
+          id: 'title',
+          title: 'Названию',
+        },
+        {
+          id: 'protein',
+          title: 'Белкам',
+        },
+        {
+          id: 'fats',
+          title: 'Жирам',
+        },
+        {
+          id: 'carb',
+          title: 'Углеводам',
+        },
+        {
+          id: 'kkal',
+          title: 'Калорийности',
+        },
       ],
     }
   },
   computed: {
     ...mapState({
-      productCategories: state => state.foodCalorieTable.productCategories,
-      selectedProductCategories: state => state.foodCalorieTable.productCategories
+      searchFilters: state => state.foodCalorieTable.searchFilters,
+      waiteProductsListUpdate: state => state.foodCalorieTable.waiteProductsListUpdate,
     })
   },
   methods: {
     ...mapMutations({
-      setSortingByFilter: 'foodCalorieTable/setSortingByFilter',
-      setProductTypeFilter: 'foodCalorieTable/setProductTypeFilter',
-      setProductCategory: 'foodCalorieTable/setProductCategory',
-      sortProducts: 'foodCalorieTable/sortProducts',
+      setSearchFiltersParam: 'foodCalorieTable/setSearchFiltersParam',
     }),
-    applyFilters ($event, filterGroup) {
-      switch (filterGroup) {
-        case 'sortingBy':
-          this.setSortingByFilter($event)
-          break
-        case 'productType':
-          this.setProductTypeFilter($event)
-          break
-        case 'productCategory':
-          this.setProductCategory($event)
-          break
-        default:
-          break
+    fetchProductsList () {
+      const payload = {
+        searchString: this.searchFilters.searchString,
+        userType: this.searchFilters.userType?.id || null,
+        userRelation: this.searchFilters.userRelation?.id || null,
+
+        orderBy: this.searchFilters.orderBy?.id || null,
+        muscleGroup: [],
       }
-      // отфильтровать продукты в store и перерендорить страницу
-      this.sortProducts()
-    }
-  }
+
+      const muscleGroupIDs = []
+      this.searchFilters.muscleGroup.forEach(element => {
+        muscleGroupIDs.push(element.id)
+      })
+
+      payload.muscleGroup = muscleGroupIDs.join(', ')
+
+      this.$store.commit('exercises/setWaiteExerciseListUpdate', true)
+      this.$store.dispatch('exercises/fetchExercisesList', payload).finally(() => {
+        this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
+      })
+    },
+  },
 }
 </script>
 

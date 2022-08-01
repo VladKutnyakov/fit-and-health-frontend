@@ -7,6 +7,7 @@ export default {
   setProductCategories (state, payload) {
     state.productCategories = payload
   },
+
   setProductsList (state, payload) {
     payload.forEach(element => {
       if (element.pinned) {

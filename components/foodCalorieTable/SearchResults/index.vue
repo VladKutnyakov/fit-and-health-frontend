@@ -160,7 +160,7 @@ export default {
       this.$store.dispatch('exercises/fetchExercisesList', payload).finally(() => {
         this.$store.commit('exercises/setWaiteExerciseListUpdate', false)
       })
-    }
+    },
   },
 }
 </script>

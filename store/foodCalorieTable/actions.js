@@ -23,6 +23,7 @@ export default {
       // console.log(response);
 
       commit('setProductCategories', response)
+
       return response
     } catch (error) {
       const notice = {
@@ -39,6 +40,7 @@ export default {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`)
 
+      commit('cleanProductsList')
       commit('setProductsList', response)
     } catch (error) {
       const notice = {
