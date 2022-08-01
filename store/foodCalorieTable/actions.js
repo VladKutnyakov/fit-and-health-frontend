@@ -2,10 +2,9 @@ export default {
 
   async fetchPageInfo ({ commit }) {
     try {
-      // const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table/product-categories`)
-      // console.log(response);
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table/page-info`)
 
-      // commit('setProductCategories', response.data)
+      commit('setPageInfo', response)
     } catch (error) {
       const notice = {
         id: Date.now(),

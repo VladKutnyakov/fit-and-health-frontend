@@ -3,10 +3,10 @@ import { generateForm } from '@/utils/formManager'
 export default () => ({
 
   pageInfo: {
-    // exercises: null,
-    // userExercises: null,
-    // pinnedExercises: null,
-    // favoriteExercises: null,
+    products: null,
+    pinned: null,
+    favorites: null,
+    userProducts: null,
   },
 
   searchFilters: {

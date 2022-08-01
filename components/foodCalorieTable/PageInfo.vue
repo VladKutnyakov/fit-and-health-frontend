@@ -21,8 +21,7 @@ export default {
   },
   computed: {
     ...mapState({
-      // productsAmount: state => state.foodCalorieTable.products.length,
-      // categoriesAmount: state => state.foodCalorieTable.productCategories.length
+      pageInfo: state => state.foodCalorieTable.pageInfo,
     }),
     ...mapGetters({
       // favoriteAmount: 'foodCalorieTable/getFavoriteAmount',
@@ -32,19 +31,19 @@ export default {
       return [
         {
           title: "Всего продуктов",
-          value: 0
+          value: this.pageInfo.products || 0,
         },
         {
-          title: "Категорий",
-          value: 0
+          title: "Закрепленные",
+          value: this.pageInfo.pinned || 0,
         },
         {
           title: "Избранное",
-          value: 0
+          value: this.pageInfo.favorites || 0,
         },
         {
           title: "Мои продукты",
-          value: 0
+          value: this.pageInfo.userProducts || 0,
         }
       ]
     }
