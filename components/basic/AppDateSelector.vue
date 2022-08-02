@@ -3,7 +3,13 @@
     <app-accordion :isOpened="isOpened">
       <template v-slot:accordionHeader>
         <div class="target-date" @click="calendarIsOpen = !calendarIsOpen">
-          <i class="ti-calendar target-date__icon-calendar"></i>
+          <i v-if="!isCurrentDate" class="ti-calendar target-date__icon-calendar"></i>
+          <div
+            v-if="isCurrentDate"
+            class="target-date__current-day"
+            :title="currentDate"
+            @click.stop="selectDate(currentDate)"
+          >{{ new Date().getDate() }}</div>
           <p class="target-date__selected-day">{{ currentDay }} {{ currentMonth.title }} {{ currentYear }}</p>
           <i
             :class="[
@@ -87,9 +93,9 @@ export default {
       calendarIsOpen: true,
       days: [],
       weekDaysTitle: ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС'],
-      currentYear: null,
-      currentMonth: null,
       currentDay: null,
+      currentMonth: null,
+      currentYear: null,
     }
   },
   computed: {
@@ -116,6 +122,20 @@ export default {
         { id: 11, title: 'Декабрь' }
       ]
     },
+    currentDate () {
+      const day = new Date().getDate() >=9 ? new Date().getDate() : `0${new Date().getDate()}`
+      const month = new Date().getMonth() + 1 >=9 ? new Date().getMonth() + 1 : `0${new Date().getMonth() + 1}`
+      const year = new Date().getFullYear()
+
+      return `${day}.${month}.${year}`
+    },
+    isCurrentDate () {
+      const selectedDay = this.currentDay >=9 ? this.currentDay : `0${this.currentDay}`
+      const selectedMonth = this.currentMonth.id + 1 >=9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`
+      const selectedYear = this.currentYear
+
+      return this.currentDate !== `${selectedDay}.${selectedMonth}.${selectedYear}`
+    }
   },
   methods: {
     calendarCellsValues () {
@@ -265,7 +285,23 @@ export default {
     justify-content: space-between;
     padding: 15px 20px;
     .target-date__icon-calendar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
       font-size: 20px;
+    }
+    .target-date__current-day {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      background: $primary;
+      color: $white;
+      font-size: 18px;
+      border-radius: 50%;
     }
     .target-date__selected-day {
       font-size: 18px;
