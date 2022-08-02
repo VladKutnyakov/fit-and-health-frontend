@@ -3,15 +3,19 @@
     <meal-plan />
     <additional-info />
 
-    <search-recipes-and-products-modal />
+    <select-product-modal
+      :active="selectProductModalActive"
+      @closeModal="setModalVisibility({ modal: 'selectProductModalActive', condition: false })"
+    />
   </app-page>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
 import AppPage from '@/components/basic/AppPage'
 import MealPlan from '@/components/mealPlaner/MealPlan/index'
 import AdditionalInfo from '@/components/mealPlaner/AdditionalInfo/index'
-import SearchRecipesAndProductsModal from '@/components/mealPlaner/modals/SearchRecipesAndProductsModal/index'
+import SelectProductModal from '@/components/common/SelectProductModal/index'
 
 export default {
   name: 'MealPlanerPage',
@@ -47,7 +51,7 @@ export default {
     AppPage,
     MealPlan,
     AdditionalInfo,
-    SearchRecipesAndProductsModal,
+    SelectProductModal,
   },
   async asyncData ({ store, route }) {
     await store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: route.query.date})
@@ -69,6 +73,16 @@ export default {
         },
       ]
     }
+  },
+  computed: {
+    ...mapState({
+      selectProductModalActive: state => state.mealPlaner.selectProductModalActive,
+    }),
+  },
+  methods: {
+    ...mapMutations({
+      setModalVisibility: 'mealPlaner/setModalVisibility',
+    }),
   },
 }
 </script>

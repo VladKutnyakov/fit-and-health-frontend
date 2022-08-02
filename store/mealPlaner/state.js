@@ -27,7 +27,10 @@ export default () => ({
       id: null
     }
   },
+
   selectedMealPart: 0,
-  searchRecipesAndProductsModalActive: false,
+
+  selectProductModalActive: false,
+  selectRecipeModalActive: false,
 
 })

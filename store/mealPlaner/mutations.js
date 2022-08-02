@@ -17,28 +17,6 @@ export default {
   setUserParam (state, ctx) {
     state.mealPlanerInfo.user.params[0][ctx.field] = ctx.newValue
   },
-  setSearchRecipesAndProductsModalActive (state) {
-    state.searchRecipesAndProductsModalActive = !state.searchRecipesAndProductsModalActive
-
-    // Снять статус "добавлен" со всех продуктов, чтобы в дальнейшем установить его для продуктов добавленных в выбранный прием пищи рациона
-    // state.products.forEach(element => {
-    //   element.added = false
-    // })
-
-    // Установка статуса "добавлен" для продуктов, которые есть в выбранном приеме пищи
-    // if (state.searchRecipesAndProductsModalActive) {
-    //   const mealPartProducts = state.mealPlanerInfo.mealParts[state.selectedMealPart].products
-    //   // Перебор всех добавленных продуктов
-    //   for (let i = 0; i < mealPartProducts.length; i++) {
-    //     // Перебор списка всех продуктов
-    //     state.products.forEach(element => {
-    //       if (element.id === mealPartProducts[i].id) {
-    //         element.added = true
-    //       }
-    //     })
-    //   }
-    // }
-  },
   setMealPlanMark (state, text) {
     const mark = {
       id: null,
@@ -136,5 +114,9 @@ export default {
 
   //   return Math.round(resultAfterDays)
   // }
+
+  setModalVisibility (state, ctx) {
+    state[ctx.modal] = ctx.condition
+  },
 
 }

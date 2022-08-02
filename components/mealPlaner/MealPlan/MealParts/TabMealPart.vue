@@ -65,8 +65,12 @@
 
     <div class="meal-part__actions">
       <app-button
-        @click="setSearchRecipesAndProductsModalActive()"
-      >Добавить продукт или рецепт</app-button>
+        class="mr-10"
+        @click="openSelectProductModal()"
+      >Добавить продукт</app-button>
+      <app-button
+        @click="openSelectRecipeModal()"
+      >Добавить рецепт</app-button>
 
       <app-button
         class="ml-auto"
@@ -115,9 +119,14 @@ export default {
     ...mapMutations({
       setMealPartTime: 'mealPlaner/setMealPartTime',
       setMealPartTitle: 'mealPlaner/setMealPartTitle',
-      setSearchRecipesAndProductsModalActive: 'mealPlaner/setSearchRecipesAndProductsModalActive',
       removeSelectedMealPart: 'mealPlaner/removeSelectedMealPart'
-    })
+    }),
+    openSelectProductModal () {
+      this.$store.commit('mealPlaner/setModalVisibility', { modal: 'selectProductModalActive', condition: true })
+    },
+    openSelectRecipeModal () {
+      this.$store.commit('mealPlaner/setModalVisibility', { modal: 'selectRecipeModalActive', condition: true })
+    },
   }
 }
 </script>

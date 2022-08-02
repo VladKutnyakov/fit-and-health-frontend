@@ -1,6 +1,6 @@
 <template>
   <app-modal
-    :isActive="searchRecipesAndProductsModalActive"
+    :isActive="active"
     maxWidth="1200px"
     headerTitle="Добавление продуктов или рецептов в рацион"
     :headerDescriptions="['Найдите и добавьте продукт или рецепт в выбранный прием пищи.']"
@@ -104,7 +104,7 @@
     <template v-slot:modalFooter>
       <div class="footer__action-btns">
         <app-button
-          @click.native="closeModal()"
+          @click="closeModal()"
         >Закрыть</app-button>
       </div>
     </template>
@@ -120,9 +120,12 @@ import AppInputRadio from '@/components/basic/AppInputRadio'
 import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
-import Product from '@/components/mealPlaner/modals/SearchRecipesAndProductsModal/Product'
+import Product from '@/components/common/SelectProductModal/Product'
 
 export default {
+  props: {
+    active: Boolean,
+  },
   components: {
     AppModal,
     AppSearchBlock,
@@ -152,12 +155,12 @@ export default {
     })
   },
   methods: {
-    ...mapMutations({
-      closeModal: 'mealPlaner/setSearchRecipesAndProductsModalActive'
-    }),
     openFilters () {
       this.filtersIsOpened = !this.filtersIsOpened
-    }
+    },
+    closeModal () {
+      this.$emit('closeModal')
+    },
   }
 }
 </script>
