@@ -106,11 +106,11 @@ export default {
   },
   computed: {
     ...mapState({
-      targetProtein: state => state.mealPlaner.mealPlanerInfo.targetProtein,
-      targetFats: state => state.mealPlaner.mealPlanerInfo.targetFats,
-      targetCarb: state => state.mealPlaner.mealPlanerInfo.targetCarb,
-      currentWeight: state => state.mealPlaner.mealPlanerInfo.user.params[0].weight,
-      targetWeight: state => state.mealPlaner.mealPlanerInfo.user.params[0].targetWeight,
+      targetProtein: state => state.mealPlaner.mealPlanerInfo.fields.targetProtein,
+      targetFats: state => state.mealPlaner.mealPlanerInfo.fields.targetFats,
+      targetCarb: state => state.mealPlaner.mealPlanerInfo.fields.targetCarb,
+      currentWeight: state => state.mealPlaner.mealPlanerInfo.fields.userParams.weight,
+      targetWeight: state => state.mealPlaner.mealPlanerInfo.fields.userParams.targetWeight,
     }),
     ...mapGetters({
       getDayTargetKkal: 'mealPlaner/getDayTargetKkal',

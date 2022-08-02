@@ -1,6 +1,8 @@
+import { generateForm } from '@/utils/formManager'
+
 export default () => ({
 
-  mealPlanerInfo: {
+  mealPlanerInfo: generateForm({
     id: null,
     date: null,
     title: null,
@@ -11,22 +13,23 @@ export default () => ({
     targetWeight: null,
     currentWeight: null,
     marks: [],
-    like: null,
-    dislike: null,
-    share: null,
     mealParts: [
       {
         id: null,
         title: 'Затрак',
         mealTime: '07:00',
+        products: [],
         recipes: [],
-        products: []
       },
     ],
-    user: {
-      id: null
-    }
-  },
+    pinned: null,
+    favorite: null,
+    user: null,
+    userParams: {
+      weight: null,
+      targetWeight: null
+    },
+  }),
 
   selectedMealPart: 0,
 

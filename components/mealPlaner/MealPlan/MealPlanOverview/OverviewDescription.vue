@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     ...mapState({
-      description: state => state.mealPlaner.mealPlanerInfo.description
+      description: state => state.mealPlaner.mealPlanerInfo.fields.description
     })
   },
   methods: {

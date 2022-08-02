@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     ...mapState({
-      title: state => state.mealPlaner.mealPlanerInfo.title
+      title: state => state.mealPlaner.mealPlanerInfo.fields.title
     })
   },
   methods: {

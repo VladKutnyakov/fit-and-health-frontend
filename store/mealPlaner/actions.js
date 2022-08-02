@@ -3,12 +3,9 @@ export default {
   async fetchMealPlanerInfo ({ commit }, query ) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
-      // console.log(response)
 
-      commit('setMealPlanerInfo', response.data)
+      commit('setMealPlanerInfo', response)
     } catch (error) {
-      console.log(error)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -33,8 +30,6 @@ export default {
       this.commit('notifications/addNewNotice', notice)
 
     } catch (error) {
-      console.log(error)
-
       const notice = {
         id: Date.now(),
         type: 'alert',
@@ -79,8 +74,6 @@ export default {
   //       this.commit('notifications/addNewNotice', notice)
   //     }
   //   } catch (error) {
-  //     console.log(error)
-
   //     if (error.response && error.response.status === 400) {
   //       const notice = {
   //         id: Date.now(),

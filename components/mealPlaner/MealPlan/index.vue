@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     ...mapState({
-      mealParts: state => state.mealPlaner.mealPlanerInfo.mealParts,
+      mealParts: state => state.mealPlaner.mealPlanerInfo.fields.mealParts,
       selectedMealPart: state => state.mealPlaner.selectedMealPart,
     }),
     tabList () {
