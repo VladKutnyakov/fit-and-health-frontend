@@ -283,7 +283,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 20px;
+    padding: 10px 20px;
     .target-date__icon-calendar {
       display: flex;
       align-items: center;
