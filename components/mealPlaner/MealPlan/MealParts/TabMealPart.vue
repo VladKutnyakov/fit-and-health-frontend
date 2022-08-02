@@ -111,9 +111,9 @@ export default {
       selectedMealPart: state => state.mealPlaner.selectedMealPart,
       searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive
     }),
-    ...mapGetters({
-      mealPartProducts: 'mealPlaner/getMealPartProducts',
-    })
+    mealPartProducts () {
+      return this.mealParts[this.selectedMealPart].mealPartProducts
+    },
   },
   methods: {
     ...mapMutations({

@@ -17,9 +17,6 @@ export default {
 
     return Math.round(currentKkal)
   },
-  getMealPartProducts (state) {
-    return state.mealPlanerInfo.fields.mealParts[state.selectedMealPart].mealPartProducts
-  },
   getCurrentProtein (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
