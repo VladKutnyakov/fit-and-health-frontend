@@ -21,62 +21,62 @@ export default {
     return state.mealPlanerInfo.fields.mealParts[state.selectedMealPart].mealPartProducts
   },
   getCurrentProtein (state) {
-    // const products = []
-    // for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
-    //   state.mealPlanerInfo.fields.mealParts[i].mealPartProducts.forEach(element => {
-    //     products.push(element)
-    //   })
-    // }
+    const products = []
+    for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
+      state.mealPlanerInfo.fields.mealParts[i].products.forEach(element => {
+        products.push(element)
+      })
+    }
 
     let currentProteinSumm = 0
-    // products.forEach(element => {
-    //   currentProteinSumm += parseFloat(element.product.protein * element.weightInMealPart / 100)
-    // })
+    products.forEach(element => {
+      currentProteinSumm += parseFloat(element.product.protein * element.weightInMealPart / 100)
+    })
 
     return Math.round(currentProteinSumm * 100) / 100
   },
   getCurrentFats (state) {
-    // const products = []
-    // for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
-    //   state.mealPlanerInfo.fields.mealParts[i].mealPartProducts.forEach(element => {
-    //     products.push(element)
-    //   })
-    // }
+    const products = []
+    for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
+      state.mealPlanerInfo.fields.mealParts[i].products.forEach(element => {
+        products.push(element)
+      })
+    }
 
     let currentFatsSumm = 0
-    // products.forEach(element => {
-    //   currentFatsSumm += parseFloat(element.product.fats * element.weightInMealPart / 100)
-    // })
+    products.forEach(element => {
+      currentFatsSumm += parseFloat(element.product.fats * element.weightInMealPart / 100)
+    })
 
     return Math.round(currentFatsSumm * 100) / 100
   },
   getCurrentCarb (state) {
-    // const products = []
-    // for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
-    //   state.mealPlanerInfo.fields.mealParts[i].mealPartProducts.forEach(element => {
-    //     products.push(element)
-    //   })
-    // }
+    const products = []
+    for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
+      state.mealPlanerInfo.fields.mealParts[i].products.forEach(element => {
+        products.push(element)
+      })
+    }
 
     let currentCarbSumm = 0
-    // products.forEach(element => {
-    //   currentCarbSumm += parseFloat(element.product.carb * element.weightInMealPart / 100)
-    // })
+    products.forEach(element => {
+      currentCarbSumm += parseFloat(element.product.carb * element.weightInMealPart / 100)
+    })
 
     return Math.round(currentCarbSumm * 100) / 100
   },
   getCurrentKkal (state) {
-    // const products = []
-    // for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
-    //   state.mealPlanerInfo.fields.mealParts[i].mealPartProducts.forEach(element => {
-    //     products.push(element)
-    //   })
-    // }
+    const products = []
+    for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
+      state.mealPlanerInfo.fields.mealParts[i].products.forEach(element => {
+        products.push(element)
+      })
+    }
 
     let currentKkalSumm = 0
-    // products.forEach(element => {
-    //   currentKkalSumm += parseFloat(element.product.kkal * element.weightInMealPart / 100)
-    // })
+    products.forEach(element => {
+      currentKkalSumm += parseFloat(element.product.kkal * element.weightInMealPart / 100)
+    })
 
     return Math.round(currentKkalSumm * 100) / 100
   },

@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setMealPlanerInfoFieldValue: 'mealPlaner/setMealPlanerInfoFieldValue'
+      setMealPlanerInfoFieldValue: 'mealPlaner/setMealPlanerInfoFieldValue',
     })
   },
 }

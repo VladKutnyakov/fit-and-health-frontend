@@ -5,7 +5,7 @@
       <div class="item__value">
         <p class="value__current">{{ getCurrentProtein }}</p>
         <p class="value__divider">/</p>
-        <p class="value__max">{{ Math.round(parseFloat(targetProtein * targetWeight) * 100) / 100 }}</p>
+        <p class="value__max">{{ Math.round(parseFloat(mealPlanerInfo.fields.targetProtein * mealPlanerInfo.fields.targetWeight) * 100) / 100 }}</p>
         <p class="value__scale">гр</p>
       </div>
     </div>
@@ -14,7 +14,7 @@
       <div class="item__value">
         <p class="value__current">{{ getCurrentFats }}</p>
         <p class="value__divider">/</p>
-        <p class="value__max">{{ Math.round(parseFloat(targetFats * targetWeight) * 100) / 100 }}</p>
+        <p class="value__max">{{ Math.round(parseFloat(mealPlanerInfo.fields.targetFats * mealPlanerInfo.fields.targetWeight) * 100) / 100 }}</p>
         <p class="value__scale">гр</p>
       </div>
     </div>
@@ -23,7 +23,7 @@
       <div class="item__value">
         <p class="value__current">{{ getCurrentCarb }}</p>
         <p class="value__divider">/</p>
-        <p class="value__max">{{ Math.round(parseFloat(targetCarb * targetWeight) * 100) / 100 }}</p>
+        <p class="value__max">{{ Math.round(parseFloat(mealPlanerInfo.fields.targetCarb * mealPlanerInfo.fields.targetWeight) * 100) / 100 }}</p>
         <p class="value__scale">гр</p>
       </div>
     </div>
@@ -45,10 +45,7 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapState({
-      targetProtein: state => state.mealPlaner.mealPlanerInfo.fields.targetProtein,
-      targetFats: state => state.mealPlaner.mealPlanerInfo.fields.targetFats,
-      targetCarb: state => state.mealPlaner.mealPlanerInfo.fields.targetCarb,
-      targetWeight: state => state.mealPlaner.mealPlanerInfo.fields.targetWeight
+      mealPlanerInfo: state => state.mealPlaner.mealPlanerInfo,
     }),
     ...mapGetters({
       getCurrentProtein: 'mealPlaner/getCurrentProtein',

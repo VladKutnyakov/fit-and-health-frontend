@@ -21,7 +21,7 @@
               small
               textRight
               selectOnFocus
-              @input="setNutrientsSettingsParam({field: 'targetProtein', newValue: $event})"
+              @input="setMealPlanerInfoFieldValue({ field: 'targetProtein', newValue: $event })"
             />
             <p class="element__scale">гр.</p>
           </div>
@@ -33,7 +33,7 @@
               small
               textRight
               selectOnFocus
-              @input="setNutrientsSettingsParam({field: 'targetFats', newValue: $event})"
+              @input="setMealPlanerInfoFieldValue({ field: 'targetFats', newValue: $event })"
             />
             <p class="element__scale">гр.</p>
           </div>
@@ -45,7 +45,7 @@
               small
               textRight
               selectOnFocus
-              @input="setNutrientsSettingsParam({field: 'targetCarb', newValue: $event})"
+              @input="setMealPlanerInfoFieldValue({ field: 'targetCarb', newValue: $event })"
             />
             <p class="element__scale">гр.</p>
           </div>
@@ -62,7 +62,7 @@
               small
               textRight
               selectOnFocus
-              @input="setUserParam({field: 'weight', newValue: $event})"
+              @input="setMealPlanerInfoFieldValue({ field: 'currentWeight', newValue: $event })"
             />
             <p class="element__scale">кг.</p>
           </div>
@@ -74,7 +74,7 @@
               small
               textRight
               selectOnFocus
-              @input="setUserParam({field: 'targetWeight', newValue: $event})"
+              @input="setMealPlanerInfoFieldValue({ field: 'targetWeight', newValue: $event })"
             />
             <p class="element__scale">кг.</p>
           </div>
@@ -101,7 +101,7 @@ export default {
       proteinIsEdit: false,
       fatsIsEdit: false,
       carbIsEdit: false,
-      weightIsEdit: false
+      weightIsEdit: false,
     }
   },
   computed: {
@@ -114,8 +114,7 @@ export default {
   },
   methods: {
     ...mapMutations({
-      // setNutrientsSettingsParam: 'mealPlaner/setNutrientsSettingsParam',
-      // setUserParam: 'mealPlaner/setUserParam'
+      setMealPlanerInfoFieldValue: 'mealPlaner/setMealPlanerInfoFieldValue',
     })
   }
 }
