@@ -142,8 +142,6 @@ export default {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-pinned-param/${productId}`)
 
-      commit('updatePinnedProduct', response.data)
-
       const notice = {
         id: Date.now(),
         type: 'info',
@@ -165,8 +163,6 @@ export default {
   async changeFavoriteParam ({ commit }, productId) {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-favorite-param/${productId}`)
-
-      commit('updateFavoriteProduct', response.data)
 
       const notice = {
         id: Date.now(),

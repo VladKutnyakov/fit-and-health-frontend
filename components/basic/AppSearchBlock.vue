@@ -91,18 +91,21 @@ export default {
     align-items: center;
     justify-content: center;
     background: $white;
-    padding: 5px;
     color: $primary;
     border-top: 1px solid $dividerBorder;
     border-bottom: 1px solid $dividerBorder;
     transition: $tr-02;
     .search__action-btn-icon {
       // border: 1px solid red;
-      padding: 5px;
+      padding: 10px;
       color: $text;
+      border-right: 1px solid $dividerBorder;
       user-select: none;
       transition: $tr-02;
       cursor: pointer;
+    }
+    .search__action-btn-icon:last-child {
+      border-right: none;
     }
     .search__action-btn-icon:hover {
       color: $primary;
@@ -156,6 +159,12 @@ export default {
       color: $textLight;
       border-top: 1px solid $dividerBorderDarkBG;
       border-bottom: 1px solid $dividerBorderDarkBG;
+      .search__action-btn-icon {
+        border-right: 1px solid $dividerBorderDarkBG;
+      }
+      .search__action-btn-icon:last-child {
+        border-right: none;
+      }
     }
   }
 }

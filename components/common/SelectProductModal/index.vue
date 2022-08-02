@@ -1,9 +1,8 @@
 <template>
   <app-modal
     :isActive="active"
-    maxWidth="1200px"
-    headerTitle="Добавление продуктов или рецептов в рацион"
-    :headerDescriptions="['Найдите и добавьте продукт или рецепт в выбранный прием пищи.']"
+    maxWidth="1800px"
+    headerTitle="Список продуктов"
     @close="closeModal()"
   >
     <template v-slot:modalContent>
@@ -11,59 +10,12 @@
         <app-search-block
           small
           filters
-          placeholder="Поиск продуктов и рецептов"
+          placeholder="Поиск продуктов"
           @openFilters="openFilters()"
         />
 
-        <div v-if="filtersIsOpened" class="filters">
-          <app-info
-            small
-            info
-            text="Нажмите кнопку поиска (лупа), чтобы применить фильтры."
-          />
-
-          <div class="filters__groups">
-            <div class="group">
-              <p class="group__title">Сортировать по...</p>
-              <app-input-radio
-                small
-                class="input-item"
-                v-for="(item, index) in sortingByNutrients"
-                :key="index"
-                v-model="nutrientChecked"
-                :label="item"
-                :value="item"
-              />
-            </div>
-            <div class="group">
-              <p class="group__title">Показать</p>
-              <app-input-radio
-                small
-                class="input-item"
-                v-for="(item, index) in filterByUserImportances"
-                :key="index"
-                v-model="filterByUserImportanceChecked"
-                :label="item"
-                :value="item"
-              />
-            </div>
-            <div class="group">
-              <p class="group__title">Тип</p>
-              <app-input-checkbox
-                small
-                class="input-item"
-                v-for="(item, index) in filterByTypes"
-                :key="index"
-                v-model="filterByTypeChecked"
-                :label="item"
-                :value="item"
-              />
-            </div>
-          </div>
-        </div>
-
         <div class="founding__results">
-          <div class="product__header">
+          <div class="products-list__header">
             <p class="header__column-title"><i class="ti-pin-alt"></i></p>
             <p class="header__column-title"><i class="ti-heart"></i></p>
             <p class="header__column-title">Название</p>
@@ -72,7 +24,7 @@
             <p class="header__column-title">Жиры</p>
             <p class="header__column-title">Углеводы</p>
             <p class="header__column-title">Ккал</p>
-            <p class="header__column-title"><i class="ti-trash"></i></p>
+            <p class="header__column-title"><i class="ti-pencil-alt"></i></p>
           </div>
 
           <div v-if="pinnedProducts.length > 0" class="pinned-products">
@@ -137,26 +89,25 @@ export default {
     AppButton,
   },
   data () {
-    return {
-      filtersIsOpened: false,
-      filterByUserImportances: ['Все доступные', 'Добавленные мной', 'Закрепленные', 'Избранные'],
-      filterByUserImportanceChecked: 'Все доступные',
-      sortingByNutrients: ['Названию', 'Белкам', 'Жирам', 'Углеводам', 'Калорийности'],
-      nutrientChecked: 'Названию',
-      filterByTypes: ['Продукты', 'Рецепты'],
-      filterByTypeChecked: ['Продукты', 'Рецепты']
-    }
+    return {}
   },
   computed: {
     ...mapState({
-      searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive,
       pinnedProducts: state => state.foodCalorieTable.pinnedProducts,
-      notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts
+      notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts,
+      searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive,
     })
+  },
+  watch: {
+    active (newValue) {
+      if (newValue) {
+        this.$store.dispatch('foodCalorieTable/fetchProductsList')
+      }
+    },
   },
   methods: {
     openFilters () {
-      this.filtersIsOpened = !this.filtersIsOpened
+      console.log('openFilters')
     },
     closeModal () {
       this.$emit('closeModal')
@@ -208,30 +159,30 @@ export default {
     }
   }
   .founding__results {
-    // position: relative;
+    // border: 1px solid red;
     margin-top: 20px;
     padding: 10px;
-    height: 800px;
-    // max-height: 400px;
+    min-height: 200px;
     background: $white;
     border: 1px solid $inputBorder;
     border-radius: 6px;
     background: rgba(0, 0, 0, 0.025);
     box-shadow: inset 0 0 5px 0px rgb(0,0,0,.25);
     // overflow: auto;
-    .product__header {
+    .products-list__header {
       position: sticky;
-      top: -20px;
+      top: 0;
       display: flex;
       align-items: center;
       margin-bottom: 10px;
       padding: 5px 0;
       color: $white;
-      background: $green;
+      background: $primary;
       border: 1px solid transparent;
       border-radius: 6px;
+      z-index: 10;
       .header__column-title {
-        padding: 5px;
+        padding: 7px;
         width: 120px;
         text-transform: uppercase;
         text-align: center;
@@ -240,23 +191,28 @@ export default {
         border-right: 1px solid rgba(255,255,255,.4);
       }
       .header__column-title:nth-child(1) {
-        width: 40px;
-        min-width: 40px;
-        max-width: 40px;
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
       }
       .header__column-title:nth-child(2) {
-        width: 40px;
-        min-width: 40px;
-        max-width: 40px;
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
       }
       .header__column-title:nth-child(3) {
         flex: 1 1 auto;
         min-width: 200px;
       }
+      // .header__column-title:nth-child(9) {
+      //   width: 50px;
+      //   min-width: 50px;
+      //   max-width: 50px;
+      // }
       .header__column-title:nth-child(9) {
-        width: 40px;
-        min-width: 40px;
-        max-width: 40px;
+        width: 50px;
+        min-width: 50px;
+        max-width: 50px;
         border: none;
       }
     }
