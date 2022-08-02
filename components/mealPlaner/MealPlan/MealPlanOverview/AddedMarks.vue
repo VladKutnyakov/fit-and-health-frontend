@@ -5,7 +5,7 @@
     <div class="added-marks__marks">
       <div class="mark" v-for="(item, index) in marks" :key="index">
         <p class="mark__text" :title="item">{{ item.title }}</p>
-        <i class="ti-close mark__icon" @click="remove(index)"></i>
+        <i class="ti-close mark__icon" @click="removeMark(index)"></i>
       </div>
     </div>
 
@@ -15,9 +15,9 @@
         type="text"
         v-model="mark"
         placeholder="Добавьте отметку"
-        @keypress.enter="add()"
+        @keypress.enter="addMark()"
       >
-      <button class="action-btn" @click="add()">
+      <button class="action-btn" @click="addMark()">
         <i class="ti-plus"></i>
       </button>
     </div>
@@ -35,14 +35,14 @@ export default {
     }
   },
   methods: {
-    add () {
-      if (this.mark) {
-        this.$emit('addMark', this.mark)
-        this.mark = null
-      }
+    addMark () {
+      // if (this.mark) {
+      //   this.$emit('addMark', { index: null, value: this.mark })
+      //   this.mark = null
+      // }
     },
-    remove (index) {
-      this.$emit('removeMark', index)
+    removeMark (item, index) {
+      // this.$emit('removeMark', { index: index, value: this.mark })
     }
   }
 }

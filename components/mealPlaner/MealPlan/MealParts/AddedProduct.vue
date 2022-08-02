@@ -4,7 +4,7 @@
       <i class="ti-exchange-vertical"></i>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ mealPartProduct.product.title }}</p>
+      <p class="element__value">{{ mealPartProduct.title }}</p>
     </div>
     <div class="item__element">
       <div class="element__input-wrapper">
@@ -12,25 +12,25 @@
           class="element__weight-input"
           type="text"
           :value="mealPartProduct.weightInMealPart"
-          @input="setProductWeight({id: mealPartProduct.product.id, newValue: $event.target.value})"
+          @input="setProductWeight({id: mealPartProduct.id, newValue: $event.target.value})"
           @focus="setFocus($event)"
         />
         <span class="element__weight-scale">гр.</span>
       </div>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (mealPartProduct.product.protein / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (mealPartProduct.protein / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (mealPartProduct.product.fats / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (mealPartProduct.fats / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (mealPartProduct.product.carb / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (mealPartProduct.carb / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (mealPartProduct.product.kkal / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (mealPartProduct.kkal / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
     </div>
-    <div class="item__element" @click="removeFoodFromMealPart(mealPartProduct.product.id)">
+    <div class="item__element" @click="removeFoodFromMealPart(mealPartProduct.id)">
       <i class="ti-trash"></i>
     </div>
   </div>

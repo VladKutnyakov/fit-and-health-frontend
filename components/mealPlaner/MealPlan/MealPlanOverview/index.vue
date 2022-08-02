@@ -29,8 +29,8 @@
 
           <added-marks
             :marks="mealPlanerInfo.fields.marks"
-            @addMark="setMealPlanMark($event)"
-            @removeMark="removeMealPlanMark($event)"
+            @addMark="setMealPlanerInfoFieldValue({ field: 'marks', newValue: $event })"
+            @removeMark="setMealPlanerInfoFieldValue({ field: 'marks', newValue: $event })"
           />
         </div>
 

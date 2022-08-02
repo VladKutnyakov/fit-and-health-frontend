@@ -6,7 +6,7 @@
           <p class="element__title">Время приема пищи:</p>
           <app-input-text
             :value="mealParts[selectedMealPart].mealTime"
-            @input="setMealPartTime($event)"
+            @input="setMealPlanerInfoFieldValue({ field: 'mealParts', subfield: 'mealTime', index: selectedMealPart, newValue: $event })"
           />
           <!-- <app-input-time
             :value="mealParts[selectedMealPart].mealTime"
@@ -18,7 +18,7 @@
           <p class="element__title">Название приема пищи:</p>
           <app-input-text
             :value="mealParts[selectedMealPart].title"
-            @input="setMealPartTitle($event)"
+            @input="setMealPlanerInfoFieldValue({ field: 'mealParts', subfield: 'title', index: selectedMealPart, newValue: $event })"
           />
         </div>
       </div>
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 import AppInputTime from '@/components/basic/AppInputTime'
 import AddedProduct from '@/components/mealPlaner/MealPlan/MealParts/AddedProduct'
@@ -97,14 +97,6 @@ export default {
     AddedRecipe,
     AppButton
   },
-  data () {
-    return {
-      filterByMarks: ['Все совпадения', 'Добавленные мной', 'Избранное'],
-      filterByMarksChecked: 'Все совпадения',
-      filterByType: ['Продукты', 'Рецепты'],
-      filterByTypeChecked: ['Продукты', 'Рецепты'],
-    }
-  },
   computed: {
     ...mapState({
       mealParts: state => state.mealPlaner.mealPlanerInfo.fields.mealParts,
@@ -112,14 +104,12 @@ export default {
       searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive
     }),
     mealPartProducts () {
-      return this.mealParts[this.selectedMealPart].mealPartProducts
+      return this.mealParts[this.selectedMealPart].products
     },
   },
   methods: {
     ...mapMutations({
-      setMealPartTime: 'mealPlaner/setMealPartTime',
-      setMealPartTitle: 'mealPlaner/setMealPartTitle',
-      removeSelectedMealPart: 'mealPlaner/removeSelectedMealPart'
+      setMealPlanerInfoFieldValue: 'mealPlaner/setMealPlanerInfoFieldValue',
     }),
     openSelectProductModal () {
       this.$store.commit('mealPlaner/setModalVisibility', { modal: 'selectProductModalActive', condition: true })
