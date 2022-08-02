@@ -2,29 +2,23 @@
   <li class="product__item">
     <div class="item__element">
       <i
-        v-if="!item.pinned"
-        class="ti-pin-alt element__action-btn"
-        :class="[{'element__action-btn--active': item.pinned}]"
-        @click="changePinnedParam(item)"
-      ></i>
-      <i
-        v-if="item.pinned"
-        class="ti-pin2 element__action-btn"
-        :class="[{'element__action-btn--active': item.pinned}]"
+        class="element__action-btn"
+        :class="[
+          { 'ti-pin-alt': item.pinned },
+          { 'ti-pin2': !item.pinned },
+          { 'element__action-btn--active': item.pinned },
+        ]"
         @click="changePinnedParam(item)"
       ></i>
     </div>
     <div class="item__element">
       <i
-        v-if="!item.favorite"
-        class="ti-heart-broken element__action-btn"
-        :class="[{'element__action-btn--active': item.favorite}]"
-        @click="changeFavoriteParam(item)"
-      ></i>
-      <i
-        v-if="item.favorite"
-        class="ti-heart element__action-btn"
-        :class="[{'element__action-btn--active': item.favorite}]"
+        class="element__action-btn"
+        :class="[
+          { 'ti-heart': item.favorite },
+          { 'ti-heart-broken': !item.favorite },
+          { 'element__action-btn--active': item.favorite },
+        ]"
         @click="changeFavoriteParam(item)"
       ></i>
     </div>
