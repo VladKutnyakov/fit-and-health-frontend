@@ -62,7 +62,7 @@ export default {
     item: Object,
   },
   components: {
-    AppInputText
+    AppInputText,
   },
   methods: {
     changePinnedParam (item) {
@@ -74,7 +74,7 @@ export default {
     selectProduct (item) {
       this.$emit('selectProduct', item)
     },
-  }
+  },
 }
 </script>
 

@@ -6,7 +6,7 @@
     @close="closeModal()"
   >
     <template v-slot:modalContent>
-      <div class="search-recipes-and-products">
+      <div class="select-product-content">
         <app-search-block
           :value="searchFilters.searchString"
           :disabled="isLoading"
@@ -88,10 +88,6 @@
 <script>
 import AppModal from '@/components/basic/AppModal'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
-import AppInfo from '@/components/basic/AppInfo'
-import AppInputRadio from '@/components/basic/AppInputRadio'
-import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
-import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import Product from '@/components/common/SelectProductModal/Product'
 import AppSpinner from '@/components/basic/AppSpinner'
@@ -103,10 +99,6 @@ export default {
   components: {
     AppModal,
     AppSearchBlock,
-    AppInfo,
-    AppInputRadio,
-    AppInputCheckbox,
-    AppBlockTitle,
     AppButton,
     Product,
     AppSpinner,
@@ -261,45 +253,9 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.search-recipes-and-products {
+.select-product-content {
   display: flex;
   flex-direction: column;
-  .filters {
-    display: flex;
-    flex-direction: column;
-    margin: 0 10px;
-    padding: 10px;
-    background: $hiddenBlockBG;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    .filters__groups {
-      display: flex;
-      margin-top: 10px;
-      .group {
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        margin-right: 5px;
-        padding: 10px;
-        background: $white;
-        border: 1px solid $blockBorder;
-        border-radius: 6px;
-        .group__title {
-          margin-bottom: 10px;
-          padding-bottom: 10px;
-          font-size: 14px;
-          font-weight: 500;
-          border-bottom: 1px dashed $blockBorder;
-        }
-        .input-item {
-          margin-bottom: 5px;
-        }
-      }
-      .group:last-child {
-        margin-right: 0;
-      }
-    }
-  }
   .founding__results {
     // border: 1px solid red;
     margin-top: 20px;
