@@ -134,7 +134,7 @@ export default {
             isCurrentMonth: false,
             day: previoslyMonthDay + i,
             // month: this.currentMonth,
-            queryDate: `${this.currentMonth.id > 0 ? year : year - 1}-${this.currentMonth.id > 0 ? month : 12}-${day}`,
+            queryDate: `${day}.${this.currentMonth.id > 0 ? month : 12}.${this.currentMonth.id > 0 ? year : year - 1}`,
             active: false
           })
         }
@@ -153,7 +153,7 @@ export default {
           isCurrentMonth: true,
           day: i + 1,
           // month: this.currentMonth,
-          queryDate: `${year}-${month}-${day}`,
+          queryDate: `${day}.${month}.${year}`,
           active: (i + 1) === this.currentDay ? true : false
         })
       }
@@ -171,7 +171,7 @@ export default {
           isCurrentMonth: false,
           day: i + 1,
           // month: this.currentMonth,
-          queryDate: `${month <= 12 ? year : year + 1}-${month <= 12 ? month : '01'}-${day}`,
+          queryDate: `${day}.${month <= 12 ? month : '01'}.${month <= 12 ? year : year + 1}`,
           active: false
         })
       }
@@ -187,7 +187,7 @@ export default {
       this.currentDay = 1
       this.days = this.calendarCellsValues()
 
-      const newSelectedDate = `${this.currentYear}-${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}-01`
+      const newSelectedDate = `01.${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}.${this.currentYear}`
       this.selectDate(newSelectedDate)
     },
     yearSelect ($event) {
@@ -195,7 +195,7 @@ export default {
       this.currentDay = 1
       this.days = this.calendarCellsValues()
 
-      const newSelectedDate = `${this.currentYear}-${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}-01`
+      const newSelectedDate = `01.${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}.${this.currentYear}`
       this.selectDate(newSelectedDate)
     },
     prevMonth () {
@@ -209,7 +209,7 @@ export default {
       this.currentDay = 1
       this.days = this.calendarCellsValues()
 
-      const newSelectedDate = `${this.currentYear}-${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}-01`
+      const newSelectedDate = `01.${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}.${this.currentYear}`
       this.selectDate(newSelectedDate)
     },
     nextMonth () {
@@ -223,13 +223,13 @@ export default {
       this.currentDay = 1
       this.days = this.calendarCellsValues()
 
-      const newSelectedDate = `${this.currentYear}-${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}-01`
+      const newSelectedDate = `01.${this.currentMonth.id + 1 >= 9 ? this.currentMonth.id + 1 : `0${this.currentMonth.id + 1}`}.${this.currentYear}`
       this.selectDate(newSelectedDate)
     },
     selectDate (item) {
-      this.currentYear = parseInt(item.split('-')[0])
-      this.currentMonth = this.monthsOptions[parseInt(item.split('-')[1] - 1) <= 11 ? parseInt(item.split('-')[1] - 1) : 0]
-      this.currentDay = parseInt(item.split('-')[2])
+      this.currentDay = parseInt(item.split('.')[0])
+      this.currentMonth = this.monthsOptions[parseInt(item.split('.')[1] - 1) <= 11 ? parseInt(item.split('.')[1] - 1) : 0]
+      this.currentYear = parseInt(item.split('.')[2])
       this.days = this.calendarCellsValues()
 
       this.$emit('select', item)
@@ -237,15 +237,15 @@ export default {
   },
   created () {
     // console.log(this.initialDate)
-    const initialYear = this.initialDate ? parseInt(this.initialDate.split('-')[0]) : null
-    const initialMonth = this.initialDate ? parseInt(this.initialDate.split('-')[1]) : null
-    const initialDay = this.initialDate ? parseInt(this.initialDate.split('-')[2]) : null
+    const initialDay = this.initialDate ? parseInt(this.initialDate.split('.')[0]) : null
+    const initialMonth = this.initialDate ? parseInt(this.initialDate.split('.')[1]) : null
+    const initialYear = this.initialDate ? parseInt(this.initialDate.split('.')[2]) : null
     // console.log(initialYear, initialMonth, initialDay)
 
     // Задать текущую дату для календаря (занчение по умолчанию при рендеринге компонента)
-    this.currentYear = initialYear || new Date().getFullYear()
-    this.currentMonth = this.monthsOptions[initialMonth - 1] || this.monthsOptions[new Date().getMonth()]
     this.currentDay = initialDay || new Date().getDate()
+    this.currentMonth = this.monthsOptions[initialMonth - 1] || this.monthsOptions[new Date().getMonth()]
+    this.currentYear = initialYear || new Date().getFullYear()
     this.days = this.calendarCellsValues()
   }
 }
