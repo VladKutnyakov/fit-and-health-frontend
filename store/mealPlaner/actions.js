@@ -4,7 +4,7 @@ export default {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/meal-planer?date=${query.date ? query.date : ''}`)
 
-      // commit('setMealPlanerInfo', response)
+      commit('setMealPlanerInfo', response)
     } catch (error) {
       const notice = {
         id: Date.now(),
