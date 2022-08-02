@@ -8,10 +8,17 @@
     <template v-slot:modalContent>
       <div class="search-recipes-and-products">
         <app-search-block
-          small
+          :value="searchFilters.searchString"
+          :disabled="isLoading"
           filters
-          placeholder="Поиск продуктов"
-          @openFilters="openFilters()"
+          small
+          placeholder="Название продукта"
+          @input="searchFilters.searchString = $event"
+          @clear="
+            searchFilters.searchString = $event,
+            fetchProductsList()
+          "
+          @search="fetchProductsList()"
         />
 
         <div class="founding__results">
@@ -27,28 +34,36 @@
             <p class="header__column-title"><i class="ti-pencil-alt"></i></p>
           </div>
 
-          <div v-if="pinnedProducts.length > 0" class="pinned-products">
-            <p class="pinned-products__title">Закрепленные продукты</p>
+          <div class="products-list">
+            <div v-if="pinnedProducts.length > 0" class="pinned-products">
+              <p class="pinned-products__title">Закрепленные продукты</p>
 
-            <ul class="food-table__product-list">
-              <product
-                v-for="(item, index) in pinnedProducts"
-                :key="index"
-                :item="item"
-              />
-            </ul>
-          </div>
+              <ul class="food-table__product-list">
+                <product
+                  v-for="(item, index) in pinnedProducts"
+                  :key="index"
+                  :item="item"
+                />
+              </ul>
+            </div>
 
-          <div v-if="notPinnedProducts.length > 0" class="not-pinned-products">
-            <p v-if="pinnedProducts.length > 0" class="not-pinned-products__title">Не закрепленные продукты</p>
+            <div v-if="notPinnedProducts.length > 0" class="not-pinned-products">
+              <p v-if="pinnedProducts.length > 0" class="not-pinned-products__title">Не закрепленные продукты</p>
 
-            <ul class="food-table__product-list">
-              <product
-                v-for="(item, index) in notPinnedProducts"
-                :key="index"
-                :item="item"
-              />
-            </ul>
+              <ul class="food-table__product-list">
+                <product
+                  v-for="(item, index) in notPinnedProducts"
+                  :key="index"
+                  :item="item"
+                />
+              </ul>
+            </div>
+
+            <app-spinner
+              v-if="isLoading"
+              donut
+              center
+            />
           </div>
         </div>
       </div>
@@ -56,6 +71,7 @@
     <template v-slot:modalFooter>
       <div class="footer__action-btns">
         <app-button
+          secondaryBtn
           @click="closeModal()"
         >Закрыть</app-button>
       </div>
@@ -73,6 +89,7 @@ import AppInputCheckbox from '@/components/basic/AppInputCheckbox'
 import AppBlockTitle from '@/components/basic/AppBlockTitle'
 import AppButton from '@/components/basic/AppButton'
 import Product from '@/components/common/SelectProductModal/Product'
+import AppSpinner from '@/components/basic/AppSpinner'
 
 export default {
   props: {
@@ -85,27 +102,95 @@ export default {
     AppInputRadio,
     AppInputCheckbox,
     AppBlockTitle,
-    Product,
     AppButton,
+    Product,
+    AppSpinner,
   },
   data () {
-    return {}
+    return {
+      searchFilters: {
+        searchString: null,
+        userType: {
+          id: 'ALL',
+          title: 'Все'
+        }, // ALL, MY
+        userRelation: {
+          id: 'ALL',
+          title: 'Все'
+        }, // ALL, PINNED, FAVORITE
+        orderBy: {
+          id: 'title',
+          title: 'Названию'
+        }, // title, protein, fats, carb, kkal
+        categories: [],
+        categoriesList: [],
+      },
+      pinnedProducts: [],
+      notPinnedProducts: [],
+      isLoading: false,
+    }
   },
   computed: {
     ...mapState({
-      pinnedProducts: state => state.foodCalorieTable.pinnedProducts,
-      notPinnedProducts: state => state.foodCalorieTable.notPinnedProducts,
       searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive,
     })
   },
   watch: {
     active (newValue) {
       if (newValue) {
-        this.$store.dispatch('foodCalorieTable/fetchProductsList')
+        this.isLoading = true
+
+        this.fetchProductsList().then(() => {
+          this.isLoading = false
+        })
+      } else {
+        // Сбросить все фильтры и состояния до начального значения
+        this.pinnedProducts = []
+        this.notPinnedProducts = []
       }
     },
   },
   methods: {
+    async fetchProductsList (payload) {
+      try {
+        const payload = {
+          searchString: this.searchFilters.searchString,
+          userType: this.searchFilters.userType?.id || null,
+          userRelation: this.searchFilters.userRelation?.id || null,
+
+          orderBy: this.searchFilters.orderBy?.id || null,
+          categories: [],
+        }
+
+        const categoriesIDs = []
+        this.searchFilters.categories.forEach(element => {
+          categoriesIDs.push(element.id)
+        })
+
+        payload.categories = categoriesIDs.join(', ')
+
+        const response = await this.$axios.$get(`${process.env.BASE_URL}/api/food-calorie-table`, { params: payload })
+
+        this.pinnedProducts = []
+        this.notPinnedProducts = []
+
+        response.forEach(element => {
+          if (element.pinned) {
+            this.pinnedProducts.push(element)
+          } else {
+            this.notPinnedProducts.push(element)
+          }
+        })
+      } catch (error) {
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: 'Ошибка при получении данных.',
+          timeToShow: 5000,
+        }
+        this.$store.commit('notifications/addNewNotice', notice)
+      }
+    },
     openFilters () {
       console.log('openFilters')
     },
@@ -162,13 +247,11 @@ export default {
     // border: 1px solid red;
     margin-top: 20px;
     padding: 10px;
-    min-height: 200px;
     background: $white;
     border: 1px solid $inputBorder;
     border-radius: 6px;
     background: rgba(0, 0, 0, 0.025);
     box-shadow: inset 0 0 5px 0px rgb(0,0,0,.25);
-    // overflow: auto;
     .products-list__header {
       position: sticky;
       top: 0;
@@ -216,17 +299,22 @@ export default {
         border: none;
       }
     }
-    .pinned-products {
-      margin-bottom: 10px;
-      .pinned-products__title {
-        padding: 0 0 10px 10px;
+    .products-list {
+      position: relative;
+      min-height: 55px;
+      .pinned-products {
+        margin-bottom: 10px;
+        .pinned-products__title {
+          padding: 0 0 10px 10px;
+        }
+      }
+      .not-pinned-products {
+        .not-pinned-products__title {
+          padding: 0 0 10px 10px;
+        }
       }
     }
-    .not-pinned-products {
-      .not-pinned-products__title {
-        padding: 0 0 10px 10px;
-      }
-    }
+    
   }
 }
 
