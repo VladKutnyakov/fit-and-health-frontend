@@ -18,17 +18,7 @@ export default () => ({
         id: null,
         title: 'Затрак',
         mealTime: '07:00',
-        mealPartProducts: [
-          {
-            id: null,
-            title: 'test product',
-            weight: 100,
-            protein: null,
-            fats: null,
-            carb: null,
-            kkal: null,
-          }
-        ],
+        mealPartProducts: [],
         mealPartRecipes: [],
       },
     ],
