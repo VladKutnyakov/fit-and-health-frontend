@@ -18,7 +18,7 @@ export default () => ({
         id: null,
         title: 'Затрак',
         mealTime: '07:00',
-        products: [
+        mealPartProducts: [
           {
             id: null,
             title: 'test product',

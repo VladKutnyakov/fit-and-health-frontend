@@ -20,7 +20,7 @@ export default {
   getCurrentProtein (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
-      state.mealPlanerInfo.fields.mealParts[i].products.forEach(element => {
+      state.mealPlanerInfo.fields.mealParts[i].mealPartProducts.forEach(element => {
         products.push(element)
       })
     }
@@ -35,7 +35,7 @@ export default {
   getCurrentFats (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
-      state.mealPlanerInfo.fields.mealParts[i].products.forEach(element => {
+      state.mealPlanerInfo.fields.mealParts[i].mealPartProducts.forEach(element => {
         products.push(element)
       })
     }
@@ -50,7 +50,7 @@ export default {
   getCurrentCarb (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
-      state.mealPlanerInfo.fields.mealParts[i].products.forEach(element => {
+      state.mealPlanerInfo.fields.mealParts[i].mealPartProducts.forEach(element => {
         products.push(element)
       })
     }
@@ -65,7 +65,7 @@ export default {
   getCurrentKkal (state) {
     const products = []
     for (let i = 0; i < state.mealPlanerInfo.fields.mealParts.length; i++) {
-      state.mealPlanerInfo.fields.mealParts[i].products.forEach(element => {
+      state.mealPlanerInfo.fields.mealParts[i].mealPartProducts.forEach(element => {
         products.push(element)
       })
     }
