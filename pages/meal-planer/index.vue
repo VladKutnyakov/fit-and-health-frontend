@@ -1,10 +1,11 @@
 <template>
-  <app-page pageTitle="Дневник питания" :breadcrumbs="breadcrumbs">
+  <app-page>
     <meal-plan />
     <additional-info />
 
     <select-product-modal
       :active="selectProductModalActive"
+      @selectProduct="selectProduct($event)"
       @closeModal="setModalVisibility({ modal: 'selectProductModalActive', condition: false })"
     />
   </app-page>
@@ -54,25 +55,7 @@ export default {
     SelectProductModal,
   },
   async asyncData ({ store, route }) {
-    await store.dispatch('mealPlaner/fetchMealPlanerInfo', {date: route.query.date})
-  },
-  data () {
-    return {
-      breadcrumbs: [
-        {
-          title: 'Профиль',
-          icon: 'ti-home',
-          link: '/profile',
-          active: true,
-        },
-        {
-          title: 'Дневник питания',
-          icon: 'ti-agenda',
-          link: '/meal-planer',
-          active: false,
-        },
-      ]
-    }
+    await store.dispatch('mealPlaner/fetchMealPlanerInfo', { date: route.query.date })
   },
   computed: {
     ...mapState({
@@ -83,6 +66,9 @@ export default {
     ...mapMutations({
       setModalVisibility: 'mealPlaner/setModalVisibility',
     }),
+    selectProduct ($event) {
+      console.log('selectProduct', $event)
+    },
   },
 }
 </script>

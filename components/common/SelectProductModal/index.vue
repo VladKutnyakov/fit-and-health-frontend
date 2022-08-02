@@ -144,7 +144,7 @@ export default {
   },
   methods: {
     selectProduct ($event) {
-      console.log($event)
+      this.$emit('selectProduct', $event)
     },
     openFilters () {
       console.log('openFilters')
