@@ -25,10 +25,6 @@ export default () => ({
     pinned: null,
     favorite: null,
     user: null,
-    userParams: {
-      weight: null,
-      targetWeight: null
-    },
   }),
 
   selectedMealPart: 0,

@@ -11,7 +11,7 @@ export default {
     //   lettargetKkal = (447.6 + (9.2 * state.targetWeight) + (3.1 * state.userHeight) - (4.3 * state.userAge)) * state.userActivity
     //   return Math.round(targetKkal)
     // }
-    const targetWeight = state.mealPlanerInfo.fields.userParams.targetWeight
+    const targetWeight = state.mealPlanerInfo.fields.targetWeight
 
     let currentKkal = (state.mealPlanerInfo.fields.targetProtein * targetWeight * 4.1) + (state.mealPlanerInfo.fields.targetFats * targetWeight * 9.3) + (state.mealPlanerInfo.fields.targetCarb * targetWeight * 4.1)
 

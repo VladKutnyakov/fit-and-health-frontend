@@ -17,7 +17,7 @@
             <p class="element__text">Белки:</p>
             <app-input-text
               class="element__value"
-              :value="targetProtein"
+              :value="mealPlanerInfo.fields.targetProtein"
               small
               textRight
               selectOnFocus
@@ -29,7 +29,7 @@
             <p class="element__text">Жиры:</p>
             <app-input-text
               class="element__value"
-              :value="targetFats"
+              :value="mealPlanerInfo.fields.targetFats"
               small
               textRight
               selectOnFocus
@@ -41,7 +41,7 @@
             <p class="element__text">Углеводы:</p>
             <app-input-text
               class="element__value"
-              :value="targetCarb"
+              :value="mealPlanerInfo.fields.targetCarb"
               small
               textRight
               selectOnFocus
@@ -58,7 +58,7 @@
             <p class="element__text">Текущий вес:</p>
             <app-input-text
               class="element__value"
-              :value="currentWeight"
+              :value="mealPlanerInfo.fields.currentWeight"
               small
               textRight
               selectOnFocus
@@ -70,7 +70,7 @@
             <p class="element__text">Желаемый вес:</p>
             <app-input-text
               class="element__value"
-              :value="targetWeight"
+              :value="mealPlanerInfo.fields.targetWeight"
               small
               textRight
               selectOnFocus
@@ -106,11 +106,7 @@ export default {
   },
   computed: {
     ...mapState({
-      targetProtein: state => state.mealPlaner.mealPlanerInfo.fields.targetProtein,
-      targetFats: state => state.mealPlaner.mealPlanerInfo.fields.targetFats,
-      targetCarb: state => state.mealPlaner.mealPlanerInfo.fields.targetCarb,
-      currentWeight: state => state.mealPlaner.mealPlanerInfo.fields.userParams.weight,
-      targetWeight: state => state.mealPlaner.mealPlanerInfo.fields.userParams.targetWeight,
+      mealPlanerInfo: state => state.mealPlaner.mealPlanerInfo,
     }),
     ...mapGetters({
       getDayTargetKkal: 'mealPlaner/getDayTargetKkal',
@@ -118,8 +114,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setNutrientsSettingsParam: 'mealPlaner/setNutrientsSettingsParam',
-      setUserParam: 'mealPlaner/setUserParam'
+      // setNutrientsSettingsParam: 'mealPlaner/setNutrientsSettingsParam',
+      // setUserParam: 'mealPlaner/setUserParam'
     })
   }
 }

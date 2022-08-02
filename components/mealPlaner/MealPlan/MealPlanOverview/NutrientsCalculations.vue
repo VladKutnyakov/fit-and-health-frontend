@@ -51,7 +51,7 @@ export default {
       targetProtein: state => state.mealPlaner.mealPlanerInfo.fields.targetProtein,
       targetFats: state => state.mealPlaner.mealPlanerInfo.fields.targetFats,
       targetCarb: state => state.mealPlaner.mealPlanerInfo.fields.targetCarb,
-      targetWeight: state => state.mealPlaner.mealPlanerInfo.fields.userParams.targetWeight
+      targetWeight: state => state.mealPlaner.mealPlanerInfo.fields.targetWeight
     }),
     ...mapGetters({
       getCurrentProtein: 'mealPlaner/getCurrentProtein',
