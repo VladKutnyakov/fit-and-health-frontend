@@ -29,7 +29,7 @@ export default () => ({
             kkal: null,
           }
         ],
-        recipes: [],
+        mealPartRecipes: [],
       },
     ],
     pinned: null,
