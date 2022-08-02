@@ -43,6 +43,9 @@
                   v-for="(item, index) in pinnedProducts"
                   :key="index"
                   :item="item"
+                  @changePinnedParam="changePinnedParam($event)"
+                  @changeFavoriteParam="changeFavoriteParam($event)"
+                  @selectProduct="selectProduct($event)"
                 />
               </ul>
             </div>
@@ -55,6 +58,9 @@
                   v-for="(item, index) in notPinnedProducts"
                   :key="index"
                   :item="item"
+                  @changePinnedParam="changePinnedParam($event)"
+                  @changeFavoriteParam="changeFavoriteParam($event)"
+                  @selectProduct="selectProduct($event)"
                 />
               </ul>
             </div>
@@ -80,7 +86,6 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
 import AppModal from '@/components/basic/AppModal'
 import AppSearchBlock from '@/components/basic/AppSearchBlock'
 import AppInfo from '@/components/basic/AppInfo'
@@ -130,11 +135,6 @@ export default {
       isLoading: false,
     }
   },
-  computed: {
-    ...mapState({
-      searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive,
-    })
-  },
   watch: {
     active (newValue) {
       if (newValue) {
@@ -151,6 +151,15 @@ export default {
     },
   },
   methods: {
+    selectProduct ($event) {
+      console.log($event)
+    },
+    openFilters () {
+      console.log('openFilters')
+    },
+    closeModal () {
+      this.$emit('closeModal')
+    },
     async fetchProductsList (payload) {
       try {
         const payload = {
@@ -191,11 +200,59 @@ export default {
         this.$store.commit('notifications/addNewNotice', notice)
       }
     },
-    openFilters () {
-      console.log('openFilters')
+    async changePinnedParam (payload) {
+      try {
+        const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-pinned-param/${payload.id}`)
+
+        this.isLoading = true
+
+        this.fetchProductsList().then(() => {
+          this.isLoading = false
+        })
+
+        const notice = {
+          id: Date.now(),
+          type: 'info',
+          message: response.data.pinned ? 'Продукт добавлен в закрепленные.' : 'Продукт удален из закрепленных.',
+          timeToShow: 5000,
+        }
+        this.$store.commit('notifications/addNewNotice', notice)
+      } catch (error) {
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
+          timeToShow: 5000,
+        }
+        this.$store.commit('notifications/addNewNotice', notice)
+      }
     },
-    closeModal () {
-      this.$emit('closeModal')
+    async changeFavoriteParam (payload) {
+      try {
+        const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/change-favorite-param/${payload.id}`)
+
+        this.isLoading = true
+
+        this.fetchProductsList().then(() => {
+          this.isLoading = false
+        })
+
+        const notice = {
+          id: Date.now(),
+          type: 'info',
+          message: response.data.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
+          timeToShow: 5000,
+        }
+        this.$store.commit('notifications/addNewNotice', notice)
+      } catch (error) {
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
+          timeToShow: 5000,
+        }
+        this.$store.commit('notifications/addNewNotice', notice)
+      }
     },
   }
 }

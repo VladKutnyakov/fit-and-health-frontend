@@ -5,13 +5,13 @@
         v-if="!item.pinned"
         class="ti-pin-alt element__action-btn"
         :class="[{'element__action-btn--active': item.pinned}]"
-        @click="changePinnedParam(item.id)"
+        @click="changePinnedParam(item)"
       ></i>
       <i
         v-if="item.pinned"
         class="ti-pin2 element__action-btn"
         :class="[{'element__action-btn--active': item.pinned}]"
-        @click="changePinnedParam(item.id)"
+        @click="changePinnedParam(item)"
       ></i>
     </div>
     <div class="item__element">
@@ -19,13 +19,13 @@
         v-if="!item.favorite"
         class="ti-heart-broken element__action-btn"
         :class="[{'element__action-btn--active': item.favorite}]"
-        @click="changeFavoriteParam(item.id)"
+        @click="changeFavoriteParam(item)"
       ></i>
       <i
         v-if="item.favorite"
         class="ti-heart element__action-btn"
         :class="[{'element__action-btn--active': item.favorite}]"
-        @click="changeFavoriteParam(item.id)"
+        @click="changeFavoriteParam(item)"
       ></i>
     </div>
     <div class="item__element">
@@ -36,7 +36,7 @@
         :value="item.weight"
         textCenter
         selectOnFocus
-        @input="changeProductWeight({item, newWeight: $event})"
+        @input="item.weight = $event"
       />
     </div>
     <div class="item__element">
@@ -54,73 +54,31 @@
     <div class="item__element">
       <i
         class="ti-plus element__action-btn"
-        @click="addProduct(item)"
+        @click="selectProduct(item)"
       ></i>
     </div>
   </li>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 
 export default {
   props: {
-    item: Object
+    item: Object,
   },
   components: {
     AppInputText
   },
-  computed: {
-    ...mapState({
-      searchFilters: state => state.foodCalorieTable.searchFilters,
-    }),
-  },
   methods: {
-    ...mapMutations({
-      changeProductWeight: 'foodCalorieTable/changeProductWeight'
-    }),
-    changePinnedParam (id) {
-      this.$store.dispatch('foodCalorieTable/changePinnedParam', id).then(() => {
-        this.$store.dispatch('foodCalorieTable/fetchPageInfo')
-        this.fetchProductsList()
-      })
+    changePinnedParam (item) {
+      this.$emit('changePinnedParam', item)
     },
-    changeFavoriteParam (id) {
-      this.$store.dispatch('foodCalorieTable/changeFavoriteParam', id).then(() => {
-        this.$store.dispatch('foodCalorieTable/fetchPageInfo')
-        this.fetchProductsList()
-      })
+    changeFavoriteParam (item) {
+      this.$emit('changeFavoriteParam', item)
     },
-    addProduct (item) {
-      console.log('addProduct', item)
-      // if (item.user) {
-      //   this.$store.commit('foodCalorieTable/setProductToRemove', item)
-
-      //   this.$store.commit('foodCalorieTable/setModalVisibility', { modal: 'confirmRemoveProductModalActive', condition: true })
-      // }
-    },
-    fetchProductsList () {
-      const payload = {
-        searchString: this.searchFilters.searchString,
-        userType: this.searchFilters.userType?.id || null,
-        userRelation: this.searchFilters.userRelation?.id || null,
-
-        orderBy: this.searchFilters.orderBy?.id || null,
-        categories: [],
-      }
-
-      const categoriesIDs = []
-      this.searchFilters.categories.forEach(element => {
-        categoriesIDs.push(element.id)
-      })
-
-      payload.categories = categoriesIDs.join(', ')
-
-      this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', true)
-      this.$store.dispatch('foodCalorieTable/fetchProductsList', payload).finally(() => {
-        this.$store.commit('foodCalorieTable/setWaiteProductsListUpdate', false)
-      })
+    selectProduct (item) {
+      this.$emit('selectProduct', item)
     },
   }
 }
@@ -163,17 +121,6 @@ export default {
     .element__action-btn--active {
       color: $primary;
     }
-    // .element__action-btn--remove {
-    //   color: $red;
-    // }
-    // .element__action-btn--disabled {
-    //   color: $black30;
-    //   cursor: default;
-    // }
-    // .element__action-btn--disabled:hover {
-    //   color: $black30 !important;
-    //   cursor: default;
-    // }
     .element__weight-scale {
       margin-top: 5px;
       margin-left: 5px;
@@ -202,9 +149,6 @@ export default {
     min-width: 50px;
     max-width: 50px;
     border: none;
-    // .element__action-btn:hover {
-    //   color: $red;
-    // }
   }
 }
 
@@ -224,21 +168,9 @@ export default {
       .element__action-btn--active {
         color: $primary;
       }
-      // .element__action-btn--remove {
-      //   color: $red;
-      // }
-      // .element__action-btn--disabled {
-      //   color: $white20;
-      // }
-      // .element__action-btn--disabled:hover {
-      //   color: $white20 !important;
-      // }
     }
     .item__element:nth-child(9) {
       border: none;
-      // .element__action-btn:hover {
-      //   color: $red;
-      // }
     }
   }
 }
