@@ -32,8 +32,6 @@ export default () => ({
         mealPartRecipes: [],
       },
     ],
-    pinned: null,
-    favorite: null,
     user: null,
   }),
 
