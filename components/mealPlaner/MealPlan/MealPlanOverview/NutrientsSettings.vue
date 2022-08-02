@@ -201,7 +201,7 @@ export default {
       display: flex;
       margin-top: 10px;
       padding-top: 10px;
-      border-top: 1px dashed $dividerBorder;
+      border-top: 1px solid $dividerBorder;
       .weight__target {
         flex: 1 1 auto;
         padding: 0 5px;
@@ -234,6 +234,9 @@ export default {
   .nutrients-settings {
     .nutrients-settings__content {
       background: $black15;
+      .nutrients-settings__weight {
+        border-top: 1px solid $dividerBorderDarkBG;
+      }
     }
   }
 }
