@@ -43,9 +43,6 @@
 import { mapState, mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {}
-  },
   computed: {
     ...mapState({
       targetProtein: state => state.mealPlaner.mealPlanerInfo.fields.targetProtein,
