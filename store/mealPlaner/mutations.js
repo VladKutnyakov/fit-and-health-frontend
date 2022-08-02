@@ -1,4 +1,4 @@
-import { setForm, clearForm } from '@/utils/formManager'
+import { setForm, clearForm, setFormFieldValue, setFormFieldError } from '@/utils/formManager'
 
 export default {
 
@@ -7,6 +7,13 @@ export default {
   },
   clearMealPlanerInfo (state, payload) {
     clearForm(state.mealPlanerInfo)
+  },
+
+  setMealPlanerInfoFieldValue (state, ctx) {
+    setFormFieldValue(state.mealPlanerInfo, ctx)
+  },
+  setMealPlanerInfoFieldError (state, ctx) {
+    setFormFieldError(state.mealPlanerInfo, ctx)
   },
 
   // setNutrientsSettingsParam (state, ctx) {

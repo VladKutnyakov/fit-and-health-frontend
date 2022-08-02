@@ -6,12 +6,29 @@
       <div class="overview">
         <div class="title-description-marks">
           <div class="title-and-description">
-            <overview-title />
-            <overview-description />
+            <div class="overview-title">
+              <p class="overview-title__text">Название рациона:</p>
+              <app-input-text
+                class="title__input"
+                :value="mealPlanerInfo.fields.title"
+                placeholder="Укажите название рациона"
+                @input="setMealPlanerInfoFieldValue({ field: 'title', newValue: $event })"
+              />
+            </div>
+
+            <div class="overview-description">
+              <p class="overview-description__text">Описание:</p>
+              <app-textarea
+                class="fill-area"
+                :value="mealPlanerInfo.fields.description"
+                placeholder="Укажите описание рациона"
+                @input="setMealPlanerInfoFieldValue({ field: 'description', newValue: $event })"
+              />
+            </div>
           </div>
 
           <added-marks
-            :marks="marks"
+            :marks="mealPlanerInfo.fields.marks"
             @addMark="setMealPlanMark($event)"
             @removeMark="removeMealPlanMark($event)"
           />
@@ -25,31 +42,30 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import OverviewTitle from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewTitle'
 import NutrientsSettings from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsSettings'
-import OverviewDescription from '@/components/mealPlaner/MealPlan/MealPlanOverview/OverviewDescription'
+import AppInputText from '@/components/basic/AppInputText'
+import AppTextarea from '@/components/basic/AppTextarea'
 import AddedMarks from '@/components/mealPlaner/MealPlan/MealPlanOverview/AddedMarks'
 import NutrientsCalculations from '@/components/mealPlaner/MealPlan/MealPlanOverview/NutrientsCalculations'
 
 export default {
   components: {
-    OverviewTitle,
     NutrientsSettings,
-    OverviewDescription,
+    AppInputText,
+    AppTextarea,
     AddedMarks,
     NutrientsCalculations,
   },
   computed: {
     ...mapState({
-      marks: state => state.mealPlaner.mealPlanerInfo.marks
+      mealPlanerInfo: state => state.mealPlaner.mealPlanerInfo
     })
   },
   methods: {
     ...mapMutations({
-      setMealPlanMark: 'mealPlaner/setMealPlanMark',
-      removeMealPlanMark: 'mealPlaner/removeMealPlanMark'
+      setMealPlanerInfoFieldValue: 'mealPlaner/setMealPlanerInfoFieldValue'
     })
-  }
+  },
 }
 </script>
 
@@ -77,6 +93,25 @@ export default {
           flex: 1 1 auto;
           display: flex;
           flex-direction: column;
+          .overview-title {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            .overview-title__text {
+              padding: 0 10px 5px 10px;
+              font-weight: 500;
+            }
+          }
+          .overview-description {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            padding: 0 10px;
+            .overview-description__text {
+              padding: 0 10px 5px 10px;
+              font-weight: 500;
+            }
+          }
         }
       }
     }
