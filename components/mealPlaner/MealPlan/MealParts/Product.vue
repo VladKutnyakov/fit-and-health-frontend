@@ -1,10 +1,7 @@
 <template>
   <li class="product__item">
     <div class="item__element">
-      <i
-        class="ti-exchange-vertical element__action-btn"
-        @click="changePinnedParam(item)"
-      ></i>
+      <i class="ti-exchange-vertical element__action-btn"></i>
     </div>
     <div class="item__element">
       <p class="element__value">{{ item.product.title }}</p>
@@ -14,7 +11,7 @@
         :value="item.weightInMealPart"
         textCenter
         selectOnFocus
-        @input="item.weightInMealPart = $event"
+        @input="setProductWeightInMealPart(item, $event)"
       />
     </div>
     <div class="item__element">
@@ -32,7 +29,7 @@
     <div class="item__element">
       <i
         class="ti-close element__action-btn"
-        @click="selectProduct(item)"
+        @click="removeProductFromMealPart(item)"
       ></i>
     </div>
   </li>
@@ -49,14 +46,11 @@ export default {
     AppInputText,
   },
   methods: {
-    changePinnedParam (item) {
-      this.$emit('changePinnedParam', item)
+    setProductWeightInMealPart (item, $event) {
+      this.$store.commit('mealPlaner/setProductWeightInMealPart', { item, newValue: $event })
     },
-    changeFavoriteParam (item) {
-      this.$emit('changeFavoriteParam', item)
-    },
-    selectProduct (item) {
-      this.$emit('selectProduct', item)
+    removeProductFromMealPart (item) {
+      this.$store.commit('mealPlaner/removeProductFromMealPart', item)
     },
   },
 }

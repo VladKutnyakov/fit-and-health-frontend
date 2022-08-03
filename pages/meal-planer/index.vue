@@ -67,7 +67,8 @@ export default {
       setModalVisibility: 'mealPlaner/setModalVisibility',
     }),
     selectProduct ($event) {
-      console.log('selectProduct', $event)
+      // console.log('selectProduct', $event)
+      this.$store.commit('mealPlaner/addProductInMealPart', JSON.parse(JSON.stringify($event)))
     },
   },
 }

@@ -5,7 +5,7 @@ export default {
   setMealPlanerInfo (state, payload) {
     setForm(state.mealPlanerInfo, payload)
   },
-  clearMealPlanerInfo (state, payload) {
+  clearMealPlanerInfo (state) {
     clearForm(state.mealPlanerInfo)
   },
 
@@ -36,6 +36,34 @@ export default {
       state.mealPlanerInfo.fields.mealParts.splice(payload, 1)
       if (state.mealPlanerInfo.fields.mealParts.length === 1) {
         state.selectedMealPart = payload - 1
+      }
+    }
+  },
+
+  addProductInMealPart (state, payload) {
+    const newProduct = {
+      weightInMealPart: payload.weight,
+      product: payload
+    }
+    newProduct.product.weight = 100
+
+    state.mealPlanerInfo.fields.mealParts[state.selectedMealPart].mealPartProducts.push(newProduct)
+  },
+  removeProductFromMealPart (state, payload) {
+    const products = state.mealPlanerInfo.fields.mealParts[state.selectedMealPart].mealPartProducts
+
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].product.id === payload.product.id) {
+        products.splice(i, 1)
+      }
+    }
+  },
+  setProductWeightInMealPart (state, payload) {
+    const products = state.mealPlanerInfo.fields.mealParts[state.selectedMealPart].mealPartProducts
+
+    for (let i = 0; i < products.length; i++) {
+      if (products[i].product.id === payload.item.product.id) {
+        products[i].weightInMealPart = payload.newValue
       }
     }
   },
