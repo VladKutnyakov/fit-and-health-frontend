@@ -69,13 +69,25 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
-        timeToShow: 5000,
+      if (error.response.data.errors) {
+        let notifications = ''
+
+        for (let i = 0; i < error.response.data.errors.length; i++) {
+          if (error.response.data.errors[i].field) {
+            commit('setProductFormFieldError', error.response.data.errors[i])
+          } else {
+            notifications += error.response.data.errors[i].errorMessage
+          }
+        }
+
+        const notice = {
+          id: Date.now(),
+          type: 'alert',
+          message: notifications || 'Ошибка при сохранении.',
+          timeToShow: 5000,
+        }
+        this.commit('notifications/addNewNotice', notice)
       }
-      this.commit('notifications/addNewNotice', notice)
     }
   },
 
