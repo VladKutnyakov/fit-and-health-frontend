@@ -15,7 +15,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 import AppHeader from '@/components/header/AppHeader'
 import AppNavbar from '@/components/navigation/AppNavbar'
 import AppNotifications from '@/components/basic/AppNotifications'
