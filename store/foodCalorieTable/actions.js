@@ -123,7 +123,7 @@ export default {
       const notice = {
         id: Date.now(),
         type: 'info',
-        message: response.data.pinned ? 'Продукт добавлен в закрепленные.' : 'Продукт удален из закрепленных.',
+        message: response.pinned ? 'Продукт добавлен в закрепленные.' : 'Продукт удален из закрепленных.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
@@ -139,7 +139,7 @@ export default {
       const notice = {
         id: Date.now(),
         type: 'info',
-        message: response.data.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
+        message: response.favorite ? 'Продукт добавлен в избранное.' : 'Продукт удален из избранного.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
