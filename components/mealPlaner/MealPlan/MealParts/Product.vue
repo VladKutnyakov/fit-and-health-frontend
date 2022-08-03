@@ -11,10 +11,10 @@
     </div>
     <div class="item__element">
       <app-input-text
-        :value="item.product.weight"
+        :value="item.weightInMealPart"
         textCenter
         selectOnFocus
-        @input="item.product.weight = $event"
+        @input="item.weightInMealPart = $event"
       />
     </div>
     <div class="item__element">
