@@ -101,10 +101,9 @@ export default {
     ...mapState({
       mealParts: state => state.mealPlaner.mealPlanerInfo.fields.mealParts,
       selectedMealPart: state => state.mealPlaner.selectedMealPart,
-      searchRecipesAndProductsModalActive: state => state.mealPlaner.searchRecipesAndProductsModalActive
     }),
     mealPartProducts () {
-      return this.mealParts[this.selectedMealPart].products
+      return this.mealParts[this.selectedMealPart].mealPartProducts
     },
   },
   methods: {
