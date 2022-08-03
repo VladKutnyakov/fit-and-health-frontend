@@ -56,7 +56,7 @@
           <added-product
             v-for="(item, index) in mealPartProducts"
             :key="index"
-            :mealPartProduct="item"
+            :item="item"
           />
           <!-- <added-recipe /> -->
         </div>
@@ -180,14 +180,13 @@ export default {
           border: 1px solid $primary;
           border-radius: 6px;
           .item__element {
+            flex: 0 1 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 10px;
-            width: 100%;
-            max-width: 150px;
+            width: 120px;
             text-align: center;
-            border-right: 1px solid $white;
+            border-right: 1px solid $dividerBorder;
             .element__title {
               text-transform: uppercase;
               color: $white;
@@ -201,18 +200,19 @@ export default {
           }
           .item__element:nth-child(1) {
             max-width: 50px;
-            cursor: pointer;
           }
           .item__element:nth-child(2) {
-            min-width: 250px;
-            max-width: 100%;
+            flex: 1 1 auto;
+            min-width: 200px;
           }
-          .item__element:last-child {
+          .item__element:nth-child(3) {
+            padding: 0 5px;
+          }
+          .item__element:nth-child(8) {
             width: 50px;
             min-width: 50px;
             max-width: 50px;
             border: none;
-            cursor: pointer;
           }
         }
       }
@@ -234,6 +234,14 @@ export default {
       .products-and-recipes {
         .products-and-recipes__content {
           background: $black15;
+          .table-headers {
+            .item__element {
+              border-right: 1px solid $white;
+            }
+            .item__element:last-child {
+              border-right: none;
+            }
+          }
         }
       }
     }

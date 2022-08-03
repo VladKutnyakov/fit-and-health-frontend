@@ -1,127 +1,155 @@
 <template>
-  <div class="added-product">
+  <li class="product__item">
     <div class="item__element">
-      <i class="ti-exchange-vertical"></i>
-    </div>
-    <div class="item__element">
-      <p class="element__value">{{ mealPartProduct.title }}</p>
-    </div>
-    <div class="item__element">
-      <div class="element__input-wrapper">
-        <input
-          class="element__weight-input"
-          type="text"
-          :value="mealPartProduct.weightInMealPart"
-          @input="setProductWeight({id: mealPartProduct.id, newValue: $event.target.value})"
-          @focus="setFocus($event)"
-        />
-        <span class="element__weight-scale">гр.</span>
-      </div>
+      <i
+        class="ti-exchange-vertical element__action-btn"
+        @click="changePinnedParam(item)"
+      ></i>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (mealPartProduct.protein / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
+      <p class="element__value">{{ item.product.title }}</p>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (mealPartProduct.fats / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
+      <app-input-text
+        :value="item.product.weight"
+        textCenter
+        selectOnFocus
+        @input="item.product.weight = $event"
+      />
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (mealPartProduct.carb / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (item.product.protein / 100 * item.weightInMealPart) * 100) / 100 }}</p>
     </div>
     <div class="item__element">
-      <p class="element__value">{{ Math.round( (mealPartProduct.kkal / 100 * mealPartProduct.weightInMealPart) * 100) / 100 }}</p>
+      <p class="element__value">{{ Math.round( (item.product.fats / 100 * item.weightInMealPart) * 100) / 100 }}</p>
     </div>
-    <div class="item__element" @click="removeFoodFromMealPart(mealPartProduct.id)">
-      <i class="ti-trash"></i>
+    <div class="item__element">
+      <p class="element__value">{{ Math.round( (item.product.carb / 100 * item.weightInMealPart) * 100) / 100 }}</p>
     </div>
-  </div>
+    <div class="item__element">
+      <p class="element__value">{{ Math.round( (item.product.kkal / 100 * item.weightInMealPart) * 100) / 100 }}</p>
+    </div>
+    <div class="item__element">
+      <i
+        class="ti-close element__action-btn"
+        @click="selectProduct(item)"
+      ></i>
+    </div>
+  </li>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import AppInputText from '@/components/basic/AppInputText'
 
 export default {
   props: {
-    mealPartProduct: Object
+    item: Object,
   },
-  data () {
-    return {}
+  components: {
+    AppInputText,
   },
   methods: {
-    ...mapMutations({
-      setProductWeight: 'mealPlaner/setProductWeight',
-      removeFoodFromMealPart: 'mealPlaner/removeFoodFromMealPart'
-    }),
-    setFocus ($event) {
-      $event.target.select()
-    }
-  }
+    changePinnedParam (item) {
+      this.$emit('changePinnedParam', item)
+    },
+    changeFavoriteParam (item) {
+      this.$emit('changeFavoriteParam', item)
+    },
+    selectProduct (item) {
+      this.$emit('selectProduct', item)
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/styles/vars.scss";
 
-.added-product {
+.product__item {
   display: flex;
-  margin-bottom: 5px;
-  padding: 10px 0px;
+  margin-bottom: 10px;
+  padding: 5px 0px;
   background: $white;
-  border: 1px solid $blockBorder;
+  border: 1px solid transparent;
+  box-shadow: $cardShadow;
   border-radius: 6px;
+  transition: $tr-02;
   .item__element {
-    // border: 1px solid red;
+    flex: 0 1 auto;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding: 5px 10px;
-    width: 100%;
-    max-width: 150px;
+    padding: 5px;
+    width: 120px;
     text-align: center;
-    border-right: 1px solid $inputBorder;
+    border-right: 1px solid $dividerBorder;
     .element__value {
       font-size: 16px;
     }
-    .element__weight-input {
-      margin-top: -3px;
-      padding: 0;
-      width: 60px;
-      min-width: 50px;
-      max-width: 50px;
-      outline: none;
-      border: none;
-      border-bottom: 1px solid $blockBorder;
-      text-align: center;
-      color: $green;
-      font-family: $fontMontserrat;
-      font-weight: 500;
+    .element__action-btn {
+      padding: 8px;
+      color: $black30;
+      border-radius: 50%;
+      transition: $tr-02;
+      cursor: pointer;
     }
-    .element__weight-input::selection {
-      color: $white;
-      background: $green;
+    .element__action-btn:hover {
+      color: $primary;
+    }
+    .element__action-btn--active {
+      color: $primary;
     }
     .element__weight-scale {
       margin-top: 5px;
+      margin-left: 5px;
       font-size: 12px;
     }
   }
   .item__element:nth-child(1) {
+    width: 50px;
+    min-width: 50px;
     max-width: 50px;
-    cursor: pointer;
   }
+  // .item__element:nth-child(2) {
+  //   width: 50px;
+  //   min-width: 50px;
+  //   max-width: 50px;
+  // }
   .item__element:nth-child(2) {
-    min-width: 250px;
-    max-width: 100%;
-    .element__value {
-      text-align: left;
-      font-weight: 500;
-    }
+    flex: 1 1 auto;
+    min-width: 200px;
   }
-  .item__element:last-child {
+  .item__element:nth-child(3) {
+    padding: 0 5px;
+  }
+  .item__element:nth-child(8) {
     width: 50px;
     min-width: 50px;
     max-width: 50px;
     border: none;
-    cursor: pointer;
+  }
+}
+
+.dark-theme {
+  .product__item {
+    background: $cardBackgroundDarkBG;
+    border: 1px solid $dividerBorderDarkBG;
+    box-shadow: $boxShadow;
+    .item__element {
+      border-right: 1px solid $dividerBorderDarkBG;
+      .element__action-btn {
+        color: $white20;
+      }
+      .element__action-btn:hover {
+        color: $primary;
+      }
+      .element__action-btn--active {
+        color: $primary;
+      }
+    }
+    .item__element:nth-child(8) {
+      border: none;
+    }
   }
 }
 
