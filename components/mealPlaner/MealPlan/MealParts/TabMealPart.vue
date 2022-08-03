@@ -186,7 +186,7 @@ export default {
             justify-content: center;
             width: 120px;
             text-align: center;
-            border-right: 1px solid $dividerBorder;
+            border-right: 1px solid $white;
             .element__title {
               text-transform: uppercase;
               color: $white;
@@ -234,14 +234,6 @@ export default {
       .products-and-recipes {
         .products-and-recipes__content {
           background: $black15;
-          .table-headers {
-            .item__element {
-              border-right: 1px solid $white;
-            }
-            .item__element:last-child {
-              border-right: none;
-            }
-          }
         }
       }
     }

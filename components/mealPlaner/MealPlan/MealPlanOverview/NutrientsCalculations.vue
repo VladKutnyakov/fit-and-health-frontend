@@ -3,34 +3,46 @@
     <div class="nutrients-calculations__item">
       <p class="item__title">Белки</p>
       <div class="item__value">
-        <p class="value__current">{{ getCurrentProtein }}</p>
+        <p
+          class="value__current"
+          :class="[nutrientAmountValidationClass(getCurrentProtein, targetMaxProtein)]"
+        >{{ getCurrentProtein }}</p>
         <p class="value__divider">/</p>
-        <p class="value__max">{{ Math.round(parseFloat(mealPlanerInfo.fields.targetProtein * mealPlanerInfo.fields.targetWeight) * 100) / 100 }}</p>
+        <p class="value__max">{{ targetMaxProtein }}</p>
         <p class="value__scale">гр</p>
       </div>
     </div>
     <div class="nutrients-calculations__item">
       <p class="item__title">Жиры</p>
       <div class="item__value">
-        <p class="value__current">{{ getCurrentFats }}</p>
+        <p
+          class="value__current"
+          :class="[nutrientAmountValidationClass(getCurrentFats, targetMaxFats)]"
+        >{{ getCurrentFats }}</p>
         <p class="value__divider">/</p>
-        <p class="value__max">{{ Math.round(parseFloat(mealPlanerInfo.fields.targetFats * mealPlanerInfo.fields.targetWeight) * 100) / 100 }}</p>
+        <p class="value__max">{{ targetMaxFats }}</p>
         <p class="value__scale">гр</p>
       </div>
     </div>
     <div class="nutrients-calculations__item">
       <p class="item__title">Углеводы</p>
       <div class="item__value">
-        <p class="value__current">{{ getCurrentCarb }}</p>
+        <p
+          class="value__current"
+          :class="[nutrientAmountValidationClass(getCurrentCarb, targetMaxCarb)]"
+        >{{ getCurrentCarb }}</p>
         <p class="value__divider">/</p>
-        <p class="value__max">{{ Math.round(parseFloat(mealPlanerInfo.fields.targetCarb * mealPlanerInfo.fields.targetWeight) * 100) / 100 }}</p>
+        <p class="value__max">{{ targetMaxCarb }}</p>
         <p class="value__scale">гр</p>
       </div>
     </div>
     <div class="nutrients-calculations__item">
       <p class="item__title">Калорийность</p>
       <div class="item__value">
-        <p class="value__current">{{ getCurrentKkal }}</p>
+        <p
+          class="value__current"
+          :class="[nutrientAmountValidationClass(getCurrentKkal, getDayTargetKkal)]"
+        >{{ getCurrentKkal }}</p>
         <p class="value__divider">/</p>
         <p class="value__max">{{ getDayTargetKkal }}</p>
         <p class="value__scale">ккал</p>
@@ -53,8 +65,29 @@ export default {
       getCurrentCarb: 'mealPlaner/getCurrentCarb',
       getCurrentKkal: 'mealPlaner/getCurrentKkal',
       getDayTargetKkal: 'mealPlaner/getDayTargetKkal',
-    })
-  }
+    }),
+    targetMaxProtein () {
+      return Math.round(parseFloat(this.mealPlanerInfo.fields.targetProtein * this.mealPlanerInfo.fields.targetWeight) * 100) / 100
+    },
+    targetMaxFats () {
+      return Math.round(parseFloat(this.mealPlanerInfo.fields.targetFats * this.mealPlanerInfo.fields.targetWeight) * 100) / 100
+    },
+    targetMaxCarb () {
+      return Math.round(parseFloat(this.mealPlanerInfo.fields.targetCarb * this.mealPlanerInfo.fields.targetWeight) * 100) / 100
+    },
+  },
+  methods: {
+    nutrientAmountValidationClass (currentValue, targetValue) {
+      const maxPermissibleValue = (currentValue * 15 / 100) + targetValue
+
+      if (currentValue <= targetValue) {
+        return 'value__current--success'
+      } else if (currentValue > targetValue && currentValue < maxPermissibleValue) {
+        return 'value__current--warning'
+      }
+      return 'value__current--danger'
+    },
+  },
 }
 </script>
 
@@ -83,7 +116,18 @@ export default {
       display: flex;
       margin-top: 5px;
       .value__current {
-        color: $primary;
+        font-weight: 600;
+      }
+      .value__current--success {
+        color: $green;
+        font-weight: 600;
+      }
+      .value__current--warning {
+        color: $warning;
+        font-weight: 600;
+      }
+      .value__current--danger {
+        color: $red;
         font-weight: 600;
       }
       .value__divider {

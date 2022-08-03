@@ -1,6 +1,6 @@
 <template>
   <div class="nutrients-settings">
-    <p class="nutrients-settings__block-title">Название рациона:</p>
+    <p class="nutrients-settings__block-title">Настройки рациона:</p>
 
     <div class="nutrients-settings__content">
       <div class="chart">
