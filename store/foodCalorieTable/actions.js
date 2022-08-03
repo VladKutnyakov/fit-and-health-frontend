@@ -58,7 +58,7 @@ export default {
     try {
       const response = await this.$axios.$post(`${process.env.BASE_URL}/api/food-calorie-table/save-product`, { product: payload })
 
-      commit('toggleModalVisibility', {
+      commit('setModalVisibility', {
         modal: 'productModalActive',
         condition: false,
       })
@@ -79,7 +79,7 @@ export default {
     try {
       const response = await this.$axios.$put(`${process.env.BASE_URL}/api/food-calorie-table/update-product`, { product: payload })
 
-      commit('toggleModalVisibility', {
+      commit('setModalVisibility', {
         modal: 'productModalActive',
         condition: false,
       })
