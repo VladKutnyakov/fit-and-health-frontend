@@ -53,12 +53,12 @@
             </div>
           </div>
 
-          <added-product
+          <product
             v-for="(item, index) in mealPartProducts"
             :key="index"
             :item="item"
           />
-          <!-- <added-recipe /> -->
+          <!-- <recipe /> -->
         </div>
       </div>
     </div>
@@ -85,16 +85,16 @@
 import { mapState, mapMutations } from 'vuex'
 import AppInputText from '@/components/basic/AppInputText'
 import AppInputTime from '@/components/basic/AppInputTime'
-import AddedProduct from '@/components/mealPlaner/MealPlan/MealParts/AddedProduct'
-import AddedRecipe from '@/components/mealPlaner/MealPlan/MealParts/AddedRecipe'
+import Product from '@/components/mealPlaner/MealPlan/MealParts/Product'
+import Recipe from '@/components/mealPlaner/MealPlan/MealParts/Recipe'
 import AppButton from '@/components/basic/AppButton'
 
 export default {
   components: {
     AppInputText,
     AppInputTime,
-    AddedProduct,
-    AddedRecipe,
+    Product,
+    Recipe,
     AppButton
   },
   computed: {
