@@ -9,7 +9,7 @@ export default {
       const notice = {
         id: Date.now(),
         type: 'alert',
-        message: 'Ошибка при загрузке данных для дневника питания. Обновите страницу или зайдите позже.',
+        message: error.response?.data?.errors[0]?.errorMessage || 'Ошибка при загрузке данных.',
         timeToShow: 5000,
       }
       this.commit('notifications/addNewNotice', notice)
