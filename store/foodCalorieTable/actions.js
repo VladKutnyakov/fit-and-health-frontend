@@ -92,13 +92,7 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
-        timeToShow: 5000,
-      }
-      this.commit('notifications/addNewNotice', notice)
+      errorHandler(this, error, 'foodCalorieTable/setProductFormFieldError', 'Ошибка при сохранении.')
     }
   },
 
@@ -115,22 +109,10 @@ export default {
         }
         this.commit('notifications/addNewNotice', notice)
       } else {
-        const notice = {
-          id: Date.now(),
-          type: 'alert',
-          message: 'Удалить продукт не удалось.',
-          timeToShow: 5000,
-        }
-        this.commit('notifications/addNewNotice', notice)
+        errorHandler(this, error, 'foodCalorieTable/setProductFormFieldError', 'Ошибка при удалении.')
       }
     } catch (error) {
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при удалении.',
-        timeToShow: 5000,
-      }
-      this.commit('notifications/addNewNotice', notice)
+      errorHandler(this, error, 'foodCalorieTable/setProductFormFieldError', 'Ошибка при удалении.')
     }
   },
 
@@ -146,13 +128,7 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
-        timeToShow: 5000,
-      }
-      this.commit('notifications/addNewNotice', notice)
+      errorHandler(this, error, 'foodCalorieTable/setProductFormFieldError', 'Ошибка при сохранении.')
     }
   },
 
@@ -168,13 +144,7 @@ export default {
       }
       this.commit('notifications/addNewNotice', notice)
     } catch (error) {
-      const notice = {
-        id: Date.now(),
-        type: 'alert',
-        message: error?.response?.data?.errors[0]?.errorMessage || 'Ошибка при сохранении.',
-        timeToShow: 5000,
-      }
-      this.commit('notifications/addNewNotice', notice)
+      errorHandler(this, error, 'foodCalorieTable/setProductFormFieldError', 'Ошибка при сохранении.')
     }
   },
 
