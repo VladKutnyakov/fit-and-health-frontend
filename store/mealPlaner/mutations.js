@@ -22,6 +22,24 @@ export default {
     setFormFieldError(state.mealPlanerInfo, ctx)
   },
 
+  addNewMealPart (state) {
+    state.mealPlanerInfo.fields.mealParts.push({
+      id: null,
+      title: 'Новый прием пищи',
+      mealTime: '00:00',
+      mealPartProducts: [],
+      mealPartRecipes: [],
+    })
+  },
+  removeMealPart (state, payload) {
+    if (state.mealPlanerInfo.fields.mealParts.length > 1) {
+      state.mealPlanerInfo.fields.mealParts.splice(payload, 1)
+      if (state.mealPlanerInfo.fields.mealParts.length === 1) {
+        state.selectedMealPart = payload - 1
+      }
+    }
+  },
+
   setSelectedMealPart (state, index) {
     state.selectedMealPart = index
   },

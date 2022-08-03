@@ -116,6 +116,9 @@ export default {
     openSelectRecipeModal () {
       this.$store.commit('mealPlaner/setModalVisibility', { modal: 'selectRecipeModalActive', condition: true })
     },
+    removeSelectedMealPart () {
+      this.$store.commit('mealPlaner/removeMealPart', this.selectedMealPart)
+    },
   }
 }
 </script>
