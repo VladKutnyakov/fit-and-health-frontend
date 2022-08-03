@@ -90,6 +90,14 @@ export default {
 
       if (canBeAdded) {
         this.$store.commit('mealPlaner/addProductInMealPart', JSON.parse(JSON.stringify($event)))
+
+        const notice = {
+          id: Date.now(),
+          type: 'success',
+          message: 'Продукт успешно добавлен.',
+          timeToShow: 5000,
+        }
+        this.$store.commit('notifications/addNewNotice', notice)
       }
     },
   },
