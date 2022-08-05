@@ -19,5 +19,13 @@ export function errorHandler (that, error, errorCommit, defaultErrorMessage) {
       timeToShow: 5000,
     }
     that.commit('notifications/addNewNotice', notice)
+  } else {
+    const notice = {
+      id: Date.now(),
+      type: 'alert',
+      message: defaultErrorMessage || 'Неизвестная ошибка',
+      timeToShow: 5000,
+    }
+    that.commit('notifications/addNewNotice', notice)
   }
 }

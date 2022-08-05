@@ -47,11 +47,25 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
       listIsVisible: false,
     }
+  },
+  computed: {
+    ...mapState({
+      accessToken: state => state.auth.accessToken,
+    }),
+  },
+  watch: {
+    accessToken (newValue) {
+      if (newValue) {
+        this.$store.dispatch('auth/fetchAuthUserInfo')
+      }
+    },
   },
   methods: {
     toggleListVisibility () {
@@ -74,7 +88,12 @@ export default {
     logout () {
       this.$store.dispatch('auth/logout')
     },
-  }
+  },
+  created () {
+    if (this.accessToken) {
+      this.$store.dispatch('user/fetchAuthUserInfo')
+    }
+  },
 }
 </script>
 
