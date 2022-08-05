@@ -30,6 +30,10 @@ export default {
           value: this.pageInfo.products || 0,
         },
         {
+          title: "Мои продукты",
+          value: this.pageInfo.userProducts || 0,
+        },
+        {
           title: "Закрепленные",
           value: this.pageInfo.pinned || 0,
         },
@@ -37,10 +41,6 @@ export default {
           title: "Избранное",
           value: this.pageInfo.favorites || 0,
         },
-        {
-          title: "Мои продукты",
-          value: this.pageInfo.userProducts || 0,
-        }
       ]
     }
   },

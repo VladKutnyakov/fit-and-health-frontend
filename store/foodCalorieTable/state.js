@@ -4,9 +4,9 @@ export default () => ({
 
   pageInfo: {
     products: null,
+    userProducts: null,
     pinned: null,
     favorites: null,
-    userProducts: null,
   },
 
   searchFilters: {
