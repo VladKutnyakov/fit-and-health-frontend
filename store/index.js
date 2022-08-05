@@ -23,7 +23,7 @@ export const actions = {
 
     if (getCookie('authorization')) {
       this.commit('auth/setAccessToken', getCookie('authorization'))
-      this.dispatch('user/fetchUserInfo')
+      this.dispatch('profile/fetchUserInfo')
     }
 
     // Устанавливаем визуальную тему для сайта

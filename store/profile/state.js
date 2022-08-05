@@ -1,7 +1,9 @@
 export default () => ({
 
-  userinfo: {
+  userInfo: {
     id: null,
+    firstName: null,
+    lastName: null,
   },
 
   profileInfo: {

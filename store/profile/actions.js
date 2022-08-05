@@ -1,4 +1,16 @@
+import { errorHandler } from '@/utils/errorHandler'
+
 export default {
+
+  async fetchUserInfo ({ commit }) {
+    try {
+      const response = await this.$axios.$get(`${process.env.BASE_URL}/api/profiles/user-info`)
+
+      commit('setUserInfo', response)
+    } catch (error) {
+      errorHandler(this, error, null, null)
+    }
+  },
 
   async fetchProfileInfo ({ commit }, userId) {
     try {
