@@ -25,6 +25,10 @@ export const actions = {
     // Устанавливаем token, который пришел с запросом из headers cookie
     this.commit('auth/setAccessToken', getCookie('authorization'))
 
+    if (getCookie('authorization')) {
+      this.dispatch('user/fetchAuthUserInfo')
+    }
+
     // Устанавливаем визуальную тему для сайта
     this.commit('settings/setAppTheme', getCookie('appTheme') || 'LIGHT')
   },

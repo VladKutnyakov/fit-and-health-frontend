@@ -89,11 +89,6 @@ export default {
       this.$store.dispatch('auth/logout')
     },
   },
-  created () {
-    if (this.accessToken) {
-      this.$store.dispatch('user/fetchAuthUserInfo')
-    }
-  },
 }
 </script>
 
