@@ -172,7 +172,7 @@ export default {
               exact: false,
             },
             {
-              title: 'Сохраненные рационы',
+              title: 'Книга рационов',
               link: '/meal-plans',
               icon: 'ti-write',
               exact: false
@@ -374,7 +374,7 @@ export default {
             margin-right: 10px;
             font-size: 18px;
           }
-          .link__text {}
+          // .link__text {}
         }
         .item__link:hover {
           background: $primaryLight5;
@@ -445,10 +445,10 @@ export default {
       .group__menu-list {
         border-left: 1px solid $dividerBorderDarkBG;
         .menu-list__item {
-          .item__link {
-            .link__icon {}
-            .link__text {}
-          }
+          // .item__link {
+          //   .link__icon {}
+          //   .link__text {}
+          // }
           .item__link:hover {
             background: $primaryDarkHover;
             .link__icon {

@@ -1,5 +1,5 @@
 <template>
-  <div class="meal-planer-actions">
+  <div class="meal-planer__actions">
     <app-button
       dangerBtn
       @click="removeMealPlanerInfo()"
@@ -8,13 +8,25 @@
     </app-button>
 
     <app-button
+      class="ml-10"
+    >
+      <i class="ti-search"></i>
+    </app-button>
+
+    <app-button
+      v-if="false"
       class="ml-10 fill-area"
-    >Добавить в книгу рационов</app-button>
+    >Добавить в книгу</app-button>
+
+    <app-button
+      v-if="true"
+      class="ml-10 fill-area"
+    >Удалить из книги</app-button>
 
     <app-button
       class="mt-10 fill-area"
       @click="saveMealPlanerInfo()"
-    >Сохранить рацион</app-button>
+    >Сохранить</app-button>
   </div>
 </template>
 
@@ -38,7 +50,7 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/styles/vars.scss';
 
-.meal-planer-actions {
+.meal-planer__actions {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
@@ -50,7 +62,7 @@ export default {
 }
 
 .dark-theme {
-  .meal-planer-actions {
+  .meal-planer__actions {
     background: $cardBackgroundDarkBG;
   }
 }

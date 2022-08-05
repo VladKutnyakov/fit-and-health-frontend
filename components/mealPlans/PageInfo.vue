@@ -3,44 +3,49 @@
     <app-page-info
       :infoElements="pageInfoElements"
       btnTitle="Добавить рацион"
-      @btnAction="openModal()"
+      @btnAction="openProductModal()"
     />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import AppPageInfo from "@/components/basic/AppPageInfo"
-
 
 export default {
   components: {
-    AppPageInfo,
-  },
-  data() {
-    return {}
+    AppPageInfo
   },
   computed: {
+    ...mapState({
+      pageInfo: state => state.foodCalorieTable.pageInfo,
+    }),
     pageInfoElements () {
       return [
         {
           title: "Всего рационов",
-          value: 14
-        },
-        {
-          title: "Избранное",
-          value: 0
+          value: this.pageInfo.products || 0,
         },
         {
           title: "Мои рационы",
-          value: 0
-        }
+          value: this.pageInfo.userProducts || 0,
+        },
+        {
+          title: "Закрепленные",
+          value: this.pageInfo.pinned || 0,
+        },
+        {
+          title: "Избранное",
+          value: this.pageInfo.favorites || 0,
+        },
       ]
     }
   },
   methods: {
-    openModal () {
-      // console.log('Добавить рацион')
-      this.$router.push('/meal-plans/meal-plan-editor')
+    openProductModal () {
+      this.$store.commit('foodCalorieTable/setModalCondition', 'create')
+      this.$store.commit('foodCalorieTable/clearProductForm')
+      this.$store.commit('foodCalorieTable/setModalVisibility', { modal: 'productModalActive', condition: true })
     }
   }
 }
