@@ -2,7 +2,7 @@ import { errorHandler } from '@/utils/errorHandler'
 
 export default {
 
-  async fetchAuthUserInfo ({ commit }) {
+  async fetchUserInfo ({ commit }) {
     try {
       const response = await this.$axios.$get(`${process.env.BASE_URL}/api/user/user-info`)
 
