@@ -34,6 +34,10 @@
                 setProductFormFieldValue({field: 'category', newValue: $event}),
                 setProductFormFieldError({field: 'category', enabled: false, errorMessage: null})
               "
+              @clear="
+                setProductFormFieldValue({field: 'category', newValue: $event}),
+                setProductFormFieldError({field: 'category', enabled: false, errorMessage: null})
+              "
             />
           </div>
 
