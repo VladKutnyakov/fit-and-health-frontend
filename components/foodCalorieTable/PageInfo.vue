@@ -38,7 +38,7 @@ export default {
           value: this.pageInfo.pinned || 0,
         },
         {
-          title: "Избранное",
+          title: "Избранные",
           value: this.pageInfo.favorites || 0,
         },
       ]
