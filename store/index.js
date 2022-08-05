@@ -6,7 +6,6 @@ export const mutations = {}
 
 export const actions = {
 
-  // этот action вызывается на стороне сервера при запуске SSR
   async nuxtServerInit () {
     const getCookie = (name) => {
       const headerCookie = process.browser ? document.cookie : this.app.context.req.headers.cookie
@@ -22,10 +21,8 @@ export const actions = {
       return null
     }
 
-    // Устанавливаем token, который пришел с запросом из headers cookie
-    this.commit('auth/setAccessToken', getCookie('authorization'))
-
     if (getCookie('authorization')) {
+      this.commit('auth/setAccessToken', getCookie('authorization'))
       this.dispatch('user/fetchAuthUserInfo')
     }
 
